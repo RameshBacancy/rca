@@ -1,0 +1,64 @@
+@import 'src/assets/scss/index.scss';
+#landing-sidebar {
+	background:#2b3a41;
+	display: inline-block;
+	position: fixed;
+	transition: 0.5s;
+	z-index: 9;
+	margin-top: 79px;
+	bottom: 0px; top: 0px;
+	left: 0px;
+	
+
+	ul {
+		margin: 0px;
+		padding: 0px;
+		li {
+			position: relative;
+			display: block;
+			border-bottom:$primary-light-white solid 1px;
+			a {
+				
+				width: 209px;
+				// height: 70px;
+				display: flex;
+				color: $color-white;
+		text-align: left;
+		position: relative;
+		padding-left: 20px;
+		padding: 15px;
+        transition: all 0.5s;
+		&:hover { background:$primary-dark-gray-hover; text-decoration: none;}
+		
+				img {
+					position: absolute;
+					top: 50%;
+					transform: translateY(-50%);
+				}
+				.iconblock {
+				
+					color: $color-white;
+				
+					img {position: static; transform: none; margin-right: 15px;}
+				}
+				.arrow-img { position: absolute; right: 0px; top: 50%; transform: translateY(-50%);
+					img {position: static; transform: none; margin-right: 15px;}
+				}
+				
+			}
+			.active{ background:$primary-dark-gray-hover;}
+		}
+	}
+}
+
+ul.sub-menu { width: 100%; padding:0px; padding: 0px;
+li { list-style: none; margin: 0px; padding: 0px;
+	background: $primary-light-white;
+a{
+	padding:15px; color:$color-white;
+}
+
+}
+&:last-child {border-bottom: none}
+
+}

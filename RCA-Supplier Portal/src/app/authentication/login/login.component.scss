@@ -1,0 +1,46 @@
+@import 'src/assets/scss/index.scss';
+.login {
+    background-image: url('../../../assets/images/landing.png');
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    .login-content {
+      // height: calc(100vh - #{$header-size});
+      overflow-y: auto;
+      .servicing-box-container {
+        max-width: $max-content-size;
+        margin: 0 auto;
+        .servicing-box {
+          margin: auto;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 450px;
+          padding: 30px;
+          border-radius: 8px;
+          background-color: white;
+          border: 1px solid $grey-light;
+          .servicing-title {
+            margin-top: 0;
+            margin-bottom: 20px;
+          }
+          .servicing-btn-box {
+            display: inline-flex;
+            width: 100%;
+            justify-content: flex-end;
+          }
+          @media only screen and (max-width: 575px) {
+         
+            width: 95%;
+            padding: 15px;
+          
+          }
+          h2 {
+            @media only screen and (max-width: 575px) {font-size: 18px}
+          }
+        }
+      }
+    }
+  }

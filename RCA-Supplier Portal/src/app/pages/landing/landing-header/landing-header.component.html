@@ -1,0 +1,31 @@
+<div class="landing-header-fill"></div>
+<header class="landing-header maroon-bg">
+  <div class="left-side">
+    <div class="nav-icon" (click)="onViewSideBar();">
+      <div id="nav-icon3" [class.open]="viewSideBar">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <span>
+      <i class="fa fa-home text-white fs-14 mr-3"></i>
+    </span>
+    <span>
+      <i class="fa fa-th text-white fs-14"></i>
+    </span>
+  </div>
+  <div class="right-side">
+    <div class="landing-menu" (click)="openMenu()" (clickOutside)="handleClickOutside()">
+      <div class="landing-pic"></div>
+      <div *ngIf="headerMenu" class="landing-dropdown">
+        <ul>
+          <li><a routerLinkActive="active" routerLink="/landing/my-profile">My Profile</a></li>
+          <li><a routerLinkActive="active" (click)="onLogOut()">Log out</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<app-landing-sidebar [class.open]="viewSideBar"> </app-landing-sidebar>

@@ -1,0 +1,83 @@
+@import "src/assets/scss/index.scss";
+
+
+body { font-size: 14px; font-weight:400; font-family: Arial, sans-serif }
+.animated {  animation-duration: 500ms;}
+
+
+
+
+.static-radio { border-radius:100%; width:20px; height:20px; position:relative ;background:#FFF; z-index:1;  }
+.static-radio::before {    position: absolute;    left: -10px;    content: '';    width: 10px;    height: 3px;    background: #dee2e6;    z-index: 0; } 
+.static-radio::after {    position: absolute;    left: 18px;    content: '';    width: 10px;    height: 3px;    background: #dee2e6;    z-index: 0; } 
+
+.form-check-input:checked {    background-color: #00b0f0;    border-color: #00b0f0; }
+.card .card-link { color:#F00; text-decoration:underline }
+
+
+
+.tendering-secrtion a:hover { color: #cac3c3 !important; }
+.progress-main-custom .box1 { width:10px;height:10px;}
+
+.lsat-box-main {display: flex;    width: 100%;    justify-content: space-between;    background: #343a40; }
+
+
+/* CSS Document */
+
+a { text-decoration:none; color:#a6a6a6}
+a:hover { text-decoration:none; color:maroon}
+a.active{ text-decoration:none; color:maroon}
+
+.text-dark-grey { color:#726565 }
+.border-radius-5 {border-radius: 5px; }
+
+
+.maroon-bg {  background-color: maroon;}
+.dark-grey-bg {    background-color: #f2f2f2; }
+.sky-blue-bg {    background-color: #1da8d2; }
+.purple-bg  { background:#883f8e}
+.dark-grey-bg-2 { background:#4b4a4d}
+.dark-grey-bg-3 { background:#666666}
+.dark-green-bg { background:#007e59}
+
+
+.light-green-bg { background:#00d89e}
+.orange-bg { background:#ff5659} 
+
+.btn-primary {    color: #fff;    background-color: #1da8d2;    border-color: #1da8d2;}
+.btn-primary:hover {    color: #fff;    background-color: #0279c1;    border-color: #0279c1;}
+
+.min-height-220 {    min-height: 220px; }
+
+.text-black { color:#000}
+.dark-text-1 { color:#696969}
+
+
+.fs-13 { font-size:13px;}
+.fs-14 { font-size:14px;}
+.fs-16 { font-size:16px;}
+.fs-18 { font-size:18px;}
+.fs-20 { font-size:20px;}
+.fs-22 { font-size:22px;}
+.fs-24 { font-size:24px;}
+.fs-26 { font-size:26px;}
+.fs-30 { font-size:30px;}
+.fs-40 { font-size:40px;}
+
+.fw-100 { font-weight:100;}
+.fw-300 { font-weight:300;}
+.fw-500 { font-weight:500;}
+.fw-700 { font-weight:700;}
+.fw-800 { font-weight:800;}
+
+.h-40 { height:40px !important}
+.w-50 { width:50px !important;}
+.w-120 { width:120px;}
+.w-140 { width:140px;}
+.w-160 { width:160px;}
+.w-170 { width:170px;}
+
+thead, tbody, tfoot, tr, td, th {    vertical-align: middle; }
+	
+	
+	

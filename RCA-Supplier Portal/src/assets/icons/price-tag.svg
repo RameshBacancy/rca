@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="44" height="28">
+  <defs>
+    <ref id="paramPrice" param="price" default="$0"/>
+  </defs>
+  <g>
+    <rect x="0" y="0" width="44" height="22" fill="#192C3F" rx="5" ry="5"></rect>
+    <text id="price" x="6" y="16" font-family="Verdana" font-size="12" fill="white">
+    $100
+    </text>
+    <polygon points="18,22 26,22 22,28" fill="#192C3F"/>
+  </g>
+</svg>

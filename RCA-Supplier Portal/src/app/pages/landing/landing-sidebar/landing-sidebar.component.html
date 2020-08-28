@@ -1,0 +1,57 @@
+<div id="landing-sidebar" class="animated">
+  <ul>
+    <li>
+      <a routerLinkActive="active" routerLink="#">
+        <div class="iconblock">
+          <img src="/assets/icons/dashboard-white.svg" alt="">menu 1
+        </div>
+
+      </a>
+    </li>
+    <li>
+      <a routerLinkActive="active" (click)="submenuFun()" routerLink="/landing">
+        <div class="iconblock">
+          <img src="/assets/icons/down-up-white.svg" alt="">
+        </div>
+        menu 2
+        <div class="arrow-img">
+          <img src="/assets/icons/{{arrowimg}}.svg" alt="">
+        </div>
+      </a>
+      <ul class="sub-menu" *ngIf="isSubmenu">
+        <li>
+          <a>
+            <div class="iconblock">
+              <img src="/assets/icons/down-up-white.svg" alt="">
+            </div>
+            item1
+          </a>
+        </li>
+        <li>
+          <a>
+            <div class="iconblock">
+              <img src="/assets/icons/down-up-white.svg" alt="">
+            </div>
+            item2
+          </a>
+        </li>
+        <li>
+          <a>
+            <div class="iconblock">
+              <img src="/assets/icons/down-up-white.svg" alt="">
+            </div>
+            item3
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a routerLinkActive="active" routerLink="#">
+        <div class="iconblock">
+          <img src="/assets/icons/content-paste-white.svg" alt="">
+        </div>
+        menu 3
+      </a>
+    </li>
+  </ul>
+</div>

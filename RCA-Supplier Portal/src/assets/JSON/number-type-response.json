@@ -1,0 +1,44 @@
+{
+    "respType": "Success",
+    "data": [
+        {
+            "phoneNumber": "1234567890",
+            "addressRequirements": "test address",
+            "capabilities": {
+                "MMS": true,
+                "SMS": false,
+                "voice": false,
+                "fax": false
+            },
+            "isoCountry": "USA",
+            "postalCode": "1234",
+            "region": "CA"
+        },
+        {
+            "phoneNumber": "78957486580",
+            "addressRequirements": "2nd test address",
+            "capabilities": {
+                "MMS": true,
+                "SMS": true,
+                "voice": true,
+                "fax": false
+            },
+            "isoCountry": "USA",
+            "postalCode": "1234",
+            "region": "CA"
+        },
+        {
+            "phoneNumber": "4567890789",
+            "addressRequirements": "3rd test address",
+            "capabilities": {
+                "MMS": true,
+                "SMS": true,
+                "voice": false,
+                "fax": false
+            },
+            "isoCountry": "USA",
+            "postalCode": "1234",
+            "region": "CA"
+        }
+    ]
+}

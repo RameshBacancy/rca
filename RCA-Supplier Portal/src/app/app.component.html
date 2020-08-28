@@ -1,0 +1,15 @@
+
+<div *ngIf="loading" class="loading">
+  <!-- start Spinner selector -->
+  <!-- End Spinner selector -->
+</div>
+<router-outlet></router-outlet>
+<div *ngIf="message">
+  <div class="alert-block">
+    <div class="alert"
+      [ngClass]="{'alert-warning': messageType=='warning', 'alert-success': messageType=='success', 'alert-danger': messageType=='danger'}">
+      <a class="close" data-dismiss="alert" aria-label="close" (click)="closeAlert()">&times;</a>
+      {{message}}
+    </div>
+  </div>
+</div>
