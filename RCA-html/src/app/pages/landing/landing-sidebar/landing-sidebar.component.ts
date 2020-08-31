@@ -13,6 +13,7 @@ export class LandingSidebarComponent implements OnInit {
   submenuFun() {
     this.isSubmenu = !this.isSubmenu;
     this.arrowimg = this.arrowimg == 'arrow-down-white' ? 'arrow-right-white' : 'arrow-down-white' ;
+    
   }
 
   ngOnInit() {

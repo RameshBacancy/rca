@@ -8,8 +8,8 @@
 
       </a>
     </li>
-    <li>
-      <a routerLinkActive="active" (click)="submenuFun()" routerLink="/landing">
+    <li [ngClass]="isSubmenu ? 'sub-menu-active' : ''">
+      <a routerLinkActive="active" (click)="submenuFun()">
         <div class="iconblock">
           <img src="/assets/icons/down-up-white.svg" alt="">
         </div>
@@ -17,6 +17,7 @@
         <div class="arrow-img">
           <img src="/assets/icons/{{arrowimg}}.svg" alt="">
         </div>
+        
       </a>
       <ul class="sub-menu" *ngIf="isSubmenu">
         <li>

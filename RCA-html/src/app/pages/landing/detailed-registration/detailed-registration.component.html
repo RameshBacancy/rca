@@ -1,0 +1,916 @@
+<section class="container-fluid  mt-3">
+    <div class="bg-white px-4">
+        <mat-horizontal-stepper #stepper>
+            <mat-step>
+                <ng-template matStepLabel>General Info</ng-template>
+                <div class="row">
+                    <div class="col-md-12 px-4 ">
+                        <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">Activity to
+                            Reg.</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 px-4 d-block d-md-flex">
+                        <div class="form-check mr-3 mb-3">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label font-italic ml-2" for="flexRadioDefault1"> Construction
+                            </label>
+                        </div>
+                        <div class="form-check mr-3 mb-3">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                                checked>
+                            <label class="form-check-label font-italic ml-2" for="flexRadioDefault2"> IT & Networks
+                            </label>
+                        </div>
+                        <div class="form-check mr-3 mb-3">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
+                                checked>
+                            <label class="form-check-label font-italic ml-2" for="flexRadioDefault3"> Animal Meat
+                            </label>
+                        </div>
+                        <div class="form-check mr-3 mb-3">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4"
+                                checked>
+                            <label class="form-check-label font-italic ml-2" for="flexRadioDefault4"> Ele. Materials
+                            </label>
+                        </div>
+                    </div>
+
+                    <!--  <div class="col-md-3 text-center">
+                    <img src="img/cloud.jpg" alt=""  class="img-fluid" / >
+                </div>-->
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 px-4 ">
+                        <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1 ">Municipality Reg
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Number</h5>
+                        <p class="fs-14">1567 6578</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
+                        <p class="fs-14">1567 6578</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date </h5>
+                        <p class="fs-14">1567 6578</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities</h5>
+                        <p class="fs-14">1567 6578</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 px-4 ">
+                        <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1 ">Bank Details
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Name</h5>
+                        <p class="fs-14">Bank Muscat</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account No</h5>
+                        <p class="fs-14">7191 8000</p>
+                    </div>
+                    <div class="col-md-5 px-4  col-lg-6 col-xl-6 px-4  ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account Holder/ Company Name
+                        </h5>
+                        <p class="fs-14">Electroman LLC</p>
+                    </div>
+                    <div class="col-md-12 px-4 ">
+                        <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
+                        <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 px-4 d-block  d-lg-flex">
+                        <p class="bg-light border p-2 fs-14 rounded mr-0 mr-lg-3 text-center ">Attach Existing </p>
+                        <p class="bg-light border p-2 fs-14 mr-0 mr-lg-3 rounded text-center ">Create New </p>
+                        <p class="bg-light border p-2 fs-14  mr-0 mr-lg-3 rounded text-center ">Create Form Template
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+                        <div class="card bg-light h-100 ">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3 fs-18">Brief Co. Detail </h5>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                                <p class="card-text dark-text-1 fs-12">1200232</p>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                                <p class="card-text dark-text-1 fs-12">$1</p>
+                                <a href="#" class="card-link">Word Doc.</a>
+                                <div class="mt-3 text-right"> <i class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                                    <i class="fa fa-file text-secondary fs-14"></i> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+                        <div class="card bg-light h-100 ">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3 fs-18"> ISO Certificate </h5>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                                <p class="card-text dark-text-1 fs-12">1200232</p>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                                <p class="card-text dark-text-1 fs-12">$1</p>
+                                <a href="#" class="card-link">PDF</a>
+                                <div class="mt-3 text-right"> <i class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                                    <i class="fa fa-file text-secondary fs-14"></i> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+                        <div class="card bg-light h-100 ">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3 fs-18">Company Registration </h5>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                                <p class="card-text dark-text-1 fs-12">1200232</p>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                                <p class="card-text dark-text-1 fs-12">$1</p>
+                                <a href="#" class="card-link">PDF</a>
+                                <div class="mt-3 text-right"> <i class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                                    <i class="fa fa-file text-secondary fs-14"></i> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-5 px-4">
+                        <button type="button"
+                            class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Privious</button>
+                        <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            matStepperNext>Next</button>
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            (click)="move(6)">Finish</button>
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"><a
+                            href="/landing/supplier-registration/dashboard">Cancel</a></button>
+                        <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
+                            Draft</button>
+                    </div>
+                </div>
+
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Address</ng-template>
+
+                <div class="row">
+                    <div class="col-md-12 px-4 ">
+                        <p
+                            class="bg-light border rounded p-2 fs-14 text-center font-italic font-weight-bold  dark-text-1 w-170">
+                            Address ID : MCT </p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">P.O. Box</h5>
+                        <p class="fs-14">50023</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Supplier Branch</h5>
+                        <p class="fs-14">Muscat- AL Ghubra</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Sponsor Name</h5>
+                        <p class="fs-14">B. Balasubramanian</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-4  px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Sponsor National ID/Resident ID
+                        </h5>
+                        <p class="fs-14">11337788</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Postal Code</h5>
+                        <p class="fs-14">1208</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Authorized Signatory</h5>
+                        <p class="fs-14">Muhammad Wadahi</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-4  px-4">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Authorized National ID / Resident
+                            ID </h5>
+                        <p class="fs-14">11446677 </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 px-4 ">
+                        <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1 ">Company Details
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Telephone No</h5>
+                        <p class="fs-14">+968 7191 8000</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Fax No</h5>
+                        <p class="fs-14">+968 24510605</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email </h5>
+                        <p class="fs-14"><a href="#"
+                                class=" text-danger text-decoration-underline">electrmn@omantel.net.om</a></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1 ">Director Details
+                        </h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Director Name</h5>
+                        <p class="fs-14">R. Balasubrmanian</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Mobile</h5>
+                        <p class="fs-14">+968 7191 8000</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email </h5>
+                        <p class="fs-14"><a href="#"
+                                class=" text-danger text-decoration-underline">bala@electronman.net.om</a></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1 ">General Manager
+                            Details</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Director Name</h5>
+                        <p class="fs-14">Yousef</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Mobile</h5>
+                        <p class="fs-14">+968 7191 8000 </p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-4 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email </h5>
+                        <p class="fs-14"><a href="#"
+                                class=" text-danger text-decoration-underline">Yousef@electron.net.om</a></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-5 px-4">
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            matStepperPrevious>Privious</button>
+                        <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            matStepperNext>Next</button>
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            (click)="move(6)">Finish</button>
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"><a
+                                href="/landing/supplier-registration/dashboard">Cancel</a></button>
+                        <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
+                            Draft</button>
+                    </div>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Employee Details</ng-template>
+
+                <div class="row">
+                    <div class="col-md-12 px-4 mb-3 mt-3">
+                        <div class="table-responsive">
+                            <table class="table table-striped ">
+                                <thead>
+                                    <tr class="maroon-bg text-white">
+                                        <th scope="col">No </th>
+                                        <th scope="col">Name </th>
+                                        <th scope="col">Qualification </th>
+                                        <th scope="col">Designation </th>
+                                        <th scope="col">Experience </th>
+                                        <th scope="col">Nationality </th>
+                                        <th scope="col">Category </th>
+                                        <th scope="col">Documents(CV)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>R Bala </td>
+                                        <td>Btech </td>
+                                        <td>Project Manger</td>
+                                        <th>8yrs</th>
+                                        <td>Indian</td>
+                                        <td>Professional</td>
+                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Jaber </td>
+                                        <td>Electronics Eng</td>
+                                        <td>Site Engineer</td>
+                                        <th>2yrs</th>
+                                        <td>Omani </td>
+                                        <td>Professional</td>
+                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Younis </td>
+                                        <td> Electronics Eng. </td>
+                                        <td>Project Manger</td>
+                                        <th>2yrs</th>
+                                        <td>Omani</td>
+                                        <td>Professional</td>
+                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Sanjai K </td>
+                                        <td>Btech </td>
+                                        <td>Project Manger</td>
+                                        <th>4yrs</th>
+                                        <td>Indian</td>
+                                        <td>Professional</td>
+                                        <td><a class="text-primary text-decoration-underline" href="#">word doc </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 px-4 ">
+                        <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
+                        <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 px-4 d-block  d-lg-flex">
+                        <!--  <p class="bg-light border p-2 fs-14 rounded mr-0 mr-lg-3 text-center ">Attach Existing </p>-->
+                        <p class="bg-light border p-2 fs-14 mr-0 mr-lg-3 rounded text-center ">Create New </p>
+                        <p class="bg-light border p-2 fs-14  mr-0 mr-lg-3 rounded text-center ">Create Form Template
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+                        <div class="card bg-light  ">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3 fs-18">CV-01</h5>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                                <p class="card-text dark-text-1 fs-12">1200232</p>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                                <p class="card-text dark-text-1 fs-12">$1</p>
+                                <a href="#" class="card-link">Word Doc.</a>
+                                <div class="mt-3 text-right"> <i class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                                    <i class="fa fa-file text-secondary fs-14"></i> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+                        <div class="card bg-light  ">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3 fs-18"> CV-03 </h5>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                                <p class="card-text dark-text-1 fs-12">1200232</p>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                                <p class="card-text dark-text-1 fs-12">$1</p>
+                                <a href="#" class="card-link">PDF</a>
+                                <div class="mt-3 text-right"> <i class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                                    <i class="fa fa-file text-secondary fs-14"></i> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+                        <div class="card bg-light  ">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3 fs-18">CV-03</h5>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                                <p class="card-text dark-text-1 fs-12">1200232</p>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                                <p class="card-text dark-text-1 fs-12">$1</p>
+                                <a href="#" class="card-link">PDF</a>
+                                <div class="mt-3 text-right"> <i class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                                    <i class="fa fa-file text-secondary fs-14"></i> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-5 px-4">
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            matStepperPrevious>Privious</button>
+                        <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            matStepperNext>Next</button>
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            (click)="move(6)">Finish</button>
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"><a
+                            href="/landing/supplier-registration/dashboard">Cancel</a></button>
+                        <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
+                            Draft</button>
+                    </div>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Project Details</ng-template>
+
+                <div class="row">
+                    <div class="col-md-12 px-4 mb-3 mt-3">
+                        <div class="table-responsive">
+                            <table class="table table-striped mb-0 ">
+                                <thead>
+                                    <tr class="maroon-bg text-white">
+                                        <th scope="col">No </th>
+                                        <th scope="col">Name of Project </th>
+                                        <th scope="col">Client</th>
+                                        <th scope="col">Consultant</th>
+                                        <th scope="col">Cost Consultant</th>
+                                        <th scope="col">Value (OMR)</th>
+                                        <th scope="col">Period ( Start - End )</th>
+                                        <th scope="col">Completion</th>
+                                        <th scope="col">Documents</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Yibal Project for PDO</td>
+                                        <td>QRB </td>
+                                        <td>Khatib & Alami and Partners</td>
+                                        <th>Milcris</th>
+                                        <td>400,000 </td>
+                                        <td>2016 - 2018 </td>
+                                        <td>2018</td>
+                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Grand Mall-Carrefour</td>
+                                        <td>Majid Al Futtaim</td>
+                                        <td>ME Studio Engineering </td>
+                                        <th>Majan Engineering </th>
+                                        <td>254,000 </td>
+                                        <td>2017 - 2018 </td>
+                                        <td>2019</td>
+                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>OMAN Post Off. Ruwi </td>
+                                        <td>QRB </td>
+                                        <td>OMAN POST</td>
+                                        <th>Tahpi pty Ltd</th>
+                                        <td>1,000,000 </td>
+                                        <td>2018 - 2021 </td>
+                                        <td>-</td>
+                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-12 px-4">
+                        <p class="dark-text-1 fs-14">Remarks / Notes : If any remarks to be added here </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 px-4 ">
+                        <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
+                        <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 px-4 d-block  d-lg-flex">
+                        <p class="bg-light border p-2 fs-14 rounded mr-0 mr-lg-3 text-center ">Attach Existing </p>
+                        <p class="bg-light border p-2 fs-14 mr-0 mr-lg-3 rounded text-center ">Create New </p>
+                        <p class="bg-light border p-2 fs-14  mr-0 mr-lg-3 rounded text-center ">Create Form Template
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+                        <div class="card bg-light  ">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3 fs-18">Cert_Com_12</h5>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                                <p class="card-text dark-text-1 fs-12">1200232</p>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                                <p class="card-text dark-text-1 fs-12">$1</p>
+                                <p class="card-text dark-text-1 fs-12">WORD07</p>
+                                <a href="#" class="card-link">Word Doc.</a>
+                                <div class="mt-3 text-right"> <i class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                                    <i class="fa fa-file text-secondary fs-14"></i> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+                        <div class="card bg-light  ">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3 fs-18">AWARD1002 </h5>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                                <p class="card-text dark-text-1 fs-12">1200232</p>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                                <p class="card-text dark-text-1 fs-12">$1</p>
+                                <p class="card-text dark-text-1 fs-12">WORD07</p>
+                                <a href="#" class="card-link">PDF</a>
+                                <div class="mt-3 text-right"> <i class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                                    <i class="fa fa-file text-secondary fs-14"></i> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+                        <div class="card bg-light  ">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3 fs-18">AWARD-02</h5>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                                <p class="card-text dark-text-1 fs-12">1200232</p>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                                <p class="card-text dark-text-1 fs-12">$1</p>
+                                <p class="card-text dark-text-1 fs-12">WORD07</p>
+                                <a href="#" class="card-link">PDF</a>
+                                <div class="mt-3 text-right"> <i class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                                    <i class="fa fa-file text-secondary fs-14"></i> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-5 px-4">
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            matStepperPrevious>Privious</button>
+                        <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            matStepperNext>Next</button>
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            (click)="move(6)">Finish</button>
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"><a
+                            href="/landing/supplier-registration/dashboard">Cancel</a></button>
+                        <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
+                            Draft</button>
+                    </div>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Subcontractor Details</ng-template>
+
+                <div class="row">
+                    <div class="col-md-12 px-4 mb-3 mt-3">
+                        <div class="table-responsive">
+                            <table class="table table-striped mb-0 ">
+                                <thead>
+                                    <tr class="maroon-bg text-white">
+                                        <th scope="col">
+                                            <div class="d-flex"> <span> <a href="#" class=" text-white fs-14"><i
+                                                            class="fa fa-check"></i></a> </span> <span
+                                                    class="ml-3 pl-1 "> <a href="#" class=" text-white fs-14"> <i
+                                                            class="fa fa-ellipsis-v "></i> </a> </span> </div>
+                                        </th>
+                                        <th scope="col">SL No.</th>
+                                        <th scope="col">Name of Sub Contract Works</th>
+                                        <th scope="col">Sub Contractor </th>
+                                        <th scope="col">CR No.</th>
+                                        <th scope="col">Telephone</th>
+                                        <th scope="col">FAX</th>
+                                        <th scope="col">E-Mail ID</th>
+                                        <th scope="col">Reg. with RCA</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="flexCheckDefault-1">
+                                                <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
+                                                            class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                                        </td>
+                                        <td>1</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <th>-</th>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="flexCheckDefault-2">
+                                                <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
+                                                            class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                                        </td>
+                                        <td>2</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <th>-</th>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="flexCheckDefault-3">
+                                                <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
+                                                            class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                                        </td>
+                                        <td>3</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <th>-</th>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="flexCheckDefault-4">
+                                                <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
+                                                            class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                                        </td>
+                                        <td>4</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <th>-</th>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-12 px-4">
+                        <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                        <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-5 px-4">
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            matStepperPrevious>Privious</button>
+                        <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            matStepperNext>Next</button>
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            (click)="move(6)">Finish</button>
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"><a
+                        href="/landing/supplier-registration/dashboard">Cancel</a></button>
+                        <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
+                            Draft</button>
+                    </div>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Equipment Details</ng-template>
+
+                <div class="row">
+                    <div class="col-md-12 px-4 mb-3 mt-3">
+                        <div class="table-responsive">
+                            <table class="table table-striped mb-0 ">
+                                <thead>
+                                    <tr class="maroon-bg text-white">
+                                        <th scope="col">SL No.</th>
+                                        <th scope="col">Type of Equipment</th>
+                                        <th scope="col">Quantity </th>
+                                        <th scope="col">Capacity </th>
+                                        <th scope="col">Year of Manufacture</th>
+                                        <th scope="col">Registration No</th>
+                                        <th scope="col">Approximate Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Pickup</td>
+                                        <th>1</th>
+                                        <td>2400CC </td>
+                                        <td>2018</td>
+                                        <td>S 2020</td>
+                                        <td> 5000 OMR</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Salon </td>
+                                        <th>1</th>
+                                        <td>2000 CC</td>
+                                        <td>2019</td>
+                                        <td>RS 1235</td>
+                                        <td>7500 OMR</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>-</td>
+                                        <th>-</th>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>-</td>
+                                        <th>-</th>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-12 px-4">
+                        <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-5 px-4">
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            matStepperPrevious>Privious</button>
+                        <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            matStepperNext>Next</button>
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            (click)="move(6)">Finish</button>
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"><a
+                            href="/landing/supplier-registration/dashboard">Cancel</a></button>
+                        <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
+                            Draft</button>
+                    </div>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Other Details</ng-template>
+
+                <div class="row">
+                    <div class="col-md-12 px-4 mb-3 mt-3">
+                        <div class="table-responsive">
+                            <table class="table table-striped mb-0 ">
+                                <thead>
+                                    <tr class="maroon-bg text-white">
+                                        <th scope="col">
+                                            <div class="d-flex"> <span> <a href="#" class=" text-white fs-14"><i
+                                                            class="fa fa-check"></i></a> </span> <span
+                                                    class="ml-3 pl-1 "> <a href="#" class=" text-white fs-14"> <i
+                                                            class="fa fa-ellipsis-v "></i> </a> </span> </div>
+                                        </th>
+                                        <th scope="col">SL No.</th>
+                                        <th scope="col">Name of Sub Contract Works</th>
+                                        <th scope="col">Attachment</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="flexCheckDefault-1">
+                                                <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
+                                                            class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                                        </td>
+                                        <td>1</td>
+                                        <td>Organization Structure </td>
+                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="flexCheckDefault-2">
+                                                <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
+                                                            class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                                        </td>
+                                        <td>2</td>
+                                        <td>Tax Certificate </td>
+                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="flexCheckDefault-3">
+                                                <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
+                                                            class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                                        </td>
+                                        <td>3</td>
+                                        <td>Certificates </td>
+                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value=""
+                                                    id="flexCheckDefault-4">
+                                                <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
+                                                            class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                                        </td>
+                                        <td>4</td>
+                                        <td>-</td>
+                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 px-4 ">
+                        <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
+                        <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 px-4 d-block  d-lg-flex">
+                        <p class="bg-light border p-2 fs-14 rounded mr-0 mr-lg-3 text-center ">Attach Existing </p>
+                        <p class="bg-light border p-2 fs-14 mr-0 mr-lg-3 rounded text-center ">Create New </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+                        <div class="card bg-light  ">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3 fs-18">
+                                    Org_Str100 </h5>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                                <p class="card-text dark-text-1 fs-12">1200232</p>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                                <p class="card-text dark-text-1 fs-12">$1</p>
+                                <p class="card-text dark-text-1 fs-12">WORD07</p>
+                                <a href="#" class="card-link">Word Doc.</a>
+                                <div class="mt-3 text-right"> <i class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                                    <i class="fa fa-file text-secondary fs-14"></i> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+                        <div class="card bg-light  ">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3 fs-18">TasxCert-100</h5>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                                <p class="card-text dark-text-1 fs-12">1200232</p>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                                <p class="card-text dark-text-1 fs-12">$1</p>
+                                <p class="card-text dark-text-1 fs-12">WORD07</p>
+                                <a href="#" class="card-link">PDF</a>
+                                <div class="mt-3 text-right"> <i class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                                    <i class="fa fa-file text-secondary fs-14"></i> </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+                        <div class="card bg-light  ">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3 fs-18">Cert_200</h5>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                                <p class="card-text dark-text-1 fs-12">1200232</p>
+                                <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                                <p class="card-text dark-text-1 fs-12">$1</p>
+                                <p class="card-text dark-text-1 fs-12">WORD07</p>
+                                <a href="#" class="card-link">PDF</a>
+                                <div class="mt-3 text-right"> <i class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                                    <i class="fa fa-file text-secondary fs-14"></i> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-5 px-4">
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            matStepperPrevious>Privious</button>
+                        <button type="button" class="btn btn-secondary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            matStepperNext>Next</button>
+                        <button type="button" class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            (click)="move(6)">Finish</button>
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"><a
+                                href="/landing/supplier-registration/dashboard">Cancel</a></button>
+                        <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
+                            Draft</button>
+                    </div>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+
+</section>

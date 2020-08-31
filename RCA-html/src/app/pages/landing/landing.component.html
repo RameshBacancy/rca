@@ -5,9 +5,9 @@
       <div class="row">
         <div class="col-md-12">
           <ol class="breadcrumb bg-white mb-0">
-            <li class="breadcrumb-item"><a href="/landing/dashboard">Home</a></li>
-            <!-- <li class="breadcrumb-item"><a href="/landing/dashboard">Supplier Registration </a></li>
-            <li class="breadcrumb-item active" aria-current="page">Register </li> -->
+            <ng-container *ngFor="let data of url">
+              <li class="breadcrumb-item" *ngIf="data != ''"><a>{{data}}</a></li>
+            </ng-container>            
           </ol>
         </div>
       </div>
@@ -17,10 +17,10 @@
     <div class="container-fluid ">
       <div class="row">
         <div class="col-md-12 ">
-          <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">Supplier Portal</h2>
+          <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">{{title}}</h2>
         </div>
       </div>
     </div>
-  </section>
+</section>
   <router-outlet></router-outlet>
 </div>

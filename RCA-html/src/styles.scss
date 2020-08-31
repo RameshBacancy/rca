@@ -1,7 +1,42 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$ng-corefs-primary: mat-palette($mat-indigo);
+$ng-corefs-accent: mat-palette($mat-pink, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$ng-corefs-warn: mat-palette($mat-red);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$ng-corefs-theme: mat-light-theme((
+  color: (
+    primary: $ng-corefs-primary,
+    accent: $ng-corefs-accent,
+    warn: $ng-corefs-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($ng-corefs-theme);
+
 @import "src/assets/scss/index.scss";
 
 
-body { font-size: 14px; font-weight:400; font-family: Arial, sans-serif }
+body { font-size: 14px; font-weight:400; font-family: Arial, sans-serif !important }
 .animated {  animation-duration: 500ms;}
 
 
@@ -24,13 +59,20 @@ body { font-size: 14px; font-weight:400; font-family: Arial, sans-serif }
 
 /* CSS Document */
 
-a { text-decoration:none; color:#a6a6a6}
-a:hover { text-decoration:none; color:maroon}
-a.active{ text-decoration:none; color:maroon}
+a { text-decoration:none; color:#a6a6a6 !important }
+a:hover { text-decoration:none !important; color:maroon !important }
+a.active{ text-decoration:none !important; color:maroon !important }
 
 .text-dark-grey { color:#726565 }
 .border-radius-5 {border-radius: 5px; }
 
+.fa-home:before {  font-size: 22px;}
+.fa-th:before {  font-size: 22px;}
+
+a.header-menu {padding: 17px 0px 14px 15px;display: inline-block;  }
+a.header-menu:hover {  background-color: #9c2500;}
+a.header-menu-2 {padding: 17px 15px 14px 13px;display: inline-block;}
+a.header-menu-2:hover {  background-color: #9c2500;}
 
 .maroon-bg {  background-color: maroon;}
 .dark-grey-bg {    background-color: #f2f2f2; }
@@ -79,5 +121,5 @@ a.active{ text-decoration:none; color:maroon}
 
 thead, tbody, tfoot, tr, td, th {    vertical-align: middle; }
 	
-	
-	
+.sub-menu-active ul {  transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;}
+.sub-menu-active ul.sub-menu { z-index: 1;transform: translateY(0%);    transition-delay: 0s, 0s, 0.3s;}
