@@ -1,19 +1,125 @@
 <div id="landing-sidebar" class="animated">
   <ul>
-    <li>
-      <a routerLinkActive="active" routerLink="#">
+    <li [ngClass]="isSubmenu ? 'sub-menu-active' : ''">
+      <a routerLinkActive="active" (click)="submenuFun()">
         <div class="iconblock">
-          <img src="/assets/icons/dashboard-white.svg" alt="">menu 1
+          <img src="/assets/icons/down-up-white.svg" alt="">
         </div>
-
+        RCA GENERAL INFO & LINKS
+        <div class="arrow-img">
+          <img src="/assets/icons/{{arrowimg}}.svg" alt="">
+        </div>
+        
       </a>
+      <ul class="sub-menu" *ngIf="isSubmenu">
+        <li>
+          <a>
+            <div class="iconblock">
+              <img src="/assets/icons/down-up-white.svg" alt="">
+            </div>
+            item1
+          </a>
+        </li>
+        <li>
+          <a>
+            <div class="iconblock">
+              <img src="/assets/icons/down-up-white.svg" alt="">
+            </div>
+            item2
+          </a>
+        </li>
+        <li>
+          <a>
+            <div class="iconblock">
+              <img src="/assets/icons/down-up-white.svg" alt="">
+            </div>
+            item3
+          </a>
+        </li>
+      </ul>
     </li>
     <li [ngClass]="isSubmenu ? 'sub-menu-active' : ''">
       <a routerLinkActive="active" (click)="submenuFun()">
         <div class="iconblock">
           <img src="/assets/icons/down-up-white.svg" alt="">
         </div>
-        menu 2
+        SUPPLIER REGISTRATION
+        <div class="arrow-img">
+          <img src="/assets/icons/{{arrowimg}}.svg" alt="">
+        </div>
+        
+      </a>
+      <ul class="sub-menu" *ngIf="isSubmenu">
+        <li>
+          <a>
+            <div class="iconblock">
+              <img src="/assets/icons/down-up-white.svg" alt="">
+            </div>
+            item1
+          </a>
+        </li>
+        <li>
+          <a>
+            <div class="iconblock">
+              <img src="/assets/icons/down-up-white.svg" alt="">
+            </div>
+            item2
+          </a>
+        </li>
+        <li>
+          <a>
+            <div class="iconblock">
+              <img src="/assets/icons/down-up-white.svg" alt="">
+            </div>
+            item3
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li [ngClass]="isSubmenu ? 'sub-menu-active' : ''">
+      <a routerLinkActive="active" (click)="submenuFun()">
+        <div class="iconblock">
+          <img src="/assets/icons/down-up-white.svg" alt="">
+        </div>
+        TENDERING
+        <div class="arrow-img">
+          <img src="/assets/icons/{{arrowimg}}.svg" alt="">
+        </div>
+        
+      </a>
+      <ul class="sub-menu" *ngIf="isSubmenu">
+        <li>
+          <a>
+            <div class="iconblock">
+              <img src="/assets/icons/down-up-white.svg" alt="">
+            </div>
+            item1
+          </a>
+        </li>
+        <li>
+          <a>
+            <div class="iconblock">
+              <img src="/assets/icons/down-up-white.svg" alt="">
+            </div>
+            item2
+          </a>
+        </li>
+        <li>
+          <a>
+            <div class="iconblock">
+              <img src="/assets/icons/down-up-white.svg" alt="">
+            </div>
+            item3
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li [ngClass]="isSubmenu ? 'sub-menu-active' : ''">
+      <a routerLinkActive="active" (click)="submenuFun()">
+        <div class="iconblock">
+          <img src="/assets/icons/down-up-white.svg" alt="">
+        </div>
+        ORDERS
         <div class="arrow-img">
           <img src="/assets/icons/{{arrowimg}}.svg" alt="">
         </div>
@@ -51,7 +157,23 @@
         <div class="iconblock">
           <img src="/assets/icons/content-paste-white.svg" alt="">
         </div>
-        menu 3
+        LATE ORDERS
+      </a>
+    </li>
+    <li>
+      <a routerLinkActive="active" routerLink="#">
+        <div class="iconblock">
+          <img src="/assets/icons/content-paste-white.svg" alt="">
+        </div>
+        ORDER LINES TO CONFIRM
+      </a>
+    </li>
+    <li>
+      <a routerLinkActive="active" routerLink="#">
+        <div class="iconblock">
+          <img src="/assets/icons/content-paste-white.svg" alt="">
+        </div>
+        REQUEST FOR ORDER QUOTATION
       </a>
     </li>
   </ul>
