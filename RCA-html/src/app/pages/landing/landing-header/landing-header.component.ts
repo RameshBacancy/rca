@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { from } from 'rxjs';
 @Component({
   selector: 'app-landing-header',
   templateUrl: './landing-header.component.html',
@@ -8,14 +8,17 @@ import { Router } from '@angular/router';
 })
 export class LandingHeaderComponent implements OnInit {
   @Output() onViewSidebar: EventEmitter<any> = new EventEmitter();
+  @Input() showsidebar: boolean;
   public viewSideBar: boolean = false;
   public headerMenu: boolean = false;
   public openMessageWindow: boolean = false;
   public showUnreadMessage: boolean = true;
+  public sidebarItems;
   
-  constructor(private router: Router,) { }
+  constructor(private router: Router, ) { }
 
   ngOnInit() {
+   
   }
   /**
    * Navigates to Dashboard

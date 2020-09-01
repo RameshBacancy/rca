@@ -13,7 +13,7 @@ const routes: Routes = [
       },
       {
         path:'registration',
-        loadChildren: () => import('./detailed-registration/detailed-registration.module').then(m => m.DetailedRegistrationModule),
+        loadChildren: () => import('./supplier-registration-process/supplier-registration-process.module').then(m => m.SupplierRegistrationProcessModule),
       }
     ]
   },

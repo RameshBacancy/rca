@@ -23,13 +23,14 @@
     display: flex;
     align-items: center;
 		.nav-icon {
-			// height: calc(#{$header-size} - 1px);
+			// height: calc(#{$header-size} - 8px);
 			// border-right: 1px solid $primary-light-white;
-			// margin-right: 25px;
-			cursor: pointer;
-			&:hover {
-				// background-color:$primary-dark-gray-hover;
-      }
+      // margin-right: 25px;
+      cursor: pointer;
+      // &:hover {
+      //   background-color:#9c2500;
+      // }
+			
       
 		}
 		.logo {
@@ -78,7 +79,7 @@
       position: relative;
       cursor: pointer;
       &:hover {
-        // background-color: $background-grey;
+        background-color: #9c2500;
       }
       .chat-icon {
         margin: 28px 28px 27px 28px;
@@ -169,6 +170,9 @@
   transition: .5s ease-in-out;
  
   cursor: pointer;
+  &:hover {
+    background-color:#9c2500;
+  }
   span {
 		display: block;
 		position: absolute;
@@ -192,28 +196,27 @@
     width: 0%;
     left: 50%;
 	}
-	span:nth-child(3) {
+	span:nth-child(2) {
 		-webkit-transform: rotate(45deg);
 		-moz-transform: rotate(45deg);
 		-o-transform: rotate(45deg);
     transform: rotate(45deg);
     top: 5px;
 	}
-	span:nth-child(4) {
+	span:nth-child(3) {
 		-webkit-transform: rotate(-45deg);
 		-moz-transform: rotate(-45deg);
 		-o-transform: rotate(-45deg);
     transform: rotate(-45deg);
     top: 5px;
 	}
-	span:nth-child(2) {
-		top: 18px;
-		width: 0%;
-    left: 50%;
-	}
 }
 
 #nav-icon3.open {
+  cursor: pointer;
+  &:hover {
+    background-color:#9c2500;
+  }
   span {
 		display: block;
 		position: absolute;
@@ -235,11 +238,10 @@
 	span:nth-child(1) {
 		top: 0px;
 	}
-	span:nth-child(2),
-	span:nth-child(3) {
+	span:nth-child(2) {
 		top: 5px;
 	}
-	span:nth-child(4) {
+	span:nth-child(3) {
 		top: 10px;
 	}
 }

@@ -1,9 +1,8 @@
 <div class="landing-header-fill"></div>
 <header class="landing-header maroon-bg">
   <div class="left-side">
-    <div class="nav-icon" (click)="onViewSideBar();">
+    <div class="nav-icon" (click)="onViewSideBar();" *ngIf="showsidebar">
       <div id="nav-icon3" [class.open]="viewSideBar">
-        <span></span>
         <span></span>
         <span></span>
         <span></span>
@@ -16,10 +15,12 @@
       <a class="header-menu-2" href="#"><i class="fa fa-th text-white fs-16"></i></a>
     </span>
   </div>
-  <div class="right-side">
+  <div class="right-side" *ngIf="showsidebar">
     <div class="landing-menu" (click)="openMenu()" (clickOutside)="handleClickOutside()">
       <div class="landing-pic"></div>
     </div>
   </div>
 </header>
-<app-landing-sidebar [class.open]="viewSideBar"> </app-landing-sidebar>
+<div *ngIf="showsidebar">
+  <app-landing-sidebar [class.open]="viewSideBar"> </app-landing-sidebar>
+</div>

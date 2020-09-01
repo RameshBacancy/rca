@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SidebarService } from '../../../services/sidebar-menu.service';
 
 @Component({
   selector: 'app-landing-sidebar',
@@ -6,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./landing-sidebar.component.scss']
 })
 export class LandingSidebarComponent implements OnInit {
-  constructor() { }
+
+  sidebarItems: any;
+
   isSubmenu: boolean;
   arrowimg: string = 'arrow-right-white';
+  
+  constructor(private sidebarData: SidebarService) { }
   
   submenuFun() {
     this.isSubmenu = !this.isSubmenu;
@@ -17,6 +22,12 @@ export class LandingSidebarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.sidebarItems = this.sidebarData.getdata();
+  }
+
+  arrowClicked(item){
+    item.disabled = !item.disabled;
+    
   }
 
 }

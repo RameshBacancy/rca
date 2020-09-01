@@ -1,6 +1,33 @@
 <div id="landing-sidebar" class="animated">
-  <ul>
-    <li [ngClass]="isSubmenu ? 'sub-menu-active' : ''">
+  <ul *ngFor="let item of sidebarItems">
+    <li [ngClass]="item.disabled ? 'sub-menu-active' : ''">
+      <a routerLinkActive="active" (click)="item.disabled = !item.disabled">
+        <!-- <div class="iconblock">
+          <img src="/assets/icons/content-paste-white.svg" alt="">
+        </div> -->
+        {{item.name}}
+        <div class="arrow-img" *ngIf="item.children.length>0">
+          <img src="/assets/icons/arrow-right-white.svg" alt="" *ngIf="!item.disabled">
+          <img src="/assets/icons/arrow-down-white.svg" alt="" *ngIf="item.disabled">
+        </div>
+      </a>
+    </li>
+    <div *ngIf="item.children.length>0 && item.disabled">
+      <ul class="sub-menu" *ngFor="let child of item.children">
+          <li>
+            <a routerLinkActive="active" href={{child.route}}>
+              {{child.name}}
+            </a>
+              <div class="arrow-img" *ngIf="child.children.length>0">
+                <img src="/assets/icons/arrow-right-white.svg" alt="" *ngIf="!child.disabled">
+                <img src="/assets/icons/arrow-down-white.svg" alt="" *ngIf="child.disabled">
+              </div>
+          </li>
+        </ul>
+    </div>
+  </ul>
+</div>
+<!-- <li [ngClass]="isSubmenu ? 'sub-menu-active' : ''">
       <a routerLinkActive="active" (click)="submenuFun()">
         <div class="iconblock">
           <img src="/assets/icons/down-up-white.svg" alt="">
@@ -175,6 +202,33 @@
         </div>
         REQUEST FOR ORDER QUOTATION
       </a>
-    </li>
-  </ul>
-</div>
+    </li> -->
+  
+
+<!-- 
+  <a routerLinkActive="active">
+        <div class="iconblock">
+          <img src="/assets/icons/down-up-white.svg" alt="">
+        </div>
+         <div>{{item.icon}}</div>
+        {{item.name}}
+        <div class="arrow-img">
+          <img src="/assets/icons/{{arrowimg}}.svg" alt="">
+        </div>
+      </a>
+       <div *ngIf="item.children.length>0">
+        <div *ngFor="let child of item.children">
+            <li>
+              <a routerLinkActive="active">
+                <div class="iconblock">
+                  <img src="/assets/icons/down-up-white.svg" alt="">
+                </div>
+                 <div>{{item.icon}}</div>
+                {{item.name}}
+                <div class="arrow-img">
+                  <img src="/assets/icons/{{arrowimg}}.svg" alt="">
+                </div>
+              </a>
+            </li>
+        </div>
+ -->

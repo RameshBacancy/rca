@@ -1,0 +1,100 @@
+<app-landing-header (onViewSidebar)="onViewSidebar($event)" [showsidebar]="false"></app-landing-header>
+<section>
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb bg-white mb-0">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Supplier Registration </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Register </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="dark-grey-bg ">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-12 ">
+                <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">Registration </h2>
+            </div>
+        </div>
+    </div>
+</section>
+<div *ngIf="!supplierSelection">
+    <section class=" bg-white">
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-md-12 px-3">
+                    <h3 class="  p-2 fs-22 text-black font-weight-bold ">Login</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 px-4 d-block d-md-flex">
+                    <div class="mr-3 mb-3">
+                        <p class=" text-dark-grey font-weight-bold ">Supplier Reg. Type :</p>
+                    </div>
+                    <div class="form-check mr-3 mb-3">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                        <label class="form-check-label font-italic ml-2" for="flexRadioDefault1">Individual </label>
+                    </div>
+                    <div class="form-check mr-3 mb-3">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                            checked>
+                        <label class="form-check-label font-italic ml-2" for="flexRadioDefault2">Local </label>
+                    </div>
+                    <div class="form-check mr-3 mb-3">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
+                            checked>
+                        <label class="form-check-label font-italic ml-2" for="flexRadioDefault3">International</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 px-4 d-block  d-lg-flex">
+                    <p class=" pt-2 fs-14  mr-0 mr-lg-3  text-dark-grey font-weight-bold ">Enter Civil Number :</p>
+                    <input class=" border p-2 fs-14 mr-0 mr-lg-3 rounded text-center w-170 " value="11337788">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-5 px-4 mt-5">
+                    <button type="button" class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2"
+                        (click)="supplierSelection = true">Submit </button>
+                    <button type="button" class="btn btn-secondary px-3 mx-1 py-2 w-120 fs-14 mb-2">Back </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div *ngIf="supplierSelection">
+    <section class=" bg-white">
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-md-12 px-3">
+                    <h3 class="  p-2 fs-22 text-black">Select Supplier</h3>
+                </div>
+            </div>
+            <div class="row mt-2 mt-md-5">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Commercial Registration No</h5>
+                    <input class="fs-14 border p-2 text-center w-140" value="1086391">
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Supplier Name</h5>
+                    <p class="fs-14">Elecroman LLC</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-4  px-4">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Commercial Registration Grade</h5>
+                    <p class="fs-14">First Grade </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 mb-5 px-4 mt-5">
+                    <button type="button" class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2"
+                        (click)="goto()">Submit </button>
+                    <button type="button" class="btn btn-secondary px-3 mx-1 py-2 w-120 fs-14 mb-2" (click)="supplierSelection = false">Back </button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

@@ -3,21 +3,18 @@ import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-detailed-registration',
-  templateUrl: './detailed-registration.component.html',
-  styleUrls: ['./detailed-registration.component.scss']
+  selector: 'app-supplier-registration-process',
+  templateUrl: './supplier-registration-process.component.html',
+  styleUrls: ['./supplier-registration-process.component.scss']
 })
-export class DetailedRegistrationComponent implements OnInit {
+export class SupplierRegistrationProcessComponent implements OnInit {
 
- 
   @ViewChild('stepper') private stepper: MatStepper;
   
   constructor(private router: Router) { }
 
-  ngOnInit(): void {
-   
+  ngOnInit(): void {  
   }
-
 
   move(index: number) {
     this.stepper.selectedIndex = index;

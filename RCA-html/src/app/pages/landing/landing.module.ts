@@ -12,9 +12,12 @@ import { LandingSidebarComponent } from './landing-sidebar/landing-sidebar.compo
     LandingHeaderComponent,
     LandingSidebarComponent,
   ],
+  exports: [
+    LandingHeaderComponent
+  ],
   imports: [
     CommonModule,
     LandingRoutingModule,
-  ]
+  ],
 })
 export class LandingModule { }
