@@ -50,19 +50,19 @@
                 <div class="row">
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Number</h5>
-                        <p class="fs-14">1567 6578</p>
+                        <p class="fs-14">{{formData.generalInfo.regNumber}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
-                        <p class="fs-14">1567 6578</p>
+                        <p class="fs-14">{{formData.generalInfo.regDate}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date </h5>
-                        <p class="fs-14">1567 6578</p>
+                        <p class="fs-14">{{formData.generalInfo.expDate}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities</h5>
-                        <p class="fs-14">1567 6578</p>
+                        <p class="fs-14">{{formData.generalInfo.activities}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -74,16 +74,16 @@
                 <div class="row">
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Name</h5>
-                        <p class="fs-14">Bank Muscat</p>
+                        <p class="fs-14">{{formData.generalInfo.bankName}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account No</h5>
-                        <p class="fs-14">7191 8000</p>
+                        <p class="fs-14">{{formData.generalInfo.accNo}}</p>
                     </div>
                     <div class="col-md-5 px-4  col-lg-6 col-xl-6 px-4  ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account Holder/ Company Name
                         </h5>
-                        <p class="fs-14">Electroman LLC</p>
+                        <p class="fs-14">{{formData.generalInfo.accHolder}}</p>
                     </div>
                     <div class="col-md-12 px-4 ">
                         <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
@@ -151,8 +151,11 @@
                             matStepperNext>Next</button>
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             (click)="move(6)">Finish</button>
-                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"><a
-                                href="/landing/supplier-registration/dashboard">Cancel</a></button>
+                        
+                                <a href="/landing/supplier-registration/dashboard">
+                                    <button type="button"
+                                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                </a>
                         <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
                             Draft</button>
                     </div>
@@ -166,39 +169,39 @@
                     <div class="col-md-12 px-4 ">
                         <p
                             class="bg-light border rounded p-2 fs-14 text-center font-italic font-weight-bold  dark-text-1 w-170">
-                            Address ID : MCT </p>
+                            Address ID : {{formData.address.addressID}} </p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">P.O. Box</h5>
-                        <p class="fs-14">50023</p>
+                        <p class="fs-14">{{formData.address.POBox}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Supplier Branch</h5>
-                        <p class="fs-14">Muscat- AL Ghubra</p>
+                        <p class="fs-14">{{formData.address.supplierBranch}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Sponsor Name</h5>
-                        <p class="fs-14">B. Balasubramanian</p>
+                        <p class="fs-14">{{formData.address.sponsorName}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-4  px-4 ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Sponsor National ID/Resident ID
                         </h5>
-                        <p class="fs-14">11337788</p>
+                        <p class="fs-14">{{formData.address.sponserResidentId}}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Postal Code</h5>
-                        <p class="fs-14">1208</p>
+                        <p class="fs-14">{{formData.address.postalCode}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Authorized Signatory</h5>
-                        <p class="fs-14">Muhammad Wadahi</p>
+                        <p class="fs-14">{{formData.address.authorizedSignatory}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-4  px-4">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Authorized National ID / Resident
                             ID </h5>
-                        <p class="fs-14">11446677 </p>
+                        <p class="fs-14">{{formData.address.authorizedResidentId}}</p>
                     </div>
                 </div>
                 <div class="row">
@@ -210,16 +213,16 @@
                 <div class="row">
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Telephone No</h5>
-                        <p class="fs-14">+968 7191 8000</p>
+                        <p class="fs-14">{{formData.address.companyTelephoneNo}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Fax No</h5>
-                        <p class="fs-14">+968 24510605</p>
+                        <p class="fs-14">{{formData.address.companyFaxNo}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email </h5>
                         <p class="fs-14"><a href="#"
-                                class=" text-danger text-decoration-underline">electrmn@omantel.net.om</a></p>
+                                class=" text-danger text-decoration-underline">{{formData.address.companyEmail}}</a></p>
                     </div>
                 </div>
                 <div class="row">
@@ -231,16 +234,16 @@
                 <div class="row">
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Director Name</h5>
-                        <p class="fs-14">R. Balasubrmanian</p>
+                        <p class="fs-14">{{formData.address.directorName}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Mobile</h5>
-                        <p class="fs-14">+968 7191 8000</p>
+                        <p class="fs-14">{{formData.address.directorMobile}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email </h5>
                         <p class="fs-14"><a href="#"
-                                class=" text-danger text-decoration-underline">bala@electronman.net.om</a></p>
+                                class=" text-danger text-decoration-underline">{{formData.address.directorEmail}}</a></p>
                     </div>
                 </div>
                 <div class="row">
@@ -252,16 +255,16 @@
                 <div class="row">
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Director Name</h5>
-                        <p class="fs-14">Yousef</p>
+                        <p class="fs-14">{{formData.address.generalDirectorName}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Mobile</h5>
-                        <p class="fs-14">+968 7191 8000 </p>
+                        <p class="fs-14">{{formData.address.generalDirectorMobile}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-4 px-4 ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email </h5>
                         <p class="fs-14"><a href="#"
-                                class=" text-danger text-decoration-underline">Yousef@electron.net.om</a></p>
+                                class=" text-danger text-decoration-underline">{{formData.address.generalDirectorEmail}}</a></p>
                     </div>
                 </div>
 
@@ -273,8 +276,10 @@
                             matStepperNext>Next</button>
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             (click)="move(6)">Finish</button>
-                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"><a
-                                href="/landing/supplier-registration/dashboard">Cancel</a></button>
+                        <a href="/landing/supplier-registration/dashboard">
+                                    <button type="button"
+                                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                </a>
                         <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
                             Draft</button>
                     </div>
@@ -300,17 +305,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>R Bala </td>
-                                        <td>Btech </td>
-                                        <td>Project Manger</td>
-                                        <th>8yrs</th>
-                                        <td>Indian</td>
-                                        <td>Professional</td>
-                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
+                                    <tr *ngFor="let data of formData.employeDetails">
+                                        <td>{{data.no}}</td>
+                                        <td>{{data.name}}</td>
+                                        <td>{{data.qualification}} </td>
+                                        <td>{{data.designation}}</td>
+                                        <th>{{data.experience}}</th>
+                                        <td>{{data.nationality}}</td>
+                                        <td>{{data.category}}</td>
+                                        <td><a href="#" class="text-decoration-underline text-danger">{{data.docCV}}</a></td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>2</td>
                                         <td>Jaber </td>
                                         <td>Electronics Eng</td>
@@ -340,7 +345,7 @@
                                         <td>Professional</td>
                                         <td><a class="text-primary text-decoration-underline" href="#">word doc </a>
                                         </td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -414,8 +419,10 @@
                             matStepperNext>Next</button>
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             (click)="move(6)">Finish</button>
-                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"><a
-                                href="/landing/supplier-registration/dashboard">Cancel</a></button>
+                        <a href="/landing/supplier-registration/dashboard">
+                                    <button type="button"
+                                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                </a>
                         <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
                             Draft</button>
                     </div>
@@ -442,18 +449,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Yibal Project for PDO</td>
-                                        <td>QRB </td>
-                                        <td>Khatib & Alami and Partners</td>
-                                        <th>Milcris</th>
-                                        <td>400,000 </td>
-                                        <td>2016 - 2018 </td>
-                                        <td>2018</td>
-                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
+                                    <tr *ngFor="let data of formData.projectDetails">
+                                        <td>{{data.no}}</td>
+                                        <td>{{data.name}}</td>
+                                        <td>{{data.client}}</td>
+                                        <td>{{data.consultent}}</td>
+                                        <th>{{data.costConsultent}}</th>
+                                        <td>{{data.value}}</td>
+                                        <td>{{data.period}}</td>
+                                        <td>{{data.completion}}</td>
+                                        <td><a href="#" class="text-decoration-underline text-danger">{{data.documents}}</a></td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>2</td>
                                         <td>Grand Mall-Carrefour</td>
                                         <td>Majid Al Futtaim</td>
@@ -474,7 +481,7 @@
                                         <td>2018 - 2021 </td>
                                         <td>-</td>
                                         <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -554,8 +561,10 @@
                             matStepperNext>Next</button>
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             (click)="move(6)">Finish</button>
-                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"><a
-                                href="/landing/supplier-registration/dashboard">Cancel</a></button>
+                        <a href="/landing/supplier-registration/dashboard">
+                                    <button type="button"
+                                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                </a>
                         <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
                             Draft</button>
                     </div>
@@ -587,7 +596,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr *ngFor="let data of formData.subContractorDetails">
                                         <td>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value=""
@@ -595,16 +604,16 @@
                                                 <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
                                                             class="fa fa-ellipsis-v  "></i> </a></span> </div>
                                         </td>
-                                        <td>1</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <th>-</th>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
+                                        <td>{{data.no}}</td>
+                                        <td>{{data.nameOfWork}}</td>
+                                        <td>{{data.subContractor}}</td>
+                                        <th>{{data.crNo}}</th>
+                                        <td>{{data.telephone}}</td>
+                                        <td>{{data.fax}}</td>
+                                        <td>{{data.email}}</td>
+                                        <td>{{data.regWithRca}}</td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value=""
@@ -654,7 +663,7 @@
                                         <td>-</td>
                                         <td>-</td>
                                         <td>-</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -673,8 +682,10 @@
                             matStepperNext>Next</button>
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             (click)="move(6)">Finish</button>
-                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"><a
-                                href="/landing/supplier-registration/dashboard">Cancel</a></button>
+                        <a href="/landing/supplier-registration/dashboard">
+                                    <button type="button"
+                                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                </a>
                         <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
                             Draft</button>
                     </div>
@@ -699,16 +710,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Pickup</td>
-                                        <th>1</th>
-                                        <td>2400CC </td>
-                                        <td>2018</td>
-                                        <td>S 2020</td>
-                                        <td> 5000 OMR</td>
+                                    <tr *ngFor="let data of formData.equipmentDetails">
+                                        <td>{{data.no}}</td>
+                                        <td>{{data.type}}</td>
+                                        <th>{{data.quantity}}</th>
+                                        <td>{{data.capacity}}</td>
+                                        <td>{{data.year}}</td>
+                                        <td>{{data.regNo}}</td>
+                                        <td>{{data.approxValue}}</td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>2</td>
                                         <td>Salon </td>
                                         <th>1</th>
@@ -734,7 +745,7 @@
                                         <td>-</td>
                                         <td>-</td>
                                         <td>-</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -752,8 +763,10 @@
                             matStepperNext>Next</button>
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             (click)="move(6)">Finish</button>
-                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"><a
-                                href="/landing/supplier-registration/dashboard">Cancel</a></button>
+                        <a href="/landing/supplier-registration/dashboard">
+                                    <button type="button"
+                                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                </a>
                         <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
                             Draft</button>
                     </div>
@@ -780,7 +793,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                    <tr  *ngFor="let data of formData.otherDetails">
                                         <td>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value=""
@@ -788,11 +801,11 @@
                                                 <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
                                                             class="fa fa-ellipsis-v  "></i> </a></span> </div>
                                         </td>
-                                        <td>1</td>
-                                        <td>Organization Structure </td>
-                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
+                                        <td>{{data.no}}</td>
+                                        <td>{{data.nameOfWork}}</td>
+                                        <td><a href="#" class="text-decoration-underline text-danger">{{data.attachment}}</a></td>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                         <td>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value=""
@@ -827,7 +840,7 @@
                                         <td>4</td>
                                         <td>-</td>
                                         <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -903,8 +916,10 @@
                             matStepperNext>Next</button>
                         <button type="button" class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             (click)="move(6)">Finish</button>
-                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"><a
-                                href="/landing/supplier-registration/dashboard">Cancel</a></button>
+                        <a href="/landing/supplier-registration/dashboard">
+                                    <button type="button"
+                                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                </a>
                         <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
                             Draft</button>
                     </div>

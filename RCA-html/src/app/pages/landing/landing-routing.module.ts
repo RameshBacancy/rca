@@ -14,6 +14,10 @@ const routes: Routes = [
       {
         path:'registration',
         loadChildren: () => import('./supplier-registration-process/supplier-registration-process.module').then(m => m.SupplierRegistrationProcessModule),
+      },
+      {
+        path:'transaction',
+        loadChildren: () => import('./transaction/transaction.module').then(m => m.TransactionModule),
       }
     ]
   },

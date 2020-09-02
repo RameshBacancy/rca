@@ -1,0 +1,211 @@
+{
+    "details": {
+        "generalInfo":{
+            "regNumber": "1567 6578",
+            "regDate": "1567 6578",
+            "expDate": "1567 6578",
+            "activities": "1567 6578",
+            "bankName": "Bank Muscat",
+            "accNo": "7191 8000",
+            "accHolder": "Electroman LLC"
+        },
+        "address": {
+            "addressID" : "MCT",
+            "POBox": "50023",
+            "supplierBranch": "Muscat- AL Ghubra",
+            "sponsorName": "B. Balasubramanian",
+            "sponserResidentId": "11337788",
+            "postalCode": "1208",
+            "authorizedSignatory": "Muhammad Wadahi",
+            "authorizedResidentId": "11446677",
+            "companyTelephoneNo": "+968 7191 8000",
+            "companyFaxNo": "+968 24510605",
+            "companyEmail": "electrmn@omantel.net.om",
+            "directorName": "R. Balasubrmanian",
+            "directorMobile": "+968 7191 8000",
+            "directorEmail": "bala@electronman.net.om",
+            "generalDirectorName": "Youself",
+            "generalDirectorMobile" : "+968 7191 8000",
+            "generalDirectorEmail": "Youself@electron.net.om"
+        },
+        "employeDetails": [
+            {
+                "no": 1,
+                "name": "R Bala",
+                "qualification": "Btech",
+                "designation": "Project Manger",
+                "experience": "8yrs",
+                "nationality": "Indian",
+                "category": "Professional",
+                "docCV":"PDF"
+            },
+            {
+                "no": 2,
+                "name": "Jaber",
+                "qualification": "Electronics Eng",
+                "designation": "Site Engineer",
+                "experience": "2yrs",
+                "nationality": "Omani",
+                "category": "Professional",
+                "docCV":"PDF"
+            },
+            {
+                "no": 3,
+                "name": "Younis",
+                "qualification": "Electronics Eng",
+                "designation": "Project Manger",
+                "experience": "2yrs",
+                "nationality": "Omani",
+                "category": "Professional",
+                "docCV":"PDF"
+            },
+            {
+                "no": 4 ,
+                "name": "Sanjai K",
+                "qualification": "Btech",
+                "designation": "Project Manger",
+                "experience": "4yrs",
+                "nationality": "Indian",
+                "category": "Professional",
+                "docCV":"word doc"
+            }
+        ],
+        "projectDetails": [
+            {
+                "no": 1,
+                "name": "Yibal Project for PDO",
+                "client": "QRB",
+                "consultent": "Khatib & Alami and Partners",
+                "costConsultent": "Milcris",
+                "value": "400,000",
+                "period": "2016 - 2018 ",
+                "completion": "2018",
+                "documents": "PDF"
+            },
+            {
+                "no": 2,
+                "name": "Grand Mall-Carrefour",
+                "client": "Majid Al Futtaim",
+                "consultent": "ME Studio Engineering",
+                "costConsultent": "Majan Engineering",
+                "value": "254,000",
+                "period": "2017 - 2018",
+                "completion": "2019",
+                "documents": "PDF"
+            },
+            {
+                "no": 3,
+                "name": "OMAN Post Off. Ruwi",
+                "client": "QRB",
+                "consultent": "OMAN POST",
+                "costConsultent": "Tahpi pty Ltd",
+                "value": "1,000,000",
+                "period": "2018 - 2021",
+                "completion": "",
+                "documents": "PDF"
+            }
+        ],
+        "subContractorDetails": [
+            {
+                "no": 1,
+                "nameOfWork": "-",
+                "subContractor": "-",
+                "crNo": "-",
+                "telephone": "-",
+                "fax": "-",
+                "email": "-",
+                "regWithRca": "-"
+            },
+            {
+                "no": 2,
+                "nameOfWork": "-",
+                "subContractor": "-",
+                "crNo": "-",
+                "telephone": "-",
+                "fax": "-",
+                "email": "-",
+                "regWithRca": "-"
+            },
+            {
+                "no": 3,
+                "nameOfWork": "-",
+                "subContractor": "-",
+                "crNo": "-",
+                "telephone": "-",
+                "fax": "-",
+                "email": "-",
+                "regWithRca": "-"
+            },
+            {
+                "no": 4,
+                "nameOfWork": "-",
+                "subContractor": "-",
+                "crNo": "-",
+                "telephone": "-",
+                "fax": "-",
+                "email": "-",
+                "regWithRca": "-"
+            }
+        ],
+        "equipmentDetails": [
+            {
+                "no": 1,
+                "type": "Pickup",
+                "quantity": "2",
+                "capacity": "2400CC",
+                "year": "2018",
+                "regNo": "S 2020",
+                "approxValue": "5000 OMR"
+            },
+            {
+                "no": 2,
+                "type": "Salon",
+                "quantity": "1",
+                "capacity": "2000CC",
+                "year": "2019",
+                "regNo": "R 1235",
+                "approxValue": "7500 OMR"
+            },
+            {
+                "no": 3,
+                "type": "-",
+                "quantity": "-",
+                "capacity": "-",
+                "year": "-",
+                "regNo": "-",
+                "approxValue": "-"
+            },
+            {
+                "no": 4,
+                "type": "-",
+                "quantity": "-",
+                "capacity": "-",
+                "year": "-",
+                "regNo": "-",
+                "approxValue": "-"
+            }
+        ],
+        "otherDetails": [
+            {
+                "no": 1,
+                "nameOfWork": "Organization Structure",
+                "attachment": "PDF"
+            },
+            {
+                "no": 2,
+                "nameOfWork": "Tax Certificate",
+                "attachment": "PDF"
+            },
+            {
+                "no": 3,
+                "nameOfWork": "Certificates",
+                "attachment": "PDF"
+            },
+            {
+                "no": 4,
+                "nameOfWork": "-",
+                "attachment": "PDF"
+            }
+        ]
+    }
+}

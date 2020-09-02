@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
+import { SupplierRegistrationService } from '../../../services/supplier-registration.service';
 
 @Component({
   selector: 'app-supplier-registration-process',
@@ -10,10 +11,12 @@ import { Router } from '@angular/router';
 export class SupplierRegistrationProcessComponent implements OnInit {
 
   @ViewChild('stepper') private stepper: MatStepper;
+  formData: any;
   
-  constructor(private router: Router) { }
+  constructor(private router: Router, private supplierData: SupplierRegistrationService) { }
 
   ngOnInit(): void {  
+    this.formData = this.supplierData.getdata();
   }
 
   move(index: number) {
