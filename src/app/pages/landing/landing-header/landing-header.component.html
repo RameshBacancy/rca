@@ -2,7 +2,7 @@
 <header class="landing-header maroon-bg">
   <div class="left-side">
     <div class="nav-icon" (click)="onViewSideBar();" *ngIf="showsidebar">
-      <div id="nav-icon3" [class.open]="viewSideBar">
+      <div id="nav-icon3" [class.open]="!viewSideBar">
         <span></span>
         <span></span>
         <span></span>
@@ -22,5 +22,5 @@
   </div>
 </header>
 <div *ngIf="showsidebar">
-  <app-landing-sidebar [class.open]="viewSideBar"> </app-landing-sidebar>
+  <app-landing-sidebar [class.open]="!viewSideBar"> </app-landing-sidebar>
 </div>

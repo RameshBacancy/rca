@@ -1,5 +1,5 @@
 <app-landing-header (onViewSidebar)="onViewSidebar($event)" [showsidebar]="true"></app-landing-header>
-<div class="landing-portal-content" [class.viewOpen]="viewSideBar">
+<div class="landing-portal-content" [class.viewOpen]="!viewSideBar">
   <section>
     <div class="container-fluid ">
       <div class="row">
