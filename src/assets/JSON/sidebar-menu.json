@@ -136,5 +136,143 @@
             "disabled": false,
             "children": []
         }
+    ],
+    "menus": [
+        {
+            "name": "RCA GENERAL INFO & LINKS",
+            "icon": "",
+            "route": "",
+            "disabled": false,
+            "children": [
+                {
+                    "name": "About Us",
+                    "icon": "",
+                    "route": "",
+                    "disabled": false,
+                    "children": []
+                },
+                {
+                    "name": "Supplier Registration",
+                    "icon": "",
+                    "route": "",
+                    "disabled": false,
+                    "children": []
+                },
+                {
+                    "name": "Tendering Information",
+                    "icon": "",
+                    "route": "",
+                    "disabled": false,
+                    "children": []
+                },
+                {
+                    "name": "Auction",
+                    "icon": "",
+                    "route": "",
+                    "disabled": false,
+                    "children": []
+                },
+                {
+                    "name": "Help Desk",
+                    "icon": "",
+                    "route": "",
+                    "disabled": false,
+                    "children": []
+                },
+                {
+                    "name": "Support",
+                    "icon": "",
+                    "route": "",
+                    "disabled": false,
+                    "children": []
+                }
+            ]
+        },
+        {
+            "name": "SUPPLIER REGISTRATION",
+            "icon": "",
+            "route": "",
+            "disabled": false,
+            "children": [
+                {
+                    "name": "Login",
+                    "icon": "",
+                    "route": "/auth/register",
+                    "disabled": false,
+                    "children": []
+                },
+                {
+                    "name": "How to Register",
+                    "icon": "",
+                    "route": "",
+                    "disabled": false,
+                    "children": []
+                },
+                {
+                    "name": "Register",
+                    "icon": "",
+                    "route": "/landing/supplier-registration/registration",
+                    "disabled": false,
+                    "children": []
+                },
+                {
+                    "name": "Forgot Password",
+                    "icon": "",
+                    "route": "",
+                    "disabled": false,
+                    "children": []
+                }
+            ]
+        },
+        {
+            "name": "TENDERING",
+            "icon": "",
+            "route": "",
+            "disabled": false,
+            "children": [
+                {
+                    "name": "Tender Queries",
+                    "icon": "",
+                    "route": "",
+                    "disabled": false,
+                    "children": []
+                },
+                {
+                    "name": "Search Tenders",
+                    "icon": "",
+                    "route": "",
+                    "disabled": false,
+                    "children": []
+                }
+            ]
+        },
+        {
+            "name": "ORDERS",
+            "icon": "",
+            "route": "",
+            "disabled": false,
+            "children": []
+        },
+        {
+            "name": "LATE ORDERS",
+            "icon": "",
+            "route": "",
+            "disabled": false,
+            "children": []
+        },
+        {
+            "name": "ORDER LINES TO CONFIRM",
+            "icon": "",
+            "route": "",
+            "disabled": false,
+            "children": []
+        },
+        {
+            "name": "REQUEST FOR ORDER QUOTATION",
+            "icon": "",
+            "route": "",
+            "disabled": false,
+            "children": []
+        }
     ]
 }

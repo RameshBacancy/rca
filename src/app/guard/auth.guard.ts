@@ -19,12 +19,12 @@ export class AuthGuard implements CanActivate {
     ) { }
 
     canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-        let subject = new ReplaySubject<boolean>();
-        if (this.userService.isAuthenticated()) {
-            this.router.navigate(['/landing']);
-            return false;
-        }else{
+        if(window.localStorage.getItem("LoginToken")){ 
             return true;
+        }
+        else{
+            this.router.navigateByUrl('/admin/login');
+            return false;
         }
     }
 }

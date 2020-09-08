@@ -6,20 +6,23 @@ import { ProtectGuard } from './guard/protect.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/landing/supplier-registration/dashboard',
+    redirectTo: '/auth/supplierRegistration',
     pathMatch: 'full'
   },
   {
     path: 'landing',
     loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingModule),
-    // loadChildren: './pages/landing/landing.module#LandingModule',
-    //  canActivate: [ProtectGuard],
+    canActivate: [ProtectGuard],
   },
   {
     path:'auth',
     loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
-  }
-  // { path: '**', redirectTo: '/landing/dashboard', pathMatch: 'full' }
+  },
+  {
+    path:'admin',
+    loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule)
+  },
+  { path: '**', redirectTo: '/auth/supplierRegistration', pathMatch: 'full' }
 ];
 
 @NgModule({

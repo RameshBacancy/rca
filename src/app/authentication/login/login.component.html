@@ -1,18 +1,61 @@
-<!-- <div class="login">
-  <div class="login-content">
-    <div class="servicing-box-container">
-      <div class="servicing-box">
-        <h2 class="servicing-title">User Login Panel</h2>
-        <form [formGroup]="login" (submit)="onLoginSubmit()">
-            <app-input-basic label="Email" type="email" [fc]="login.get('email')" placeholder="Plase enter username"
-              icon="user">
-            </app-input-basic>
-            <app-input-basic label="Password" type="password" [fc]="login.get('password')" placeholder="Plase enter password"
-              icon="key">
-            </app-input-basic>
-            <button class="btn btn-primary" [disabled]="!login.valid" type="submit">Submit</button>
-          </form>
+<div class="login">
+  <div class="container">
+      <div class="login-row  row justify-content-center align-items-center">
+          <div class="login-column col-md-6">
+              <div class="login-box col-md-12">
+                  <form class="login-form  form" #form="ngForm" (ngSubmit)="login(form)">
+                      <h3 class="text-center text-info">Login</h3>
+                      <!--email-->
+                      <div class="form-group">
+                          <label for="username" class="text-info">Email:</label><br>
+                          <input type="text" class="form-control" name="email" id="email" #email="ngModel"
+                              [(ngModel)]="user.email"
+                               required />
+                      </div>
+                      <!-- pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" -->
+                      <div *ngIf="!email.valid && (email.touch || email.dirty)">
+                          <div *ngIf="email.errors.required" class="alert alert-danger">
+                              Email is required
+
+                          </div>
+                          <!-- <div *ngIf="email.errors?.pattern" class="alert alert-danger">
+                              Email must be valid
+                          </div> -->
+                      </div>
+                      <!--password-->
+                      <div class="form-group">
+                          <label for="password" class="text-info">Password:</label><br>
+                          <input type="password" class="form-control" id="password" #password="ngModel"
+                              [(ngModel)]="user.password" name="password" appNoContainSpace="ngModel" required />
+                      </div>
+                      <div *ngIf="password.invalid && (password.touched || password.dirty)">
+                          <div *ngIf="password.errors.required" class="alert alert-danger">
+                              password is required
+                          </div>
+                          <!-- minlength="6
+                          <div *ngIf="password.errors.minlength" class="alert alert-danger">
+                              Name must be at least 6 characters long.
+                          </div> -->
+                          <div *ngIf="password.errors.spaceNotAllowed" class="alert alert-danger">
+                              Space is not allowed
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <button type="submit" [disabled]="form.invalid" name="submit" class="btn btn-info btn-md"
+                              value="Login">Login</button>
+                      </div>
+
+                      <div class="register-link text-right">Forget Password?
+                          <!-- <a [routerLink]="['/auth/forget-password']" class="text-info"></a> -->
+                      </div>
+                      <br>
+                      <br>
+                      <div class="register-link text-right">Register here
+                          <!-- <a [routerLink]="['/auth/register']" class="text-info"></a> -->
+                      </div>
+                  </form>
+              </div>
+          </div>
       </div>
-    </div>
   </div>
-</div> -->
+</div>

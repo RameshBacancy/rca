@@ -19,10 +19,13 @@ export class ProtectGuard implements CanActivate {
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        if (!this.userService.isAuthenticated()) {
-            this.router.navigate(['/auth/login']);
+        if(window.localStorage.getItem("registerToken1")){ 
+            // this.router.navigateByUrl('/landing/supplier-registration/dashboard')
+            return true;
+        }
+        else{
+            this.router.navigateByUrl('/auth/supplierRegistration');
             return false;
         }
-        return true;
     }
 }

@@ -8,12 +8,12 @@ import { SidebarService } from '../../../services/sidebar-menu.service';
 })
 export class LandingSidebarComponent implements OnInit {
 
-  sidebarItems: any;
+  @Input() sidebarItems: any;
 
   isSubmenu: boolean;
   arrowimg: string = 'arrow-right-white';
   
-  constructor(private sidebarData: SidebarService) { }
+  constructor() { }
   
   submenuFun() {
     this.isSubmenu = !this.isSubmenu;
@@ -22,7 +22,7 @@ export class LandingSidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.sidebarItems = this.sidebarData.getdata();
+    // this.sidebarItems = this.sidebarData.getdata();
   }
 
   arrowClicked(item){

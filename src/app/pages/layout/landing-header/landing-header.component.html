@@ -18,9 +18,15 @@
   <div class="right-side" *ngIf="showsidebar">
     <div class="landing-menu" (click)="openMenu()" (clickOutside)="handleClickOutside()">
       <div class="landing-pic"></div>
+      <div *ngIf="headerMenu" class="landing-dropdown">
+        <ul>
+          <li><a routerLinkActive="active" routerLink="">My Profile</a></li>
+          <li><a routerLinkActive="active" (click)="onLogOut()">Log out</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </header>
 <div *ngIf="showsidebar">
-  <app-landing-sidebar [class.open]="!viewSideBar"> </app-landing-sidebar>
+  <app-landing-sidebar [class.open]="!viewSideBar" [sidebarItems]="menuData"> </app-landing-sidebar>
 </div>

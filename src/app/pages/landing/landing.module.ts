@@ -3,21 +3,22 @@ import { CommonModule } from '@angular/common';
 
 import { LandingRoutingModule } from './landing-routing.module';
 import { LandingComponent } from './landing.component';
-import { LandingHeaderComponent } from './landing-header/landing-header.component';
-import { LandingSidebarComponent } from './landing-sidebar/landing-sidebar.component';
+import { LayoutModule } from "../layout/layout.module"
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     LandingComponent,
-    LandingHeaderComponent,
-    LandingSidebarComponent,
   ],
   exports: [
-    LandingHeaderComponent
+    LayoutModule
   ],
   imports: [
     CommonModule,
     LandingRoutingModule,
+    LayoutModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
 })
 export class LandingModule { }

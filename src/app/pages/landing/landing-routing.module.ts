@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingComponent } from './landing.component';
+import { ProtectGuard } from 'src/app/guard/protect.guard';
 
 const routes: Routes = [
   {
     path: 'supplier-registration',
     component: LandingComponent,
+    // canActivate: [ProtectGuard],
     children:[
       {
         path: 'dashboard',
@@ -20,8 +22,7 @@ const routes: Routes = [
         loadChildren: () => import('./transaction/transaction.module').then(m => m.TransactionModule),
       }
     ]
-  },
-  
+  }
 ];
 
 @NgModule({

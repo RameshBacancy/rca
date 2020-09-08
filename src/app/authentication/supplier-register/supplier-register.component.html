@@ -21,7 +21,7 @@
         </div>
     </div>
 </section>
-<div *ngIf="!supplierSelection">
+<div *ngIf="!showsNext">
     <section class=" bg-white">
         <div class="container-fluid ">
             <div class="row">
@@ -29,45 +29,76 @@
                     <h3 class="  p-2 fs-22 text-black font-weight-bold ">Login</h3>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12 px-4 d-block d-md-flex">
-                    <div class="mr-3 mb-3">
-                        <p class=" text-dark-grey font-weight-bold ">Supplier Reg. Type :</p>
-                    </div>
-                    <div class="form-check mr-3 mb-3">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                        <label class="form-check-label font-italic ml-2" for="flexRadioDefault1">Individual </label>
-                    </div>
-                    <div class="form-check mr-3 mb-3">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
-                            checked>
-                        <label class="form-check-label font-italic ml-2" for="flexRadioDefault2">Local </label>
-                    </div>
-                    <div class="form-check mr-3 mb-3">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3"
-                            checked>
-                        <label class="form-check-label font-italic ml-2" for="flexRadioDefault3">International</label>
+            <form [formGroup]="form">
+                <div class="row">
+                    <div class="col-md-12 px-4 d-block d-md-flex">
+                        <div class="mr-3 mb-3">
+                            <p class=" text-dark-grey font-weight-bold ">Supplier Reg. Type :</p>
+                        </div>
+                        <div class="form-check mr-3 mb-3">
+                            <input class="form-check-input" type="radio" value="individual" formControlName="regType">
+                            <label class="form-check-label font-italic ml-2" for="flexRadioDefault1">Individual </label>
+                        </div>
+                        <div class="form-check mr-3 mb-3">
+                            <input class="form-check-input" type="radio" value="local" formControlName="regType">
+                            <label class="form-check-label font-italic ml-2" for="flexRadioDefault2">Local </label>
+                        </div>
+                        <div class="form-check mr-3 mb-3">
+                            <input class="form-check-input" type="radio" value="international" formControlName="regType">
+                            <label class="form-check-label font-italic ml-2" for="flexRadioDefault3">International</label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 px-4 d-block  d-lg-flex">
-                    <p class=" pt-2 fs-14  mr-0 mr-lg-3  text-dark-grey font-weight-bold ">Enter Civil Number :</p>
-                    <input class=" border p-2 fs-14 mr-0 mr-lg-3 rounded text-center w-170 " value="11337788">
+                <div class="row">
+                    <div class="col-md-12 px-4 d-block  d-lg-flex">
+                        <p class=" pt-2 fs-14  mr-0 mr-lg-3  text-dark-grey font-weight-bold ">Enter Civil Number :</p>
+                        <input class=" border p-2 fs-14 mr-0 mr-lg-3 rounded text-center w-170 " value="11337788" formControlName="civilNo">
+                    </div>
                 </div>
-            </div>
+            </form>
             <div class="row">
                 <div class="col-md-12 mb-5 px-4 mt-5">
                     <button type="button" class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2"
-                        (click)="supplierSelection = true">Submit </button>
+                        (click)="submitNext()">Submit </button>
                     <button type="button" class="btn btn-secondary px-3 mx-1 py-2 w-120 fs-14 mb-2">Back </button>
                 </div>
             </div>
         </div>
     </section>
 </div>
-<div *ngIf="supplierSelection">
+<div *ngIf="showsNext">
     <section class=" bg-white">
+        <div class="container ">
+            <form [formGroup]="form" (ngSubmit)="submit()">
+                <div class="row pt-5">
+                    <div class="col-md-12 px-4 d-block d-md-flex">
+                        <div class="form-check mr-3 mb-3">
+                            <input class="form-check-input" value="newSupplier" type="radio" formControlName="registrationType">
+                            <label class="form-check-label ml-2" for="flexRadioDefault1"> New Supplier Registration </label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 px-4 d-block d-md-flex">
+                        <div class="form-check mr-3 mb-3">
+                            <input class="form-check-input" type="radio" value="alreadyRegistered" formControlName="registrationType"
+                                checked>
+                            <label class="form-check-label  ml-2" for="flexRadioDefault2"> Already Registered Supplier
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row mt-5">
+                        <div class="col-md-12 mb-5 px-4">
+                            <button type="submit" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Submit
+                            </button>
+                            <button type="button" class="btn btn-secondary px-3 mx-1 py-2 w-120 fs-14 mb-2" (click)="back()">Back</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- <section class=" bg-white">
         <div class="container-fluid ">
             <div class="row">
                 <div class="col-md-12 px-3">
@@ -77,7 +108,7 @@
             <div class="row mt-2 mt-md-5">
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Commercial Registration No</h5>
-                    <input class="fs-14 border p-2 text-center w-140" value="1086391">
+                    <input class="fs-14 border p-2 text-center w-140" value="1086391"  type="number" [(ngModel)]="registrationNo">
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Supplier Name</h5>
@@ -96,5 +127,5 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
 </div>

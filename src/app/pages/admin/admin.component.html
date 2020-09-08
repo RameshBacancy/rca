@@ -1,4 +1,4 @@
-<app-landing-header (onViewSidebar)="onViewSidebar($event)" [showsidebar]="true" [menuData]="menu"></app-landing-header>
+<app-landing-header (onViewSidebar)="onViewSidebar($event)" [showsidebar]="true" [menuData]="menus"></app-landing-header>
 <div class="landing-portal-content" [class.viewOpen]="!viewSideBar">
   <section>
     <div class="container-fluid ">
@@ -17,10 +17,9 @@
     <div class="container-fluid ">
       <div class="row">
         <div class="col-md-12 ">
-          <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">{{title}}</h2>
+          <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">ADMIN PANEL</h2>
         </div>
       </div>
     </div>
 </section>
-  <router-outlet></router-outlet>
-</div>
+  </div>

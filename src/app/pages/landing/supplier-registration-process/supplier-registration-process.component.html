@@ -1,6 +1,7 @@
 <section class="container-fluid  mt-3">
     <div class="bg-white px-4">
         <mat-horizontal-stepper #stepper>
+            <!-- General Info -->
             <mat-step>
                 <ng-template matStepLabel>General Info</ng-template>
                 <div class="row">
@@ -145,23 +146,24 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12 mb-5 px-4">
-                        <button type="button"
-                            class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Privious</button>
+                        <!-- <button type="button"
+                            class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Privious</button> -->
                         <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                             matStepperNext>Next</button>
-                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="move(6)">Finish</button>
-                        
-                                <a href="/landing/supplier-registration/dashboard">
-                                    <button type="button"
-                                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                                </a>
+                        <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            (click)="move(6)">Finish</button> -->
+
+                        <a href="/landing/supplier-registration/dashboard">
+                            <button type="button"
+                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        </a>
                         <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
                             Draft</button>
                     </div>
                 </div>
 
             </mat-step>
+            <!-- Address -->
             <mat-step>
                 <ng-template matStepLabel>Address</ng-template>
 
@@ -170,6 +172,7 @@
                         <p
                             class="bg-light border rounded p-2 fs-14 text-center font-italic font-weight-bold  dark-text-1 w-170">
                             Address ID : {{formData.address.addressID}} </p>
+                        <button class="btn btn-secondary " (click)="open(mymodal)"><i class="fa fa-plus" aria-hidden="true"></i></button>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">P.O. Box</h5>
@@ -243,7 +246,8 @@
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email </h5>
                         <p class="fs-14"><a href="#"
-                                class=" text-danger text-decoration-underline">{{formData.address.directorEmail}}</a></p>
+                                class=" text-danger text-decoration-underline">{{formData.address.directorEmail}}</a>
+                        </p>
                     </div>
                 </div>
                 <div class="row">
@@ -264,27 +268,120 @@
                     <div class="col-md-3 col-lg-3 col-xl-4 px-4 ">
                         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email </h5>
                         <p class="fs-14"><a href="#"
-                                class=" text-danger text-decoration-underline">{{formData.address.generalDirectorEmail}}</a></p>
+                                class=" text-danger text-decoration-underline">{{formData.address.generalDirectorEmail}}</a>
+                        </p>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-12 mb-5 px-4">
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             matStepperPrevious>Privious</button>
                         <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                             matStepperNext>Next</button>
-                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="move(6)">Finish</button>
+                        <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            (click)="move(6)">Finish</button> -->
                         <a href="/landing/supplier-registration/dashboard">
-                                    <button type="button"
-                                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                                </a>
+                            <button type="button"
+                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        </a>
                         <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
                             Draft</button>
                     </div>
                 </div>
+                <ng-template #mymodal let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Add Address</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form [formGroup]="form" (ngSubmit)="submit()">                            
+
+                        <!-- Address Form -->
+                    <div class="modal-body">
+                        <section class=" bg-white ">
+                            <div class="container">
+                                <div class="row pt-5">
+                                    <div class="col-md-12 col-xl-6 col-lg-10  px-4">
+                                        <div class="form-group row mb-3">
+                                            <label for="poBox" class="col-sm-2 col-form-label">P.O.Box</label>
+                                            <div class="col-sm-10">
+                                                <input formControlName="poBox" id="poBox" type="text" class="form-control">
+                                            </div>
+                                            <div *ngIf="f.poBox.touched && f.poBox.invalid" class="alert alert-danger">
+                                                <div *ngIf="f.poBox.errors.required" class="col-sm-10">*required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label for="supplierBranch" class="col-sm-2 col-form-label">Supplier Branch</label>
+                                            <div class="col-sm-10">
+                                                <input formControlName="supplierBranch" id="supplierBranch" type="text" class="form-control">
+                                            </div>
+                                            <div *ngIf="f.supplierBranch.touched && f.supplierBranch.invalid" class="alert alert-danger">
+                                                <div *ngIf="f.supplierBranch.errors.required" class="col-sm-10">*required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label for="sponsorName" class="col-sm-2 col-form-label">Sponsor Name</label>
+                                            <div class="col-sm-10">
+                                                <input formControlName="sponsorName" id="sponsorName" type="text" class="form-control">
+                                            </div>
+                                            <div *ngIf="f.sponsorName.touched && f.sponsorName.invalid" class="alert alert-danger">
+                                                <div *ngIf="f.sponsorName.errors.required" class="col-sm-10">*required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label for="SponsorNationalId" class="col-sm-2 col-form-label">Sponsor National ID / Resident ID</label>
+                                            <div class="col-sm-10">
+                                                <input formControlName="SponsorNationalId" id="SponsorNationalId" type="text" class="form-control">
+                                            </div>
+                                            <div *ngIf="f.SponsorNationalId.touched && f.SponsorNationalId.invalid" class="alert alert-danger">
+                                                <div *ngIf="f.SponsorNationalId.errors.required" class="col-sm-10">*required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label for="postalCode" class="col-sm-2 col-form-label">Postal Code</label>
+                                            <div class="col-sm-10">
+                                                <input formControlName="postalCode" id="postalCode" type="text" class="form-control">
+                                            </div>
+                                            <div *ngIf="f.postalCode.touched && f.postalCode.invalid" class="alert alert-danger">
+                                                <div *ngIf="f.postalCode.errors.required" class="col-sm-10">*required</div>
+                                            </div>
+                                        </div><div class="form-group row mb-3">
+                                            <label for="authorizedSignatory" class="col-sm-2 col-form-label">Authorized Signatory</label>
+                                            <div class="col-sm-10">
+                                                <input formControlName="authorizedSignatory" id="authorizedSignatory" type="text" class="form-control">
+                                            </div>
+                                            <div *ngIf="f.authorizedSignatory.touched && f.authorizedSignatory.invalid" class="alert alert-danger">
+                                                <div *ngIf="f.authorizedSignatory.errors.required" class="col-sm-10">*required</div>
+                                            </div>
+                                        </div><div class="form-group row mb-3">
+                                            <label for="authorizedResidentId" class="col-sm-2 col-form-label">Authorized National ID / Resident ID</label>
+                                            <div class="col-sm-10">
+                                                <input formControlName="authorizedResidentId" id="authorizedResidentId" type="text" class="form-control">
+                                            </div>
+                                            <div *ngIf="f.authorizedResidentId.touched && f.authorizedResidentId.invalid" class="alert alert-danger">
+                                                <div *ngIf="f.authorizedResidentId.errors.required" class="col-sm-10">*required</div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-5">
+                                            <div class="col-md-12 mb-5 px-4"> </div>
+                                        </div>
+                                    </div>
+                                </div>                               
+                            </div>
+                            </section>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" type="submit">Submit</button>
+                        <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel" (click)="modal.close('Save click')">Back</button>
+                        <!-- <button type="button" class="btn btn-outline-dark"
+                            (click)="modal.close('Save click')">Ok</button> -->
+                    </div>
+                </form>
+                </ng-template>
             </mat-step>
+            <!-- Employee Details -->
             <mat-step>
                 <ng-template matStepLabel>Employee Details</ng-template>
 
@@ -313,7 +410,8 @@
                                         <th>{{data.experience}}</th>
                                         <td>{{data.nationality}}</td>
                                         <td>{{data.category}}</td>
-                                        <td><a href="#" class="text-decoration-underline text-danger">{{data.docCV}}</a></td>
+                                        <td><a href="#" class="text-decoration-underline text-danger">{{data.docCV}}</a>
+                                        </td>
                                     </tr>
                                     <!-- <tr>
                                         <td>2</td>
@@ -358,9 +456,9 @@
                         </p>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-12 px-4 d-block  d-lg-flex">
-                        <!--  <p class="bg-light border p-2 fs-14 rounded mr-0 mr-lg-3 text-center ">Attach Existing </p>-->
+                         <p class="bg-light border p-2 fs-14 rounded mr-0 mr-lg-3 text-center ">Attach Existing </p>
                         <p class="bg-light border p-2 fs-14 mr-0 mr-lg-3 rounded text-center ">Create New </p>
                         <p class="bg-light border p-2 fs-14  mr-0 mr-lg-3 rounded text-center ">Create Form Template
                         </p>
@@ -409,7 +507,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="row">
                     <div class="col-md-12 mb-5 px-4">
@@ -417,17 +515,18 @@
                             matStepperPrevious>Privious</button>
                         <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                             matStepperNext>Next</button>
-                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="move(6)">Finish</button>
+                        <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            (click)="move(6)">Finish</button> -->
                         <a href="/landing/supplier-registration/dashboard">
-                                    <button type="button"
-                                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                                </a>
+                            <button type="button"
+                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        </a>
                         <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
                             Draft</button>
                     </div>
                 </div>
             </mat-step>
+            <!-- Project Details -->
             <mat-step>
                 <ng-template matStepLabel>Project Details</ng-template>
 
@@ -458,7 +557,9 @@
                                         <td>{{data.value}}</td>
                                         <td>{{data.period}}</td>
                                         <td>{{data.completion}}</td>
-                                        <td><a href="#" class="text-decoration-underline text-danger">{{data.documents}}</a></td>
+                                        <td><a href="#"
+                                                class="text-decoration-underline text-danger">{{data.documents}}</a>
+                                        </td>
                                     </tr>
                                     <!-- <tr>
                                         <td>2</td>
@@ -497,14 +598,14 @@
                         </p>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-12 px-4 d-block  d-lg-flex">
                         <p class="bg-light border p-2 fs-14 rounded mr-0 mr-lg-3 text-center ">Attach Existing </p>
                         <p class="bg-light border p-2 fs-14 mr-0 mr-lg-3 rounded text-center ">Create New </p>
                         <p class="bg-light border p-2 fs-14  mr-0 mr-lg-3 rounded text-center ">Create Form Template
                         </p>
-                    </div>
-                </div>
+                    </div> -->
+                <!-- </div> -->
                 <div class="row">
                     <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
                         <div class="card bg-light  ">
@@ -559,17 +660,18 @@
                             matStepperPrevious>Privious</button>
                         <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                             matStepperNext>Next</button>
-                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="move(6)">Finish</button>
+                        <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            (click)="move(6)">Finish</button> -->
                         <a href="/landing/supplier-registration/dashboard">
-                                    <button type="button"
-                                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                                </a>
+                            <button type="button"
+                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        </a>
                         <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
                             Draft</button>
                     </div>
                 </div>
             </mat-step>
+            <!-- Subcontractor Details -->
             <mat-step>
                 <ng-template matStepLabel>Subcontractor Details</ng-template>
 
@@ -583,7 +685,8 @@
                                             <div class="d-flex"> <span> <a href="#" class=" text-white fs-14"><i
                                                             class="fa fa-check"></i></a> </span> <span
                                                     class="ml-3 pl-1 "> <a href="#" class=" text-white fs-14"> <i
-                                                            class="fa fa-ellipsis-v "></i> </a> </span> </div>
+                                                            class="fa fa-ellipsis-v "></i>
+                                                    </a> </span> </div>
                                         </th>
                                         <th scope="col">SL No.</th>
                                         <th scope="col">Name of Sub Contract Works</th>
@@ -614,56 +717,56 @@
                                         <td>{{data.regWithRca}}</td>
                                     </tr>
                                     <!-- <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault-2">
-                                                <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
-                                                            class="fa fa-ellipsis-v  "></i> </a></span> </div>
-                                        </td>
-                                        <td>2</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <th>-</th>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault-3">
-                                                <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
-                                                            class="fa fa-ellipsis-v  "></i> </a></span> </div>
-                                        </td>
-                                        <td>3</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <th>-</th>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault-4">
-                                                <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
-                                                            class="fa fa-ellipsis-v  "></i> </a></span> </div>
-                                        </td>
-                                        <td>4</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <th>-</th>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                    </tr> -->
+                                                <td>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckDefault-2">
+                                                        <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
+                                                                    class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                                                </td>
+                                                <td>2</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <th>-</th>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckDefault-3">
+                                                        <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
+                                                                    class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                                                </td>
+                                                <td>3</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <th>-</th>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckDefault-4">
+                                                        <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
+                                                                    class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                                                </td>
+                                                <td>4</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <th>-</th>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                            </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -680,17 +783,18 @@
                             matStepperPrevious>Privious</button>
                         <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                             matStepperNext>Next</button>
-                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="move(6)">Finish</button>
+                        <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                    (click)="move(6)">Finish</button> -->
                         <a href="/landing/supplier-registration/dashboard">
-                                    <button type="button"
-                                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                                </a>
+                            <button type="button"
+                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        </a>
                         <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
                             Draft</button>
                     </div>
                 </div>
             </mat-step>
+            <!-- Equipment Details -->
             <mat-step>
                 <ng-template matStepLabel>Equipment Details</ng-template>
 
@@ -720,32 +824,32 @@
                                         <td>{{data.approxValue}}</td>
                                     </tr>
                                     <!-- <tr>
-                                        <td>2</td>
-                                        <td>Salon </td>
-                                        <th>1</th>
-                                        <td>2000 CC</td>
-                                        <td>2019</td>
-                                        <td>RS 1235</td>
-                                        <td>7500 OMR</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>-</td>
-                                        <th>-</th>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>-</td>
-                                        <th>-</th>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                        <td>-</td>
-                                    </tr> -->
+                                                <td>2</td>
+                                                <td>Salon </td>
+                                                <th>1</th>
+                                                <td>2000 CC</td>
+                                                <td>2019</td>
+                                                <td>RS 1235</td>
+                                                <td>7500 OMR</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>-</td>
+                                                <th>-</th>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>-</td>
+                                                <th>-</th>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                            </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -761,17 +865,18 @@
                             matStepperPrevious>Privious</button>
                         <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                             matStepperNext>Next</button>
-                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="move(6)">Finish</button>
+                        <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                    (click)="move(6)">Finish</button> -->
                         <a href="/landing/supplier-registration/dashboard">
-                                    <button type="button"
-                                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                                </a>
+                            <button type="button"
+                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        </a>
                         <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
                             Draft</button>
                     </div>
                 </div>
             </mat-step>
+            <!-- Other Details -->
             <mat-step>
                 <ng-template matStepLabel>Other Details</ng-template>
 
@@ -785,7 +890,8 @@
                                             <div class="d-flex"> <span> <a href="#" class=" text-white fs-14"><i
                                                             class="fa fa-check"></i></a> </span> <span
                                                     class="ml-3 pl-1 "> <a href="#" class=" text-white fs-14"> <i
-                                                            class="fa fa-ellipsis-v "></i> </a> </span> </div>
+                                                            class="fa fa-ellipsis-v "></i>
+                                                    </a> </span> </div>
                                         </th>
                                         <th scope="col">SL No.</th>
                                         <th scope="col">Name of Sub Contract Works</th>
@@ -793,7 +899,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr  *ngFor="let data of formData.otherDetails">
+                                    <tr *ngFor="let data of formData.otherDetails">
                                         <td>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value=""
@@ -803,44 +909,46 @@
                                         </td>
                                         <td>{{data.no}}</td>
                                         <td>{{data.nameOfWork}}</td>
-                                        <td><a href="#" class="text-decoration-underline text-danger">{{data.attachment}}</a></td>
+                                        <td><a href="#"
+                                                class="text-decoration-underline text-danger">{{data.attachment}}</a>
+                                        </td>
                                     </tr>
                                     <!-- <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault-2">
-                                                <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
-                                                            class="fa fa-ellipsis-v  "></i> </a></span> </div>
-                                        </td>
-                                        <td>2</td>
-                                        <td>Tax Certificate </td>
-                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault-3">
-                                                <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
-                                                            class="fa fa-ellipsis-v  "></i> </a></span> </div>
-                                        </td>
-                                        <td>3</td>
-                                        <td>Certificates </td>
-                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault-4">
-                                                <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
-                                                            class="fa fa-ellipsis-v  "></i> </a></span> </div>
-                                        </td>
-                                        <td>4</td>
-                                        <td>-</td>
-                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
-                                    </tr> -->
+                                                <td>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckDefault-2">
+                                                        <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
+                                                                    class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                                                </td>
+                                                <td>2</td>
+                                                <td>Tax Certificate </td>
+                                                <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckDefault-3">
+                                                        <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
+                                                                    class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                                                </td>
+                                                <td>3</td>
+                                                <td>Certificates </td>
+                                                <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckDefault-4">
+                                                        <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
+                                                                    class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                                                </td>
+                                                <td>4</td>
+                                                <td>-</td>
+                                                <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
+                                            </tr> -->
                                 </tbody>
                             </table>
                         </div>
@@ -917,9 +1025,9 @@
                         <button type="button" class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             (click)="move(6)">Finish</button>
                         <a href="/landing/supplier-registration/dashboard">
-                                    <button type="button"
-                                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                                </a>
+                            <button type="button"
+                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        </a>
                         <button type="button" class="btn btn-warning px-3 mx-1 py-2 w-120 fs-14 mb-2">Save as
                             Draft</button>
                     </div>

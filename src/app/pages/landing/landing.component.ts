@@ -1,6 +1,7 @@
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Component, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { SidebarService } from 'src/app/services/sidebar-menu.service';
 
 export interface Option {
   id: number;
@@ -17,9 +18,11 @@ export class LandingComponent implements OnInit {
   public title: string;
   public currentUrl:string;
   url: string[];
+  menu;
 
   constructor(
-    private router: Router
+    private router: Router,
+    private sidebarData: SidebarService
   ) { }
   
   ngOnInit( ) {
@@ -32,6 +35,7 @@ export class LandingComponent implements OnInit {
     if(this.title === 'registration'){
       this.title = 'Registration'
     }
+    this.menu = this.sidebarData.getdata();
   }
   
 

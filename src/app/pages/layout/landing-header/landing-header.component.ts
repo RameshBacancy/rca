@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-landing-header',
   templateUrl: './landing-header.component.html',
@@ -9,13 +10,14 @@ import { from } from 'rxjs';
 export class LandingHeaderComponent implements OnInit {
   @Output() onViewSidebar: EventEmitter<any> = new EventEmitter();
   @Input() showsidebar: boolean;
+  @Input() menuData;
   public viewSideBar: boolean = false;
   public headerMenu: boolean = false;
   public openMessageWindow: boolean = false;
   public showUnreadMessage: boolean = true;
   public sidebarItems;
   
-  constructor(private router: Router, ) { }
+  constructor(private router: Router, private _userService :UserService) { }
 
   ngOnInit() {
    
@@ -49,8 +51,8 @@ export class LandingHeaderComponent implements OnInit {
     this.onViewSidebar.emit(this.viewSideBar);
   }
 
-  // onLogOut(){
-  //   this.router.navigate(['/auth/login']);
-  //   this._userService.logout();
-  // }
+  onLogOut(){
+    this.router.navigate(['/admin/login']);
+    this._userService.logout();
+  }
 }
