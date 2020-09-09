@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { SupplierRegistrationService } from '../../../services/supplier-registration.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { SortByPipe } from 'src/app/pipe/sortBy.pipe';
+import { SearchStringPipe } from 'src/app/pipe/search.pipe';
+// import { SortByPipe } from 'src/app/pipe/sortBy.pipe';
 
 @Component({
   selector: 'app-supplier-registration-process',
@@ -16,9 +19,11 @@ export class SupplierRegistrationProcessComponent implements OnInit {
   formData: any;
   closeResult: string;
   completed:boolean = false;
+
   editCompanyDetails: boolean = false;
   editDirectorDetails: boolean = false;
   editGeneralManagerDetails: boolean = false;
+
   form: FormGroup = new FormGroup({
     // addressID: new FormControl('MCT2', [Validators.required]),
     poBox: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
@@ -30,10 +35,29 @@ export class SupplierRegistrationProcessComponent implements OnInit {
     authorizedResidentId: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
   });
   
-  constructor(private router: Router, private supplierData: SupplierRegistrationService, private modalService: NgbModal) { }
+  employeeData: any[];
+  employeeSearch: string;
+  newEmployee:any; 
+  projectData: any[];
+  subContractorData: any[];
+  equipmentData: any[];
+  otherData: any[];
 
+  constructor(
+    private router: Router, 
+    private supplierData: SupplierRegistrationService, 
+    private modalService: NgbModal, 
+    private sortByPipe: SortByPipe,
+    private searchPipe:SearchStringPipe) { }
+    
+  
   ngOnInit(): void {  
     this.formData = this.supplierData.getdata();
+    this.employeeData = this.formData.employeDetails;
+    this.projectData = this.formData.projectDetails;
+    this.subContractorData = this.formData.subContractorDetails;
+    this.equipmentData = this.formData.equipmentDetails;
+    this.otherData = this.formData.otherDetails;
   }
 
   get f(){
@@ -92,4 +116,58 @@ export class SupplierRegistrationProcessComponent implements OnInit {
     this.router.navigate(['/landing/supplier-registration/dashboard']);
   }
 
+  addNewRow(){
+    this.employeeData.map((data, i)=> {
+      if(data.name == ""){
+        this.employeeData.splice(i,1);
+      }
+    })
+    this.newEmployee = {
+      "no": this.employeeData.length+1,
+      "name": "",
+      "qualification": "",
+      "designation": "",
+      "experience": "",
+      "nationality": "",
+      "category": "",
+      "docCV":"",
+      "isEdit": true
+    };
+    this.employeeData.push(this.newEmployee);
+   
+    console.log(this.employeeData.length)
+  }
+
+  enteredDetails(data){
+    data.isEdit = false;
+    if(data.name !== "", data.qualification !== ""){
+      this.employeeData.map((d, i) => {
+        if(d.no == data.no){
+          d = data
+        }
+      })
+    }
+  }
+  
+  sorting( property, str){
+    if(property === 'employee'){
+      this.employeeData = this.sortByPipe.transform(this.formData.employeDetails,'asc',str)
+    }
+    if(property === 'project'){
+      this.projectData = this.sortByPipe.transform(this.formData.projectDetails,'asc',str)
+    }
+    if(property === 'subcontractor'){
+      this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetails,'asc',str)
+    }
+    if(property === 'equipment'){
+      this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetails,'asc',str)
+    }
+    if(property === 'other'){
+      this.otherData = this.sortByPipe.transform(this.formData.otherDetails,'asc',str)
+    }
+  }
+  
+  search(){
+    this.employeeData = this.searchPipe.transform(this.formData.employeDetails,'',this.employeeSearch)
+  }
 }

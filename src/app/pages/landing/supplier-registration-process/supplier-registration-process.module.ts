@@ -5,6 +5,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { Routes, RouterModule } from '@angular/router';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SortByPipe } from 'src/app/pipe/sortBy.pipe';
+import { SearchStringPipe } from 'src/app/pipe/search.pipe';
 
 
 const routes: Routes = [
@@ -15,7 +17,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [SupplierRegistrationProcessComponent],
+  declarations: [
+    SupplierRegistrationProcessComponent,
+    SortByPipe,
+    SearchStringPipe
+  ],
   imports: [
     CommonModule,
     MatStepperModule,

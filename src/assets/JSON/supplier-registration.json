@@ -41,7 +41,8 @@
                 "experience": "8yrs",
                 "nationality": "Indian",
                 "category": "Professional",
-                "docCV":"PDF"
+                "docCV":"PDF",
+                "isEdit": false
             },
             {
                 "no": 2,
@@ -51,7 +52,8 @@
                 "experience": "2yrs",
                 "nationality": "Omani",
                 "category": "Professional",
-                "docCV":"PDF"
+                "docCV":"PDF",
+                "isEdit": false
             },
             {
                 "no": 3,
@@ -61,7 +63,8 @@
                 "experience": "2yrs",
                 "nationality": "Omani",
                 "category": "Professional",
-                "docCV":"PDF"
+                "docCV":"PDF",
+                "isEdit": false
             },
             {
                 "no": 4 ,
@@ -71,7 +74,8 @@
                 "experience": "4yrs",
                 "nationality": "Indian",
                 "category": "Professional",
-                "docCV":"word doc"
+                "docCV":"word doc",
+                "isEdit": false
             }
         ],
         "projectDetails": [
