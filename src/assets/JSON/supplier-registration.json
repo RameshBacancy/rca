@@ -11,13 +11,17 @@
         },
         "address": {
             "addressID" : "MCT",
-            "POBox": "50023",
-            "supplierBranch": "Muscat- AL Ghubra",
-            "sponsorName": "B. Balasubramanian",
-            "sponserResidentId": "11337788",
-            "postalCode": "1208",
-            "authorizedSignatory": "Muhammad Wadahi",
-            "authorizedResidentId": "11446677",
+            "addressDetails": [
+                {
+                    "poBox": "50023",
+                    "supplierBranch": "Muscat- AL Ghubra",
+                    "sponsorName": "B. Balasubramanian",
+                    "SponsorNationalId": "11337788",
+                    "postalCode": "1208",
+                    "authorizedSignatory": "Muhammad Wadahi",
+                    "authorizedResidentId": "11446677"
+                }
+            ],
             "companyTelephoneNo": "+968 7191 8000",
             "companyFaxNo": "+968 24510605",
             "companyEmail": "electrmn@omantel.net.om",

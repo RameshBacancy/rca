@@ -15,14 +15,19 @@ export class SupplierRegistrationProcessComponent implements OnInit {
   @ViewChild('stepper') private stepper: MatStepper;
   formData: any;
   closeResult: string;
+  completed:boolean = false;
+  editCompanyDetails: boolean = false;
+  editDirectorDetails: boolean = false;
+  editGeneralManagerDetails: boolean = false;
   form: FormGroup = new FormGroup({
-    poBox: new FormControl('12345', [Validators.required, Validators.pattern('^[0-9]+')]),
-    supplierBranch: new FormControl('Muscat – Al Ghubra', [Validators.required]),
-    sponsorName: new FormControl('B. Balasubramanian', [Validators.required]),
-    SponsorNationalId: new FormControl('11337788', [Validators.required, Validators.pattern('^[0-9]+')]),
-    postalCode: new FormControl('1208', [Validators.required, Validators.pattern('^[0-9]+')]),
-    authorizedSignatory: new FormControl('Muhammad Wadahi', [Validators.required]),
-    authorizedResidentId: new FormControl('11337788', [Validators.required, Validators.pattern('^[0-9]+')]),
+    // addressID: new FormControl('MCT2', [Validators.required]),
+    poBox: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
+    supplierBranch: new FormControl('', [Validators.required]),
+    sponsorName: new FormControl('', [Validators.required]),
+    SponsorNationalId: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
+    postalCode: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
+    authorizedSignatory: new FormControl('', [Validators.required]),
+    authorizedResidentId: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
   });
   
   constructor(private router: Router, private supplierData: SupplierRegistrationService, private modalService: NgbModal) { }
@@ -35,7 +40,11 @@ export class SupplierRegistrationProcessComponent implements OnInit {
     return this.form.controls;
   }
 
-  open(content) {
+  open(content, address?) {
+    if(address){
+      this.form.patchValue(address);
+      console.log(this.form);
+    }
 
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
 
@@ -59,13 +68,25 @@ export class SupplierRegistrationProcessComponent implements OnInit {
 
   submit(){
     if(this.form.status === 'VALID'){
-      console.log(this.form.value);
+      this.formData.address.addressDetails.push(this.form.value)
+      console.log(this.formData)
+      this.form.reset();
     }
   }
 
-  move(index: number) {
-    this.stepper.selectedIndex = index;
+  delete(data){
+    this.formData.address.addressDetails.filter((d,i) => {
+      if(d.poBox == data.poBox){
+        this.formData.address.addressDetails.splice(i, 1);
+      }
+    })
   }
+  registrationComplete(){
+    this.completed = true;
+  }
+  // move(index: number) {
+  //   this.stepper.selectedIndex = index;
+  // }
 
   Cancel(){
     this.router.navigate(['/landing/supplier-registration/dashboard']);
