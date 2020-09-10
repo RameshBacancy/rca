@@ -482,10 +482,9 @@
                     <div class="row">
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
-                                <input class="fs-14"
-                                [(ngModel)]="employeeSearch">
-                                <button class="btn btn-secondary ml-2" (click)="search()"><i class="fa fa-search" aria-hidden="true"></i></button>
-                                <button class="btn btn-secondary ml-2 " (click)="addNewRow()"><i class="fa fa-plus"
+                                <input class="fs-16"[(ngModel)]="searchText" placeholder="Search text">
+                                
+                                <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow()"><i class="fa fa-plus"
                                     aria-hidden="true"></i></button>
                                 <table class="table table-striped ">
                                     <thead>
@@ -503,7 +502,7 @@
                                      <!-- *ngIf="data.isEdit" (keyup.enter)="data.isEdit = false" -->
                                     <!-- <input  [(ngModel)]="data.no"> -->
                                     <tbody>
-                                        <tr *ngFor="let data of employeeData">
+                                        <tr *ngFor="let data of employeeData | filter : searchText; index as index">
                                             <td (dblclick)="data.isEdit = true">{{data.no}}</td>
                                             <!-- <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails(data)"><input [(ngModel)]="data.no"></td> -->
                                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.name}}</td>
@@ -644,6 +643,7 @@
                     <div class="row">
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
+                                <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
                                 <table class="table table-striped mb-0 ">
                                     <thead>
                                         <tr class="purple-bg text-white">
@@ -659,7 +659,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let data of projectData">
+                                        <tr *ngFor="let data of projectData | filter : searchText; index as index">
                                             <td>{{data.no}}</td>
                                             <td>{{data.name}}</td>
                                             <td>{{data.client}}</td>
@@ -753,8 +753,8 @@
                         <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
                             <div class="card bg-light  ">
                                 <div class="card-body">
-                                    <h5 class="card-title mb-3 fs-18">AWARD-02</h5>
-                                    <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                                    <h5 class="
+card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
                                     <p class="card-text dark-text-1 fs-12">1200232</p>
                                     <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
                                     <p class="card-text dark-text-1 fs-12">$1</p>
@@ -792,6 +792,7 @@
                     <div class="row">
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
+                                <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
                                 <table class="table table-striped mb-0 ">
                                     <thead>
                                         <tr class="purple-bg text-white">
@@ -813,7 +814,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let data of subContractorData">
+                                        <tr *ngFor="let data of subContractorData | filter : searchText; index as index">
                                             <td>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" value=""
@@ -915,6 +916,7 @@
                     <div class="row">
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
+                                <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
                                 <table class="table table-striped mb-0 ">
                                     <thead>
                                         <tr class="purple-bg text-white">
@@ -928,7 +930,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let data of equipmentData">
+                                        <tr *ngFor="let data of equipmentData | filter : searchText; index as index">
                                             <td>{{data.no}}</td>
                                             <td>{{data.type}}</td>
                                             <th>{{data.quantity}}</th>
@@ -997,6 +999,7 @@
                     <div class="row">
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
+                                <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
                                 <table class="table table-striped mb-0 ">
                                     <thead>
                                         <tr class="purple-bg text-white">
@@ -1013,7 +1016,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let data of otherData">
+                                        <tr *ngFor="let data of otherData | filter : searchText; index as index">
                                             <td>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" value=""

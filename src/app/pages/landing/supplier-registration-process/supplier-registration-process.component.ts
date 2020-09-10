@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { SupplierRegistrationService } from '../../../services/supplier-registration.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { SortByPipe } from 'src/app/pipe/sortBy.pipe';
+import { FilterPipe } from 'src/app/pipe/searchEmployee.pipe';
 
 @Component({
   selector: 'app-supplier-registration-process',
@@ -17,6 +18,7 @@ export class SupplierRegistrationProcessComponent implements OnInit {
   formData: any;
   closeResult: string;
   completed:boolean = false;
+  @Input("searchText") searchText: any;
 
   editCompanyDetails: boolean = false;
   editDirectorDetails: boolean = false;
@@ -44,8 +46,10 @@ export class SupplierRegistrationProcessComponent implements OnInit {
   constructor(
     private router: Router, 
     private supplierData: SupplierRegistrationService, 
-    private modalService: NgbModal, 
-    private sortByPipe: SortByPipe) { }
+    private modalService: NgbModal,
+    private ActivatedRoute: ActivatedRoute, 
+    private sortByPipe: SortByPipe,
+    private searchPipe: FilterPipe) { }
     
   
   ngOnInit(): void {  
@@ -163,5 +167,8 @@ export class SupplierRegistrationProcessComponent implements OnInit {
       this.otherData = this.sortByPipe.transform(this.formData.otherDetails,'asc',str)
     }
   }
+
+ 
+  
  
 }
