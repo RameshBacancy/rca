@@ -1,33 +1,45 @@
 <div class="login">
-  <div class="container">
-      <div class="login-row  row justify-content-center align-items-center">
-          <div class="login-column col-md-6">
-              <div class="login-box col-md-12">
+  <div class="container-fluid">
+      <div class="login-row  row justify-content-center">
+        <div class="col-md-12 col-lg-8 col-xl-8"><img src="assets/images/login-bg.jpg" alt=""  class="img-fluid custom-min-vh-100  " /> </div>
+        <div class="col-md-12 col-lg-4 col-xl-4 px-5  align-items-center h-100  custom-min-vh-100">
+            <div class=" h-100 py-3"> <img src="assets/images/IFS.jpg" alt="" />
+                <h2 class="fs-24 text-dark-grey mb-1 mt-3 pb-0 "  >IFS Applications</h2>
+                <p class="fs-14 texd text-dark pb-3">Connect to what's next </p>
                   <form class="login-form  form" #form="ngForm" (ngSubmit)="login(form)">
-                      <h3 class="text-center text-info">Login</h3>
+                      <!-- <h3 class="text-center text-info">Login</h3> -->
                       <!--email-->
-                      <div class="form-group">
-                          <label for="username" class="text-info">Email:</label><br>
-                          <input type="text" class="form-control" name="email" id="email" #email="ngModel"
-                              [(ngModel)]="user.email"
-                               required />
-                      </div>
+                      <div class="row mb-3">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <!-- <label for="username"  class="text-info">Email:</label><br> -->
+                                <input type="text"placeholder="ifsapp" class="form-control" name="email" id="email" #email="ngModel"
+                                [(ngModel)]="user.email"
+                                required />
+                            </div>
+                       
+
                       <!-- pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" -->
                       <div *ngIf="!email.valid && (email.touch || email.dirty)">
                           <div *ngIf="email.errors.required" class="alert alert-danger">
                               Email is required
-
                           </div>
                           <!-- <div *ngIf="email.errors?.pattern" class="alert alert-danger">
                               Email must be valid
                           </div> -->
                       </div>
+                    </div>
+                </div>
+
+
                       <!--password-->
-                      <div class="form-group">
-                          <label for="password" class="text-info">Password:</label><br>
-                          <input type="password" class="form-control" id="password" #password="ngModel"
-                              [(ngModel)]="user.password" name="password" appNoContainSpace="ngModel" required />
-                      </div>
+                      <div class="row mb-3">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <!-- <label for="password" class="text-info">Password:</label><br> -->
+                                <input type="password"placeholder="*******" class="form-control" id="password" #password="ngModel"
+                                    [(ngModel)]="user.password" name="password" appNoContainSpace="ngModel" required />
+                            </div>
                       <div *ngIf="password.invalid && (password.touched || password.dirty)">
                           <div *ngIf="password.errors.required" class="alert alert-danger">
                               password is required
@@ -40,19 +52,16 @@
                               Space is not allowed
                           </div>
                       </div>
+                      </div>
+                      </div>
                       <div class="form-group">
                           <button type="submit" [disabled]="form.invalid" name="submit" class="btn btn-info btn-md"
                               value="Login">Login</button>
                       </div>
-
-                      <div class="register-link text-right">Forget Password?
-                          <!-- <a [routerLink]="['/auth/forget-password']" class="text-info"></a> -->
-                      </div>
-                      <br>
-                      <br>
-                      <div class="register-link text-right">Register here
-                          <!-- <a [routerLink]="['/auth/register']" class="text-info"></a> -->
-                      </div>
+                      <div class="col-md-12">
+                        <p class=" texd text-dark font-weight-bold">Register Here </p>
+                        <p class=" texd text-dark  font-weight-bold">Forgot password</p>
+                    </div>
                   </form>
               </div>
           </div>

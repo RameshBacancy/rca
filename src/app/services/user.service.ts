@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { EndPoint } from '../app.constants';
 import { RequestServiceBase } from './request-service-base';
 import { Router } from '@angular/router';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
@@ -10,8 +11,11 @@ import { Router } from '@angular/router';
 
 export class UserService {
     
+    
     authToken: string = null;
     user: any;
+    httpClient: any;
+    static changePassword: any;
     constructor( private router: Router ) { }
 
     registrationLogin(number, str){
@@ -34,6 +38,14 @@ export class UserService {
     logout() {
         localStorage.removeItem('LoginToken');
     }
+
+    changePassword(){
+        // var headers = new HttpHeaders()
+        //   .set('Authorization', 'Token ' + localStorage.getItem('usertoken'));
+        console.log("change password");
+        this.router.navigateByUrl('/admin/changepassword');
+        
+      }
     // registerUser(user){
     //     return this.httpService.httpPost(EndPoint.register, user);
     // }

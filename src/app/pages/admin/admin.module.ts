@@ -4,6 +4,7 @@ import { AdminComponent } from './admin.component';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../../guard/auth.guard';
 import { LayoutModule } from '../layout/layout.module';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -18,11 +19,15 @@ const routes: Routes = [
     path:'login',
     loadChildren: () => import('../../authentication/authentication.module').then(m => m.AuthenticationModule)
   },
+  {
+    path:'changepassword',
+    component : ChangePasswordComponent,
+  },
   { path: '**', redirectTo: '/admin/login', pathMatch: 'full' }
 ]
 
 @NgModule({
-  declarations: [AdminComponent],
+  declarations: [AdminComponent,ChangePasswordComponent],
   imports: [
     CommonModule,
     LayoutModule,

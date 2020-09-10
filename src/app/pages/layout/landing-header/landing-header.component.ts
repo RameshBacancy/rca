@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { from } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
+import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 @Component({
   selector: 'app-landing-header',
   templateUrl: './landing-header.component.html',
@@ -55,4 +56,11 @@ export class LandingHeaderComponent implements OnInit {
     this.router.navigate(['/admin/login']);
     this._userService.logout();
   }
+
+  onChangePassword(){
+    this.router.navigate(['/admin/changepassword']);
+    this._userService.changePassword();
+  }
+
+  
 }
