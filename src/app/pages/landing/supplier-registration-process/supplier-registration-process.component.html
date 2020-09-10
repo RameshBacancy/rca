@@ -485,9 +485,11 @@
                                 <input class="fs-14"
                                 [(ngModel)]="employeeSearch">
                                 <button class="btn btn-secondary ml-2" (click)="search()"><i class="fa fa-search" aria-hidden="true"></i></button>
+                                <button class="btn btn-secondary ml-2 " (click)="addNewRow()"><i class="fa fa-plus"
+                                    aria-hidden="true"></i></button>
                                 <table class="table table-striped ">
                                     <thead>
-                                        <tr class="maroon-bg text-white">
+                                        <tr class="purple-bg text-white">
                                             <th scope="col">No <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('employee','no')" ></i></th>
                                             <th scope="col">Name <i class="fa fa-sort-asc" aria-hidden="true"  (click)="sorting('employee','name')"></i></th>
                                             <th scope="col">Qualification <i class="fa fa-sort-asc" aria-hidden="true"  (click)="sorting('employee','qualification')"></i></th>
@@ -553,8 +555,7 @@
                                         </td>
                                     </tr> -->
                                     </tbody>
-                                    <button class="btn btn-secondary ml-2 " (click)="addNewRow()"><i class="fa fa-plus"
-                                        aria-hidden="true"></i></button>
+                                    
                                 </table>
                             </div>
                         </div>
@@ -645,7 +646,7 @@
                             <div class="table-responsive">
                                 <table class="table table-striped mb-0 ">
                                     <thead>
-                                        <tr class="maroon-bg text-white">
+                                        <tr class="purple-bg text-white">
                                             <th scope="col">No <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('project','no')" ></i> </th>
                                             <th scope="col">Name of Project <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('project','name')" ></i> </th>
                                             <th scope="col">Client <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('project','client')" ></i></th>
@@ -793,7 +794,7 @@
                             <div class="table-responsive">
                                 <table class="table table-striped mb-0 ">
                                     <thead>
-                                        <tr class="maroon-bg text-white">
+                                        <tr class="purple-bg text-white">
                                             <th scope="col">
                                                 <div class="d-flex"> <span> <a href="#" class=" text-white fs-14"><i
                                                                 class="fa fa-check"></i></a> </span> <span
@@ -801,14 +802,14 @@
                                                                 class="fa fa-ellipsis-v "></i>
                                                         </a> </span> </div>
                                             </th>
-                                            <th scope="col">SL No.<i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','no')" ></i></th>
-                                            <th scope="col">Name of Sub Contract Works<i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','nameOfWork')" ></i></th>
-                                            <th scope="col">Sub Contractor<i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','subContractor')" ></i> </th>
-                                            <th scope="col">CR No.<i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','crNo')" ></i></th>
-                                            <th scope="col">Telephone<i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','telephone')" ></i></th>
-                                            <th scope="col">FAX<i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','fax')" ></i></th>
-                                            <th scope="col">E-Mail ID<i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','email')" ></i></th>
-                                            <th scope="col">Reg. with RCA<i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','regWithRca')" ></i></th>
+                                            <th scope="col">SL No. <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','no')" ></i></th>
+                                            <th scope="col">Name of Sub Contract Works <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','nameOfWork')" ></i></th>
+                                            <th scope="col">Sub Contractor <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','subContractor')" ></i> </th>
+                                            <th scope="col">CR No. <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','crNo')" ></i></th>
+                                            <th scope="col">Telephone <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','telephone')" ></i></th>
+                                            <th scope="col">FAX <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','fax')" ></i></th>
+                                            <th scope="col">E-Mail ID <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','email')" ></i></th>
+                                            <th scope="col">Reg. with RCA <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','regWithRca')" ></i></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -916,7 +917,7 @@
                             <div class="table-responsive">
                                 <table class="table table-striped mb-0 ">
                                     <thead>
-                                        <tr class="maroon-bg text-white">
+                                        <tr class="purple-bg text-white">
                                             <th scope="col">SL No. <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('equipment','no')" ></i></th>
                                             <th scope="col">Type of Equipment <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('equipment','type')" ></i></th>
                                             <th scope="col">Quantity <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('equipment','quantity')" ></i></th>
@@ -998,7 +999,7 @@
                             <div class="table-responsive">
                                 <table class="table table-striped mb-0 ">
                                     <thead>
-                                        <tr class="maroon-bg text-white">
+                                        <tr class="purple-bg text-white">
                                             <th scope="col">
                                                 <div class="d-flex"> <span> <a href="#" class=" text-white fs-14"><i
                                                                 class="fa fa-check"></i></a> </span> <span

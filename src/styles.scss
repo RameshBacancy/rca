@@ -59,8 +59,8 @@ body { font-size: 14px; font-weight:400; font-family: Arial, sans-serif !importa
 /* CSS Document */
 
 a { text-decoration:none; color:#a6a6a6 !important }
-a:hover { text-decoration:none !important; color:maroon !important }
-a.active{ text-decoration:none !important; color:maroon !important }
+a:hover { text-decoration:none !important; color:#873e8d !important }
+a.active{ text-decoration:none !important; color:#873e8d !important }
 
 .text-dark-grey { color:#726565 }
 .border-radius-5 {border-radius: 5px; }
@@ -69,12 +69,12 @@ a.active{ text-decoration:none !important; color:maroon !important }
 .fa-th:before {  font-size: 22px;}
 
 a.header-menu {padding: 17px 0px 14px 15px;display: inline-block;  }
-a.header-menu:hover {  background-color: #9c2500;}
+a.header-menu:hover {  background-color: #873e8d;}
 a.header-menu-2 {padding: 17px 15px 14px 13px;display: inline-block;}
-a.header-menu-2:hover {  background-color: #9c2500;}
+a.header-menu-2:hover {  background-color: #873e8d;}
 button.close:focus { outline: none !important;}
 
-.maroon-bg {  background-color: maroon;}
+.purple-bg {  background-color: #873e8d;}
 .dark-grey-bg {    background-color: #f2f2f2; }
 .sky-blue-bg {    background-color: #1da8d2; }
 .purple-bg  { background:#883f8e}
@@ -136,7 +136,13 @@ thead, tbody, tfoot, tr, td, th {    vertical-align: middle; }
         border-color: transparent;    position: absolute;    width: 50%;    left: 0px;    padding: 0;    font-size: 12px;
         top: 30px;    font-weight: 300;}
     
+        .custom-min-vh-100 { min-height: 100vh;}
 
+        @media (max-width: 991px) {
+        
+        .custom-min-vh-100 { min-height: auto;}
+        
+        }
 
 @media (max-width: 767px) {
   .modal-dialog {margin: 10px auto !important;  max-width: 90% !important;}
