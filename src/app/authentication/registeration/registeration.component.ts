@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registeration',
@@ -9,7 +10,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class RegisterationComponent implements OnInit {
 
   doneRegistered: boolean = false;
-  viewSideBar:boolean = false;
+  viewSideBar: boolean = false;
   form = new FormGroup({
     firstName: new FormControl('first name', [Validators.required]),
     lastName: new FormControl('last name', [Validators.required]),
@@ -24,24 +25,34 @@ export class RegisterationComponent implements OnInit {
     telephone: new FormControl('+964872772112', [Validators.required, Validators.pattern('^[+]?[0-9]*\.?[0-9]+')]),
     email: new FormControl('abcd@bcd.com', [Validators.required, Validators.email]),
   });
-   
-  get f(){
-      return this.form.controls;
-  }
-   
-  submit(){
-      if(this.form.status === 'VALID'){
-        console.log(this.form.value);
-        this.doneRegistered = true;
-      }
-  }
-  constructor() { }
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+    if (!localStorage.getItem('civilReg') || !localStorage.getItem('newReg')) {
+      this.router.navigateByUrl('/auth/supplierRegistration')
+    }
   }
 
-  onViewSidebar(val){
+  get f() {
+    return this.form.controls;
+  }
+
+  submit() {
+    if (this.form.status === 'VALID') {
+      console.log(this.form.value);
+      this.doneRegistered = true;
+      localStorage.clear();
+    }
+  }
+
+  back(){
+      this.router.navigateByUrl('/auth/supplierRegistration')
+    
+  }
+
+  onViewSidebar(val) {
     this.viewSideBar = val;
   }
-  
+
 }

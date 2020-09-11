@@ -88,7 +88,8 @@
                 "value": "400,000",
                 "period": "2016 - 2018 ",
                 "completion": "2018",
-                "documents": "PDF"
+                "documents": "PDF",
+                "isEdit": false
             },
             {
                 "no": 2,
@@ -99,7 +100,8 @@
                 "value": "254,000",
                 "period": "2017 - 2018",
                 "completion": "2019",
-                "documents": "PDF"
+                "documents": "PDF",
+                "isEdit": false
             },
             {
                 "no": 3,
@@ -110,7 +112,8 @@
                 "value": "1,000,000",
                 "period": "2018 - 2021",
                 "completion": "",
-                "documents": "PDF"
+                "documents": "PDF",
+                "isEdit": false
             }
         ],
         "subContractorDetails": [
@@ -122,7 +125,8 @@
                 "telephone": "-",
                 "fax": "-",
                 "email": "-",
-                "regWithRca": "-"
+                "regWithRca": "-",
+                "isEdit": false
             },
             {
                 "no": 2,
@@ -132,7 +136,8 @@
                 "telephone": "-",
                 "fax": "-",
                 "email": "-",
-                "regWithRca": "-"
+                "regWithRca": "-",
+                "isEdit": false
             },
             {
                 "no": 3,
@@ -142,7 +147,8 @@
                 "telephone": "-",
                 "fax": "-",
                 "email": "-",
-                "regWithRca": "-"
+                "regWithRca": "-",
+                "isEdit": false
             },
             {
                 "no": 4,
@@ -152,7 +158,8 @@
                 "telephone": "-",
                 "fax": "-",
                 "email": "-",
-                "regWithRca": "-"
+                "regWithRca": "-",
+                "isEdit": false
             }
         ],
         "equipmentDetails": [
@@ -163,7 +170,8 @@
                 "capacity": "2400CC",
                 "year": "2018",
                 "regNo": "S 2020",
-                "approxValue": "5000 OMR"
+                "approxValue": "5000 OMR",
+                "isEdit": false
             },
             {
                 "no": 2,
@@ -172,7 +180,8 @@
                 "capacity": "2000CC",
                 "year": "2019",
                 "regNo": "R 1235",
-                "approxValue": "7500 OMR"
+                "approxValue": "7500 OMR",
+                "isEdit": false
             },
             {
                 "no": 3,
@@ -181,7 +190,8 @@
                 "capacity": "-",
                 "year": "-",
                 "regNo": "-",
-                "approxValue": "-"
+                "approxValue": "-",
+                "isEdit": false
             },
             {
                 "no": 4,
@@ -190,29 +200,34 @@
                 "capacity": "-",
                 "year": "-",
                 "regNo": "-",
-                "approxValue": "-"
+                "approxValue": "-",
+                "isEdit": false
             }
         ],
         "otherDetails": [
             {
                 "no": 1,
                 "nameOfWork": "Organization Structure",
-                "attachment": "PDF"
+                "attachment": "PDF",
+                "isEdit": false
             },
             {
                 "no": 2,
                 "nameOfWork": "Tax Certificate",
-                "attachment": "PDF"
+                "attachment": "PDF",
+                "isEdit": false
             },
             {
                 "no": 3,
                 "nameOfWork": "Certificates",
-                "attachment": "PDF"
+                "attachment": "PDF",
+                "isEdit": false
             },
             {
                 "no": 4,
                 "nameOfWork": "-",
-                "attachment": "PDF"
+                "attachment": "PDF",
+                "isEdit": false
             }
         ]
     }

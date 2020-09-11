@@ -7,6 +7,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SortByPipe } from 'src/app/pipe/sortBy.pipe';
 import { FilterPipe } from 'src/app/pipe/searchEmployee.pipe';
+import { ClickOutsideDirective } from 'src/app/directives/click-outside.directive';
 
 
 const routes: Routes = [
@@ -20,7 +21,8 @@ const routes: Routes = [
   declarations: [
     SupplierRegistrationProcessComponent,
     SortByPipe,
-    FilterPipe
+    ClickOutsideDirective,
+    FilterPipe,
   ],
   imports: [
     CommonModule,

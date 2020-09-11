@@ -12,7 +12,8 @@ import { AlertService } from 'src/app/services/alert.service';
 export class SupplierRegisterComponent implements OnInit {
 
   supplierSelection: boolean = false;
-  showsNext: boolean = false;
+  showsNextType: boolean = false;
+  showsNextReg: boolean = false;
   viewSideBar: boolean = false;
 
   form = new FormGroup({
@@ -25,44 +26,44 @@ export class SupplierRegisterComponent implements OnInit {
   constructor(private router: Router, private _userService: UserService, private alertService: AlertService) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('registerToken1')){
+    localStorage.removeItem('LoginToken')
+    if(localStorage.getItem('civilReg')){
       this.router.navigate(['/landing/supplier-registration/dashboard']);
+      if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'true') {
+        this.showsNextType = true;
+      }
+      if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'false') {
+        this.showsNextReg = true;
+      }
     }
   }
 
   submitNext() {
-    this._userService.registrationLogin(this.form.value.civilNo.toString(), 'civil');
-    if (localStorage.getItem('registerToken1')) {
+    this._userService.registrationLogin(this.form.value.civilNo.toString(), 'civil', this.form.value.regType);
+    if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'true') {
+      this.showsNextType = true;
     }
-    this.showsNext = true;
+    if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'false') {
+      this.showsNextReg = true;
+    }
   }
 
-  submit() {
+  submitType() {
     if (this.form.status === 'VALID') {
-      if (this.form.value.registrationType === 'alreadyRegistered') {
-        if (localStorage.getItem('registerToken1')) {
-          this.router.navigate(['/landing/supplier-registration/dashboard']);
-        }
-        else{
-          this.alertService.pushError('Your Civil Number is Incorrect.');
-        }
-      }
-      if (this.form.value.registrationType === 'newSupplier') {
-        localStorage.removeItem('registerToken1');
-        this.router.navigate(['/auth/register']);
-      }
+     this._userService.foreignRegistration(this.form.value.registrationType.toString())
     }
   }
 
-  // goto() {
-    // this._userService.registrationLogin(this.registrationNo.toString(), 'registration');
-    // if (localStorage.getItem('registerToken1')) {
-    //   this.router.navigate(['/landing/supplier-registration/dashboard']);
-    // }
-  // }
+
+  submitReg(){
+    if (this.form.status === 'VALID') {
+      this._userService.localRegistration(this.form.value.registrationNo.toString())
+     }
+  }
 
   back() {
-    this.showsNext = false;
+    this.showsNextType = false;
+    this.showsNextReg = false;
   }
   onViewSidebar(val) {
     this.viewSideBar = val;

@@ -18,13 +18,43 @@ export class UserService {
     static changePassword: any;
     constructor( private router: Router ) { }
 
-    registrationLogin(number, str){
-        let token = Math.random();
-        if (str === 'civil' && number === '11337788'){
-            window.localStorage.setItem('registerToken1',''+token);
+    registrationLogin(number, str, type){
+        if(type == 'international'){
+            localStorage.setItem('foreign', 'true');
         }
-        else if(str === 'registration' && number === '1086391'){
-            window.localStorage.setItem('registerToken2',''+token);
+        if(type == 'local' || type == 'individual'){
+            localStorage.setItem('foreign', 'false');
+        }
+        if (str === 'civil' && number === '11337788'){
+            window.localStorage.setItem('civilReg',''+Math.random());
+        }
+    }
+
+    foreignRegistration(type){
+        if (type === 'alreadyRegistered') {
+            if (localStorage.getItem('civilReg')) {
+                localStorage.setItem('completeReg', 'T');
+                localStorage.removeItem('newReg')
+              this.router.navigate(['/landing/supplier-registration/dashboard']);
+            }
+            else{
+            //   this.alertService.pushError('Your Civil Number is Incorrect.');
+            }
+          }
+          if (type === 'newSupplier') {
+            if (localStorage.getItem('civilReg')) {
+                localStorage.setItem('completeReg', 'T');
+                localStorage.setItem('newReg', 'true')
+                this.router.navigate(['/auth/register']);
+              }
+          }
+    }
+
+    localRegistration(number){
+        if (number === '1086391'){
+            localStorage.setItem('commercialReg',''+Math.random());
+                localStorage.setItem('completeReg', 'T');
+                this.router.navigate(['/landing/supplier-registration/dashboard']);
         }
     }
 
@@ -36,14 +66,14 @@ export class UserService {
     }
 
     logout() {
-        localStorage.removeItem('LoginToken');
+        localStorage.clear();
     }
 
     changePassword(){
         // var headers = new HttpHeaders()
         //   .set('Authorization', 'Token ' + localStorage.getItem('usertoken'));
         console.log("change password");
-        this.router.navigateByUrl('/admin/changepassword');
+        this.router.navigateByUrl('/auth/supplierRegistration');
         
       }
     // registerUser(user){

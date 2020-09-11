@@ -16,12 +16,22 @@ const routes: Routes = [
     component: RegisterationComponent 
   },
   {
-    path: '',
+    path: 'login',
     component: LoginComponent
   },
   { 
     path: 'supplierRegistration', 
     component: SupplierRegisterComponent
+  },
+  {
+    path: '',
+    redirectTo: '/auth/supplierRegistration',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: '/auth/supplierRegistration',
+    pathMatch: 'full'
   }
 ];
 

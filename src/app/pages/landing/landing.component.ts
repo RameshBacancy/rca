@@ -26,6 +26,7 @@ export class LandingComponent implements OnInit {
   ) { }
   
   ngOnInit( ) {
+    localStorage.removeItem('LoginToken')
     this.currentUrl = this.router.url;
     this.url = this.currentUrl.split('/');
     this.title = this.url[this.url.length - 1 ];

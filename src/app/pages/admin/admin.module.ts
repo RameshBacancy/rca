@@ -16,14 +16,14 @@ const routes: Routes = [
     ]
   },
   {
-    path:'login',
+    path:'user',
     loadChildren: () => import('../../authentication/authentication.module').then(m => m.AuthenticationModule)
   },
   {
     path:'changepassword',
     component : ChangePasswordComponent,
   },
-  { path: '**', redirectTo: '/admin/login', pathMatch: 'full' }
+  { path: '**', redirectTo: '/admin/user/login', pathMatch: 'full' }
 ]
 
 @NgModule({

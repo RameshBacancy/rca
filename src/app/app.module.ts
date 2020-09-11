@@ -8,10 +8,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LandingHeaderComponent } from './pages/layout/landing-header/landing-header.component';
 import { LandingModule } from './pages/landing/landing.module';
 import { LayoutModule } from './pages/layout/layout.module';
+import { ClickOutsideDirective } from './directives/click-outside.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
+    // ClickOutsideDirective,
   ],
   imports: [
     BrowserModule,
@@ -20,7 +22,7 @@ import { LayoutModule } from './pages/layout/layout.module';
     HttpClientModule,
     FontAwesomeModule,
     LandingModule,
-    LayoutModule
+    LayoutModule,
     // LandingHeaderComponent
   ],
   exports: [

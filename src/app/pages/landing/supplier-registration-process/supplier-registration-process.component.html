@@ -482,77 +482,46 @@
                     <div class="row">
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
-                                <input class="fs-16"[(ngModel)]="searchText" placeholder="Search text">
+
+                                <input class="fs-16 custom-height-35" [(ngModel)]="searchText" placeholder="Search text">
                                 
-                                <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow()"><i class="fa fa-plus"
+                                <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('employee')"><i class="fa fa-plus"
                                     aria-hidden="true"></i></button>
                                 <table class="table table-striped ">
                                     <thead>
                                         <tr class="purple-bg text-white">
-                                            <th scope="col">No <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('employee','no')" ></i></th>
-                                            <th scope="col">Name <i class="fa fa-sort-asc" aria-hidden="true"  (click)="sorting('employee','name')"></i></th>
-                                            <th scope="col">Qualification <i class="fa fa-sort-asc" aria-hidden="true"  (click)="sorting('employee','qualification')"></i></th>
-                                            <th scope="col">Designation <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('employee','designation')"></i></th>
-                                            <th scope="col">Experience <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('employee','experience')"></i></th>
-                                            <th scope="col">Nationality <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('employee','nationality')"></i></th>
-                                            <th scope="col">Category <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('employee','category')"></i></th>
+                                            <th scope="col">No <i class="fa fa-sort" aria-hidden="true" (click)="sorting('employee','no')" ></i></th>
+                                            <th scope="col">Name <i class="fa fa-sort" aria-hidden="true"  (click)="sorting('employee','name')"></i></th>
+                                            <th scope="col">Qualification <i class="fa fa-sort" aria-hidden="true"  (click)="sorting('employee','qualification')"></i></th>
+                                            <th scope="col">Designation <i class="fa fa-sort" aria-hidden="true" (click)="sorting('employee','designation')"></i></th>
+                                            <th scope="col">Experience <i class="fa fa-sort" aria-hidden="true" (click)="sorting('employee','experience')"></i></th>
+                                            <th scope="col">Nationality <i class="fa fa-sort" aria-hidden="true" (click)="sorting('employee','nationality')"></i></th>
+                                            <th scope="col">Category <i class="fa fa-sort" aria-hidden="true" (click)="sorting('employee','category')"></i></th>
                                             <th scope="col">Documents(CV)</th>
                                         </tr>
                                     </thead>
-                                     <!-- *ngIf="data.isEdit" (keyup.enter)="data.isEdit = false" -->
+                                     <!-- *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)"  -->
                                     <!-- <input  [(ngModel)]="data.no"> -->
                                     <tbody>
-                                        <tr *ngFor="let data of employeeData | filter : searchText; index as index">
+                                        <tr *ngFor="let data of employeeData | filter : searchText; index as index" (clickOutside)="enteredDetails( 'employee',data)">
                                             <td (dblclick)="data.isEdit = true">{{data.no}}</td>
-                                            <!-- <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails(data)"><input [(ngModel)]="data.no"></td> -->
+                                            <!-- <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)"><input [(ngModel)]="data.no"></td> -->
                                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.name}}</td>
-                                            <td *ngIf="data.isEdit" (keyup.enter)="data.isEdit = false"><input [(ngModel)]="data.name"></td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)" ><input [(ngModel)]="data.name"></td>
                                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.qualification}} </td>
-                                            <td *ngIf="data.isEdit" (keyup.enter)="data.isEdit = false"><input [(ngModel)]="data.qualification"></td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)" ><input [(ngModel)]="data.qualification"></td>
                                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.designation}}</td>
-                                            <td *ngIf="data.isEdit" (keyup.enter)="data.isEdit = false"><input [(ngModel)]="data.designation"></td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)" ><input [(ngModel)]="data.designation"></td>
                                             <th *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.experience}}</th>
-                                            <th *ngIf="data.isEdit" (keyup.enter)="data.isEdit = false"><input [(ngModel)]="data.experience"></th>
+                                            <th *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)" ><input [(ngModel)]="data.experience"></th>
                                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.nationality}}</td>
-                                            <td *ngIf="data.isEdit" (keyup.enter)="data.isEdit = false"><input [(ngModel)]="data.nationality"></td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)" ><input [(ngModel)]="data.nationality"></td>
                                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.category}}</td>
-                                            <td *ngIf="data.isEdit" (keyup.enter)="data.isEdit = false"><input [(ngModel)]="data.category"></td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)" ><input [(ngModel)]="data.category"></td>
                                             <td><a href="#"
                                                     class="text-decoration-underline text-danger">{{data.docCV}}</a>
                                             </td>
-                                            <td *ngIf="data.isEdit" (keyup.enter)="data.isEdit = false"></td>
                                         </tr>
-                                        <!-- <tr>
-                                        <td>2</td>
-                                        <td>Jaber </td>
-                                        <td>Electronics Eng</td>
-                                        <td>Site Engineer</td>
-                                        <th>2yrs</th>
-                                        <td>Omani </td>
-                                        <td>Professional</td>
-                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Younis </td>
-                                        <td> Electronics Eng. </td>
-                                        <td>Project Manger</td>
-                                        <th>2yrs</th>
-                                        <td>Omani</td>
-                                        <td>Professional</td>
-                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>Sanjai K </td>
-                                        <td>Btech </td>
-                                        <td>Project Manger</td>
-                                        <th>4yrs</th>
-                                        <td>Indian</td>
-                                        <td>Professional</td>
-                                        <td><a class="text-primary text-decoration-underline" href="#">word doc </a>
-                                        </td>
-                                    </tr> -->
                                     </tbody>
                                     
                                 </table>
@@ -644,56 +613,43 @@
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
                                 <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
+                                <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('project')"><i class="fa fa-plus"
+                                    aria-hidden="true"></i></button>
                                 <table class="table table-striped mb-0 ">
                                     <thead>
                                         <tr class="purple-bg text-white">
-                                            <th scope="col">No <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('project','no')" ></i> </th>
-                                            <th scope="col">Name of Project <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('project','name')" ></i> </th>
-                                            <th scope="col">Client <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('project','client')" ></i></th>
-                                            <th scope="col">Consultant <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('project','consultent')" ></i></th>
-                                            <th scope="col">Cost Consultant <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('project','costConsultent')" ></i></th>
-                                            <th scope="col">Value (OMR) <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('project','value')" ></i></th>
-                                            <th scope="col">Period ( Start - End ) <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('project','period')" ></i></th>
-                                            <th scope="col">Completion <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('project','completion')" ></i></th>
+                                            <th scope="col">No <i class="fa fa-sort" aria-hidden="true" (click)="sorting('project','no')" ></i> </th>
+                                            <th scope="col">Name of Project <i class="fa fa-sort" aria-hidden="true" (click)="sorting('project','name')" ></i> </th>
+                                            <th scope="col">Client <i class="fa fa-sort" aria-hidden="true" (click)="sorting('project','client')" ></i></th>
+                                            <th scope="col">Consultant <i class="fa fa-sort" aria-hidden="true" (click)="sorting('project','consultent')" ></i></th>
+                                            <th scope="col">Cost Consultant <i class="fa fa-sort" aria-hidden="true" (click)="sorting('project','costConsultent')" ></i></th>
+                                            <th scope="col">Value (OMR) <i class="fa fa-sort" aria-hidden="true" (click)="sorting('project','value')" ></i></th>
+                                            <th scope="col">Period ( Start - End ) <i class="fa fa-sort" aria-hidden="true" (click)="sorting('project','period')" ></i></th>
+                                            <th scope="col">Completion <i class="fa fa-sort" aria-hidden="true" (click)="sorting('project','completion')" ></i></th>
                                             <th scope="col">Document</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let data of projectData | filter : searchText; index as index">
+                                        <tr *ngFor="let data of projectData | filter : searchText; index as index" (clickOutside)="enteredDetails( 'project',data)">
                                             <td>{{data.no}}</td>
-                                            <td>{{data.name}}</td>
-                                            <td>{{data.client}}</td>
-                                            <td>{{data.consultent}}</td>
-                                            <th>{{data.costConsultent}}</th>
-                                            <td>{{data.value}}</td>
-                                            <td>{{data.period}}</td>
-                                            <td>{{data.completion}}</td>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.name}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'project',data)"><input [(ngModel)]="data.name"></td>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.client}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'project',data)"><input [(ngModel)]="data.client"></td>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.consultent}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'project',data)"><input [(ngModel)]="data.consultent"></td>
+                                            <th *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.costConsultent}}</th>
+                                            <th *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'project',data)"><input [(ngModel)]="data.costConsultent"></th>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.value}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'project',data)"><input [(ngModel)]="data.value"></td>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.period}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'project',data)"><input [(ngModel)]="data.period"></td>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.completion}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'project',data)"><input [(ngModel)]="data.completion"></td>
                                             <td><a href="#"
                                                     class="text-decoration-underline text-danger">{{data.documents}}</a>
                                             </td>
                                         </tr>
-                                        <!-- <tr>
-                                        <td>2</td>
-                                        <td>Grand Mall-Carrefour</td>
-                                        <td>Majid Al Futtaim</td>
-                                        <td>ME Studio Engineering </td>
-                                        <th>Majan Engineering </th>
-                                        <td>254,000 </td>
-                                        <td>2017 - 2018 </td>
-                                        <td>2019</td>
-                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>OMAN Post Off. Ruwi </td>
-                                        <td>QRB </td>
-                                        <td>OMAN POST</td>
-                                        <th>Tahpi pty Ltd</th>
-                                        <td>1,000,000 </td>
-                                        <td>2018 - 2021 </td>
-                                        <td>-</td>
-                                        <td><a href="#" class="text-decoration-underline text-danger">PDF</a></td>
-                                    </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -793,6 +749,8 @@ card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
                                 <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
+                                <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('subContractor')"><i class="fa fa-plus"
+                                    aria-hidden="true"></i></button>
                                 <table class="table table-striped mb-0 ">
                                     <thead>
                                         <tr class="purple-bg text-white">
@@ -803,18 +761,18 @@ card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
                                                                 class="fa fa-ellipsis-v "></i>
                                                         </a> </span> </div>
                                             </th>
-                                            <th scope="col">SL No. <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','no')" ></i></th>
-                                            <th scope="col">Name of Sub Contract Works <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','nameOfWork')" ></i></th>
-                                            <th scope="col">Sub Contractor <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','subContractor')" ></i> </th>
-                                            <th scope="col">CR No. <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','crNo')" ></i></th>
-                                            <th scope="col">Telephone <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','telephone')" ></i></th>
-                                            <th scope="col">FAX <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','fax')" ></i></th>
-                                            <th scope="col">E-Mail ID <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','email')" ></i></th>
-                                            <th scope="col">Reg. with RCA <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('subcontractor','regWithRca')" ></i></th>
+                                            <th scope="col">SL No. <i class="fa fa-sort" aria-hidden="true" (click)="sorting('subcontractor','no')" ></i></th>
+                                            <th scope="col">Name of Sub Contract Works <i class="fa fa-sort" aria-hidden="true" (click)="sorting('subcontractor','nameOfWork')" ></i></th>
+                                            <th scope="col">Sub Contractor <i class="fa fa-sort" aria-hidden="true" (click)="sorting('subcontractor','subContractor')" ></i> </th>
+                                            <th scope="col">CR No. <i class="fa fa-sort" aria-hidden="true" (click)="sorting('subcontractor','crNo')" ></i></th>
+                                            <th scope="col">Telephone <i class="fa fa-sort" aria-hidden="true" (click)="sorting('subcontractor','telephone')" ></i></th>
+                                            <th scope="col">FAX <i class="fa fa-sort" aria-hidden="true" (click)="sorting('subcontractor','fax')" ></i></th>
+                                            <th scope="col">E-Mail ID <i class="fa fa-sort" aria-hidden="true" (click)="sorting('subcontractor','email')" ></i></th>
+                                            <th scope="col">Reg. with RCA <i class="fa fa-sort" aria-hidden="true" (click)="sorting('subcontractor','regWithRca')" ></i></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let data of subContractorData | filter : searchText; index as index">
+                                        <tr *ngFor="let data of subContractorData | filter : searchText; index as index" (clickOutside)="enteredDetails( 'subContractor',data)">
                                             <td>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" value=""
@@ -823,66 +781,22 @@ card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
                                                                 class="fa fa-ellipsis-v  "></i> </a></span> </div>
                                             </td>
                                             <td>{{data.no}}</td>
-                                            <td>{{data.nameOfWork}}</td>
-                                            <td>{{data.subContractor}}</td>
-                                            <th>{{data.crNo}}</th>
-                                            <td>{{data.telephone}}</td>
-                                            <td>{{data.fax}}</td>
-                                            <td>{{data.email}}</td>
-                                            <td>{{data.regWithRca}}</td>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.nameOfWork}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input [(ngModel)]="data.nameOfWork"></td>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.subContractor}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input [(ngModel)]="data.subContractor"></td>
+                                            <th *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.crNo}}</th>
+                                            <th *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input [(ngModel)]="data.crNo"></th>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.telephone}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input [(ngModel)]="data.telephone"></td>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.fax}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input [(ngModel)]="data.fax"></td>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.email}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input [(ngModel)]="data.email"></td>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.regWithRca}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input [(ngModel)]="data.regWithRca"></td>
                                         </tr>
-                                        <!-- <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault-2">
-                                                        <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
-                                                                    class="fa fa-ellipsis-v  "></i> </a></span> </div>
-                                                </td>
-                                                <td>2</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <th>-</th>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault-3">
-                                                        <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
-                                                                    class="fa fa-ellipsis-v  "></i> </a></span> </div>
-                                                </td>
-                                                <td>3</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <th>-</th>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox" value=""
-                                                            id="flexCheckDefault-4">
-                                                        <span class="ml-2"> <a href="#" class=" text-blaack fs-14"><i
-                                                                    class="fa fa-ellipsis-v  "></i> </a></span> </div>
-                                                </td>
-                                                <td>4</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <th>-</th>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr> -->
-                                    </tbody>
+                                       </tbody>
                                 </table>
                             </div>
                         </div>
@@ -917,55 +831,36 @@ card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
                                 <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
+                                <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('equipment')"><i class="fa fa-plus"
+                                    aria-hidden="true"></i></button>
                                 <table class="table table-striped mb-0 ">
                                     <thead>
                                         <tr class="purple-bg text-white">
-                                            <th scope="col">SL No. <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('equipment','no')" ></i></th>
-                                            <th scope="col">Type of Equipment <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('equipment','type')" ></i></th>
-                                            <th scope="col">Quantity <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('equipment','quantity')" ></i></th>
-                                            <th scope="col">Capacity <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('equipment','capacity')" ></i></th>
-                                            <th scope="col">Year of Manufacture <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('equipment','year')" ></i></th>
-                                            <th scope="col">Registration No <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('equipment','regNo')" ></i></th>
-                                            <th scope="col">Approximate Value <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('equipment','approxValue')" ></i></th>
+                                            <th scope="col">SL No. <i class="fa fa-sort" aria-hidden="true" (click)="sorting('equipment','no')" ></i></th>
+                                            <th scope="col">Type of Equipment <i class="fa fa-sort" aria-hidden="true" (click)="sorting('equipment','type')" ></i></th>
+                                            <th scope="col">Quantity <i class="fa fa-sort" aria-hidden="true" (click)="sorting('equipment','quantity')" ></i></th>
+                                            <th scope="col">Capacity <i class="fa fa-sort" aria-hidden="true" (click)="sorting('equipment','capacity')" ></i></th>
+                                            <th scope="col">Year of Manufacture <i class="fa fa-sort" aria-hidden="true" (click)="sorting('equipment','year')" ></i></th>
+                                            <th scope="col">Registration No <i class="fa fa-sort" aria-hidden="true" (click)="sorting('equipment','regNo')" ></i></th>
+                                            <th scope="col">Approximate Value <i class="fa fa-sort" aria-hidden="true" (click)="sorting('equipment','approxValue')" ></i></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let data of equipmentData | filter : searchText; index as index">
+                                        <tr *ngFor="let data of equipmentData | filter : searchText; index as index" (clickOutside)="enteredDetails( 'equipment',data)">
                                             <td>{{data.no}}</td>
-                                            <td>{{data.type}}</td>
-                                            <th>{{data.quantity}}</th>
-                                            <td>{{data.capacity}}</td>
-                                            <td>{{data.year}}</td>
-                                            <td>{{data.regNo}}</td>
-                                            <td>{{data.approxValue}}</td>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.type}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'equipment',data)"><input [(ngModel)]="data.type"></td>
+                                            <th *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.quantity}}</th>
+                                            <th *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'equipment',data)"><input [(ngModel)]="data.quantity"></th>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.capacity}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'equipment',data)"><input [(ngModel)]="data.capacity"></td>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.year}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'equipment',data)"><input [(ngModel)]="data.year"></td>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.regNo}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'equipment',data)"><input [(ngModel)]="data.regNo"></td>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.approxValue}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'equipment',data)"><input [(ngModel)]="data.approxValue"></td>
                                         </tr>
-                                        <!-- <tr>
-                                                <td>2</td>
-                                                <td>Salon </td>
-                                                <th>1</th>
-                                                <td>2000 CC</td>
-                                                <td>2019</td>
-                                                <td>RS 1235</td>
-                                                <td>7500 OMR</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>-</td>
-                                                <th>-</th>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>-</td>
-                                                <th>-</th>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                                <td>-</td>
-                                            </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -1000,6 +895,8 @@ card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
                                 <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
+                                <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('other')"><i class="fa fa-plus"
+                                    aria-hidden="true"></i></button>
                                 <table class="table table-striped mb-0 ">
                                     <thead>
                                         <tr class="purple-bg text-white">
@@ -1010,13 +907,13 @@ card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
                                                                 class="fa fa-ellipsis-v "></i>
                                                         </a> </span> </div>
                                             </th>
-                                            <th scope="col">SL No. <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('other','no')" ></i></th>
-                                            <th scope="col">Name of Sub Contract Works  <i class="fa fa-sort-asc" aria-hidden="true" (click)="sorting('other','nameOfWork')" ></i></th>
+                                            <th scope="col">SL No. <i class="fa fa-sort" aria-hidden="true" (click)="sorting('other','no')" ></i></th>
+                                            <th scope="col">Name of Sub Contract Works  <i class="fa fa-sort" aria-hidden="true" (click)="sorting('other','nameOfWork')" ></i></th>
                                             <th scope="col">Attachment</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let data of otherData | filter : searchText; index as index">
+                                        <tr *ngFor="let data of otherData | filter : searchText; index as index" (clickOutside)="enteredDetails( 'other',data)">
                                             <td>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" value=""
@@ -1025,7 +922,8 @@ card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
                                                                 class="fa fa-ellipsis-v  "></i> </a></span> </div>
                                             </td>
                                             <td>{{data.no}}</td>
-                                            <td>{{data.nameOfWork}}</td>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.nameOfWork}}</td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)"><input [(ngModel)]="data.nameOfWork"></td>
                                             <td><a href="#"
                                                     class="text-decoration-underline text-danger">{{data.attachment}}</a>
                                             </td>

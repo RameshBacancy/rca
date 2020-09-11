@@ -137,12 +137,13 @@ thead, tbody, tfoot, tr, td, th {    vertical-align: middle; }
         top: 30px;    font-weight: 300;}
     
         .custom-min-vh-100 { min-height: 100vh;}
+.custom-height-35 { height: 35px;}
 
-        @media (max-width: 991px) {
+@media (max-width: 991px) {
         
-        .custom-min-vh-100 { min-height: auto;}
+ .custom-min-vh-100 { min-height: auto;}
         
-        }
+   }
 
 @media (max-width: 767px) {
   .modal-dialog {margin: 10px auto !important;  max-width: 90% !important;}
