@@ -8,7 +8,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ChangePasswordComponent implements OnInit {
  
-  constructor(private _UserService = UserService) { }
+  constructor(private _UserService : UserService) { }
 
   ngOnInit(): void {
   }

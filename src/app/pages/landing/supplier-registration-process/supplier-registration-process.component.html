@@ -490,7 +490,7 @@
                                 <table class="table table-striped ">
                                     <thead>
                                         <tr class="purple-bg text-white">
-                                            <th scope="col">No <i class="fa fa-sort" aria-hidden="true" (click)="sorting('employee','no')" ></i></th>
+                                            <th scope="col" class="custom-width-60">No <i class="fa fa-sort" aria-hidden="true" (click)="sorting('employee','no')" ></i></th>
                                             <th scope="col">Name <i class="fa fa-sort" aria-hidden="true"  (click)="sorting('employee','name')"></i></th>
                                             <th scope="col">Qualification <i class="fa fa-sort" aria-hidden="true"  (click)="sorting('employee','qualification')"></i></th>
                                             <th scope="col">Designation <i class="fa fa-sort" aria-hidden="true" (click)="sorting('employee','designation')"></i></th>
@@ -618,7 +618,7 @@
                                 <table class="table table-striped mb-0 ">
                                     <thead>
                                         <tr class="purple-bg text-white">
-                                            <th scope="col">No <i class="fa fa-sort" aria-hidden="true" (click)="sorting('project','no')" ></i> </th>
+                                            <th scope="col" class="custom-width-60">No <i class="fa fa-sort" aria-hidden="true" (click)="sorting('project','no')" ></i> </th>
                                             <th scope="col">Name of Project <i class="fa fa-sort" aria-hidden="true" (click)="sorting('project','name')" ></i> </th>
                                             <th scope="col">Client <i class="fa fa-sort" aria-hidden="true" (click)="sorting('project','client')" ></i></th>
                                             <th scope="col">Consultant <i class="fa fa-sort" aria-hidden="true" (click)="sorting('project','consultent')" ></i></th>
@@ -641,11 +641,11 @@
                                             <th *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.costConsultent}}</th>
                                             <th *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'project',data)"><input [(ngModel)]="data.costConsultent"></th>
                                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.value}}</td>
-                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'project',data)"><input [(ngModel)]="data.value"></td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'project',data)"><input class="custom-width-100" [(ngModel)]="data.value"></td>
                                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.period}}</td>
                                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'project',data)"><input [(ngModel)]="data.period"></td>
                                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.completion}}</td>
-                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'project',data)"><input [(ngModel)]="data.completion"></td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'project',data)"><input class="custom-width-80" [(ngModel)]="data.completion"></td>
                                             <td><a href="#"
                                                     class="text-decoration-underline text-danger">{{data.documents}}</a>
                                             </td>
@@ -761,8 +761,8 @@ card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
                                                                 class="fa fa-ellipsis-v "></i>
                                                         </a> </span> </div>
                                             </th>
-                                            <th scope="col">SL No. <i class="fa fa-sort" aria-hidden="true" (click)="sorting('subcontractor','no')" ></i></th>
-                                            <th scope="col">Name of Sub Contract Works <i class="fa fa-sort" aria-hidden="true" (click)="sorting('subcontractor','nameOfWork')" ></i></th>
+                                            <th scope="col" class="custom-width-90">SL No. <i class="fa fa-sort" aria-hidden="true" (click)="sorting('subcontractor','no')" ></i></th>
+                                            <th scope="col" class="custom-width-250">Name of Sub Contract Works <i class="fa fa-sort" aria-hidden="true" (click)="sorting('subcontractor','nameOfWork')" ></i></th>
                                             <th scope="col">Sub Contractor <i class="fa fa-sort" aria-hidden="true" (click)="sorting('subcontractor','subContractor')" ></i> </th>
                                             <th scope="col">CR No. <i class="fa fa-sort" aria-hidden="true" (click)="sorting('subcontractor','crNo')" ></i></th>
                                             <th scope="col">Telephone <i class="fa fa-sort" aria-hidden="true" (click)="sorting('subcontractor','telephone')" ></i></th>
@@ -788,7 +788,7 @@ card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
                                             <th *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.crNo}}</th>
                                             <th *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input [(ngModel)]="data.crNo"></th>
                                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.telephone}}</td>
-                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input [(ngModel)]="data.telephone"></td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input  class="custom-width-100" [(ngModel)]="data.telephone"></td>
                                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.fax}}</td>
                                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input [(ngModel)]="data.fax"></td>
                                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.email}}</td>
