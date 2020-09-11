@@ -1,17 +1,34 @@
-.login-box {
-    margin-top: 120px;
-    max-width: 600px;
-    height: 480px;
-    border: 1px solid #9C9C9C;
-    background-color: #EAEAEA;
+.form-control {
+  float: left;
+  font-size: 1rem;
+  margin: 0.4rem 0 0.4rem 0;
+  border-bottom: 0.1rem solid gray;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   }
-
+  
+  .alert-danger{
+  color: #f10c23;
+  background-color: transparent;
+  border-color: #f5c6cb;
+  }
+  .alert{
+  position: inherit;
+  padding: 0rem 1rem; 
+  margin-bottom: 1rem; 
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  }
   img{
-    display: flex;
-    height: auto; 
+  display: flex;
+  height: auto; 
   }
-
+  
   .col-md-12{
-    padding: 0 0 0 0;
-    margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  }
+  .forgetpass{
+  cursor: pointer;
   }

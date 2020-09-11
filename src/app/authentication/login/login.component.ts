@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormControl, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 
@@ -25,6 +24,10 @@ export class LoginComponent implements OnInit {
   login()
   {
     this._userService.login(this.user.email,this.user.password);
+  }
+
+  forgetPass(){
+    this.router.navigate(['/admin/user/forgetpassword'])
   }
 
 }

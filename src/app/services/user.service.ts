@@ -65,6 +65,12 @@ export class UserService {
         }
     }
 
+    forgetPass(email){
+        if (email === 'admin'){
+            this.router.navigateByUrl('/admin')
+        }
+    }
+
     logout() {
         localStorage.clear();
     }

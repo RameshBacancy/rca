@@ -7,6 +7,7 @@ import { LayoutModule } from '../pages/layout/layout.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProtectGuard } from '../guard/protect.guard';
 import { RegisterationComponent } from './registeration/registeration.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'auth/login' },
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path:'forgetpassword',
+    component: ForgetPasswordComponent
   },
   { 
     path: 'supplierRegistration', 
@@ -36,7 +41,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [LoginComponent, SupplierRegisterComponent, RegisterationComponent],
+  declarations: [LoginComponent, SupplierRegisterComponent, RegisterationComponent, ForgetPasswordComponent],
   imports: [
     CommonModule,
     LayoutModule,
