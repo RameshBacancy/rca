@@ -53,8 +53,9 @@ export class LandingHeaderComponent implements OnInit {
   }
 
   onLogOut(){
-    this.router.navigate(['/admin/login']);
+    // this.router.navigate(['/admin/login']);
     this._userService.logout();
+    this.router.navigate(['']);
   }
 
   onChangePassword(){

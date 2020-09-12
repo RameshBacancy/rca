@@ -63,6 +63,7 @@ a:hover { text-decoration:none !important; color:#873e8d !important }
 a.active{ text-decoration:none !important; color:#873e8d !important }
 
 .text-dark-grey { color:#726565 }
+.text-red { color:red }
 .border-radius-5 {border-radius: 5px; }
 
 .fa-home:before {  font-size: 22px;}
@@ -136,7 +137,7 @@ thead, tbody, tfoot, tr, td, th {    vertical-align: middle; }
         border-color: transparent;    position: absolute;    width: 50%;    left: 0px;    padding: 0;    font-size: 12px;
         top: 30px;    font-weight: 300;}
     
-        .custom-min-vh-100 { min-height: 100vh;}
+.custom-min-vh-100 { min-height: 100vh;}
 .custom-height-35 { height: 35px;}
 
 @media (max-width: 991px) {

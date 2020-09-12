@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
 
 
   public user = {email:"",password:""}
+  message: string;
 
   constructor(
     private _userService: UserService,
@@ -23,7 +24,13 @@ export class LoginComponent implements OnInit {
 
   login()
   {
-    this._userService.login(this.user.email,this.user.password);
+    let token;
+    token = this._userService.login(this.user.email,this.user.password);
+    if(token === true){
+      this.router.navigateByUrl('/admin')
+    } else{
+      this.message = "Invalid Login Details";
+    }
   }
 
   forgetPass(){

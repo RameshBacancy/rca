@@ -26,14 +26,14 @@
 
 
                                 <!-- pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" -->
-                                <div *ngIf="!email.valid && (email.touched || email.dirty)">
+                                <!-- <div *ngIf="!email.valid && (email.touched || email.dirty)">
                                     <div *ngIf="email.errors.required" class="alert alert-danger">
                                         Email is required
                                     </div>
-                                    <!-- <div *ngIf="email.errors?.pattern" class="alert alert-danger">
+                                    <div *ngIf="email.errors?.pattern" class="alert alert-danger">
                               Email must be valid
-                          </div> -->
-                                </div>
+                          </div> 
+                                </div> -->
                             </div>
                             <!-- password -->
                             <div class="col-md-12 mb-4">
@@ -43,28 +43,33 @@
                                         id="password" #password="ngModel" [(ngModel)]="user.password" name="password"
                                         appNoContainSpace="ngModel" required />
                                 </div>
-                                <div *ngIf="password.invalid && (password.touched || password.dirty)">
+                                <!-- <div *ngIf="password.invalid && (password.touched || password.dirty)">
                                     <div *ngIf="password.errors.required" class="alert alert-danger">
                                         password is required
                                     </div>
-                                    <!-- minlength="6
-                          <div *ngIf="password.errors.minlength" class="alert alert-danger">
-                              Name must be at least 6 characters long.
-                          </div> -->
+                                    minlength="6
+                                    <div *ngIf="password.errors.minlength" class="alert alert-danger">
+                                        Name must be at least 6 characters long.
+                                    </div>
                                     <div *ngIf="password.errors.spaceNotAllowed" class="alert alert-danger">
                                         Space is not allowed
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
-                            <div class="col-md-12 mb-4">
+                            <div class="col-md-12 ">
                                 <div class="form-group">
                                     <button type="submit" [disabled]="form.invalid" name="submit"
                                         class="btn btn-primary  px-3 mx-1 py-2 w-100 fs-14 mb-2 mb-2"
                                         value="Login">Login</button>
                                 </div>
                             </div>
+                            <div class="col-md-12 mb-4 d-flex fs-14">
+                                <div class="form-group">
+                                    <p class=" text alert text-red font-weight-bold">{{message}}</p>
+                                </div>
+                            </div>
                             <div class="col-md-12">
-                                <p class=" texd text-dark font-weight-bold">Register Here </p>
+                                <p class=" texd text-dark font-weight-bold">Change Password </p>
                                 <p class=" texd text-dark font-weight-bold forgetpass" (click)="forgetPass()">Forgot password</p>
                             </div>
                         </div>

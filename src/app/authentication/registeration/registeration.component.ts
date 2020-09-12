@@ -12,18 +12,18 @@ export class RegisterationComponent implements OnInit {
   doneRegistered: boolean = false;
   viewSideBar: boolean = false;
   form = new FormGroup({
-    firstName: new FormControl('first name', [Validators.required]),
-    lastName: new FormControl('last name', [Validators.required]),
-    companyName: new FormControl('your company name', [Validators.required]),
+    firstName: new FormControl('bacancy', []),
+    lastName: new FormControl('technology', []),
+    companyName: new FormControl('Bacancy', [Validators.required]),
     crNo: new FormControl('CR/AU-2020/1086391', [Validators.required]),
-    webPage: new FormControl('www.google.com', [Validators.required]),
-    crAddress: new FormControl('357, Collins Street, Melbourne ', [Validators.required]),
-    companyType: new FormControl('Possible values – Individual, Joint Venture, Trust, Company', [Validators.required]),
-    activity: new FormControl('Industrial Manufacturing and Processing Machinery and Accessories', [Validators.required]),
-    subActivity: new FormControl('Machinery for working wood and stone and ceramic and the like', [Validators.required]),
-    contactPerson: new FormControl('contact person name', [Validators.required]),
+    webPage: new FormControl('https://www.bacancytechnology.com/', []),
+    crAddress: new FormControl('Time Squere-I, Thaltej', [Validators.required]),
+    companyType: new FormControl('IT company', [Validators.required]),
+    activity: new FormControl('Product Engineering, AI & ML, Blockchain, IOT, Digital Transformation', [Validators.required]),
+    subActivity: new FormControl('Real Estate, Finance & Insurance, Oil & Gas, Healthcare, Travel & Transport, Startups', []),
+    contactPerson: new FormControl('bacancy-hr', [Validators.required]),
     telephone: new FormControl('+964872772112', [Validators.required, Validators.pattern('^[+]?[0-9]*\.?[0-9]+')]),
-    email: new FormControl('abcd@bcd.com', [Validators.required, Validators.email]),
+    email: new FormControl('bacancy@bacancy.com', [Validators.required, Validators.email]),
   });
 
   constructor(private router: Router) { }

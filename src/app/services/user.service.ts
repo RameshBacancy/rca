@@ -61,7 +61,10 @@ export class UserService {
     login(email, password){
         if (email === 'admin' && password === "admin"){
             window.localStorage.setItem('LoginToken',''+Math.random());
-            this.router.navigateByUrl('/admin')
+            return true;
+        }
+        else{
+            return false;
         }
     }
 
