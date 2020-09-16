@@ -8,6 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProtectGuard } from '../guard/protect.guard';
 import { RegisterationComponent } from './registeration/registeration.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'auth/login' },
@@ -41,10 +42,16 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [LoginComponent, SupplierRegisterComponent, RegisterationComponent, ForgetPasswordComponent],
+  declarations: [
+    LoginComponent, 
+    SupplierRegisterComponent, 
+    RegisterationComponent, 
+    ForgetPasswordComponent, 
+  ],
   imports: [
     CommonModule,
     LayoutModule,
+    NgbModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),

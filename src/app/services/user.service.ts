@@ -3,7 +3,8 @@ import { Observable } from 'rxjs';
 import { EndPoint } from '../app.constants';
 import { RequestServiceBase } from './request-service-base';
 import { Router } from '@angular/router';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -11,12 +12,21 @@ import { HttpHeaders } from '@angular/common/http';
 
 export class UserService {
     
-    
+    url= environment.API_BASE_URL;
     authToken: string = null;
-    user: any;
+    currentUser: any;
     httpClient: any;
     static changePassword: any;
-    constructor( private router: Router ) { }
+    constructor( private router: Router, private http: HttpClient ) { }
+
+    createAcceptHeader() {
+        let headers = new Headers();
+        headers.set('Accept', 'application/json'); 
+    }
+    setToken(token){
+         this.currentUser = token;  
+         localStorage.setItem('authToken', token);
+    }
 
     registrationLogin(number, str, type){
         if(type == 'international'){
@@ -58,32 +68,23 @@ export class UserService {
         }
     }
 
-    login(email, password){
-        if (email === 'admin' && password === "admin"){
-            window.localStorage.setItem('LoginToken',''+Math.random());
-            return true;
-        }
-        else{
-            return false;
-        }
+    login(email, password): Observable<any>{
+        return this.http.post<any>(this.url+'login',{email: email, password: password});
     }
 
-    forgetPass(email){
-        if (email === 'admin'){
-            this.router.navigateByUrl('/admin')
-        }
+    forgetPass(email): Observable<any>{
+        return this.http.post<any>(this.url+'forgot-password',{email: email});
     }
 
-    logout() {
-        localStorage.clear();
+    resetPassword(email, token, newPassword): Observable<any>{
+        return this.http.post<any>(this.url+'password-reset',{email: email, token: token, password: newPassword});
+    }
+    logout(): Observable<any> {
+        return this.http.get<any>(this.url+'logout');
     }
 
-    changePassword(){
-        // var headers = new HttpHeaders()
-        //   .set('Authorization', 'Token ' + localStorage.getItem('usertoken'));
-        console.log("change password");
-        this.router.navigateByUrl('/auth/supplierRegistration');
-        
+    changePassword(oldPassword, newPassword, confirmPassword): Observable<any>{
+        return this.http.post<any>(this.url+'change-password',{old_password: oldPassword, new_password: newPassword, confirm_password: confirmPassword});
       }
     // registerUser(user){
     //     return this.httpService.httpPost(EndPoint.register, user);

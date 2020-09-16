@@ -8,6 +8,9 @@ export class SidebarService {
   constructor() { }
   
   getdata(){
-      return data.menu;
+    return data.menu;
+ }
+  getadmindata(){
+    return data.menus;
   }
 }

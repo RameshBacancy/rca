@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +9,7 @@ import { LandingHeaderComponent } from './pages/layout/landing-header/landing-he
 import { LandingModule } from './pages/landing/landing.module';
 import { LayoutModule } from './pages/layout/layout.module';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
+import { BasicAuthInterceptor } from 'src/app/interceptor/basic-auth';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,9 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
     LandingModule,
     LayoutModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true }
+  ]
 })
 export class AppModule { }

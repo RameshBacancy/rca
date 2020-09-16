@@ -20,7 +20,7 @@ export class AdminComponent implements OnInit {
     this.currentUrl = this.router.url;
     this.url = this.currentUrl.split('/');
     
-    this.menus = this.sidebarData.getdata();
+    this.menus = this.sidebarData.getadmindata();
   }
 
 

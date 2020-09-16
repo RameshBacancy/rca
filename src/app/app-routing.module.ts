@@ -12,7 +12,7 @@ const routes: Routes = [
   {
     path: 'landing',
     loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingModule),
-    canActivate: [ProtectGuard],
+    // canActivate: [ProtectGuard],
   },
   {
     path:'auth',
