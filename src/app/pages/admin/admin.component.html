@@ -1,4 +1,5 @@
-<app-landing-header (onViewSidebar)="onViewSidebar($event)" [showsidebar]="true" [menuData]="menus"></app-landing-header>
+<app-landing-header (onViewSidebar)="onViewSidebar($event)" [showsidebar]="true" [menuData]="menus">
+</app-landing-header>
 <div class="landing-portal-content" [class.viewOpen]="!viewSideBar">
   <section>
     <div class="container-fluid ">
@@ -7,7 +8,7 @@
           <ol class="breadcrumb bg-white mb-0">
             <ng-container *ngFor="let data of url">
               <li class="breadcrumb-item" *ngIf="data != ''"><a>{{data}}</a></li>
-            </ng-container>            
+            </ng-container>
           </ol>
         </div>
       </div>
@@ -17,9 +18,10 @@
     <div class="container-fluid ">
       <div class="row">
         <div class="col-md-12 ">
-          <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">ADMIN PANEL</h2>
+          <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">{{title}}</h2>
         </div>
       </div>
     </div>
-</section>
-  </div>
+  </section>
+  <router-outlet></router-outlet>
+</div>

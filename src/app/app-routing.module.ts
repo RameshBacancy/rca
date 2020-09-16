@@ -28,7 +28,7 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
     anchorScrolling: 'enabled',
-    useHash: true
+    useHash: true,
   })],
   exports: [RouterModule]
 })

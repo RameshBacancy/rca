@@ -9,6 +9,7 @@ import { ProtectGuard } from '../guard/protect.guard';
 import { RegisterationComponent } from './registeration/registeration.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute } from '@angular/router';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'auth/login' },
@@ -22,8 +23,8 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path:'forgetpassword',
-    component: ForgetPasswordComponent
+    path:'forgetpassword/:token',
+    component:ForgetPasswordComponent
   },
   { 
     path: 'supplierRegistration', 
@@ -45,8 +46,8 @@ const routes: Routes = [
   declarations: [
     LoginComponent, 
     SupplierRegisterComponent, 
-    RegisterationComponent, 
-    ForgetPasswordComponent, 
+    RegisterationComponent,
+    ForgetPasswordComponent 
   ],
   imports: [
     CommonModule,

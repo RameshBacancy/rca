@@ -40,6 +40,15 @@ export class SupplierRegisterComponent implements OnInit {
 
   submitNext() {
     this._userService.registrationLogin(this.form.value.civilNo.toString(), 'civil', this.form.value.regType);
+    if(this.form.value.regType === 'local'){
+      localStorage.setItem('regType','local');
+    }
+    if(this.form.value.regType === 'individual'){
+      localStorage.setItem('regType','individual');
+    }
+    if(this.form.value.regType === 'international'){
+      localStorage.setItem('regType','international');
+    }
     if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'true') {
       this.showsNextType = true;
     }

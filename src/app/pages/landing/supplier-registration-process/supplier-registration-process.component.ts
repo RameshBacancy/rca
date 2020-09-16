@@ -45,6 +45,10 @@ export class SupplierRegistrationProcessComponent implements OnInit {
   equipmentData: any[];
   otherData: any[];
 
+  isLocal: boolean = false;
+  isIndividual: boolean = false;
+  isInternational: boolean = false;
+
   constructor(
     private router: Router, 
     private supplierData: SupplierRegistrationService, 
@@ -62,6 +66,15 @@ export class SupplierRegistrationProcessComponent implements OnInit {
     this.subContractorData = this.formData.subContractorDetails;
     this.equipmentData = this.formData.equipmentDetails;
     this.otherData = this.formData.otherDetails;
+    if(localStorage.getItem('regType') === 'local'){
+      this.isLocal = true
+    }
+    if(localStorage.getItem('regType') === 'individual'){
+      this.isIndividual = true
+    }
+    if(localStorage.getItem('regType') === 'international'){
+      this.isInternational = true
+    }
   }
 
   get f(){

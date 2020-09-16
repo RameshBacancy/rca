@@ -137,68 +137,35 @@
             "children": []
         }
     ],
-    "menus": [
+    "admin": [
         {
-            "name": "RCA GENERAL INFO & LINKS",
+            "name": "Home",
             "icon": "",
-            "route": "",
-            "disabled": false
+            "route": "/#/admin/dashboard",
+            "disabled": false,
+            "children": []
         },
         {
-            "name": "SUPPLIER REGISTRATION",
-            "icon": "",
-            "route": "",
-            "disabled": false
-        },
-        {
-            "name": "TENDERING",
+            "name": "Content Management",
             "icon": "",
             "route": "",
             "disabled": false,
             "children": [
                 {
-                    "name": "Tender Queries",
+                    "name": "About Us",
                     "icon": "",
-                    "route": "",
+                    "route": "/#/admin/about-us",
                     "disabled": false,
                     "children": []
                 },
                 {
-                    "name": "Search Tenders",
+                    "name": "How to Register",
                     "icon": "",
-                    "route": "",
+                    "route": "/#/admin/how-to-register",
                     "disabled": false,
                     "children": []
                 }
             ]
-        },
-        {
-            "name": "ORDERS",
-            "icon": "",
-            "route": "",
-            "disabled": false,
-            "children": []
-        },
-        {
-            "name": "LATE ORDERS",
-            "icon": "",
-            "route": "",
-            "disabled": false,
-            "children": []
-        },
-        {
-            "name": "ORDER LINES TO CONFIRM",
-            "icon": "",
-            "route": "",
-            "disabled": false,
-            "children": []
-        },
-        {
-            "name": "REQUEST FOR ORDER QUOTATION",
-            "icon": "",
-            "route": "",
-            "disabled": false,
-            "children": []
         }
     ]
 }

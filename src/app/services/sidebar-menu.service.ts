@@ -11,6 +11,6 @@ export class SidebarService {
     return data.menu;
  }
   getadmindata(){
-    return data.menus;
+    return data.admin;
   }
 }

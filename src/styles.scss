@@ -140,6 +140,10 @@ thead, tbody, tfoot, tr, td, th {    vertical-align: middle; }
 .custom-min-vh-100 { min-height: 100vh;}
 .custom-height-35 { height: 35px;}
 
+.ck-editor__editable {
+  min-height: 500px !important;
+}
+
 @media (max-width: 991px) {
         
  .custom-min-vh-100 { min-height: auto;}

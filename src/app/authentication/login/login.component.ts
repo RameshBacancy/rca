@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       if(d.status === 200){
         this._userService.setToken(d.data.token);
         window.localStorage.setItem('LoginToken',''+Math.random());
-        this.router.navigateByUrl('/admin')
+        this.router.navigateByUrl('/admin/dashboard')
       }
     })
     // if(token === true){

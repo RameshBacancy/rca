@@ -55,7 +55,7 @@ export class LandingHeaderComponent implements OnInit {
   onLogOut(){
     this._userService.logout().subscribe(d => {});
     localStorage.clear();
-    this.router.navigate(['/admin/user/login']);
+    this.router.navigate(['']);
   }
 
   onChangePassword(){

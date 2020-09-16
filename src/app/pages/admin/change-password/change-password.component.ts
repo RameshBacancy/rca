@@ -26,7 +26,7 @@ export class ChangePasswordComponent implements OnInit {
     this._userService.changePassword(this.user.password, this.user.newPassword, this.user.confirmPassword).subscribe(d => {
       if(d.status === 200){
         this._alertService.pushSuccess(d.message);
-        this.router.navigateByUrl('/admin');
+        this.router.navigateByUrl('/admin/dashboard');
       }
       else{
         this.errorMsg = d.message;
@@ -35,7 +35,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   cancel(){
-    this.router.navigateByUrl('/admin')
+    this.router.navigateByUrl('/admin/dashboard')
   }
 
 }
