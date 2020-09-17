@@ -20,7 +20,9 @@ export class ProtectGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
         if(!localStorage.getItem('newReg') && localStorage.getItem('civilReg') && localStorage.getItem('completeReg')){ 
-            
+            return true;
+        }
+        else if (!localStorage.getItem('newReg') && localStorage.getItem('regType') === 'international' && localStorage.getItem('completeReg')){
             return true;
         }
         else{

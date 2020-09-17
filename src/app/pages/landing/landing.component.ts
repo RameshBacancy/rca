@@ -1,5 +1,5 @@
 import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { Component, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { SidebarService } from 'src/app/services/sidebar-menu.service';
 
@@ -11,7 +11,8 @@ export interface Option {
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+  styleUrls: ['./landing.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingComponent implements OnInit {
   viewSideBar:boolean = false;
@@ -22,8 +23,30 @@ export class LandingComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private sidebarData: SidebarService
-  ) { }
+    private sidebarData: SidebarService,
+    private ref: ChangeDetectorRef
+  ) {
+    router.events.subscribe(e => {
+      this.currentUrl = this.router.url;
+      this.url = this.currentUrl.split('/');
+      this.title = this.url[this.url.length - 1];
+      if(this.title === 'dashboard'){
+        this.title = 'Supplier Portal';
+      }
+      else if(this.title === 'registration'){
+        this.title = 'Registration'
+      }
+      else if (this.title === 'about-us') {
+        this.title = 'About Us'
+      }
+      else if (this.title === 'how-to-register') {
+        this.title = 'How To Register'
+      }else if (this.title === 'login') {
+        this.title = 'Login'
+      }
+      ref.detectChanges();
+    });
+   }
   
   ngOnInit( ) {
     localStorage.removeItem('LoginToken')

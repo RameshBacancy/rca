@@ -49,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" *ngIf="this.form.value.regType != 'international'">
                     <div class="col-md-12 px-4 d-block  d-lg-flex">
                         <p class=" pt-2 fs-14  mr-0 mr-lg-3  text-dark-grey font-weight-bold ">Enter Civil Number :</p>
                         <input class=" border p-2 fs-14 mr-0 mr-lg-3 rounded text-center w-170 " value="11337788" formControlName="civilNo">

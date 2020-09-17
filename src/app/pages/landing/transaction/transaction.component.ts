@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 
@@ -7,14 +7,27 @@ import { Router } from '@angular/router';
   templateUrl: './transaction.component.html',
   styleUrls: ['./transaction.component.scss']
 })
-export class TransactionComponent implements OnInit {
+export class TransactionComponent implements OnInit, AfterViewInit {
 
   @ViewChild('stepper') private stepper: MatStepper;
   formData: any;
-  
+  paymentComplete: boolean;
+
   constructor(private router: Router) { }
 
-  ngOnInit(): void {  
+  ngOnInit(): void { 
+    
+  }
+  ngAfterViewInit(){
+    if(localStorage.getItem('paymentStep')){
+      this.move(2) 
+    }
+  }
+
+  payment(){
+    if(localStorage.getItem('paymentStep')){
+      this.router.navigate(['/landing/supplier-registration/payment']);
+    }
   }
 
   move(index: number) {

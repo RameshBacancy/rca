@@ -7,24 +7,27 @@
                 <section class=" bg-white">
                     <div class="container-fluid ">
                         <div class="row">
-                            <div class="col-md-12 px-3">
-                                <h3 class="  p-2 fs-22 text-black">Select Supplier</h3>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Request ID</h5>
+                                <p class="fs-16 font-weight-bold text-black dark-text-1 ">100080</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Supplier Name</h5>
+                                <p class="fs-16 font-weight-bold text-black dark-text-1 ">Elecroman LLC</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activity</h5>
+                                <p class="fs-16 font-weight-bold text-black dark-text-1 ">IT & Networks</p>
                             </div>
                         </div>
                         <div class="row mt-2 mt-md-5">
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Commercial Registration No
-                                </h5>
-                                <input class="fs-14 border p-2 text-center w-140" value="1086391">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Reg. Fees</h5>
+                                <p class="fs-16 font-weight-bold text-black dark-text-1">900 OMR</p>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Supplier Name</h5>
-                                <p class="fs-14">Elecroman LLC</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-4  px-4">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Commercial Registration Grade
-                                </h5>
-                                <p class="fs-14">First Grade </p>
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Grade</h5>
+                                <p class="fs-16 font-weight-bold text-black dark-text-1">Excellent</p>
                             </div>
                         </div>
                         <div class="row mt-2 mt-md-5">
@@ -56,25 +59,31 @@
 
                 <section class=" bg-white">
                     <div class="container-fluid ">
-                        <div class="row">
-                            <div class="col-md-12 px-3">
-                                <h3 class="  p-2 fs-22 text-black">Select Supplier</h3>
+                        <div class="row px-3 pt-4">
+                            <div class="col-md-4 px-3">
+                                <div class="row pt-3">
+                                    <div class="col-md-4 px-3">
+                                        <span class=" fs-16 font-weight-bold text-black dark-text-1 ">Payment Fees</span>
+                                    </div>
+                                    <div class="col-md-4 px-3">
+                                        <span class=" fs-16 font-weight-bold text-black dark-text-1 ">900 OMR</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="row mt-2 mt-md-5">
-                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Commercial Registration No
-                                </h5>
-                                <input class="fs-14 border p-2 text-center w-140" value="1086391">
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Supplier Name</h5>
-                                <p class="fs-14">Elecroman LLC</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-4  px-4">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Commercial Registration Grade
-                                </h5>
-                                <p class="fs-14">First Grade </p>
+                                <div class="col-md-12 px-4 d-block d-md-flex">
+                                    <div class="mr-3 mb-3">
+                                        <p class=" text-dark-grey font-weight-bold ">Payment Mode</p>
+                                    </div>
+                                    <div class="form-check mr-3 mb-3">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                                        <label class="form-check-label text-dark-grey font-weight-bold ml-2" for="flexRadioDefault1">Debit </label>
+                                    </div>
+                                    <div class="form-check mr-3 mb-3">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" >
+                                        <label class="form-check-label text-dark-grey font-weight-bold ml-2" for="flexRadioDefault2">Credit </label>
+                                    </div>
                             </div>
                         </div>
                         <div class="row mt-2 mt-md-5">
@@ -93,7 +102,7 @@
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             matStepperPrevious>Privious</button>
                         <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            matStepperNext>Next</button>
+                            (click)="payment()">Next</button>
                         <a href="/landing/supplier-registration/dashboard">
                             <button type="button"
                                 class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
@@ -107,50 +116,25 @@
                 <section class=" bg-white">
                     <div class="container-fluid ">
                         <div class="row">
-                            <div class="col-md-12 px-3">
-                                <h3 class="  p-2 fs-22 text-black">Select Supplier</h3>
-                            </div>
-                        </div>
-                        <div class="row mt-2 mt-md-5">
-                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Commercial Registration No
-                                </h5>
-                                <input class="fs-14 border p-2 text-center w-140" value="1086391">
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Supplier Name</h5>
-                                <p class="fs-14">Elecroman LLC</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-4  px-4">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Commercial Registration Grade
-                                </h5>
-                                <p class="fs-14">First Grade </p>
-                            </div>
-                        </div>
-                        <div class="row mt-2 mt-md-5">
-                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-4  px-4">
+                            <div class="col-md-8 px-3 mt-5  mx-auto text-center ">
+                                <p class="fs-22  text-black font-weight-bold ">Payment completed successfully. The registration is <br />
+                                    valid  until 1stJuly 2022. <br />
+                                    Your transaction  ID is: 2589<br />
+                                    You will receive confirmation Email shortly on your registered Email ID.<br />             
+                                    
+                                    <span class="font-weight-bold mt-3 d-block">Thank You</span> </p>
+                                    <div class="row mt-2 mt-md-5">
+                                        
+                                    </div>
+                                <a href="/landing/supplier-registration/login">
+                                    <button type="button"
+                                        class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2">Close</button>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </section>
 
-                <div class="row">
-                    <div class="col-md-12 mb-5 px-4">
-                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            matStepperPrevious>Privious</button>
-                        <a href="/landing/supplier-registration/dashboard">
-                            <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                matStepperNext>Next</button></a>
-                        <a href="/landing/supplier-registration/dashboard">
-                            <button type="button"
-                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                        </a>
-                    </div>
-                </div>
             </mat-step>
         </mat-horizontal-stepper>
     </div>

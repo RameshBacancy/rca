@@ -27,15 +27,13 @@ export class SupplierRegisterComponent implements OnInit {
 
   ngOnInit(): void {
     localStorage.removeItem('LoginToken')
-    if(localStorage.getItem('civilReg')){
       this.router.navigate(['/landing/supplier-registration/dashboard']);
-      if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'true') {
+      if (localStorage.getItem('foreign') === 'true') {
         this.showsNextType = true;
       }
       if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'false') {
         this.showsNextReg = true;
       }
-    }
   }
 
   submitNext() {
@@ -49,7 +47,7 @@ export class SupplierRegisterComponent implements OnInit {
     if(this.form.value.regType === 'international'){
       localStorage.setItem('regType','international');
     }
-    if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'true') {
+    if (localStorage.getItem('foreign') === 'true') {
       this.showsNextType = true;
     }
     if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'false') {
@@ -73,6 +71,7 @@ export class SupplierRegisterComponent implements OnInit {
   back() {
     this.showsNextType = false;
     this.showsNextReg = false;
+    localStorage.clear();
   }
   onViewSidebar(val) {
     this.viewSideBar = val;

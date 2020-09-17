@@ -11,85 +11,78 @@ import { environment } from 'src/environments/environment';
 })
 
 export class UserService {
-    
-    url= environment.API_BASE_URL;
+
+    url = environment.API_BASE_URL;
     authToken: string = null;
     currentUser: any;
     httpClient: any;
     static changePassword: any;
-    constructor( private router: Router, private http: HttpClient ) { }
+    constructor(private router: Router, private http: HttpClient) { }
 
     createAcceptHeader() {
         let headers = new Headers();
-        headers.set('Accept', 'application/json'); 
+        headers.set('Accept', 'application/json');
     }
-    setToken(token){
-         this.currentUser = token;  
-         localStorage.setItem('authToken', token);
+    setToken(token) {
+        this.currentUser = token;
+        localStorage.setItem('authToken', token);
     }
 
-    registrationLogin(number, str, type){
-        if(type == 'international'){
+    registrationLogin(number, str, type) {
+        if (type == 'international') {
             localStorage.setItem('foreign', 'true');
         }
-        if(type == 'local' || type == 'individual'){
+        if (type == 'local' || type == 'individual') {
             localStorage.setItem('foreign', 'false');
         }
-        if (str === 'civil' && number === '11337788'){
-            window.localStorage.setItem('civilReg',''+Math.random());
+        if (str === 'civil' && number === '11337788') {
+            window.localStorage.setItem('civilReg', '' + Math.random());
         }
     }
 
-    foreignRegistration(type){
+    foreignRegistration(type) {
         if (type === 'alreadyRegistered') {
-            if (localStorage.getItem('civilReg')) {
-                localStorage.setItem('completeReg', 'T');
-                localStorage.removeItem('newReg')
-              this.router.navigate(['/landing/supplier-registration/dashboard']);
-            }
-            else{
-            //   this.alertService.pushError('Your Civil Number is Incorrect.');
-            }
-          }
-          if (type === 'newSupplier') {
-            if (localStorage.getItem('civilReg')) {
-                localStorage.setItem('completeReg', 'T');
-                localStorage.setItem('newReg', 'true')
-                this.router.navigate(['/auth/register']);
-              }
-          }
-    }
-
-    localRegistration(number){
-        if (number === '1086391'){
-            localStorage.setItem('commercialReg',''+Math.random());
-                localStorage.setItem('completeReg', 'T');
-                this.router.navigate(['/landing/supplier-registration/dashboard']);
+            localStorage.setItem('completeReg', 'T');
+            localStorage.removeItem('newReg')
+            this.router.navigate(['/landing/supplier-registration/dashboard']);
+        }
+        else if (type === 'newSupplier') {
+            localStorage.setItem('completeReg', 'T');
+            localStorage.setItem('newReg', 'true')
+            this.router.navigate(['/auth/register']);
         }
     }
 
-    login(email, password): Observable<any>{
-        return this.http.post<any>(this.url+'login',{email: email, password: password});
+    localRegistration(number) {
+        if (number === '1086391') {
+            localStorage.setItem('commercialReg', '' + Math.random());
+            localStorage.setItem('completeReg', 'T');
+            this.router.navigate(['/landing/supplier-registration/dashboard']);
+        }
     }
 
-    forgetPass(email): Observable<any>{
-        return this.http.post<any>(this.url+'forgot-password',{email: email});
+    login(email, password): Observable<any> {
+        return this.http.post<any>(this.url + 'login', { email: email, password: password });
     }
 
-    resetPassword(email, token, newPassword): Observable<any>{
-        return this.http.post<any>(this.url+'password-reset',{email: email, token: token, password: newPassword});
+    forgetPass(email): Observable<any> {
+        return this.http.post<any>(this.url + 'forgot-password', { email: email });
+    }
+
+    resetPassword(body): Observable<any> {
+        return this.http.post<any>(this.url + 'password-reset', body);
     }
     logout(): Observable<any> {
-        return this.http.get<any>(this.url+'logout');
+        return this.http.get<any>(this.url + 'logout');
     }
 
-    changePassword(oldPassword, newPassword, confirmPassword): Observable<any>{
-        return this.http.post<any>(this.url+'change-password',{old_password: oldPassword, new_password: newPassword, confirm_password: confirmPassword});
-      }
+    changePassword(oldPassword, newPassword, confirmPassword): Observable<any> {
+        return this.http.post<any>(this.url + 'change-password', { old_password: oldPassword, new_password: newPassword, confirm_password: confirmPassword });
+    }
     // registerUser(user){
     //     return this.httpService.httpPost(EndPoint.register, user);
     // }
-    
+
     // tslint:disable-next-line:typedef
     // login(loginData:any): Observable<any>{
     //     const loginUrl = EndPoint.login;        
@@ -122,7 +115,7 @@ export class UserService {
     //     return tokenNotExpired('user_token');
     // }
 
-    
+
     // PostImage(data) {
     //     let headers = new Headers();
     //     return this.http.post(EndPoint.image, data, { headers: headers })
