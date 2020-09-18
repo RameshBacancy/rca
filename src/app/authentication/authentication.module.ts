@@ -5,11 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { SupplierRegisterComponent } from './supplier-register/supplier-register.component';
 import { LayoutModule } from '../pages/layout/layout.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ProtectGuard } from '../guard/protect.guard';
 import { RegisterationComponent } from './registeration/registeration.component';
-import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute } from '@angular/router';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'auth/login' },
@@ -23,7 +21,7 @@ const routes: Routes = [
     component: LoginComponent
   },
   {
-    path:'forgetpassword/:token',
+    path:'forgetpassword',
     component:ForgetPasswordComponent
   },
   { 
@@ -46,7 +44,7 @@ const routes: Routes = [
   declarations: [
     LoginComponent, 
     SupplierRegisterComponent, 
-    RegisterationComponent,
+    RegisterationComponent, 
     ForgetPasswordComponent,
   ],
   imports: [

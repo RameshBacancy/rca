@@ -47,11 +47,7 @@ export class LoginComponent implements OnInit {
   
   forgetPass()
   {
-    this._userService.forgetPass(this.user.email).subscribe(d => {
-      if(d.status === 200){
-        this.router.navigateByUrl('/admin/forgetpassword')
-      }
-    })
+    this._userService.forgetPass(this.user.email).subscribe(d => { })
   }
 
   open(content, address?) {
