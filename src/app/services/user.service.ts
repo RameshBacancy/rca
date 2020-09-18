@@ -29,25 +29,26 @@ export class UserService {
     }
 
     registrationLogin(number, str, type) {
-        if (type == 'international') {
-            localStorage.setItem('foreign', 'true');
+        if(type === 'local'){
+            localStorage.setItem('regType','local');
         }
-        if (type == 'local' || type == 'individual') {
-            localStorage.setItem('foreign', 'false');
+        if(type === 'individual'){
+        localStorage.setItem('regType','individual');
         }
+        localStorage.setItem('foreign', 'false')
         if (str === 'civil' && number === '11337788') {
             window.localStorage.setItem('civilReg', '' + Math.random());
         }
     }
 
     foreignRegistration(type) {
+        localStorage.setItem('foreign', 'true');
+        localStorage.setItem('regType','international');
         if (type === 'alreadyRegistered') {
-            localStorage.setItem('completeReg', 'T');
             localStorage.removeItem('newReg')
-            this.router.navigate(['/landing/supplier-registration/dashboard']);
+            this.router.navigate(['/landing/supplier-registration/login']);
         }
         else if (type === 'newSupplier') {
-            localStorage.setItem('completeReg', 'T');
             localStorage.setItem('newReg', 'true')
             this.router.navigate(['/auth/register']);
         }

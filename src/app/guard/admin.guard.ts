@@ -4,12 +4,12 @@ import { CanActivate, CanActivateChild } from '@angular/router';
 
 import { ReplaySubject, Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
-// import { UserService } from '../services/user.service';
+//import { UserService } from '../services/user.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class ProtectGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
     // tslint:disable-next-line:no-inferrable-types
     reason: number = 1;
 
@@ -18,15 +18,12 @@ export class ProtectGuard implements CanActivate {
         private userService: UserService
     ) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        if(!localStorage.getItem('newReg') && localStorage.getItem('civilReg')){ 
-            return true;
-        }
-        else if (!localStorage.getItem('newReg') && localStorage.getItem('regType') === 'international'){
+    canActivate(): Observable<boolean> | Promise<boolean> | boolean {
+        if(window.localStorage.getItem("LoginToken")){ 
             return true;
         }
         else{
-            this.router.navigateByUrl('/auth/supplierRegistration');
+            this.router.navigateByUrl('/admin/user/login');
             return false;
         }
     }

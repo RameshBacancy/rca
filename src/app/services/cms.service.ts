@@ -21,13 +21,16 @@ export class CmsService {
     return this.http.post<any>(this.url+'cms', {page: page, title: title, description: data})
   }
 
-  getCMS(page): Observable<any>{
-    if(page == 'about-us'){
-      return this.http.get<any>(this.url+'cms/1')
-    }
+  getCMS(): Observable<any>{
+      return this.http.get<any>(this.url+'cms')
+    
   }
 
-  updateCMS(page, title, data): Observable<any>{
-    return this.http.post<any>(this.url+'cms', {page: page, title: title, description: data, _method: 'PATCH'})
+  updateCMS(page, title, data, id): Observable<any>{
+    return this.http.post<any>(this.url+'cms/'+id, {page: page, title: title, description: data, _method: 'PATCH'})
+  }
+
+  deleteCMS(id): Observable<any>{
+    return this.http.delete<any>(this.url+'cms/'+id);
   }
 }

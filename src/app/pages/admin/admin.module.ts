@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from '../../guard/auth.guard';
+import { AdminGuard } from '../../guard/admin.guard';
 import { LayoutModule } from '../layout/layout.module';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,14 +10,12 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HowToRegisterComponent } from './how-to-register/how-to-register.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
-import { ForgetPasswordComponent } from 'src/app/authentication/forget-password/forget-password.component';
-import { AuthenticationModule } from 'src/app/authentication/authentication.module';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
-    canActivate: [AuthGuard],
+    canActivate: [AdminGuard],
     children: [
       {
         path: '',
@@ -46,11 +44,7 @@ const routes: Routes = [
     path:'changepassword',
     component : ChangePasswordComponent,
   },
-  // {
-  //   path:'forgetpassword',
-  //   component : ForgetPasswordComponent,
-  // },
-  // { path: '**', redirectTo: '/admin/user/login', pathMatch: 'full' }
+  { path: '**', redirectTo: '/admin/user/login', pathMatch: 'full' }
 ]
 
 @NgModule({

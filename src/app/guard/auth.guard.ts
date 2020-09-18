@@ -19,11 +19,11 @@ export class AuthGuard implements CanActivate {
     ) { }
 
     canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-        if(window.localStorage.getItem("LoginToken")){ 
+        if(localStorage.getItem('completeReg')){ 
             return true;
         }
         else{
-            this.router.navigateByUrl('/admin/user/login');
+            this.router.navigateByUrl('/auth/supplierRegistration');
             return false;
         }
     }

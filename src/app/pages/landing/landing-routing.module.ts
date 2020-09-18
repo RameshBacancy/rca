@@ -4,6 +4,7 @@ import { LandingComponent } from './landing.component';
 import { ProtectGuard } from 'src/app/guard/protect.guard';
 import { InternationalLoginComponent } from './international-login/international-login.component';
 import { PaymentComponent } from './transaction/payment/payment.component';
+import { AuthGuard } from 'src/app/guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -14,22 +15,26 @@ const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+        canActivate: [AuthGuard]
       },
       {
         path:'registration',
         loadChildren: () => import('./supplier-registration-process/supplier-registration-process.module').then(m => m.SupplierRegistrationProcessModule),
+        canActivate: [AuthGuard]
       },
       {
         path:'transaction',
         loadChildren: () => import('./transaction/transaction.module').then(m => m.TransactionModule),
+        canActivate: [AuthGuard]
       },
       {
         path:'payment',
-        component: PaymentComponent
+        component: PaymentComponent,
+        canActivate: [AuthGuard]
       },
       {
         path: 'login',
-        component: InternationalLoginComponent
+        component: InternationalLoginComponent,
       }
     ]
   }

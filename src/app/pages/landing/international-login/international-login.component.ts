@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-international-login',
@@ -9,7 +10,7 @@ export class InternationalLoginComponent implements OnInit {
 
   public user = {email:"",password:""}
 
-  constructor() { }
+  constructor( private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -17,7 +18,9 @@ export class InternationalLoginComponent implements OnInit {
 
   login()
   {
-    console.log(this.user)
+    console.log(this.user);
+    localStorage.setItem('completeReg', 'T');
+    this.router.navigateByUrl('/landing/supplier-registration/dashboard')
   }
   onViewSidebar(e){
     

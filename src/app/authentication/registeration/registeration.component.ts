@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-registeration',
@@ -11,6 +12,7 @@ export class RegisterationComponent implements OnInit {
 
   doneRegistered: boolean = false;
   viewSideBar: boolean = false;
+  closeResult: string;
   form = new FormGroup({
     firstName: new FormControl('bacancy', []),
     lastName: new FormControl('technology', []),
@@ -26,10 +28,13 @@ export class RegisterationComponent implements OnInit {
     email: new FormControl('bacancy@bacancy.com', [Validators.required, Validators.email]),
   });
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private modalService: NgbModal,
+    ) { }
 
   ngOnInit(): void {
-    if (!localStorage.getItem('civilReg') || !localStorage.getItem('newReg')) {
+    if (!localStorage.getItem('newReg')) {
       this.router.navigateByUrl('/auth/supplierRegistration')
     }
   }
@@ -51,8 +56,34 @@ export class RegisterationComponent implements OnInit {
     
   }
 
+  gotoFirst(){
+    this.router.navigateByUrl('/auth/supplierRegistration');
+  }
+
   onViewSidebar(val) {
     this.viewSideBar = val;
+  }
+
+  open(content, address?) {
+
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+
+      this.closeResult = `Closed with: ${result}`;
+
+    }, (reason) => {
+
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+
+    });
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
 }

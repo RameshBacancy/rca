@@ -12,7 +12,6 @@ import { AlertService } from 'src/app/services/alert.service';
 export class SupplierRegisterComponent implements OnInit {
 
   supplierSelection: boolean = false;
-  showsNextType: boolean = false;
   showsNextReg: boolean = false;
   viewSideBar: boolean = false;
 
@@ -28,9 +27,6 @@ export class SupplierRegisterComponent implements OnInit {
   ngOnInit(): void {
     localStorage.removeItem('LoginToken')
       this.router.navigate(['/landing/supplier-registration/dashboard']);
-      if (localStorage.getItem('foreign') === 'true') {
-        this.showsNextType = true;
-      }
       if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'false') {
         this.showsNextReg = true;
       }
@@ -38,18 +34,6 @@ export class SupplierRegisterComponent implements OnInit {
 
   submitNext() {
     this._userService.registrationLogin(this.form.value.civilNo.toString(), 'civil', this.form.value.regType);
-    if(this.form.value.regType === 'local'){
-      localStorage.setItem('regType','local');
-    }
-    if(this.form.value.regType === 'individual'){
-      localStorage.setItem('regType','individual');
-    }
-    if(this.form.value.regType === 'international'){
-      localStorage.setItem('regType','international');
-    }
-    if (localStorage.getItem('foreign') === 'true') {
-      this.showsNextType = true;
-    }
     if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'false') {
       this.showsNextReg = true;
     }
@@ -57,7 +41,7 @@ export class SupplierRegisterComponent implements OnInit {
 
   submitType() {
     if (this.form.status === 'VALID') {
-     this._userService.foreignRegistration(this.form.value.registrationType.toString())
+      this._userService.foreignRegistration(this.form.value.registrationType.toString())
     }
   }
 
@@ -69,7 +53,6 @@ export class SupplierRegisterComponent implements OnInit {
   }
 
   back() {
-    this.showsNextType = false;
     this.showsNextReg = false;
     localStorage.clear();
   }

@@ -3,6 +3,7 @@ import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertService } from 'src/app/services/alert.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
     private _userService: UserService,
     private router: Router,
     private modalService: NgbModal,
-    private _alertService: AlertService
+    private _alertService: AlertService,
+    private spinner: SpinnerService
   ) { }
 
   ngOnInit() {
@@ -47,7 +49,11 @@ export class LoginComponent implements OnInit {
   
   forgetPass()
   {
-    this._userService.forgetPass(this.user.email).subscribe(d => { })
+    this.spinner.openSpinner();
+    debugger;
+    this._userService.forgetPass(this.user.email).subscribe(d => {
+      this.spinner.closeSpinner();
+     })
   }
 
   open(content, address?) {

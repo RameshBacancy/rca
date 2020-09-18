@@ -1,10 +1,16 @@
 <section class="dark-grey-bg mt-3">
     <div class="container-fluid px-4">
         <div class="row">
-            <div class="col-md-12"> 
-                <h2 class="w-100">
-                    <input type="text" placeholder="How to register" class="w-100 fs-14 px-2 py-2" [(ngModel)]="title">
-                </h2>
+            <div class="col-md-12 mx-2 my-2 py-2 px-2 ">
+                <span class="shadow border py-2 px-2 mx-2 my-2"  *ngFor="let data of allData"><span (click)="openData(data.id)">{{data.title}}</span><i class="fa fa-times" aria-hidden="true" (click)="deleteCMS(data.id)"></i></span>
+            </div>
+            <div class="col-md-12">
+                <br/>
+            </div>
+            <div class="col-md-12 "> 
+                <h4 class="w-100">
+                    <input type="text" placeholder="Title"  class="w-100 fs-14 py-2 px-2" [(ngModel)]="title">
+                </h4>
                 <ckeditor [editor]="editor" [data]="data" [(ngModel)]="description"></ckeditor>
                 <div class="mt-3">
                     <button class="btn btn-primary mr-2" (click)="save()">Save</button>
