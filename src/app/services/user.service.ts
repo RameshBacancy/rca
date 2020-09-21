@@ -5,6 +5,7 @@ import { RequestServiceBase } from './request-service-base';
 import { Router } from '@angular/router';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { SpinnerService } from './spinner.service';
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +18,7 @@ export class UserService {
     currentUser: any;
     httpClient: any;
     static changePassword: any;
-    constructor(private router: Router, private http: HttpClient) { }
+    constructor(private router: Router, private http: HttpClient, private spinner: SpinnerService) { }
 
     createAcceptHeader() {
         let headers = new Headers();

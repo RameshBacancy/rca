@@ -6,10 +6,10 @@ import { AdminGuard } from '../../guard/admin.guard';
 import { LayoutModule } from '../layout/layout.module';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HowToRegisterComponent } from './how-to-register/how-to-register.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 const routes: Routes = [
   {
@@ -53,7 +53,7 @@ const routes: Routes = [
     CommonModule,
     LayoutModule,
     FormsModule,
-    CKEditorModule,
+    AngularEditorModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ]

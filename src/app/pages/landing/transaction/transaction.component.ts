@@ -25,6 +25,7 @@ export class TransactionComponent implements OnInit, AfterViewInit {
   }
 
   payment(){
+    localStorage.setItem('paymentStep','true')
     if(localStorage.getItem('paymentStep')){
       this.router.navigate(['/landing/supplier-registration/payment']);
     }

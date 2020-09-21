@@ -58,9 +58,9 @@
                             </div>
                             <div class="col-md-12 ">
                                 <div class="form-group">
-                                    <button type="submit" [disabled]="form.invalid" name="submit"
+                                    <button type="button" [disabled]="form.invalid"
                                         class="btn btn-primary  px-3 mx-1 py-2 w-100 fs-14 mb-2 mb-2"
-                                        value="Login">Login</button>
+                                         (click)="login()">Login</button>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-4 d-flex fs-14">

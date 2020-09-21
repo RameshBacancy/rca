@@ -3,6 +3,7 @@ import { Router, RouterModule } from '@angular/router';
 import { from } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
+import { SpinnerService } from 'src/app/services/spinner.service';
 @Component({
   selector: 'app-landing-header',
   templateUrl: './landing-header.component.html',
@@ -18,7 +19,7 @@ export class LandingHeaderComponent implements OnInit {
   public showUnreadMessage: boolean = true;
   public sidebarItems;
   
-  constructor(private router: Router, private _userService :UserService) { }
+  constructor(private router: Router, private _userService :UserService, private spinner: SpinnerService) { }
 
   ngOnInit() {
    
@@ -55,6 +56,7 @@ export class LandingHeaderComponent implements OnInit {
   onLogOut(){
     this._userService.logout().subscribe(d => {});
     localStorage.clear();
+    this.spinner.closeSpinner();
     this.router.navigate(['']);
   }
 

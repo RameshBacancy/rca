@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/services/alert.service';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-supplier-register',
@@ -22,7 +23,7 @@ export class SupplierRegisterComponent implements OnInit {
     registrationType: new FormControl('alreadyRegistered', [Validators.required])
   });
 
-  constructor(private router: Router, private _userService: UserService, private alertService: AlertService) { }
+  constructor(private router: Router, private _userService: UserService, private alertService: AlertService, private spinner: SpinnerService) { }
 
   ngOnInit(): void {
     localStorage.removeItem('LoginToken')
@@ -30,6 +31,8 @@ export class SupplierRegisterComponent implements OnInit {
       if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'false') {
         this.showsNextReg = true;
       }
+      this.spinner.closeSpinner();
+
   }
 
   submitNext() {

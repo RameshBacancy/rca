@@ -1,9 +1,11 @@
 
-<div *ngIf="loading" class="loading">
+<div *ngIf="loading" class="loader">
   <!-- start Spinner selector -->
   <!-- End Spinner selector -->
 </div>
-<router-outlet></router-outlet>
+<div  *ngIf="!loading" class="animate-bottom">
+  <router-outlet></router-outlet>
+</div>
 <div *ngIf="message">
   <div class="alert-block">
     <div class="alert"

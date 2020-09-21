@@ -26,31 +26,31 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.spinner.openSpinner();
     localStorage.clear();
+    this.spinner.closeSpinner();
   }
 
   login()
   {
-    // let token;
-    this._userService.login(this.user.email,this.user.password).subscribe( d => {
-      if(d.status === 200){
-        this._userService.setToken(d.data.token);
-        window.localStorage.setItem('LoginToken',''+Math.random());
-        this.router.navigateByUrl('/admin/dashboard')
+    this._userService.login(this.user.email,this.user.password).subscribe(
+      (response) => {                           
+        this._userService.setToken(response.data.token);
+          window.localStorage.setItem('LoginToken',''+Math.random());
+          this.router.navigateByUrl('/admin/dashboard');
+          this.spinner.closeSpinner();
+      },
+      (error) => {                              //Error callback
+        console.error('error caught in component')
+        this.message = error;
+        this.spinner.closeSpinner();
       }
-    })
-    // if(token === true){
-     // this.router.navigateByUrl('/admin')
-    // } else{
-    //   this.message = "Invalid Login Details";
-    // }
+    )
   }
 
   
   forgetPass()
   {
-    this.spinner.openSpinner();
-    debugger;
     this._userService.forgetPass(this.user.email).subscribe(d => {
       this.spinner.closeSpinner();
      })

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { AlertService } from 'src/app/services/alert.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SpinnerService } from 'src/app/services/spinner.service';
 
 @Component({
   selector: 'app-forget-password',
@@ -22,7 +23,8 @@ export class ForgetPasswordComponent implements OnInit {
     private _userService: UserService,
     private _alertService: AlertService,
     private router: Router,
-    private _Activatedroute:ActivatedRoute
+    private _Activatedroute:ActivatedRoute,
+    private spinner: SpinnerService
   ) { 
     
   }
@@ -36,10 +38,11 @@ export class ForgetPasswordComponent implements OnInit {
 
 
   resetPassword(){
-    if(this.user.password.toString() == this.confirm_password){
-      console.log(this.user);
+    this.spinner.openSpinner();
+    if(this.user.password.toString() == this.confirm_password){  
       this._userService.resetPassword(this.user).subscribe(d => {
         if(d.status === 200){
+          this.spinner.closeSpinner();
           this._alertService.pushSuccess(d.message);
           this.router.navigateByUrl('/admin/user/login');
         }
@@ -48,6 +51,7 @@ export class ForgetPasswordComponent implements OnInit {
         }
       })
     } else {
+      this.spinner.closeSpinner();
       this.errorMsg = 'password mismatch'
     }
   }
