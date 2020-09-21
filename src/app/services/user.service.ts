@@ -40,9 +40,11 @@ export class UserService {
         if (str === 'civil' && number === '11337788') {
             window.localStorage.setItem('civilReg', '' + Math.random());
         }
+        localStorage.setItem('supplierLogin', 'true');
     }
 
     foreignRegistration(type) {
+        localStorage.setItem('supplierLogin', 'true');
         localStorage.setItem('foreign', 'true');
         localStorage.setItem('regType','international');
         if (type === 'alreadyRegistered') {
@@ -56,6 +58,7 @@ export class UserService {
     }
 
     localRegistration(number) {
+        localStorage.setItem('supplierLogin', 'true');
         if (number === '1086391') {
             localStorage.setItem('commercialReg', '' + Math.random());
             localStorage.setItem('completeReg', 'T');
@@ -64,6 +67,7 @@ export class UserService {
     }
 
     login(email, password): Observable<any> {
+        localStorage.setItem('supplierLogin', 'false');
         return this.http.post<any>(this.url + 'login', { email: email, password: password });
     }
 

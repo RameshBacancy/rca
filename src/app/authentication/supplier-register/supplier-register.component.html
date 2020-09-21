@@ -78,13 +78,11 @@
                 <div class="col-md-12 mb-5 px-4 mt-5" *ngIf="this.form.value.regType != 'international'">
                     <button type="button" class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2"
                         (click)="submitNext()">Submit </button>
-                    <button type="button" class="btn btn-secondary px-3 mx-1 py-2 w-120 fs-14 mb-2">Back </button>
                 </div>
 
                 <div class="col-md-12 mb-5 px-4" *ngIf="this.form.value.regType == 'international'">
                     <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" (click)="submitType()">Submit
                     </button>
-                    <button type="button" class="btn btn-secondary px-3 mx-1 py-2 w-120 fs-14 mb-2">Back</button>
                 </div>
 
             </div>

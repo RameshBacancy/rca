@@ -1,0 +1,469 @@
+<mat-horizontal-stepper #stepper>
+    <!-- General Info -->
+    <mat-step>
+     <ng-template matStepLabel>General Info</ng-template>
+     <div class="row">
+         <div class="col-md-12 px-4 ">
+             <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">Activity to
+                 Reg.</h4>
+         </div>
+     </div>
+     <div class="row">
+         <div class="col-md-12 px-4 d-block d-md-flex">
+             <div class="form-check mr-3 mb-3">
+                 <input class="form-check-input" type="radio" name="flexRadioDefault"
+                     id="flexRadioDefault1">
+                 <label class="form-check-label font-italic ml-2" for="flexRadioDefault1"> Construction
+                 </label>
+             </div>
+             <div class="form-check mr-3 mb-3">
+                 <input class="form-check-input" type="radio" name="flexRadioDefault"
+                     id="flexRadioDefault2" checked>
+                 <label class="form-check-label font-italic ml-2" for="flexRadioDefault2"> IT & Networks
+                 </label>
+             </div>
+             <div class="form-check mr-3 mb-3">
+                 <input class="form-check-input" type="radio" name="flexRadioDefault"
+                     id="flexRadioDefault3" checked>
+                 <label class="form-check-label font-italic ml-2" for="flexRadioDefault3"> Animal Meat
+                 </label>
+             </div>
+             <div class="form-check mr-3 mb-3">
+                 <input class="form-check-input" type="radio" name="flexRadioDefault"
+                     id="flexRadioDefault4" checked>
+                 <label class="form-check-label font-italic ml-2" for="flexRadioDefault4"> Ele. Materials
+                 </label>
+             </div>
+
+             <!-- <div class="col-md-3 text-center">
+             <img src="assets/images/cloud.jpg" alt="" class="img-fluid">
+         </div> -->
+         </div>
+
+     </div>
+     <div class="row">
+         <div class="col-md-12 px-4 ">
+             <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1 ">Municipality Reg
+             </h4>
+         </div>
+     </div>
+     <div class="row">
+         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Number</h5>
+             <p class="fs-14">{{formData.generalInfo.regNumber}}</p>
+         </div>
+         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
+             <p class="fs-14">{{formData.generalInfo.regDate}}</p>
+         </div>
+         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date </h5>
+             <p class="fs-14">{{formData.generalInfo.expDate}}</p>
+         </div>
+         <div class="col-md-3 col-lg-3 col-xl-2 px-4">
+             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities</h5>
+             <p class="fs-14">{{formData.generalInfo.activities}}</p>
+         </div>
+     </div>
+     <div class="row">
+         <div class="col-md-12 px-4 ">
+             <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1 ">Bank Details
+             </h4>
+         </div>
+     </div>
+     <div class="row">
+         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Name</h5>
+             <p class="fs-14">{{formData.generalInfo.bankName}}</p>
+         </div>
+         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account No</h5>
+             <p class="fs-14">{{formData.generalInfo.accNo}}</p>
+         </div>
+         <div class="col-md-5 px-4  col-lg-6 col-xl-6 px-4  ">
+             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account Holder/ Company Name
+             </h5>
+             <p class="fs-14">{{formData.generalInfo.accHolder}}</p>
+         </div>
+         <div class="col-md-12 px-4 ">
+             <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
+             <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
+             </p>
+         </div>
+     </div>
+     <!-- <div class="row">
+         <div class="col-md-12 px-4 d-block  d-lg-flex">
+             <p class="bg-light border p-2 fs-14 rounded mr-0 mr-lg-3 text-center ">Attach Existing </p>
+             <p class="bg-light border p-2 fs-14 mr-0 mr-lg-3 rounded text-center ">Create New </p>
+             <p class="bg-light border p-2 fs-14  mr-0 mr-lg-3 rounded text-center ">Create Form Template
+             </p>
+         </div>
+     </div>
+     <div class="row">
+         <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+             <div class="card bg-light h-100 ">
+                 <div class="card-body">
+                     <h5 class="card-title mb-3 fs-18">Brief Co. Detail </h5>
+                     <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                     <p class="card-text dark-text-1 fs-12">1200232</p>
+                     <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                     <p class="card-text dark-text-1 fs-12">$1</p>
+                     <a  class="card-link">Word Doc.</a>
+                     <div class="mt-3 text-right"> <i
+                             class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                         <i class="fa fa-file text-secondary fs-14"></i> </div>
+                 </div>
+             </div>
+         </div>
+         <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+             <div class="card bg-light h-100 ">
+                 <div class="card-body">
+                     <h5 class="card-title mb-3 fs-18"> ISO Certificate </h5>
+                     <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                     <p class="card-text dark-text-1 fs-12">1200232</p>
+                     <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                     <p class="card-text dark-text-1 fs-12">$1</p>
+                     <a  class="card-link">PDF</a>
+                     <div class="mt-3 text-right"> <i
+                             class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                         <i class="fa fa-file text-secondary fs-14"></i> </div>
+                 </div>
+             </div>
+         </div>
+         <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+             <div class="card bg-light h-100 ">
+                 <div class="card-body">
+                     <h5 class="card-title mb-3 fs-18">Company Registration </h5>
+                     <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                     <p class="card-text dark-text-1 fs-12">1200232</p>
+                     <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                     <p class="card-text dark-text-1 fs-12">$1</p>
+                     <a  class="card-link">PDF</a>
+                     <div class="mt-3 text-right"> <i
+                             class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                         <i class="fa fa-file text-secondary fs-14"></i> </div>
+                 </div>
+             </div>
+         </div>
+     </div> -->
+     <div class="row">
+         <div class="col-md-12 mb-5 px-4">
+             <!-- <button type="button"
+             class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Privious</button> -->
+             <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                 matStepperNext>Next</button>
+             <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+             (click)="move(6)">Finish</button> -->
+
+             <a href="/landing/supplier-registration/dashboard">
+                 <button type="button"
+                     class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+             </a>
+             <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
+                 Draft</button>
+         </div>
+     </div>
+
+ </mat-step>
+ <!-- Personal Details -->
+ <mat-step>
+     <ng-template matStepLabel>Personal Details</ng-template>
+
+     <div class="row">
+         <div class="col-md-12 px-4 d-flex mb-3">  
+         </div>
+     </div>
+     <div class="row">
+         <div class="col-md-12 mb-5 px-4">
+             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                 matStepperPrevious>Privious</button>
+             <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                 matStepperNext>Next</button>
+             <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+             (click)="move(6)">Finish</button> -->
+             <a href="/landing/supplier-registration/dashboard">
+                 <button type="button"
+                     class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+             </a>
+             <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
+                 Draft</button>
+         </div>
+     </div>
+     <!-- Address Model Pop-Up Form -->
+     <ng-template #mymodal let-modal>
+         <div class="modal-header">
+             <h4 class="modal-title" id="modal-basic-title">Add Address</h4>
+             <button type="button" class="close" aria-label="Close"
+                 (click)="modal.dismiss('Cross click')">
+                 <span aria-hidden="true">×</span>
+             </button>
+         </div>
+         <form [formGroup]="form" (ngSubmit)="submit() ; modal.close('Save click')">
+             <div class="modal-body custom-modal-main">
+                 <section class=" bg-white ">
+                     <div>
+                         <div class="row ">
+                             <div class="col-md-12 ">
+                                 <div class="form-group row mb-3">
+                                     <label for="poBox" class="col-sm-5 col-form-label">P.O.Box</label>
+                                     <div class="col-sm-7">
+                                         <input formControlName="poBox" id="poBox" type="text"
+                                             class="form-control">
+                                     </div>
+                                     <div *ngIf="f.poBox.touched && f.poBox.invalid"
+                                         class="alert alert-danger">
+                                         <div *ngIf="f.poBox.errors.required" class="col-sm-7">*required
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="form-group row mb-3">
+                                     <label for="supplierBranch" class="col-sm-5 col-form-label">Supplier
+                                         Branch</label>
+                                     <div class="col-sm-7">
+                                         <input formControlName="supplierBranch" id="supplierBranch"
+                                             type="text" class="form-control">
+                                     </div>
+                                     <div *ngIf="f.supplierBranch.touched && f.supplierBranch.invalid"
+                                         class="alert alert-danger">
+                                         <div *ngIf="f.supplierBranch.errors.required" class="col-sm-7">
+                                             *required</div>
+                                     </div>
+                                 </div>
+                                 <div class="form-group row mb-3">
+                                     <label for="sponsorName" class="col-sm-5 col-form-label">Sponsor
+                                         Name</label>
+                                     <div class="col-sm-7">
+                                         <input formControlName="sponsorName" id="sponsorName"
+                                             type="text" class="form-control">
+                                     </div>
+                                     <div *ngIf="f.sponsorName.touched && f.sponsorName.invalid"
+                                         class="alert alert-danger">
+                                         <div *ngIf="f.sponsorName.errors.required" class="col-sm-7">
+                                             *required</div>
+                                     </div>
+                                 </div>
+                                 <div class="form-group row mb-3">
+                                     <label for="SponsorNationalId"
+                                         class="col-sm-5 col-form-label">Sponsor National ID / Resident
+                                         ID</label>
+                                     <div class="col-sm-7">
+                                         <input formControlName="SponsorNationalId"
+                                             id="SponsorNationalId" type="text" class="form-control">
+                                     </div>
+                                     <div *ngIf="f.SponsorNationalId.touched && f.SponsorNationalId.invalid"
+                                         class="alert alert-danger">
+                                         <div *ngIf="f.SponsorNationalId.errors.required"
+                                             class="col-sm-7">*required</div>
+                                     </div>
+                                 </div>
+                                 <div class="form-group row mb-3">
+                                     <label for="postalCode" class="col-sm-5 col-form-label">Postal
+                                         Code</label>
+                                     <div class="col-sm-7">
+                                         <input formControlName="postalCode" id="postalCode" type="text"
+                                             class="form-control">
+                                     </div>
+                                     <div *ngIf="f.postalCode.touched && f.postalCode.invalid"
+                                         class="alert alert-danger">
+                                         <div *ngIf="f.postalCode.errors.required" class="col-sm-7">
+                                             *required</div>
+                                     </div>
+                                 </div>
+                                 <div class="form-group row mb-3">
+                                     <label for="authorizedSignatory"
+                                         class="col-sm-5 col-form-label">Authorized Signatory</label>
+                                     <div class="col-sm-7">
+                                         <input formControlName="authorizedSignatory"
+                                             id="authorizedSignatory" type="text" class="form-control">
+                                     </div>
+                                     <div *ngIf="f.authorizedSignatory.touched && f.authorizedSignatory.invalid"
+                                         class="alert alert-danger">
+                                         <div *ngIf="f.authorizedSignatory.errors.required"
+                                             class="col-sm-7">*required</div>
+                                     </div>
+                                 </div>
+                                 <div class="form-group row mb-3">
+                                     <label for="authorizedResidentId"
+                                         class="col-sm-5 col-form-label">Authorized National ID /
+                                         Resident ID</label>
+                                     <div class="col-sm-7">
+                                         <input formControlName="authorizedResidentId"
+                                             id="authorizedResidentId" type="text" class="form-control">
+                                     </div>
+                                     <div *ngIf="f.authorizedResidentId.touched && f.authorizedResidentId.invalid"
+                                         class="alert alert-danger">
+                                         <div *ngIf="f.authorizedResidentId.errors.required"
+                                             class="col-sm-7">*required</div>
+                                     </div>
+                                 </div>
+                                 <div class="row mt-5">
+                                     <div class="col-md-12 mb-5 px-4"> </div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </section>
+             </div>
+             <div class="modal-footer">
+                 <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                     type="submit">Submit</button>
+                 <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
+                     (click)="form.reset(); modal.close('Save click')">Back</button>
+                 <!-- <button type="button" class="btn btn-outline-dark"
+             (click)="modal.close('Save click')">Ok</button> -->
+             </div>
+         </form>
+     </ng-template>
+ </mat-step>
+ <!-- Communication Methods -->
+ <mat-step>
+     <ng-template matStepLabel>Communication Methods</ng-template>
+
+     <div class="row">
+         <div class="col-md-12 px-4 mb-3 mt-3">
+         </div>
+     </div>
+
+     <div class="row">
+         <div class="col-md-12 mb-5 px-4">
+             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                 matStepperPrevious>Privious</button>
+             <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                 matStepperNext>Next</button>
+             <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+             (click)="move(6)">Finish</button> -->
+             <a href="/landing/supplier-registration/dashboard">
+                 <button type="button"
+                     class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+             </a>
+             <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
+                 Draft</button>
+         </div>
+     </div>
+ </mat-step>
+ <!-- Commercial Info -->
+ <mat-step>
+     <ng-template matStepLabel>Commercial Info</ng-template>
+
+     <div class="row">
+         <div class="col-md-12 px-4 mb-3 mt-3">
+            
+         </div>
+     </div>
+     <div class="row">
+         <div class="col-md-12 mb-5 px-4">
+             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                 matStepperPrevious>Privious</button>
+             <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                 matStepperNext>Next</button>
+             <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+             (click)="move(6)">Finish</button> -->
+             <a href="/landing/supplier-registration/dashboard">
+                 <button type="button"
+                     class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+             </a>
+             <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
+                 Draft</button>
+         </div>
+     </div>
+ </mat-step>
+  <!-- Staff Details -->
+  <mat-step>
+     <ng-template matStepLabel>Staff Details</ng-template>
+
+     <div class="row">
+         <div class="col-md-12 px-4 mb-3 mt-3">
+             <div class="table-responsive">
+
+                 <input class="fs-16 custom-height-35" [(ngModel)]="searchText"
+                     placeholder="Search text">
+
+                 <button class="btn btn-secondary ml-2 float-right mb-2"
+                     (click)="addNewRow('employee')"><i class="fa fa-plus"
+                         aria-hidden="true"></i></button>
+                 <table class="table table-striped ">
+                     <thead>
+                         <tr class="purple-bg text-white">
+                             <th scope="col" class="custom-width-60">No <i class="fa fa-sort"
+                                     aria-hidden="true" (click)="sorting('employee','no')"></i></th>
+                             <th scope="col">Name <i class="fa fa-sort" aria-hidden="true"
+                                     (click)="sorting('employee','name')"></i></th>
+                             <th scope="col">Qualification <i class="fa fa-sort" aria-hidden="true"
+                                     (click)="sorting('employee','qualification')"></i></th>
+                             <th scope="col">Designation <i class="fa fa-sort" aria-hidden="true"
+                                     (click)="sorting('employee','designation')"></i></th>
+                             <th scope="col">Experience <i class="fa fa-sort" aria-hidden="true"
+                                     (click)="sorting('employee','experience')"></i></th>
+                             <th scope="col">Nationality <i class="fa fa-sort" aria-hidden="true"
+                                     (click)="sorting('employee','nationality')"></i></th>
+                             <th scope="col">Category <i class="fa fa-sort" aria-hidden="true"
+                                     (click)="sorting('employee','category')"></i></th>
+                             <th scope="col">Documents(CV)</th>
+                         </tr>
+                     </thead>
+                     <!-- *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)"  -->
+                     <!-- <input  [(ngModel)]="data.no"> -->
+                     <tbody>
+                         <tr *ngFor="let data of employeeData | filter : searchText; index as index"
+                             (clickOutside)="enteredDetails( 'employee',data)">
+                             <td (dblclick)="data.isEdit = true">{{data.no}}</td>
+                             <!-- <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)"><input [(ngModel)]="data.no"></td> -->
+                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.name}}</td>
+                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                 <input [(ngModel)]="data.name"></td>
+                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                 {{data.qualification}} </td>
+                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                 <input [(ngModel)]="data.qualification"></td>
+                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                 {{data.designation}}</td>
+                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                 <input [(ngModel)]="data.designation"></td>
+                             <th *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.experience}}
+                             </th>
+                             <th *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                 <input [(ngModel)]="data.experience"></th>
+                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                 {{data.nationality}}</td>
+                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                 <input [(ngModel)]="data.nationality"></td>
+                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.category}}
+                             </td>
+                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                 <input [(ngModel)]="data.category"></td>
+                             <td><a class="text-decoration-underline text-danger">{{data.docCV}}</a>
+                             </td>
+                         </tr>
+                     </tbody>
+
+                 </table>
+             </div>
+         </div>
+     </div>
+     <div class="row">
+         <div class="col-md-12 px-4 ">
+             <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
+             <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
+             </p>
+         </div>
+     </div>
+     <div class="row">
+         <div class="col-md-12 mb-5 px-4">
+             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                 matStepperPrevious>Privious</button>
+                 <a href="/landing/supplier-registration/dashboard">
+                     <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                     matStepperNext>Finish</button>
+                     </a>
+             <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+             (click)="move(6)">Finish</button> -->
+             <a href="/landing/supplier-registration/dashboard">
+                 <button type="button"
+                     class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+             </a>
+             <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
+                 Draft</button>
+         </div>
+     </div>
+ </mat-step>
+ </mat-horizontal-stepper>

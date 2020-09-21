@@ -18,11 +18,14 @@ export class LandingHeaderComponent implements OnInit {
   public openMessageWindow: boolean = false;
   public showUnreadMessage: boolean = true;
   public sidebarItems;
+  showtabs: boolean;
   
   constructor(private router: Router, private _userService :UserService, private spinner: SpinnerService) { }
 
   ngOnInit() {
-   
+    if(localStorage.getItem('supplierLogin') === 'true'){
+      this.showtabs = false;
+    }
   }
   /**
    * Navigates to Dashboard
@@ -54,10 +57,15 @@ export class LandingHeaderComponent implements OnInit {
   }
 
   onLogOut(){
-    this._userService.logout().subscribe(d => {});
-    localStorage.clear();
-    this.spinner.closeSpinner();
-    this.router.navigate(['']);
+    if(localStorage.getItem('supplierLogin') === 'true'){
+      localStorage.clear();
+      this.router.navigate(['']);
+    } else {
+      this._userService.logout().subscribe(d => {});
+      this.spinner.closeSpinner();
+      localStorage.clear();
+      this.router.navigate(['/admin/user/login']);
+    }
   }
 
   onChangePassword(){

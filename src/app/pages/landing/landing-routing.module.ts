@@ -13,6 +13,11 @@ const routes: Routes = [
     canActivate: [ProtectGuard],
     children:[
       {
+        path: '',
+        redirectTo: '/landing/supplier-registration/dashboard',
+        pathMatch: 'full'
+      },
+      {
         path: 'dashboard',
         loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
         canActivate: [AuthGuard]
@@ -37,6 +42,16 @@ const routes: Routes = [
         component: InternationalLoginComponent,
       }
     ]
+  },
+  {
+    path: '',
+    redirectTo: '/landing/supplier-registration/dashboard',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: '/landing/supplier-registration/dashboard',
+    pathMatch: 'full'
   }
 ];
 

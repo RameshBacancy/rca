@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
 export class InternationalLoginComponent implements OnInit {
 
   public user = {email:"",password:""}
+  message: string;
+  validForm: boolean = true;
 
   constructor( private router: Router) { }
 
@@ -22,7 +24,21 @@ export class InternationalLoginComponent implements OnInit {
     localStorage.setItem('completeReg', 'T');
     this.router.navigateByUrl('/landing/supplier-registration/dashboard')
   }
-  onViewSidebar(e){
-    
+
+  validateEmail(email, psw) {
+    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    if (!emailReg.test(email)) {
+      this.validForm = true;
+        this.message = "please enter valid email";
+    } else if( psw === ''){
+      this.validForm = true;
+      this.message = "please enter valid password";
+    } 
+    else {
+      this.message = "";
+      this.validForm = false;
+    }
+  }
+  onViewSidebar(e){ 
   }
 }

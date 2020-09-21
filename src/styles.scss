@@ -59,7 +59,7 @@ body { font-size: 14px; font-weight:400; font-family: Arial, sans-serif !importa
 /* CSS Document */
 
 a { text-decoration:none; color:#a6a6a6 !important }
-a:hover { text-decoration:none !important; color:#873e8d !important }
+a:hover { text-decoration:none !important; color:#873e8d !important; cursor: pointer; }
 a.active{ text-decoration:none !important; color:#873e8d !important }
 
 .text-dark-grey { color:#726565 }
@@ -150,6 +150,10 @@ thead, tbody, tfoot, tr, td, th {    vertical-align: middle; }
   height: 120px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
+  left: 50%;
+  top: 50%;
+  margin-left: -60px;
+  margin-top: -60px;
 }
 
 /* Safari */
@@ -187,10 +191,17 @@ thead, tbody, tfoot, tr, td, th {    vertical-align: middle; }
 @media (max-width: 991px) {
         
  .custom-min-vh-100 { min-height: auto;}
-        
+ .mat-horizontal-stepper-header {    height: auto !important;    margin-top: 10px;    margin-bottom: 10px; }
+ .mat-horizontal-stepper-header-container {      flex-wrap: wrap;     margin-bottom: 20px;} 
    }
 
 @media (max-width: 767px) {
   .modal-dialog {margin: 10px auto !important;  max-width: 90% !important;}
   .new-form-custom-1 .alert-danger {     top: 72px;}
+ }
+
+ @media (max-width: 500px) {
+  .mat-step-header {
+   width: 180px; }
+ 
  }

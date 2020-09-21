@@ -1,19 +1,19 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { MatStepper } from '@angular/material/stepper';
-import { Router, ActivatedRoute } from '@angular/router';
-import { SupplierRegistrationService } from '../../../services/supplier-registration.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { SupplierRegistrationService } from 'src/app/services/supplier-registration.service';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SortByPipe } from 'src/app/pipe/sortBy.pipe';
 import { FilterPipe } from 'src/app/pipe/searchEmployee.pipe';
 import { AlertService } from 'src/app/services/alert.service';
+import { MatStepper } from '@angular/material/stepper';
 
 @Component({
-  selector: 'app-supplier-registration-process',
-  templateUrl: './supplier-registration-process.component.html',
-  styleUrls: ['./supplier-registration-process.component.scss']
+  selector: 'app-local-registration',
+  templateUrl: './local-registration.component.html',
+  styleUrls: ['./local-registration.component.scss']
 })
-export class SupplierRegistrationProcessComponent implements OnInit {
+export class LocalRegistrationComponent implements OnInit {
 
   @ViewChild('stepper') private stepper: MatStepper;
   formData: any;
@@ -371,5 +371,4 @@ export class SupplierRegistrationProcessComponent implements OnInit {
 
  
   
- 
 }

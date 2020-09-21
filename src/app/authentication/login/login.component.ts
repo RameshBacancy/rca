@@ -13,9 +13,12 @@ import { SpinnerService } from 'src/app/services/spinner.service';
 export class LoginComponent implements OnInit {
 
 
-  public user = {email:"",password:""}
+  public user = {email:"",password:""};
+  public fuser = {email:""};
   message: string;
   closeResult: string;
+  errmessage: string;
+  validForm: boolean;
 
   constructor(
     private _userService: UserService,
@@ -26,7 +29,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.spinner.openSpinner();
+    // this.spinner.openSpinner();
     localStorage.clear();
     this.spinner.closeSpinner();
   }
@@ -41,8 +44,8 @@ export class LoginComponent implements OnInit {
           this.spinner.closeSpinner();
       },
       (error) => {                              //Error callback
-        console.error('error caught in component')
-        this.message = error;
+        // console.error('error caught in component')
+        this.message = error.error.message;
         this.spinner.closeSpinner();
       }
     )
@@ -51,12 +54,28 @@ export class LoginComponent implements OnInit {
   
   forgetPass()
   {
-    this._userService.forgetPass(this.user.email).subscribe(d => {
+    this._userService.forgetPass(this.fuser.email).subscribe(d => {
       this.spinner.closeSpinner();
      })
   }
 
+  validateEmail(email) {
+    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    if (!emailReg.test(email)) {
+      this.validForm = false;
+      this.errmessage = "please enter valid email";
+    }
+    else {
+      this.errmessage = "";
+      this.validForm = true;
+    }
+  }
+
   open(content, address?) {
+    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    if(!emailReg.test(this.fuser.email)){
+      this.validForm = true;
+    }
 
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
 

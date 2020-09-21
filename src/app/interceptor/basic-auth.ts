@@ -12,7 +12,7 @@ export class BasicAuthInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // add authorization header with basic auth credentials if available
-        this.spinner.openSpinner();
+        // this.spinner.openSpinner();
         this.userService.createAcceptHeader();
         const currentUser = localStorage.getItem('authToken');
         if (currentUser) {

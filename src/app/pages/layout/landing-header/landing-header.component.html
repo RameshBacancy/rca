@@ -20,8 +20,8 @@
       <div class="landing-pic"></div>
       <div *ngIf="headerMenu" class="landing-dropdown">
         <ul>
-          <li><a routerLinkActive="active" routerLink="">My Profile</a></li>
-          <li><a routerLinkActive="active" (click)="onChangePassword()">Change Password</a></li>
+          <li><a routerLinkActive="active">My Profile</a></li>
+          <li *ngIf="showtabs"><a routerLinkActive="active" (click)="onChangePassword()">Change Password</a></li>
           <li><a routerLinkActive="active" (click)="onLogOut()">Log out</a></li>
         </ul>
       </div>

@@ -8,6 +8,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SortByPipe } from 'src/app/pipe/sortBy.pipe';
 import { FilterPipe } from 'src/app/pipe/searchEmployee.pipe';
 import { ClickOutsideDirective } from 'src/app/directives/click-outside.directive';
+import { LocalRegistrationComponent } from './local-registration/local-registration.component';
+import { IndividualRegistrationComponent } from './individual-registration/individual-registration.component';
+import { InternationalRegistrationComponent } from './international-registration/international-registration.component';
 
 
 const routes: Routes = [
@@ -23,6 +26,9 @@ const routes: Routes = [
     SortByPipe,
     ClickOutsideDirective,
     FilterPipe,
+    LocalRegistrationComponent,
+    IndividualRegistrationComponent,
+    InternationalRegistrationComponent,
   ],
   imports: [
     CommonModule,
