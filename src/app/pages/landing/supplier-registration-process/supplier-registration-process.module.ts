@@ -11,7 +11,7 @@ import { ClickOutsideDirective } from 'src/app/directives/click-outside.directiv
 import { LocalRegistrationComponent } from './local-registration/local-registration.component';
 import { IndividualRegistrationComponent } from './individual-registration/individual-registration.component';
 import { InternationalRegistrationComponent } from './international-registration/international-registration.component';
-
+import {MatTabsModule} from '@angular/material/tabs';
 
 const routes: Routes = [
   {
@@ -33,6 +33,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     MatStepperModule,
+    MatTabsModule,
     NgbModule,
     FormsModule,
     ReactiveFormsModule,

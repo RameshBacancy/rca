@@ -7,6 +7,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SortByPipe } from 'src/app/pipe/sortBy.pipe';
 import { FilterPipe } from 'src/app/pipe/searchEmployee.pipe';
 import { AlertService } from 'src/app/services/alert.service';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @Component({
   selector: 'app-individual-registration',
@@ -16,6 +17,7 @@ import { AlertService } from 'src/app/services/alert.service';
 export class IndividualRegistrationComponent implements OnInit {
 
   @ViewChild('stepper') private stepper: MatStepper;
+  @ViewChild('tabs') private tabs: MatTabsModule;
   formData: any;
   closeResult: string;
   order: boolean = false;
@@ -37,10 +39,10 @@ export class IndividualRegistrationComponent implements OnInit {
     authorizedResidentId: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
   });
   
-  employeeData: any[];
-  employeeSearch: string;
+  individualData: any[];
+  individualSearch: string;
   newData:any; 
-  projectData: any[];
+  communicationData: any[];
   subContractorData: any[];
   equipmentData: any[];
   otherData: any[];
@@ -48,6 +50,7 @@ export class IndividualRegistrationComponent implements OnInit {
   isLocal: boolean = false;
   isIndividual: boolean = false;
   isInternational: boolean = false;
+
 
   constructor(
     private router: Router, 
@@ -58,23 +61,35 @@ export class IndividualRegistrationComponent implements OnInit {
     private searchPipe: FilterPipe,
     private alertService: AlertService) { }
     
+    loadData(data){
+      var d=[];
+      d.push(data);
+      this.formData = this.supplierData.getdata();
+      
+      
+      this.formData.individualAddress=d;
+      this.individualData = this.formData.individualDetails;
+      this.communicationData = this.formData.communicationDetails;
+      this.subContractorData = this.formData.subContractorDetails;
+      this.equipmentData = this.formData.equipmentDetails;
+      this.otherData = this.formData.otherDetails;
+      if(localStorage.getItem('regType') === 'local'){
+        this.isLocal = true
+      }
+      if(localStorage.getItem('regType') === 'individual'){
+        this.isIndividual = true
+      }
+      if(localStorage.getItem('regType') === 'international'){
+        this.isInternational = true
+      }
+    }
   
-  ngOnInit(): void {  
-    this.formData = this.supplierData.getdata();
-    this.employeeData = this.formData.employeDetails;
-    this.projectData = this.formData.projectDetails;
-    this.subContractorData = this.formData.subContractorDetails;
-    this.equipmentData = this.formData.equipmentDetails;
-    this.otherData = this.formData.otherDetails;
-    if(localStorage.getItem('regType') === 'local'){
-      this.isLocal = true
-    }
-    if(localStorage.getItem('regType') === 'individual'){
-      this.isIndividual = true
-    }
-    if(localStorage.getItem('regType') === 'international'){
-      this.isInternational = true
-    }
+  ngOnInit(): void { 
+    this.formData=this.supplierData.getdata();
+      this.formData.dropdownAll=this.formData.individualAddress;
+    var array={};
+    array=this.formData.individualAddress[0];
+    this.loadData(this.formData.individualAddress[0]); 
   }
 
   get f(){
@@ -132,14 +147,14 @@ export class IndividualRegistrationComponent implements OnInit {
   }
 
   addNewRow(datatype){
-    if(datatype === 'employee'){
-      this.employeeData.map((data, i)=> {
+    if(datatype === 'individual'){
+      this.individualData.map((data, i)=> {
         if(data.name == ""){
-          this.employeeData.splice(i,1);
+          this.individualData.splice(i,1);
         }
       })
       this.newData = {
-        "no": this.employeeData.length+1,
+        "no": this.individualData.length+1,
         "name": " * ",
         "qualification": "",
         "designation": "",
@@ -149,16 +164,16 @@ export class IndividualRegistrationComponent implements OnInit {
         "docCV":"",
         "isEdit": true
       };
-      this.employeeData.push(this.newData);
+      this.individualData.push(this.newData);
     }
-    if(datatype === 'project'){
-      this.projectData.map((data, i)=> {
+    if(datatype === 'communication'){
+      this.communicationData.map((data, i)=> {
         if(data.name == ""){
-          this.projectData.splice(i,1);
+          this.communicationData.splice(i,1);
         }
       })
       this.newData = {
-        "no": this.projectData.length+1,
+        "no": this.communicationData.length+1,
         "name": " * ",
         "client": "",
         "consultent": "",
@@ -169,7 +184,7 @@ export class IndividualRegistrationComponent implements OnInit {
         "documents": "",
         "isEdit": true
       };
-      this.projectData.push(this.newData);
+      this.communicationData.push(this.newData);
     }
     if(datatype === 'subContractor'){
       this.subContractorData.map((data, i)=> {
@@ -226,10 +241,10 @@ export class IndividualRegistrationComponent implements OnInit {
 
   enteredDetails(datatype, data){
     data.isEdit = false;
-    if(datatype === 'employee'){
+    if(datatype === 'individual'){
      
       if(data.name !== ""){
-        this.employeeData.map((d, i) => {
+        this.individualData.map((d, i) => {
           if(d.no == data.no){
             d = data
           }
@@ -239,18 +254,18 @@ export class IndividualRegistrationComponent implements OnInit {
          data.isEdit = true;
         }
       } else {
-        this.employeeData.map((data, i)=> {
+        this.individualData.map((data, i)=> {
           if(data.name == ""){
-            this.employeeData.splice(i,1);
+            this.individualData.splice(i,1);
           }
         })
         this.alertService.pushError('name can not be empty.')
       }
     }
-    if(datatype === 'project'){
+    if(datatype === 'communication'){
       
       if(data.name !== ""){
-        this.projectData.map((d, i) => {
+        this.communicationData.map((d, i) => {
           if(d.no == data.no){
             d = data
           }
@@ -260,9 +275,9 @@ export class IndividualRegistrationComponent implements OnInit {
           data.isEdit = true;
          }
       } else {
-        this.projectData.map((data, i)=> {
+        this.communicationData.map((data, i)=> {
           if(data.name == ""){
-            this.projectData.splice(i,1);
+            this.communicationData.splice(i,1);
           }
         })
         this.alertService.pushError('name can not be empty.')
@@ -334,11 +349,11 @@ export class IndividualRegistrationComponent implements OnInit {
   sorting( property, str){
     this.order = !this.order;
     if(this.order === true){
-      if(property === 'employee'){
-        this.employeeData = this.sortByPipe.transform(this.formData.employeDetails,'asc',str)
+      if(property === 'individual'){
+        this.individualData = this.sortByPipe.transform(this.formData.individualDetails,'asc',str)
       }
-      if(property === 'project'){
-        this.projectData = this.sortByPipe.transform(this.formData.projectDetails,'asc',str)
+      if(property === 'communication'){
+        this.communicationData = this.sortByPipe.transform(this.formData.communicationDetails,'asc',str)
       }
       if(property === 'subcontractor'){
         this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetails,'asc',str)
@@ -351,11 +366,11 @@ export class IndividualRegistrationComponent implements OnInit {
       }
     }
     else{
-      if(property === 'employee'){
-        this.employeeData = this.sortByPipe.transform(this.formData.employeDetails,'desc',str)
+      if(property === 'individual'){
+        this.individualData = this.sortByPipe.transform(this.formData.individualDetails,'desc',str)
       }
-      if(property === 'project'){
-        this.projectData = this.sortByPipe.transform(this.formData.projectDetails,'desc',str)
+      if(property === 'communication'){
+        this.communicationData = this.sortByPipe.transform(this.formData.communicationDetails,'desc',str)
       }
       if(property === 'subcontractor'){
         this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetails,'desc',str)
@@ -369,7 +384,18 @@ export class IndividualRegistrationComponent implements OnInit {
     }
   }
 
- 
+  selectChange(event){
+    var dp=this.formData;
   
+    if(dp.individualAddress!=undefined && event.target.selectedIndex>dp.individualAddress.length){
+     
+      this.loadData(dp.individualAddress[event.target.selectedIndex]);
+    }else{
 
+    this.loadData(dp.dropdownAll[event.target.selectedIndex]);
+    }
+
+  }
+  
+  
 }
