@@ -87,7 +87,7 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form class="" #form="ngForm" (ngSubmit)="forgetPass() ; modal.close('Save click')">
+            <form class="" #form="ngForm" (ngSubmit)="forgetPass(fuser.email) ; modal.close('Save click')">
                 <div class="modal-body custom-modal-main">
                     <section class=" bg-white ">
                         <div class="row mb-3 mr-4 ml-4 mt-4">

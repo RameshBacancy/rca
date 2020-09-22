@@ -51,7 +51,7 @@ export class LocalRegistrationComponent implements OnInit {
  
   selectedAddress: any;
   allAddresses: any;
-  headerMenu: boolean;
+  addressMenu: boolean;
   activityData: any;
   personalData: any;
   comunicationData: any;
@@ -59,7 +59,6 @@ export class LocalRegistrationComponent implements OnInit {
   BankDetails: any;
   compBranchInfoData: any;
   activityMenu: boolean;
-
 
   constructor(
     private router: Router, 
@@ -124,6 +123,12 @@ export class LocalRegistrationComponent implements OnInit {
     }
   }
 
+  submitRegistration(){
+    this.completed = true;
+    localStorage.setItem('LocalRegComplete',"true");
+    // this.router.navigateByUrl('/landing/supplier-registration/transaction');
+  }
+
   submit(){
     if(this.form.status === 'VALID'){
       this.formData.address.addressDetails.push(this.form.value)
@@ -147,9 +152,6 @@ export class LocalRegistrationComponent implements OnInit {
   registrationComplete(){
     this.completed = true;
   }
-  // move(index: number) {
-  //   this.stepper.selectedIndex = index;
-  // }
 
   Cancel(){
     this.router.navigate(['/landing/supplier-registration/dashboard']);
@@ -163,21 +165,23 @@ export class LocalRegistrationComponent implements OnInit {
         }
       })
       this.newData = {
-        "no": this.employeeData.length+1,
         "name": " * ",
-        "qualification": "Btech",
-        "specialization": "-",
-        "jobTitle": "-",
-        "designation": "Project Manager",
+        "qualification": "",
+        "specialization": "",
+        "jobTitle": "",
+        "designation": "",
         "designationDate": "",
         "expDate": "",
-        "experience": "8yrs",
-        "appointmentDate": "-",
-        "status": "-",
-        "statusDate": "-",
-        "staffCategory": "-",
-        "passportNum": "-",
-        "recidentCard": "-",
+        "experience": "",
+        "appointmentDate": "",
+        "status": "",
+        "statusDate": "",
+        "staffCategory": "",
+        "passportNum": "",
+        "recidentCard": "",
+        "civilNo": "",
+        "crNo": "",
+        "omaniratio": "",
         "isEdit": true
       };
       this.employeeData.push(this.newData);
@@ -320,7 +324,7 @@ export class LocalRegistrationComponent implements OnInit {
      
       if(data.name !== ""){
         this.employeeData.map((d, i) => {
-          if(d.no == data.no){
+          if(d.name == data.name){
             d = data
           }
         });
@@ -543,13 +547,11 @@ export class LocalRegistrationComponent implements OnInit {
   }
 
   public openMenu() {
-    console.log('a')
-    this.headerMenu = !this.headerMenu;
     this.activityMenu = !this.activityMenu;
   }
 
   public handleClickOutside() {
-    this.headerMenu = false;
+    this.addressMenu = false;
   }
   
 }

@@ -186,7 +186,36 @@ thead, tbody, tfoot, tr, td, th {    vertical-align: middle; }
   from{ bottom:-100px; opacity:0 } 
   to{ bottom:0; opacity:1 }
 }
+.custom-tab-01{
 
+  .mat-stepper-horizontal-line {
+    flex: inherit ;
+    width: 80px;
+    min-width: auto ;
+  }
+}
+.mat-horizontal-stepper-header {    height: auto !important;    margin-top: 10px;    margin-bottom: 10px; }
+ .mat-horizontal-stepper-header-container {      flex-wrap: wrap;     margin-bottom: 20px;} 
+
+ .mat-tab-body{
+   overflow: inherit;
+ }
+
+ .mat-tab-body-content {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  overflow: hidden !important;
+}
+
+.mat-tab-body.mat-tab-body-active {
+  overflow-y: hidden !important;
+}
+
+.custom-drop-down-plus {
+  position: absolute;
+  top: 0;
+  left: 200px;
+}
 
 @media (max-width: 991px) {
         
@@ -195,12 +224,17 @@ thead, tbody, tfoot, tr, td, th {    vertical-align: middle; }
  .mat-horizontal-stepper-header-container {      flex-wrap: wrap;     margin-bottom: 20px;} 
    }
 
+
+   @media (width: 768px) {
+    .mat-step-header {min-width: 200px;}
+   }
+
 @media (max-width: 767px) {
   .modal-dialog {margin: 10px auto !important;  max-width: 90% !important;}
   .new-form-custom-1 .alert-danger {     top: 72px;}
  }
 
- @media (max-width: 500px) {
+ @media (max-width: 600px) {
   .mat-step-header {
    width: 180px; }
  

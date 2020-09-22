@@ -18,7 +18,7 @@ export class LandingHeaderComponent implements OnInit {
   public openMessageWindow: boolean = false;
   public showUnreadMessage: boolean = true;
   public sidebarItems;
-  showtabs: boolean;
+  showtabs: boolean =true;
   
   constructor(private router: Router, private _userService :UserService, private spinner: SpinnerService) { }
 

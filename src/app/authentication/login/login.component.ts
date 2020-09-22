@@ -52,9 +52,9 @@ export class LoginComponent implements OnInit {
   }
 
   
-  forgetPass()
+  forgetPass(email)
   {
-    this._userService.forgetPass(this.fuser.email).subscribe(d => {
+    this._userService.forgetPass(email).subscribe(d => {
       this.spinner.closeSpinner();
      })
   }
