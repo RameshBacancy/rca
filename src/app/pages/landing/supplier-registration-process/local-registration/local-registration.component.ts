@@ -27,14 +27,17 @@ export class LocalRegistrationComponent implements OnInit {
   editGeneralManagerDetails: boolean = false;
 
   form: FormGroup = new FormGroup({
-    // addressID: new FormControl('MCT2', [Validators.required]),
-    poBox: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
-    supplierBranch: new FormControl('', [Validators.required]),
-    sponsorName: new FormControl('', [Validators.required]),
-    SponsorNationalId: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
-    postalCode: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
-    authorizedSignatory: new FormControl('', [Validators.required]),
-    authorizedResidentId: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
+    addressID: new FormControl('', [Validators.required]),
+    addressLine1: new FormControl('', [Validators.required]),
+    addressLine2: new FormControl('', [Validators.required]),
+    language: new FormControl('English', [Validators.required]),
+    country: new FormControl('Oman', [Validators.required]),
+  });
+  bankform: FormGroup = new FormGroup({
+    bankAcc: new FormControl('', [Validators.required]),
+    bankName: new FormControl('', [Validators.required]),
+    bankBranch: new FormControl('', [Validators.required]),
+    holderName: new FormControl('', [Validators.required])
   });
   
   employeeData: any[];
@@ -45,9 +48,18 @@ export class LocalRegistrationComponent implements OnInit {
   equipmentData: any[];
   otherData: any[];
 
-  isLocal: boolean = false;
-  isIndividual: boolean = false;
-  isInternational: boolean = false;
+ 
+  selectedAddress: any;
+  allAddresses: any;
+  headerMenu: boolean;
+  activityData: any;
+  personalData: any;
+  comunicationData: any;
+  activityInfoData: any;
+  BankDetails: any;
+  compBranchInfoData: any;
+  activityMenu: boolean;
+
 
   constructor(
     private router: Router, 
@@ -61,31 +73,37 @@ export class LocalRegistrationComponent implements OnInit {
   
   ngOnInit(): void {  
     this.formData = this.supplierData.getdata();
+    this.allAddresses = this.formData.address.addressDetails;
+    this.activityData = this.formData.activities;
+    this.selectedAddress = this.formData.address.addressDetails[0];
+    this.personalData = this.formData.personalDetails;
+    this.comunicationData = this.formData.comunicationMethod;
+    this.personalData = this.formData.personalDetails;
+    this.compBranchInfoData = this.formData.commercialInfo.compBranchInfo;
+    this.BankDetails = this.formData.commercialInfo.BankDetails;
+    this.activityInfoData = this.formData.commercialInfo.activityInfo;
     this.employeeData = this.formData.employeDetails;
     this.projectData = this.formData.projectDetails;
     this.subContractorData = this.formData.subContractorDetails;
     this.equipmentData = this.formData.equipmentDetails;
     this.otherData = this.formData.otherDetails;
-    if(localStorage.getItem('regType') === 'local'){
-      this.isLocal = true
-    }
-    if(localStorage.getItem('regType') === 'individual'){
-      this.isIndividual = true
-    }
-    if(localStorage.getItem('regType') === 'international'){
-      this.isInternational = true
-    }
+    
   }
 
   get f(){
     return this.form.controls;
   }
 
+  get bf(){
+    return this.bankform.controls;
+
+  }
+
   open(content, address?) {
     if(address){
       this.form.patchValue(address);
     }
-
+    
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
 
       this.closeResult = `Closed with: ${result}`;
@@ -110,6 +128,12 @@ export class LocalRegistrationComponent implements OnInit {
     if(this.form.status === 'VALID'){
       this.formData.address.addressDetails.push(this.form.value)
       this.form.reset();
+    }
+  }
+  submitbank(){
+    if(this.bankform.status === 'VALID'){
+      this.BankDetails.push(this.bankform.value);
+      this.bankform.reset();
     }
   }
 
@@ -141,12 +165,19 @@ export class LocalRegistrationComponent implements OnInit {
       this.newData = {
         "no": this.employeeData.length+1,
         "name": " * ",
-        "qualification": "",
-        "designation": "",
-        "experience": "",
-        "nationality": "",
-        "category": "",
-        "docCV":"",
+        "qualification": "Btech",
+        "specialization": "-",
+        "jobTitle": "-",
+        "designation": "Project Manager",
+        "designationDate": "",
+        "expDate": "",
+        "experience": "8yrs",
+        "appointmentDate": "-",
+        "status": "-",
+        "statusDate": "-",
+        "staffCategory": "-",
+        "passportNum": "-",
+        "recidentCard": "-",
         "isEdit": true
       };
       this.employeeData.push(this.newData);
@@ -221,6 +252,65 @@ export class LocalRegistrationComponent implements OnInit {
         "isEdit": true
       };
       this.otherData.push(this.newData);
+    }
+    if(datatype === 'activity'){
+      this.activityData.map((data, i)=> {
+        if(data.activityName == ""){
+          this.activityData.splice(i,1);
+        }
+      })
+      this.newData = {
+        "activityName": " * ",
+        "subActivity": "",
+        "sagment": "",
+        "family": "",
+        "class": "",
+        "commodity": "",
+        "isEdit": true
+      };
+      this.activityData.push(this.newData);
+    }
+    if(datatype === 'personal'){
+      this.personalData.map((data, i)=> {
+        if(data.personName == ""){
+          this.personalData.splice(i,1);
+        }
+      })
+      this.newData = {
+        "personName": " * ",
+        "nationality": "",
+        "idType": "",
+        "idNo": "",
+        "designation":"",
+        "noOfShares": '',
+        "perShares": "",
+        "authorizationType": "",
+        "authorizationLimit": "",
+        "note": "",
+        "regDate": "",
+        "isEdit": true
+      };
+      this.personalData.push(this.newData);
+    }
+    if(datatype === 'activityInfo'){
+      this.activityInfoData.map((data, i)=> {
+        if(data.activityName == ""){
+          this.activityInfoData.splice(i,1);
+        }
+      })
+      this.newData = {
+        "activityName": " * ",
+        "subActivity": "",
+        "establishmentDate": "",
+        "regDate": "",
+        "expDate": "",
+        "duration": "",
+        "companyGrade": "",
+        "location": "",
+        "Document": "",
+        "isEdit": true
+      };
+      this.activityInfoData.push(this.newData);
     }
   }
 
@@ -328,7 +418,66 @@ export class LocalRegistrationComponent implements OnInit {
         this.alertService.pushError('nameOfWork can not be empty.')
       }
     }
-    
+    if(datatype === 'activity'){
+      if(data.activityName !== ""){
+        this.activityData.map((d, i) => {
+          if(d.no == data.no){
+            d = data
+          }
+        });
+        if(data.activityName === " * "){
+          data.activityName ="",
+          data.isEdit = true;
+         }
+      } else {
+        this.activityData.map((data, i)=> {
+          if(data.activityName == ""){
+            this.activityData.splice(i,1);
+          }
+        })
+        this.alertService.pushError('Activity Name can not be empty.')
+      }
+    }
+    if(datatype === 'personal'){
+      if(data.personName !== ""){
+        this.personalData.map((d, i) => {
+          if(d.no == data.no){
+            d = data
+          }
+        });
+        if(data.personName === " * "){
+          data.personName ="",
+          data.isEdit = true;
+         }
+      } else {
+        this.personalData.map((data, i)=> {
+          if(data.personName == ""){
+            this.personalData.splice(i,1);
+          }
+        })
+        this.alertService.pushError('Person Name can not be empty.')
+      }
+    }
+    if(datatype === 'activityInfo'){
+      if(data.activityName !== ""){
+        this.activityInfoData.map((d, i) => {
+          if(d.no == data.no){
+            d = data
+          }
+        });
+        if(data.activityName === " * "){
+          data.activityName ="",
+          data.isEdit = true;
+         }
+      } else {
+        this.activityInfoData.map((data, i)=> {
+          if(data.activityName == ""){
+            this.activityInfoData.splice(i,1);
+          }
+        })
+        this.alertService.pushError('Activity Name can not be empty.')
+      }
+    }
   }
   
   sorting( property, str){
@@ -349,6 +498,18 @@ export class LocalRegistrationComponent implements OnInit {
       if(property === 'other'){
         this.otherData = this.sortByPipe.transform(this.formData.otherDetails,'asc',str)
       }
+      if(property === 'activity'){
+        this.activityData = this.sortByPipe.transform(this.formData.activities,'asc',str)
+      }
+      if(property === 'personal'){
+        this.personalData = this.sortByPipe.transform(this.formData.personalDetails,'asc',str)
+      }
+      if(property === 'activityInfo'){
+        this.activityInfoData = this.sortByPipe.transform(this.formData.commercialInfo.activityInfo,'asc',str)
+      }
+      if(property === 'branchInfo'){
+        this.compBranchInfoData = this.sortByPipe.transform(this.formData.commercialInfo.compBranchInfo,'asc',str)
+      }
     }
     else{
       if(property === 'employee'){
@@ -366,9 +527,29 @@ export class LocalRegistrationComponent implements OnInit {
       if(property === 'other'){
         this.otherData = this.sortByPipe.transform(this.formData.otherDetails,'desc',str)
       }
+      if(property === 'activity'){
+        this.activityData = this.sortByPipe.transform(this.formData.activities,'desc',str)
+      }
+      if(property === 'personal'){
+        this.personalData = this.sortByPipe.transform(this.formData.personalDetails,'desc',str)
+      }
+      if(property === 'activityInfo'){
+        this.activityInfoData = this.sortByPipe.transform(this.formData.commercialInfo.activityInfo,'desc',str)
+      }
+      if(property === 'branchInfo'){
+        this.compBranchInfoData = this.sortByPipe.transform(this.formData.commercialInfo.compBranchInfo,'desc',str)
+      }
     }
   }
 
- 
+  public openMenu() {
+    console.log('a')
+    this.headerMenu = !this.headerMenu;
+    this.activityMenu = !this.activityMenu;
+  }
+
+  public handleClickOutside() {
+    this.headerMenu = false;
+  }
   
 }

@@ -1,80 +1,216 @@
 {
-    "details": {
+    "localdetails": {
         "generalInfo":{
-            "regNumber": "1567 6578",
-            "regDate": "1567 6578",
+            "crNo": "1567 6578",
+            "civilNo": "1567 6578",
             "expDate": "1567 6578",
+            "arabicName": "Arabic Name",
+            "englishName": "English Name",
+            "companyInfo":"Company Info",
             "activities": "1567 6578",
             "bankName": "Bank Muscat",
             "accNo": "7191 8000",
-            "accHolder": "Electroman LLC"
+            "accHolder": "Electroman LLC",
+            "omaniratio": "-"
         },
+        "activities":[
+            {
+                "activityName": "Test1",
+                "subActivity": "Test1",
+                "sagment": "Sagment",
+                "family": "Family",
+                "class": "Class",
+                "commodity": "Commodity",
+                "isEdit":false
+            },
+            {
+                "activityName": "Test2",
+                "subActivity": "Test2",
+                "sagment": "Sagment",
+                "family": "Family",
+                "class": "Class",
+                "commodity": "Commodity",
+                "isEdit":false
+            }
+        ],
         "address": {
-            "addressID" : "MCT",
             "addressDetails": [
                 {
-                    "poBox": "50023",
-                    "supplierBranch": "Muscat- AL Ghubra",
-                    "sponsorName": "B. Balasubramanian",
-                    "SponsorNationalId": "11337788",
-                    "postalCode": "1208",
-                    "authorizedSignatory": "Muhammad Wadahi",
-                    "authorizedResidentId": "11446677"
+                    "addressID" : "1",
+                    "addressLine1": "10-N, Martingale road",
+                    "addressLine2": "Suite 600",
+                    "language": "English",
+                    "country": "Oman"
+                },
+                {
+                    "addressID" : "2",
+                    "addressLine1": "12-N, Martingale road",
+                    "addressLine2": "Suite 601",
+                    "language": "English",
+                    "country": "Oman"
+                }
+            ]
+        },
+        "personalDetails": [
+            {
+                "personName": "test1",
+                "nationality": "Omani",
+                "idType": "",
+                "idNo": "",
+                "designation":"Project Manager",
+                "noOfShares": 3,
+                "perShares": "20%",
+                "authorizationType": "",
+                "authorizationLimit": "",
+                "note": "",
+                "Reg. Date": ""
+            },
+            {
+                "personName": "test2",
+                "nationality": "Omani",
+                "idType": "-",
+                "idNo": "-",
+                "designation":"Project Manager",
+                "noOfShares": 5,
+                "perShares": "40%",
+                "authorizationType": "-",
+                "authorizationLimit": "-",
+                "note": "-",
+                "regDate": "-",
+                "isEdit": false
+            },
+            {
+                "personName": "test3",
+                "nationality": "Omani",
+                "idType": "-",
+                "idNo": "-",
+                "designation":"Project Manager",
+                "noOfShares": 8,
+                "perShares": "50%",
+                "authorizationType": "-",
+                "authorizationLimit": "-",
+                "note": "-",
+                "Reg. Date": "-",
+                "isEdit": false
+            }
+        ],
+        "comunicationMethod": {
+            "telephone": "+919 515 6162",
+            "poBox": "762 - Muscat",
+            "fax": "414-589-8745",
+            "legalStatus" : "valid",
+            "pc": "72666",
+            "email": "user@yopmail.com"
+        },
+        "commercialInfo":{
+            "activityInfo": [
+                {
+                    "activityName": "Test1",
+                    "subActivity": "Test1",
+                    "establishmentDate": "-",
+                    "regDate": "-",
+                    "expDate": "-",
+                    "duration": "-",
+                    "companyGrade": "-",
+                    "location": "-",
+                    "Document": "-",
+                    "isEdit":false
+                },
+                {
+                    "activityName": "Test2",
+                    "subActivity": "Test2",
+                    "establishmentDate": "-",
+                    "regDate": "-",
+                    "expDate": "-",
+                    "duration": "-",
+                    "companyGrade": "-",
+                    "location": "-",
+                    "Document": "-",
+                    "isEdit":false
                 }
             ],
-            "companyTelephoneNo": "+968 7191 8000",
-            "companyFaxNo": "+968 24510605",
-            "companyEmail": "electrmn@omantel.net.om",
-            "directorName": "R. Balasubrmanian",
-            "directorMobile": "+968 7191 8000",
-            "directorEmail": "bala@electronman.net.om",
-            "generalDirectorName": "Youself",
-            "generalDirectorMobile" : "+968 7191 8000",
-            "generalDirectorEmail": "Youself@electron.net.om"
+            "BankDetails":[
+                {
+                "bankAcc": "savings",
+                "bankName":"Bank Muscat",
+                "bankBranch": "-",
+                "holderName": "user"
+                }
+            ],
+            "compFinanceInfo": {
+                "cashCapital": "Cash Capital",
+                "kindCapital": "Kind Capital",
+                "noOfShares": "1",
+                "shareValue": "100"
+            },
+            "compBranchInfo": [
+                {
+                    "reqDate": "1-1-2020",
+                    "branchId": "12387",
+                    "branchActivity": "New Activity",
+                    "branchActivityNo": 1
+                },
+                {
+                    "reqDate": "1-2-2020",
+                    "branchId": "98654",
+                    "branchActivity": "New Activity2",
+                    "branchActivityNo": 2
+                }
+            ]
         },
         "employeDetails": [
             {
                 "no": 1,
                 "name": "R Bala",
                 "qualification": "Btech",
+                "specialization": "-",
+                "jobTitle": "-",
                 "designation": "Project Manager",
+                "designationDate": "",
+                "expDate": "",
                 "experience": "8yrs",
-                "nationality": "Indian",
-                "category": "Professional",
-                "docCV":"PDF",
+                "appointmentDate": "-",
+                "status": "-",
+                "statusDate": "-",
+                "staffCategory": "-",
+                "passportNum": "-",
+                "recidentCard": "-",
                 "isEdit": false
             },
             {
                 "no": 2,
-                "name": "Jaber",
-                "qualification": "Electronics Eng",
-                "designation": "Site Engineer",
+                "name": "R P",
+                "qualification": "BE",
+                "specialization": "-",
+                "jobTitle": "-",
+                "designation": "Project Manager",
+                "designationDate": "",
+                "expDate": "",
                 "experience": "2yrs",
-                "nationality": "Omani",
-                "category": "Professional",
-                "docCV":"PDF",
+                "appointmentDate": "-",
+                "status": "-",
+                "statusDate": "-",
+                "staffCategory": "-",
+                "passportNum": "-",
+                "recidentCard": "-",
                 "isEdit": false
             },
             {
                 "no": 3,
-                "name": "Younis",
-                "qualification": "Electronics Eng",
-                "designation": "Project Manger",
-                "experience": "2yrs",
-                "nationality": "Omani",
-                "category": "Professional",
-                "docCV":"PDF",
-                "isEdit": false
-            },
-            {
-                "no": 4 ,
-                "name": "Sanjai K",
-                "qualification": "Btech",
-                "designation": "Project Manger",
-                "experience": "4yrs",
-                "nationality": "Indian",
-                "category": "Professional",
-                "docCV":"word doc",
+                "name": "R K",
+                "qualification": "BE",
+                "specialization": "-",
+                "jobTitle": "-",
+                "designation": "Project Manager",
+                "designationDate": "",
+                "expDate": "",
+                "experience": "10yrs",
+                "appointmentDate": "-",
+                "status": "-",
+                "statusDate": "-",
+                "staffCategory": "-",
+                "passportNum": "-",
+                "recidentCard": "-",
                 "isEdit": false
             }
         ],
@@ -225,6 +361,308 @@
             },
             {
                 "no": 4,
+                "nameOfWork": "-",
+                "attachment": "PDF",
+                "isEdit": false
+            }
+        ]
+    },
+    "details": {
+        "generalInfo":{
+            "regNumber": "1567 6578",
+            "regDate": "1567 6578",
+            "expDate": "1567 6578",
+            "activities": "1567 6578",
+            "bankName": "Bank Muscat",
+            "accNo": "7191 8000",
+            "accHolder": "Electroman LLC"
+        },
+        "address": {
+            "addressID" : "MCT",
+            "addressDetails": [
+                {
+                    "poBox": "50023",
+                    "supplierBranch": "Muscat- AL Ghubra",
+                    "sponsorName": "B. Balasubramanian",
+                    "SponsorNationalId": "11337788",
+                    "postalCode": "1208",
+                    "authorizedSignatory": "Muhammad Wadahi",
+                    "authorizedResidentId": "11446677"
+                }
+            ],
+            "companyTelephoneNo": "+968 7191 8000",
+            "companyFaxNo": "+968 24510605",
+            "companyEmail": "electrmn@omantel.net.om",
+            "directorName": "R. Balasubrmanian",
+            "directorMobile": "+968 7191 8000",
+            "directorEmail": "bala@electronman.net.om",
+            "generalDirectorName": "Youself",
+            "generalDirectorMobile" : "+968 7191 8000",
+            "generalDirectorEmail": "Youself@electron.net.om"
+        },
+        "individualAddress":[
+            {   
+                "id":1,
+                "addressID" : "MCT",
+                "addressline1":"4907  August Lane",
+                "addressline2":"Young",
+                "language":"English",
+                "country":"United States"
+            },
+            {
+                "id":2,
+                "addressID" : "NO",
+                "addressline1":"64  London Road",
+                "addressline2":"COMER",
+                "language":"French",
+                "country":"United Kingdom"
+            }
+        ],
+        "individualDetails":[{  
+                "no": 1,      
+                "name": "R Bala",
+                "qualification": "Btech",
+                "designation": "Project Manager",
+                "experience": "8yrs",
+                "nationality": "Indian",
+                "category": "Professional",
+                "age":48,
+                "dob":"01/06/1972",
+                "members":"4",
+                "socialStatus" : "Married",
+                "familySecurity":"No",
+                "idtype":"Citizen Card",
+                "docCV":"PDF",
+                "isEdit": false
+            }],
+        "communicationDetails":[
+        {
+            "no":1,
+            "method":"Telephone",
+            "value":"+1-432-645-2311",
+            "isEdit":false
+        },
+        {
+            "no":2,
+            "method":"PO Box",
+            "value":"762 Muscat 2166",
+            "isEdit":false
+        },
+        {
+            "no":3,
+            "method":"Fax",
+            "value":"432-645-2311",
+            "isEdit":false
+        },
+        {
+            "no":4,
+            "method":"PC",
+            "value":"45829",
+            "isEdit":false
+        },
+        {
+            "no":5,
+            "method":"Email",
+            "value":"bala@localsupplier.com",
+            "isEdit":false
+        }
+        ],
+        "employeDetails": [
+            {
+                "no": 1,
+                "name": "R Bala",
+                "qualification": "Btech",
+                "designation": "Project Manager",
+                "experience": "8yrs",
+                "nationality": "Indian",
+                "category": "Professional",
+                "docCV":"PDF",
+                "isEdit": false
+            },
+            {
+                "no": 2,
+                "name": "Jaber",
+                "qualification": "Electronics Eng",
+                "designation": "Site Engineer",
+                "experience": "2yrs",
+                "nationality": "Omani",
+                "category": "Professional",
+                "docCV":"PDF",
+                "isEdit": false
+            },
+            {
+                "no": 3,
+                "name": "Younis",
+                "qualification": "Electronics Eng",
+                "designation": "Project Manger",
+                "experience": "2yrs",
+                "nationality": "Omani",
+                "category": "Professional",
+                "docCV":"PDF",
+                "isEdit": false
+            },
+            {
+                "no": 4 ,
+                "name": "Sanjai K",
+                "qualification": "Btech",
+                "designation": "Project Manger",
+                "experience": "4yrs",
+                "nationality": "Indian",
+                "category": "Professional",
+                "docCV":"word doc",
+                "isEdit": false
+            }
+        ],
+        "projectDetails": [
+            {
+                "no": 1,
+                "name": "Yibal Project for PDO",
+                "client": "QRB",
+                "consultant": "Khatib & Alami and Partners",
+                "costconsultant": "Milcris",
+                "value": "400,000",
+                "periodStart": "2016",
+                "periodEnd":"2018",
+                "completion": "2018",
+                "documents": "PDF",
+                "isEdit": false
+            },
+            {
+                "no": 2,
+                "name": "Grand Mall-Carrefour",
+                "client": "Majid Al Futtaim",
+                "consultant": "ME Studio Engineering",
+                "costconsultant": "Majan Engineering",
+                "value": "254,000",
+                "periodStart": "2017",
+                "periodEnd":"2018",
+                "completion": "2019",
+                "documents": "PDF",
+                "isEdit": false
+            },
+            {
+                "no": 3,
+                "name": "OMAN Post Off. Ruwi",
+                "client": "QRB",
+                "consultant": "OMAN POST",
+                "costconsultant": "Tahpi pty Ltd",
+                "value": "1,000,000",
+                "periodStart": "2018",
+                "periodEnd":"2021",
+                "completion": "",
+                "documents": "PDF",
+                "isEdit": false
+            }
+        ],
+        "subContractorDetails": [
+            {
+                "no": 1,
+                "regNo": "6828 0080",
+                "subContractor": "Majid",
+                "phone": "+1-432-645-2311",
+                "fax": "79969",
+                "email": "majid@local.com",
+                "regWithRca": "Yes",
+                "isEdit": false
+            },
+            {
+                "no": 2,
+                "regNo": "7394 7802",
+                "subContractor": "Uyte",
+                "phone": "+1-432-645-2311",
+                "fax": "-",
+                "email": "uyte@local.com",
+                "regWithRca": "No",
+                "isEdit": false
+            },
+            {
+                "no": 3,
+                "regNo": "3879 7903",
+                "subContractor": "Reat",
+                "phone": "+1-432-645-2311",
+                "fax": "-",
+                "email": "reat@local.com",
+                "regWithRca": "Yes",
+                "isEdit": false
+            },
+            {
+                "no": 4,
+                "regNo": "8922 6943",
+                "subContractor": "Gnyf",
+                "phone": "+1-432-645-2311",
+                "fax": "-",
+                "email": "-",
+                "regWithRca": "Yes",
+                "isEdit": false
+            }
+        ],
+        "equipmentDetails": [
+            {
+                "no": 1,
+                "type": "Pickup",
+                "quantity": "2",
+                "capacity": "2400CC",
+                "year": "2018",
+                "regNo": "S 2020",
+                "approxValue": "5000 OMR",
+                "isEdit": false
+            },
+            {
+                "no": 2,
+                "type": "Salon",
+                "quantity": "1",
+                "capacity": "2000CC",
+                "year": "2019",
+                "regNo": "R 1235",
+                "approxValue": "7500 OMR",
+                "isEdit": false
+            },
+            {
+                "no": 3,
+                "type": "-",
+                "quantity": "-",
+                "capacity": "-",
+                "year": "-",
+                "regNo": "-",
+                "approxValue": "-",
+                "isEdit": false
+            },
+            {
+                "no": 4,
+                "type": "-",
+                "quantity": "-",
+                "capacity": "-",
+                "year": "-",
+                "regNo": "-",
+                "approxValue": "-",
+                "isEdit": false
+            }
+        ],
+        "otherDetails": [
+            {
+                "no": 1,
+                "name":"test 1",
+                "nameOfWork": "Organization Structure",
+                "attachment": "PDF",
+                "isEdit": false
+            },
+            {
+                "no": 2,
+                "name":"test 2",
+                "nameOfWork": "Tax Certificate",
+                "attachment": "PDF",
+                "isEdit": false
+            },
+            {
+                "no": 3,
+                "name":"test 3",
+                "nameOfWork": "Certificates",
+                "attachment": "PDF",
+                "isEdit": false
+            },
+            {
+                "no": 4,
+                "name":"test 4",
                 "nameOfWork": "-",
                 "attachment": "PDF",
                 "isEdit": false

@@ -1,163 +1,246 @@
 <mat-horizontal-stepper #stepper>
-    <!-- General Info -->
+    <!-- General Info Start-->
     <mat-step>
         <ng-template matStepLabel>General Info</ng-template>
         <div class="row">
-            <div class="col-md-12 px-4 ">
-                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">Activity to
-                    Reg.</h4>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Civil Id</h5>
+                <p class="fs-14">{{formData.generalInfo.civilNo}}</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
+                <p class="fs-14">{{formData.generalInfo.crNo}}</p>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 px-4 d-block d-md-flex">
-                <div class="form-check mr-3 mb-3">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                        id="flexRadioDefault1">
-                    <label class="form-check-label font-italic ml-2" for="flexRadioDefault1"> Construction
-                    </label>
-                </div>
-                <div class="form-check mr-3 mb-3">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                        id="flexRadioDefault2" checked>
-                    <label class="form-check-label font-italic ml-2" for="flexRadioDefault2"> IT & Networks
-                    </label>
-                </div>
-                <div class="form-check mr-3 mb-3">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                        id="flexRadioDefault3" checked>
-                    <label class="form-check-label font-italic ml-2" for="flexRadioDefault3"> Animal Meat
-                    </label>
-                </div>
-                <div class="form-check mr-3 mb-3">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault"
-                        id="flexRadioDefault4" checked>
-                    <label class="form-check-label font-italic ml-2" for="flexRadioDefault4"> Ele. Materials
-                    </label>
-                </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Arabic Name</h5>
+                <p class="fs-14">Arabic Name</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">English Name</h5>
+                <p class="fs-14">English Name</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Company Info</h5>
+                <p class="fs-14">Company Info</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 px-4 mb-3 mt-3">
+                <div class="table-responsive">
 
-                <!-- <div class="col-md-3 text-center">
-                <img src="assets/images/cloud.jpg" alt="" class="img-fluid">
-            </div> -->
-            </div>
+                    <input class="fs-16 custom-height-35" [(ngModel)]="searchText" placeholder="Search text">
 
+                    <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('activity')"><i
+                            class="fa fa-plus" aria-hidden="true"></i></button>
+                    <table class="table table-striped ">
+                        <thead>
+                            <tr class="purple-bg text-white">
+                                <th scope="col" class="custom-width-60">Activity Name
+                                    <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('activity','activityName')"></i>
+                                </th>
+                                <th scope="col">Sub Activity
+                                    <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('activity','subActivity')"></i>
+                                </th>
+                                <th scope="col">Segment
+                                    <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('activity','sagment')"></i>
+                                </th>
+                                <th scope="col">Family
+                                    <i class="fa fa-sort" aria-hidden="true" (click)="sorting('activity','family')"></i>
+                                </th>
+                                <th scope="col">Class
+                                    <i class="fa fa-sort" aria-hidden="true" (click)="sorting('activity','class')"></i>
+                                </th>
+                                <th scope="col">Commodity
+                                    <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('activity','commodity')"></i>
+                                </th>
+                            </tr>
+                        </thead>
+                        <!-- *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)"  -->
+                        <!-- <input  [(ngModel)]="data.no"> -->
+                        <!-- -->
+                        <tbody>
+                            <tr *ngFor="let data of activityData | filter : searchText; index as index"
+                                (clickOutside)="enteredDetails( 'activity',data)">
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.activityName}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)"><input
+                                        [(ngModel)]="data.activityName"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.subActivity}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
+                                    <input [(ngModel)]="data.subActivity"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    {{data.sagment}} </td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
+                                    <input [(ngModel)]="data.sagment"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    {{data.family}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
+                                    <input [(ngModel)]="data.family"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.class}}
+                                </td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
+                                    <input [(ngModel)]="data.class"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    {{data.commodity}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
+                                    <input [(ngModel)]="data.commodity"></td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
         </div>
+
         <div class="row">
-            <div class="col-md-12 px-4 ">
-                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1 ">Municipality Reg
-                </h4>
+            <div class="col-md-12 px-4 d-flex mb-3">
+                <div class="landing-menu" (click)="openMenu()" (clickOutside)="handleClickOutside()">
+                    <div
+                        class="bg-light border rounded p-2 mb-0 fs-14 text-center font-italic font-weight-bold  dark-text-1 w-170">
+                        Address ID : {{selectedAddress.addressID}} <i class="fa fa-caret-down" aria-hidden="true"></i>
+                    </div>
+                    <ul *ngIf="headerMenu" class="landing-dropdown">
+                        <li *ngFor="let address of allAddresses" (click)="selectedAddress = address">
+                            {{address.addressID}}</li>
+                    </ul>
+                </div>
+                <button class="btn btn-secondary ml-2 " (click)="open(mymodal)"><i class="fa fa-plus"
+                        aria-hidden="true"></i></button>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Number</h5>
-                <p class="fs-14">{{formData.generalInfo.regNumber}}</p>
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
-                <p class="fs-14">{{formData.generalInfo.regDate}}</p>
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date </h5>
-                <p class="fs-14">{{formData.generalInfo.expDate}}</p>
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities</h5>
-                <p class="fs-14">{{formData.generalInfo.activities}}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 px-4 ">
-                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1 ">Bank Details
-                </h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Name</h5>
-                <p class="fs-14">{{formData.generalInfo.bankName}}</p>
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account No</h5>
-                <p class="fs-14">{{formData.generalInfo.accNo}}</p>
-            </div>
-            <div class="col-md-5 px-4  col-lg-6 col-xl-6 px-4  ">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account Holder/ Company Name
-                </h5>
-                <p class="fs-14">{{formData.generalInfo.accHolder}}</p>
-            </div>
-            <div class="col-md-12 px-4 ">
-                <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
-                <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
-                </p>
-            </div>
-        </div>
-        <!-- <div class="row">
-            <div class="col-md-12 px-4 d-block  d-lg-flex">
-                <p class="bg-light border p-2 fs-14 rounded mr-0 mr-lg-3 text-center ">Attach Existing </p>
-                <p class="bg-light border p-2 fs-14 mr-0 mr-lg-3 rounded text-center ">Create New </p>
-                <p class="bg-light border p-2 fs-14  mr-0 mr-lg-3 rounded text-center ">Create Form Template
-                </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
-                <div class="card bg-light h-100 ">
-                    <div class="card-body">
-                        <h5 class="card-title mb-3 fs-18">Brief Co. Detail </h5>
-                        <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
-                        <p class="card-text dark-text-1 fs-12">1200232</p>
-                        <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
-                        <p class="card-text dark-text-1 fs-12">$1</p>
-                        <a  class="card-link">Word Doc.</a>
-                        <div class="mt-3 text-right"> <i
-                                class="fa fa-download text-secondary mr-2 fs-14 "></i>
-                            <i class="fa fa-file text-secondary fs-14"></i> </div>
+        <div class="shadow">
+
+            <div class=" p-3 mb-5">
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address Line 1</h5>
+                        <p class="fs-14">{{selectedAddress.addressLine1}}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address Line 2</h5>
+                        <p class="fs-14">{{selectedAddress.addressLine2}}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Language</h5>
+                        <p class="fs-14">{{selectedAddress.language}}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-4  px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Country
+                        </h5>
+                        <p class="fs-14">{{selectedAddress.country}}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
-                <div class="card bg-light h-100 ">
-                    <div class="card-body">
-                        <h5 class="card-title mb-3 fs-18"> ISO Certificate </h5>
-                        <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
-                        <p class="card-text dark-text-1 fs-12">1200232</p>
-                        <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
-                        <p class="card-text dark-text-1 fs-12">$1</p>
-                        <a  class="card-link">PDF</a>
-                        <div class="mt-3 text-right"> <i
-                                class="fa fa-download text-secondary mr-2 fs-14 "></i>
-                            <i class="fa fa-file text-secondary fs-14"></i> </div>
-                    </div>
-                </div>
+        </div>
+
+        <!-- Address Model Pop-Up Form -->
+        <ng-template #mymodal let-modal>
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">Add Address</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">×</span>
+                </button>
             </div>
-            <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
-                <div class="card bg-light h-100 ">
-                    <div class="card-body">
-                        <h5 class="card-title mb-3 fs-18">Company Registration </h5>
-                        <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
-                        <p class="card-text dark-text-1 fs-12">1200232</p>
-                        <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
-                        <p class="card-text dark-text-1 fs-12">$1</p>
-                        <a  class="card-link">PDF</a>
-                        <div class="mt-3 text-right"> <i
-                                class="fa fa-download text-secondary mr-2 fs-14 "></i>
-                            <i class="fa fa-file text-secondary fs-14"></i> </div>
-                    </div>
+            <form [formGroup]="form" (ngSubmit)="submit() ; modal.close('Save click')">
+                <div class="modal-body custom-modal-main">
+                    <section class=" bg-white ">
+                        <div>
+                            <div class="row ">
+                                <div class="col-md-12 ">
+                                    <div class="form-group row mb-3">
+                                        <label for="addressID" class="col-sm-5 col-form-label"> Address ID</label>
+                                        <div class="col-sm-7">
+                                            <input formControlName="addressID" id="addressID" type="text"
+                                                class="form-control">
+                                        </div>
+                                        <div *ngIf="f.addressID.touched && f.addressID.invalid"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.addressID.errors.required" class="col-sm-7">*required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-3">
+                                        <label for="addressLine1" class="col-sm-5 col-form-label">Address Line 1</label>
+                                        <div class="col-sm-7">
+                                            <input formControlName="addressLine1" id="addressLine1" type="text"
+                                                class="form-control">
+                                        </div>
+                                        <div *ngIf="f.addressLine1.touched && f.addressLine1.invalid"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.addressLine1.errors.required" class="col-sm-7">*required
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-3">
+                                        <label for="addressLine2" class="col-sm-5 col-form-label">Address Line 2</label>
+                                        <div class="col-sm-7">
+                                            <input formControlName="addressLine2" id="addressLine2" type="text"
+                                                class="form-control">
+                                        </div>
+                                        <div *ngIf="f.addressLine2.touched && f.addressLine2.invalid"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.addressLine2.errors.required" class="col-sm-7">
+                                                *required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-3">
+                                        <label for="language" class="col-sm-5 col-form-label">Language
+                                        </label>
+                                        <div class="col-sm-7">
+                                            <input formControlName="language" id="language" type="text"
+                                                class="form-control">
+                                        </div>
+                                        <div *ngIf="f.language.touched && f.language.invalid"
+                                            class="alert alert-danger">
+                                            <div *ngIf="f.language.errors.required" class="col-sm-7">
+                                                *required</div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row mb-3">
+                                        <label for="country" class="col-sm-5 col-form-label">Country
+                                        </label>
+                                        <div class="col-sm-7">
+                                            <input formControlName="country" id="country" type="text"
+                                                class="form-control">
+                                        </div>
+                                        <div *ngIf="f.country.touched && f.country.invalid" class="alert alert-danger">
+                                            <div *ngIf="f.country.errors.required" class="col-sm-7">*required</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-5">
+                                        <div class="col-md-12 mb-5 px-4"> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-            </div>
-        </div> -->
+                <div class="modal-footer">
+                    <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" type="submit">Submit</button>
+                    <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
+                        (click)="form.reset(); modal.close('Save click')">Cancel</button>
+
+                </div>
+            </form>
+        </ng-template>
+
+
+
         <div class="row">
             <div class="col-md-12 mb-5 px-4">
                 <!-- <button type="button"
                 class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Privious</button> -->
                 <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                     matStepperNext>Next</button>
-                <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                (click)="move(6)">Finish</button> -->
-
                 <a href="/landing/supplier-registration/dashboard">
-                    <button type="button"
-                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                 </a>
                 <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                     Draft</button>
@@ -165,168 +248,101 @@
         </div>
 
     </mat-step>
-    <!-- Address -->
+    <!-- General Info Complete-->
+
+    <!-- personal Details Start-->
     <mat-step>
-        <ng-template matStepLabel>Address</ng-template>
+        <ng-template matStepLabel>personal Details</ng-template>
 
         <div class="row">
-            <div class="col-md-12 px-4 d-flex mb-3">
-                <p
-                    class="bg-light border rounded p-2 mb-0 fs-14 text-center font-italic font-weight-bold  dark-text-1 w-170">
-                    Address ID : {{formData.address.addressID}} </p>
-                <button class="btn btn-secondary ml-2 " (click)="open(mymodal)"><i class="fa fa-plus"
-                        aria-hidden="true"></i></button>
-            </div>
-        </div>
-        <div class="shadow p-3 mb-5" *ngFor="let address of formData.address.addressDetails">
-            <div class="row">
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">P.O. Box</h5>
-                    <p class="fs-14">{{address.poBox}}</p>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Supplier Branch</h5>
-                    <p class="fs-14">{{address.supplierBranch}}</p>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Sponsor Name</h5>
-                    <p class="fs-14">{{address.sponsorName}}</p>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-4  px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Sponsor National ID/Resident
-                        ID
-                    </h5>
-                    <p class="fs-14">{{address.SponsorNationalId}}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Postal Code</h5>
-                    <p class="fs-14">{{address.postalCode}}</p>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Authorized Signatory</h5>
-                    <p class="fs-14">{{address.authorizedSignatory}}</p>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-4  px-4">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Authorized National ID /
-                        Resident
-                        ID </h5>
-                    <p class="fs-14">{{address.authorizedResidentId}}</p>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-4  px-4">
-                    <button class="btn btn-secondary ml-2 " (click)="delete(address)"><i class="fa fa-trash"
-                            aria-hidden="true"></i></button>
-                </div>
-            </div>
-        </div>
+            <div class="col-md-12 px-4 mb-3 mt-3">
+                <div class="table-responsive">
 
-        <div class="row">
-            <div class="dark-grey-bg col-md-12 px-4 d-flex py-1">
-                <h4 class=" px-4 py-2 fs-16 font-weight-bold mb-0  dark-text-1 ">Company Details
-                </h4>
-                <button class="btn btn-secondary ml-2 mb-0" *ngIf="!editCompanyDetails"
-                    (click)="editCompanyDetails = true"><i class="fa fa-pencil-square-o"
-                        aria-hidden="true"></i></button>
-            </div>
-        </div>
-        <div class="row mb-3 shadow p-3">
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Telephone No</h5>
-                <p class="fs-14" *ngIf="!editCompanyDetails">{{formData.address.companyTelephoneNo}}</p>
-                <input class="fs-14" *ngIf="editCompanyDetails"
-                    [(ngModel)]="formData.address.companyTelephoneNo">
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Fax No</h5>
-                <p class="fs-14" *ngIf="!editCompanyDetails">{{formData.address.companyFaxNo}}</p>
-                <input class="fs-14" *ngIf="editCompanyDetails" [(ngModel)]="formData.address.companyFaxNo">
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email </h5>
-                <p class="fs-14" *ngIf="!editCompanyDetails"><a
-                        class=" text-danger text-decoration-underline">{{formData.address.companyEmail}}</a>
-                </p>
-                <input class="fs-14" *ngIf="editCompanyDetails" [(ngModel)]="formData.address.companyEmail">
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <button class="btn btn-warning " *ngIf="editCompanyDetails"
-                    (click)="editCompanyDetails = false"><i class="fa fa-pencil-square-o"
-                        aria-hidden="true"></i></button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="dark-grey-bg col-md-12 px-4 d-flex  py-1 ">
-                <h4 class=" px-4 py-2 fs-16 font-weight-bold mb-0 dark-text-1 ">Director Details
-                </h4>
-                <button class="btn btn-secondary ml-2 mb-0 " *ngIf="!editDirectorDetails"
-                    (click)="editDirectorDetails = true"><i class="fa fa-pencil-square-o"
-                        aria-hidden="true"></i></button>
-            </div>
-        </div>
-        <div class="row mb-3 shadow p-3">
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Director Name</h5>
-                <p class="fs-14" *ngIf="!editDirectorDetails">{{formData.address.directorName}}</p>
-                <input class="fs-14" *ngIf="editDirectorDetails"
-                    [(ngModel)]="formData.address.directorName">
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Mobile</h5>
-                <p class="fs-14" *ngIf="!editDirectorDetails">{{formData.address.directorMobile}}</p>
-                <input class="fs-14" *ngIf="editDirectorDetails"
-                    [(ngModel)]="formData.address.directorMobile">
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email </h5>
-                <p class="fs-14" *ngIf="!editDirectorDetails"><a
-                        class=" text-danger text-decoration-underline">{{formData.address.directorEmail}}</a>
-                </p>
-                <input class="fs-14" *ngIf="editDirectorDetails"
-                    [(ngModel)]="formData.address.directorEmail">
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <button class="btn btn-warning " *ngIf="editDirectorDetails"
-                    (click)="editDirectorDetails = false"><i class="fa fa-pencil-square-o"
-                        aria-hidden="true"></i></button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="dark-grey-bg col-md-12 px-4 d-flex  py-1">
-                <h4 class=" px-4 py-2 fs-16 font-weight-bold mb-0 dark-text-1 ">General Manager
-                    Details</h4>
-                <button class="btn btn-secondary ml-2 mb-0 " *ngIf="!editGeneralManagerDetails"
-                    (click)="editGeneralManagerDetails = true"><i class="fa fa-pencil-square-o"
-                        aria-hidden="true"></i></button>
-            </div>
-        </div>
-        <div class="row mb-3 shadow p-3">
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Director Name</h5>
-                <p class="fs-14" *ngIf="!editGeneralManagerDetails">{{formData.address.generalDirectorName}}
-                </p>
-                <input class="fs-14" *ngIf="editGeneralManagerDetails"
-                    [(ngModel)]="formData.address.generalDirectorName">
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Mobile</h5>
-                <p class="fs-14" *ngIf="!editGeneralManagerDetails">
-                    {{formData.address.generalDirectorMobile}}</p>
-                <input class="fs-14" *ngIf="editGeneralManagerDetails"
-                    [(ngModel)]="formData.address.generalDirectorMobile">
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email </h5>
-                <p class="fs-14" *ngIf="!editGeneralManagerDetails"><a
-                        class=" text-danger text-decoration-underline">{{formData.address.generalDirectorEmail}}</a>
-                </p>
-                <input class="fs-14" *ngIf="editGeneralManagerDetails"
-                    [(ngModel)]="formData.address.generalDirectorEmail">
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <button class="btn btn-warning " *ngIf="editGeneralManagerDetails"
-                    (click)="editGeneralManagerDetails = false"><i class="fa fa-pencil-square-o"
-                        aria-hidden="true"></i></button>
+                    <input class="fs-16 custom-height-35" [(ngModel)]="searchText" placeholder="Search text">
+
+                    <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('personal')"><i
+                            class="fa fa-plus" aria-hidden="true"></i></button>
+                    <table class="table table-striped ">
+                        <thead>
+                            <tr class="purple-bg text-white">
+                                <th scope="col" class="custom-width-60">Person name <i class="fa fa-sort"
+                                        aria-hidden="true" (click)="sorting('personal','personName')"></i></th>
+                                <th scope="col">Nationality <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('personal','nationality')"></i></th>
+                                <th scope="col">I.D Type <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('personal','idType')"></i></th>
+                                <th scope="col">I.D No. <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('personal','idNo')"></i></th>
+                                <th scope="col">Designation <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('personal','designation')"></i></th>
+                                <th scope="col">No. Of shares <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('personal','noOfShares')"></i></th>
+                                <th scope="col">Percentage shares <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('personal','perShares')"></i></th>
+                                <th scope="col">Authorization Type <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('personal','authorizationType')"></i></th>
+                                <th scope="col">Authorization Limit <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('personal','authorizationLimit')"></i></th>
+                                <th scope="col">Note <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('personal','note')"></i></th>
+                                <th scope="col">Reg. Date <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('personal','regDate')"></i></th>
+                            </tr>
+                        </thead>
+                        <!-- *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)"  -->
+                        <!-- <input  [(ngModel)]="data.no"> -->
+                        <tbody>
+                            <tr>
+                            <tr *ngFor="let data of personalData | filter : searchText; index as index"
+                                (clickOutside)="enteredDetails( 'personal',data)">
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.personName}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)"><input
+                                        [(ngModel)]="data.personName"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.nationality}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <input [(ngModel)]="data.nationality"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    {{data.idType}} </td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <input [(ngModel)]="data.idType"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    {{data.idNo}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <input [(ngModel)]="data.idNo"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.designation}}
+                                </td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <input [(ngModel)]="data.designation"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.noOfShares}}
+                                </td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <input [(ngModel)]="data.noOfShares"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.perShares}}
+                                </td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <input [(ngModel)]="data.perShares"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.authorizationType}}
+                                </td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <input [(ngModel)]="data.authorizationType"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.authorizationLimit}}
+                                </td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <input [(ngModel)]="data.authorizationLimit"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    {{data.note}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <input [(ngModel)]="data.note"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    {{data.regDate}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <input [(ngModel)]="data.regDate"></td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -338,120 +354,297 @@
                 <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                 (click)="move(6)">Finish</button> -->
                 <a href="/landing/supplier-registration/dashboard">
-                    <button type="button"
-                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                 </a>
                 <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                     Draft</button>
             </div>
         </div>
-        <!-- Address Model Pop-Up Form -->
-        <ng-template #mymodal let-modal>
+    </mat-step>
+    <!-- personal Details Complete-->
+
+    <!-- Communication Method -->
+    <mat-step>
+        <ng-template matStepLabel>Communication Method</ng-template>
+
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Telephone</h5>
+                <p class="fs-14">{{comunicationData.telephone}}</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">P.O. Box</h5>
+                <p class="fs-14">{{comunicationData.poBox}}</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Fax</h5>
+                <p class="fs-14">{{comunicationData.fax}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">legal status</h5>
+                <p class="fs-14">{{comunicationData.legalStatus}}</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">PC</h5>
+                <p class="fs-14">{{comunicationData.pc}}</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email</h5>
+                <input type="email" class="fs-14" [(ngModel)]=comunicationData.email>
+            </div>
+        </div>
+        <!-- <div class="row">
+        <div class="col-md-12 px-4 d-block  d-lg-flex">
+            <p class="bg-light border p-2 fs-14 rounded mr-0 mr-lg-3 text-center ">Attach Existing </p>
+            <p class="bg-light border p-2 fs-14 mr-0 mr-lg-3 rounded text-center ">Create New </p>
+            <p class="bg-light border p-2 fs-14  mr-0 mr-lg-3 rounded text-center ">Create Form Template
+            </p>
+        </div>
+        </div> -->
+        <!-- <div class="row">
+            <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+                <div class="card bg-light  ">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3 fs-18">Cert_Com_12</h5>
+                        <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                        <p class="card-text dark-text-1 fs-12">1200232</p>
+                        <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                        <p class="card-text dark-text-1 fs-12">$1</p>
+                        <p class="card-text dark-text-1 fs-12">WORD07</p>
+                        <a  class="card-link">Word Doc.</a>
+                        <div class="mt-3 text-right"> <i
+                                class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                            <i class="fa fa-file text-secondary fs-14"></i> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+                <div class="card bg-light  ">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3 fs-18">AWARD1002 </h5>
+                        <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                        <p class="card-text dark-text-1 fs-12">1200232</p>
+                        <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                        <p class="card-text dark-text-1 fs-12">$1</p>
+                        <p class="card-text dark-text-1 fs-12">WORD07</p>
+                        <a  class="card-link">PDF</a>
+                        <div class="mt-3 text-right"> <i
+                                class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                            <i class="fa fa-file text-secondary fs-14"></i> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
+                <div class="card bg-light  ">
+                    <div class="card-body">
+                        <h5 class="
+card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
+                        <p class="card-text dark-text-1 fs-12">1200232</p>
+                        <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
+                        <p class="card-text dark-text-1 fs-12">$1</p>
+                        <p class="card-text dark-text-1 fs-12">WORD07</p>
+                        <a  class="card-link">PDF</a>
+                        <div class="mt-3 text-right"> <i
+                                class="fa fa-download text-secondary mr-2 fs-14 "></i>
+                            <i class="fa fa-file text-secondary fs-14"></i> </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="row">
+            <div class="col-md-12 mb-5 px-4">
+                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                    matStepperPrevious>Privious</button>
+                <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                    matStepperNext>Next</button>
+                <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                (click)="move(6)">Finish</button> -->
+                <a href="/landing/supplier-registration/dashboard">
+                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                </a>
+                <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
+                    Draft</button>
+            </div>
+        </div>
+    </mat-step>
+    <!-- Communication Method Complete-->
+
+    <!-- Commercial Info -->
+    <mat-step>
+        <ng-template matStepLabel>Commercial Info</ng-template>
+
+        <!-- Activity Info -->
+        <div class="row ">
+            <div class="col-md-12 px-4 ">
+                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">Activity Info</h4>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-12 px-4 mb-3 mt-3">
+                <div class="table-responsive">
+                    <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
+                    <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('activityInfo')"><i
+                            class="fa fa-plus" aria-hidden="true"></i></button>
+                    <table class="table table-striped mb-0 ">
+                        <thead>
+                            <tr class="purple-bg text-white">
+
+                                <th scope="col" class="custom-width-90">Activities Name <i class="fa fa-sort"
+                                        aria-hidden="true" (click)="sorting('activityInfo','activityName')"></i></th>
+                                <th scope="col" class="custom-width-250">Sub Activities No. <i class="fa fa-sort"
+                                        aria-hidden="true" (click)="sorting('activityInfo','subActivity')"></i></th>
+                                <th scope="col">Establishment date <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('activityInfo','establishmentDate')"></i> </th>
+                                <th scope="col">Registration date <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('activityInfo','regDate')"></i></th>
+                                <th scope="col">Expiry date <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('activityInfo','expDate')"></i></th>
+                                <th scope="col">Duration <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('activityInfo','duration')"></i></th>
+                                <th scope="col">Company grade <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('activityInfo','companyGrade')"></i></th>
+                                <th scope="col">Location <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('activityInfo','location')"></i></th>
+                                <!-- <th scope="col">Reg. Date <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('activityInfo','location')"></i></th> -->
+                                <th scope="col">Attachment <i class="fa fa-sort" aria-hidden="true"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of activityInfoData | filter : searchText; index as index"
+                                (clickOutside)="enteredDetails( 'activityInfo',data)">
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.activityName}}
+                                </td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activityInfo',data)"><input
+                                        [(ngModel)]="data.activityName"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.subActivity}}
+                                </td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activityInfo',data)"><input
+                                        [(ngModel)]="data.subActivity"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    {{data.establishmentDate}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activityInfo',data)"><input
+                                        [(ngModel)]="data.establishmentDate"></td>
+                                <th *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.regDate}}</th>
+                                <th *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activityInfo',data)"><input
+                                        [(ngModel)]="data.regDate"></th>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.expDate}}
+                                </td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activityInfo',data)"><input
+                                        class="custom-width-100" [(ngModel)]="data.expDate"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.duration}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activityInfo',data)"><input
+                                        [(ngModel)]="data.duration"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.companyGrade}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activityInfo',data)"><input
+                                        [(ngModel)]="data.companyGrade"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.location}}
+                                </td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activityInfo',data)"><input
+                                        [(ngModel)]="data.location"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.Document}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bank Details -->
+        <div class="row ">
+            <div class="col-md-12 px-4 ">
+                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">Bank Details</h4>
+                <button class="btn btn-secondary ml-2 " (click)="open(bankModel)"><i class="fa fa-plus"
+                        aria-hidden="true"></i></button>
+            </div>
+        </div>
+        <div class="shadow p-3 mb-5" *ngFor="let data of BankDetails">
+            <div class="row ">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Account</h5>
+                    <p class="fs-14">{{data.bankAcc}}</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Name</h5>
+                    <p class="fs-14">{{data.bankName}}</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Branch</h5>
+                    <p class="fs-14">{{data.bankBranch}}</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account holder name</h5>
+                    <p class="fs-14">{{data.holderName}}</p>
+                </div>
+            </div>
+        </div>
+        <ng-template #bankModel let-modal>
             <div class="modal-header">
-                <h4 class="modal-title" id="modal-basic-title">Add Address</h4>
-                <button type="button" class="close" aria-label="Close"
-                    (click)="modal.dismiss('Cross click')">
+                <h4 class="modal-title" id="modal-basic-title">Add Bank Detail</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form [formGroup]="form" (ngSubmit)="submit() ; modal.close('Save click')">
+            <form [formGroup]="bankform" (ngSubmit)="submitbank() ; modal.close('Save click')">
                 <div class="modal-body custom-modal-main">
                     <section class=" bg-white ">
                         <div>
                             <div class="row ">
                                 <div class="col-md-12 ">
                                     <div class="form-group row mb-3">
-                                        <label for="poBox" class="col-sm-5 col-form-label">P.O.Box</label>
+                                        <label for="bankAcc" class="col-sm-5 col-form-label">Bank Account</label>
                                         <div class="col-sm-7">
-                                            <input formControlName="poBox" id="poBox" type="text"
+                                            <input formControlName="bankAcc" id="bankAcc" type="text"
                                                 class="form-control">
                                         </div>
-                                        <div *ngIf="f.poBox.touched && f.poBox.invalid"
+                                        <div *ngIf="bf.bankAcc.touched && bf.bankAcc.invalid"
                                             class="alert alert-danger">
-                                            <div *ngIf="f.poBox.errors.required" class="col-sm-7">*required
+                                            <div *ngIf="bf.bankAcc.errors.required" class="col-sm-7">*required
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-3">
-                                        <label for="supplierBranch" class="col-sm-5 col-form-label">Supplier
-                                            Branch</label>
+                                        <label for="bankName" class="col-sm-5 col-form-label">Bank Name</label>
                                         <div class="col-sm-7">
-                                            <input formControlName="supplierBranch" id="supplierBranch"
-                                                type="text" class="form-control">
-                                        </div>
-                                        <div *ngIf="f.supplierBranch.touched && f.supplierBranch.invalid"
-                                            class="alert alert-danger">
-                                            <div *ngIf="f.supplierBranch.errors.required" class="col-sm-7">
-                                                *required</div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row mb-3">
-                                        <label for="sponsorName" class="col-sm-5 col-form-label">Sponsor
-                                            Name</label>
-                                        <div class="col-sm-7">
-                                            <input formControlName="sponsorName" id="sponsorName"
-                                                type="text" class="form-control">
-                                        </div>
-                                        <div *ngIf="f.sponsorName.touched && f.sponsorName.invalid"
-                                            class="alert alert-danger">
-                                            <div *ngIf="f.sponsorName.errors.required" class="col-sm-7">
-                                                *required</div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row mb-3">
-                                        <label for="SponsorNationalId"
-                                            class="col-sm-5 col-form-label">Sponsor National ID / Resident
-                                            ID</label>
-                                        <div class="col-sm-7">
-                                            <input formControlName="SponsorNationalId"
-                                                id="SponsorNationalId" type="text" class="form-control">
-                                        </div>
-                                        <div *ngIf="f.SponsorNationalId.touched && f.SponsorNationalId.invalid"
-                                            class="alert alert-danger">
-                                            <div *ngIf="f.SponsorNationalId.errors.required"
-                                                class="col-sm-7">*required</div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row mb-3">
-                                        <label for="postalCode" class="col-sm-5 col-form-label">Postal
-                                            Code</label>
-                                        <div class="col-sm-7">
-                                            <input formControlName="postalCode" id="postalCode" type="text"
+                                            <input formControlName="bankName" id="bankName" type="text"
                                                 class="form-control">
                                         </div>
-                                        <div *ngIf="f.postalCode.touched && f.postalCode.invalid"
+                                        <div *ngIf="bf.bankName.touched && bf.bankName.invalid"
                                             class="alert alert-danger">
-                                            <div *ngIf="f.postalCode.errors.required" class="col-sm-7">
+                                            <div *ngIf="bf.bankName.errors.required" class="col-sm-7">
                                                 *required</div>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-3">
-                                        <label for="authorizedSignatory"
-                                            class="col-sm-5 col-form-label">Authorized Signatory</label>
+                                        <label for="bankBranch" class="col-sm-5 col-form-label">Bank Branch
+                                        </label>
                                         <div class="col-sm-7">
-                                            <input formControlName="authorizedSignatory"
-                                                id="authorizedSignatory" type="text" class="form-control">
+                                            <input formControlName="bankBranch" id="bankBranch" type="text"
+                                                class="form-control">
                                         </div>
-                                        <div *ngIf="f.authorizedSignatory.touched && f.authorizedSignatory.invalid"
+                                        <div *ngIf="bf.bankBranch.touched && bf.bankBranch.invalid"
                                             class="alert alert-danger">
-                                            <div *ngIf="f.authorizedSignatory.errors.required"
-                                                class="col-sm-7">*required</div>
+                                            <div *ngIf="bf.bankBranch.errors.required" class="col-sm-7">
+                                                *required</div>
                                         </div>
                                     </div>
                                     <div class="form-group row mb-3">
-                                        <label for="authorizedResidentId"
-                                            class="col-sm-5 col-form-label">Authorized National ID /
-                                            Resident ID</label>
+                                        <label for="holderName" class="col-sm-5 col-form-label">Account holder name
+                                        </label>
                                         <div class="col-sm-7">
-                                            <input formControlName="authorizedResidentId"
-                                                id="authorizedResidentId" type="text" class="form-control">
+                                            <input formControlName="holderName" id="holderName" type="text"
+                                                class="form-control">
                                         </div>
-                                        <div *ngIf="f.authorizedResidentId.touched && f.authorizedResidentId.invalid"
+                                        <div *ngIf="bf.holderName.touched && bf.holderName.invalid"
                                             class="alert alert-danger">
-                                            <div *ngIf="f.authorizedResidentId.errors.required"
-                                                class="col-sm-7">*required</div>
+                                            <div *ngIf="bf.holderName.errors.required" class="col-sm-7">*required</div>
                                         </div>
                                     </div>
+
                                     <div class="row mt-5">
                                         <div class="col-md-12 mb-5 px-4"> </div>
                                     </div>
@@ -461,21 +654,139 @@
                     </section>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                        type="submit">Submit</button>
+                    <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" type="submit">Submit</button>
                     <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
-                        (click)="form.reset(); modal.close('Save click')">Back</button>
-                    <!-- <button type="button" class="btn btn-outline-dark"
-                (click)="modal.close('Save click')">Ok</button> -->
+                        (click)="form.reset(); modal.close('Save click')">Cancel</button>
+
                 </div>
             </form>
         </ng-template>
-    </mat-step>
-    <!-- Employee Details -->
-    <mat-step>
-        <ng-template matStepLabel>Employee Details</ng-template>
+
+        <!-- Company Finance Info -->
+        <div class="row ">
+            <div class="col-md-12 px-4 ">
+                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">Company Finance Info</h4>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Cash capital</h5>
+                <p class="fs-14">{{formData.commercialInfo.compFinanceInfo.cashCapital}}</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Kind capital</h5>
+                <p class="fs-14">{{formData.commercialInfo.compFinanceInfo.kindCapital}}</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">No. of shares</h5>
+                <p class="fs-14">{{formData.commercialInfo.compFinanceInfo.noOfShares}}</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Share Value</h5>
+                <p class="fs-14">{{formData.commercialInfo.compFinanceInfo.shareValue}}</p>
+            </div>
+        </div>
+
+        <!-- Company Branches Info -->
+        <div class="row ">
+            <div class="col-md-12 px-4 ">
+                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">Company Branches Info</h4>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-12 px-4 mb-3 mt-3">
+                <div class="table-responsive">
+                    <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
+                    <!-- <button class="btn btn-secondary ml-2 float-right mb-2"
+                        (click)="addNewRow('branchInfo')"><i class="fa fa-plus"
+                            aria-hidden="true"></i></button> -->
+                    <table class="table table-striped mb-0 ">
+                        <thead>
+                            <tr class="purple-bg text-white">
+
+                                <th scope="col" class="custom-width-90">Branch req. date <i class="fa fa-sort"
+                                        aria-hidden="true" (click)="sorting('branchInfo','reqDate')"></i></th>
+                                <th scope="col" class="custom-width-250">Branch I.D <i class="fa fa-sort"
+                                        aria-hidden="true" (click)="sorting('branchInfo','branchId')"></i></th>
+                                <th scope="col">Branch Activities name <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('branchInfo','branchActivity')"></i> </th>
+                                <th scope="col">Branch Activities no. <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('branchInfo','branchActivityNo')"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of compBranchInfoData | filter : searchText; index as index"
+                                (clickOutside)="enteredDetails( 'branchInfo',data)">
+                                <td>{{data.reqDate}}</td>
+                                <td>{{data.branchId}}
+                                </td>
+                                <!-- <td *ngIf="data.isEdit"
+                                    (keyup.enter)="enteredDetails( 'branchInfo',data)"><input
+                                        [(ngModel)]="data.branchId"></td> -->
+                                <td>
+                                    {{data.branchActivity}}</td>
+                                <!-- <td *ngIf="data.isEdit"
+                                    (keyup.enter)="enteredDetails( 'branchInfo',data)"><input
+                                        [(ngModel)]="data.branchActivity"></td> -->
+                                <th>{{data.branchActivityNo}}</th>
+                                <!-- <th *ngIf="data.isEdit"
+                                    (keyup.enter)="enteredDetails( 'branchInfo',data)"><input
+                                        [(ngModel)]="data.branchActivityNo"></th> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other Info -->
+        <div class="row ">
+            <div class="col-md-12 px-4 ">
+                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">Other Info</h4>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-12 px-4 mb-3 mt-3">
+            </div>
+        </div>
 
         <div class="row">
+            <div class="col-md-12 mb-5 px-4">
+                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                    matStepperPrevious>Privious</button>
+                <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                    matStepperNext>Next</button>
+                <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        (click)="move(6)">Finish</button> -->
+                <a href="/landing/supplier-registration/dashboard">
+                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                </a>
+                <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
+                    Draft</button>
+            </div>
+        </div>
+    </mat-step>
+    <!-- Commercial Info Complete -->
+
+    <!-- Staff Details -->
+    <mat-step>
+        <ng-template matStepLabel>Staff Details</ng-template>
+
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Civil Id</h5>
+                <p class="fs-14">{{formData.generalInfo.civilNo}}</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
+                <p class="fs-14">{{formData.generalInfo.crNo}}</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Omanization Ratio</h5>
+                <p class="fs-14">{{formData.generalInfo.omaniratio}}</p>
+            </div>
+        </div>
+        <!-- <div class="row">
             <div class="col-md-12 px-4 mb-3 mt-3">
                 <div class="table-responsive">
 
@@ -490,19 +801,130 @@
                             <tr class="purple-bg text-white">
                                 <th scope="col" class="custom-width-60">No <i class="fa fa-sort"
                                         aria-hidden="true" (click)="sorting('employee','no')"></i></th>
-                                <th scope="col">Name <i class="fa fa-sort" aria-hidden="true"
+                                <th scope="col">Employee Name <i class="fa fa-sort" aria-hidden="true"
                                         (click)="sorting('employee','name')"></i></th>
-                                <th scope="col">Qualification <i class="fa fa-sort" aria-hidden="true"
+                                <th scope="col">Employee Qualification <i class="fa fa-sort" aria-hidden="true"
                                         (click)="sorting('employee','qualification')"></i></th>
-                                <th scope="col">Designation <i class="fa fa-sort" aria-hidden="true"
+                                <th scope="col">Employee Specialization <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('employee','specialization')"></i></th>
+                                <th scope="col">Job title <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('employee','jobTitle')"></i></th>
+                                <th scope="col">Designation Type <i class="fa fa-sort" aria-hidden="true"
                                         (click)="sorting('employee','designation')"></i></th>
+                                <th scope="col">Designation date <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('employee','designationDate')"></i></th>
+                                <th scope="col">Expired date <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('employee','expDate')"></i></th>
                                 <th scope="col">Experience <i class="fa fa-sort" aria-hidden="true"
-                                        (click)="sorting('employee','experience')"></i></th>
-                                <th scope="col">Nationality <i class="fa fa-sort" aria-hidden="true"
-                                        (click)="sorting('employee','nationality')"></i></th>
-                                <th scope="col">Category <i class="fa fa-sort" aria-hidden="true"
-                                        (click)="sorting('employee','category')"></i></th>
-                                <th scope="col">Documents(CV)</th>
+                                    (click)="sorting('employee','experiance')"></i></th>
+                                <th scope="col">Appointment Date <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('employee','appointmentDate')"></i></th>
+                                <th scope="col">Status <i class="fa fa-sort" aria-hidden="true"
+                                            (click)="sorting('employee','status')"></i></th>
+                                <th scope="col">Status date <i class="fa fa-sort" aria-hidden="true"
+                                                (click)="sorting('employee','statusDate')"></i></th>
+                                <th scope="col">Staff Category <i class="fa fa-sort" aria-hidden="true"
+                                                    (click)="sorting('employee','staffCategory')"></i></th>
+                                <th scope="col">Passport Number <i class="fa fa-sort" aria-hidden="true"
+                                                        (click)="sorting('employee','passportNum')"></i></th>
+                                <th scope="col">Resident card Number <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('employee','recidentCard')"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of employeeData | filter : searchText; index as index"
+                                (clickOutside)="enteredDetails( 'employee',data)">
+                                <td (dblclick)="data.isEdit = true">{{data.no}}</td>
+                                <td>{{data.no}}</td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.name}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.name"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.qualification}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.qualification"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.specialization}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.specialization"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.jobTitle}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.jobTitle"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.designation}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.designation"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.designationDate}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.designationDate"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.expDate}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.expDate"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.experience}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.experience"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.appointmentDate}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.appointmentDate"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.status}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.status"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.statusDate}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.statusDate"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.staffCategory}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.staffCategory"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.passportNum}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.passportNum"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.recidentCard}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.name"></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="row">
+            <div class="col-md-12 px-4 mb-3 mt-3">
+                <div class="table-responsive">
+
+                    <input class="fs-16 custom-height-35" [(ngModel)]="searchText" placeholder="Search text">
+
+                    <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('employee')"><i
+                            class="fa fa-plus" aria-hidden="true"></i></button>
+                    <table class="table table-striped ">
+                        <thead>
+                            <tr class="purple-bg text-white">
+                            <th scope="col">Employee Name <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('employee','name')"></i></th>
+                            <th scope="col">Employee Qualification <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('employee','qualification')"></i></th>
+                            <th scope="col">Employee Specialization <i class="fa fa-sort" aria-hidden="true"
+                                (click)="sorting('employee','specialization')"></i></th>
+                            <th scope="col">Job title <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('employee','jobTitle')"></i></th>
+                            <th scope="col">Designation Type <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('employee','designation')"></i></th>
+                            <th scope="col">Designation date <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('employee','designationDate')"></i></th>
+                            <th scope="col">Expired date <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('employee','expDate')"></i></th>
+                            <th scope="col">Experience <i class="fa fa-sort" aria-hidden="true"
+                                (click)="sorting('employee','experiance')"></i></th>
+                            <th scope="col">Appointment Date <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('employee','appointmentDate')"></i></th>
+                            <th scope="col">Status <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('employee','status')"></i></th>
+                            <th scope="col">Status date <i class="fa fa-sort" aria-hidden="true"
+                                            (click)="sorting('employee','statusDate')"></i></th>
+                            <th scope="col">Staff Category <i class="fa fa-sort" aria-hidden="true"
+                                                (click)="sorting('employee','staffCategory')"></i></th>
+                            <th scope="col">Passport Number <i class="fa fa-sort" aria-hidden="true"
+                                                    (click)="sorting('employee','passportNum')"></i></th>
+                            <th scope="col">Resident card Number <i class="fa fa-sort" aria-hidden="true"
+                                (click)="sorting('employee','recidentCard')"></i></th>
                             </tr>
                         </thead>
                         <!-- *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)"  -->
@@ -510,33 +932,50 @@
                         <tbody>
                             <tr *ngFor="let data of employeeData | filter : searchText; index as index"
                                 (clickOutside)="enteredDetails( 'employee',data)">
-                                <td (dblclick)="data.isEdit = true">{{data.no}}</td>
-                                <!-- <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)"><input [(ngModel)]="data.no"></td> -->
-                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.name}}</td>
+                                <!-- <td (dblclick)="data.isEdit = true">{{data.no}}</td>
+                                <td>{{data.no}}</td> -->
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.name}}</td>
                                 <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
                                     <input [(ngModel)]="data.name"></td>
-                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
-                                    {{data.qualification}} </td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.qualification}}</td>
                                 <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
                                     <input [(ngModel)]="data.qualification"></td>
-                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
-                                    {{data.designation}}</td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.specialization}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.specialization"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.jobTitle}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.jobTitle"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.designation}}</td>
                                 <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
                                     <input [(ngModel)]="data.designation"></td>
-                                <th *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.experience}}
-                                </th>
-                                <th *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
-                                    <input [(ngModel)]="data.experience"></th>
-                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
-                                    {{data.nationality}}</td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.designationDate}}</td>
                                 <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
-                                    <input [(ngModel)]="data.nationality"></td>
-                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.category}}
-                                </td>
+                                    <input [(ngModel)]="data.designationDate"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.expDate}}</td>
                                 <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
-                                    <input [(ngModel)]="data.category"></td>
-                                <td><a class="text-decoration-underline text-danger">{{data.docCV}}</a>
-                                </td>
+                                    <input [(ngModel)]="data.expDate"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.experience}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.experience"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.appointmentDate}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.appointmentDate"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.status}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.status"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.statusDate}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.statusDate"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.staffCategory}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.staffCategory"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.passportNum}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.passportNum"></td>
+                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.recidentCard}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
+                                    <input [(ngModel)]="data.name"></td>
                             </tr>
                         </tbody>
 
@@ -544,65 +983,6 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12 px-4 ">
-                <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
-                <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
-                </p>
-            </div>
-        </div>
-        <!-- <div class="row">
-        <div class="col-md-12 px-4 d-block  d-lg-flex">
-             <p class="bg-light border p-2 fs-14 rounded mr-0 mr-lg-3 text-center ">Attach Existing </p>
-            <p class="bg-light border p-2 fs-14 mr-0 mr-lg-3 rounded text-center ">Create New </p>
-            <p class="bg-light border p-2 fs-14  mr-0 mr-lg-3 rounded text-center ">Create Form Template
-            </p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
-            <div class="card bg-light  ">
-                <div class="card-body">
-                    <h5 class="card-title mb-3 fs-18">CV-01</h5>
-                    <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
-                    <p class="card-text dark-text-1 fs-12">1200232</p>
-                    <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
-                    <p class="card-text dark-text-1 fs-12">$1</p>
-                    <a  class="card-link">Word Doc.</a>
-                    <div class="mt-3 text-right"> <i class="fa fa-download text-secondary mr-2 fs-14 "></i>
-                        <i class="fa fa-file text-secondary fs-14"></i> </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
-            <div class="card bg-light  ">
-                <div class="card-body">
-                    <h5 class="card-title mb-3 fs-18"> CV-03 </h5>
-                    <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
-                    <p class="card-text dark-text-1 fs-12">1200232</p>
-                    <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
-                    <p class="card-text dark-text-1 fs-12">$1</p>
-                    <a  class="card-link">PDF</a>
-                    <div class="mt-3 text-right"> <i class="fa fa-download text-secondary mr-2 fs-14 "></i>
-                        <i class="fa fa-file text-secondary fs-14"></i> </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
-            <div class="card bg-light  ">
-                <div class="card-body">
-                    <h5 class="card-title mb-3 fs-18">CV-03</h5>
-                    <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
-                    <p class="card-text dark-text-1 fs-12">1200232</p>
-                    <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
-                    <p class="card-text dark-text-1 fs-12">$1</p>
-                    <a  class="card-link">PDF</a>
-                    <div class="mt-3 text-right"> <i class="fa fa-download text-secondary mr-2 fs-14 "></i>
-                        <i class="fa fa-file text-secondary fs-14"></i> </div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 
         <div class="row">
             <div class="col-md-12 mb-5 px-4">
@@ -611,16 +991,427 @@
                 <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                     matStepperNext>Next</button>
                 <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                (click)="move(6)">Finish</button> -->
+                        (click)="move(6)">Finish</button> -->
                 <a href="/landing/supplier-registration/dashboard">
-                    <button type="button"
-                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                 </a>
                 <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                     Draft</button>
             </div>
         </div>
     </mat-step>
+
+    <!-- Ministries Data 1 -->
+    <mat-step>
+        <ng-template matStepLabel>Ministries Data 1</ng-template>
+
+        <!-- OCCI Data -->
+        <div class="row ">
+            <div class="col-md-12 px-4 ">
+                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">OCCI Data</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Chamber of commerce certificate</h5>
+                <p class="fs-14">Chamber of commerce certificate</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Membership Number</h5>
+                <p class="fs-14">Membership Number</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
+                <p class="fs-14">Registration Date</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date</h5>
+                <p class="fs-14">Expiry Date</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Company Grade</h5>
+                <p class="fs-14">Company Grade</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Civil Number</h5>
+                <p class="fs-14">Civil Number</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
+                <p class="fs-14">C R Number</p>
+            </div>
+        </div>
+
+        <!-- Tender Board Data -->
+        <div class="row ">
+            <div class="col-md-12 px-4 ">
+                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">Tender Board Data</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Civil Number</h5>
+                <p class="fs-14">Civil Number</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
+                <p class="fs-14">C R Number</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Company Grade</h5>
+                <p class="fs-14">Company Grade</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
+                <p class="fs-14">Registration Date</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date</h5>
+                <p class="fs-14">Expiry Date</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Certificate</h5>
+                <p class="fs-14">Registration Certificate</p>
+            </div>
+        </div>
+
+        <!-- Municipality Data -->
+        <div class="row ">
+            <div class="col-md-12 px-4 ">
+                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">Municipality Data</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Civil Number</h5>
+                <p class="fs-14">Civil Number</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Location</h5>
+                <p class="fs-14">Location</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Number</h5>
+                <p class="fs-14">Registration Number</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
+                <p class="fs-14">Registration Date</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date</h5>
+                <p class="fs-14">Expiry Date</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
+                <div class="landing-menu" (click)="openMenu()" (clickOutside)="handleClickOutside()">
+                    <div>
+                        Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
+                    </div>
+                    <ul *ngIf="activityMenu"class="landing-dropdown bg-white">
+                        <li >Activity name 1</li>
+                        <li >Activity name 2</li>
+                        <li >Activity name 3</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 mb-5 px-4">
+                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                    matStepperPrevious>Privious</button>
+                <button type="button" class="btn btn-secondary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                    matStepperNext>Next</button>
+                <button type="button" class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                    (click)="registrationComplete()">Finish</button>
+                <a href="/landing/supplier-registration/dashboard">
+                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                </a>
+                <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
+                    Draft</button>
+            </div>
+        </div>
+    </mat-step>
+
+    <!-- Ministries Data 2 -->
+    <mat-step>
+        <ng-template matStepLabel>Ministries Data 2</ng-template>
+
+
+        <!-- MOF Data -->
+        <div class="row ">
+            <div class="col-md-12 px-4 ">
+                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">MOF Data</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
+                <p class="fs-14">C R Number</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tax Certificate Number</h5>
+                <p class="fs-14">Tax Certificate Number</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
+                <p class="fs-14">Registration Date</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date</h5>
+                <p class="fs-14">Expiry Date</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
+                <div class="landing-menu" (click)="openMenu()" (clickOutside)="handleClickOutside()">
+                    <div>
+                        Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
+                    </div>
+                    <ul *ngIf="activityMenu"class="landing-dropdown bg-white">
+                        <li >Activity name 1</li>
+                        <li >Activity name 2</li>
+                        <li >Activity name 3</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- MOH Data -->
+        <div class="row ">
+            <div class="col-md-12 px-4 ">
+                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">MOH Data</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
+                <p class="fs-14">C R Number</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Health and pharmacy licenses</h5>
+                <p class="fs-14">Health and pharmacy licenses</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
+                <p class="fs-14">Registration Date</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">End Date</h5>
+                <p class="fs-14">Expiry Date</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Type of activity </h5>
+                <p class="fs-14">Type of activity</p>
+            </div>
+        </div>
+
+        <!-- MOCI Data -->
+        <div class="row ">
+            <div class="col-md-12 px-4 ">
+                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">MOCI Data</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Permits and Licenses of Consulting Companies
+                </h5>
+                <p class="fs-14">Document</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Licenses of Training and Qualifying
+                    Institutes</h5>
+                <p class="fs-14">Document</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Agencies and Trademarks</h5>
+                <p class="fs-14">Agencies and Trademarks</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">foreign investment</h5>
+                <p class="fs-14">foreign investment</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Percentage of government ownership </h5>
+                <p class="fs-14">Percentage of government ownership</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Accredited agencies</h5>
+                <p class="fs-14">Accredited agencies</p>
+            </div>
+        </div>
+
+
+        <!-- Small & Medium Ent. Data -->
+        <div class="row ">
+            <div class="col-md-12 px-4 ">
+                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">Small & Medium Ent. Data
+                </h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Number
+                </h5>
+                <p class="fs-14">Registration Number</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
+                <p class="fs-14">Registration Date</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">End Date</h5>
+                <p class="fs-14">Expiry Date</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
+                <div class="landing-menu" (click)="openMenu()" (clickOutside)="handleClickOutside()">
+                    <div>
+                        Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
+                    </div>
+                    <ul *ngIf="activityMenu"class="landing-dropdown bg-white">
+                        <li >Activity name 1</li>
+                        <li >Activity name 2</li>
+                        <li >Activity name 3</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">List of companies registered in the Authority
+                </h5>
+                <p class="fs-14">List of companies registered in the Authority</p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12 mb-5 px-4">
+                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                    matStepperPrevious>Privious</button>
+                <button type="button" class="btn btn-secondary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                    matStepperNext>Next</button>
+                <button type="button" class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                    (click)="registrationComplete()">Finish</button>
+                <a href="/landing/supplier-registration/dashboard">
+                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                </a>
+                <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
+                    Draft</button>
+            </div>
+        </div>
+    </mat-step>
+
+    <!-- Ministries Data 3 -->
+    <mat-step>
+        <ng-template matStepLabel>Ministries Data 3</ng-template>
+
+        <!-- Capital Market Data -->
+        <div class="row ">
+            <div class="col-md-12 px-4 ">
+                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">Capital Market Data</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Number</h5>
+                <p class="fs-14">Registration Number</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
+                <p class="fs-14">Registration Date</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date</h5>
+                <p class="fs-14">Expiry Date</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
+                <div class="landing-menu" (click)="openMenu()" (clickOutside)="handleClickOutside()">
+                    <div>
+                        Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
+                    </div>
+                    <ul *ngIf="activityMenu"class="landing-dropdown bg-white">
+                        <li >Activity name 1</li>
+                        <li >Activity name 2</li>
+                        <li >Activity name 3</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">List of insurance companies and any inquiries
+                </h5>
+                <p class="fs-14">Document</p>
+            </div>
+        </div>
+
+
+        <!-- Credit Bureau Data -->
+        <div class="row ">
+            <div class="col-md-12 px-4 ">
+                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">Credit Bureau Data</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">CR Number</h5>
+                <p class="fs-14">CR Number</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">List of financially troubled companies</h5>
+                <p class="fs-14">Document</p>
+            </div>
+        </div>
+
+
+        <!-- Dist. Rules Review Board Data -->
+        <div class="row ">
+            <div class="col-md-12 px-4 ">
+                <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">Dist. Rules Review Board
+                    Data</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">CR Number</h5>
+                <p class="fs-14">CR Number</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Certificate of registration
+                    of electrical works </h5>
+                <p class="fs-14">Document</p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12 mb-5 px-4">
+                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                    matStepperPrevious>Privious</button>
+                <button type="button" class="btn btn-secondary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                    matStepperNext>Next</button>
+                <button type="button" class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                    (click)="registrationComplete()">Finish</button>
+                <a href="/landing/supplier-registration/dashboard">
+                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                </a>
+                <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
+                    Draft</button>
+            </div>
+        </div>
+    </mat-step>
+
     <!-- Project Details -->
     <mat-step>
         <ng-template matStepLabel>Project Details</ng-template>
@@ -629,14 +1420,13 @@
             <div class="col-md-12 px-4 mb-3 mt-3">
                 <div class="table-responsive">
                     <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
-                    <button class="btn btn-secondary ml-2 float-right mb-2"
-                        (click)="addNewRow('project')"><i class="fa fa-plus"
-                            aria-hidden="true"></i></button>
+                    <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('project')"><i
+                            class="fa fa-plus" aria-hidden="true"></i></button>
                     <table class="table table-striped mb-0 ">
                         <thead>
                             <tr class="purple-bg text-white">
-                                <th scope="col" class="custom-width-60">No <i class="fa fa-sort"
-                                        aria-hidden="true" (click)="sorting('project','no')"></i> </th>
+                                <th scope="col" class="custom-width-60">No <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('project','no')"></i> </th>
                                 <th scope="col">Name of Project <i class="fa fa-sort" aria-hidden="true"
                                         (click)="sorting('project','name')"></i> </th>
                                 <th scope="col">Client <i class="fa fa-sort" aria-hidden="true"
@@ -647,8 +1437,8 @@
                                         (click)="sorting('project','costConsultent')"></i></th>
                                 <th scope="col">Value (OMR) <i class="fa fa-sort" aria-hidden="true"
                                         (click)="sorting('project','value')"></i></th>
-                                <th scope="col">Period ( Start - End ) <i class="fa fa-sort"
-                                        aria-hidden="true" (click)="sorting('project','period')"></i></th>
+                                <th scope="col">Period ( Start - End ) <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('project','period')"></i></th>
                                 <th scope="col">Completion <i class="fa fa-sort" aria-hidden="true"
                                         (click)="sorting('project','completion')"></i></th>
                                 <th scope="col">Document</th>
@@ -770,14 +1560,14 @@ card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
                 <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                 (click)="move(6)">Finish</button> -->
                 <a href="/landing/supplier-registration/dashboard">
-                    <button type="button"
-                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                 </a>
                 <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                     Draft</button>
             </div>
         </div>
     </mat-step>
+
     <!-- Subcontractor Details -->
     <mat-step>
         <ng-template matStepLabel>Subcontractor Details</ng-template>
@@ -786,28 +1576,26 @@ card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
             <div class="col-md-12 px-4 mb-3 mt-3">
                 <div class="table-responsive">
                     <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
-                    <button class="btn btn-secondary ml-2 float-right mb-2"
-                        (click)="addNewRow('subContractor')"><i class="fa fa-plus"
-                            aria-hidden="true"></i></button>
+                    <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('subContractor')"><i
+                            class="fa fa-plus" aria-hidden="true"></i></button>
                     <table class="table table-striped mb-0 ">
                         <thead>
                             <tr class="purple-bg text-white">
                                 <th scope="col">
                                     <div class="d-flex"> <span> <a class=" text-white fs-14"><i
-                                                    class="fa fa-check"></i></a> </span> <span
-                                            class="ml-3 pl-1 "> <a class=" text-white fs-14"> <i
-                                                    class="fa fa-ellipsis-v "></i>
+                                                    class="fa fa-check"></i></a> </span> <span class="ml-3 pl-1 "> <a
+                                                class=" text-white fs-14"> <i class="fa fa-ellipsis-v "></i>
                                             </a> </span> </div>
                                 </th>
-                                <th scope="col" class="custom-width-90">SL No. <i class="fa fa-sort"
-                                        aria-hidden="true" (click)="sorting('subcontractor','no')"></i></th>
-                                <th scope="col" class="custom-width-250">Name of Sub Contract Works <i
+                                <th scope="col" class="custom-width-90">sub-contractor commercial reg number <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('subcontractor','no')"></i></th>
+                                <th scope="col" class="custom-width-250">sub-contractor name<i
                                         class="fa fa-sort" aria-hidden="true"
                                         (click)="sorting('subcontractor','nameOfWork')"></i></th>
-                                <th scope="col">Sub Contractor <i class="fa fa-sort" aria-hidden="true"
+                                <!-- <th scope="col">Sub Contractor <i class="fa fa-sort" aria-hidden="true"
                                         (click)="sorting('subcontractor','subContractor')"></i> </th>
                                 <th scope="col">CR No. <i class="fa fa-sort" aria-hidden="true"
-                                        (click)="sorting('subcontractor','crNo')"></i></th>
+                                        (click)="sorting('subcontractor','crNo')"></i></th> -->
                                 <th scope="col">Telephone <i class="fa fa-sort" aria-hidden="true"
                                         (click)="sorting('subcontractor','telephone')"></i></th>
                                 <th scope="col">FAX <i class="fa fa-sort" aria-hidden="true"
@@ -831,35 +1619,28 @@ card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
                                 <td>{{data.no}}</td>
                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.nameOfWork}}
                                 </td>
-                                <td *ngIf="data.isEdit"
-                                    (keyup.enter)="enteredDetails( 'subContractor',data)"><input
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input
                                         [(ngModel)]="data.nameOfWork"></td>
-                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                <!-- <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
                                     {{data.subContractor}}</td>
-                                <td *ngIf="data.isEdit"
-                                    (keyup.enter)="enteredDetails( 'subContractor',data)"><input
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input
                                         [(ngModel)]="data.subContractor"></td>
                                 <th *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.crNo}}</th>
-                                <th *ngIf="data.isEdit"
-                                    (keyup.enter)="enteredDetails( 'subContractor',data)"><input
-                                        [(ngModel)]="data.crNo"></th>
+                                <th *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input
+                                        [(ngModel)]="data.crNo"></th> -->
                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.telephone}}
                                 </td>
-                                <td *ngIf="data.isEdit"
-                                    (keyup.enter)="enteredDetails( 'subContractor',data)"><input
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input
                                         class="custom-width-100" [(ngModel)]="data.telephone"></td>
                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.fax}}</td>
-                                <td *ngIf="data.isEdit"
-                                    (keyup.enter)="enteredDetails( 'subContractor',data)"><input
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input
                                         [(ngModel)]="data.fax"></td>
                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.email}}</td>
-                                <td *ngIf="data.isEdit"
-                                    (keyup.enter)="enteredDetails( 'subContractor',data)"><input
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input
                                         [(ngModel)]="data.email"></td>
                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.regWithRca}}
                                 </td>
-                                <td *ngIf="data.isEdit"
-                                    (keyup.enter)="enteredDetails( 'subContractor',data)"><input
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input
                                         [(ngModel)]="data.regWithRca"></td>
                             </tr>
                         </tbody>
@@ -881,14 +1662,14 @@ card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
                 <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         (click)="move(6)">Finish</button> -->
                 <a href="/landing/supplier-registration/dashboard">
-                    <button type="button"
-                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                 </a>
                 <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                     Draft</button>
             </div>
         </div>
     </mat-step>
+
     <!-- Equipment Details -->
     <mat-step>
         <ng-template matStepLabel>Equipment Details</ng-template>
@@ -897,9 +1678,8 @@ card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
             <div class="col-md-12 px-4 mb-3 mt-3">
                 <div class="table-responsive">
                     <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
-                    <button class="btn btn-secondary ml-2 float-right mb-2"
-                        (click)="addNewRow('equipment')"><i class="fa fa-plus"
-                            aria-hidden="true"></i></button>
+                    <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('equipment')"><i
+                            class="fa fa-plus" aria-hidden="true"></i></button>
                     <table class="table table-striped mb-0 ">
                         <thead>
                             <tr class="purple-bg text-white">
@@ -949,9 +1729,6 @@ card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
                     </table>
                 </div>
             </div>
-            <div class="col-md-12 px-4">
-                <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-            </div>
         </div>
 
         <div class="row">
@@ -963,44 +1740,53 @@ card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
                 <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         (click)="move(6)">Finish</button> -->
                 <a href="/landing/supplier-registration/dashboard">
-                    <button type="button"
-                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                 </a>
                 <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                     Draft</button>
             </div>
         </div>
     </mat-step>
-    <!-- Other Details -->
-    <mat-step>
-        <ng-template matStepLabel>Other Details</ng-template>
 
+    <!-- Site Visits -->
+    <mat-step>
+        <ng-template matStepLabel>Site Visits</ng-template>
         <div class="row">
             <div class="col-md-12 px-4 mb-3 mt-3">
                 <div class="table-responsive">
                     <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
-                    <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('other')"><i
+                    <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('subContractor')"><i
                             class="fa fa-plus" aria-hidden="true"></i></button>
                     <table class="table table-striped mb-0 ">
                         <thead>
                             <tr class="purple-bg text-white">
                                 <th scope="col">
                                     <div class="d-flex"> <span> <a class=" text-white fs-14"><i
-                                                    class="fa fa-check"></i></a> </span> <span
-                                            class="ml-3 pl-1 "> <a class=" text-white fs-14"> <i
-                                                    class="fa fa-ellipsis-v "></i>
+                                                    class="fa fa-check"></i></a> </span> <span class="ml-3 pl-1 "> <a
+                                                class=" text-white fs-14"> <i class="fa fa-ellipsis-v "></i>
                                             </a> </span> </div>
                                 </th>
-                                <th scope="col">SL No. <i class="fa fa-sort" aria-hidden="true"
-                                        (click)="sorting('other','no')"></i></th>
-                                <th scope="col">Name of Sub Contract Works <i class="fa fa-sort"
-                                        aria-hidden="true" (click)="sorting('other','nameOfWork')"></i></th>
-                                <th scope="col">Attachment</th>
+                                <th scope="col" class="custom-width-90">Sp. Employee Name <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('subcontractor','no')"></i></th>
+                                <th scope="col" class="custom-width-250">E-mail ID<i
+                                        class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('subcontractor','nameOfWork')"></i></th>
+                                <!-- <th scope="col">Sub Contractor <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('subcontractor','subContractor')"></i> </th>
+                                <th scope="col">CR No. <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('subcontractor','crNo')"></i></th> -->
+                                <th scope="col">Mobile Number <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('subcontractor','telephone')"></i></th>
+                                <!-- <th scope="col">FAX <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('subcontractor','fax')"></i></th>
+                                <th scope="col">E-Mail ID <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('subcontractor','email')"></i></th>
+                                <th scope="col">Reg. with RCA <i class="fa fa-sort" aria-hidden="true"
+                                        (click)="sorting('subcontractor','regWithRca')"></i></th> -->
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let data of otherData | filter : searchText; index as index"
-                                (clickOutside)="enteredDetails( 'other',data)">
+                            <tr>
                                 <td>
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" value=""
@@ -1008,135 +1794,57 @@ card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
                                         <span class="ml-2"> <a class=" text-blaack fs-14"><i
                                                     class="fa fa-ellipsis-v  "></i> </a></span> </div>
                                 </td>
-                                <td>{{data.no}}</td>
+                                <td> R Bala</td>
+                                <td>user@yopmail.com</td>
+                                <td> +919-257-6181</td>
+                                <!-- <td>{{data.no}}</td>
                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.nameOfWork}}
                                 </td>
-                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)"><input
-                                        [(ngModel)]="data.nameOfWork"></td>
-                                <td><a class="text-decoration-underline text-danger">{{data.attachment}}</a>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input
+                                        [(ngModel)]="data.nameOfWork"></td> -->
+                                <!-- <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    {{data.subContractor}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input
+                                        [(ngModel)]="data.subContractor"></td>
+                                <th *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.crNo}}</th>
+                                <th *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input
+                                        [(ngModel)]="data.crNo"></th> -->
+                                <!-- <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.telephone}}
                                 </td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input
+                                        class="custom-width-100" [(ngModel)]="data.telephone"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.fax}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input
+                                        [(ngModel)]="data.fax"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.email}}</td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input
+                                        [(ngModel)]="data.email"></td>
+                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.regWithRca}}
+                                </td>
+                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'subContractor',data)"><input
+                                        [(ngModel)]="data.regWithRca"></td> -->
                             </tr>
-                            <!-- <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckDefault-2">
-                                            <span class="ml-2"> <a  class=" text-blaack fs-14"><i
-                                                        class="fa fa-ellipsis-v  "></i> </a></span> </div>
-                                    </td>
-                                    <td>2</td>
-                                    <td>Tax Certificate </td>
-                                    <td><a  class="text-decoration-underline text-danger">PDF</a></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckDefault-3">
-                                            <span class="ml-2"> <a  class=" text-blaack fs-14"><i
-                                                        class="fa fa-ellipsis-v  "></i> </a></span> </div>
-                                    </td>
-                                    <td>3</td>
-                                    <td>Certificates </td>
-                                    <td><a  class="text-decoration-underline text-danger">PDF</a></td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value=""
-                                                id="flexCheckDefault-4">
-                                            <span class="ml-2"> <a  class=" text-blaack fs-14"><i
-                                                        class="fa fa-ellipsis-v  "></i> </a></span> </div>
-                                    </td>
-                                    <td>4</td>
-                                    <td>-</td>
-                                    <td><a  class="text-decoration-underline text-danger">PDF</a></td>
-                                </tr> -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 px-4 ">
-                <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
-                <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
-                </p>
-            </div>
-        </div>
-        <!-- <div class="row">
-            <div class="col-md-12 px-4 d-block  d-lg-flex">
-                <p class="bg-light border p-2 fs-14 rounded mr-0 mr-lg-3 text-center ">Attach Existing </p>
-                <p class="bg-light border p-2 fs-14 mr-0 mr-lg-3 rounded text-center ">Create New </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
-                <div class="card bg-light  ">
-                    <div class="card-body">
-                        <h5 class="card-title mb-3 fs-18">
-                            Org_Str100 </h5>
-                        <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
-                        <p class="card-text dark-text-1 fs-12">1200232</p>
-                        <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
-                        <p class="card-text dark-text-1 fs-12">$1</p>
-                        <p class="card-text dark-text-1 fs-12">WORD07</p>
-                        <a  class="card-link">Word Doc.</a>
-                        <div class="mt-3 text-right"> <i
-                                class="fa fa-download text-secondary mr-2 fs-14 "></i>
-                            <i class="fa fa-file text-secondary fs-14"></i> </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
-                <div class="card bg-light  ">
-                    <div class="card-body">
-                        <h5 class="card-title mb-3 fs-18">TasxCert-100</h5>
-                        <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
-                        <p class="card-text dark-text-1 fs-12">1200232</p>
-                        <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
-                        <p class="card-text dark-text-1 fs-12">$1</p>
-                        <p class="card-text dark-text-1 fs-12">WORD07</p>
-                        <a  class="card-link">PDF</a>
-                        <div class="mt-3 text-right"> <i
-                                class="fa fa-download text-secondary mr-2 fs-14 "></i>
-                            <i class="fa fa-file text-secondary fs-14"></i> </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
-                <div class="card bg-light  ">
-                    <div class="card-body">
-                        <h5 class="card-title mb-3 fs-18">Cert_200</h5>
-                        <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
-                        <p class="card-text dark-text-1 fs-12">1200232</p>
-                        <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
-                        <p class="card-text dark-text-1 fs-12">$1</p>
-                        <p class="card-text dark-text-1 fs-12">WORD07</p>
-                        <a  class="card-link">PDF</a>
-                        <div class="mt-3 text-right"> <i
-                                class="fa fa-download text-secondary mr-2 fs-14 "></i>
-                            <i class="fa fa-file text-secondary fs-14"></i> </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-        <div class="row">
             <div class="col-md-12 mb-5 px-4">
                 <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                     matStepperPrevious>Privious</button>
                 <button type="button" class="btn btn-secondary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                     matStepperNext>Next</button>
-                <button type="button" class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                    (click)="registrationComplete()">Finish</button>
                 <a href="/landing/supplier-registration/dashboard">
-                    <button type="button"
-                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Finish</button>
+                </a>
+                <a href="/landing/supplier-registration/dashboard">
+                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                 </a>
                 <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                     Draft</button>
             </div>
         </div>
     </mat-step>
+
 </mat-horizontal-stepper>

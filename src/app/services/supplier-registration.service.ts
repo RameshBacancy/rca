@@ -8,6 +8,11 @@ export class SupplierRegistrationService {
   constructor() { }
   
   getdata(){
+    if(localStorage.getItem('regType') === 'local'){
+      return data.localdetails;
+    }
+    else{
       return data.details;
+    }
   }
 }

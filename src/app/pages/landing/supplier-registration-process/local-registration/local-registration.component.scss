@@ -1,0 +1,17 @@
+@import 'src/assets/scss/index.scss';
+
+ 
+ul {
+    background-color: $grey-light-color;
+    li {
+      list-style-type: none;
+      a {
+        color:$primary-blue;
+        text-decoration: none
+      }
+    }
+    li:hover {
+     background: darken(#F5F7FA, 1%);
+     cursor: pointer;
+    }
+}
