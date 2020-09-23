@@ -1,3 +1,4 @@
+<div class="custom-tab-01" *ngIf="!completed">
 <mat-horizontal-stepper #stepper>
     <!-- General Info -->
     <mat-step>
@@ -137,12 +138,12 @@
             <div class="col-md-12 px-4 mb-3 mt-3">
                 <div class="table-responsive">
 
-                    <input class="fs-16 custom-height-35" [(ngModel)]="searchText"
+                    <input class="fs-16 custom-height-35 mb-3" [(ngModel)]="searchText"
                         placeholder="Search text">
 
-                    <button class="btn btn-secondary ml-2 float-right mb-2"
+                    <!-- <button class="btn btn-secondary ml-2 float-right mb-2"
                         (click)="addNewRow('individual')"><i class="fa fa-plus"
-                            aria-hidden="true"></i></button>
+                            aria-hidden="true"></i></button> -->
                     <table class="table table-striped ">
                         <thead>
                             <tr class="purple-bg text-white">
@@ -419,7 +420,7 @@
     <mat-step>
         <ng-template matStepLabel>Commercial Info</ng-template>
 
-        <mat-tab-group>
+        <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
             <mat-tab label="Activity Info">
                 <div class="row mt-3 mb-5" style="width: 80%;">
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
@@ -439,30 +440,162 @@
                         <p class="fs-14">{{formData.generalInfo.activities}}</p>
                     </div>
                 </div>
+
+                <div class="row" style="width: 80%;" >
+                    <div class="col-md-12 mb-5 px-4">
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            matStepperPrevious>Previous</button>
+                            <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            (click)="changeTab()">Next</button>
+                        <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        (click)="move(6)">Finish</button> -->
+                        <a href="/landing/supplier-registration/dashboard">
+                            <button type="button"
+                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        </a>
+                        <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
+                            Draft</button>
+                    </div>
+                </div>
             </mat-tab>
-            <mat-tab label="Bank Details">   
-                <div class="row mt-3 mb-5" style="width: 80%;"> 
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Name</h5>
-                    <p class="fs-14">{{formData.generalInfo.bankName}}</p>
+            <mat-tab label="Bank Details">
+                <div class="row ">
+                    <div class="col-md-12 px-4 ">
+                        <button class="btn btn-secondary ml-2 " (click)="open(bankModel)"><i class="fa fa-plus"
+                                aria-hidden="true"></i></button>
+                    </div>
                 </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account No</h5>
-                    <p class="fs-14">{{formData.generalInfo.accNo}}</p>
+                <div class="shadow p-3 mb-5" *ngFor="let data of BankDetails">
+                    <div class="row ">
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Account</h5>
+                            <p class="fs-14">{{data.bankAcc}}</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Name</h5>
+                            <p class="fs-14">{{data.bankName}}</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Branch</h5>
+                            <p class="fs-14">{{data.bankBranch}}</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account holder name</h5>
+                            <p class="fs-14">{{data.holderName}}</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-5 px-4  col-lg-6 col-xl-6 px-4  ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Branch</h5>
-                    <p class="fs-14">{{formData.generalInfo.accHolder}}</p>
+                <div class="row" style="width: 80%;" >
+                    <div class="col-md-12 mb-5 px-4">
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        (click)="previousTab()">Previous</button>
+                            <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            (click)="changeTab()">Next</button>
+                        <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        (click)="move(6)">Finish</button> -->
+                        <a href="/landing/supplier-registration/dashboard">
+                            <button type="button"
+                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        </a>
+                        <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
+                            Draft</button>
+                    </div>
                 </div>
-            </div>
+                <ng-template #bankModel let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Add Bank Detail</h4>
+                        <button type="button" class="close" aria-label="Close"
+                            (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form [formGroup]="bankform" (ngSubmit)="submitbank() ; modal.close('Save click')">
+                        <div class="modal-body custom-modal-main">
+                            <section class=" bg-white ">
+                                <div>
+                                    <div class="row ">
+                                        <div class="col-md-12 ">
+                                            <div class="form-group row mb-3">
+                                                <label for="bankAcc" class="col-sm-5 col-form-label">Bank
+                                                    Account</label>
+                                                <div class="col-sm-7">
+                                                    <input formControlName="bankAcc" id="bankAcc" type="text"
+                                                        class="form-control">
+                                                </div>
+                                                <div *ngIf="bf.bankAcc.touched && bf.bankAcc.invalid"
+                                                    class="alert alert-danger">
+                                                    <div *ngIf="bf.bankAcc.errors.required" class="col-sm-7">
+                                                        *required
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-3">
+                                                <label for="bankName" class="col-sm-5 col-form-label">Bank
+                                                    Name</label>
+                                                <div class="col-sm-7">
+                                                    <input formControlName="bankName" id="bankName" type="text"
+                                                        class="form-control">
+                                                </div>
+                                                <div *ngIf="bf.bankName.touched && bf.bankName.invalid"
+                                                    class="alert alert-danger">
+                                                    <div *ngIf="bf.bankName.errors.required" class="col-sm-7">
+                                                        *required</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-3">
+                                                <label for="bankBranch" class="col-sm-5 col-form-label">Bank Branch
+                                                </label>
+                                                <div class="col-sm-7">
+                                                    <input formControlName="bankBranch" id="bankBranch" type="text"
+                                                        class="form-control">
+                                                </div>
+                                                <div *ngIf="bf.bankBranch.touched && bf.bankBranch.invalid"
+                                                    class="alert alert-danger">
+                                                    <div *ngIf="bf.bankBranch.errors.required" class="col-sm-7">
+                                                        *required</div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row mb-3">
+                                                <label for="holderName" class="col-sm-5 col-form-label">Account
+                                                    holder
+                                                    name
+                                                </label>
+                                                <div class="col-sm-7">
+                                                    <input formControlName="holderName" id="holderName" type="text"
+                                                        class="form-control">
+                                                </div>
+                                                <div *ngIf="bf.holderName.touched && bf.holderName.invalid"
+                                                    class="alert alert-danger">
+                                                    <div *ngIf="bf.holderName.errors.required" class="col-sm-7">
+                                                        *required</div>
+                                                </div>
+                                            </div>
+    
+                                            <div class="row mt-5">
+                                                <div class="col-md-12 mb-5 px-4"> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                type="submit">Submit</button>
+                            <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
+                                (click)="form.reset(); modal.close('Save click')">Cancel</button>
+    
+                        </div>
+                    </form>
+                </ng-template>
             </mat-tab>
             <mat-tab label="Other Info">
                 <div class="row" style="width: 80%;">
                     <div class="col-md-12 px-4 mb-3 mt-3">
                         <div class="table-responsive">
                             <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
-                            <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('other')"><i
-                                    class="fa fa-plus" aria-hidden="true"></i></button>
+                            <!-- <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('other')"><i
+                                    class="fa fa-plus" aria-hidden="true"></i></button> -->
                             <table class="table table-striped mb-0 ">
                                 <thead>
                                     <tr class="purple-bg text-white">
@@ -503,26 +636,46 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-5 px-4">
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            (click)="previousTab()">Previous</button>
+                            <button type="button" class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="submitRegistration()">Finish</button>
+                        <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        (click)="move(6)">Finish</button> -->
+                        <a href="/landing/supplier-registration/dashboard">
+                            <button type="button"
+                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        </a>
+                        <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
+                            Draft</button>
+                    </div>
+                </div>
             </mat-tab>
           </mat-tab-group>
        
-        <div class="row">
-            <div class="col-md-12 mb-5 px-4">
-                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                    matStepperPrevious>Previous</button>
-                    <a href="/landing/supplier-registration/dashboard">
-                    <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                    matStepperNext>Finish</button>
-                    </a>
-                <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                (click)="move(6)">Finish</button> -->
-                <a href="/landing/supplier-registration/dashboard">
-                    <button type="button"
-                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                </a>
-                <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
-                    Draft</button>
-            </div>
-        </div>
+        
     </mat-step>
 </mat-horizontal-stepper>
+</div>
+
+<div *ngIf="completed">
+    <section class=" bg-white">
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-md-8 px-3 mt-5  mx-auto text-center ">
+                    <p class="fs-22  text-black ">Supplier request for registration completed successfully. Your
+                        request for registration ID is: 100080 <br />
+                        Please use registration ID for tracking the status of registration through portal.<br />
+                        You will receive confirmation Email shortly on your registered Email ID.<br />
+                        <span class="font-weight-bold mt-3 d-block">Thank You</span> </p>
+                    <a href="/landing/supplier-registration/dashboard">
+                        <button type="button"
+                            class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Close</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

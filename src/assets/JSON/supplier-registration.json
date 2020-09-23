@@ -393,7 +393,24 @@
             "activities": "1567 6578",
             "bankName": "Bank Muscat",
             "accNo": "7191 8000",
-            "accHolder": "Electroman LLC"
+            "accHolder": "Electroman LLC",
+            "name": "R Bala",
+            "qualification": "Btech",
+            "designation": "Project Manager",
+            "experience": "8yrs",
+            "nationality": "Indian",
+            "category": "Professional",
+            "age":48,
+            "dob":"01/06/1972",
+            "members":"4",
+            "socialStatus" : "Married",
+            "familySecurity":"No",
+            "idtype":"Citizen Card",
+            "idNo":"397910",
+            "docCV":"PDF",
+            "residentNumber":"268869",
+            "passport":"FJV5869FU47",
+            "isEdit": false
         },
         "address": {
             "addressID" : "MCT",
@@ -418,6 +435,26 @@
             "generalDirectorMobile" : "+968 7191 8000",
             "generalDirectorEmail": "Youself@electron.net.om"
         },
+        "activities":[
+            {
+                "activityName": "Test1",
+                "subActivity": "Test1",
+                "sagment": "Sagment",
+                "family": "Family",
+                "class": "Class",
+                "commodity": "Commodity",
+                "isEdit":false
+            },
+            {
+                "activityName": "Test2",
+                "subActivity": "Test2",
+                "sagment": "Sagment",
+                "family": "Family",
+                "class": "Class",
+                "commodity": "Commodity",
+                "isEdit":false
+            }
+        ],
         "individualAddress":[
             {   
                 "id":1,
@@ -450,9 +487,42 @@
                 "socialStatus" : "Married",
                 "familySecurity":"No",
                 "idtype":"Citizen Card",
+                "idNo":"397910",
                 "docCV":"PDF",
+                "residentNumber":"268869",
+                "passport":"FJV5869FU47",
                 "isEdit": false
             }],
+            "personalDetails": [
+                {
+                    "personName": "test1",
+                    "nationality": "Omani",
+                    "idType": "",
+                    "idNo": "",
+                    "designation":"Project Manager",
+                    "residentNo": 3,
+                    "passport": "FJ974IVT6"
+                },
+                {
+                    "personName": "test2",
+                    "nationality": "Omani",
+                    "idType": "-",
+                    "idNo": "-",
+                    "designation":"Project Manager",
+                    "residentNo": 5,
+                    "passport": "C586HFD2"
+                },
+                {
+                    "personName": "test3",
+                    "nationality": "Omani",
+                    "idType": "-",
+                    "idNo": "-",
+                    "designation":"Project Manager",
+                    "residentNo": 8,
+                    "passport": "FJ974IVT6"
+        
+                }
+            ],
         "communicationDetails":[
         {
             "no":1,
@@ -528,6 +598,71 @@
                 "nationality": "Indian",
                 "category": "Professional",
                 "docCV":"word doc",
+                "isEdit": false
+            }
+        ],
+        "staffDetails": [
+            {
+                "no": 1,
+                "name": "R Bala",
+                "qualification": "Btech",
+                "specialization": "Literature",
+                "jobTitle": "6001",
+                "designation": "Project Manager",
+                "designationDate": "21-05-2001",
+                "expDate": "15-09-2011",
+                "experience": "02yrs",
+                "appointmentDate": "11-01-2010",
+                "status": "Active",
+                "statusDate": "12-02-2019",
+                "staffCategory": "A",
+                "passportNum": "A459SG576",
+                "recidentCard": "786132",
+                "civilNo": "1567 6578",
+                "crNo": "1567 6578",
+                "omaniratio": "8765",
+                "isEdit": false
+            },
+            {
+                "no": 2,
+                "name": "R P",
+                "qualification": "BE",
+                "specialization": "Thinker",
+                "jobTitle": "1062",
+                "designation": "Board Manager",
+                "designationDate": "01-12-2001",
+                "expDate": "01-05-2011",
+                "experience": "0yrs",
+                "appointmentDate": "11-04-2012",
+                "status": "Active",
+                "statusDate": "11-12-2020",
+                "staffCategory": "A",
+                "passportNum": "A287894H",
+                "recidentCard": "786132",
+                "civilNo": "1567 1234",
+                "crNo": "1854 6789",
+                "omaniratio": "1234",
+                "isEdit": false
+            },
+            {
+                "no": 3,
+                "name": "R K",
+                "qualification": "School Dropout",
+                "specialization": "Thinker",
+                "jobTitle": "6003",
+                "designation": "CEO",
+                "designationDate": "11-02-2001",
+                "expDate": "11-02-2009",
+                "experience": "0yrs",
+                "appointmentDate": "11-02-2020",
+                "status": "Active",
+                "statusDate": "11-02-2020",
+                "staffCategory": "A",
+                "passportNum": "A287894H",
+                "recidentCard": "786132",
+                "civilNo": "3456 6578",
+                "crNo": "2342 2344",
+                "omaniratio": "2387",
                 "isEdit": false
             }
         ],
@@ -654,6 +789,14 @@
                 "regNo": "-",
                 "approxValue": "-",
                 "isEdit": false
+            }
+        ],
+        "BankDetails":[
+            {
+            "bankAcc": "savings",
+            "bankName":"Bank Muscat",
+            "bankBranch": "-",
+            "holderName": "user"
             }
         ],
         "otherDetails": [

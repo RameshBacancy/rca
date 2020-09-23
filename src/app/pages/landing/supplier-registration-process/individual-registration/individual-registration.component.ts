@@ -50,6 +50,7 @@ export class IndividualRegistrationComponent implements OnInit {
   isLocal: boolean = false;
   isIndividual: boolean = false;
   isInternational: boolean = false;
+  BankDetails: any;
 
 
   constructor(
@@ -73,6 +74,7 @@ export class IndividualRegistrationComponent implements OnInit {
       this.subContractorData = this.formData.subContractorDetails;
       this.equipmentData = this.formData.equipmentDetails;
       this.otherData = this.formData.otherDetails;
+      this.BankDetails = this.formData.BankDetails;
       if(localStorage.getItem('regType') === 'local'){
         this.isLocal = true
       }
@@ -95,6 +97,16 @@ export class IndividualRegistrationComponent implements OnInit {
   get f(){
     return this.form.controls;
   }
+  get bf(){
+    return this.bankform.controls;
+
+  }
+  bankform: FormGroup = new FormGroup({
+    bankAcc: new FormControl('', [Validators.required]),
+    bankName: new FormControl('', [Validators.required]),
+    bankBranch: new FormControl('', [Validators.required]),
+    holderName: new FormControl('', [Validators.required])
+  });
 
   open(content, address?) {
     if(address){
@@ -127,6 +139,12 @@ export class IndividualRegistrationComponent implements OnInit {
       this.form.reset();
     }
   }
+  submitbank(){
+    if(this.bankform.status === 'VALID'){
+      this.BankDetails.push(this.bankform.value);
+      this.bankform.reset();
+    }
+  }
 
   delete(data){
     this.formData.address.addressDetails.filter((d,i) => {
@@ -137,6 +155,11 @@ export class IndividualRegistrationComponent implements OnInit {
   }
   registrationComplete(){
     this.completed = true;
+  }
+  submitRegistration(){
+    this.completed = true;
+    localStorage.setItem('LocalRegComplete',"true");
+    // this.router.navigateByUrl('/landing/supplier-registration/transaction');
   }
   // move(index: number) {
   //   this.stepper.selectedIndex = index;
@@ -149,39 +172,34 @@ export class IndividualRegistrationComponent implements OnInit {
   addNewRow(datatype){
     if(datatype === 'individual'){
       this.individualData.map((data, i)=> {
-        if(data.name == ""){
+        if(data.nationality == ""){
           this.individualData.splice(i,1);
         }
       })
       this.newData = {
         "no": this.individualData.length+1,
-        "name": " * ",
-        "qualification": "",
+        "nationality": " * ",
+        "idtype": "",
         "designation": "",
-        "experience": "",
-        "nationality": "",
-        "category": "",
-        "docCV":"",
+        "age": "",
+        "dob": "",
+        "members": "",
+        "socialStatus":"",
+        "familySecurity":"",
         "isEdit": true
       };
       this.individualData.push(this.newData);
     }
     if(datatype === 'communication'){
       this.communicationData.map((data, i)=> {
-        if(data.name == ""){
+        if(data.method == ""){
           this.communicationData.splice(i,1);
         }
       })
       this.newData = {
         "no": this.communicationData.length+1,
-        "name": " * ",
-        "client": "",
-        "consultent": "",
-        "costConsultent": "",
-        "value": "",
-        "period": "",
-        "completion": "",
-        "documents": "",
+        "method":" * ",
+        "value":" ",
         "isEdit": true
       };
       this.communicationData.push(this.newData);
@@ -264,23 +282,23 @@ export class IndividualRegistrationComponent implements OnInit {
     }
     if(datatype === 'communication'){
       
-      if(data.name !== ""){
+      if(data.method !== ""){
         this.communicationData.map((d, i) => {
           if(d.no == data.no){
             d = data
           }
         });
-        if(data.name === " * "){
-          data.name ="",
+        if(data.method === " * "){
+          data.method ="",
           data.isEdit = true;
          }
       } else {
         this.communicationData.map((data, i)=> {
-          if(data.name == ""){
+          if(data.method == ""){
             this.communicationData.splice(i,1);
           }
         })
-        this.alertService.pushError('name can not be empty.')
+        this.alertService.pushError('Communication Method can not be empty.')
       }
     }
     if(datatype === 'subContractor'){
@@ -396,6 +414,14 @@ export class IndividualRegistrationComponent implements OnInit {
     }
 
   }
+
+  selected = new FormControl(0);
+  changeTab() {
+    this.selected.setValue(this.selected.value+1);
+ }
+ previousTab() {
+   this.selected.setValue(this.selected.value-1);
+ }
   
   
 }

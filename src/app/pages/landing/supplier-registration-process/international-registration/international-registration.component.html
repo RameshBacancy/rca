@@ -1,96 +1,56 @@
+<div class="custom-tab-01" *ngIf="!completed">
 <mat-horizontal-stepper #stepper>
     <!-- General Info -->
     <mat-step>
      <ng-template matStepLabel>General Info</ng-template>
      <div class="row">
-         <div class="col-md-12 px-4 ">
-             <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">Activity to
-                 Reg.</h4>
-         </div>
-     </div>
-     <div class="row">
-         <div class="col-md-12 px-4 d-block d-md-flex">
-             <div class="form-check mr-3 mb-3">
-                 <input class="form-check-input" type="radio" name="flexRadioDefault"
-                     id="flexRadioDefault1">
-                 <label class="form-check-label font-italic ml-2" for="flexRadioDefault1"> Construction
-                 </label>
-             </div>
-             <div class="form-check mr-3 mb-3">
-                 <input class="form-check-input" type="radio" name="flexRadioDefault"
-                     id="flexRadioDefault2" checked>
-                 <label class="form-check-label font-italic ml-2" for="flexRadioDefault2"> IT & Networks
-                 </label>
-             </div>
-             <div class="form-check mr-3 mb-3">
-                 <input class="form-check-input" type="radio" name="flexRadioDefault"
-                     id="flexRadioDefault3" checked>
-                 <label class="form-check-label font-italic ml-2" for="flexRadioDefault3"> Animal Meat
-                 </label>
-             </div>
-             <div class="form-check mr-3 mb-3">
-                 <input class="form-check-input" type="radio" name="flexRadioDefault"
-                     id="flexRadioDefault4" checked>
-                 <label class="form-check-label font-italic ml-2" for="flexRadioDefault4"> Ele. Materials
-                 </label>
-             </div>
-
-             <!-- <div class="col-md-3 text-center">
-             <img src="assets/images/cloud.jpg" alt="" class="img-fluid">
-         </div> -->
-         </div>
-
-     </div>
-     <div class="row">
-         <div class="col-md-12 px-4 ">
-             <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1 ">Municipality Reg
-             </h4>
-         </div>
-     </div>
-     <div class="row">
-         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Number</h5>
-             <p class="fs-14">{{formData.generalInfo.regNumber}}</p>
-         </div>
-         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
-             <p class="fs-14">{{formData.generalInfo.regDate}}</p>
-         </div>
-         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date </h5>
-             <p class="fs-14">{{formData.generalInfo.expDate}}</p>
-         </div>
-         <div class="col-md-3 col-lg-3 col-xl-2 px-4">
-             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities</h5>
-             <p class="fs-14">{{formData.generalInfo.activities}}</p>
-         </div>
-     </div>
-     <div class="row">
-         <div class="col-md-12 px-4 ">
-             <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1 ">Bank Details
-             </h4>
-         </div>
-     </div>
-     <div class="row">
-         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Name</h5>
-             <p class="fs-14">{{formData.generalInfo.bankName}}</p>
-         </div>
-         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account No</h5>
-             <p class="fs-14">{{formData.generalInfo.accNo}}</p>
-         </div>
-         <div class="col-md-5 px-4  col-lg-6 col-xl-6 px-4  ">
-             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account Holder/ Company Name
-             </h5>
-             <p class="fs-14">{{formData.generalInfo.accHolder}}</p>
-         </div>
-         <div class="col-md-12 px-4 ">
-             <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
-             <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
-             </p>
-         </div>
-     </div>
+        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
+            <p class="fs-14">1567 6578</p>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Arabic Name</h5>
+            <p class="fs-14">Arabic Name</p>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">English Name</h5>
+            <p class="fs-14">English Name</p>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Company Info</h5>
+            <p class="fs-14">Company Info</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address ID</h5>
+            <select name="my-select" [(ngModel)]="mySelect" (change)="selectChange($event)">
+                <option [value]="formData.dropdownAll.id" *ngFor="let item of formData.dropdownAll">
+                   {{item.addressID}}
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="shadow p-3 mb-5" *ngFor="let item of formData.individualAddress" >
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address Line 1</h5>
+                <p class="fs-14">{{item.addressline1}}</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address Line 2</h5>
+                <p class="fs-14">{{item.addressline2}}</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Language </h5>
+                <p class="fs-14">{{item.language}}</p>
+            </div>
+            <div class="col-md-3 col-lg-3 col-xl-2 px-4">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Country</h5>
+                <p class="fs-14">{{item.country}}</p>
+            </div>
+        </div>
+    </div>
      <!-- <div class="row">
          <div class="col-md-12 px-4 d-block  d-lg-flex">
              <p class="bg-light border p-2 fs-14 rounded mr-0 mr-lg-3 text-center ">Attach Existing </p>
@@ -170,9 +130,77 @@
      <ng-template matStepLabel>Personal Details</ng-template>
 
      <div class="row">
-         <div class="col-md-12 px-4 d-flex mb-3">  
-         </div>
-     </div>
+        <div class="col-md-12 px-4 mb-3 mt-3">
+            <div class="table-responsive">
+
+                <input class="fs-16 custom-height-35" [(ngModel)]="searchText" placeholder="Search text">
+
+                <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('personal')"><i
+                        class="fa fa-plus" aria-hidden="true"></i></button>
+                <table class="table table-striped ">
+                    <thead>
+                        <tr class="purple-bg text-white">
+                            <th scope="col" class="custom-width-60">Person name <i class="fa fa-sort"
+                                    aria-hidden="true" (click)="sorting('personal','personName')"></i></th>
+                            <th scope="col">Nationality <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('personal','nationality')"></i></th>
+                            <th scope="col">I.D Type <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('personal','idType')"></i></th>
+                            <th scope="col">I.D No. <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('personal','idNo')"></i></th>
+                            <th scope="col">Designation <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('personal','designation')"></i></th>
+                            <th scope="col">Resident card Number <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('personal','residentNo')"></i></th>
+                            <th scope="col">Passport<i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('personal','passport')"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <tr *ngFor="let data of personalData | filter : searchText; index as index"
+                            (clickOutside)="enteredDetails( 'personal',data)">
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.personName}}</td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)"><input
+                                    [(ngModel)]="data.personName"></td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.nationality}}</td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                <input [(ngModel)]="data.nationality"></td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                {{data.idType}} </td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                <input [(ngModel)]="data.idType"></td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                {{data.idNo}}</td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                <input [(ngModel)]="data.idNo"></td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.designation}}
+                            </td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                <input [(ngModel)]="data.designation"></td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.residentNo}}
+                            </td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                <input [(ngModel)]="data.residentNo"></td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.passport}}
+                            </td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                <input [(ngModel)]="data.passport"></td>
+
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 px-4 ">
+            <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
+            <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
+            </p>
+        </div>
+    </div>
      <div class="row">
          <div class="col-md-12 mb-5 px-4">
              <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -320,9 +348,40 @@
      <ng-template matStepLabel>Communication Methods</ng-template>
 
      <div class="row">
-         <div class="col-md-12 px-4 mb-3 mt-3">
-         </div>
-     </div>
+        <div class="col-md-12 px-4 mb-3 mt-3">
+            <div class="table-responsive">
+                <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
+                <button class="btn btn-secondary ml-2 float-right mb-2"
+                    (click)="addNewRow('communication')"><i class="fa fa-plus"
+                        aria-hidden="true"></i></button>
+                <table class="table table-striped mb-0 ">
+                    <thead>
+                        <tr class="purple-bg text-white">
+                            <th scope="col" class="custom-width-60">Comm ID <i class="fa fa-sort"
+                                    aria-hidden="true" (click)="sorting('communication','no')"></i> </th>
+                            <th scope="col">Communication Method <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('communication','method')"></i> </th>
+                            <th scope="col">Value <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('communication','value')"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of communicationData | filter : searchText; index as index"
+                            (clickOutside)="enteredDetails( 'communication',data)">
+                            <td>{{data.no}}</td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.method}}</td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'communication',data)">
+                                <input [(ngModel)]="data.method"></td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.value}}
+                            </td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'communication',data)">
+                                <input [(ngModel)]="data.value"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
      <div class="row">
          <div class="col-md-12 mb-5 px-4">
@@ -345,116 +404,436 @@
  <mat-step>
      <ng-template matStepLabel>Commercial Info</ng-template>
 
-     <div class="row">
-         <div class="col-md-12 px-4 mb-3 mt-3">
-            
-         </div>
-     </div>
-     <div class="row">
-         <div class="col-md-12 mb-5 px-4">
-             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                 matStepperPrevious>Previous</button>
-             <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                 matStepperNext>Next</button>
-             <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-             (click)="move(6)">Finish</button> -->
-             <a href="/landing/supplier-registration/dashboard">
-                 <button type="button"
-                     class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-             </a>
-             <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
-                 Draft</button>
-         </div>
-     </div>
+     <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+        <mat-tab label="Activity Info">
+            <div class="row" style="width: 98%;">
+                <div class="col-md-12 px-4 mb-3 mt-3">
+                    <div class="table-responsive">
+
+                        <input class="fs-16 custom-height-35" [(ngModel)]="searchText"
+                            placeholder="Search text">
+
+                        <button class="btn btn-secondary ml-2 float-right mb-2"
+                            (click)="addNewRow('activity')"><i class="fa fa-plus"
+                                aria-hidden="true"></i></button>
+                        <table class="table table-striped ">
+                            <thead>
+                                <tr class="purple-bg text-white">
+                                    <th scope="col" class="custom-width-60">Activity Name
+                                        <i class="fa fa-sort" aria-hidden="true"
+                                            (click)="sorting('activity','activityName')"></i>
+                                    </th>
+                                    <th scope="col">Sub Activity
+                                        <i class="fa fa-sort" aria-hidden="true"
+                                            (click)="sorting('activity','subActivity')"></i>
+                                    </th>
+                                    <th scope="col">Segment
+                                        <i class="fa fa-sort" aria-hidden="true"
+                                            (click)="sorting('activity','sagment')"></i>
+                                    </th>
+                                    <th scope="col">Family
+                                        <i class="fa fa-sort" aria-hidden="true"
+                                            (click)="sorting('activity','family')"></i>
+                                    </th>
+                                    <th scope="col">Class
+                                        <i class="fa fa-sort" aria-hidden="true"
+                                            (click)="sorting('activity','class')"></i>
+                                    </th>
+                                    <th scope="col">Commodity
+                                        <i class="fa fa-sort" aria-hidden="true"
+                                            (click)="sorting('activity','commodity')"></i>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of activityData | filter : searchText; index as index"
+                                    (clickOutside)="enteredDetails( 'activity',data)">
+                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                        {{data.activityName}}
+                                    </td>
+                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
+                                        <input [(ngModel)]="data.activityName"></td>
+                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                        {{data.subActivity}}
+                                    </td>
+                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
+                                        <input [(ngModel)]="data.subActivity"></td>
+                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                        {{data.sagment}} </td>
+                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
+                                        <input [(ngModel)]="data.sagment"></td>
+                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                        {{data.family}}</td>
+                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
+                                        <input [(ngModel)]="data.family"></td>
+                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.class}}
+                                    </td>
+                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
+                                        <input [(ngModel)]="data.class"></td>
+                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                        {{data.commodity}}</td>
+                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
+                                        <input [(ngModel)]="data.commodity"></td>
+
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3 mb-5" style="width: 80%;">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Establishment date</h5>
+                    <p class="fs-14">{{formData.generalInfo.regDate}}</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
+                    <p class="fs-14">{{formData.generalInfo.regDate}}</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date </h5>
+                    <p class="fs-14">{{formData.generalInfo.expDate}}</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Company Grade</h5>
+                    <p class="fs-14">company grade</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 px-4 ">
+                    <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
+                    <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
+                    </p>
+                </div>
+            </div>
+            <div class="row" style="width: 80%;" >
+                <div class="col-md-12 mb-5 px-4">
+                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        matStepperPrevious>Previous</button>
+                        <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                        (click)="changeTab()">Next</button>
+                    <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                    (click)="move(6)">Finish</button> -->
+                    <a href="/landing/supplier-registration/dashboard">
+                        <button type="button"
+                            class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    </a>
+                    <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
+                        Draft</button>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Bank Details">
+            <div class="row ">
+                <div class="col-md-12 px-4 ">
+                    <button class="btn btn-secondary ml-2 " (click)="open(bankModel)"><i class="fa fa-plus"
+                            aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="shadow p-3 mb-5" *ngFor="let data of BankDetails">
+                <div class="row ">
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Account</h5>
+                        <p class="fs-14">{{data.bankAcc}}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Name</h5>
+                        <p class="fs-14">{{data.bankName}}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Branch</h5>
+                        <p class="fs-14">{{data.bankBranch}}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account holder name</h5>
+                        <p class="fs-14">{{data.holderName}}</p>
+                    </div>
+                </div>
+            </div>
+            <ng-template #bankModel let-modal>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title">Add Bank Detail</h4>
+                    <button type="button" class="close" aria-label="Close"
+                        (click)="modal.dismiss('Cross click')">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form [formGroup]="bankform" (ngSubmit)="submitbank() ; modal.close('Save click')">
+                    <div class="modal-body custom-modal-main">
+                        <section class=" bg-white ">
+                            <div>
+                                <div class="row ">
+                                    <div class="col-md-12 ">
+                                        <div class="form-group row mb-3">
+                                            <label for="bankAcc" class="col-sm-5 col-form-label">Bank
+                                                Account</label>
+                                            <div class="col-sm-7">
+                                                <input formControlName="bankAcc" id="bankAcc" type="text"
+                                                    class="form-control">
+                                            </div>
+                                            <div *ngIf="bf.bankAcc.touched && bf.bankAcc.invalid"
+                                                class="alert alert-danger">
+                                                <div *ngIf="bf.bankAcc.errors.required" class="col-sm-7">
+                                                    *required
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label for="bankName" class="col-sm-5 col-form-label">Bank
+                                                Name</label>
+                                            <div class="col-sm-7">
+                                                <input formControlName="bankName" id="bankName" type="text"
+                                                    class="form-control">
+                                            </div>
+                                            <div *ngIf="bf.bankName.touched && bf.bankName.invalid"
+                                                class="alert alert-danger">
+                                                <div *ngIf="bf.bankName.errors.required" class="col-sm-7">
+                                                    *required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label for="bankBranch" class="col-sm-5 col-form-label">Bank Branch
+                                            </label>
+                                            <div class="col-sm-7">
+                                                <input formControlName="bankBranch" id="bankBranch" type="text"
+                                                    class="form-control">
+                                            </div>
+                                            <div *ngIf="bf.bankBranch.touched && bf.bankBranch.invalid"
+                                                class="alert alert-danger">
+                                                <div *ngIf="bf.bankBranch.errors.required" class="col-sm-7">
+                                                    *required</div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label for="holderName" class="col-sm-5 col-form-label">Account
+                                                holder
+                                                name
+                                            </label>
+                                            <div class="col-sm-7">
+                                                <input formControlName="holderName" id="holderName" type="text"
+                                                    class="form-control">
+                                            </div>
+                                            <div *ngIf="bf.holderName.touched && bf.holderName.invalid"
+                                                class="alert alert-danger">
+                                                <div *ngIf="bf.holderName.errors.required" class="col-sm-7">
+                                                    *required</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mt-5">
+                                            <div class="col-md-12 mb-5 px-4"> </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            type="submit">Submit</button>
+                        <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
+                            (click)="form.reset(); modal.close('Save click')">Cancel</button>
+
+                    </div>
+                </form>
+            </ng-template>
+
+            <div class="row" style="width: 80%;" >
+                <div class="col-md-12 mb-5 px-4">
+                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                    (click)="previousTab()">Previous</button>
+                        <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                        (click)="changeTab()">Next</button>
+                    <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                    (click)="move(6)">Finish</button> -->
+                    <a href="/landing/supplier-registration/dashboard">
+                        <button type="button"
+                            class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    </a>
+                    <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
+                        Draft</button>
+                </div>
+            </div>
+        </mat-tab>
+        <mat-tab label="Other Info">
+            <div class="row" style="width: 80%;">
+                <div class="col-md-12 px-4 mb-3 mt-3">
+                    <div class="table-responsive">
+                        <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
+                        <!-- <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('other')"><i
+                                class="fa fa-plus" aria-hidden="true"></i></button> -->
+                        <table class="table table-striped mb-0 ">
+                            <thead>
+                                <tr class="purple-bg text-white">
+                                    <th scope="col">
+                                        <div class="d-flex"> <span> <a class=" text-white fs-14"><i
+                                                        class="fa fa-check"></i></a> </span> <span
+                                                class="ml-3 pl-1 "> <a class=" text-white fs-14"> <i
+                                                        class="fa fa-ellipsis-v "></i>
+                                                </a> </span> </div>
+                                    </th>
+                                    <th scope="col">No. <i class="fa fa-sort" aria-hidden="true"
+                                            (click)="sorting('other','no')"></i></th>
+                                    <th scope="col">Label<i class="fa fa-sort"
+                                            aria-hidden="true" (click)="sorting('other','name')"></i></th>
+                                    <th scope="col">Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of otherData | filter : searchText; index as index"
+                                    (clickOutside)="enteredDetails( 'other',data)">
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value=""
+                                                id="flexCheckDefault-1">
+                                            <span class="ml-2"> <a class=" text-blaack fs-14"><i
+                                                        class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                                    </td>
+                                    <td>{{data.no}}</td>
+                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.name}}
+                                    </td>
+                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)"><input
+                                            [(ngModel)]="data.name"></td>
+                                    <td><a><input type="text" id="input" name="input"></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 mb-5 px-4">
+                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        (click)="previousTab()">Previous</button>
+                        <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                        matStepperNext>Next</button>
+                    <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                    (click)="move(6)">Finish</button> -->
+                    <a href="/landing/supplier-registration/dashboard">
+                        <button type="button"
+                            class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    </a>
+                    <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
+                        Draft</button>
+                </div>
+            </div>
+        </mat-tab>
+      </mat-tab-group>
+
  </mat-step>
   <!-- Staff Details -->
   <mat-step>
      <ng-template matStepLabel>Staff Details</ng-template>
 
      <div class="row">
-         <div class="col-md-12 px-4 mb-3 mt-3">
-             <div class="table-responsive">
+        <div class="col-md-12 px-4 mb-3 mt-3">
+            <div class="table-responsive">
 
-                 <input class="fs-16 custom-height-35" [(ngModel)]="searchText"
-                     placeholder="Search text">
+                <input class="fs-16 custom-height-35" [(ngModel)]="searchText" placeholder="Search text">
 
-                 <button class="btn btn-secondary ml-2 float-right mb-2"
-                     (click)="addNewRow('employee')"><i class="fa fa-plus"
-                         aria-hidden="true"></i></button>
-                 <table class="table table-striped ">
-                     <thead>
-                         <tr class="purple-bg text-white">
-                             <th scope="col" class="custom-width-60">No <i class="fa fa-sort"
-                                     aria-hidden="true" (click)="sorting('employee','no')"></i></th>
-                             <th scope="col">Name <i class="fa fa-sort" aria-hidden="true"
-                                     (click)="sorting('employee','name')"></i></th>
-                             <th scope="col">Qualification <i class="fa fa-sort" aria-hidden="true"
-                                     (click)="sorting('employee','qualification')"></i></th>
-                             <th scope="col">Designation <i class="fa fa-sort" aria-hidden="true"
-                                     (click)="sorting('employee','designation')"></i></th>
-                             <th scope="col">Experience <i class="fa fa-sort" aria-hidden="true"
-                                     (click)="sorting('employee','experience')"></i></th>
-                             <th scope="col">Nationality <i class="fa fa-sort" aria-hidden="true"
-                                     (click)="sorting('employee','nationality')"></i></th>
-                             <th scope="col">Category <i class="fa fa-sort" aria-hidden="true"
-                                     (click)="sorting('employee','category')"></i></th>
-                             <th scope="col">Documents(CV)</th>
-                         </tr>
-                     </thead>
-                     <!-- *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)"  -->
-                     <!-- <input  [(ngModel)]="data.no"> -->
-                     <tbody>
-                         <tr *ngFor="let data of employeeData | filter : searchText; index as index"
-                             (clickOutside)="enteredDetails( 'employee',data)">
-                             <td (dblclick)="data.isEdit = true">{{data.no}}</td>
-                             <!-- <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)"><input [(ngModel)]="data.no"></td> -->
-                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.name}}</td>
-                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
-                                 <input [(ngModel)]="data.name"></td>
-                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
-                                 {{data.qualification}} </td>
-                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
-                                 <input [(ngModel)]="data.qualification"></td>
-                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
-                                 {{data.designation}}</td>
-                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
-                                 <input [(ngModel)]="data.designation"></td>
-                             <th *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.experience}}
-                             </th>
-                             <th *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
-                                 <input [(ngModel)]="data.experience"></th>
-                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
-                                 {{data.nationality}}</td>
-                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
-                                 <input [(ngModel)]="data.nationality"></td>
-                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.category}}
-                             </td>
-                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
-                                 <input [(ngModel)]="data.category"></td>
-                             <td><a class="text-decoration-underline text-danger">{{data.docCV}}</a>
-                             </td>
-                         </tr>
-                     </tbody>
+                <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('staff')"><i
+                        class="fa fa-plus" aria-hidden="true"></i></button>
+                <table class="table table-striped ">
+                    <thead>
+                        <tr class="purple-bg text-white">
+                            <th scope="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value=""
+                                        id="flexCheckDefault-1">
+                                    <span class="ml-2"> <a class=" text-blaack fs-14"><i
+                                                class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                            </th>
+                            <th scope="col">Employee Name <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('staff','name')"></i></th>
+                            <th scope="col">Employee Qualification <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('staff','qualification')"></i></th>
+                            <th scope="col">Employee Specialization <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('staff','specialization')"></i></th>
+                            <th scope="col">Job title <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('staff','jobTitle')"></i></th>
+                            <th scope="col">Designation Type <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('staff','designation')"></i></th>
+                            <th scope="col">Designation date <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('staff','designationDate')"></i></th>
+                            <th scope="col">Expired date <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('staff','expDate')"></i></th>
+                            <th scope="col">Experience <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('staff','experiance')"></i></th>
+                            <th scope="col">Appointment Date <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('staff','appointmentDate')"></i></th>
+                            <th scope="col">Status <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('staff','status')"></i></th>
+                            <th scope="col">Status date <i class="fa fa-sort" aria-hidden="true"
+                                    (click)="sorting('staff','statusDate')"></i></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of staffData | filter : searchText; index as index"
+                            (clickOutside)="enteredDetails( 'staff',data)">
+                            <td>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value=""
+                                        id="flexCheckDefault-1">
+                                    <span class="ml-2"> <a class=" text-blaack fs-14"><i
+                                                class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                            </td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.name}}</td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                                <input [(ngModel)]="data.name"></td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.qualification}}</td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                                <input [(ngModel)]="data.qualification"></td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.specialization}}
+                            </td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                                <input [(ngModel)]="data.specialization"></td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.jobTitle}}</td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                                <input [(ngModel)]="data.jobTitle"></td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.designation}}</td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                                <input [(ngModel)]="data.designation"></td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.designationDate}}
+                            </td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                                <input [(ngModel)]="data.designationDate"></td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.expDate}}</td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                                <input [(ngModel)]="data.expDate"></td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.experience}}</td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                                <input [(ngModel)]="data.experience"></td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.appointmentDate}}
+                            </td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                                <input [(ngModel)]="data.appointmentDate"></td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.status}}</td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                                <input [(ngModel)]="data.status"></td>
+                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.statusDate}}</td>
+                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                                <input [(ngModel)]="data.statusDate"></td>
+                            
+                        </tr>
+                    </tbody>
 
-                 </table>
-             </div>
-         </div>
-     </div>
-     <div class="row">
-         <div class="col-md-12 px-4 ">
-             <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
-             <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
-             </p>
-         </div>
-     </div>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-12 px-4">
+            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+        </div>
+    </div>
+
      <div class="row">
          <div class="col-md-12 mb-5 px-4">
              <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                  matStepperPrevious>Previous</button>
-                 <a href="/landing/supplier-registration/dashboard">
-                     <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                     matStepperNext>Finish</button>
-                     </a>
+                 <button type="button" class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="submitRegistration()">Finish</button>
              <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
              <a href="/landing/supplier-registration/dashboard">
@@ -467,3 +846,24 @@
      </div>
  </mat-step>
  </mat-horizontal-stepper>
+</div>
+
+<div *ngIf="completed">
+    <section class=" bg-white">
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-md-8 px-3 mt-5  mx-auto text-center ">
+                    <p class="fs-22  text-black ">Supplier request for registration completed successfully. Your
+                        request for registration ID is: 100080 <br />
+                        Please use registration ID for tracking the status of registration through portal.<br />
+                        You will receive confirmation Email shortly on your registered Email ID.<br />
+                        <span class="font-weight-bold mt-3 d-block">Thank You</span> </p>
+                    <a href="/landing/supplier-registration/dashboard">
+                        <button type="button"
+                            class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Close</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

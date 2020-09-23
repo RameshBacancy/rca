@@ -37,17 +37,20 @@ export class InternationalRegistrationComponent implements OnInit {
     authorizedResidentId: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
   });
   
-  employeeData: any[];
-  employeeSearch: string;
+  staffData: any[];
+  staffSearch: string;
   newData:any; 
-  projectData: any[];
+  communicationData: any[];
   subContractorData: any[];
   equipmentData: any[];
   otherData: any[];
+  activityData: any[];
 
   isLocal: boolean = false;
   isIndividual: boolean = false;
   isInternational: boolean = false;
+  personalData: any;
+  BankDetails: any;
 
   constructor(
     private router: Router, 
@@ -58,29 +61,51 @@ export class InternationalRegistrationComponent implements OnInit {
     private searchPipe: FilterPipe,
     private alertService: AlertService) { }
     
-  
+    loadData(data){
+      var d=[];
+      d.push(data);
+      this.formData = this.supplierData.getdata();
+      this.formData.individualAddress=d;
+      this.personalData = this.formData.personalDetails;
+      this.staffData = this.formData.staffDetails;
+      this.communicationData = this.formData.communicationDetails;
+      this.subContractorData = this.formData.subContractorDetails;
+      this.equipmentData = this.formData.equipmentDetails;
+      this.BankDetails = this.formData.BankDetails;
+      this.otherData = this.formData.otherDetails;
+      this.activityData = this.formData.activities;
+      if(localStorage.getItem('regType') === 'local'){
+        this.isLocal = true
+      }
+      if(localStorage.getItem('regType') === 'individual'){
+        this.isIndividual = true
+      }
+      if(localStorage.getItem('regType') === 'international'){
+        this.isInternational = true
+      }
+    }
+
   ngOnInit(): void {  
-    this.formData = this.supplierData.getdata();
-    this.employeeData = this.formData.employeDetails;
-    this.projectData = this.formData.projectDetails;
-    this.subContractorData = this.formData.subContractorDetails;
-    this.equipmentData = this.formData.equipmentDetails;
-    this.otherData = this.formData.otherDetails;
-    if(localStorage.getItem('regType') === 'local'){
-      this.isLocal = true
-    }
-    if(localStorage.getItem('regType') === 'individual'){
-      this.isIndividual = true
-    }
-    if(localStorage.getItem('regType') === 'international'){
-      this.isInternational = true
-    }
+    this.formData=this.supplierData.getdata();
+    this.formData.dropdownAll=this.formData.individualAddress;
+    var array={};
+    array=this.formData.individualAddress[0];
+    this.loadData(this.formData.individualAddress[0]); 
   }
 
   get f(){
     return this.form.controls;
   }
+  get bf(){
+    return this.bankform.controls;
 
+  }
+  bankform: FormGroup = new FormGroup({
+    bankAcc: new FormControl('', [Validators.required]),
+    bankName: new FormControl('', [Validators.required]),
+    bankBranch: new FormControl('', [Validators.required]),
+    holderName: new FormControl('', [Validators.required])
+  });
   open(content, address?) {
     if(address){
       this.form.patchValue(address);
@@ -112,6 +137,17 @@ export class InternationalRegistrationComponent implements OnInit {
       this.form.reset();
     }
   }
+  submitRegistration(){
+    this.completed = true;
+    localStorage.setItem('LocalRegComplete',"true");
+    // this.router.navigateByUrl('/landing/supplier-registration/transaction');
+  }
+  submitbank(){
+    if(this.bankform.status === 'VALID'){
+      this.BankDetails.push(this.bankform.value);
+      this.bankform.reset();
+    }
+  }
 
   delete(data){
     this.formData.address.addressDetails.filter((d,i) => {
@@ -132,44 +168,47 @@ export class InternationalRegistrationComponent implements OnInit {
   }
 
   addNewRow(datatype){
-    if(datatype === 'employee'){
-      this.employeeData.map((data, i)=> {
+    if(datatype === 'staff'){
+      this.staffData.map((data, i)=> {
         if(data.name == ""){
-          this.employeeData.splice(i,1);
+          this.staffData.splice(i,1);
         }
       })
       this.newData = {
-        "no": this.employeeData.length+1,
         "name": " * ",
         "qualification": "",
+        "specialization": "",
+        "jobTitle": "",
         "designation": "",
+        "designationDate": "",
+        "expDate": "",
         "experience": "",
-        "nationality": "",
-        "category": "",
-        "docCV":"",
+        "appointmentDate": "",
+        "status": "",
+        "statusDate": "",
+        "staffCategory": "",
+        "passportNum": "",
+        "recidentCard": "",
+        "civilNo": "",
+        "crNo": "",
+        "omaniratio": "",
         "isEdit": true
       };
-      this.employeeData.push(this.newData);
+      this.staffData.push(this.newData);
     }
-    if(datatype === 'project'){
-      this.projectData.map((data, i)=> {
-        if(data.name == ""){
-          this.projectData.splice(i,1);
+    if(datatype === 'communication'){
+      this.communicationData.map((data, i)=> {
+        if(data.method == ""){
+          this.communicationData.splice(i,1);
         }
       })
       this.newData = {
-        "no": this.projectData.length+1,
-        "name": " * ",
-        "client": "",
-        "consultent": "",
-        "costConsultent": "",
-        "value": "",
-        "period": "",
-        "completion": "",
-        "documents": "",
+        "no": this.communicationData.length+1,
+        "method":" * ",
+        "value":" ",
         "isEdit": true
       };
-      this.projectData.push(this.newData);
+      this.communicationData.push(this.newData);
     }
     if(datatype === 'subContractor'){
       this.subContractorData.map((data, i)=> {
@@ -222,15 +261,54 @@ export class InternationalRegistrationComponent implements OnInit {
       };
       this.otherData.push(this.newData);
     }
+    if(datatype === 'activity'){
+      this.activityData.map((data, i)=> {
+        if(data.activityName == ""){
+          this.activityData.splice(i,1);
+        }
+      })
+      this.newData = {
+        "activityName": " * ",
+        "subActivity": "",
+        "sagment": "",
+        "family": "",
+        "class": "",
+        "commodity": "",
+        "isEdit": true
+      };
+      this.activityData.push(this.newData);
+    }
+    if(datatype === 'personal'){
+      this.personalData.map((data, i)=> {
+        if(data.personName == ""){
+          this.personalData.splice(i,1);
+        }
+      })
+      this.newData = {
+        "personName": " * ",
+        "nationality": "",
+        "idType": "",
+        "idNo": "",
+        "designation":"",
+        "noOfShares": '',
+        "perShares": "",
+        "authorizationType": "",
+        "authorizationLimit": "",
+        "note": "",
+        "regDate": "",
+        "isEdit": true
+      };
+      this.personalData.push(this.newData);
+    }
   }
 
   enteredDetails(datatype, data){
     data.isEdit = false;
-    if(datatype === 'employee'){
+    if(datatype === 'staff'){
      
       if(data.name !== ""){
-        this.employeeData.map((d, i) => {
-          if(d.no == data.no){
+        this.staffData.map((d, i) => {
+          if(d.name == data.name){
             d = data
           }
         });
@@ -239,33 +317,33 @@ export class InternationalRegistrationComponent implements OnInit {
          data.isEdit = true;
         }
       } else {
-        this.employeeData.map((data, i)=> {
+        this.staffData.map((data, i)=> {
           if(data.name == ""){
-            this.employeeData.splice(i,1);
+            this.staffData.splice(i,1);
           }
         })
         this.alertService.pushError('name can not be empty.')
       }
     }
-    if(datatype === 'project'){
+    if(datatype === 'communication'){
       
-      if(data.name !== ""){
-        this.projectData.map((d, i) => {
+      if(data.method !== ""){
+        this.communicationData.map((d, i) => {
           if(d.no == data.no){
             d = data
           }
         });
-        if(data.name === " * "){
-          data.name ="",
+        if(data.method === " * "){
+          data.method ="",
           data.isEdit = true;
          }
       } else {
-        this.projectData.map((data, i)=> {
-          if(data.name == ""){
-            this.projectData.splice(i,1);
+        this.communicationData.map((data, i)=> {
+          if(data.method == ""){
+            this.communicationData.splice(i,1);
           }
         })
-        this.alertService.pushError('name can not be empty.')
+        this.alertService.pushError('Communication Method can not be empty.')
       }
     }
     if(datatype === 'subContractor'){
@@ -328,17 +406,57 @@ export class InternationalRegistrationComponent implements OnInit {
         this.alertService.pushError('nameOfWork can not be empty.')
       }
     }
+    if(datatype === 'activity'){
+      if(data.activityName !== ""){
+        this.activityData.map((d, i) => {
+          if(d.no == data.no){
+            d = data
+          }
+        });
+        if(data.activityName === " * "){
+          data.activityName ="",
+          data.isEdit = true;
+         }
+      } else {
+        this.activityData.map((data, i)=> {
+          if(data.activityName == ""){
+            this.activityData.splice(i,1);
+          }
+        })
+        this.alertService.pushError('Activity Name can not be empty.')
+      }
+    }
+    if(datatype === 'personal'){
+      if(data.personName !== ""){
+        this.personalData.map((d, i) => {
+          if(d.no == data.no){
+            d = data
+          }
+        });
+        if(data.personName === " * "){
+          data.personName ="",
+          data.isEdit = true;
+         }
+      } else {
+        this.personalData.map((data, i)=> {
+          if(data.personName == ""){
+            this.personalData.splice(i,1);
+          }
+        })
+        this.alertService.pushError('Person Name can not be empty.')
+      }
+    }
     
   }
   
   sorting( property, str){
     this.order = !this.order;
     if(this.order === true){
-      if(property === 'employee'){
-        this.employeeData = this.sortByPipe.transform(this.formData.employeDetails,'asc',str)
+      if(property === 'staff'){
+        this.staffData = this.sortByPipe.transform(this.formData.staffDetails,'asc',str)
       }
-      if(property === 'project'){
-        this.projectData = this.sortByPipe.transform(this.formData.projectDetails,'asc',str)
+      if(property === 'communication'){
+        this.communicationData = this.sortByPipe.transform(this.formData.communicationDetails,'asc',str)
       }
       if(property === 'subcontractor'){
         this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetails,'asc',str)
@@ -349,13 +467,19 @@ export class InternationalRegistrationComponent implements OnInit {
       if(property === 'other'){
         this.otherData = this.sortByPipe.transform(this.formData.otherDetails,'asc',str)
       }
+      if(property === 'activity'){
+        this.activityData = this.sortByPipe.transform(this.formData.activities,'asc',str)
+      }
+      if(property === 'personal'){
+        this.personalData = this.sortByPipe.transform(this.formData.personalDetails,'asc',str)
+      }
     }
     else{
-      if(property === 'employee'){
-        this.employeeData = this.sortByPipe.transform(this.formData.employeDetails,'desc',str)
+      if(property === 'staff'){
+        this.staffData = this.sortByPipe.transform(this.formData.staffDetails,'desc',str)
       }
-      if(property === 'project'){
-        this.projectData = this.sortByPipe.transform(this.formData.projectDetails,'desc',str)
+      if(property === 'communication'){
+        this.communicationData = this.sortByPipe.transform(this.formData.communicationDetails,'desc',str)
       }
       if(property === 'subcontractor'){
         this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetails,'desc',str)
@@ -366,10 +490,33 @@ export class InternationalRegistrationComponent implements OnInit {
       if(property === 'other'){
         this.otherData = this.sortByPipe.transform(this.formData.otherDetails,'desc',str)
       }
+      if(property === 'activity'){
+        this.activityData = this.sortByPipe.transform(this.formData.activities,'desc',str)
+      }
+      if(property === 'personal'){
+        this.personalData = this.sortByPipe.transform(this.formData.personalDetails,'desc',str)
+      }
     }
   }
 
- 
+  selectChange(event){
+    var dp=this.formData;
   
+    if(dp.individualAddress!=undefined && event.target.selectedIndex>dp.individualAddress.length){
+     
+      this.loadData(dp.individualAddress[event.target.selectedIndex]);
+    }else{
+
+    this.loadData(dp.dropdownAll[event.target.selectedIndex]);
+    }
+
+  }
+  selected = new FormControl(0);
+  changeTab() {
+    this.selected.setValue(this.selected.value+1);
+ }
+ previousTab() {
+   this.selected.setValue(this.selected.value-1);
+ }
 
 }
