@@ -36,7 +36,6 @@ export class ForgetPasswordComponent implements OnInit {
     this._Activatedroute.queryParams.subscribe((params) => {
       this.user.token =params['token'];
     });
-    let alteredURL = this.removeParam("token", this.router.url);
     this.location.replaceState('forgetpassword')
     
   }
@@ -52,21 +51,10 @@ export class ForgetPasswordComponent implements OnInit {
               this.router.navigateByUrl('/admin/user/login');
             this.spinner.closeSpinner();
         },
-        (error) => {                              //Error callback
-          // console.error('error caught in component')
+        (error) => {                              
           this.errorMsg = error.error.message;
           this.spinner.closeSpinner();
         }
-      //   d => {
-      //   if(d.status === 200){
-      //     this.spinner.closeSpinner();
-      //     this._alertService.pushSuccess(d.message);
-      //     this.router.navigateByUrl('/admin/user/login');
-      //   }
-      //   else{
-      //     this.errorMsg = d.message;
-      //   }
-      // }
       )
     } else {
       this.spinner.closeSpinner();
@@ -78,21 +66,4 @@ export class ForgetPasswordComponent implements OnInit {
     this.router.navigateByUrl('/admin/user/login')
   }
 
-  removeParam(key, sourceURL) {
-    var rtn = sourceURL.split("?")[0],
-        param,
-        params_arr = [],
-        queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
-    if (queryString !== "") {
-        params_arr = queryString.split("&");
-        for (var i = params_arr.length - 1; i >= 0; i -= 1) {
-            param = params_arr[i].split("=")[0];
-            if (param === key) {
-                params_arr.splice(i, 1);
-            }
-        }
-        rtn = rtn + "?" + params_arr.join("&");
-    }
-    return rtn;
-}
 }

@@ -59,7 +59,7 @@
                 {
                     "name": "Login",
                     "icon": "",
-                    "route": "/auth/register",
+                    "route": "/#/auth/register",
                     "disabled": false,
                     "children": []
                 },
@@ -73,7 +73,7 @@
                 {
                     "name": "Register",
                     "icon": "",
-                    "route": "/landing/supplier-registration/registration",
+                    "route": "/#/landing/supplier-registration/registration",
                     "disabled": false,
                     "children": []
                 },
@@ -146,7 +146,7 @@
             "children": []
         },
         {
-            "name": "Content Management",
+            "name": "CMS",
             "icon": "",
             "route": "",
             "disabled": false,

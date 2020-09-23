@@ -43,8 +43,7 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/admin/dashboard');
           this.spinner.closeSpinner();
       },
-      (error) => {                              //Error callback
-        // console.error('error caught in component')
+      (error) => {                 
         this.message = error.error.message;
         this.spinner.closeSpinner();
       }
@@ -54,9 +53,15 @@ export class LoginComponent implements OnInit {
   
   forgetPass(email)
   {
+    this.spinner.openSpinner();
     this._userService.forgetPass(email).subscribe(d => {
       this.spinner.closeSpinner();
-     })
+     },
+     e => {
+       this._alertService.pushError('Please Enter Valid Email')
+       this.spinner.closeSpinner()
+      }
+     )
   }
 
   validateEmail(email) {
