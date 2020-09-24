@@ -5,6 +5,7 @@ import { ProtectGuard } from 'src/app/guard/protect.guard';
 import { InternationalLoginComponent } from './international-login/international-login.component';
 import { PaymentComponent } from './transaction/payment/payment.component';
 import { AuthGuard } from 'src/app/guard/auth.guard';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,11 @@ const routes: Routes = [
       {
         path:'transaction',
         loadChildren: () => import('./transaction/transaction.module').then(m => m.TransactionModule),
+        canActivate: [AuthGuard]
+      },
+      {
+        path:'aboutus',
+        component: AboutUsComponent,
         canActivate: [AuthGuard]
       },
       {

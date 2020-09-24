@@ -36,7 +36,7 @@ export class LandingComponent implements OnInit {
       else if(this.title === 'registration'){
         this.title = 'Registration'
       }
-      else if (this.title === 'about-us') {
+      else if (this.title === 'aboutus') {
         this.title = 'About Us'
       }
       else if (this.title === 'how-to-register') {

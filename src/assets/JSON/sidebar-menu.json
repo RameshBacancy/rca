@@ -9,7 +9,7 @@
                 {
                     "name": "About Us",
                     "icon": "",
-                    "route": "",
+                    "route": "/#/landing/supplier-registration/aboutus",
                     "disabled": false,
                     "children": []
                 },

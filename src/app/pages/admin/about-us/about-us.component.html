@@ -2,7 +2,9 @@
     <div class="container-fluid px-4">
         <div class="row">
             <div class="col-md-12 mx-2 my-2 py-2 px-2 ">
-                <span class="shadow border py-2 px-2 mx-2 my-2"  *ngFor="let data of allData"><span (click)="openData(data.id)">{{data.title}}  </span><i class="fa fa-times" aria-hidden="true" (click)="deleteCMS(data.id, data.title)"></i></span>
+                <span class="shadow border py-2 px-2 mx-2 my-2"  *ngFor="let data of allData">
+                    <span (click)="openData(data.id)">{{data.title}}  </span>
+                    <i class="fa fa-times" aria-hidden="true" (click)="deleteCMS(data.id, data.title)"></i></span>
             </div>
             <div class="col-md-12">
                 <br/>
