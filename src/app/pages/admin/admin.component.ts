@@ -22,14 +22,11 @@ export class AdminComponent implements OnInit {
       this.currentUrl = this.router.url;
       this.url = this.currentUrl.split('/');
       this.title = this.url[this.url.length - 1];
-      if (this.title === 'about-us') {
-        this.title = 'About Us'
+      if (this.title === 'cms') {
+        this.title = 'CMS'
       }
       else if (this.title === 'dashboard') {
         this.title = 'Admin Panel'
-      }
-      else if (this.title === 'how-to-register') {
-        this.title = 'How To Register'
       }
       ref.detectChanges();
     });

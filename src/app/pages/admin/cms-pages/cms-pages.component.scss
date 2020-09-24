@@ -1,0 +1,12 @@
+@import 'src/assets/scss/index.scss';
+
+ul {
+    background-color: $background-grey;
+    li {
+      list-style-type: none;
+      color: $color-black;
+    }
+    li:hover {
+     cursor: pointer;
+    }
+}

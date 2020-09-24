@@ -148,24 +148,9 @@
         {
             "name": "CMS",
             "icon": "",
-            "route": "",
+            "route": "/#/admin/cms",
             "disabled": false,
-            "children": [
-                {
-                    "name": "About Us",
-                    "icon": "",
-                    "route": "/#/admin/about-us",
-                    "disabled": false,
-                    "children": []
-                },
-                {
-                    "name": "How to Register",
-                    "icon": "",
-                    "route": "/#/admin/how-to-register",
-                    "disabled": false,
-                    "children": []
-                }
-            ]
+            "children": []
         }
     ]
 }

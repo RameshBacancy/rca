@@ -76,13 +76,18 @@ a.header-menu-2:hover {  background-color: #873e8d;}
 button.close:focus { outline: none !important;}
 
 .purple-bg {  background-color: #873e8d;}
+.red-bg{ background-color: red !important; border-color: red !important;}
 .dark-grey-bg {    background-color: #f2f2f2; }
 .sky-blue-bg {    background-color: #1da8d2; }
-.purple-bg  { background:#883f8e}
+.purple-bg  { background:#883f8e; background-color: #883f8e !important;}
+.border-purple{ border-color: #883f8e !important;}
+.color-white-text { color: white !important;}
 .dark-grey-bg-2 { background:#4b4a4d}
 .dark-grey-bg-3 { background:#666666}
 .dark-green-bg { background:#007e59}
-
+.dropdown-border-dark{ 
+  border: 1px solid #000000;
+}
 
 .light-green-bg { background:#00d89e}
 .orange-bg { background:#ff5659} 

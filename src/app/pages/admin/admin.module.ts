@@ -6,10 +6,10 @@ import { AdminGuard } from '../../guard/admin.guard';
 import { LayoutModule } from '../layout/layout.module';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AboutUsComponent } from './about-us/about-us.component';
-import { HowToRegisterComponent } from './how-to-register/how-to-register.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
+import { CmsPagesComponent } from './cms-pages/cms-pages.component';
+import { CmsService } from 'src/app/services/cms.service';
 
 const routes: Routes = [
   {
@@ -27,12 +27,8 @@ const routes: Routes = [
         component : AdminDashboardComponent,
       },
       {
-        path:'about-us',
-        component : AboutUsComponent,
-      },
-      {
-        path:'how-to-register',
-        component : HowToRegisterComponent,
+        path:'cms',
+        component : CmsPagesComponent,
       }
     ]
   },
@@ -48,7 +44,12 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AdminComponent,ChangePasswordComponent, AboutUsComponent, HowToRegisterComponent, AdminDashboardComponent],
+  declarations: [
+    AdminComponent,
+    ChangePasswordComponent, 
+    AdminDashboardComponent, 
+    CmsPagesComponent
+  ],
   imports: [
     CommonModule,
     LayoutModule,
