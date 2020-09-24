@@ -49,13 +49,13 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-12 px-4 ">
                 <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
                 <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
                 </p>
             </div>
-        </div>
+        </div> -->
         <!-- <div class="row">
             <div class="col-md-12 px-4 d-block  d-lg-flex">
                 <p class="bg-light border p-2 fs-14 rounded mr-0 mr-lg-3 text-center ">Attach Existing </p>
@@ -111,6 +111,12 @@
                 </div>
             </div>
         </div> -->
+        <div class="row" style="width: 80%;" > 
+            <div class="col-md-12 px-4">
+                <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12 mb-5 px-4">
                 <!-- <button type="button"
@@ -120,12 +126,13 @@
                 <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                 (click)="move(6)">Finish</button> -->
 
-                <a href="/landing/supplier-registration/dashboard">
-                    <button type="button"
-                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                </a>
+               
                 <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                     Draft</button>
+                    <a href="/landing/supplier-registration/dashboard">
+                        <button type="button"
+                            class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    </a>
             </div>
         </div>
 
@@ -147,24 +154,24 @@
                     <table class="table table-striped ">
                         <thead>
                             <tr class="purple-bg text-white">
-                                <th scope="col" class="custom-width-60">No <i class="fa fa-sort"
-                                        aria-hidden="true" (click)="sorting('individual','no')"></i></th>
-                                <th scope="col">Nationality <i class="fa fa-sort" aria-hidden="true"
-                                        (click)="sorting('individual','nationality')"></i></th>
-                                <th scope="col">ID type <i class="fa fa-sort" aria-hidden="true"
-                                        (click)="sorting('individual','idtype')"></i></th>
-                                <th scope="col">Designation <i class="fa fa-sort" aria-hidden="true"
-                                        (click)="sorting('individual','designation')"></i></th>
-                                <th scope="col">Age <i class="fa fa-sort" aria-hidden="true"
-                                        (click)="sorting('individual','age')"></i></th>
-                                <th scope="col">DOB <i class="fa fa-sort" aria-hidden="true"
-                                        (click)="sorting('individual','dob')"></i></th>
-                                <th scope="col">No. of family members <i class="fa fa-sort" aria-hidden="true"
-                                        (click)="sorting('individual','members')"></i></th>
-                                <th scope="col">Social Status <i class="fa fa-sort" aria-hidden="true"
-                                        (click)="sorting('individual','socialStatus')"></i></th>
-                                <th scope="col">Family of social Security <i class="fa fa-sort" aria-hidden="true"
-                                        (click)="sorting('individual','familySecurity')"></i></th>
+                                <th scope="col" class="custom-width-60" (click)="sorting('individual','no')">No <i class="fa fa-sort"
+                                        aria-hidden="true"></i></th>
+                                <th scope="col" (click)="sorting('individual','nationality')">Nationality <i class="fa fa-sort" aria-hidden="true"
+                                       ></i></th>
+                                <th scope="col" (click)="sorting('individual','idtype')">ID type <i class="fa fa-sort" aria-hidden="true"
+                                       ></i></th>
+                                <th scope="col"  (click)="sorting('individual','designation')">Designation <i class="fa fa-sort" aria-hidden="true"
+                                      ></i></th>
+                                <th scope="col" (click)="sorting('individual','age')">Age <i class="fa fa-sort" aria-hidden="true"
+                                       ></i></th>
+                                <th scope="col" (click)="sorting('individual','dob')">DOB <i class="fa fa-sort" aria-hidden="true"
+                                       ></i></th>
+                                <th scope="col" (click)="sorting('individual','members')">No. of family members <i class="fa fa-sort" aria-hidden="true"
+                                       ></i></th>
+                                <th scope="col" (click)="sorting('individual','socialStatus')">Social Status <i class="fa fa-sort" aria-hidden="true"
+                                       ></i></th>
+                                <th scope="col" (click)="sorting('individual','familySecurity')">Family of social Security <i class="fa fa-sort" aria-hidden="true"
+                                       ></i></th>
                             </tr>
                         </thead>
                         <!-- *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'individual',data)"  -->
@@ -210,11 +217,17 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-12 px-4 ">
                 <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
                 <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
                 </p>
+            </div>
+        </div> -->
+        <div class="row" style="width: 80%;" > 
+            <div class="col-md-12 px-4">
+                <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
             </div>
         </div>
         <div class="row">
@@ -225,12 +238,12 @@
                     matStepperNext>Next</button>
                 <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                 (click)="move(6)">Finish</button> -->
-                <a href="/landing/supplier-registration/dashboard">
-                    <button type="button"
-                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                </a>
                 <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                     Draft</button>
+                    <a href="/landing/supplier-registration/dashboard">
+                        <button type="button"
+                            class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    </a>
             </div>
         </div>
         <!-- Address Model Pop-Up Form -->
@@ -373,12 +386,12 @@
                     <table class="table table-striped mb-0 ">
                         <thead>
                             <tr class="purple-bg text-white">
-                                <th scope="col" class="custom-width-60">Comm ID <i class="fa fa-sort"
-                                        aria-hidden="true" (click)="sorting('communication','no')"></i> </th>
-                                <th scope="col">Communication Method <i class="fa fa-sort" aria-hidden="true"
-                                        (click)="sorting('communication','method')"></i> </th>
-                                <th scope="col">Value <i class="fa fa-sort" aria-hidden="true"
-                                        (click)="sorting('communication','value')"></i></th>
+                                <th scope="col" class="custom-width-60" (click)="sorting('communication','no')">Comm ID <i class="fa fa-sort"
+                                        aria-hidden="true" ></i> </th>
+                                <th scope="col" (click)="sorting('communication','method')">Communication Method <i class="fa fa-sort" aria-hidden="true"
+                                        ></i> </th>
+                                <th scope="col" (click)="sorting('communication','value')">Value <i class="fa fa-sort" aria-hidden="true"
+                                        ></i></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -398,6 +411,12 @@
                 </div>
             </div>
         </div>
+        <div class="row" style="width: 80%;" > 
+            <div class="col-md-12 px-4">
+                <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-md-12 mb-5 px-4">
@@ -407,12 +426,12 @@
                     matStepperNext>Next</button>
                 <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                 (click)="move(6)">Finish</button> -->
-                <a href="/landing/supplier-registration/dashboard">
-                    <button type="button"
-                        class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                </a>
                 <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                     Draft</button>
+                    <a href="/landing/supplier-registration/dashboard">
+                        <button type="button"
+                            class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    </a>
             </div>
         </div>
     </mat-step>
@@ -440,7 +459,12 @@
                         <p class="fs-14">{{formData.generalInfo.activities}}</p>
                     </div>
                 </div>
-
+                <div class="row" style="width: 80%;" > 
+                    <div class="col-md-12 px-4">
+                        <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                        <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                    </div>
+                </div>
                 <div class="row" style="width: 80%;" >
                     <div class="col-md-12 mb-5 px-4">
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -449,12 +473,12 @@
                             (click)="changeTab()">Next</button>
                         <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         (click)="move(6)">Finish</button> -->
-                        <a href="/landing/supplier-registration/dashboard">
-                            <button type="button"
-                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                        </a>
                         <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                             Draft</button>
+                            <a href="/landing/supplier-registration/dashboard">
+                                <button type="button"
+                                    class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                            </a>
                     </div>
                 </div>
             </mat-tab>
@@ -485,6 +509,12 @@
                         </div>
                     </div>
                 </div>
+                <div class="row" style="width: 80%;" > 
+                    <div class="col-md-12 px-4">
+                        <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                        <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                    </div>
+                </div>
                 <div class="row" style="width: 80%;" >
                     <div class="col-md-12 mb-5 px-4">
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -493,12 +523,12 @@
                             (click)="changeTab()">Next</button>
                         <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         (click)="move(6)">Finish</button> -->
+                        <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
+                            Draft</button>
                         <a href="/landing/supplier-registration/dashboard">
                             <button type="button"
                                 class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                         </a>
-                        <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
-                            Draft</button>
                     </div>
                 </div>
                 <ng-template #bankModel let-modal>
@@ -606,10 +636,10 @@
                                                             class="fa fa-ellipsis-v "></i>
                                                     </a> </span> </div>
                                         </th>
-                                        <th scope="col">No. <i class="fa fa-sort" aria-hidden="true"
-                                                (click)="sorting('other','no')"></i></th>
-                                        <th scope="col">Label<i class="fa fa-sort"
-                                                aria-hidden="true" (click)="sorting('other','name')"></i></th>
+                                        <th scope="col" (click)="sorting('other','no')">No. <i class="fa fa-sort" aria-hidden="true"
+                                               ></i></th>
+                                        <th scope="col" (click)="sorting('other','name')">Label <i class="fa fa-sort"
+                                                aria-hidden="true"></i></th>
                                         <th scope="col">Value</th>
                                     </tr>
                                 </thead>
@@ -636,7 +666,12 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="row" style="width: 80%;" > 
+                    <div class="col-md-12 px-4">
+                        <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                        <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-12 mb-5 px-4">
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -644,12 +679,12 @@
                             <button type="button" class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="submitRegistration()">Finish</button>
                         <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         (click)="move(6)">Finish</button> -->
-                        <a href="/landing/supplier-registration/dashboard">
-                            <button type="button"
-                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                        </a>
                         <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                             Draft</button>
+                            <a href="/landing/supplier-registration/dashboard">
+                                <button type="button"
+                                    class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                            </a>
                     </div>
                 </div>
             </mat-tab>

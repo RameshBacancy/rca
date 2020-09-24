@@ -50,6 +50,7 @@
                 <p class="fs-14">{{item.country}}</p>
             </div>
         </div>
+        
     </div>
      <!-- <div class="row">
          <div class="col-md-12 px-4 d-block  d-lg-flex">
@@ -107,6 +108,12 @@
          </div>
      </div> -->
      <div class="row">
+        <div class="col-md-12 px-4">
+            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+        </div>
+    </div>
+     <div class="row">
          <div class="col-md-12 mb-5 px-4">
              <!-- <button type="button"
              class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Previous</button> -->
@@ -114,13 +121,12 @@
                  matStepperNext>Next</button>
              <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
-
-             <a href="/landing/supplier-registration/dashboard">
-                 <button type="button"
-                     class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-             </a>
              <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                  Draft</button>
+             <a href="/landing/supplier-registration/dashboard">
+                <button type="button"
+                    class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+            </a>
          </div>
      </div>
 
@@ -140,20 +146,20 @@
                 <table class="table table-striped ">
                     <thead>
                         <tr class="purple-bg text-white">
-                            <th scope="col" class="custom-width-60">Person name <i class="fa fa-sort"
-                                    aria-hidden="true" (click)="sorting('personal','personName')"></i></th>
-                            <th scope="col">Nationality <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('personal','nationality')"></i></th>
-                            <th scope="col">I.D Type <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('personal','idType')"></i></th>
-                            <th scope="col">I.D No. <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('personal','idNo')"></i></th>
-                            <th scope="col">Designation <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('personal','designation')"></i></th>
-                            <th scope="col">Resident card Number <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('personal','residentNo')"></i></th>
-                            <th scope="col">Passport<i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('personal','passport')"></i></th>
+                            <th scope="col" class="custom-width-60" (click)="sorting('personal','personName')">Person name <i class="fa fa-sort"
+                                    aria-hidden="true" ></i></th>
+                            <th scope="col" (click)="sorting('personal','nationality')">Nationality <i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
+                            <th scope="col" (click)="sorting('personal','idType')">I.D Type <i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
+                            <th scope="col" (click)="sorting('personal','idNo')">I.D No. <i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
+                            <th scope="col" (click)="sorting('personal','designation')">Designation <i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
+                            <th scope="col" (click)="sorting('personal','residentNo')">Resident card Number <i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
+                            <th scope="col" (click)="sorting('personal','passport')">Passport<i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -193,14 +199,18 @@
                 </table>
             </div>
         </div>
+        <div class="col-md-12 px-4">
+            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+        </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-md-12 px-4 ">
             <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
             <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
             </p>
         </div>
-    </div>
+    </div> -->
      <div class="row">
          <div class="col-md-12 mb-5 px-4">
              <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -209,12 +219,12 @@
                  matStepperNext>Next</button>
              <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
-             <a href="/landing/supplier-registration/dashboard">
-                 <button type="button"
-                     class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-             </a>
              <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                  Draft</button>
+                 <a href="/landing/supplier-registration/dashboard">
+                     <button type="button"
+                         class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                 </a>
          </div>
      </div>
      <!-- Address Model Pop-Up Form -->
@@ -357,12 +367,12 @@
                 <table class="table table-striped mb-0 ">
                     <thead>
                         <tr class="purple-bg text-white">
-                            <th scope="col" class="custom-width-60">Comm ID <i class="fa fa-sort"
-                                    aria-hidden="true" (click)="sorting('communication','no')"></i> </th>
-                            <th scope="col">Communication Method <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('communication','method')"></i> </th>
-                            <th scope="col">Value <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('communication','value')"></i></th>
+                            <th scope="col" class="custom-width-60" (click)="sorting('communication','no')">Comm ID <i class="fa fa-sort"
+                                    aria-hidden="true" ></i> </th>
+                            <th scope="col" (click)="sorting('communication','method')">Communication Method <i class="fa fa-sort" aria-hidden="true"
+                                   ></i> </th>
+                            <th scope="col" (click)="sorting('communication','value')">Value <i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -381,6 +391,10 @@
                 </table>
             </div>
         </div>
+        <div class="col-md-12 px-4">
+            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+        </div>
     </div>
 
      <div class="row">
@@ -391,12 +405,12 @@
                  matStepperNext>Next</button>
              <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
-             <a href="/landing/supplier-registration/dashboard">
-                 <button type="button"
-                     class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-             </a>
              <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                  Draft</button>
+                 <a href="/landing/supplier-registration/dashboard">
+                     <button type="button"
+                         class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                 </a>
          </div>
      </div>
  </mat-step>
@@ -419,29 +433,29 @@
                         <table class="table table-striped ">
                             <thead>
                                 <tr class="purple-bg text-white">
-                                    <th scope="col" class="custom-width-60">Activity Name
+                                    <th scope="col" class="custom-width-60" (click)="sorting('activity','activityName')">Activity Name
                                         <i class="fa fa-sort" aria-hidden="true"
-                                            (click)="sorting('activity','activityName')"></i>
+                                            ></i>
                                     </th>
-                                    <th scope="col">Sub Activity
+                                    <th scope="col" (click)="sorting('activity','subActivity')">Sub Activity
                                         <i class="fa fa-sort" aria-hidden="true"
-                                            (click)="sorting('activity','subActivity')"></i>
+                                            ></i>
                                     </th>
-                                    <th scope="col">Segment
+                                    <th scope="col" (click)="sorting('activity','sagment')">Segment
                                         <i class="fa fa-sort" aria-hidden="true"
-                                            (click)="sorting('activity','sagment')"></i>
+                                            ></i>
                                     </th>
-                                    <th scope="col">Family
+                                    <th scope="col" (click)="sorting('activity','family')">Family
                                         <i class="fa fa-sort" aria-hidden="true"
-                                            (click)="sorting('activity','family')"></i>
+                                           ></i>
                                     </th>
-                                    <th scope="col">Class
+                                    <th scope="col" (click)="sorting('activity','class')">Class
                                         <i class="fa fa-sort" aria-hidden="true"
-                                            (click)="sorting('activity','class')"></i>
+                                           ></i>
                                     </th>
-                                    <th scope="col">Commodity
+                                    <th scope="col" (click)="sorting('activity','commodity')">Commodity
                                         <i class="fa fa-sort" aria-hidden="true"
-                                            (click)="sorting('activity','commodity')"></i>
+                                            ></i>
                                     </th>
                                 </tr>
                             </thead>
@@ -499,14 +513,21 @@
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Company Grade</h5>
                     <p class="fs-14">company grade</p>
                 </div>
+                
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-12 px-4 ">
                     <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
                     <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
                     </p>
                 </div>
+            </div> -->
+        <div class="row" style="width: 80%;" > 
+            <div class="col-md-12 px-4">
+                <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
             </div>
+        </div>
             <div class="row" style="width: 80%;" >
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -515,12 +536,12 @@
                         (click)="changeTab()">Next</button>
                     <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                     (click)="move(6)">Finish</button> -->
-                    <a href="/landing/supplier-registration/dashboard">
-                        <button type="button"
-                            class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                    </a>
                     <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                         Draft</button>
+                        <a href="/landing/supplier-registration/dashboard">
+                            <button type="button"
+                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        </a>
                 </div>
             </div>
         </mat-tab>
@@ -638,6 +659,12 @@
                     </div>
                 </form>
             </ng-template>
+            <div class="row" style="width: 80%;" > 
+                <div class="col-md-12 px-4">
+                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                    <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                </div>
+            </div>
 
             <div class="row" style="width: 80%;" >
                 <div class="col-md-12 mb-5 px-4">
@@ -647,12 +674,12 @@
                         (click)="changeTab()">Next</button>
                     <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                     (click)="move(6)">Finish</button> -->
-                    <a href="/landing/supplier-registration/dashboard">
-                        <button type="button"
-                            class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                    </a>
                     <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                         Draft</button>
+                        <a href="/landing/supplier-registration/dashboard">
+                            <button type="button"
+                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        </a>
                 </div>
             </div>
         </mat-tab>
@@ -673,10 +700,10 @@
                                                         class="fa fa-ellipsis-v "></i>
                                                 </a> </span> </div>
                                     </th>
-                                    <th scope="col">No. <i class="fa fa-sort" aria-hidden="true"
-                                            (click)="sorting('other','no')"></i></th>
-                                    <th scope="col">Label<i class="fa fa-sort"
-                                            aria-hidden="true" (click)="sorting('other','name')"></i></th>
+                                    <th scope="col" (click)="sorting('other','no')">No. <i class="fa fa-sort" aria-hidden="true"
+                                            ></i></th>
+                                    <th scope="col" (click)="sorting('other','name')">Label<i class="fa fa-sort"
+                                            aria-hidden="true" ></i></th>
                                     <th scope="col">Value</th>
                                 </tr>
                             </thead>
@@ -702,6 +729,10 @@
                         </table>
                     </div>
                 </div>
+                <div class="col-md-12 px-4">
+                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                    <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                </div>
             </div>
 
             <div class="row">
@@ -712,12 +743,12 @@
                         matStepperNext>Next</button>
                     <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                     (click)="move(6)">Finish</button> -->
-                    <a href="/landing/supplier-registration/dashboard">
-                        <button type="button"
-                            class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                    </a>
                     <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                         Draft</button>
+                        <a href="/landing/supplier-registration/dashboard">
+                            <button type="button"
+                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        </a>
                 </div>
             </div>
         </mat-tab>
@@ -746,28 +777,28 @@
                                     <span class="ml-2"> <a class=" text-blaack fs-14"><i
                                                 class="fa fa-ellipsis-v  "></i> </a></span> </div>
                             </th>
-                            <th scope="col">Employee Name <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('staff','name')"></i></th>
-                            <th scope="col">Employee Qualification <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('staff','qualification')"></i></th>
-                            <th scope="col">Employee Specialization <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('staff','specialization')"></i></th>
-                            <th scope="col">Job title <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('staff','jobTitle')"></i></th>
-                            <th scope="col">Designation Type <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('staff','designation')"></i></th>
-                            <th scope="col">Designation date <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('staff','designationDate')"></i></th>
-                            <th scope="col">Expired date <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('staff','expDate')"></i></th>
-                            <th scope="col">Experience <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('staff','experiance')"></i></th>
-                            <th scope="col">Appointment Date <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('staff','appointmentDate')"></i></th>
-                            <th scope="col">Status <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('staff','status')"></i></th>
-                            <th scope="col">Status date <i class="fa fa-sort" aria-hidden="true"
-                                    (click)="sorting('staff','statusDate')"></i></th>
+                            <th scope="col" (click)="sorting('staff','name')">Employee Name <i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
+                            <th scope="col" (click)="sorting('staff','qualification')">Employee Qualification <i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
+                            <th scope="col" (click)="sorting('staff','specialization')">Employee Specialization <i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
+                            <th scope="col" (click)="sorting('staff','jobTitle')">Job title <i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
+                            <th scope="col" (click)="sorting('staff','designation')">Designation Type <i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
+                            <th scope="col" (click)="sorting('staff','designationDate')">Designation date <i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
+                            <th scope="col" (click)="sorting('staff','expDate')" >Expired date <i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
+                            <th scope="col" (click)="sorting('staff','experiance')">Experience <i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
+                            <th scope="col" (click)="sorting('staff','appointmentDate')">Appointment Date <i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
+                            <th scope="col" (click)="sorting('staff','status')">Status <i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
+                            <th scope="col" (click)="sorting('staff','statusDate')">Status date <i class="fa fa-sort" aria-hidden="true"
+                                    ></i></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -836,12 +867,12 @@
                  <button type="button" class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="submitRegistration()">Finish</button>
              <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
-             <a href="/landing/supplier-registration/dashboard">
-                 <button type="button"
-                     class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-             </a>
              <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2">Save as
                  Draft</button>
+                 <a href="/landing/supplier-registration/dashboard">
+                     <button type="button"
+                         class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                 </a>
          </div>
      </div>
  </mat-step>
