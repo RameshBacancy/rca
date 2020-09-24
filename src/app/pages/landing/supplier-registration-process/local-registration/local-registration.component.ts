@@ -59,7 +59,8 @@ export class LocalRegistrationComponent implements OnInit {
   BankDetails: any;
   compBranchInfoData: any;
   activityMenu: boolean;
-
+  selected = new FormControl(0);
+  
   constructor(
     private router: Router, 
     private supplierData: SupplierRegistrationService, 
@@ -95,7 +96,16 @@ export class LocalRegistrationComponent implements OnInit {
 
   get bf(){
     return this.bankform.controls;
+  }
 
+  changeTab() {
+    this.selected.setValue(this.selected.value+1);
+  }
+  previousTab() {
+    this.selected.setValue(this.selected.value-1);
+  }
+  newStep(){
+    this.selected.setValue(0);
   }
 
   open(content, address?) {
