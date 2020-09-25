@@ -275,7 +275,6 @@ export class IndividualRegistrationComponent implements OnInit {
   enteredDetails(datatype, data){
     data.isEdit = false;
     if(datatype === 'individual'){
-     
       if(data.name !== ""){
         this.individualData.map((d, i) => {
           if(d.no == data.no){
@@ -292,7 +291,7 @@ export class IndividualRegistrationComponent implements OnInit {
             this.individualData.splice(i,1);
           }
         })
-        this.alertService.pushError('name can not be empty.')
+        this.alertService.pushError('Nationality can not be empty.')
       }
     }
     if(datatype === 'communication'){
