@@ -8,6 +8,7 @@ import { SortByPipe } from 'src/app/pipe/sortBy.pipe';
 import { FilterPipe } from 'src/app/pipe/searchEmployee.pipe';
 import { AlertService } from 'src/app/services/alert.service';
 import { MatTabsModule } from '@angular/material/tabs';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-individual-registration',
@@ -58,6 +59,7 @@ export class IndividualRegistrationComponent implements OnInit {
     private supplierData: SupplierRegistrationService, 
     private modalService: NgbModal,
     private ActivatedRoute: ActivatedRoute, 
+    private _userService:UserService,
     private sortByPipe: SortByPipe,
     private searchPipe: FilterPipe,
     private alertService: AlertService) { }
@@ -159,8 +161,21 @@ export class IndividualRegistrationComponent implements OnInit {
   submitRegistration(){
     this.completed = true;
     localStorage.setItem('LocalRegComplete',"true");
-    // this.router.navigateByUrl('/landing/supplier-registration/transaction');
+    localStorage.setItem('RegStatus','finish');
+    const body = { civil_number:localStorage.getItem('civilReg'),cr_number:localStorage.getItem('commercialReg'),register_status:localStorage.getItem('RegStatus'), register_type:localStorage.getItem('regType')}
+      this._userService.supplierRegistration(body).subscribe(d => { })
+      this.alertService.pushSuccess('Your data is submitted.');
+      // this.router.navigateByUrl('/landing/supplier-registration/transaction');
   }
+
+  saveDraft(){
+    localStorage.setItem('RegStatus','draft');
+    const body = {civil_number:localStorage.getItem('civilReg'),cr_number:localStorage.getItem('commercialReg'),register_status:localStorage.getItem('RegStatus'), register_type:localStorage.getItem('regType')}
+    this._userService.supplierRegistration(body).subscribe(d => { })
+    this.alertService.pushWarning('Your data will be saved for 72 hours.');
+    this.router.navigate(['/landing/supplier-registration/dashboard']);
+  }
+
   // move(index: number) {
   //   this.stepper.selectedIndex = index;
   // }

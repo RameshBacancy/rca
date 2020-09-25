@@ -51,7 +51,15 @@ export class SupplierRegisterComponent implements OnInit {
 
   submitReg(){
     if (this.form.status === 'VALID') {
-      this._userService.localRegistration(this.form.value.registrationNo.toString())
+      this._userService.localRegistration(this.form.value.registrationNo.toString());
+      const body = { civil_number:localStorage.getItem('civilReg'),cr_number:localStorage.getItem('commercialReg'), register_type:localStorage.getItem('regType')}
+      this._userService.supplierRegistration(body).subscribe(d => {
+        if(d.data.register_status == 'finish'){
+          this.router.navigate(['/landing/supplier-registration/transaction']);
+        } else {
+          this.router.navigate(['/landing/supplier-registration/dashboard']);
+        }
+       })
      }
   }
 

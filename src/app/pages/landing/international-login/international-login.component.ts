@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-international-login',
@@ -12,17 +13,25 @@ export class InternationalLoginComponent implements OnInit {
   message: string;
   validForm: boolean = true;
 
-  constructor( private router: Router) { }
+  constructor( private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
   }
 
 
-  login()
+  login(e)
   {
     console.log(this.user);
     localStorage.setItem('completeReg', 'T');
-    this.router.navigateByUrl('/landing/supplier-registration/dashboard')
+    localStorage.setItem('internationalEmail', e)
+    const body = { email: e, register_type:'international'}
+    this.userService.supplierRegistration(body).subscribe(d => { 
+      if(d.data.register_status == 'finish'){
+        this.router.navigate(['/landing/supplier-registration/transaction']);
+      } else {
+        this.router.navigate(['/landing/supplier-registration/dashboard']);
+      }
+    })
   }
 
   validateEmail(email, psw) {

@@ -7,6 +7,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SortByPipe } from 'src/app/pipe/sortBy.pipe';
 import { FilterPipe } from 'src/app/pipe/searchEmployee.pipe';
 import { AlertService } from 'src/app/services/alert.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-international-registration',
@@ -56,6 +57,7 @@ export class InternationalRegistrationComponent implements OnInit {
     private router: Router, 
     private supplierData: SupplierRegistrationService, 
     private modalService: NgbModal,
+    private _userService:UserService,
     private ActivatedRoute: ActivatedRoute, 
     private sortByPipe: SortByPipe,
     private searchPipe: FilterPipe,
@@ -140,8 +142,20 @@ export class InternationalRegistrationComponent implements OnInit {
   submitRegistration(){
     this.completed = true;
     localStorage.setItem('LocalRegComplete',"true");
-    // this.router.navigateByUrl('/landing/supplier-registration/transaction');
+    localStorage.setItem('RegStatus','finish');
+    const body = { civil_number:localStorage.getItem('civilReg'),cr_number:localStorage.getItem('commercialReg'),register_status:localStorage.getItem('RegStatus'), register_type:localStorage.getItem('regType')}
+      this._userService.supplierRegistration(body).subscribe(d => { })
+      this.alertService.pushSuccess('Your data is submitted.');
+      // this.router.navigateByUrl('/landing/supplier-registration/transaction');
   }
+  saveDraft(){
+    localStorage.setItem('RegStatus','draft');
+    const body = {email:localStorage.getItem('internationalEmail'),register_status:localStorage.getItem('RegStatus'), register_type:localStorage.getItem('regType')}
+    this._userService.supplierRegistration(body).subscribe(d => { })
+    this.alertService.pushWarning('Your data will be saved for 72 hours.');
+    this.router.navigate(['/landing/supplier-registration/dashboard']);
+  }
+
   submitbank(){
     if(this.bankform.status === 'VALID'){
       this.BankDetails.push(this.bankform.value);
