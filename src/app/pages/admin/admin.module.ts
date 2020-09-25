@@ -10,6 +10,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsPagesComponent } from './cms-pages/cms-pages.component';
 
+import { CmsService } from 'src/app/services/cms.service';
 
 const routes: Routes = [
   {

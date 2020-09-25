@@ -5,6 +5,8 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { AlertService } from '../../../services/alert.service';
 import { SpinnerService } from '../../../services/spinner.service';
 
+
+
 @Component({
   selector: 'app-cms-pages',
   templateUrl: './cms-pages.component.html',
