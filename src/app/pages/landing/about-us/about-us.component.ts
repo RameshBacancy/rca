@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { CmsService } from '../../../services/cms.service';
 
 @Component({
   selector: 'app-about-us',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./about-us.component.scss']
 })
 export class AboutUsComponent implements OnInit {
-
-  constructor() { }
+  data;
+  isdata: boolean = false;
+  constructor(private _cmsService: CmsService,private ref: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    this.getData();
   }
 
+  getData(){
+    this._cmsService.getCMS().subscribe(d => {
+      this.data = d.data.data.filter((data: { page: string | string[]; }) => data.page.includes('About Us'));
+      this.ref.detectChanges();
+    });
+  }
 }

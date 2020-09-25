@@ -6,6 +6,7 @@ import { InternationalLoginComponent } from './international-login/international
 import { PaymentComponent } from './transaction/payment/payment.component';
 import { AuthGuard } from 'src/app/guard/auth.guard';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { HowToRegisterComponent } from './how-to-register/how-to-register.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,11 @@ const routes: Routes = [
       {
         path:'aboutus',
         component: AboutUsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path:'how-to-register',
+        component: HowToRegisterComponent,
         canActivate: [AuthGuard]
       },
       {
