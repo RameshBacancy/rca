@@ -20,13 +20,13 @@ export class SupplierRegistrationProcessComponent implements OnInit {
   isInternational: boolean = false;
 
   constructor(
-    // private router: Router, 
+    private router: Router, 
+    private alertService: AlertService
     // private supplierData: SupplierRegistrationService, 
     // private modalService: NgbModal,
     // private ActivatedRoute: ActivatedRoute, 
     // private sortByPipe: SortByPipe,
     // private searchPipe: FilterPipe,
-    // private alertService: AlertService
     ) { }
     
   
@@ -45,6 +45,20 @@ export class SupplierRegistrationProcessComponent implements OnInit {
     }
     if(localStorage.getItem('regType') === 'international'){
       this.isInternational = true
+    }
+    if (localStorage.getItem('RegStatus') === 'draft'){
+      this.alertService.pushSuccess('Your Draft.')
+    } else if(localStorage.getItem('RegStatus') === 'finish') {
+      if(localStorage.getItem('arStatus') === 'pending') {
+        this.alertService.pushWarning('you finish your registration wait for approval.')
+        this.router.navigate(['/landing/supplier-registration/dashboard']); 
+      } else if(localStorage.getItem('arStatus') === 'approved') {
+        this.alertService.pushSuccess('Your Registration request is Approved.')
+        this.router.navigate(['/landing/supplier-registration/transaction']); 
+      } else if(localStorage.getItem('arStatus') === 'reject') {
+        this.alertService.pushError('Your Registration request is Rejected.')
+        this.router.navigate(['/landing/supplier-registration/dashboard']); 
+      }
     }
   }
 

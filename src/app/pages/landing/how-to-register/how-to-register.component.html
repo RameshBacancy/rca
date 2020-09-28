@@ -1,6 +1,6 @@
 <ng-container *ngFor="let d of data ">
     <div class="container mt-5">
         <h1 class="text-center title mb-5">{{d.title}}</h1>
-        <p class="text-center desc">{{d.description}}</p>
+        <div class="text-center desc" [innerHTML]=d.description></div>
     </div>
 </ng-container>

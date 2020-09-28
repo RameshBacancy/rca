@@ -80,6 +80,7 @@ export class UserService {
     resetPassword(body): Observable<any> {
         return this.http.post<any>(this.url + 'password-reset', body);
     }
+
     logout(): Observable<any> {
         return this.http.get<any>(this.url + 'logout');
     }
@@ -87,6 +88,15 @@ export class UserService {
     changePassword(oldPassword, newPassword, confirmPassword): Observable<any> {
         return this.http.post<any>(this.url + 'change-password', { old_password: oldPassword, new_password: newPassword, confirm_password: confirmPassword });
     }
+
+    getrequests(): Observable<any> {
+        return this.http.get<any>(this.url + 'supplier-list');
+    }
+
+    approveReject(id, status):Observable<any> {
+        return this.http.post<any>(this.url + 'status-change', { id: id, status: status });
+    }
+
     // registerUser(user){
     //     return this.httpService.httpPost(EndPoint.register, user);
     // }
