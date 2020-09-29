@@ -9,14 +9,14 @@
                 {
                     "name": "About Us",
                     "icon": "",
-                    "route": "/#/landing/supplier-registration/aboutus",
+                    "route": "/#/landing/supplier-registration/about-us",
                     "disabled": false,
                     "children": []
                 },
                 {
                     "name": "Supplier Registration",
                     "icon": "",
-                    "route": "",
+                    "route": "/#/landing/supplier-registration/registration",
                     "disabled": false,
                     "children": []
                 },
@@ -57,23 +57,9 @@
             "disabled": false,
             "children": [
                 {
-                    "name": "Login",
-                    "icon": "",
-                    "route": "/#/auth/register",
-                    "disabled": false,
-                    "children": []
-                },
-                {
                     "name": "How to Register",
                     "icon": "",
-                    "route": "",
-                    "disabled": false,
-                    "children": []
-                },
-                {
-                    "name": "Register",
-                    "icon": "",
-                    "route": "/#/landing/supplier-registration/registration",
+                    "route": "/#/landing/supplier-registration/how-to-register",
                     "disabled": false,
                     "children": []
                 },
@@ -149,6 +135,13 @@
             "name": "CMS",
             "icon": "",
             "route": "/#/admin/cms",
+            "disabled": false,
+            "children": []
+        },
+        {
+            "name": "Registration Requests",
+            "icon": "",
+            "route": "/#/admin/request",
             "disabled": false,
             "children": []
         }

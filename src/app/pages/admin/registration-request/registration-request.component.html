@@ -1,0 +1,125 @@
+<div class="row">
+    <div class="col-md-12 px-4 mb-3 mt-3">
+        <div class="table-responsive">
+            <table class="table table-striped ">
+                <thead>
+                    <tr class="purple-bg text-white">
+                        <th>#</th>
+                        <th>Civil Number</th>
+                        <th>CR Number</th>
+                        <th>Email</th>
+                        <th>Registration Type</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="isdata; else newDeb">
+                        <tr *ngFor="let d of data, let i = index">
+                            <td>{{i+1}}</td>
+                            <td *ngIf="d.civil_number">{{d.civil_number}}</td>
+                            <td  *ngIf="!d.civil_number">-</td>
+                            <td *ngIf="d.cr_number">{{d.cr_number}}</td>
+                            <td *ngIf="!d.cr_number">-</td>
+                            <td *ngIf="d.email">{{d.email}}</td>
+                            <td *ngIf="!d.email">-</td>
+                            <td *ngIf="d.register_type == 'local'">Local</td>
+                            <td *ngIf="d.register_type == 'international'">International</td>
+                            <td *ngIf="d.register_type == 'individual'">Individual</td>
+                            <td *ngIf="d.status == 'approved'">Approved</td>
+                            <td *ngIf="d.status == 'reject'">Reject</td>
+                            <td *ngIf="d.status == 'pending'">Pending</td>
+                            <td>
+                                <i class="fa fa-eye btn btn-warning mr-2" aria-hidden="true" (click)="open(mymodal, d)"></i>
+                                <i class="fa fa-check btn btn-primary mr-2" aria-hidden="true" (click)="approve(d.id)"></i>
+                                <i class="fa fa-times btn btn-secondary mr-2 red-bg" aria-hidden="true" (click)="reject(d.id)"></i>
+                            </td>
+                        </tr>
+                    </ng-container>
+                    <ng-template #newDeb>
+                        <tr>
+                            <td colspan="6" class="text-align-center">No Data Found</td>
+                        </tr>
+                    </ng-template>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">User Detail</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span class="fa fa-window-close" aria-hidden="true"></span>
+        </button>
+    </div>
+    <div class="modal-body admin-custom-modal-main">
+        <section class="dark-grey-bg mt-3">
+            <div class="container-fluid px-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <br />
+                    </div>
+                    <div class="col-md-12 ">
+                        <div class="row  mx-1 my-1 d-flex">
+                            <div class="col-md-4 pt-1">
+                                <h4 class="fs-16">Civil Number</h4>
+                            </div>
+                            <div class="col-md-8 pt-1">
+                                <h4 *ngIf="viewData.civil_number" class="fs-16">{{viewData.civil_number}}</h4>
+                                <h4  *ngIf="!viewData.civil_number" class="fs-16">-</h4>
+                             </div>
+                        </div>
+                        <div class="row  mx-1 my-1 d-flex">
+                            <div class="col-md-4 pt-1">
+                                <h4 class="fs-16">CR Number</h4>
+                            </div>
+                            <div class="col-md-8 pt-1">
+                                <h4 *ngIf="viewData.cr_number" class="fs-16">{{viewData.cr_number}}</h4>
+                                <h4 *ngIf="!viewData.cr_number" class="fs-16">-</h4>
+                             </div>
+                        </div>
+                        <div class="row  mx-1 my-1 d-flex">
+                            <div class="col-md-4 pt-1">
+                                <h4 class="fs-16">Email</h4>
+                            </div>
+                            <div class="col-md-8 pt-1">
+                                <h4 *ngIf="viewData.email" class="fs-16">{{viewData.email}}</h4>
+                                <h4 *ngIf="!viewData.email" class="fs-16">-</h4>
+                             </div>
+                        </div>
+                        <div class="row  mx-1 my-1 d-flex">
+                            <div class="col-md-4 pt-1">
+                                <h4 class="fs-16">Registration Type</h4>
+                            </div>
+                            <div class="col-md-8 pt-1">
+                                <h4 class="fs-16" *ngIf="viewData.register_type == 'local'">Local</h4>
+                                <h4 class="fs-16" *ngIf="viewData.register_type == 'international'">International</h4>
+                                <h4 class="fs-16" *ngIf="viewData.register_type == 'individual'">Individual</h4>
+                             </div>
+                        </div>
+                        <div class="row  mx-1 my-1 d-flex">
+                            <div class="col-md-4 pt-1">
+                                <h4 class="fs-16">Approve/Reject Status</h4>
+                            </div>
+                            <div class="col-md-8 pt-1">
+                                <h4 class="fs-16" *ngIf="viewData.status == 'approved'">Approved</h4>
+                                <h4 class="fs-16" *ngIf="viewData.status == 'reject'">Reject</h4>
+                                <h4 class="fs-16" *ngIf="viewData.status == 'pending'">Pending</h4>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-16 mb-2 mb-2" type="submit" (click)="approve(viewData.id);modal.close('Save click');">Approve</button>
+        <button class="red-bg btn btn-secondary px-3 py-2 mx-1 w-120 fs-16 mb-2" type="cancel"
+            (click)="reject(viewData.id); modal.close('Save click')">Reject</button>
+            <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-16 mb-2" type="cancel"
+            (click)="modal.close('Save click')">Cancel</button>
+
+    </div>
+</ng-template>

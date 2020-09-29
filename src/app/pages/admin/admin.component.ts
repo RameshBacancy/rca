@@ -28,6 +28,9 @@ export class AdminComponent implements OnInit {
       else if (this.title === 'dashboard') {
         this.title = 'Admin Panel'
       }
+      else if (this.title === 'request') {
+        this.title = 'Registration Requests'
+      }
       ref.detectChanges();
     });
     this.menus = this.sidebarData.getadmindata();

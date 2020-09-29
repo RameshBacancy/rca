@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsPagesComponent } from './cms-pages/cms-pages.component';
+import { RegistrationRequestComponent } from './registration-request/registration-request.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,10 @@ const routes: Routes = [
       {
         path:'cms',
         component : CmsPagesComponent,
+      },
+      {
+        path: 'request',
+        component: RegistrationRequestComponent
       }
     ]
   },
@@ -47,7 +52,7 @@ const routes: Routes = [
     AdminComponent,
     ChangePasswordComponent, 
     AdminDashboardComponent, 
-    CmsPagesComponent
+    CmsPagesComponent, RegistrationRequestComponent
   ],
   imports: [
     CommonModule,
