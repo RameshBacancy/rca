@@ -88,7 +88,7 @@ export class LocalRegistrationComponent implements OnInit {
     this.projectData = this.formData.projectDetails;
     this.subContractorData = this.formData.subContractorDetails;
     this.equipmentData = this.formData.equipmentDetails;
-    this.otherData = this.formData.otherDetails;
+    this.otherData = this.formData.commercialInfo.otherDetails;
   }
 
   get f(){

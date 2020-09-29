@@ -47,7 +47,7 @@ export class SupplierRegistrationProcessComponent implements OnInit {
       this.isInternational = true
     }
     if (localStorage.getItem('RegStatus') === 'draft'){
-      this.alertService.pushSuccess('Your Draft.')
+      // this.alertService.pushSuccess('Your Draft.')
     } else if(localStorage.getItem('RegStatus') === 'finish') {
       if(localStorage.getItem('arStatus') === 'pending') {
         this.alertService.pushWarning('you finish your registration wait for approval.')

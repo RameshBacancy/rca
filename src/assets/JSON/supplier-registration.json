@@ -156,6 +156,36 @@
                     "branchActivity": "New Activity2",
                     "branchActivityNo": 2
                 }
+            ],
+            "otherDetails": [
+                {
+                    "no": 1,
+                    "name":"test 1",
+                    "nameOfWork": "Organization Structure",
+                    "attachment": "PDF",
+                    "isEdit": false
+                },
+                {
+                    "no": 2,
+                    "name":"test 2",
+                    "nameOfWork": "Tax Certificate",
+                    "attachment": "PDF",
+                    "isEdit": false
+                },
+                {
+                    "no": 3,
+                    "name":"test 3",
+                    "nameOfWork": "Certificates",
+                    "attachment": "PDF",
+                    "isEdit": false
+                },
+                {
+                    "no": 4,
+                    "name":"test 4",
+                    "nameOfWork": "-",
+                    "attachment": "PDF",
+                    "isEdit": false
+                }
             ]
         },
         "employeDetails": [

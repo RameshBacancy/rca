@@ -1,6 +1,13 @@
 {
     "menu": [
         {
+            "name": "HOME",
+            "icon": "",
+            "route": "",
+            "disabled": false,
+            "children": []
+        },
+        {
             "name": "RCA GENERAL INFO & LINKS",
             "icon": "",
             "route": "",

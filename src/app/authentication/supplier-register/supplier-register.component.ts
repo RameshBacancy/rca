@@ -27,6 +27,7 @@ export class SupplierRegisterComponent implements OnInit {
 
   ngOnInit(): void {
     localStorage.removeItem('LoginToken')
+    localStorage.removeItem('authToken')
       this.router.navigate(['/landing/supplier-registration/dashboard']);
       if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'false') {
         this.showsNextReg = true;

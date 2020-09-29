@@ -55,10 +55,11 @@ export class LoginComponent implements OnInit {
   {
     this.spinner.openSpinner();
     this._userService.forgetPass(email).subscribe(d => {
-      this.spinner.closeSpinner();
+       this._alertService.pushError('We sent you an email to reset your password.');
+       this.spinner.closeSpinner();
      },
      e => {
-       this._alertService.pushError('Please Enter Valid Email')
+       this._alertService.pushError('Please Enter Valid Email');
        this.spinner.closeSpinner()
       }
      )
