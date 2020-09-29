@@ -18,6 +18,7 @@ export class AboutUsComponent implements OnInit {
   getData(){
     this._cmsService.getCMS().subscribe(d => {
       this.data = d.data.data.filter((data: { page: string | string[]; }) => data.page.includes('About Us'));
+    //  this.data = 
       this.ref.detectChanges();
     });
   }
