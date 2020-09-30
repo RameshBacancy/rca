@@ -46,17 +46,17 @@
                         <br />
                     </div>
                     <div class="col-md-12 ">
-                        <div class="w-100 mb-2" *ngIf="!isnewData">
+                        <!-- <div class="w-100 mb-2" *ngIf="!isnewData">
                             <h3 class="w-100 fs-14 mb-0 py-2 px-2 bg-light landing-menu dropdown-border-dark" (click)="pageMenu = !pageMenu">{{selectedPage}} <i class="fa fa-caret-down float-right"
                                 aria-hidden="true"></i></h3>
                                 <ul *ngIf="pageMenu" class="border landing-dropdown mt-0 py-2 px-2 fs-14 w-100">
                                     <li *ngFor="let page of pagesOptions" class="fs-14" (click)="selectedPage = page; pageMenu = !pageMenu">
                                         {{page}}</li>
                                 </ul>
-                        </div>
-                        <div class="w-100 mb-2" *ngIf="isnewData">
-                            <h3 class="w-100 fs-14 mb-0 py-2 px-2 bg-light border landing-menu dropdown-border-dark">{{selectedPage}}</h3>
-                        </div>
+                        </div> -->
+                        <h4 class="w-100">
+                            <input type="text" placeholder="Page Name" class="w-100 fs-14 py-2 px-2" [(ngModel)]="page">
+                        </h4>
                         <h4 class="w-100">
                             <input type="text" placeholder="Title" class="w-100 fs-14 py-2 px-2" [(ngModel)]="title">
                         </h4>

@@ -80,7 +80,6 @@ export class LocalRegistrationComponent implements OnInit {
     this.selectedAddress = this.formData.address.addressDetails[0];
     this.personalData = this.formData.personalDetails;
     this.comunicationData = this.formData.comunicationMethod;
-    this.personalData = this.formData.personalDetails;
     this.compBranchInfoData = this.formData.commercialInfo.compBranchInfo;
     this.BankDetails = this.formData.commercialInfo.BankDetails;
     this.activityInfoData = this.formData.commercialInfo.activityInfo;

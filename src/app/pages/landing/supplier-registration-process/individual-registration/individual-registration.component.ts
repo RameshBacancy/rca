@@ -30,14 +30,11 @@ export class IndividualRegistrationComponent implements OnInit {
   editGeneralManagerDetails: boolean = false;
 
   form: FormGroup = new FormGroup({
-    // addressID: new FormControl('MCT2', [Validators.required]),
-    poBox: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
-    supplierBranch: new FormControl('', [Validators.required]),
-    sponsorName: new FormControl('', [Validators.required]),
-    SponsorNationalId: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
-    postalCode: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
-    authorizedSignatory: new FormControl('', [Validators.required]),
-    authorizedResidentId: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
+    addressID: new FormControl('', [Validators.required]),
+    addressline1: new FormControl('', [Validators.required]),
+    addressline2: new FormControl('', [Validators.required]),
+    language: new FormControl('English', [Validators.required]),
+    country: new FormControl('Oman', [Validators.required]),
   });
   
   individualData: any[];
@@ -52,6 +49,9 @@ export class IndividualRegistrationComponent implements OnInit {
   isIndividual: boolean = false;
   isInternational: boolean = false;
   BankDetails: any;
+  selectedAddress: any;
+  individualAddress: any;
+  activityMenu: boolean;
 
 
   constructor(
@@ -67,8 +67,7 @@ export class IndividualRegistrationComponent implements OnInit {
     loadData(data){
       var d=[];
       d.push(data);
-      this.formData = this.supplierData.getdata();
-      
+      this.formData = this.supplierData.getdata(); 
       
       this.formData.individualAddress=d;
       this.individualData = this.formData.individualDetails;
@@ -77,23 +76,19 @@ export class IndividualRegistrationComponent implements OnInit {
       this.equipmentData = this.formData.equipmentDetails;
       this.otherData = this.formData.otherDetails;
       this.BankDetails = this.formData.BankDetails;
-      if(localStorage.getItem('regType') === 'local'){
-        this.isLocal = true
-      }
-      if(localStorage.getItem('regType') === 'individual'){
-        this.isIndividual = true
-      }
-      if(localStorage.getItem('regType') === 'international'){
-        this.isInternational = true
-      }
     }
   
   ngOnInit(): void { 
     this.formData=this.supplierData.getdata();
-      this.formData.dropdownAll=this.formData.individualAddress;
-    var array={};
-    array=this.formData.individualAddress[0];
-    this.loadData(this.formData.individualAddress[0]); 
+    this.individualAddress=this.formData.individualAddress;
+    this.selectedAddress=this.formData.individualAddress[0];
+    this.individualData = this.formData.individualDetails;
+    this.communicationData = this.formData.communicationDetails;
+    this.subContractorData = this.formData.subContractorDetails;
+    this.equipmentData = this.formData.equipmentDetails;
+    this.otherData = this.formData.otherDetails;
+    this.BankDetails = this.formData.BankDetails;
+    // this.loadData(this.formData.individualAddress[0]); 
   }
 
   get f(){
@@ -137,7 +132,7 @@ export class IndividualRegistrationComponent implements OnInit {
 
   submit(){
     if(this.form.status === 'VALID'){
-      this.formData.address.addressDetails.push(this.form.value)
+      this.formData.individualAddress.push(this.form.value)
       this.form.reset();
     }
   }
@@ -155,6 +150,11 @@ export class IndividualRegistrationComponent implements OnInit {
       }
     })
   }
+  
+  public openMenu() {
+    this.activityMenu = !this.activityMenu;
+  }
+  
   registrationComplete(){
     this.completed = true;
   }

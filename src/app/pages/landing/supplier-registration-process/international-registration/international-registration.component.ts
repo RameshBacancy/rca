@@ -28,16 +28,20 @@ export class InternationalRegistrationComponent implements OnInit {
   editGeneralManagerDetails: boolean = false;
 
   form: FormGroup = new FormGroup({
-    // addressID: new FormControl('MCT2', [Validators.required]),
-    poBox: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
-    supplierBranch: new FormControl('', [Validators.required]),
-    sponsorName: new FormControl('', [Validators.required]),
-    SponsorNationalId: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
-    postalCode: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
-    authorizedSignatory: new FormControl('', [Validators.required]),
-    authorizedResidentId: new FormControl('', [Validators.required, Validators.pattern('^[0-9]+')]),
+    addressID: new FormControl('', [Validators.required]),
+    addressline1: new FormControl('', [Validators.required]),
+    addressline2: new FormControl('', [Validators.required]),
+    language: new FormControl('English', [Validators.required]),
+    country: new FormControl('Oman', [Validators.required]),
   });
   
+  bankform: FormGroup = new FormGroup({
+    bankAcc: new FormControl('', [Validators.required]),
+    bankName: new FormControl('', [Validators.required]),
+    bankBranch: new FormControl('', [Validators.required]),
+    holderName: new FormControl('', [Validators.required])
+  });
+
   staffData: any[];
   staffSearch: string;
   newData:any; 
@@ -52,6 +56,9 @@ export class InternationalRegistrationComponent implements OnInit {
   isInternational: boolean = false;
   personalData: any;
   BankDetails: any;
+  internationalAddress: any[];
+  selectedAddress: any;
+  activityMenu: boolean;
 
   constructor(
     private router: Router, 
@@ -67,32 +74,22 @@ export class InternationalRegistrationComponent implements OnInit {
       var d=[];
       d.push(data);
       this.formData = this.supplierData.getdata();
-      this.formData.individualAddress=d;
-      this.personalData = this.formData.personalDetails;
-      this.staffData = this.formData.staffDetails;
-      this.communicationData = this.formData.communicationDetails;
-      this.subContractorData = this.formData.subContractorDetails;
-      this.equipmentData = this.formData.equipmentDetails;
-      this.BankDetails = this.formData.BankDetails;
-      this.otherData = this.formData.otherDetails;
-      this.activityData = this.formData.activities;
-      if(localStorage.getItem('regType') === 'local'){
-        this.isLocal = true
-      }
-      if(localStorage.getItem('regType') === 'individual'){
-        this.isIndividual = true
-      }
-      if(localStorage.getItem('regType') === 'international'){
-        this.isInternational = true
-      }
+      this.internationalAddress=d;
     }
 
   ngOnInit(): void {  
     this.formData=this.supplierData.getdata();
-    this.formData.dropdownAll=this.formData.individualAddress;
-    var array={};
-    array=this.formData.individualAddress[0];
-    this.loadData(this.formData.individualAddress[0]); 
+    this.selectedAddress = this.formData.individualAddress[0];
+    this.internationalAddress=this.formData.individualAddress;
+    this.personalData = this.formData.personalDetails;
+    this.staffData = this.formData.staffDetails;
+    this.communicationData = this.formData.communicationDetails;
+    this.subContractorData = this.formData.subContractorDetails;
+    this.equipmentData = this.formData.equipmentDetails;
+    this.BankDetails = this.formData.BankDetails;
+    this.otherData = this.formData.otherDetails;
+    this.activityData = this.formData.activities;
+    // this.loadData(this.formData.individualAddress[0]); 
   }
 
   get f(){
@@ -102,12 +99,12 @@ export class InternationalRegistrationComponent implements OnInit {
     return this.bankform.controls;
 
   }
-  bankform: FormGroup = new FormGroup({
-    bankAcc: new FormControl('', [Validators.required]),
-    bankName: new FormControl('', [Validators.required]),
-    bankBranch: new FormControl('', [Validators.required]),
-    holderName: new FormControl('', [Validators.required])
-  });
+
+  public openMenu() {
+    this.activityMenu = !this.activityMenu;
+  }
+
+  
   open(content, address?) {
     if(address){
       this.form.patchValue(address);
@@ -135,7 +132,7 @@ export class InternationalRegistrationComponent implements OnInit {
 
   submit(){
     if(this.form.status === 'VALID'){
-      this.formData.address.addressDetails.push(this.form.value)
+      this.formData.individualAddress.push(this.form.value)
       this.form.reset();
     }
   }

@@ -8,7 +8,7 @@
                             <h2 class="fs-18 text-black mb-3">RCA GENERAL INFO & LINKS</h2>
                             <ul class="pl-0 list-unstyled mb-0">
                                 <li class="mb-1"> <a href="/#/landing/supplier-registration/about-us" class="fs-14">About Us</a></li>
-                                <li class="mb-1"> <a href="#/landing/supplier-registration/registration" class="fs-14">Supplier Registration</a></li>
+                                <li class="mb-1" (click)="open(mymodal)"> <a class="fs-14" >Supplier Registration</a></li>
                                 <li class="mb-1"> <a  class="fs-14">Tendering Information </a></li>
                                 <li class="mb-1"> <a  class="fs-14">Auction</a></li>
                                 <li class="mb-1"> <a  class="fs-14">Help Desk </a></li>
@@ -201,5 +201,31 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div  class="container-fluid" > 
+        <ng-template #mymodal let-modal>
+            <div class="modal-header">
+                <h4 class="modal-title" id="modal-basic-title">{{status}}</h4>
+                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body custom-modal-main">
+                <section class=" bg-white">
+                    <div class="container-fluid ">
+                        <div class="row">
+                            <div class="col-md-8 px-3 mt-5  mx-auto text-center ">
+                                <p class="fs-22  text-black " [innerHTML]=approveRejectStatus><br />
+                                    <span class="font-weight-bold mt-3 d-block">Thank You</span> </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
+                    (click)="goto(); modal.close('Save click')">OK</button>
+            </div>
+        </ng-template>
     </div>
 <section>

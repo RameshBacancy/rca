@@ -45,7 +45,7 @@ export class RegisterationComponent implements OnInit {
 
   submit() {
     if (this.form.status === 'VALID') {
-      console.log(this.form.value);
+      // console.log(this.form.value);
       this.doneRegistered = true;
       localStorage.clear();
     }

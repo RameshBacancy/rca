@@ -39,7 +39,7 @@ export class CmsPagesComponent implements OnInit {
   isnewData: boolean;
   description: string;
   title: string;
-  selectedPage: string;
+  page: string;
   id: any;
   pageMenu: boolean;
   heading: string;
@@ -73,22 +73,22 @@ export class CmsPagesComponent implements OnInit {
   }
 
   save() {
-    if(this.title !=="" && this.description !== ""&& this.selectedPage !== "Page" && this.selectedPage !== ""){
+    if(this.title !=="" && this.description !== "" && this.page !== ""){
       if(!this.isnewData)  {
-          this._cmsService.addCMS(this.selectedPage, this.title, this.description).subscribe(d => {
+          this._cmsService.addCMS(this.page, this.title, this.description).subscribe(d => {
             this.getCMSData();
         })
       } else {
-        this._cmsService.updateCMS(this.selectedPage, this.title, this.description, this.id).subscribe(d => {
+        this._cmsService.updateCMS(this.page, this.title, this.description, this.id).subscribe(d => {
           this.getCMSData();
         })
       }
       this.title = '',
       this.description = '';
     } else {
-      if(this.selectedPage !== "Page" && this.selectedPage !== ""){
+      if(this.page !== ""){
         this.open(this.mymodal);
-        this.errorMsg ="Page must be selected.";
+        this.errorMsg ="Page name can not be empty.";
       }
       else if(this.title === ""){ 
         this.open(this.mymodal);
@@ -96,12 +96,13 @@ export class CmsPagesComponent implements OnInit {
       }
       else if(this.description === ""){ 
         this.open(this.mymodal);
-        this.errorMsg ="Title can not be empty.";
+        this.errorMsg ="Description can not be empty.";
       }
     }
   }
 
   cancel() {
+    this.page = '';
     this.title = '',
     this.description = '';
   }
@@ -118,7 +119,7 @@ export class CmsPagesComponent implements OnInit {
       this.heading = "Edit CMS"
       this.isnewData = true;
       this.id = data.id
-      this.selectedPage = data.page;
+      this.page = data.page;
       this.title = data.title;
       this.description = data.description;
     }
@@ -126,7 +127,7 @@ export class CmsPagesComponent implements OnInit {
       this.heading = "Add CMS"
       this.isnewData = false;
       this.id = ''
-      this.selectedPage = "Page";
+      this.page = '';
       this.title = '';
       this.description = '';
     }

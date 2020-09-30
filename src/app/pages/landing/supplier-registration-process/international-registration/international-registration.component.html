@@ -21,98 +21,159 @@
             <p class="fs-14">Company Info</p>
         </div>
     </div>
+
     <div class="row">
-        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address ID</h5>
-            <select name="my-select" [(ngModel)]="mySelect" (change)="selectChange($event)">
-                <option [value]="formData.dropdownAll.id" *ngFor="let item of formData.dropdownAll">
-                   {{item.addressID}}
-                </option>
-            </select>
+        <div class="col-md-3 px-4 position-relative mb-3">
+            <div class="landing-menu" (click)="openMenu()">
+                <div
+                    class="bg-light border rounded p-2 mb-0 fs-14 text-center font-italic font-weight-bold  dark-text-1 w-170">
+                    Address ID : {{selectedAddress.addressID}} <i class="fa fa-caret-down"
+                        aria-hidden="true"></i>
+                </div>
+                <ul *ngIf="activityMenu" class="landing-dropdown w-170">
+                    <li *ngFor="let item of internationalAddress" (click)="selectedAddress = item">
+                        {{item.addressID}}</li>
+                </ul>
+            </div>
+            <button class="btn btn-secondary ml-2 custom-drop-down-plus" (click)="open(mymodal)"><i
+                    class="fa fa-plus" aria-hidden="true"></i></button>
         </div>
     </div>
-    <div class="shadow p-3 mb-5" *ngFor="let item of formData.individualAddress" >
-        <div class="row">
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address Line 1</h5>
-                <p class="fs-14">{{item.addressline1}}</p>
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address Line 2</h5>
-                <p class="fs-14">{{item.addressline2}}</p>
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Language </h5>
-                <p class="fs-14">{{item.language}}</p>
-            </div>
-            <div class="col-md-3 col-lg-3 col-xl-2 px-4">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Country</h5>
-                <p class="fs-14">{{item.country}}</p>
+    <div class="shadow">
+
+        <div class=" p-3 mb-5">
+            <div class="row">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address Line 1</h5>
+                    <p class="fs-14">{{selectedAddress.addressline1}}</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address Line 2</h5>
+                    <p class="fs-14">{{selectedAddress.addressline2}}</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Language</h5>
+                    <p class="fs-14">{{selectedAddress.language}}</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-4  px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Country
+                    </h5>
+                    <p class="fs-14">{{selectedAddress.country}}</p>
+                </div>
             </div>
         </div>
-        
     </div>
-     <!-- <div class="row">
-         <div class="col-md-12 px-4 d-block  d-lg-flex">
-             <p class="bg-light border p-2 fs-14 rounded mr-0 mr-lg-3 text-center ">Attach Existing </p>
-             <p class="bg-light border p-2 fs-14 mr-0 mr-lg-3 rounded text-center ">Create New </p>
-             <p class="bg-light border p-2 fs-14  mr-0 mr-lg-3 rounded text-center ">Create Form Template
-             </p>
-         </div>
-     </div>
-     <div class="row">
-         <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
-             <div class="card bg-light h-100 ">
-                 <div class="card-body">
-                     <h5 class="card-title mb-3 fs-18">Brief Co. Detail </h5>
-                     <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
-                     <p class="card-text dark-text-1 fs-12">1200232</p>
-                     <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
-                     <p class="card-text dark-text-1 fs-12">$1</p>
-                     <a  class="card-link">Word Doc.</a>
-                     <div class="mt-3 text-right"> <i
-                             class="fa fa-download text-secondary mr-2 fs-14 "></i>
-                         <i class="fa fa-file text-secondary fs-14"></i> </div>
-                 </div>
-             </div>
-         </div>
-         <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
-             <div class="card bg-light h-100 ">
-                 <div class="card-body">
-                     <h5 class="card-title mb-3 fs-18"> ISO Certificate </h5>
-                     <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
-                     <p class="card-text dark-text-1 fs-12">1200232</p>
-                     <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
-                     <p class="card-text dark-text-1 fs-12">$1</p>
-                     <a  class="card-link">PDF</a>
-                     <div class="mt-3 text-right"> <i
-                             class="fa fa-download text-secondary mr-2 fs-14 "></i>
-                         <i class="fa fa-file text-secondary fs-14"></i> </div>
-                 </div>
-             </div>
-         </div>
-         <div class="col-md-4 col-xl-3  px-4 mb-4 col-lg-4 ">
-             <div class="card bg-light h-100 ">
-                 <div class="card-body">
-                     <h5 class="card-title mb-3 fs-18">Company Registration </h5>
-                     <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0">Document No.</h6>
-                     <p class="card-text dark-text-1 fs-12">1200232</p>
-                     <h6 class="card-subtitle mb-2 fs-14 text-muted text-light mb-0 mt-3">Revision</h6>
-                     <p class="card-text dark-text-1 fs-12">$1</p>
-                     <a  class="card-link">PDF</a>
-                     <div class="mt-3 text-right"> <i
-                             class="fa fa-download text-secondary mr-2 fs-14 "></i>
-                         <i class="fa fa-file text-secondary fs-14"></i> </div>
-                 </div>
-             </div>
-         </div>
-     </div> -->
-     <div class="row">
+    <div class="row">
         <div class="col-md-12 px-4">
             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
             <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
         </div>
     </div>
+
+    <!-- Address Model Pop-Up Form -->
+    <ng-template #mymodal let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Add Address</h4>
+            <button type="button" class="close" aria-label="Close"
+                (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="submit() ; modal.close('Save click')">
+            <div class="modal-body custom-modal-main">
+                <section class=" bg-white ">
+                    <div>
+                        <div class="row ">
+                            <div class="col-md-12 ">
+                                <div class="form-group row mb-3">
+                                    <label for="addressID" class="col-sm-5 col-form-label"> Address
+                                        ID</label>
+                                    <div class="col-sm-7">
+                                        <input formControlName="addressID" id="addressID" type="text"
+                                            class="form-control">
+                                    </div>
+                                    <div *ngIf="f.addressID.touched && f.addressID.invalid"
+                                        class="alert alert-danger">
+                                        <div *ngIf="f.addressID.errors.required" class="col-sm-7">
+                                            *required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-3">
+                                    <label for="addressline1" class="col-sm-5 col-form-label">Address
+                                        Line
+                                        1</label>
+                                    <div class="col-sm-7">
+                                        <input formControlName="addressline1" id="addressline1"
+                                            type="text" class="form-control">
+                                    </div>
+                                    <div *ngIf="f.addressline1.touched && f.addressline1.invalid"
+                                        class="alert alert-danger">
+                                        <div *ngIf="f.addressline1.errors.required" class="col-sm-7">
+                                            *required
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-3">
+                                    <label for="addressline2" class="col-sm-5 col-form-label">Address
+                                        Line
+                                        2</label>
+                                    <div class="col-sm-7">
+                                        <input formControlName="addressline2" id="addressline2"
+                                            type="text" class="form-control">
+                                    </div>
+                                    <div *ngIf="f.addressline2.touched && f.addressline2.invalid"
+                                        class="alert alert-danger">
+                                        <div *ngIf="f.addressline2.errors.required" class="col-sm-7">
+                                            *required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-3">
+                                    <label for="language" class="col-sm-5 col-form-label">Language
+                                    </label>
+                                    <div class="col-sm-7">
+                                        <input formControlName="language" id="language" type="text"
+                                            class="form-control">
+                                    </div>
+                                    <div *ngIf="f.language.touched && f.language.invalid"
+                                        class="alert alert-danger">
+                                        <div *ngIf="f.language.errors.required" class="col-sm-7">
+                                            *required</div>
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-3">
+                                    <label for="country" class="col-sm-5 col-form-label">Country
+                                    </label>
+                                    <div class="col-sm-7">
+                                        <input formControlName="country" id="country" type="text"
+                                            class="form-control">
+                                    </div>
+                                    <div *ngIf="f.country.touched && f.country.invalid"
+                                        class="alert alert-danger">
+                                        <div *ngIf="f.country.errors.required" class="col-sm-7">
+                                            *required
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-5">
+                                    <div class="col-md-12 mb-5 px-4"> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                    type="submit">Submit</button>
+                <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
+                    (click)="form.reset(); modal.close('Save click')">Cancel</button>
+
+            </div>
+        </form>
+    </ng-template>
+
      <div class="row">
          <div class="col-md-12 mb-5 px-4">
              <!-- <button type="button"
@@ -158,7 +219,7 @@
                                     ></i></th>
                             <th scope="col" (click)="sorting('personal','residentNo')">Resident card Number <i class="fa fa-sort" aria-hidden="true"
                                     ></i></th>
-                            <th scope="col" (click)="sorting('personal','passport')">Passport<i class="fa fa-sort" aria-hidden="true"
+                            <th scope="col" (click)="sorting('personal','passport')">Passport <i class="fa fa-sort" aria-hidden="true"
                                     ></i></th>
                         </tr>
                     </thead>
@@ -433,27 +494,27 @@
                         <table class="table table-striped ">
                             <thead>
                                 <tr class="purple-bg text-white">
-                                    <th scope="col" class="custom-width-60" (click)="sorting('activity','activityName')">Activity Name
+                                    <th scope="col" class="custom-width-60" (click)="sorting('activity','activityName')">Activity Name 
                                         <i class="fa fa-sort" aria-hidden="true"
                                             ></i>
                                     </th>
-                                    <th scope="col" (click)="sorting('activity','subActivity')">Sub Activity
+                                    <th scope="col" (click)="sorting('activity','subActivity')">Sub Activity 
                                         <i class="fa fa-sort" aria-hidden="true"
                                             ></i>
                                     </th>
-                                    <th scope="col" (click)="sorting('activity','sagment')">Segment
+                                    <th scope="col" (click)="sorting('activity','sagment')">Segment 
                                         <i class="fa fa-sort" aria-hidden="true"
                                             ></i>
                                     </th>
-                                    <th scope="col" (click)="sorting('activity','family')">Family
+                                    <th scope="col" (click)="sorting('activity','family')">Family 
                                         <i class="fa fa-sort" aria-hidden="true"
                                            ></i>
                                     </th>
-                                    <th scope="col" (click)="sorting('activity','class')">Class
+                                    <th scope="col" (click)="sorting('activity','class')">Class 
                                         <i class="fa fa-sort" aria-hidden="true"
                                            ></i>
                                     </th>
-                                    <th scope="col" (click)="sorting('activity','commodity')">Commodity
+                                    <th scope="col" (click)="sorting('activity','commodity')">Commodity 
                                         <i class="fa fa-sort" aria-hidden="true"
                                             ></i>
                                     </th>
@@ -702,9 +763,9 @@
                                     </th>
                                     <th scope="col" (click)="sorting('other','no')">No. <i class="fa fa-sort" aria-hidden="true"
                                             ></i></th>
-                                    <th scope="col" (click)="sorting('other','name')">Label<i class="fa fa-sort"
+                                    <th scope="col" (click)="sorting('other','name')">Label <i class="fa fa-sort"
                                             aria-hidden="true" ></i></th>
-                                    <th scope="col">Value</th>
+                                    <th scope="col">Value </th>
                                 </tr>
                             </thead>
                             <tbody>

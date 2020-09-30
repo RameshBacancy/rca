@@ -27,13 +27,13 @@ export class RegistrationRequestComponent implements OnInit {
   }
 
   approve(id){
-    console.log('approved '+ id);
+    // console.log('approved '+ id);
     this.userService.approveReject(id,'approved').subscribe(d => { });
     this.userData();
   }
 
   reject(id){
-    console.log('rejected '+ id);
+    // console.log('rejected '+ id);
     this.userService.approveReject(id,'reject').subscribe(d => { });
     this.userData();
   }
@@ -57,7 +57,7 @@ export class RegistrationRequestComponent implements OnInit {
   open(content, d) {
 
     this.viewData = d;
-    console.log(this.viewData);
+    // console.log(this.viewData);
 
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
 
