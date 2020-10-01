@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
        this.spinner.closeSpinner();
      },
      e => {
-       this._alertService.pushError('Please Enter Valid Email');
+       this._alertService.pushError(e.error.message);
        this.spinner.closeSpinner()
       }
      )

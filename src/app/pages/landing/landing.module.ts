@@ -7,9 +7,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InternationalLoginComponent } from './international-login/international-login.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HowToRegisterComponent } from './how-to-register/how-to-register.component';
-
+import { SafeHtmlPipe } from 'src/app/pipe/safeHtml.pipe'
 @NgModule({
   declarations: [
+    SafeHtmlPipe,
     LandingComponent,
     InternationalLoginComponent,
     AboutUsComponent,
@@ -25,5 +26,8 @@ import { HowToRegisterComponent } from './how-to-register/how-to-register.compon
     FormsModule,
     ReactiveFormsModule
   ],
+  providers: [
+    SafeHtmlPipe
+  ]
 })
 export class LandingModule { }

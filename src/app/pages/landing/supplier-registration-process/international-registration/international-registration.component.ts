@@ -139,6 +139,7 @@ export class InternationalRegistrationComponent implements OnInit {
   submitRegistration(){
     this.completed = true;
     localStorage.setItem('LocalRegComplete',"true");
+    localStorage.setItem('1completeToken','true');
     localStorage.setItem('RegStatus','finish');
     const body = { civil_number:localStorage.getItem('civilReg'),cr_number:localStorage.getItem('commercialReg'),email: localStorage.getItem('internationalEmail'),register_status:localStorage.getItem('RegStatus'), register_type:localStorage.getItem('regType')}
       this._userService.supplierRegistration(body).subscribe(d => { })

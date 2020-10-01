@@ -135,11 +135,13 @@ export class LocalRegistrationComponent implements OnInit {
 
   submitRegistration(){
     this.completed = true;
+    localStorage.setItem('1completeToken','true');
     localStorage.setItem('LocalRegComplete',"true");
     localStorage.setItem('RegStatus','finish');
     const body = { civil_number:localStorage.getItem('civilReg'),cr_number:localStorage.getItem('commercialReg'),register_status:localStorage.getItem('RegStatus'), register_type:localStorage.getItem('regType')}
-      this._userService.supplierRegistration(body).subscribe(d => { })
-      this.alertService.pushSuccess('Your data is submitted.');
+      this._userService.supplierRegistration(body).subscribe(d => {
+        this.alertService.pushSuccess('Your data is submitted.');
+       })
     // this.router.navigateByUrl('/landing/supplier-registration/transaction');
   }
 

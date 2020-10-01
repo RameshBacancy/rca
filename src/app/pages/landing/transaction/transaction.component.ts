@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-transaction',
@@ -13,9 +14,10 @@ export class TransactionComponent implements OnInit, AfterViewInit {
   formData: any;
   paymentComplete: boolean;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private modelService: NgbModal) { }
 
   ngOnInit(): void { 
+    this.modelService.dismissAll();
     
   }
   ngAfterViewInit(){

@@ -4,6 +4,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { AlertService } from '../../../services/alert.service';
 import { SpinnerService } from '../../../services/spinner.service';
+import { SafeHtmlPipe } from 'src/app/pipe/safeHtml.pipe';
 
 
 
@@ -26,18 +27,19 @@ export class CmsPagesComponent implements OnInit {
     placeholder: 'Enter text here...',
     translate: 'no',
     defaultParagraphSeparator: 'p',
-    defaultFontName: 'Arial',
+    sanitize: true,
     toolbarHiddenButtons: [
       ['removeFormat'],
       ['textColor'],
       ['backgroundColor'],
-      ['customClasses']
+      ['customClasses'],
+      // ['fontName']
     ],
     customClasses: []
   };
   pagesOptions: string[];
   isnewData: boolean;
-  description: string;
+  description: any;
   title: string;
   page: string;
   id: any;
@@ -50,14 +52,15 @@ export class CmsPagesComponent implements OnInit {
     private modalService: NgbModal, 
     private _cmsService: CmsService, 
     private _alertService: AlertService,
-    private spinner: SpinnerService 
+    private spinner: SpinnerService,
+    private safeHtml: SafeHtmlPipe 
     ) { }
 
   ngOnInit(): void {
     this.getCMSData();
     this.isnewData = false;
     this.pageMenu = false;
-    this.pagesOptions = ["How to Register", "About Us"];
+    // this.pagesOptions = ["How to Register", "About Us"];
   }
 
   getCMSData(){
@@ -121,7 +124,7 @@ export class CmsPagesComponent implements OnInit {
       this.id = data.id
       this.page = data.page;
       this.title = data.title;
-      this.description = data.description;
+      this.description = this.safeHtml.transform(data.description, true);
     }
     else {
       this.heading = "Add CMS"
