@@ -28,13 +28,19 @@ export class RegistrationRequestComponent implements OnInit {
 
   approve(id){
     // console.log('approved '+ id);
-    this.userService.approveReject(id,'approved').subscribe(d => { });
+    this.spinner.openSpinner();
+    this.userService.approveReject(id,'approved').subscribe(d => { 
+      this.spinner.closeSpinner();
+    });
     this.userData();
   }
 
   reject(id){
+    this.spinner.openSpinner();
     // console.log('rejected '+ id);
-    this.userService.approveReject(id,'reject').subscribe(d => { });
+    this.userService.approveReject(id,'reject').subscribe(d => { 
+      this.spinner.closeSpinner();
+    });
     this.userData();
   }
 

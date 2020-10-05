@@ -13,6 +13,9 @@ export class PaymentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('paymentStep') != 'true'){
+      this.router.navigate(['/landing/supplier-registration/dashboard']);
+    }
   }
 
   proceed(){

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SpinnerService } from 'src/app/services/spinner.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class InternationalLoginComponent implements OnInit {
   message: string;
   validForm: boolean = true;
 
-  constructor( private router: Router, private userService: UserService) { }
+  constructor( private router: Router, private userService: UserService, private spinner: SpinnerService) { }
 
   ngOnInit(): void {
   }
@@ -24,10 +25,12 @@ export class InternationalLoginComponent implements OnInit {
     // console.log(this.user);
     localStorage.setItem('completeReg', 'T');
     localStorage.setItem('internationalEmail', e)
-    const body = { email: e, register_type:'international'}
+    const body = { email: e, register_type:'international'};
+    this.spinner.openSpinner();
     this.userService.supplierRegistration(body).subscribe(d => { 
       localStorage.setItem('RegStatus',d.data.register_status);
-      localStorage.setItem('arStatus',d.data.status)
+      localStorage.setItem('arStatus',d.data.status);
+      this.spinner.closeSpinner();
       this.router.navigate(['/landing/supplier-registration/dashboard']);
     })
   }

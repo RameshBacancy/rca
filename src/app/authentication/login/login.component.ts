@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
 
   login()
   {
+    this.spinner.openSpinner();
     this._userService.login(this.user.email,this.user.password).subscribe(
       (response) => {                           
         this._userService.setToken(response.data.token);

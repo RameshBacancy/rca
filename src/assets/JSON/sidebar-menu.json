@@ -1,9 +1,9 @@
 {
     "menu": [
         {
-            "name": "HOME",
+            "name": "Dashboard",
             "icon": "",
-            "route": "",
+            "route": "/#/landing/supplier-registration/dashboard",
             "disabled": false,
             "children": []
         },

@@ -18,7 +18,9 @@ export class TransactionComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void { 
     this.modelService.dismissAll();
-    
+    if(localStorage.getItem('RegStatus') != 'finish'){
+      this.router.navigate(['/landing/supplier-registration/dashboard']);
+    }
   }
   ngAfterViewInit(){
     if(localStorage.getItem('paymentStep')){

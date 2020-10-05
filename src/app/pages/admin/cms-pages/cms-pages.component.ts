@@ -77,15 +77,17 @@ export class CmsPagesComponent implements OnInit {
 
   save() {
     if(this.title !=="" && this.description !== "" && this.page !== ""){
+      this.spinner.openSpinner();
       if(!this.isnewData)  {
           this._cmsService.addCMS(this.page, this.title, this.description).subscribe(d => {
-            this.getCMSData();
+            this.spinner.closeSpinner();
         })
       } else {
         this._cmsService.updateCMS(this.page, this.title, this.description, this.id).subscribe(d => {
-          this.getCMSData();
+          this.spinner.closeSpinner();
         })
       }
+      this.getCMSData();
       this.title = '',
       this.description = '';
     } else {
@@ -112,7 +114,10 @@ export class CmsPagesComponent implements OnInit {
 
   delete(id, name){
     if(confirm('Do you want to delete page '+ name+ '.')){
-      this._cmsService.deleteCMS(id).subscribe(d => { });
+      this.spinner.openSpinner();
+      this._cmsService.deleteCMS(id).subscribe(d => { 
+        this.spinner.closeSpinner();
+      });
       this.getCMSData();
     }
   }

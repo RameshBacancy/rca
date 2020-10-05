@@ -23,17 +23,19 @@ export class SupplierRegisterComponent implements OnInit {
     registrationType: new FormControl('alreadyRegistered', [Validators.required])
   });
 
-  constructor(private router: Router, private _userService: UserService, private alertService: AlertService, private spinner: SpinnerService) { }
+  constructor(
+    private router: Router, 
+    private _userService: UserService, 
+    private alertService: AlertService, 
+    private spinner: SpinnerService
+    ) { }
 
   ngOnInit(): void {
-    localStorage.removeItem('LoginToken')
-    localStorage.removeItem('authToken')
+    localStorage.clear();
       this.router.navigate(['/landing/supplier-registration/dashboard']);
       if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'false') {
         this.showsNextReg = true;
       }
-      this.spinner.closeSpinner();
-
   }
 
   submitNext() {
@@ -53,12 +55,14 @@ export class SupplierRegisterComponent implements OnInit {
   submitReg(){
     if (this.form.status === 'VALID') {
       this._userService.localRegistration(this.form.value.registrationNo.toString());
+      this.spinner.openSpinner();
       const body = { civil_number:localStorage.getItem('civilReg'),cr_number:localStorage.getItem('commercialReg'), register_type:localStorage.getItem('regType')}
       this._userService.supplierRegistration(body).subscribe(d => { 
         localStorage.setItem('RegStatus',d.data.register_status);
-        localStorage.setItem('arStatus',d.data.status)
+        localStorage.setItem('arStatus',d.data.status);
+        this.spinner.closeSpinner();
+        this.router.navigate(['/landing/supplier-registration/dashboard']);
       })
-      this.router.navigate(['/landing/supplier-registration/dashboard']);
      }
   }
 

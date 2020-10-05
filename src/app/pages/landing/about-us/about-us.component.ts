@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SafeHtmlPipe } from 'src/app/pipe/safeHtml.pipe';
+import { SpinnerService } from 'src/app/services/spinner.service';
 import { CmsService } from '../../../services/cms.service';
 
 @Component({
@@ -10,10 +11,12 @@ import { CmsService } from '../../../services/cms.service';
 export class AboutUsComponent implements OnInit {
   data;
   isdata: boolean = false;
-  constructor(private _cmsService: CmsService,private ref: ChangeDetectorRef) { }
+  constructor(private _cmsService: CmsService,private ref: ChangeDetectorRef, private spinner: SpinnerService) { }
 
   ngOnInit(): void {
+    this.spinner.openSpinner();
     this.getData();
+    this.spinner.closeSpinner();
   }
 
   getData(){

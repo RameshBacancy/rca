@@ -61,6 +61,7 @@ export class LandingHeaderComponent implements OnInit {
       localStorage.clear();
       this.router.navigate(['']);
     } else {
+      this.spinner.openSpinner();
       this._userService.logout().subscribe(d => {});
       this.spinner.closeSpinner();
       localStorage.clear();
