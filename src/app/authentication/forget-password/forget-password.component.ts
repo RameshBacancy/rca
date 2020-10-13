@@ -44,18 +44,7 @@ export class ForgetPasswordComponent implements OnInit {
   resetPassword(){
     this.spinner.openSpinner();
     if(this.user.password.toString() == this.confirm_password){  
-      this._userService.resetPassword(this.user).subscribe(
-        (response) => {                           
-          this._userService.setToken(response.data.token);
-            this._alertService.pushSuccess(response.data.message);
-              this.router.navigateByUrl('/admin/user/login');
-            this.spinner.closeSpinner();
-        },
-        (error) => {                              
-          this.errorMsg = error.error.message;
-          this.spinner.closeSpinner();
-        }
-      )
+      this._userService.resetPassword(this.user)
     } else {
       this.spinner.closeSpinner();
       this.errorMsg = 'password mismatch'

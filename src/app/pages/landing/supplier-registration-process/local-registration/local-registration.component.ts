@@ -143,10 +143,8 @@ export class LocalRegistrationComponent implements OnInit {
     localStorage.setItem('RegStatus','finish');
     this.spinner.openSpinner();
     const body = { civil_number:localStorage.getItem('civilReg'),cr_number:localStorage.getItem('commercialReg'),register_status:localStorage.getItem('RegStatus'), register_type:localStorage.getItem('regType')}
-      this._userService.supplierRegistration(body).subscribe(d => {
-        this.alertService.pushSuccess('Your data is submitted.');
-        this.spinner.closeSpinner();
-       })
+      this._userService.supplierRegistration(body)
+      this.alertService.pushSuccess('Your data is submitted.');
     // this.router.navigateByUrl('/landing/supplier-registration/transaction');
   }
 
@@ -154,9 +152,7 @@ export class LocalRegistrationComponent implements OnInit {
     localStorage.setItem('RegStatus','draft');
     this.spinner.openSpinner();
     const body = { civil_number:localStorage.getItem('civilReg'),cr_number:localStorage.getItem('commercialReg'),register_status:localStorage.getItem('RegStatus'), register_type:localStorage.getItem('regType')}
-    this._userService.supplierRegistration(body).subscribe(d => {
-      this.spinner.closeSpinner();
-     })
+    this._userService.supplierRegistration(body)
     this.alertService.pushWarning('Your data will be saved for 72 hours.');
     this.router.navigate(['/landing/supplier-registration/dashboard']);
   }

@@ -20,7 +20,7 @@ export class RequestServiceBase {
    * @param body body object
    */
   public httpGet<T>(path) {
-    return this.http.get(`${path}`, this.getHttpOptions()).pipe(
+    return this.http.get(`${BASE_URL}${path}`).pipe(
       map(this.handleResponse),
       catchError(err => this.handleErrorBase(err)));
   }
@@ -39,7 +39,7 @@ export class RequestServiceBase {
    * @param body body object
    */
   public httpPost(path, body = {}) {
-    return this.http.post(`${BASE_URL}${path}`, body, this.getHttpOptions()).pipe(map(this.handleResponse));
+    return this.http.post(`${BASE_URL}${path}`, body).pipe(map(this.handleResponse));
   }
 
   /**
@@ -57,7 +57,7 @@ export class RequestServiceBase {
    * @param body body object
    */
   public httpPut(path, body = {}) {
-    return this.http.put(`${BASE_URL}${path}`, { data: body }, this.getHttpOptions()).pipe(map(this.handleResponse));
+    return this.http.put(`${BASE_URL}${path}`, { data: body }).pipe(map(this.handleResponse));
   }
 
   /**
@@ -66,44 +66,41 @@ export class RequestServiceBase {
    * @param body body object
    */
   public httpDelete(path) {
-    return this.http.delete(`${BASE_URL}${path}`, this.getHttpOptions()).pipe(map(this.handleResponse));
+    return this.http.delete(`${BASE_URL}${path}`).pipe(map(this.handleResponse));
   }
 
 
   /**
    * Returns httpOptions object
    */
-  private getHttpOptions(jsonHeaders: boolean = true) {
+  // private getHttpOptions(jsonHeaders: boolean = true) {
 
-    const token = sessionStorage.getItem('authToken');
+  //   const token = localStorage.getItem('authToken');
 
-    if (token) {
-      let httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'session_token': sessionStorage.getItem('authToken')
-        }),
-      };
-      return httpOptions;
-    } else {
-      let httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json'
-        }),
-      };
-      return httpOptions;
-    }
+  //   if (token) {
+  //     let httpOptions = {
+  //       headers: new HttpHeaders({
+  //         Accept: 'application/json',
+  //         Authorization: `Bearer ${token}`
+  //       })
+  //     };
+  //     return httpOptions;
+  //   } else {
+  //     let httpOptions = {
+  //       headers: new HttpHeaders({
+  //         Accept: 'application/json'
+  //       }),
+  //     };
+  //     return httpOptions;
+  //   }
 
-  }
+  // }
 
   /**
    * Http response handler (extracts data object)
    * @param res http response
    */
   private handleResponse(res) {
-    // if ('data' in res) {
-    //   return res.data;
-    // }
     return res;
   }
 
@@ -112,12 +109,9 @@ export class RequestServiceBase {
 
     if (error instanceof Response) {
       const body = error.json() || '';
-      //const err = body.error || JSON.stringify(body);
-      //errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
     } else {
       errMsg = error.message ? error.message : error.toString();
     }
-
     this.handleResponse(error);
 
     return error;

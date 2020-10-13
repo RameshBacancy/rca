@@ -57,12 +57,7 @@ export class SupplierRegisterComponent implements OnInit {
       this._userService.localRegistration(this.form.value.registrationNo.toString());
       this.spinner.openSpinner();
       const body = { civil_number:localStorage.getItem('civilReg'),cr_number:localStorage.getItem('commercialReg'), register_type:localStorage.getItem('regType')}
-      this._userService.supplierRegistration(body).subscribe(d => { 
-        localStorage.setItem('RegStatus',d.data.register_status);
-        localStorage.setItem('arStatus',d.data.status);
-        this.spinner.closeSpinner();
-        this.router.navigate(['/landing/supplier-registration/dashboard']);
-      })
+      this._userService.supplierRegistration(body)
      }
   }
 
@@ -70,6 +65,7 @@ export class SupplierRegisterComponent implements OnInit {
     this.showsNextReg = false;
     localStorage.clear();
   }
+
   onViewSidebar(val) {
     this.viewSideBar = val;
   }

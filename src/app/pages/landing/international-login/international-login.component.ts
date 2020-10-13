@@ -27,12 +27,7 @@ export class InternationalLoginComponent implements OnInit {
     localStorage.setItem('internationalEmail', e)
     const body = { email: e, register_type:'international'};
     this.spinner.openSpinner();
-    this.userService.supplierRegistration(body).subscribe(d => { 
-      localStorage.setItem('RegStatus',d.data.register_status);
-      localStorage.setItem('arStatus',d.data.status);
-      this.spinner.closeSpinner();
-      this.router.navigate(['/landing/supplier-registration/dashboard']);
-    })
+    this.userService.supplierRegistration(body)
   }
 
   validateEmail(email, psw) {

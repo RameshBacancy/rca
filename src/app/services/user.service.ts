@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { SpinnerService } from './spinner.service';
+import { AlertService } from './alert.service';
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +19,13 @@ export class UserService {
     currentUser: any;
     httpClient: any;
     static changePassword: any;
-    constructor(private router: Router, private http: HttpClient, private spinner: SpinnerService) { }
+    constructor(
+        private router: Router, 
+        private http: HttpClient, 
+        private alertService: AlertService,
+        private spinner: SpinnerService, 
+        private _http: RequestServiceBase
+        ) { }
 
     createAcceptHeader() {
         let headers = new Headers();
@@ -26,7 +33,7 @@ export class UserService {
     }
     setToken(token) {
         this.currentUser = token;
-        localStorage.setItem('authToken', token);
+        sessionStorage.setItem('authToken', token);
     }
 
     registrationLogin(number, str, type) {
@@ -64,86 +71,96 @@ export class UserService {
         
     }
 
-    supplierRegistration(body):Observable<any> {
-        return this.http.post<any>(this.url + 'supplier-register', body);
+    supplierRegistration(body) {
+        this._http.httpPost('supplier-register', body).subscribe(d => { 
+            localStorage.setItem('RegStatus',d.data.register_status);
+            localStorage.setItem('arStatus',d.data.status);
+            this.spinner.closeSpinner();
+            this.router.navigate(['/landing/supplier-registration/dashboard']);
+          })
     }
 
-    login(email, password): Observable<any> {
+    login(email, password){
         localStorage.setItem('supplierLogin', 'false');
-        return this.http.post<any>(this.url + 'login', { email: email, password: password });
+        let data;
+        this._http.httpPost( 'login', { email: email, password: password }).subscribe(
+            (response) => {                           
+                this.setToken(response.data.token);
+                window.localStorage.setItem('LoginToken',''+Math.random());
+                this.router.navigateByUrl('/admin/dashboard');
+                this.alertService.pushSuccess('Login Successfully!')
+                this.spinner.closeSpinner();
+              },
+              (error) => {   
+                this.alertService.pushError(error.error.message) ;
+                this.spinner.closeSpinner();
+              }
+              );
+        
     }
 
-    forgetPass(email): Observable<any> {
-        return this.http.post<any>(this.url + 'forgot-password', { email: email });
+    forgetPass(email) {
+        this._http.httpPost('forgot-password', { email: email }).subscribe(d => {
+            this.alertService.pushSuccess('We sent you an email to reset your password.');
+            this.spinner.closeSpinner();
+          },
+          e => {
+            this.alertService.pushError(e.error.message);
+            this.spinner.closeSpinner()
+           }
+          )
     }
 
-    resetPassword(body): Observable<any> {
-        return this.http.post<any>(this.url + 'password-reset', body);
+    resetPassword(body) {
+        this._http.httpPost('password-reset', body).subscribe(
+            (response) => {                           
+              this.setToken(response.data.token);
+                this.alertService.pushSuccess(response.message);
+                  this.router.navigateByUrl('/admin/user/login');
+                this.spinner.closeSpinner();
+            },
+            (error) => {                              
+                this.alertService.pushError(error.error.message);
+              this.spinner.closeSpinner();
+            }
+          )
     }
 
-    logout(): Observable<any> {
-        return this.http.get<any>(this.url + 'logout');
+    logout() {
+        this._http.httpGet('logout').subscribe(d => { })
     }
 
-    changePassword(oldPassword, newPassword, confirmPassword): Observable<any> {
-        return this.http.post<any>(this.url + 'change-password', { old_password: oldPassword, new_password: newPassword, confirm_password: confirmPassword });
+    changePassword(oldPassword, newPassword, confirmPassword) {
+        this._http.httpPost('change-password', { old_password: oldPassword, new_password: newPassword, confirm_password: confirmPassword }).subscribe(
+            (response) => {     
+                this.alertService.pushSuccess(response.message);                      
+                this.setToken(response.data.token);
+                this.router.navigateByUrl('/admin/user/login');
+                this.spinner.closeSpinner();
+            },
+            (error) => {                              
+                this.alertService.pushError(error.error.message);
+                this.spinner.closeSpinner();
+            }
+          )
     }
 
-    getrequests(): Observable<any> {
-        return this.http.get<any>(this.url + 'supplier-list');
+    getrequests(){
+    let data= [];
+        this._http.httpGet('supplier-list').subscribe(d => {
+            d.data.filter( m => {
+              if(m.register_status == 'finish'){
+              data.push(m);
+              }
+            });
+          });
+        return data;
     }
 
-    approveReject(id, status):Observable<any> {
+    approveReject(id, status){
+        this._http.httpPost('status-change', { id: id, status: status }).subscribe(d => { 
+            this.spinner.closeSpinner();
+          });
         return this.http.post<any>(this.url + 'status-change', { id: id, status: status });
     }
-
-    // registerUser(user){
-    //     return this.httpService.httpPost(EndPoint.register, user);
-    // }
-
-    // tslint:disable-next-line:typedef
-    // login(loginData:any): Observable<any>{
-    //     const loginUrl = EndPoint.login;        
-    //     return this.httpService.httpPost(loginUrl, loginData);
-    // }
-
-    // storeUserToken(token:string){
-    //     if(token){
-    //         sessionStorage.setItem('authToken', token);
-    //         this.authToken = token;
-    //     }
-    // }
-    isAuthenticated() {
-        const token = sessionStorage.getItem('authToken');
-        this.authToken = token;
-        return token;
-    }
-
-    // getProfile() {
-    //     let headers = new Headers();
-    //     this.loadToken();
-    //     headers.append('Authorization', this.authToken);
-    //     headers.append('Content-Type', 'application/json');
-    //     return this.http.get(EndPoint.profile, { headers: headers })
-    //         .map(res => res.json())
-
-    // }
-
-    // loggedIn() {
-    //     return tokenNotExpired('user_token');
-    // }
-
-
-    // PostImage(data) {
-    //     let headers = new Headers();
-    //     return this.http.post(EndPoint.image, data, { headers: headers })
-    //         .map(response => response.json())
-    // }
-
-    // handleResponse(res) {
-    //     if ('data' in res) {
-    //     return res.data;
-    //     }
-    //     return res;
-    // }
 }

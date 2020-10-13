@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   public user = {email:"",password:""};
   public fuser = {email:""};
-  message: string;
+  message: any;
   closeResult: string;
   errmessage: string;
   validForm: boolean;
@@ -37,33 +37,14 @@ export class LoginComponent implements OnInit {
   login()
   {
     this.spinner.openSpinner();
-    this._userService.login(this.user.email,this.user.password).subscribe(
-      (response) => {                           
-        this._userService.setToken(response.data.token);
-          window.localStorage.setItem('LoginToken',''+Math.random());
-          this.router.navigateByUrl('/admin/dashboard');
-          this.spinner.closeSpinner();
-      },
-      (error) => {                 
-        this.message = error.error.message;
-        this.spinner.closeSpinner();
-      }
-    )
+    this._userService.login(this.user.email,this.user.password);
   }
 
   
   forgetPass(email)
   {
     this.spinner.openSpinner();
-    this._userService.forgetPass(email).subscribe(d => {
-       this._alertService.pushError('We sent you an email to reset your password.');
-       this.spinner.closeSpinner();
-     },
-     e => {
-       this._alertService.pushError(e.error.message);
-       this.spinner.closeSpinner()
-      }
-     )
+    this._userService.forgetPass(email);
   }
 
   validateEmail(email) {

@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class RegistrationRequestComponent implements OnInit {
 
   data: any[] = [];
-  isdata: boolean = false;
+  isdata: boolean = true;
   closeResult: string;
   viewData: any;
 
@@ -23,42 +23,26 @@ export class RegistrationRequestComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // this.spinner.openSpinner();
     this.userData();
   }
 
   approve(id){
-    // console.log('approved '+ id);
     this.spinner.openSpinner();
-    this.userService.approveReject(id,'approved').subscribe(d => { 
-      this.spinner.closeSpinner();
-    });
-    this.userData();
+    this.userService.approveReject(id,'approved')
   }
 
   reject(id){
     this.spinner.openSpinner();
-    // console.log('rejected '+ id);
-    this.userService.approveReject(id,'reject').subscribe(d => { 
-      this.spinner.closeSpinner();
-    });
-    this.userData();
+    this.userService.approveReject(id,'reject')
   }
 
   userData(){
     this.data = [];
-    this.userService.getrequests().subscribe(d => {
-      d.data.filter( m => {
-        if(m.register_status == 'finish'){
-        this.data.push(m);
-        this.ref.detectChanges();
-        }
-      });
-    })
-    if(this.data != []){
-      this.isdata = true;
-    } else {
-      this.isdata = false;
-    }
+    this.data = this.userService.getrequests();
+    // issue here
+    // this.ref.detectChanges();
+
   }
   open(content, d) {
 

@@ -30,18 +30,7 @@ export class ChangePasswordComponent implements OnInit {
   changePassword(){
   if(this.validForm){
     this.spinner.openSpinner();
-        this._userService.changePassword(this.user.password, this.user.newPassword, this.user.confirmPassword).subscribe(
-        (response) => {     
-            this._alertService.pushSuccess(response.data.message);                      
-            this._userService.setToken(response.data.token);
-            this.router.navigateByUrl('/admin/user/login');
-            this.spinner.closeSpinner();
-        },
-        (error) => {                              
-          this.errorMsg = error.error.message;
-          this.spinner.closeSpinner();
-        }
-      )
+    this._userService.changePassword(this.user.password, this.user.newPassword, this.user.confirmPassword)
     }
   }
 

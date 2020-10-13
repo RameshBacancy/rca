@@ -62,7 +62,7 @@ export class LandingHeaderComponent implements OnInit {
       this.router.navigate(['']);
     } else {
       this.spinner.openSpinner();
-      this._userService.logout().subscribe(d => {});
+      this._userService.logout();
       this.spinner.closeSpinner();
       localStorage.clear();
       this.router.navigate(['/admin/user/login']);

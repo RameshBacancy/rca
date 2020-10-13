@@ -1,5 +1,5 @@
 <div class="custom-tab-01" *ngIf="!completed">
-    <mat-horizontal-stepper #stepper>
+    <mat-horizontal-stepper  [@.disabled]="true"  #stepper>
         <!-- General Info -->
         <mat-step>
             <ng-template matStepLabel>General Info</ng-template>
@@ -176,6 +176,8 @@
                 <div class="col-md-12 mb-5 px-4">
                     <!-- <button type="button"
                 class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Previous</button> -->
+                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                matStepperPrevious>Previous</button>
                     <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         matStepperNext>Next</button>
                     <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
