@@ -1,32 +1,107 @@
 <div class="custom-tab-01" *ngIf="!completed">
-    <mat-horizontal-stepper [@.disabled]="true"  #stepper>
+
+     <!-- Show files Pop up-->
+     <ng-template #shoeFiles let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title"> Files</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body custom-modal-main" >
+            <section class=" bg-white " style="min-height: 300px !important;">
+                <ng-container *ngIf="filesList.length != 0; else fileListTemplate">
+                    <div class="dark-text-1">
+                        Added File Names
+                    </div>
+                    <ul *ngFor="let item of filesList" style="background-color: white !important;">
+                        <li style="list-style-type: disc !important;">
+                            <span>
+                                {{item.name}}
+                            </span>
+                            <span class="pr-4 " style="float: right;max-height: 80%; right:5%;">
+                                <i class="fa fa-trash-o btn btn-danger"  (click)="deleteFile(item)"></i>
+                            </span>
+                        </li>
+                        <hr>
+                    </ul>
+                </ng-container>
+                <ng-template #fileListTemplate>
+                    No Files Added
+                </ng-template>
+                
+            </section>
+            <hr>
+                <section class="bg-white">
+                    <div>Add New File</div>
+                        <mat-card>
+                            <mat-card-content>
+                                <ul>
+                                    <li *ngFor="let file of files">
+                                        <!-- <mat-progress-bar [value]="file.inProgress">
+                                        </mat-progress-bar> -->
+                                        <span id="file-label">
+                                        </span>
+                                    </li>
+                                </ul>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <button mat-button color="warn" (click)="onClick()">
+                                    <mat-icon>file_upload</mat-icon>
+                                    Upload
+                                </button>
+                            </mat-card-actions>
+                        </mat-card>
+                </section>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="button"
+            (click)="modal.close('Save click')">Done</button>
+        </div>
+    </ng-template>
+
+    <mat-horizontal-stepper [@.disabled]="true" #stepper>
         <!-- General Info Start-->
         <mat-step>
             <ng-template matStepLabel>General Info</ng-template>
-            <mat-tab-group  [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+            <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <mat-tab label="General Info">
-                    <div class="row">
+                    <div class="row pl-2">
+                        <div class="col-md-3 col-lg-3 col-xl-12 px-4 pb-2 ">
+                            <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                matTooltip="Non-editable data user id, CR number, names and company info" aria-hidden="true"></i>
+                        </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Civil Id</h5>
-                            <p class="fs-14">{{formData.generalInfo.civilNo}}</p>
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">User Id</h5>
+                            <p class="fs-14 px-4">{{formData.generalInfo.civilNo}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
                             <p class="fs-14">{{formData.generalInfo.crNo}}</p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row pl-2">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Arabic Name</h5>
-                            <p class="fs-14">Arabic Name</p>
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Arabic Name</h5>
+                            <p class="fs-14 px-4">Arabic Name</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">English Name</h5>
                             <p class="fs-14">English Name</p>
                         </div>
+                    </div>
+                    <div class="row pl-2">
+                        <div class="col-md-12 col-lg-12 col-xl-12 px-4 ">
+                            <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">Company Info</h4>
+                            
+                        </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Company Info</h5>
-                            <p class="fs-14">Company Info</p>
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Company Name</h5>
+                            <p class="fs-14 px-4">Company Name</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Company C R Number</h5>
+                            <p class="fs-14 px-4">Company C R Number</p>
                         </div>
                     </div>
                     <div class="row">
@@ -42,15 +117,14 @@
                                 <table class="table table-striped ">
                                     <thead>
                                         <tr class="purple-bg text-white">
-                                            <th scope="col" class="custom-width-60" (click)="sorting('activity','activityName')">Activity Name
-                                                <i class="fa fa-sort" aria-hidden="true"
-                                                    ></i>
+                                            <th scope="col" class="custom-width-60"
+                                                (click)="sorting('activity','activityName')">Activity Name
+                                                <i class="fa fa-sort" aria-hidden="true"></i>
                                             </th>
                                             <th scope="col" (click)="sorting('activity','subActivity')">Sub Activity
-                                                <i class="fa fa-sort" aria-hidden="true"
-                                                    ></i>
+                                                <i class="fa fa-sort" aria-hidden="true"></i>
                                             </th>
-                                            <th scope="col" (click)="sorting('activity','sagment')">Segment
+                                            <!-- <th scope="col" (click)="sorting('activity','sagment')">Segment
                                                 <i class="fa fa-sort" aria-hidden="true"
                                                     ></i>
                                             </th>
@@ -65,7 +139,7 @@
                                             <th scope="col" (click)="sorting('activity','commodity')">Commodity
                                                 <i class="fa fa-sort" aria-hidden="true"
                                                     ></i>
-                                            </th>
+                                            </th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -81,7 +155,7 @@
                                             </td>
                                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
                                                 <input [(ngModel)]="data.subActivity"></td>
-                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                            <!-- <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
                                                 {{data.sagment}} </td>
                                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
                                                 <input [(ngModel)]="data.sagment"></td>
@@ -96,7 +170,7 @@
                                             <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
                                                 {{data.commodity}}</td>
                                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
-                                                <input [(ngModel)]="data.commodity"></td>
+                                                <input [(ngModel)]="data.commodity"></td> -->
 
                                         </tr>
                                     </tbody>
@@ -112,13 +186,15 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 mb-5 px-4">    
+                        <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            (click)="changeTab()">Next</button>
-                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                                (click)="changeTab()">Next</button>
+                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"
+                                (click)="saveDraft()">Save as
                                 Draft</button>
                             <a href="/#/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                <button type="button"
+                                    class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -146,6 +222,19 @@
 
                         <div class=" p-3 mb-5">
                             <div class="row">
+                                <!-- symbole of not editable -->
+                                <div class="col-md-1 col-lg-1 col-xl-1" style="max-width: 1% !important;"
+                                    *ngIf="selectedAddress.isMoci">
+                                    <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                        matTooltip="Data can not be editable because it is fetched from server"
+                                        aria-hidden="true"></i>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-xl-2 px-4" style="max-width: 5% !important;"
+                                    *ngIf="!selectedAddress.isMoci">
+                                    <i class="fa fa-pencil-square-o btn btn-primary fs-14" mat-raised-button
+                                        matTooltip="Edit Address" (click)="open(mymodal, selectedAddress)"
+                                        aria-hidden="true"></i>
+                                </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address Line 1</h5>
                                     <p class="fs-14">{{selectedAddress.addressLine1}}</p>
@@ -158,7 +247,7 @@
                                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Language</h5>
                                     <p class="fs-14">{{selectedAddress.language}}</p>
                                 </div>
-                                <div class="col-md-3 col-lg-3 col-xl-4  px-4 ">
+                                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Country
                                     </h5>
                                     <p class="fs-14">{{selectedAddress.country}}</p>
@@ -173,15 +262,17 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 mb-5 px-4"> 
+                        <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="previousTab()">Previous</button> 
-                            <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" (click)="newStep()"
-                                matStepperNext>Next</button>
-                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                                (click)="previousTab()">Previous</button>
+                            <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                (click)="newStep()" matStepperNext>Next</button>
+                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"
+                                (click)="saveDraft()">Save as
                                 Draft</button>
                             <a href="/#/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                <button type="button"
+                                    class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -310,75 +401,104 @@
                         <table class="table table-striped ">
                             <thead>
                                 <tr class="purple-bg text-white">
-                                    <th scope="col" class="custom-width-60" (click)="sorting('personal','personName')">Person name <i class="fa fa-sort"
+                                    <th scope="col" class="custom-width-60">
+                                    </th>
+                                    <th scope="col" class="custom-width-60" (click)="sorting('personal','personName')">
+                                        Person name <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('personal','nationality')">Nationality <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('personal','idType')">I.D Type <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('personal','idNo')">I.D No. <i class="fa fa-sort"
                                             aria-hidden="true"></i></th>
-                                    <th scope="col"  (click)="sorting('personal','nationality')">Nationality <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('personal','idType')">I.D Type <i class="fa fa-sort" aria-hidden="true"
-                                            ></i></th>
-                                    <th scope="col" (click)="sorting('personal','idNo')">I.D No. <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col"(click)="sorting('personal','designation')">Designation <i class="fa fa-sort" aria-hidden="true"
-                                            ></i></th>
-                                    <th scope="col" (click)="sorting('personal','noOfShares')">No. Of shares <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('personal','perShares')">Percentage shares <i class="fa fa-sort" aria-hidden="true"
-                                            ></i></th>
-                                    <th scope="col"  (click)="sorting('personal','authorizationType')">Authorization Type <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('personal','authorizationLimit')">Authorization Limit <i class="fa fa-sort" aria-hidden="true"
-                                            ></i></th>
-                                    <th scope="col" (click)="sorting('personal','note')">Note <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('personal','regDate')">Reg. Date <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
+                                    <th scope="col" (click)="sorting('personal','designation')">Designation <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('personal','noOfShares')">No. Of shares <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('personal','perShares')">Percentage shares <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('personal','authorizationType')">Authorization Type
+                                        <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('personal','authorizationLimit')">Authorization
+                                        Limit <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('personal','note')">Note <i class="fa fa-sort"
+                                            aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('personal','regDate')">Reg. Date <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                 <tr *ngFor="let data of personalData | filter : searchText; index as index"
                                     (clickOutside)="enteredDetails( 'personal',data)">
-                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.personName}}</td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)"><input
+                                    <td *ngIf="data.isMoci">
+                                        <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                            matTooltip="Data can not be editable because it is fetched from server"
+                                            aria-hidden="true"></i>
+                                    </td>
+                                    <td *ngIf="!data.isMoci">
+                                        <i class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit Data"
+                                            (click)="data.isEdit = true" aria-hidden="true"></i>
+                                    </td>
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                        {{data.personName}}</td>
+                                    <td *ngIf="data.isEdit && !data.isMoci"
+                                        (keyup.enter)="enteredDetails( 'personal',data)"><input
                                             [(ngModel)]="data.personName"></td>
-                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.nationality}}</td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                        {{data.nationality}}</td>
+                                    <td *ngIf="data.isEdit && !data.isMoci"
+                                        (keyup.enter)="enteredDetails( 'personal',data)">
                                         <input [(ngModel)]="data.nationality"></td>
-                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
                                         {{data.idType}} </td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <td *ngIf="data.isEdit && !data.isMoci"
+                                        (keyup.enter)="enteredDetails( 'personal',data)">
                                         <input [(ngModel)]="data.idType"></td>
-                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
                                         {{data.idNo}}</td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <td *ngIf="data.isEdit && !data.isMoci"
+                                        (keyup.enter)="enteredDetails( 'personal',data)">
                                         <input [(ngModel)]="data.idNo"></td>
-                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.designation}}
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                        {{data.designation}}
                                     </td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <td *ngIf="data.isEdit && !data.isMoci"
+                                        (keyup.enter)="enteredDetails( 'personal',data)">
                                         <input [(ngModel)]="data.designation"></td>
-                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.noOfShares}}
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                        {{data.noOfShares}}
                                     </td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <td *ngIf="data.isEdit && !data.isMoci"
+                                        (keyup.enter)="enteredDetails( 'personal',data)">
                                         <input [(ngModel)]="data.noOfShares"></td>
-                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.perShares}}
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                        {{data.perShares}}
                                     </td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <td *ngIf="data.isEdit && !data.isMoci"
+                                        (keyup.enter)="enteredDetails( 'personal',data)">
                                         <input [(ngModel)]="data.perShares"></td>
-                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.authorizationType}}
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                        {{data.authorizationType}}
                                     </td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <td *ngIf="data.isEdit && !data.isMoci"
+                                        (keyup.enter)="enteredDetails( 'personal',data)">
                                         <input [(ngModel)]="data.authorizationType"></td>
-                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.authorizationLimit}}
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                        {{data.authorizationLimit}}
                                     </td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <td *ngIf="data.isEdit && !data.isMoci"
+                                        (keyup.enter)="enteredDetails( 'personal',data)">
                                         <input [(ngModel)]="data.authorizationLimit"></td>
-                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
                                         {{data.note}}</td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <td *ngIf="data.isEdit && !data.isMoci"
+                                        (keyup.enter)="enteredDetails( 'personal',data)">
                                         <input [(ngModel)]="data.note"></td>
-                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
                                         {{data.regDate}}</td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                                    <td *ngIf="data.isEdit && !data.isMoci"
+                                        (keyup.enter)="enteredDetails( 'personal',data)">
                                         <input [(ngModel)]="data.regDate"></td>
 
                                 </tr>
@@ -400,12 +520,13 @@
                         matStepperPrevious>Previous</button>
                     <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         matStepperNext>Next</button>
-                        <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
-                            Draft</button>
+                    <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save
+                        as
+                        Draft</button>
                     <a href="/#/landing/supplier-registration/dashboard">
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                     </a>
-                    
+
                 </div>
             </div>
         </mat-step>
@@ -416,6 +537,10 @@
             <ng-template matStepLabel>Communication Method</ng-template>
 
             <div class="row">
+                <div class="col-md-3 col-lg-3 col-xl-12 px-4 pb-2 ">
+                    <i class="fa fa-ban text-red fs-14" mat-raised-button matTooltip="Page data is non-editable"
+                        aria-hidden="true"></i>
+                </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Telephone</h5>
                     <p class="fs-14">{{comunicationData.telephone}}</p>
@@ -440,7 +565,8 @@
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email</h5>
-                    <input type="email" class="fs-14" [(ngModel)]=comunicationData.email>
+                    <p class="fs-14">{{comunicationData.email}}</p>
+                    <!-- <input type="email" class="fs-14" [(ngModel)]=comunicationData.email> -->
                 </div>
             </div>
             <div class="row">
@@ -455,8 +581,9 @@
                         matStepperPrevious>Previous</button>
                     <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         matStepperNext>Next</button>
-                        <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
-                            Draft</button>
+                    <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save
+                        as
+                        Draft</button>
                     <a href="/#/landing/supplier-registration/dashboard">
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                     </a>
@@ -467,9 +594,9 @@
 
         <!-- Commercial Info -->
         <mat-step>
-            <ng-template matStepLabel>Commercial Info</ng-template>
+            <ng-template matStepLabel>Bank Details</ng-template>
 
-            <mat-tab-group  [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+            <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <!-- Activity Info -->
                 <mat-tab label="Activity Info">
                     <div class="row ">
@@ -483,25 +610,25 @@
                                     <thead>
                                         <tr class="purple-bg text-white">
 
-                                            <th scope="col" class="custom-width-90" (click)="sorting('activityInfo','activityName')">Activities Name <i
-                                                    class="fa fa-sort" aria-hidden="true"
-                                                   ></i>
+                                            <th scope="col" class="custom-width-90"
+                                                (click)="sorting('activityInfo','activityName')">Activities Name <i
+                                                    class="fa fa-sort" aria-hidden="true"></i>
                                             </th>
-                                            <th scope="col" class="custom-width-250" (click)="sorting('activityInfo','subActivity')">Sub Activities No. <i
-                                                    class="fa fa-sort" aria-hidden="true"
-                                                   ></i></th>
-                                            <th scope="col"(click)="sorting('activityInfo','establishmentDate')">Establishment date <i class="fa fa-sort" aria-hidden="true"
-                                                    ></i> </th>
-                                            <th scope="col" (click)="sorting('activityInfo','regDate')">Registration date <i class="fa fa-sort" aria-hidden="true"
-                                                   ></i></th>
-                                            <th scope="col" (click)="sorting('activityInfo','expDate')">Expiry date <i class="fa fa-sort" aria-hidden="true"
-                                                   ></i></th>
-                                            <th scope="col" (click)="sorting('activityInfo','duration')">Duration <i class="fa fa-sort" aria-hidden="true"
-                                                   ></i></th>
-                                            <th scope="col" (click)="sorting('activityInfo','companyGrade')">Company grade <i class="fa fa-sort" aria-hidden="true"
-                                                   ></i></th>
-                                            <th scope="col" (click)="sorting('activityInfo','location')">Location <i class="fa fa-sort" aria-hidden="true"
-                                                   ></i></th>
+                                            <th scope="col" class="custom-width-250"
+                                                (click)="sorting('activityInfo','subActivity')">Sub Activities No. <i
+                                                    class="fa fa-sort" aria-hidden="true"></i></th>
+                                            <th scope="col" (click)="sorting('activityInfo','establishmentDate')">
+                                                Establishment date <i class="fa fa-sort" aria-hidden="true"></i> </th>
+                                            <th scope="col" (click)="sorting('activityInfo','regDate')">Registration
+                                                date <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                            <th scope="col" (click)="sorting('activityInfo','expDate')">Expiry date <i
+                                                    class="fa fa-sort" aria-hidden="true"></i></th>
+                                            <th scope="col" (click)="sorting('activityInfo','duration')">Duration <i
+                                                    class="fa fa-sort" aria-hidden="true"></i></th>
+                                            <th scope="col" (click)="sorting('activityInfo','companyGrade')">Company
+                                                grade <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                            <th scope="col" (click)="sorting('activityInfo','location')">Location <i
+                                                    class="fa fa-sort" aria-hidden="true"></i></th>
                                             <th scope="col">Attachment
                                             </th>
                                         </tr>
@@ -552,7 +679,12 @@
                                             <td *ngIf="data.isEdit"
                                                 (keyup.enter)="enteredDetails( 'activityInfo',data)">
                                                 <input [(ngModel)]="data.location"></td>
-                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.Document}}
+                                            <td>
+                                                <i class="fa fa-folder-open" aria-hidden="true"
+                                                (click)="openFile(shoeFiles,'activityInfo',data)"></i>
+                                        
+                                                <input type="file" #fileInput id="fileUpload" name="fileUpload"
+                                                multiple="multiple" style="display: none;" />
                                             </td>
                                         </tr>
                                     </tbody>
@@ -569,15 +701,17 @@
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            matStepperPrevious>Previous</button>
+                                matStepperPrevious>Previous</button>
                             <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            (click)="changeTab()">Next</button> 
-                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                                (click)="changeTab()">Next</button>
+                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"
+                                (click)="saveDraft()">Save as
                                 Draft</button>
                             <a href="/#/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                <button type="button"
+                                    class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                             </a>
-                           
+
                         </div>
                     </div>
                 </mat-tab>
@@ -618,13 +752,15 @@
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="previousTab()">Previous</button>
+                                (click)="previousTab()">Previous</button>
                             <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            (click)="changeTab()">Next</button>
-                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                                (click)="changeTab()">Next</button>
+                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"
+                                (click)="saveDraft()">Save as
                                 Draft</button>
                             <a href="/#/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                <button type="button"
+                                    class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -708,8 +844,8 @@
                                 </section>
                             </div>
                             <div class="modal-footer">
-                                <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                    type="submit" [disabled]='!bankform.valid'>Submit</button>
+                                <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" type="submit"
+                                    [disabled]='!bankform.valid'>Submit</button>
                                 <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
                                     (click)="form.reset(); modal.close('Save click')">Cancel</button>
 
@@ -746,13 +882,15 @@
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="previousTab()">Previous</button>
+                                (click)="previousTab()">Previous</button>
                             <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            (click)="changeTab()">Next</button>
-                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                                (click)="changeTab()">Next</button>
+                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"
+                                (click)="saveDraft()">Save as
                                 Draft</button>
                             <a href="/#/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                <button type="button"
+                                    class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -763,23 +901,22 @@
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
                                 <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
-                               
+
                                 <table class="table table-striped mb-0 ">
                                     <thead>
                                         <tr class="purple-bg text-white">
 
-                                            <th scope="col" class="custom-width-90" (click)="sorting('branchInfo','reqDate')">Branch req. date <i
-                                                    class="fa fa-sort" aria-hidden="true"
-                                                   ></i></th>
-                                            <th scope="col" class="custom-width-250" (click)="sorting('branchInfo','branchId')">Branch I.D <i class="fa fa-sort"
-                                                    aria-hidden="true"></i>
+                                            <th scope="col" class="custom-width-90"
+                                                (click)="sorting('branchInfo','reqDate')">Branch req. date <i
+                                                    class="fa fa-sort" aria-hidden="true"></i></th>
+                                            <th scope="col" class="custom-width-250"
+                                                (click)="sorting('branchInfo','branchId')">Branch I.D <i
+                                                    class="fa fa-sort" aria-hidden="true"></i>
                                             </th>
-                                            <th scope="col" (click)="sorting('branchInfo','branchActivity')">Branch Activities name <i class="fa fa-sort"
-                                                    aria-hidden="true"
-                                                   ></i> </th>
-                                            <th scope="col" (click)="sorting('branchInfo','branchActivityNo')">Branch Activities no. <i class="fa fa-sort"
-                                                    aria-hidden="true"
-                                                   ></i></th>
+                                            <th scope="col" (click)="sorting('branchInfo','branchActivity')">Branch
+                                                Activities name <i class="fa fa-sort" aria-hidden="true"></i> </th>
+                                            <th scope="col" (click)="sorting('branchInfo','branchActivityNo')">Branch
+                                                Activities no. <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -805,13 +942,15 @@
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="previousTab()">Previous</button>
+                                (click)="previousTab()">Previous</button>
                             <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            (click)="changeTab()">Next</button>
-                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                                (click)="changeTab()">Next</button>
+                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"
+                                (click)="saveDraft()">Save as
                                 Draft</button>
                             <a href="/#/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                <button type="button"
+                                    class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -834,10 +973,10 @@
                                                                 class="fa fa-ellipsis-v "></i>
                                                         </a> </span> </div>
                                             </th>
-                                            <th scope="col" (click)="sorting('other','no')">No. <i class="fa fa-sort" aria-hidden="true"
-                                                   ></i></th>
-                                            <th scope="col" (click)="sorting('other','name')">Label <i class="fa fa-sort"
+                                            <th scope="col" (click)="sorting('other','no')">No. <i class="fa fa-sort"
                                                     aria-hidden="true"></i></th>
+                                            <th scope="col" (click)="sorting('other','name')">Label <i
+                                                    class="fa fa-sort" aria-hidden="true"></i></th>
                                             <th scope="col">Value</th>
                                         </tr>
                                     </thead>
@@ -873,13 +1012,15 @@
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="previousTab()">Previous</button>
-                            <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" (click)="newStep()"
-                                matStepperNext>Next</button>
-                                <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
-                                    Draft</button>
+                                (click)="previousTab()">Previous</button>
+                            <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                (click)="newStep()" matStepperNext>Next</button>
+                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"
+                                (click)="saveDraft()">Save as
+                                Draft</button>
                             <a href="/#/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                <button type="button"
+                                    class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -890,7 +1031,7 @@
 
         <!-- Staff Details -->
         <mat-step>
-            <ng-template matStepLabel>Staff Details</ng-template>
+            <ng-template matStepLabel>Employee Details</ng-template>
 
             <div class="row">
                 <div class="col-md-12 px-4 mb-3 mt-3">
@@ -910,40 +1051,41 @@
                                             <span class="ml-2"> <a class=" text-black fs-14"><i
                                                         class="fa fa-ellipsis-v  "></i> </a></span> </div>
                                     </th>
-                                    <th scope="col" (click)="sorting('employee','name')">Employee Name <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col"  (click)="sorting('employee','qualification')">Employee Qualification <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('employee','specialization')">Employee Specialization <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('employee','jobTitle')">Job title <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('employee','designation')">Designation Type <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('employee','designationDate')">Designation date <i class="fa fa-sort" aria-hidden="true"
-                                            ></i></th>
-                                    <th scope="col"(click)="sorting('employee','expDate')">Expired date <i class="fa fa-sort" aria-hidden="true"
-                                            ></i></th>
-                                    <th scope="col" (click)="sorting('employee','experiance')">Experience <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('employee','appointmentDate')">Appointment Date <i class="fa fa-sort" aria-hidden="true"
-                                            ></i></th>
-                                    <th scope="col" (click)="sorting('employee','status')">Status <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('employee','statusDate')">Status date <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('employee','staffCategory')">Staff Category <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('employee','passportNum')">Passport Number <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('employee','recidentCard')">Resident card Number <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('employee','civilNo')">Civil Number <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('employee','crNo')">C R Number <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
+                                    <th scope="col" (click)="sorting('employee','name')">Employee Name <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('employee','qualification')">Employee Qualification
+                                        <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('employee','specialization')">Employee
+                                        Specialization <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('employee','jobTitle')">Job title <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('employee','designation')">Designation Type <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('employee','designationDate')">Designation date <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('employee','expDate')">Expired date <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('employee','experiance')">Experience <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('employee','appointmentDate')">Appointment Date <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('employee','status')">Status <i class="fa fa-sort"
+                                            aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('employee','statusDate')">Status date <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('employee','staffCategory')">Staff Category <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('employee','passportNum')">Passport Number <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('employee','recidentCard')">Resident card Number <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('employee','civilNo')">Civil Number <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('employee','crNo')">C R Number <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th scope="col">Omanization Ratio <i class="fa fa-sort" aria-hidden="true"
                                             (click)="sorting('employee','omaniratio')"></i></th>
+                                    <th scope="col">Document</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1010,6 +1152,13 @@
                                     <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.omaniratio}}</td>
                                     <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'employee',data)">
                                         <input [(ngModel)]="data.omaniratio"></td>
+                                    <td>
+                                        <i class="fa fa-folder-open" aria-hidden="true"
+                                            (click)="openFile(shoeFiles,'employee',data)"></i>
+                                    
+                                            <input type="file" #fileInput id="fileUpload" name="fileUpload"
+                                            multiple="multiple" style="display: none;" />
+                                    </td>
                                 </tr>
                             </tbody>
 
@@ -1030,8 +1179,9 @@
                         matStepperPrevious>Previous</button>
                     <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         matStepperNext>Next</button>
-                        <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
-                            Draft</button>
+                    <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save
+                        as
+                        Draft</button>
                     <a href="/#/landing/supplier-registration/dashboard">
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                     </a>
@@ -1043,9 +1193,9 @@
         <mat-step>
             <ng-template matStepLabel>Ministries Data 1</ng-template>
 
-            <mat-tab-group  [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+            <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <!-- OCCI Data -->
-                <mat-tab label="OCCI Data">
+                <!-- <mat-tab label="OCCI Data">
                     <div class="row">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Chamber of commerce certificate
@@ -1098,16 +1248,16 @@
                             </a>
                         </div>
                     </div>
-                </mat-tab>
+                </mat-tab> -->
 
                 <!-- Tender Board Data -->
                 <mat-tab label="Tender Board Data">
 
-                    <div class="row">
-                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <div class="row pb-3">
+                        <!-- <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Civil Number</h5>
                             <p class="fs-14">{{formData.generalInfo.civilNo}}</p>
-                        </div>
+                        </div> -->
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
                             <p class="fs-14">{{formData.generalInfo.crNo}}</p>
@@ -1115,6 +1265,19 @@
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Company Grade</h5>
                             <p class="fs-14">{{formData.ministriesData1.compGrade}}</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registered Activities </h5>
+                            <div class="landing-menu" (click)="openMenu()" (clickOutside)="activityMenu = false">
+                                <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
+                                    Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
+                                </div>
+                                <ul *ngIf="activityMenu" class="landing-dropdown w-170">
+                                    <li>Activity name 1</li>
+                                    <li>Activity name 2</li>
+                                    <li>Activity name 3</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -1140,13 +1303,15 @@
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="previousTab()">Previous</button>
+                                (click)="previousTab()">Previous</button>
                             <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            (click)="changeTab()">Next</button>
-                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                                (click)="changeTab()">Next</button>
+                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"
+                                (click)="saveDraft()">Save as
                                 Draft</button>
                             <a href="/#/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                <button type="button"
+                                    class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -1180,7 +1345,7 @@
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
-                            <div class="landing-menu" (click)="openMenu()" (clickOutside)="handleClickOutside()">
+                            <div class="landing-menu" (click)="openMenu()" (clickOutside)="activityMenu = false">
                                 <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
                                     Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
                                 </div>
@@ -1201,13 +1366,15 @@
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="previousTab()">Previous</button>
-                            <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" (click)="newStep()"
-                            matStepperNext>Next</button>
-                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                                (click)="previousTab()">Previous</button>
+                            <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                (click)="newStep()" matStepperNext>Next</button>
+                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"
+                                (click)="saveDraft()">Save as
                                 Draft</button>
                             <a href="/#/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                <button type="button"
+                                    class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -1220,7 +1387,7 @@
         <mat-step>
             <ng-template matStepLabel>Ministries Data 2</ng-template>
 
-            <mat-tab-group  [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+            <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <!-- MOF Data -->
                 <mat-tab label="MOF Data">
                     <div class="row">
@@ -1244,7 +1411,7 @@
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
-                            <div class="landing-menu" (click)="openMenu()" (clickOutside)="handleClickOutside()">
+                            <div class="landing-menu" (click)="openMenu()" (clickOutside)="activityMenu = false">
                                 <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
                                     Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
                                 </div>
@@ -1267,11 +1434,13 @@
                             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                 matStepperPrevious>Previous</button>
                             <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            (click)="changeTab()">Next</button>
-                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                                (click)="changeTab()">Next</button>
+                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"
+                                (click)="saveDraft()">Save as
                                 Draft</button>
                             <a href="/#/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                <button type="button"
+                                    class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -1313,13 +1482,15 @@
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="previousTab()">Previous</button>
+                                (click)="previousTab()">Previous</button>
                             <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            (click)="changeTab()">Next</button>
-                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                                (click)="changeTab()">Next</button>
+                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"
+                                (click)="saveDraft()">Save as
                                 Draft</button>
                             <a href="/#/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                <button type="button"
+                                    class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -1372,13 +1543,15 @@
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="previousTab()">Previous</button>
+                                (click)="previousTab()">Previous</button>
                             <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            (click)="changeTab()">Next</button>
-                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                                (click)="changeTab()">Next</button>
+                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"
+                                (click)="saveDraft()">Save as
                                 Draft</button>
                             <a href="/#/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                <button type="button"
+                                    class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -1405,7 +1578,7 @@
                     <div class="row">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
-                            <div class="landing-menu" (click)="openMenu()" (clickOutside)="handleClickOutside()">
+                            <div class="landing-menu" (click)="openMenu()" (clickOutside)="activityMenu = false">
                                 <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
                                     Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
                                 </div>
@@ -1416,13 +1589,13 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <!-- <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">List of companies registered in
                                 the
                                 Authority
                             </h5>
                             <p class="fs-14">{{formData.ministriesData2.listOfCR}}</p>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row">
                         <div class="col-md-12 px-4">
@@ -1433,13 +1606,15 @@
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="previousTab()">Previous</button>
-                            <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" (click)="newStep()"
-                            matStepperNext>Next</button>
-                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                                (click)="previousTab()">Previous</button>
+                            <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                (click)="newStep()" matStepperNext>Next</button>
+                            <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"
+                                (click)="saveDraft()">Save as
                                 Draft</button>
                             <a href="/#/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                <button type="button"
+                                    class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -1477,7 +1652,7 @@
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
-                    <div class="landing-menu" (click)="openMenu()" (clickOutside)="handleClickOutside()">
+                    <div class="landing-menu" (click)="openMenu()" (clickOutside)="activityMenu = false">
                         <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
                             Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
                         </div>
@@ -1513,11 +1688,12 @@
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
-                    <div class="landing-menu" (click)="openMenu()" (clickOutside)="handleClickOutside()">
-                        <div>
+                    <div class="landing-menu" (click)="activityMenu1 = !activityMenu1"
+                        (clickOutside)="activityMenu1 = false">
+                        <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
                             Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
                         </div>
-                        <ul *ngIf="activityMenu" class="landing-dropdown bg-white">
+                        <ul *ngIf="activityMenu1" class="landing-dropdown w-170">
                             <li>Activity name 1</li>
                             <li>Activity name 2</li>
                             <li>Activity name 3</li>
@@ -1586,7 +1762,8 @@
                         matStepperPrevious>Previous</button>
                     <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         matStepperNext>Next</button>
-                    <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                    <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save
+                        as
                         Draft</button>
                     <a href="/#/landing/supplier-registration/dashboard">
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
@@ -1608,22 +1785,22 @@
                         <table class="table table-striped mb-0 ">
                             <thead>
                                 <tr class="purple-bg text-white">
-                                    <th scope="col" class="custom-width-60" (click)="sorting('project','no')">No <i class="fa fa-sort" aria-hidden="true"
-                                           ></i> </th>
-                                    <th scope="col" (click)="sorting('project','name')">Name of Project <i class="fa fa-sort" aria-hidden="true"
-                                           ></i> </th>
-                                    <th scope="col" (click)="sorting('project','client')">Client <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('project','consultent')">Consultant <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('project','costConsultent')">Cost Consultant <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('project','value')">Value (OMR) <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('project','period')">Period ( Start - End ) <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('project','completion')">Completion <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
+                                    <th scope="col" class="custom-width-60" (click)="sorting('project','no')">No <i
+                                            class="fa fa-sort" aria-hidden="true"></i> </th>
+                                    <th scope="col" (click)="sorting('project','name')">Name of Project <i
+                                            class="fa fa-sort" aria-hidden="true"></i> </th>
+                                    <th scope="col" (click)="sorting('project','client')">Client <i class="fa fa-sort"
+                                            aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('project','consultent')">Consultant <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('project','costConsultent')">Cost Consultant <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('project','value')">Value (OMR) <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('project','period')">Period ( Start - End ) <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('project','completion')">Completion <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th scope="col">Document</th>
                                 </tr>
                             </thead>
@@ -1655,9 +1832,12 @@
                                         <input [(ngModel)]="data.period"></td>
                                     <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.completion}}
                                     </td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'project',data)">
-                                        <input class="custom-width-80" [(ngModel)]="data.completion"></td>
-                                    <td><a class="text-decoration-underline text-danger">{{data.documents}}</a>
+                                    <td>
+                                            <i class="fa fa-folder-open" aria-hidden="true"
+                                                (click)="openFile(shoeFiles,'project',data)"></i>
+                                        
+                                                <input type="file" #fileInput id="fileUpload" name="fileUpload"
+                                                multiple="multiple" style="display: none;" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -1665,6 +1845,7 @@
                     </div>
                 </div>
             </div>
+           
             <div class="row">
                 <div class="col-md-12 px-4">
                     <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
@@ -1677,8 +1858,9 @@
                         matStepperPrevious>Previous</button>
                     <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         matStepperNext>Next</button>
-                        <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
-                            Draft</button>
+                    <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save
+                        as
+                        Draft</button>
                     <a href="/#/landing/supplier-registration/dashboard">
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                     </a>
@@ -1705,19 +1887,20 @@
                                                 <a class=" text-white fs-14"> <i class="fa fa-ellipsis-v "></i>
                                                 </a> </span> </div>
                                     </th>
-                                    <th scope="col" class="custom-width-90" (click)="sorting('subcontractor','no')">sub-contractor commercial reg number <i
-                                            class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" class="custom-width-250" (click)="sorting('subcontractor','nameOfWork')">sub-contractor name<i class="fa fa-sort"
+                                    <th scope="col" class="custom-width-90" (click)="sorting('subcontractor','no')">
+                                        sub-contractor commercial reg number <i class="fa fa-sort"
                                             aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('subcontractor','telephone')">Telephone <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('subcontractor','fax')">FAX <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('subcontractor','email')">E-Mail ID <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('subcontractor','regWithRca')">Reg. with RCA <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
+                                    <th scope="col" class="custom-width-250"
+                                        (click)="sorting('subcontractor','nameOfWork')">sub-contractor name<i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('subcontractor','telephone')">Telephone <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('subcontractor','fax')">FAX <i class="fa fa-sort"
+                                            aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('subcontractor','email')">E-Mail ID <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('subcontractor','regWithRca')">Reg. with RCA <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1776,8 +1959,9 @@
                         matStepperPrevious>Previous</button>
                     <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         matStepperNext>Next</button>
-                        <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
-                            Draft</button>
+                    <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save
+                        as
+                        Draft</button>
                     <a href="/#/landing/supplier-registration/dashboard">
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                     </a>
@@ -1798,20 +1982,20 @@
                         <table class="table table-striped mb-0 ">
                             <thead>
                                 <tr class="purple-bg text-white">
-                                    <th scope="col" (click)="sorting('equipment','no')">SL No. <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('equipment','type')">Type of Equipment <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('equipment','quantity')">Quantity <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('equipment','capacity')">Capacity <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('equipment','year')">Year of Manufacture <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('equipment','regNo')">Registration No <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
-                                    <th scope="col" (click)="sorting('equipment','approxValue')">Approximate Value <i class="fa fa-sort" aria-hidden="true"
-                                           ></i></th>
+                                    <th scope="col" (click)="sorting('equipment','no')">SL No. <i class="fa fa-sort"
+                                            aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('equipment','type')">Type of Equipment <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('equipment','quantity')">Quantity <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('equipment','capacity')">Capacity <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('equipment','year')">Year of Manufacture <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('equipment','regNo')">Registration No <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('equipment','approxValue')">Approximate Value <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1856,8 +2040,9 @@
                         matStepperPrevious>Previous</button>
                     <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         matStepperNext>Next</button>
-                        <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
-                            Draft</button>
+                    <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save
+                        as
+                        Draft</button>
                     <a href="/#/landing/supplier-registration/dashboard">
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                     </a>
@@ -1917,9 +2102,11 @@
                     <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         matStepperPrevious>Previous</button>
                     <!-- <a href="/#/landing/supplier-registration/dashboard"> -->
-                        <button type="button" class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="submitRegistration()">Finish</button>
+                    <button type="button" class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        (click)="submitRegistration()">Finish</button>
                     <!-- </a> -->
-                    <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as Draft</button>
+                    <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save
+                        as Draft</button>
                     <a href="/#/landing/supplier-registration/dashboard">
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                     </a>
@@ -1939,8 +2126,7 @@
                         You will receive confirmation Email shortly on your registered Email ID.<br />
                         <span class="font-weight-bold mt-3 d-block">Thank You</span> </p>
                     <a href="/#/landing/supplier-registration/dashboard">
-                        <button type="button"
-                            class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Close</button>
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Close</button>
                     </a>
                 </div>
             </div>

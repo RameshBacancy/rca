@@ -10,6 +10,7 @@ import { LandingModule } from './pages/landing/landing.module';
 import { LayoutModule } from './pages/layout/layout.module';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { BasicAuthInterceptor } from 'src/app/interceptor/basic-auth';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { BasicAuthInterceptor } from 'src/app/interceptor/basic-auth';
     FontAwesomeModule,
     LandingModule,
     LayoutModule,
+    MatFormFieldModule
     // LandingHeaderComponent
   ],
   exports: [

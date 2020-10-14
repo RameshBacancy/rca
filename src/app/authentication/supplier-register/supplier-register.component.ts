@@ -4,6 +4,8 @@ import { UserService } from 'src/app/services/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/services/alert.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { Observable } from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-supplier-register',
@@ -16,10 +18,15 @@ export class SupplierRegisterComponent implements OnInit {
   showsNextReg: boolean = false;
   viewSideBar: boolean = false;
 
+  myControl = new FormControl();
+  
+  options: string[] = ['1086391', '1086393', '1216194', '1024511'];
+  filteredOptions: Observable<string[]>;
+
   form = new FormGroup({
     regType: new FormControl('local', [Validators.required]),
     civilNo: new FormControl('11337788', [Validators.required]),
-    registrationNo: new FormControl('1086391', [Validators.required]),
+    registrationNo: new FormControl('', [Validators.required]),
     registrationType: new FormControl('alreadyRegistered', [Validators.required])
   });
 
@@ -36,9 +43,26 @@ export class SupplierRegisterComponent implements OnInit {
       if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'false') {
         this.showsNextReg = true;
       }
+      this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  getCR(id){
+    console.log('Hi');
+    this.form.value.registrationNo = id;
   }
 
   submitNext() {
+    this.form.patchValue({registrationNo : this.myControl.value});
     this._userService.registrationLogin(this.form.value.civilNo.toString(), 'civil', this.form.value.regType);
     if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'false') {
       this.showsNextReg = true;

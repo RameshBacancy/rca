@@ -8,6 +8,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterationComponent } from './registeration/registeration.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
 
 const routes: Routes = [
   // { path: '', redirectTo: 'auth/login' },
@@ -53,6 +56,9 @@ const routes: Routes = [
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatInputModule,
     RouterModule.forChild(routes),
   ]
 })
