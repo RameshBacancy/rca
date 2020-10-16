@@ -57,7 +57,6 @@ export class SupplierRegisterComponent implements OnInit {
   }
 
   getCR(id){
-    console.log('Hi');
     this.form.value.registrationNo = id;
   }
 
@@ -70,9 +69,7 @@ export class SupplierRegisterComponent implements OnInit {
   }
 
   submitType() {
-    if (this.form.status === 'VALID') {
-      this._userService.foreignRegistration(this.form.value.registrationType.toString())
-    }
+    this._userService.foreignRegistration(this.form.value.registrationType.toString())
   }
 
 

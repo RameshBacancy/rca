@@ -99,10 +99,10 @@
                     </div>
                 </div>
             </form>
-            <form class="example-form" *ngIf="submitCivil">
-                <mat-form-field class="example-full-width">
+            <form class="example-form" *ngIf="submitCivil && submitCivil && this.form.value.regType != 'international'">
+                <span class=" pt-2 fs-14 ml-2 mr-0 mr-lg-3  text-dark-grey font-weight-bold ">Company C.R.Number : </span>                    
+                <mat-form-field class="example-full-width  mr-0 mr-lg-3  text-center w-170">
                   <input type="text"
-                         placeholder="Select Company"
                          aria-label="Number"
                          matInput
                          [formControl]="myControl"

@@ -4,8 +4,8 @@
             "crNo": "1567 6578",
             "civilNo": "1567 6578",
             "expDate": "1567 6578",
-            "arabicName": "Arabic Name",
-            "englishName": "English Name",
+            "arabicName": "R Bala",
+            "englishName": "R Bala",
             "companyInfo":"Company Info",
             "activities": "1567 6578",
             "bankName": "Bank Muscat",
@@ -15,22 +15,24 @@
         },
         "activities":[
             {
-                "activityName": "Test1",
-                "subActivity": "Test1",
+                "activityName": "Activity1",
+                "subActivity": "Activity1",
                 "sagment": "Sagment",
                 "family": "Family",
                 "class": "Class",
                 "commodity": "Commodity",
-                "isEdit":false
+                "isEdit":false,
+                "isMoci": true
             },
             {
-                "activityName": "Test2",
-                "subActivity": "Test2",
+                "activityName": "Activity2",
+                "subActivity": "Activity2",
                 "sagment": "Sagment",
                 "family": "Family",
                 "class": "Class",
                 "commodity": "Commodity",
-                "isEdit":false
+                "isEdit":false,
+                "isMoci": true
             }
         ],
         "address": {
@@ -55,11 +57,11 @@
         },
         "personalDetails": [
             {
-                "personName": "test1",
+                "personName": "R Bala",
                 "nationality": "Omani",
                 "idType": "",
                 "idNo": "",
-                "designation":"Project Manager",
+                "designation":"Director",
                 "noOfShares": 3,
                 "perShares": "20%",
                 "authorizationType": "",
@@ -70,11 +72,11 @@
                 "isMoci": true
             },
             {
-                "personName": "test2",
+                "personName": "R P",
                 "nationality": "Omani",
                 "idType": "-",
                 "idNo": "-",
-                "designation":"Project Manager",
+                "designation":"Additional Directors",
                 "noOfShares": 5,
                 "perShares": "40%",
                 "authorizationType": "-",
@@ -85,11 +87,11 @@
                 "isMoci": true
             },
             {
-                "personName": "test3",
+                "personName": "R K",
                 "nationality": "Omani",
                 "idType": "-",
                 "idNo": "-",
-                "designation":"Project Manager",
+                "designation":"Additional Directors",
                 "noOfShares": 8,
                 "perShares": "50%",
                 "authorizationType": "-",
@@ -120,7 +122,8 @@
                     "companyGrade": "-",
                     "location": "-",
                     "isEdit":false,
-                    "documents": []
+                    "documents": [],
+                    "isMoci": true
                 },
                 {
                     "activityName": "Test2",
@@ -132,7 +135,8 @@
                     "companyGrade": "-",
                     "location": "-",
                     "isEdit":false,
-                    "documents": []
+                    "documents": [],
+                    "isMoci": true
                 }
             ],
             "BankDetails":[
@@ -140,7 +144,8 @@
                 "bankAcc": "savings",
                 "bankName":"Bank Muscat",
                 "bankBranch": "-",
-                "holderName": "user"
+                "holderName": "user",
+                "isMoci": true
                 }
             ],
             "compFinanceInfo": {
@@ -154,13 +159,15 @@
                     "reqDate": "1-1-2020",
                     "branchId": "12387",
                     "branchActivity": "New Activity",
-                    "branchActivityNo": 1
+                    "branchActivityNo": 1,
+                    "isMoci": true
                 },
                 {
                     "reqDate": "1-2-2020",
                     "branchId": "98654",
                     "branchActivity": "New Activity2",
-                    "branchActivityNo": 2
+                    "branchActivityNo": 2,
+                    "isMoci": true
                 }
             ],
             "otherDetails": [
@@ -169,28 +176,32 @@
                     "name":"test 1",
                     "nameOfWork": "Organization Structure",
                     "attachment": "PDF",
-                    "isEdit": false
+                    "isEdit": false,
+                    "isMoci": true
                 },
                 {
                     "no": 2,
                     "name":"test 2",
                     "nameOfWork": "Tax Certificate",
                     "attachment": "PDF",
-                    "isEdit": false
+                    "isEdit": false,
+                    "isMoci": true
                 },
                 {
                     "no": 3,
                     "name":"test 3",
                     "nameOfWork": "Certificates",
                     "attachment": "PDF",
-                    "isEdit": false
+                    "isEdit": false,
+                    "isMoci": true
                 },
                 {
                     "no": 4,
                     "name":"test 4",
                     "nameOfWork": "-",
                     "attachment": "PDF",
-                    "isEdit": false
+                    "isEdit": false,
+                    "isMoci": true
                 }
             ]
         },
@@ -215,7 +226,8 @@
                 "crNo": "1567 6578",
                 "omaniratio": "8765",
                 "isEdit": false,
-                "documents": []
+                "documents": [],
+                "isMoci": true
             },
             {
                 "no": 2,
@@ -230,14 +242,15 @@
                 "appointmentDate": "11-04-2012",
                 "status": "Active",
                 "statusDate": "11-12-2020",
-                "staffCategory": "A",
+                "staffCategory": "B",
                 "passportNum": "A287894H",
                 "recidentCard": "786132",
                 "civilNo": "1567 1234",
                 "crNo": "1854 6789",
                 "omaniratio": "1234",
                 "isEdit": false,
-                "documents": []
+                "documents": [],
+                "isMoci": true
             },
             {
                 "no": 3,
@@ -259,7 +272,8 @@
                 "crNo": "2342 2344",
                 "omaniratio": "2387",
                 "isEdit": false,
-                "documents": []
+                "documents": [],
+                "isMoci": true
             }
         ],
         "ministriesData1":{
@@ -304,7 +318,8 @@
                 "period": "2016 - 2018 ",
                 "completion": "2018",
                 "documents": [],
-                "isEdit": false
+                "isEdit": false,
+                "isMoci": true
             },
             {
                 "no": 2,
@@ -316,7 +331,8 @@
                 "period": "2017 - 2018",
                 "completion": "2019",
                 "documents": [],
-                "isEdit": false
+                "isEdit": false,
+                "isMoci": true
             },
             {
                 "no": 3,
@@ -328,7 +344,8 @@
                 "period": "2018 - 2021",
                 "completion": "",
                 "documents": [],
-                "isEdit": false
+                "isEdit": false,
+                "isMoci": true
             }
         ],
         "subContractorDetails": [
@@ -341,7 +358,8 @@
                 "fax": "+96345678977",
                 "email": "subi@orion.com",
                 "regWithRca": true,
-                "isEdit": false
+                "isEdit": false,
+                "isMoci": true
             },
             {
                 "no": 2,
@@ -352,7 +370,8 @@
                 "fax": "+96342347897",
                 "email": "subi@orion.com",
                 "regWithRca": false,
-                "isEdit": false
+                "isEdit": false,
+                "isMoci": true
             }
         ],
         "equipmentDetails": [
@@ -364,7 +383,8 @@
                 "year": "2018",
                 "regNo": "S 2020",
                 "approxValue": "5000 OMR",
-                "isEdit": false
+                "isEdit": false,
+                "isMoci": true
             },
             {
                 "no": 2,
@@ -374,7 +394,8 @@
                 "year": "2019",
                 "regNo": "R 1235",
                 "approxValue": "7500 OMR",
-                "isEdit": false
+                "isEdit": false,
+                "isMoci": true
             },
             {
                 "no": 3,
@@ -384,7 +405,8 @@
                 "year": "-",
                 "regNo": "-",
                 "approxValue": "-",
-                "isEdit": false
+                "isEdit": false,
+                "isMoci": true
             },
             {
                 "no": 4,
@@ -394,7 +416,8 @@
                 "year": "-",
                 "regNo": "-",
                 "approxValue": "-",
-                "isEdit": false
+                "isEdit": false,
+                "isMoci": true
             }
         ],
         "otherDetails": [
@@ -402,25 +425,29 @@
                 "no": 1,
                 "nameOfWork": "Organization Structure",
                 "attachment": "PDF",
-                "isEdit": false
+                "isEdit": false,
+                "isMoci": true
             },
             {
                 "no": 2,
                 "nameOfWork": "Tax Certificate",
                 "attachment": "PDF",
-                "isEdit": false
+                "isEdit": false,
+                "isMoci": true
             },
             {
                 "no": 3,
                 "nameOfWork": "Certificates",
                 "attachment": "PDF",
-                "isEdit": false
+                "isEdit": false,
+                "isMoci": true
             },
             {
                 "no": 4,
                 "nameOfWork": "-",
                 "attachment": "PDF",
-                "isEdit": false
+                "isEdit": false,
+                "isMoci": true
             }
         ]
     },
@@ -482,7 +509,8 @@
                 "family": "Family",
                 "class": "Class",
                 "commodity": "Commodity",
-                "isEdit":false
+                "isEdit":false,
+                "isMoci": true
             },
             {
                 "activityName": "Test2",
@@ -491,7 +519,8 @@
                 "family": "Family",
                 "class": "Class",
                 "commodity": "Commodity",
-                "isEdit":false
+                "isEdit":false,
+                "isMoci": true
             }
         ],
         "individualAddress":[
@@ -501,7 +530,8 @@
                 "addressline1":"4907  August Lane",
                 "addressline2":"Young",
                 "language":"English",
-                "country":"United States"
+                "country":"United States",
+                "isMoci": true
             },
             {
                 "id":2,
@@ -509,7 +539,8 @@
                 "addressline1":"64  London Road",
                 "addressline2":"COMER",
                 "language":"French",
-                "country":"United Kingdom"
+                "country":"United Kingdom",
+                "isMoci": true
             }
         ],
         "individualDetails":[{  
@@ -531,69 +562,48 @@
                 "residentNumber":"268869",
                 "passport":"FJV5869FU47",
                 "isEdit": false
-            }],
-            "personalDetails": [
-                {
-                    "personName": "test1",
-                    "nationality": "Omani",
-                    "idType": "",
-                    "idNo": "",
-                    "designation":"Project Manager",
-                    "residentNo": 3,
-                    "passport": "FJ974IVT6"
-                },
-                {
-                    "personName": "test2",
-                    "nationality": "Omani",
-                    "idType": "-",
-                    "idNo": "-",
-                    "designation":"Project Manager",
-                    "residentNo": 5,
-                    "passport": "C586HFD2"
-                },
-                {
-                    "personName": "test3",
-                    "nationality": "Omani",
-                    "idType": "-",
-                    "idNo": "-",
-                    "designation":"Project Manager",
-                    "residentNo": 8,
-                    "passport": "FJ974IVT6"
-        
-                }
-            ],
-        "communicationDetails":[
-        {
-            "no":1,
-            "method":"Telephone",
-            "value":"+1-432-645-2311",
-            "isEdit":false
-        },
-        {
-            "no":2,
-            "method":"PO Box",
-            "value":"762 Muscat 2166",
-            "isEdit":false
-        },
-        {
-            "no":3,
-            "method":"Fax",
-            "value":"432-645-2311",
-            "isEdit":false
-        },
-        {
-            "no":4,
-            "method":"PC",
-            "value":"45829",
-            "isEdit":false
-        },
-        {
-            "no":5,
-            "method":"Email",
-            "value":"bala@localsupplier.com",
-            "isEdit":false
-        }
+        }],
+        "personalDetails": [
+            {
+                "personName": "R Bala",
+                "nationality": "Omani",
+                "idType": "",
+                "idNo": "",
+                "designation":"Additional Director",
+                "residentNo": 3,
+                "passport": "FJ974IVT6",
+                "isMoci": true
+            },
+            {
+                "personName": "R P",
+                "nationality": "Omani",
+                "idType": "-",
+                "idNo": "-",
+                "designation":"Director",
+                "residentNo": 5,
+                "passport": "C586HFD2",
+                "isMoci": true
+            },
+            {
+                "personName": "R D",
+                "nationality": "Omani",
+                "idType": "-",
+                "idNo": "-",
+                "designation":"Additional Director",
+                "residentNo": 8,
+                "passport": "FJ974IVT6",
+                "isMoci": true
+    
+            }
         ],
+        "communicationDetails":{
+            "telephone": "+919 515 6162",
+            "poBox": "762 - Muscat",
+            "fax": "414-589-8745",
+            "legalStatus" : "valid",
+            "pc": "72666",
+            "email": "user@yopmail.com"
+        },
         "employeDetails": [
             {
                 "no": 1,
@@ -660,7 +670,8 @@
                 "civilNo": "1567 6578",
                 "crNo": "1567 6578",
                 "omaniratio": "8765",
-                "isEdit": false
+                "isEdit": false,
+                "isMoci": true
             },
             {
                 "no": 2,
@@ -681,7 +692,8 @@
                 "civilNo": "1567 1234",
                 "crNo": "1854 6789",
                 "omaniratio": "1234",
-                "isEdit": false
+                "isEdit": false,
+                "isMoci": true
             },
             {
                 "no": 3,
@@ -702,7 +714,8 @@
                 "civilNo": "3456 6578",
                 "crNo": "2342 2344",
                 "omaniratio": "2387",
-                "isEdit": false
+                "isEdit": false,
+                "isMoci": true
             }
         ],
         "projectDetails": [

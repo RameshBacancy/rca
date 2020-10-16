@@ -4,25 +4,44 @@
     <mat-step>
      <ng-template matStepLabel>General Info</ng-template>
      <div class="row">
+        <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
+            <i class="fa fa-ban text-red fs-14" mat-raised-button
+                matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
+        </div>
         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
             <p class="fs-14">1567 6578</p>
         </div>
         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Arabic Name</h5>
-            <p class="fs-14">Arabic Name</p>
+            <p class="fs-14 px-4">آر بالا</p>
         </div>
         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">English Name</h5>
-            <p class="fs-14">English Name</p>
+            <p class="fs-14">R Bala</p>
         </div>
-        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+        <!-- <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Company Info</h5>
             <p class="fs-14">Company Info</p>
+        </div> -->
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-xl-12 px-4 ">
+            <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">
+                <i class="fa fa-ban text-red fs-14" mat-raised-button
+                        matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i> Company Info</h4>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+            <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Company Name</h5>
+            <p class="fs-14 px-4">Company Name</p>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+            <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Company C R Number</h5>
+            <p class="fs-14 px-4">1567 6578</p>
         </div>
     </div>
 
-    <div class="row">
+    <div class="row mt-3">
         <div class="col-md-3 px-4 position-relative mb-3">
             <div class="landing-menu" (click)="openMenu()">
                 <div
@@ -31,8 +50,8 @@
                         aria-hidden="true"></i>
                 </div>
                 <ul *ngIf="activityMenu" class="landing-dropdown w-170">
-                    <li *ngFor="let item of internationalAddress" (click)="selectedAddress = item">
-                        {{item.addressID}}</li>
+                    <li *ngFor="let address of internationalAddress" (click)="selectedAddress = address">
+                        {{address.addressID}}</li>
                 </ul>
             </div>
             <button class="btn btn-secondary ml-2 custom-drop-down-plus" (click)="open(mymodal)"><i
@@ -43,6 +62,18 @@
 
         <div class=" p-3 mb-5">
             <div class="row">
+                <div class="col-md-1 col-lg-1 col-xl-1" style="max-width: 1% !important;"
+                    *ngIf="selectedAddress.isMoci">
+                    <i class="fa fa-ban text-red fs-14" mat-raised-button
+                        matTooltip="Data fetched from interface - not editable"
+                        aria-hidden="true"></i>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4" style="max-width: 5% !important;"
+                    *ngIf="!selectedAddress.isMoci">
+                    <i class="fa fa-pencil-square-o btn btn-primary fs-14" mat-raised-button
+                        matTooltip="Edit Address" (click)="open(mymodal, selectedAddress)"
+                        aria-hidden="true"></i>
+                </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address Line 1</h5>
                     <p class="fs-14">{{selectedAddress.addressline1}}</p>
@@ -55,7 +86,7 @@
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Language</h5>
                     <p class="fs-14">{{selectedAddress.language}}</p>
                 </div>
-                <div class="col-md-3 col-lg-3 col-xl-4  px-4 ">
+                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Country
                     </h5>
                     <p class="fs-14">{{selectedAddress.country}}</p>
@@ -176,17 +207,17 @@
 
      <div class="row">
          <div class="col-md-12 mb-5 px-4">
-             <!-- <button type="button"
-             class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Previous</button> -->
-             <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                 matStepperNext>Next</button>
+             <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"  
+             [disabled]="true"><i class="fa fa-caret-left"></i> Previous</button>
+             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                 matStepperNext>Next <i class="fa fa-caret-right"></i></button>
              <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
-             <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"  (click)="saveDraft()">Save as
+             <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2"  (click)="saveDraft()">Save as
                  Draft</button>
              <a href="/#/landing/supplier-registration/dashboard">
                 <button type="button"
-                    class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
             </a>
          </div>
      </div>
@@ -207,6 +238,7 @@
                 <table class="table table-striped ">
                     <thead>
                         <tr class="purple-bg text-white">
+                            <th scope="col"></th>
                             <th scope="col" class="custom-width-60" (click)="sorting('personal','personName')">Person name <i class="fa fa-sort"
                                     aria-hidden="true" ></i></th>
                             <th scope="col" (click)="sorting('personal','nationality')">Nationality <i class="fa fa-sort" aria-hidden="true"
@@ -227,31 +259,40 @@
                         <tr>
                         <tr *ngFor="let data of personalData | filter : searchText; index as index"
                             (clickOutside)="enteredDetails( 'personal',data)">
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.personName}}</td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)"><input
+                            <td *ngIf="data.isMoci">
+                                <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                    matTooltip="Data fetched from interface - not editable"
+                                    aria-hidden="true"></i>
+                            </td>
+                            <td *ngIf="!data.isMoci">
+                                <i class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit Data"
+                                    (click)="data.isEdit = true" aria-hidden="true"></i>
+                            </td>
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.personName}}</td>
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'personal',data)"><input
                                     [(ngModel)]="data.personName"></td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.nationality}}</td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.nationality}}</td>
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'personal',data)">
                                 <input [(ngModel)]="data.nationality"></td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
                                 {{data.idType}} </td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'personal',data)">
                                 <input [(ngModel)]="data.idType"></td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
                                 {{data.idNo}}</td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'personal',data)">
                                 <input [(ngModel)]="data.idNo"></td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.designation}}
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.designation}}
                             </td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'personal',data)">
                                 <input [(ngModel)]="data.designation"></td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.residentNo}}
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.residentNo}}
                             </td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'personal',data)">
                                 <input [(ngModel)]="data.residentNo"></td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.passport}}
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.passport}}
                             </td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'personal',data)">
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'personal',data)">
                                 <input [(ngModel)]="data.passport"></td>
 
                         </tr>
@@ -274,17 +315,17 @@
     </div> -->
      <div class="row">
          <div class="col-md-12 mb-5 px-4">
-             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                 matStepperPrevious>Previous</button>
-             <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                 matStepperNext>Next</button>
-             <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+             <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                 matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                 matStepperNext>Next <i class="fa fa-caret-right"></i></button>
+             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
-             <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"  (click)="saveDraft()">Save as
+             <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2"  (click)="saveDraft()">Save as
                  Draft</button>
                  <a href="/#/landing/supplier-registration/dashboard">
                      <button type="button"
-                         class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                         class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                  </a>
          </div>
      </div>
@@ -419,39 +460,39 @@
      <ng-template matStepLabel>Communication Methods</ng-template>
 
      <div class="row">
-        <div class="col-md-12 px-4 mb-3 mt-3">
-            <div class="table-responsive">
-                <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
-                <button class="btn btn-secondary ml-2 float-right mb-2"
-                    (click)="addNewRow('communication')"><i class="fa fa-plus"
-                        aria-hidden="true"></i></button>
-                <table class="table table-striped mb-0 ">
-                    <thead>
-                        <tr class="purple-bg text-white">
-                            <th scope="col" class="custom-width-60" (click)="sorting('communication','no')">Comm ID <i class="fa fa-sort"
-                                    aria-hidden="true" ></i> </th>
-                            <th scope="col" (click)="sorting('communication','method')">Communication Method <i class="fa fa-sort" aria-hidden="true"
-                                   ></i> </th>
-                            <th scope="col" (click)="sorting('communication','value')">Value <i class="fa fa-sort" aria-hidden="true"
-                                    ></i></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let data of communicationData | filter : searchText; index as index"
-                            (clickOutside)="enteredDetails( 'communication',data)">
-                            <td>{{data.no}}</td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.method}}</td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'communication',data)">
-                                <input [(ngModel)]="data.method"></td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.value}}
-                            </td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'communication',data)">
-                                <input [(ngModel)]="data.value"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="col-md-3 col-lg-3 col-xl-12 px-4 pb-2 ">
+            <i class="fa fa-ban text-red fs-14" mat-raised-button matTooltip="Data fetched from interface - not editable"
+                aria-hidden="true"></i>
         </div>
+        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Telephone</h5>
+            <p class="fs-14">{{communicationData.telephone}}</p>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">P.O. Box</h5>
+            <p class="fs-14">{{communicationData.poBox}}</p>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Fax</h5>
+            <p class="fs-14">{{communicationData.fax}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">legal status</h5>
+            <p class="fs-14">{{communicationData.legalStatus}}</p>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">PC</h5>
+            <p class="fs-14">{{communicationData.pc}}</p>
+        </div>
+        <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email</h5>
+            <p class="fs-14">{{communicationData.email}}</p>
+            <!-- <input type="email" class="fs-14" [(ngModel)]=comunicationData.email> -->
+        </div>
+    </div>
+     <div class="row">
         <div class="col-md-12 px-4">
             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
             <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
@@ -460,17 +501,17 @@
 
      <div class="row">
          <div class="col-md-12 mb-5 px-4">
-             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                 matStepperPrevious>Previous</button>
-             <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                 matStepperNext>Next</button>
-             <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+             <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                 matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                 matStepperNext>Next <i class="fa fa-caret-right"></i></button>
+             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
-             <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"  (click)="saveDraft()">Save as
+             <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2"  (click)="saveDraft()">Save as
                  Draft</button>
                  <a href="/#/landing/supplier-registration/dashboard">
                      <button type="button"
-                         class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                         class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                  </a>
          </div>
      </div>
@@ -480,7 +521,7 @@
      <ng-template matStepLabel>Commercial Info</ng-template>
 
      <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
-        <mat-tab label="Activity Info">
+        <mat-tab label="Activity Info"  disabled="true">
             <div class="row">
                 <div class="col-md-12 px-4 mb-3 mt-3">
                     <div class="table-responsive">
@@ -494,6 +535,7 @@
                         <table class="table table-striped ">
                             <thead>
                                 <tr class="purple-bg text-white">
+                                    <th scope="col"></th>
                                     <th scope="col" class="custom-width-60" (click)="sorting('activity','activityName')">Activity Name 
                                         <i class="fa fa-sort" aria-hidden="true"
                                             ></i>
@@ -502,7 +544,7 @@
                                         <i class="fa fa-sort" aria-hidden="true"
                                             ></i>
                                     </th>
-                                    <th scope="col" (click)="sorting('activity','sagment')">Segment 
+                                    <!-- <th scope="col" (click)="sorting('activity','sagment')">Segment 
                                         <i class="fa fa-sort" aria-hidden="true"
                                             ></i>
                                     </th>
@@ -517,38 +559,47 @@
                                     <th scope="col" (click)="sorting('activity','commodity')">Commodity 
                                         <i class="fa fa-sort" aria-hidden="true"
                                             ></i>
-                                    </th>
+                                    </th> -->
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let data of activityData | filter : searchText; index as index"
                                     (clickOutside)="enteredDetails( 'activity',data)">
-                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci">
+                                        <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                            matTooltip="Data fetched from interface - not editable"
+                                            aria-hidden="true"></i>
+                                    </td>
+                                    <td *ngIf="!data.isMoci">
+                                        <i class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit Data"
+                                            (click)="data.isEdit = true" aria-hidden="true"></i>
+                                    </td>
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
                                         {{data.activityName}}
                                     </td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
+                                    <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'activity',data)">
                                         <input [(ngModel)]="data.activityName"></td>
-                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
                                         {{data.subActivity}}
                                     </td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
+                                    <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'activity',data)">
                                         <input [(ngModel)]="data.subActivity"></td>
-                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    <!-- <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
                                         {{data.sagment}} </td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
+                                    <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'activity',data)">
                                         <input [(ngModel)]="data.sagment"></td>
-                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
                                         {{data.family}}</td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
+                                    <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'activity',data)">
                                         <input [(ngModel)]="data.family"></td>
-                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.class}}
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.class}}
                                     </td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
+                                    <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'activity',data)">
                                         <input [(ngModel)]="data.class"></td>
-                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
                                         {{data.commodity}}</td>
-                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'activity',data)">
-                                        <input [(ngModel)]="data.commodity"></td>
+                                    <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'activity',data)">
+                                        <input [(ngModel)]="data.commodity"></td> -->
 
                                 </tr>
                             </tbody>
@@ -591,22 +642,22 @@
         </div>
             <div class="row"  >
                 <div class="col-md-12 mb-5 px-4">
-                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        matStepperPrevious>Previous</button>
-                        <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                        (click)="changeTab()">Next</button>
-                    <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                        <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                        (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
+                    <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                     (click)="move(6)">Finish</button> -->
-                    <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"  (click)="saveDraft()">Save as
+                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2"  (click)="saveDraft()">Save as
                         Draft</button>
                         <a href="/#/landing/supplier-registration/dashboard">
                             <button type="button"
-                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                         </a>
                 </div>
             </div>
         </mat-tab>
-        <mat-tab label="Bank Details">
+        <mat-tab label="Bank Details"  disabled="true">
             <div class="row ">
                 <div class="col-md-12 px-4 ">
                     <button class="btn btn-secondary ml-2 " (click)="open(bankModel)"><i class="fa fa-plus"
@@ -729,22 +780,22 @@
 
             <div class="row"  >
                 <div class="col-md-12 mb-5 px-4">
-                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                    (click)="previousTab()">Previous</button>
-                        <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                        (click)="changeTab()">Next</button>
-                    <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                    (click)="previousTab()"><i class="fa fa-caret-left"></i> Previous</button>
+                        <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                        (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
+                    <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                     (click)="move(6)">Finish</button> -->
-                    <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"  (click)="saveDraft()">Save as
+                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2"  (click)="saveDraft()">Save as
                         Draft</button>
                         <a href="/#/landing/supplier-registration/dashboard">
                             <button type="button"
-                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                         </a>
                 </div>
             </div>
         </mat-tab>
-        <mat-tab label="Other Info">
+        <mat-tab label="Other Info"  disabled="true">
             <div class="row" >
                 <div class="col-md-12 px-4 mb-3 mt-3">
                     <div class="table-responsive">
@@ -798,17 +849,17 @@
 
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
-                    <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        (click)="previousTab()">Previous</button>
-                        <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                        matStepperNext>Next</button>
-                    <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        (click)="previousTab()"><i class="fa fa-caret-left"></i> Previous</button>
+                        <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                        matStepperNext>Next <i class="fa fa-caret-right"></i></button>
+                    <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                     (click)="move(6)">Finish</button> -->
-                    <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"  (click)="saveDraft()">Save as
+                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2"  (click)="saveDraft()">Save as
                         Draft</button>
                         <a href="/#/landing/supplier-registration/dashboard">
                             <button type="button"
-                                class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                         </a>
                 </div>
             </div>
@@ -831,6 +882,7 @@
                 <table class="table table-striped ">
                     <thead>
                         <tr class="purple-bg text-white">
+                            <th scope="col"></th>
                             <th scope="col">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value=""
@@ -865,6 +917,15 @@
                     <tbody>
                         <tr *ngFor="let data of staffData | filter : searchText; index as index"
                             (clickOutside)="enteredDetails( 'staff',data)">
+                            <td *ngIf="data.isMoci">
+                                <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                    matTooltip="Data fetched from interface - not editable"
+                                    aria-hidden="true"></i>
+                            </td>
+                            <td *ngIf="!data.isMoci">
+                                <i class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit Data"
+                                    (click)="data.isEdit = true" aria-hidden="true"></i>
+                            </td>
                             <td>
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value=""
@@ -872,41 +933,41 @@
                                     <span class="ml-2"> <a class=" text-blaack fs-14"><i
                                                 class="fa fa-ellipsis-v  "></i> </a></span> </div>
                             </td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.name}}</td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.name}}</td>
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'staff',data)">
                                 <input [(ngModel)]="data.name"></td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.qualification}}</td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.qualification}}</td>
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'staff',data)">
                                 <input [(ngModel)]="data.qualification"></td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.specialization}}
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.specialization}}
                             </td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'staff',data)">
                                 <input [(ngModel)]="data.specialization"></td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.jobTitle}}</td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.jobTitle}}</td>
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'staff',data)">
                                 <input [(ngModel)]="data.jobTitle"></td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.designation}}</td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.designation}}</td>
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'staff',data)">
                                 <input [(ngModel)]="data.designation"></td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.designationDate}}
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.designationDate}}
                             </td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'staff',data)">
                                 <input [(ngModel)]="data.designationDate"></td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.expDate}}</td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.expDate}}</td>
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'staff',data)">
                                 <input [(ngModel)]="data.expDate"></td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.experience}}</td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.experience}}</td>
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'staff',data)">
                                 <input [(ngModel)]="data.experience"></td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.appointmentDate}}
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.appointmentDate}}
                             </td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'staff',data)">
                                 <input [(ngModel)]="data.appointmentDate"></td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.status}}</td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.status}}</td>
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'staff',data)">
                                 <input [(ngModel)]="data.status"></td>
-                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.statusDate}}</td>
-                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'staff',data)">
+                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.statusDate}}</td>
+                            <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'staff',data)">
                                 <input [(ngModel)]="data.statusDate"></td>
                             
                         </tr>
@@ -923,16 +984,18 @@
 
      <div class="row">
          <div class="col-md-12 mb-5 px-4">
-             <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                 matStepperPrevious>Previous</button>
-                 <button type="button" class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="submitRegistration()">Finish</button>
-             <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+             <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                 matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+             <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"  
+             [disabled]="true"><i class="fa fa-caret-left"></i> Next</button>
+                 <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="submitRegistration()">Finish</button>
+             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
-             <button type="button" class="btn btn-warning px-3 mx-1 py-2  fs-14 mb-2"  (click)="saveDraft()">Save as
+             <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2"  (click)="saveDraft()">Save as
                  Draft</button>
                  <a href="/#/landing/supplier-registration/dashboard">
                      <button type="button"
-                         class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                         class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                  </a>
          </div>
      </div>

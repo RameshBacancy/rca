@@ -34,13 +34,15 @@ export class InternationalRegistrationComponent implements OnInit {
     addressline2: new FormControl('', [Validators.required]),
     language: new FormControl('English', [Validators.required]),
     country: new FormControl('Oman', [Validators.required]),
+    isMoci: new FormControl(false)
   });
   
   bankform: FormGroup = new FormGroup({
     bankAcc: new FormControl('', [Validators.required]),
     bankName: new FormControl('', [Validators.required]),
     bankBranch: new FormControl('', [Validators.required]),
-    holderName: new FormControl('', [Validators.required])
+    holderName: new FormControl('', [Validators.required]),
+    isMoci: new FormControl(false)
   });
 
   staffData: any[];
@@ -60,6 +62,7 @@ export class InternationalRegistrationComponent implements OnInit {
   internationalAddress: any[];
   selectedAddress: any;
   activityMenu: boolean;
+  editAddress: boolean = false;
 
   constructor(
     private router: Router, 
@@ -111,6 +114,7 @@ export class InternationalRegistrationComponent implements OnInit {
   open(content, address?) {
     if(address){
       this.form.patchValue(address);
+      this.editAddress= true;
     }
 
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
@@ -135,8 +139,19 @@ export class InternationalRegistrationComponent implements OnInit {
 
   submit(){
     if(this.form.status === 'VALID'){
+      if (this.editAddress == true) {
+        this.formData.individualAddress.filter((d, i) => {
+          if (d.addressID == this.selectedAddress.addressID) {
+            this.selectedAddress = this.form.value
+            this.formData.individualAddress.splice(i, 1, this.form.value)
+          }
+        });
+        this.editAddress = false;
+      }
+      else {
       this.formData.individualAddress.push(this.form.value)
       this.form.reset();
+      }
     }
   }
   submitRegistration(){
@@ -291,7 +306,8 @@ export class InternationalRegistrationComponent implements OnInit {
         "family": "",
         "class": "",
         "commodity": "",
-        "isEdit": true
+        "isEdit": true,
+        "isMoci": false
       };
       this.activityData.push(this.newData);
     }
@@ -313,7 +329,8 @@ export class InternationalRegistrationComponent implements OnInit {
         "authorizationLimit": "",
         "note": "",
         "regDate": "",
-        "isEdit": true
+        "isEdit": true,
+        "isMoci": false
       };
       this.personalData.push(this.newData);
     }
