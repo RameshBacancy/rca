@@ -41,8 +41,8 @@ export class DashboardComponent implements OnInit {
   onRegistrationClick(){
     if(localStorage.getItem('RegStatus') === 'finish') {
       if(localStorage.getItem('arStatus') === 'pending') {
-        this.status = "Wait For Approval";
-        this.approveRejectStatus = "You finish your registration proccess. <br/> Admin will shortly review your details.  <br/>"
+        this.status = "Approval Awaited";
+        this.approveRejectStatus = "Thank you for entering your registration details. <br/> We will review and get back to you soon.<br/>"
         this.gotopath = '/landing/supplier-registration/dashboard';
       } else if(localStorage.getItem('arStatus') === 'approved') {
         this.status = "Approved";

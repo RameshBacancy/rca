@@ -65,7 +65,7 @@
         <mat-step>
             <ng-template matStepLabel>General Info</ng-template>
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
-                <mat-tab label="General Info" disabled="true">
+                <mat-tab label="General Info" >
                     <div class="row pl-2">
                         <div class="col-md-3 col-lg-3 col-xl-12 px-4 pb-2 ">
                             <i class="fa fa-ban text-red fs-14" mat-raised-button
@@ -214,7 +214,7 @@
                     </div>
                 </mat-tab>
 
-                <mat-tab label="Address Info" disabled="true">
+                <mat-tab label="Address Info" >
                     <div class="row">
                         <div class="col-md-3 px-4 position-relative mb-3">
                             <div class="landing-menu" (click)="openMenu()">
@@ -311,7 +311,7 @@
                                                         ID</label>
                                                     <div class="col-sm-7">
                                                         <input formControlName="addressID" id="addressID" type="text"
-                                                            class="form-control">
+                                                            class="form-control" readonly>
                                                     </div>
                                                     <div *ngIf="f.addressID.touched && f.addressID.invalid"
                                                         class="alert alert-danger">
@@ -551,36 +551,44 @@
             <ng-template matStepLabel>Communication Method</ng-template>
 
             <div class="row">
-                <div class="col-md-3 col-lg-3 col-xl-12 px-4 pb-2 ">
-                    <i class="fa fa-ban text-red fs-14" mat-raised-button matTooltip="Data fetched from interface - not editable"
-                        aria-hidden="true"></i>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Telephone</h5>
-                    <p class="fs-14">{{comunicationData.telephone}}</p>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">P.O. Box</h5>
-                    <p class="fs-14">{{comunicationData.poBox}}</p>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Fax</h5>
-                    <p class="fs-14">{{comunicationData.fax}}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">legal status</h5>
-                    <p class="fs-14">{{comunicationData.legalStatus}}</p>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">PC</h5>
-                    <p class="fs-14">{{comunicationData.pc}}</p>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email</h5>
-                    <p class="fs-14">{{comunicationData.email}}</p>
-                    <!-- <input type="email" class="fs-14" [(ngModel)]=comunicationData.email> -->
+                <div class="col-md-12 px-4 mb-3 mt-3">
+                    <div class="table-responsive">
+                        <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
+                        <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('communication')"><i
+                                class="fa fa-plus" aria-hidden="true"></i></button>
+                        <table class="table table-striped mb-0 ">
+                            <thead>
+                                <tr class="purple-bg text-white">
+                                    <th scope="col"></th>
+                                    <th scope="col" (click)="sorting('communication','method')">Communication Method <i
+                                            class="fa fa-sort" aria-hidden="true"></i> </th>
+                                    <th scope="col" (click)="sorting('communication','value')">Value <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of communicationData | filter : searchText; index as index"
+                                    (clickOutside)="enteredDetails( 'communication',data)">
+                                    <td *ngIf="data.isMoci">
+                                        <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                            matTooltip="Data fetched from interface - not editable"
+                                            aria-hidden="true"></i>
+                                    </td>
+                                    <td *ngIf="!data.isMoci">
+                                        <i class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit Data"
+                                            (click)="data.isEdit = true" aria-hidden="true"></i>
+                                    </td>
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.method}}</td>
+                                    <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'communication',data)">
+                                        <input [(ngModel)]="data.method"></td>
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.value}}
+                                    </td>
+                                    <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'communication',data)">
+                                        <input [(ngModel)]="data.value"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -612,7 +620,7 @@
 
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <!-- Activity Info -->
-                <mat-tab label="Activity Info" disabled="true">
+                <mat-tab label="Activity Info" >
                     <div class="row ">
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
@@ -739,7 +747,7 @@
                     </div>
                 </mat-tab>
                 <!-- Bank Details -->
-                <mat-tab label="Bank Details" disabled="true">
+                <mat-tab label="Bank Details" >
                     <div class="row ">
                         <div class="col-md-12 px-4 ">
                             <button class="btn btn-secondary ml-2 " (click)="open(bankModel)"><i class="fa fa-plus"
@@ -756,6 +764,14 @@
                             <div class="col-md-12 col-lg-12 col-xl-12 px-4 " *ngIf="!data.isMoci">
                                 <i class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit Data"
                                     (click)="openbank(bankModel,data)" aria-hidden="true"></i>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id</h5>
+                                <p class="fs-14">{{data.bankingId}}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id Name</h5>
+                                <p class="fs-14">{{data.bankingIdname}}</p>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                                 <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Account</h5>
@@ -811,6 +827,32 @@
                                     <div>
                                         <div class="row ">
                                             <div class="col-md-12 ">
+                                                <div class="form-group row mb-3">
+                                                    <label for="bankingId" class="col-sm-5 col-form-label">Banking Id</label>
+                                                    <div class="col-sm-7">
+                                                        <input formControlName="bankingId" id="bankingId" type="text"
+                                                            class="form-control">
+                                                    </div>
+                                                    <div *ngIf="bf.bankingId.touched && bf.bankingId.invalid"
+                                                        class="alert alert-danger">
+                                                        <div *ngIf="bf.bankingId.errors.required" class="col-sm-7">
+                                                            *required
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row mb-3">
+                                                    <label for="bankingIdname" class="col-sm-5 col-form-label">Banking Id Name</label>
+                                                    <div class="col-sm-7">
+                                                        <input formControlName="bankingIdname" id="bankingIdname" type="text"
+                                                            class="form-control">
+                                                    </div>
+                                                    <div *ngIf="bf.bankingIdname.touched && bf.bankingIdname.invalid"
+                                                        class="alert alert-danger">
+                                                        <div *ngIf="bf.bankingIdname.errors.required" class="col-sm-7">
+                                                            *required
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="form-group row mb-3">
                                                     <label for="bankAcc" class="col-sm-5 col-form-label">Bank
                                                         Account</label>
@@ -886,7 +928,7 @@
                     </ng-template>
                 </mat-tab>
                 <!-- Company Info -->
-                <mat-tab label="Company Info" disabled="true">
+                <mat-tab label="Company Info" >
                 <!-- Company Finance Info -->
                     <div class="row">
                         <div class="col-md-12 col-lg-12 col-xl-12 dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1 px-4 ">
@@ -984,7 +1026,7 @@
                     </div>
                 </mat-tab>
                 <!-- Other Info -->
-                <mat-tab label="Other Info" disabled="true">
+                <mat-tab label="Other Info" >
                     <div class="row">
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
@@ -1063,11 +1105,19 @@
 
             <div class="row">
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <span class="fs-16 font-weight-bold text-black dark-text-1 ">Summarised of Category</span>
+                    <span class="fs-16 font-weight-bold text-black dark-text-1 ">Workforce Summary</span>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <span class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number :</span>
                     <span class="fs-14">{{crNo}}</span>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <span class="fs-16 font-weight-bold text-black dark-text-1">Civil Id :</span>
+                    <span class="fs-14">{{civilNo}}</span>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <span class="fs-16 font-weight-bold text-black dark-text-1">Omanization Ratio :</span>
+                    <span class="fs-14">82342</span>
                 </div>
             </div>
             <div class="row">
@@ -1077,7 +1127,7 @@
                             <thead>
                                 <tr class="purple-bg text-white">
                                     <th scope="col" class="custom-width-60">Employee Category</th>
-                                    <th scope="col">No. of Employee Category</th>
+                                    <th scope="col">No. of Employee</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1273,13 +1323,8 @@
 
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <!-- OCCI Data -->
-                <!-- <mat-tab label="OCCI Data">
+                <mat-tab label="OCCI Data">
                     <div class="row">
-                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Chamber of commerce certificate
-                            </h5>
-                            <p class="fs-14">{{formData.ministriesData1.cocc}}</p>
-                        </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Membership Number</h5>
                             <p class="fs-14">{{formData.ministriesData1.membershipNum}}</p>
@@ -1297,10 +1342,6 @@
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Company Grade</h5>
                             <p class="fs-14">{{formData.ministriesData1.compGrade}}</p>
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Civil Number</h5>
-                            <p class="fs-14">{{civilNo}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
@@ -1326,10 +1367,10 @@
                             </a>
                         </div>
                     </div>
-                </mat-tab> -->
+                </mat-tab>
 
                 <!-- Tender Board Data -->
-                <mat-tab label="Tender Board Data" disabled="true">
+                <mat-tab label="Tender Board Data" >
 
                     <div class="row pb-3">
                         <!-- <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
@@ -1373,7 +1414,12 @@
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Certificate</h5>
-                            <p class="fs-14">{{formData.ministriesData1.regCerti}}</p>
+                            <!-- <p class="fs-14">{{formData.ministriesData1.regCerti}}</p> -->
+                            <i class="fa fa-folder-open" aria-hidden="true"
+                            (click)="openFile(shoeFiles,'regCerti','')"> Add Document</i> 
+                    
+                            <input type="file" #fileInput id="fileUpload" name="fileUpload"
+                            multiple="multiple" style="display: none;" />
                         </div>
                     </div>
                     <div class="row">
@@ -1385,7 +1431,7 @@
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                            (click)="previousTab()"><i class="fa fa-caret-left"></i> Previous</button>
                             <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                                 (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2"
@@ -1400,7 +1446,7 @@
                 </mat-tab>
 
                 <!-- Municipality Data -->
-                <mat-tab label="Municipality Data" disabled="true">
+                <mat-tab label="Municipality Data" >
 
                     <div class="row">
                         <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
@@ -1475,7 +1521,7 @@
 
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <!-- MOF Data -->
-                <mat-tab label="MOF Data" disabled="true">
+                <mat-tab label="MOF Data" >
                     <div class="row">
                         <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
                             <i class="fa fa-ban text-red fs-14" mat-raised-button matTooltip="Data fetched from interface - not editable"
@@ -1522,7 +1568,7 @@
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="preStep(1)"  matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                            (click)="preStep(2)"  matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
                             <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                                 (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2"
@@ -1537,9 +1583,9 @@
                 </mat-tab>
 
                 <!-- MOH Data -->
-                <mat-tab label="MOH Data" disabled="true">
+                <mat-tab label="MOH Data" >
 
-                    <div class="row">
+                    <div class="row pt-2">
                         <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
                             <i class="fa fa-ban text-red fs-14" mat-raised-button matTooltip="Data fetched from interface - not editable"
                                 aria-hidden="true"></i>
@@ -1550,14 +1596,19 @@
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Health and pharmacy licenses</h5>
-                            <p class="fs-14">{{formData.ministriesData2.hplicenses}}</p>
+                            <!-- <p class="fs-14">{{formData.ministriesData2.hplicenses}}</p> -->
+                            <i class="fa fa-folder-open" aria-hidden="true"
+                            (click)="openFile(shoeFiles,'hplicenses','')"> Add Document</i>
+                    
+                            <input type="file" #fileInput id="fileUpload" name="fileUpload"
+                            multiple="multiple" style="display: none;" />
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
                             <p class="fs-14">{{formData.ministriesData2.regDate}}</p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row pt-2">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">End Date</h5>
                             <p class="fs-14">{{formData.ministriesData2.expDate}}</p>
@@ -1591,9 +1642,9 @@
                 </mat-tab>
 
                 <!-- MOCI Data -->
-                <mat-tab label="MOCI Data" disabled="true">
+                <mat-tab label="MOCI Data" >
 
-                    <div class="row">
+                    <div class="row pt-2">
                         <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
                             <i class="fa fa-ban text-red fs-14" mat-raised-button matTooltip="Data fetched from interface - not editable"
                                 aria-hidden="true"></i>
@@ -1603,20 +1654,30 @@
                                 Consulting
                                 Companies
                             </h5>
-                            <p class="fs-14">{{formData.ministriesData2.pLOfCC}}</p>
+                            <!-- <p class="fs-14">{{formData.ministriesData2.pLOfCC}}</p> -->
+                            <i class="fa fa-folder-open" aria-hidden="true"
+                            (click)="openFile(shoeFiles,'pLOfCC','')"> Add Document</i>
+                    
+                            <input type="file" #fileInput id="fileUpload" name="fileUpload"
+                            multiple="multiple" style="display: none;" />
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Licenses of Training and
                                 Qualifying
                                 Institutes</h5>
-                            <p class="fs-14">{{formData.ministriesData2.lOTQI}}</p>
+                            <!-- <p class="fs-14">{{formData.ministriesData2.lOTQI}}</p> -->
+                            <i class="fa fa-folder-open" aria-hidden="true"
+                            (click)="openFile(shoeFiles,'lOTQI','')"> Add Document</i>
+                    
+                            <input type="file" #fileInput id="fileUpload" name="fileUpload"
+                            multiple="multiple" style="display: none;" />
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Agencies and Trademarks</h5>
                             <p class="fs-14">{{formData.ministriesData2.AT}}</p>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row pt-2">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Foreign Investment</h5>
                             <p class="fs-14">{{formData.ministriesData2.foreignInve}}</p>
@@ -1656,7 +1717,7 @@
                 </mat-tab>
 
                 <!-- Small & Medium Ent. Data -->
-                <mat-tab label="Small & Medium Ent. Data" disabled="true">
+                <mat-tab label="Small & Medium Ent. Data" >
 
                     <div class="row">
                         <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
@@ -1792,7 +1853,7 @@
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date</h5>
                     <p class="fs-14">{{formData.ministriesData3.expDate}}</p>
                 </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 pb-2">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
                     <div class="landing-menu" (click)="activityMenu1 = !activityMenu1"
                         (clickOutside)="activityMenu1 = false">
@@ -1807,12 +1868,12 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <!-- <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">List of insurance companies and any
                         inquiries
                     </h5>
                     <p class="fs-14">{{formData.ministriesData3.listOfComp}}</p>
-                </div>
+                </div> -->
             </div>
 
 
@@ -1832,7 +1893,12 @@
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">List of financially troubled companies
                     </h5>
-                    <p class="fs-14">{{formData.ministriesData3.loftc}}</p>
+                    <!-- <p class="fs-14">{{formData.ministriesData3.loftc}}</p> -->
+                    <i class="fa fa-folder-open" aria-hidden="true"
+                    (click)="openFile(shoeFiles,'loftc','')"> Add Document</i>
+            
+                    <input type="file" #fileInput id="fileUpload" name="fileUpload"
+                    multiple="multiple" style="display: none;" />
                 </div>
             </div>
 
@@ -1852,11 +1918,37 @@
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">CR Number</h5>
                     <p class="fs-14">{{crNo}}</p>
                 </div>
+
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Number</h5>
+                    <p class="fs-14">{{crNo}}</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
+                    <p class="fs-14">{{formData.ministriesData3.regDate}}</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date</h5>
+                    <p class="fs-14">{{formData.ministriesData3.expDate}}</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
+                    <div class="landing-menu" (click)="activityMenu3 = !activityMenu3" >
+                        <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
+                            Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </div>
+                        <ul *ngIf="activityMenu3" class="landing-dropdown w-170">
+                            <li>Activity name 1</li>
+                            <li>Activity name 2</li>
+                            <li>Activity name 3</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Certificate of registration
                         of electrical works </h5>
                     <p class="fs-14">{{formData.ministriesData3.electricalWorks}}</p>
-                </div>
+                </div> -->
             </div>
 
 
@@ -2208,31 +2300,61 @@
                             <p class=" text-dark-grey font-weight-bold ">Site Visit Applicable </p>
                         </div>
                         <div class="form-check mr-3 mb-3">
-                            <input class="form-check-input" type="radio" name="siteVisit" id="yes" value="yes" checked>
+                            <input class="form-check-input" type="radio" name="siteVisit" [(ngModel)]="isSiteVisit" value="yes" (change)="changeSite()" checked>
                             <label class="form-check-label font-italic ml-2" for="yes">Yes </label>
                         </div>
                         <div class="form-check mr-3 mb-3">
-                            <input class="form-check-input" type="radio" name="siteVisit" id="no" value="no">
+                            <input class="form-check-input" type="radio" name="siteVisit" [(ngModel)]="isSiteVisit" (change)="changeSite()" value="no">
                             <label class="form-check-label font-italic ml-2" for="no">No </label>
                         </div>
+
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Sp. Employee Name </h5>
-                        <p class="fs-14">Hasan Mojiri</p>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">E-mail ID</h5>
-                        <p class="fs-14">hasan@rca.gov.com</p>
-                    </div>
-                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Mobile Number</h5>
-                        <p class="fs-14">+96897898422</p>
+                    <div class="col-md-12 px-4 mb-3 mt-3">
+                        <div class="table-responsive">
+                            <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
+                            <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('siteVisit')" *ngIf="isSiteVisit == 'yes'"><i
+                                    class="fa fa-plus" aria-hidden="true"></i></button>
+                            <table class="table table-striped mb-0 ">
+                                <thead>
+                                    <tr class="purple-bg text-white">
+                                        <th scope="col"></th>
+                                        <th scope="col" (click)="sorting('siteVisit','method')">Label <i
+                                                class="fa fa-sort" aria-hidden="true"></i> </th>
+                                        <th scope="col" (click)="sorting('siteVisit','value')">Value <i
+                                                class="fa fa-sort" aria-hidden="true"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of siteVisitData | filter : searchText; index as index"
+                                        (clickOutside)="enteredDetails( 'siteVisit',data)">
+                                        <td *ngIf="data.isMoci">
+                                            <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                                matTooltip="Data fetched from interface - not editable"
+                                                aria-hidden="true"></i>
+                                        </td>
+                                        <td *ngIf="!data.isMoci">
+                                            <i *ngIf="isSiteVisit == 'yes'" class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit data"
+                                                (click)="data.isEdit = true" aria-hidden="true"></i>
+                                            <i *ngIf="isSiteVisit == 'no'" class="fa fa-pencil-square-o text-red fs-14" mat-raised-button matTooltip="You can edit this data when site visit is applicable"
+                                                (click)="data.isEdit = true" aria-hidden="true"></i>
+                                        </td>
+                                        <td *ngIf="(data.isMoci || !data.isEdit)|| isSiteVisit == 'no'" (dblclick)="data.isEdit = true">{{data.label}}</td>
+                                        <td *ngIf="data.isEdit && !data.isMoci && isSiteVisit == 'yes'" (keyup.enter)="enteredDetails( 'siteVisit',data)">
+                                            <input [(ngModel)]="data.label"></td>
+                                        <td *ngIf="(data.isMoci || !data.isEdit) || isSiteVisit == 'no'" (dblclick)="data.isEdit = true">{{data.value}}
+                                        </td>
+                                        <td *ngIf="data.isEdit && !data.isMoci && isSiteVisit == 'yes'" (keyup.enter)="enteredDetails( 'siteVisit',data)">
+                                            <input [(ngModel)]="data.value"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-2">
                 <div class="col-md-12 px-4">
                     <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
                     <p class="dark-text-1 fs-14 ">Details Not Applicable</p>

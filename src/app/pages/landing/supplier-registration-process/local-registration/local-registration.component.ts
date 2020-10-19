@@ -37,6 +37,8 @@ export class LocalRegistrationComponent implements OnInit {
     isMoci: new FormControl(false)
   });
   bankform: FormGroup = new FormGroup({
+    bankingId: new FormControl('', [Validators.required]),
+    bankingIdname: new FormControl('', [Validators.required]),
     bankAcc: new FormControl('', [Validators.required]),
     bankName: new FormControl('', [Validators.required]),
     bankBranch: new FormControl('', [Validators.required]),
@@ -58,7 +60,7 @@ export class LocalRegistrationComponent implements OnInit {
   addressMenu: boolean;
   activityData: any;
   personalData: any;
-  comunicationData: any;
+  communicationData: any;
   activityInfoData: any;
   BankDetails: any;
   compBranchInfoData: any;
@@ -77,6 +79,8 @@ export class LocalRegistrationComponent implements OnInit {
   civilNo: string;
   editBank: boolean = false;
   editbankData: any;
+  siteVisitData: any;
+  isSiteVisit: any = 'no';
 
   constructor(
     private router: Router,
@@ -97,7 +101,7 @@ export class LocalRegistrationComponent implements OnInit {
     this.activityData = this.formData.activities;
     this.selectedAddress = this.formData.address.addressDetails[0];
     this.personalData = this.formData.personalDetails;
-    this.comunicationData = this.formData.comunicationMethod;
+    this.communicationData = this.formData.comunicationMethod;
     this.compBranchInfoData = this.formData.commercialInfo.compBranchInfo;
     this.BankDetails = this.formData.commercialInfo.BankDetails;
     this.activityInfoData = this.formData.commercialInfo.activityInfo;
@@ -106,6 +110,7 @@ export class LocalRegistrationComponent implements OnInit {
     this.subContractorData = this.formData.subContractorDetails;
     this.equipmentData = this.formData.equipmentDetails;
     this.otherData = this.formData.commercialInfo.otherDetails;
+    this.siteVisitData = this.formData.siteVisit;
     this.getEmployeeCategories();
     this.crNo = localStorage.getItem('commercialReg');
     this.civilNo = localStorage.getItem('civilReg');
@@ -198,7 +203,41 @@ export class LocalRegistrationComponent implements OnInit {
         }
       });
     }
-
+    if (this.selectedPage === 'regCerti') {
+      this.filesList = [];
+      if (flag == false) {
+        this.formData.ministriesData1.regCerti.push(file.data);
+      }
+      this.filesList =  this.formData.ministriesData1.regCerti;
+    }
+    if (this.selectedPage === 'hplicenses') {
+      this.filesList = [];
+      if (flag == false) {
+        this.formData.ministriesData2.hplicenses.push(file.data);
+      }
+      this.filesList =  this.formData.ministriesData2.hplicenses;
+    }
+    if (this.selectedPage === 'pLOfCC') {
+      this.filesList = [];
+      if (flag == false) {
+        this.formData.ministriesData2.pLOfCC.push(file.data);
+      }
+      this.filesList =  this.formData.ministriesData2.pLOfCC;
+    }
+    if (this.selectedPage === 'lOTQI') {
+      this.filesList = [];
+      if (flag == false) {
+        this.formData.ministriesData2.lOTQI.push(file.data);
+      }
+      this.filesList =  this.formData.ministriesData2.lOTQI;
+    }
+    if (this.selectedPage === 'loftc') {
+      this.filesList = [];
+      if (flag == false) {
+        this.formData.ministriesData3.loftc.push(file.data);
+      }
+      this.filesList =  this.formData.ministriesData3.loftc;
+    }
   }
 
   private upload(data, flag) {
@@ -264,6 +303,26 @@ export class LocalRegistrationComponent implements OnInit {
         }
       });
     }
+    if(this.selectedPage === 'regCerti'){
+      this.filesList = [];
+      this.filesList = this.formData.ministriesData1.regCerti;
+    }
+    if(this.selectedPage === 'hplicenses'){
+      this.filesList = [];
+      this.filesList = this.formData.ministriesData2.hplicenses;
+    }
+    if(this.selectedPage === 'pLOfCC'){
+      this.filesList = [];
+      this.filesList = this.formData.ministriesData2.pLOfCC;
+    }
+    if(this.selectedPage === 'lOTQI'){
+      this.filesList = [];
+      this.filesList = this.formData.ministriesData2.lOTQI;
+    }
+    if(this.selectedPage === 'loftc'){
+      this.filesList = [];
+      this.filesList = this.formData.ministriesData3.loftc;
+    }
     this.open(content)
   }
 
@@ -308,6 +367,51 @@ export class LocalRegistrationComponent implements OnInit {
           }
         });
       }
+      if (this.selectedPage === 'regCerti') {
+        this.filesList = [];
+        this.formData.ministriesData1.regCerti.filter((f, i) => {
+          if (f.name == file.name) {
+            this.formData.ministriesData1.regCerti.splice(i, 1);
+            this.filesList = this.formData.ministriesData1.regCerti;
+          }
+        })
+      }
+      if (this.selectedPage === 'hplicenses') {
+        this.filesList = [];
+        this.formData.ministriesData2.hplicenses.filter((f, i) => {
+          if (f.name == file.name) {
+            this.formData.ministriesData2.hplicenses.splice(i, 1);
+            this.filesList = this.formData.ministriesData2.hplicenses;
+          }
+        })
+      }
+      if (this.selectedPage === 'pLOfCC') {
+        this.filesList = [];
+        this.formData.ministriesData2.pLOfCC.filter((f, i) => {
+          if (f.name == file.name) {
+            this.formData.ministriesData2.pLOfCC.splice(i, 1);
+            this.filesList = this.formData.ministriesData2.pLOfCC;
+          }
+        })
+      }
+      if (this.selectedPage === 'lOTQI') {
+        this.filesList = [];
+        this.formData.ministriesData2.lOTQI.filter((f, i) => {
+          if (f.name == file.name) {
+            this.formData.ministriesData2.lOTQI.splice(i, 1);
+            this.filesList = this.formData.ministriesData2.lOTQI;
+          }
+        })
+      }
+      if (this.selectedPage === 'loftc') {
+        this.filesList = [];
+        this.formData.ministriesData3.loftc.filter((f, i) => {
+          if (f.name == file.name) {
+            this.formData.ministriesData3.loftc.splice(i, 1);
+            this.filesList = this.formData.ministriesData3.loftc;
+          }
+        })
+      }
     }
   }
 
@@ -323,6 +427,11 @@ export class LocalRegistrationComponent implements OnInit {
     if (address) {
       this.form.patchValue(address);
       this.editAddress = true;
+    }
+    else{
+      this.form.patchValue({'addressID': this.formData.address.addressDetails.length+1 ,
+      'language':'English',
+      'country':'Oman'});
     }
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -584,6 +693,36 @@ export class LocalRegistrationComponent implements OnInit {
       };
       this.activityInfoData.push(this.newData);
     }
+    if(datatype === 'communication'){
+      this.communicationData.map((data, i)=> {
+        if(data.method == ""){
+          this.communicationData.splice(i,1);
+        }
+      })
+      this.newData = {
+        "no": this.communicationData.length+1,
+        "method":" * ",
+        "value":" ",
+        "isEdit": true,
+        "isMoci": false
+      };
+      this.communicationData.push(this.newData);
+    }
+    if(datatype === 'siteVisit') {
+      this.siteVisitData.map((data, i)=> {
+        if(data.label == ""){
+          this.siteVisitData.splice(i,1);
+        }
+      })
+      this.newData = {
+        "no": this.siteVisitData.length+1,
+        "label":" * ",
+        "value":" ",
+        "isEdit": true,
+        "isMoci": false
+      };
+      this.siteVisitData.push(this.newData);
+    }
   }
 
   enteredDetails(datatype, data) {
@@ -755,6 +894,48 @@ export class LocalRegistrationComponent implements OnInit {
         this.alertService.pushError('Activity Name can not be empty.')
       }
     }
+    if(datatype === 'communication'){
+      
+      if(data.method !== ""){
+        this.communicationData.map((d, i) => {
+          if(d.no == data.no){
+            d = data
+          }
+        });
+        if(data.method === " * "){
+          data.method ="",
+          data.isEdit = true;
+         }
+      } else {
+        this.communicationData.map((data, i)=> {
+          if(data.method == ""){
+            this.communicationData.splice(i,1);
+          }
+        })
+        this.alertService.pushError('Communication Method can not be empty.')
+      }
+    }
+    if(datatype === 'siteVisit'){
+      
+      if(data.label !== ""){
+        this.siteVisitData.map((d, i) => {
+          if(d.no == data.no){
+            d = data
+          }
+        });
+        if(data.label === " * "){
+          data.label ="",
+          data.isEdit = true;
+         }
+      } else {
+        this.siteVisitData.map((data, i)=> {
+          if(data.label == ""){
+            this.siteVisitData.splice(i,1);
+          }
+        })
+        this.alertService.pushError('Label can not be empty.')
+      }
+    }
   }
 
   sorting(property, str) {
@@ -787,6 +968,12 @@ export class LocalRegistrationComponent implements OnInit {
       if (property === 'branchInfo') {
         this.compBranchInfoData = this.sortByPipe.transform(this.formData.commercialInfo.compBranchInfo, 'asc', str)
       }
+      if(property === 'communication'){
+        this.communicationData = this.sortByPipe.transform(this.formData.communicationDetails,'asc',str)
+      }
+      if(property === 'communication'){
+        this.siteVisitData = this.sortByPipe.transform(this.formData.siteVisit,'asc',str)
+      }
     }
     else {
       if (property === 'employee') {
@@ -816,6 +1003,12 @@ export class LocalRegistrationComponent implements OnInit {
       if (property === 'branchInfo') {
         this.compBranchInfoData = this.sortByPipe.transform(this.formData.commercialInfo.compBranchInfo, 'desc', str)
       }
+      if(property === 'communication'){
+        this.communicationData = this.sortByPipe.transform(this.formData.communicationDetails,'desc',str)
+      }
+      if(property === 'communication'){
+        this.siteVisitData = this.sortByPipe.transform(this.formData.siteVisit,'desc',str)
+      }
     }
   }
 
@@ -823,4 +1016,7 @@ export class LocalRegistrationComponent implements OnInit {
     this.activityMenu = !this.activityMenu;
   }
 
+  changeSite(){
+    console.log(this.isSiteVisit)
+  }
 }

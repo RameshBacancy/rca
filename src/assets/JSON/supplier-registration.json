@@ -102,14 +102,50 @@
                 "isMoci": true
             }
         ],
-        "comunicationMethod": {
-            "telephone": "+919 515 6162",
-            "poBox": "762 - Muscat",
-            "fax": "414-589-8745",
-            "legalStatus" : "valid",
-            "pc": "72666",
-            "email": "user@yopmail.com"
-        },
+        "comunicationMethod": [
+            {
+                "no" : 1,
+                "method": "Telephone",
+                "value": "+919 515 6162",
+                "isEdit": false,
+                "isMoci":true
+            },
+            {
+                "no" : 2,
+                "method": "P.O.Box",
+                "value": "762 - Muscat",
+                "isEdit": false,
+                "isMoci":true
+            },
+            {
+                "no" : 3,
+                "method": "Fax",
+                "value": "414-589-8745",
+                "isEdit": false,
+                "isMoci":true
+            },
+            {
+                "no" : 4,
+                "method": "Legal Status",
+                "value": "valid",
+                "isEdit": false,
+                "isMoci":true
+            },
+            {
+                "no" : 5,
+                "method": "P C",
+                "value": "72666",
+                "isEdit": false,
+                "isMoci":true
+            },
+            {
+                "no" : 6,
+                "method": "Email",
+                "value": "user@yopmail.com",
+                "isEdit": false,
+                "isMoci":true
+            }
+        ],
         "commercialInfo":{
             "activityInfo": [
                 {
@@ -141,6 +177,8 @@
             ],
             "BankDetails":[
                 {
+                "bankingId": "BK01",
+                "bankingIdname": "Muscat Bank of OMAN",
                 "bankAcc": "savings",
                 "bankName":"Bank Muscat",
                 "bankBranch": "-",
@@ -282,17 +320,17 @@
             "regDate": "11-02-2009",
             "expDate":"15-09-2011",
             "compGrade": "Grade 1",
-            "regCerti": "Document",
+            "regCerti": [],
             "location": "Muscat"
         },
         "ministriesData2":{
             "taxCertiNo": "MNHGR232G",
             "regDate": "11-02-2009",
             "expDate":"15-09-2011",
-            "hplicenses": "Document",
+            "hplicenses": [],
             "typeOfactivity":"Manufacturing and Trade",
-            "pLOfCC":"Document",
-            "lOTQI": "Document",
+            "pLOfCC":[],
+            "lOTQI": [],
             "AT":"Amazon",
             "foreignInve":"Amazon",
             "perOfGO":"52%",
@@ -303,9 +341,9 @@
             "regDate": "11-02-2009",
             "expDate":"15-09-2011",
             "fireResistant": "Yes, Available for meta area",
-            "listOfComp": "Document",
-            "loftc": "Document",
-            "electricalWorks": "Document"
+            "listOfComp": [],
+            "loftc": [],
+            "electricalWorks": []
         },
         "projectDetails": [
             {
@@ -448,6 +486,26 @@
                 "attachment": "PDF",
                 "isEdit": false,
                 "isMoci": true
+            }
+        ],
+        "siteVisit": [
+            {
+                "label": "Sp. Employee Name",
+                "value": "Hasan Mojiri",
+                "isEdit": false,
+                "isMoci" : true
+            },
+            {
+                "label": "Email Id",
+                "value": "hasan@rca.govt.com",
+                "isEdit": false,
+                "isMoci" : true
+            },
+            {
+                "label": "Sp. Employee Name",
+                "value": "+919 515 6162",
+                "isEdit": false,
+                "isMoci" : true
             }
         ]
     },

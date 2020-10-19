@@ -61,7 +61,7 @@ export class SupplierRegisterComponent implements OnInit {
   }
 
   submitNext() {
-    this.form.patchValue({registrationNo : this.myControl.value});
+    // this.form.patchValue({registrationNo : this.myControl.value});
     this._userService.registrationLogin(this.form.value.civilNo.toString(), 'civil', this.form.value.regType);
     if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'false') {
       this.showsNextReg = true;
