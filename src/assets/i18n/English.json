@@ -1,0 +1,34 @@
+{
+    "supplierRegPage":{
+        "title": "Registration",
+        "url1": "Home",
+        "url2": "Supplier Registration",
+        "url3": "Register",
+        "login": "Login",
+        "suppRegTypeLbl": "Supplier Reg. Type",
+        "suppRegTypeOp1": "Local",
+        "suppRegTypeOp2": "International",
+        "localRegTypeLbl": "Local Reg. Type ",
+        "localRegTypeOp1": "Local Company",
+        "localRegTypeOp2": "Citizen",
+        "localRegTypeOp3": "Government",
+        "inernationalRegTypeLbl": "International Reg. Type",
+        "inernationalRegTypeOp1": "Individual",
+        "inernationalRegTypeOp2": "Company",
+        "newRegLbl": "New Supplier Registration",
+        "alreadyRegLbl": "Already Registered Supplier",
+        "civilNoLbl": "Enter Civil Number",
+        "compCRNo": "Company C.R.Number",
+        "selectSupplierLbl": "Select Supplier",
+        "CRNumberLbl": "Commercial Registration No",
+        "suppNameLbl": "Supplier Name",
+        "suppName": "Elecroman LLC",
+        "CRGradeLbl": "Commercial Registration Grade",
+        "CRGrade": "First Grade",
+        "submitBtnLbl": "Submit",
+        "backBtnLbl": "Back"
+    },
+    "header": {
+        "language": "Language"
+    }
+}

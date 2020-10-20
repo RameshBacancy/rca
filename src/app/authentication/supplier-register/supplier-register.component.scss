@@ -7,3 +7,18 @@ input::-webkit-inner-spin-button {
 input[type=number] {
     -moz-appearance: textfield;
   }
+
+.btn-purple{
+  background-color: #873e8d !important;
+  color: white !important;
+}
+.btn-purple:hover{
+  background-color: #bf8ec3 !important;
+  color: black !important;
+}
+.custom-a-style {
+  color: white !important;
+}
+.custom-a-style:hover{
+  color: black !important;
+}

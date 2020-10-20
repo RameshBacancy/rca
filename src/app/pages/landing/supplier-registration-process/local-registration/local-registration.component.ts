@@ -32,8 +32,8 @@ export class LocalRegistrationComponent implements OnInit {
     addressID: new FormControl('', [Validators.required]),
     addressLine1: new FormControl('', [Validators.required]),
     addressLine2: new FormControl('', [Validators.required]),
-    language: new FormControl('English', [Validators.required]),
-    country: new FormControl('Oman', [Validators.required]),
+    // language: new FormControl(''),
+    country: new FormControl('', [Validators.required]),
     isMoci: new FormControl(false)
   });
   bankform: FormGroup = new FormGroup({
@@ -423,15 +423,17 @@ export class LocalRegistrationComponent implements OnInit {
       this.open(content);
     }
   }
+
   open(content, address?) {
     if (address) {
-      this.form.patchValue(address);
-      this.editAddress = true;
+      if(!address.isMoci) {
+        this.selectedAddress = address
+        this.form.patchValue(address);
+        this.editAddress = true;
+      }
     }
     else{
-      this.form.patchValue({'addressID': this.formData.address.addressDetails.length+1 ,
-      'language':'English',
-      'country':'Oman'});
+      this.form.patchValue({'addressID': this.formData.address.addressDetails.length+1, 'country':'Oman'});
     }
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -444,6 +446,7 @@ export class LocalRegistrationComponent implements OnInit {
 
     });
   }
+
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
@@ -454,6 +457,10 @@ export class LocalRegistrationComponent implements OnInit {
     }
   }
 
+  alertNoAdd(){
+    this.alertService.pushError('Not Allowed to add details for Local entities');
+  }
+
   submitRegistration() {
     this.completed = true;
     localStorage.setItem('1completeToken', 'true');
@@ -462,7 +469,7 @@ export class LocalRegistrationComponent implements OnInit {
     this.spinner.openSpinner();
     const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') }
     this._userService.supplierRegistration(body)
-    this.alertService.pushSuccess('Your data is submitted.');
+    // this.alertService.pushSuccess('Your data is submitted.');
     // this.router.navigateByUrl('/landing/supplier-registration/transaction');
   }
 

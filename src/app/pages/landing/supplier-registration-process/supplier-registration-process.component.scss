@@ -13,3 +13,7 @@
 .custom-width-250{
     min-width: 250px;
 }
+
+::ng-deep .mat-horizontal-stepper-header {
+    pointer-events: none !important;
+  }

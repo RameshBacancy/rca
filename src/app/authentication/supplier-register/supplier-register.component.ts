@@ -6,6 +6,7 @@ import { AlertService } from 'src/app/services/alert.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-supplier-register',
@@ -19,23 +20,26 @@ export class SupplierRegisterComponent implements OnInit {
   viewSideBar: boolean = false;
 
   myControl = new FormControl();
-  
   options: string[] = ['1086391', '1086393', '1216194', '1024511'];
+  selectedLanguage: any ='English';
   filteredOptions: Observable<string[]>;
 
   form = new FormGroup({
     regType: new FormControl('local', [Validators.required]),
     civilNo: new FormControl('11337788', [Validators.required]),
     registrationNo: new FormControl('', [Validators.required]),
-    registrationType: new FormControl('alreadyRegistered', [Validators.required])
+    registrationType: new FormControl('alreadyRegistered', [Validators.required]),
   });
 
   constructor(
     private router: Router, 
     private _userService: UserService, 
     private alertService: AlertService, 
-    private spinner: SpinnerService
-    ) { }
+    private spinner: SpinnerService,
+    private translate: TranslateService) 
+    {
+      this.translate.use('English');
+    }
 
   ngOnInit(): void {
     localStorage.clear();
@@ -48,6 +52,12 @@ export class SupplierRegisterComponent implements OnInit {
         startWith(''),
         map(value => this._filter(value))
       );
+  }
+
+  public languageArray = ['English', 'Arabic', 'Hindi'];
+
+  changeLang(lang) {
+    this.translate.use(lang);
   }
 
   private _filter(value: string): string[] {

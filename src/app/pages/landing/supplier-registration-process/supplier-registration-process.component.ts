@@ -49,7 +49,6 @@ export class SupplierRegistrationProcessComponent implements OnInit {
         this.isInternational = true
       }
     } else{
-        this.alertService.pushWarning('You already completed your registration');
         this.router.navigateByUrl('/landing/supplier-registration/dashboard');
       }
   }

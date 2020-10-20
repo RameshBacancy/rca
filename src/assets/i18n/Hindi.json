@@ -1,0 +1,34 @@
+{
+    "supplierRegPage":{
+        "title": "पंजीकरण",
+        "url1": "घर",
+        "url2": "आपूर्तिकर्ता पंजीकरण",
+        "url3": "रजिस्टर",
+        "login": "लॉग इन ",
+        "suppRegTypeLbl": "आपूर्तिकर्ता रजि. प्रकार",
+        "suppRegTypeOp1": "स्थानीय",
+        "suppRegTypeOp2": "अंतरराष्ट्रीय",
+        "localRegTypeLbl": "लोकल रजि. प्रकार  ",
+        "localRegTypeOp1": "स्थानीय कंपनी",
+        "localRegTypeOp2": "नागरिक",
+        "localRegTypeOp3": "सरकार",
+        "inernationalRegTypeLbl": "इंटरनेशनल रजि. प्रकार",
+        "inernationalRegTypeOp1": "व्यक्ति",
+        "inernationalRegTypeOp2": "कंपनी",
+        "newRegLbl": "नया आपूर्तिकर्ता पंजीकरण",
+        "alreadyRegLbl": "पहले से पंजीकृत आपूर्तिकर्ता",
+        "civilNoLbl": "नागरिक संख्या दर्ज करें",
+        "compCRNo": "कंपनी C.R.Number",
+        "selectSupplierLbl": "आपूर्तिकर्ता का चयन",
+        "CRNumberLbl": "वाणिज्यिक पंजीकरण सं",
+        "suppNameLbl": "आपूर्तिकर्ता का नाम",
+        "suppName": "एलक्रोमैन एलएलसी",
+        "CRGradeLbl": "वाणिज्यिक पंजीकरण ग्रेड",
+        "CRGrade": "प्रथम श्रेणी",
+        "submitBtnLbl": "प्रस्तुत",
+        "backBtnLbl": "वापस"
+    },
+    "header": {
+        "language": "भाषा"
+    }
+}

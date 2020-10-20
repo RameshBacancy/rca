@@ -15,6 +15,16 @@ ul {
     }
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .btn-disabled-color-gray{
   background-color: $grey-light-color !important;
 }
@@ -23,13 +33,13 @@ ul {
 .btn:hover {    color: #000;    background-color: #c2c9ce;    border-color: #c2c9ce;}
 
 
-::ng-deep .mat-horizontal-stepper-header{
-  pointer-events: none !important;
-}
+// ::ng-deep .mat-horizontal-stepper-header{
+//   pointer-events: none !important;
+// }
 
-::ng-deep .mat-step-header .mat-step-icon {
-  background-color: #0279c1; 
-}
+// ::ng-deep .mat-step-header .mat-step-icon {
+//   background-color: #0279c1; 
+// }
 
 
 ::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {

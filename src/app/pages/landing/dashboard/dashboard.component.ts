@@ -27,7 +27,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngAfterViewChecked(): void {
-    if(!localStorage.getItem('1completeToken')){ 
       if(localStorage.getItem('ModelShowed') != 'true'){
         if(localStorage.getItem('paymentStep') != 'true'){
           if(localStorage.getItem('RegStatus') == 'finish') {
@@ -35,9 +34,16 @@ export class DashboardComponent implements OnInit {
           }
         }
       }
-    }
   }
 
+  openModel(){
+    if(localStorage.getItem('RegStatus') === 'finish'){
+      this.fileInput.nativeElement.click();
+    }
+    else {
+      this.router.navigateByUrl('/landing/supplier-registration/registration');
+    }
+  }
   onRegistrationClick(){
     if(localStorage.getItem('RegStatus') === 'finish') {
       if(localStorage.getItem('arStatus') === 'pending') {

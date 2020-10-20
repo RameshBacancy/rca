@@ -11,7 +11,14 @@ import { ForgetPasswordComponent } from './forget-password/forget-password.compo
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 const routes: Routes = [
   // { path: '', redirectTo: 'auth/login' },
   // { path: 'auth/login', component: LoginComponent },
@@ -58,6 +65,14 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatFormFieldModule,
     MatAutocompleteModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      }
+    }),
     MatInputModule,
     RouterModule.forChild(routes),
   ]

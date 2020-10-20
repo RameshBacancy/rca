@@ -1,0 +1,34 @@
+{
+    "supplierRegPage":{
+        "title": "التسجيل",
+        "url1": "الصفحة الرئيسية",
+        "url2": "تسجيل المورد",
+        "url3": "تسجيل",
+        "login": "تسجيل الدخول",
+        "suppRegTypeLbl": "ريج المورد. نوع",
+        "suppRegTypeOp1": "محلي",
+        "suppRegTypeOp2": "دولي",
+        "localRegTypeLbl": "ريج محلي نوع",
+        "localRegTypeOp1": "شركة محلية",
+        "localRegTypeOp2": "مواطن",
+        "localRegTypeOp3": "حكومة",
+        "inernationalRegTypeLbl": "ريج الدولية. نوع",
+        "inernationalRegTypeOp1": "فرد",
+        "inernationalRegTypeOp2": "شركة",
+        "newRegLbl": "تسجيل مورد جديد",
+        "alreadyRegLbl": "مورد مسجل بالفعل",
+        "civilNoLbl": "أدخل الرقم المدني",
+        "compCRNo": "رقم الشركة C.R.Number",
+        "selectSupplierLbl": "حدد المورد",
+        "CRNumberLbl": "رقم السجل التجاري",
+        "suppNameLbl": "اسم المورد",
+        "suppName": "Elecroman LLC",
+        "CRGradeLbl": "درجة السجل التجاري",
+        "CRGrade": "الصف الاول",
+        "submitBtnLbl": "إرسال",
+        "backBtnLbl": "عودة"
+    },
+    "header": {
+        "language": "لغة"
+    }
+}

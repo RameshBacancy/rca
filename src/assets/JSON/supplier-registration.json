@@ -43,6 +43,7 @@
                     "addressLine2": "Suite 600",
                     "language": "English",
                     "country": "Oman",
+                    "isEdit": false,
                     "isMoci": true
                 },
                 {
@@ -51,6 +52,7 @@
                     "addressLine2": "Suite 601",
                     "language": "English",
                     "country": "Oman",
+                    "isEdit": false,
                     "isMoci": true
                 }
             ]
@@ -179,7 +181,7 @@
                 {
                 "bankingId": "BK01",
                 "bankingIdname": "Muscat Bank of OMAN",
-                "bankAcc": "savings",
+                "bankAcc": "1234567890",
                 "bankName":"Bank Muscat",
                 "bankBranch": "-",
                 "holderName": "user",
@@ -502,7 +504,7 @@
                 "isMoci" : true
             },
             {
-                "label": "Sp. Employee Name",
+                "label": "Moblie Number",
                 "value": "+919 515 6162",
                 "isEdit": false,
                 "isMoci" : true

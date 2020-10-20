@@ -4,6 +4,8 @@ import { from } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-landing-header',
   templateUrl: './landing-header.component.html',
@@ -20,12 +22,25 @@ export class LandingHeaderComponent implements OnInit {
   public sidebarItems;
   showtabs: boolean =true;
   
-  constructor(private router: Router, private _userService :UserService, private spinner: SpinnerService) { }
+  constructor(
+    private router: Router, 
+    private _userService :UserService, 
+    private spinner: SpinnerService, 
+    private translate: TranslateService) 
+    {
+      this.translate.use('English');
+    }
 
   ngOnInit() {
     if(localStorage.getItem('supplierLogin') === 'true'){
       this.showtabs = false;
     }
+  }
+
+  public languageArray = ['English', 'Gujarati', 'Hindi'];
+
+  changeLang(lang) {
+    this.translate.use(lang);
   }
   /**
    * Navigates to Dashboard
