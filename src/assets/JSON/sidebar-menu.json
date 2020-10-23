@@ -151,6 +151,13 @@
             "route": "/#/admin/request",
             "disabled": false,
             "children": []
+        },
+        {
+            "name": "Alert Messages",
+            "icon": "",
+            "route": "/#/admin/alert-messages",
+            "disabled": false,
+            "children": []
         }
     ]
 }

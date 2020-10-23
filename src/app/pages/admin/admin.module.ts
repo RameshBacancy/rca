@@ -10,6 +10,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsPagesComponent } from './cms-pages/cms-pages.component';
 import { RegistrationRequestComponent } from './registration-request/registration-request.component';
+import { AlertMessagesComponent } from './alert-messages/alert-messages.component';
 
 const routes: Routes = [
   {
@@ -33,7 +34,11 @@ const routes: Routes = [
       {
         path: 'request',
         component: RegistrationRequestComponent
-      }
+      },
+      {
+        path: 'alert-messages',
+        component: AlertMessagesComponent
+      },
     ]
   },
   {
@@ -52,7 +57,7 @@ const routes: Routes = [
     AdminComponent,
     ChangePasswordComponent, 
     AdminDashboardComponent, 
-    CmsPagesComponent, RegistrationRequestComponent
+    CmsPagesComponent, RegistrationRequestComponent, AlertMessagesComponent
   ],
   imports: [
     CommonModule,

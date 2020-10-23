@@ -214,32 +214,32 @@
                 {
                     "no": 1,
                     "name":"test 1",
-                    "nameOfWork": "Organization Structure",
-                    "attachment": "PDF",
+                    "value": "-",
+                    "documents": [],
                     "isEdit": false,
                     "isMoci": true
                 },
                 {
                     "no": 2,
                     "name":"test 2",
-                    "nameOfWork": "Tax Certificate",
-                    "attachment": "PDF",
+                    "value": "-",
+                    "documents": [],
                     "isEdit": false,
                     "isMoci": true
                 },
                 {
                     "no": 3,
                     "name":"test 3",
-                    "nameOfWork": "Certificates",
-                    "attachment": "PDF",
+                    "value": "-",
+                    "documents": [],
                     "isEdit": false,
                     "isMoci": true
                 },
                 {
                     "no": 4,
                     "name":"test 4",
-                    "nameOfWork": "-",
-                    "attachment": "PDF",
+                    "value": "-",
+                    "documents": [],
                     "isEdit": false,
                     "isMoci": true
                 }
@@ -260,6 +260,7 @@
                 "status": "Active",
                 "statusDate": "12-02-2019",
                 "staffCategory": "A",
+                "country":"Oman",
                 "passportNum": "A459SG576",
                 "recidentCard": "786132",
                 "civilNo": "1567 6578",
@@ -283,6 +284,7 @@
                 "status": "Active",
                 "statusDate": "11-12-2020",
                 "staffCategory": "B",
+                "country":"Omani",
                 "passportNum": "A287894H",
                 "recidentCard": "786132",
                 "civilNo": "1567 1234",
@@ -306,6 +308,7 @@
                 "status": "Active",
                 "statusDate": "11-02-2020",
                 "staffCategory": "A",
+                "country":"non-Omani",
                 "passportNum": "A287894H",
                 "recidentCard": "786132",
                 "civilNo": "3456 6578",
@@ -359,7 +362,7 @@
                 "completion": "2018",
                 "documents": [],
                 "isEdit": false,
-                "isMoci": true
+                "isMoci": false
             },
             {
                 "no": 2,
@@ -372,7 +375,7 @@
                 "completion": "2019",
                 "documents": [],
                 "isEdit": false,
-                "isMoci": true
+                "isMoci": false
             },
             {
                 "no": 3,
@@ -385,7 +388,7 @@
                 "completion": "",
                 "documents": [],
                 "isEdit": false,
-                "isMoci": true
+                "isMoci": false
             }
         ],
         "subContractorDetails": [
@@ -399,7 +402,7 @@
                 "email": "subi@orion.com",
                 "regWithRca": true,
                 "isEdit": false,
-                "isMoci": true
+                "isMoci": false
             },
             {
                 "no": 2,
@@ -411,7 +414,7 @@
                 "email": "subi@orion.com",
                 "regWithRca": false,
                 "isEdit": false,
-                "isMoci": true
+                "isMoci": false
             }
         ],
         "equipmentDetails": [
@@ -424,7 +427,7 @@
                 "regNo": "S 2020",
                 "approxValue": "5000 OMR",
                 "isEdit": false,
-                "isMoci": true
+                "isMoci": false
             },
             {
                 "no": 2,
@@ -435,7 +438,7 @@
                 "regNo": "R 1235",
                 "approxValue": "7500 OMR",
                 "isEdit": false,
-                "isMoci": true
+                "isMoci": false
             },
             {
                 "no": 3,
@@ -446,7 +449,7 @@
                 "regNo": "-",
                 "approxValue": "-",
                 "isEdit": false,
-                "isMoci": true
+                "isMoci": false
             },
             {
                 "no": 4,
@@ -457,35 +460,35 @@
                 "regNo": "-",
                 "approxValue": "-",
                 "isEdit": false,
-                "isMoci": true
+                "isMoci": false
             }
         ],
         "otherDetails": [
             {
                 "no": 1,
                 "nameOfWork": "Organization Structure",
-                "attachment": "PDF",
+                "attachment": [],
                 "isEdit": false,
                 "isMoci": true
             },
             {
                 "no": 2,
                 "nameOfWork": "Tax Certificate",
-                "attachment": "PDF",
+                "attachment": [],
                 "isEdit": false,
                 "isMoci": true
             },
             {
                 "no": 3,
                 "nameOfWork": "Certificates",
-                "attachment": "PDF",
+                "attachment": [],
                 "isEdit": false,
                 "isMoci": true
             },
             {
                 "no": 4,
                 "nameOfWork": "-",
-                "attachment": "PDF",
+                "attachment": [],
                 "isEdit": false,
                 "isMoci": true
             }
@@ -508,6 +511,88 @@
                 "value": "+919 515 6162",
                 "isEdit": false,
                 "isMoci" : true
+            }
+        ],
+        "detailsRemark": [
+            {
+                "no": 1,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 2,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 3,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 4,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 5,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 6,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 7,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 8,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 9,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 10,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 11,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 12,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 13,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 14,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 15,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 16,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 17,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 18,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 19,
+                "content": "Details Not Applicable"
+            },
+            {
+                "no": 20,
+                "content": "Details Not Applicable"
             }
         ]
     },

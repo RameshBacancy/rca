@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-md-12 px-4 mb-3 mt-3">
+        <div class="table-responsive">
+            <button class=" color-white-text background-purple-custom btn ml-2 float-right mb-2" (click)="open(mymodal)">Add
+                New Alert</button>
+            <table class="table table-striped ">
+                <thead>
+                    <tr class="purple-bg text-white">
+                        <th>#</th>
+                        <th>Alert Title</th>
+                        <th>On Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngIf="isdata; else newDeb">
+                        <tr *ngFor="let d of data; index as i">
+                            <td>{{i+1}}</td>
+                            <td>{{d.title}}</td>
+                            <td>{{d.status}}</td>
+                            <td>
+                                <i class="fa fa-eye btn btn-warning mr-2" aria-hidden="true" (click)="open(mymodal, d)"></i>
+                                <i class="fa fa-pencil-square-o btn btn-primary mr-2" aria-hidden="true" (click)="open(mymodal, d)"></i>
+                                <i class="fa fa-trash btn btn-secondary mr-2 red-bg" aria-hidden="true" (click)="delete(d.id, d.name)"></i>
+                            </td>
+                        </tr>
+                    </ng-container>
+                    <ng-template #newDeb>
+                        <tr>
+                            <td colspan="4" class="text-align-center">No Data Found</td>
+                        </tr>
+                    </ng-template>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<ng-template #mymodal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">{{heading}}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span class="fa fa-window-close" aria-hidden="true"></span>
+        </button>
+    </div>
+    <div class="modal-body custom-modal-main">
+        <section class="dark-grey-bg mt-3">
+            <div class="container-fluid px-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <br />
+                    </div>
+                    <div class="col-md-12 ">
+                        <h4 class="w-100">
+                            <input type="text" placeholder="Status for this Alert" class="w-100 fs-14 py-2 px-2" [(ngModel)]="status">
+                        </h4>
+                        <h4 class="w-100">
+                            <input type="text" placeholder="Alert Title" class="w-100 fs-14 py-2 px-2" [(ngModel)]="title">
+                        </h4>
+                        <div class="bg-white">
+                            <angular-editor [(ngModel)]="description" [config]="config"></angular-editor>
+                        </div>
+                        <div class="mt-3" *ngIf="errorMsg != ''">
+                            <span class="text alert text-red fs-13">{{errorMsg}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" type="submit" (click)="save();modal.close('Save click');">Save</button>
+        <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
+            (click)=" modal.close('Save click')">Cancel</button>
+
+    </div>
+</ng-template>

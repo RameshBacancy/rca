@@ -20,9 +20,11 @@ export class SupplierRegisterComponent implements OnInit {
   viewSideBar: boolean = false;
 
   myControl = new FormControl();
-  options: string[] = ['1086391', '1086393', '1216194', '1024511'];
+  options: string[] = ['1086391 - Omantel', '1086393 - Petroleum Development Oman', '1216194 - Raysut Cement', '1024511 - The Shaksy Group'];
   selectedLanguage: any ='English';
   filteredOptions: Observable<string[]>;
+  CRNumber: any;
+  companyName: any;
 
   form = new FormGroup({
     regType: new FormControl('local', [Validators.required]),
@@ -67,14 +69,20 @@ export class SupplierRegisterComponent implements OnInit {
   }
 
   getCR(id){
-    this.form.value.registrationNo = id;
+    let x = id.split(" - ")
+    this.form.value.registrationNo = x[0];
+    this.companyName = x[1];
   }
 
   submitNext() {
+    this.form.patchValue({registrationNo : this.form.value.registrationNo});
+    // localStorage.setItem('comName', this.companyName);
     // this.form.patchValue({registrationNo : this.myControl.value});
     this._userService.registrationLogin(this.form.value.civilNo.toString(), 'civil', this.form.value.regType);
     if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'false') {
+      // this.CRNumber =this.form.value.registrationNo;  
       this.showsNextReg = true;
+
     }
   }
 
@@ -84,12 +92,12 @@ export class SupplierRegisterComponent implements OnInit {
 
 
   submitReg(){
-    if (this.form.status === 'VALID') {
+    // if (this.form.status === 'VALID') {
       this._userService.localRegistration(this.form.value.registrationNo.toString());
       this.spinner.openSpinner();
       const body = { civil_number:localStorage.getItem('civilReg'),cr_number:localStorage.getItem('commercialReg'), register_type:localStorage.getItem('regType')}
       this._userService.supplierRegistration(body)
-     }
+    //  }
   }
 
   back() {

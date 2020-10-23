@@ -67,7 +67,7 @@
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <mat-tab label="General Info">
                     <div class="row pl-2">
-                        <div class="col-md-3 col-lg-3 col-xl-12 px-4 pb-2 ">
+                        <div class="col-xl-12 px-4 pb-2 ">
                             <i class="fa fa-ban text-red fs-14" mat-raised-button
                                 matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
                         </div>
@@ -196,10 +196,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row px-2 py-2">
                         <div class="col-md-12 px-4">
-                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                            <p class="dark-text-1 fs-14 font-weight-bold mb-0" >Details / Notes</p>
+                            <p class="dark-text-1 fs-14 "  *ngIf="!content1" (dblclick)="content1 = !content1">{{this.formData.detailsRemark[0].content}}</p>
+                            <input class="dark-text-1 fs-14 " *ngIf="content1" (keyup.enter)="content1 = false" (clickOutside)="content1 = false" [(ngModel)]=this.formData.detailsRemark[0].content>
                         </div>
                     </div>
                     <div class="row">
@@ -360,9 +361,11 @@
                         </div>
                     </div> -->
                     <div class="row">
-                        <div class="col-md-12 px-4">
-                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                        <div class="col-md-12 px-4 py-2">
+                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                            <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
+                            <p class="dark-text-1 fs-14 "  *ngIf="!content2" (dblclick)="content2 = !content2">{{this.formData.detailsRemark[1].content}}</p>
+                            <input class="dark-text-1 fs-14 " *ngIf="content2" (keyup.enter)="content2 = false" (clickOutside)="content2 = false" [(ngModel)]=this.formData.detailsRemark[1].content>
                         </div>
                     </div>
                     <div class="row">
@@ -613,9 +616,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12 px-4">
-                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                    <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                <div class="col-md-12 px-4  py-2">
+                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                    <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
+                    <p class="dark-text-1 fs-14 "  *ngIf="!content3" (dblclick)="content3 = !content3">{{this.formData.detailsRemark[2].content}}</p>
+                    <input class="dark-text-1 fs-14 " *ngIf="content3" (keyup.enter)="content3 = false" (clickOutside)="content3 = false" [(ngModel)]=this.formData.detailsRemark[2].content>
                 </div>
             </div>
             <div class="row">
@@ -686,9 +691,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12 px-4">
-                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                    <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                <div class="col-md-12 px-4 py-2">
+                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                    <p class="dark-text-1 fs-14 "  *ngIf="!content4" (dblclick)="content4 = !content4">{{this.formData.detailsRemark[3].content}}</p>
+                    <input class="dark-text-1 fs-14 " *ngIf="content4" (keyup.enter)="content4 = false" (clickOutside)="content4 = false" [(ngModel)]=this.formData.detailsRemark[3].content>
+                    <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                 </div>
             </div>
             <div class="row">
@@ -708,7 +715,7 @@
         </mat-step>
         <!-- Communication Method Complete-->
 
-        <!-- Commercial Info -->
+        <!-- Bank Details -->
         <mat-step>
             <ng-template matStepLabel>Bank Details</ng-template>
 
@@ -823,9 +830,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 px-4">
-                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                        <div class="col-md-12 px-4 py-2">
+                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                            <p class="dark-text-1 fs-14 "  *ngIf="!content5" (dblclick)="content5 = !content5">{{this.formData.detailsRemark[4].content}}</p>
+                            <input class="dark-text-1 fs-14 " *ngIf="content5" (keyup.enter)="content5 = false" (clickOutside)="content5 = false" [(ngModel)]=this.formData.detailsRemark[4].content>
+                            <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                         </div>
                     </div>
                     <div class="row">
@@ -890,9 +899,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 px-4">
-                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                        <div class="col-md-12 px-4 py-2">
+                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                            <p class="dark-text-1 fs-14 "  *ngIf="!content6" (dblclick)="content6 = !content6">{{this.formData.detailsRemark[5].content}}</p>
+                            <input class="dark-text-1 fs-14 " *ngIf="content6" (keyup.enter)="content6 = false" (clickOutside)="content6 = false" [(ngModel)]=this.formData.detailsRemark[5].content>
+                            <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                         </div>
                     </div>
                     <div class="row">
@@ -957,13 +968,16 @@
                                                     <label for="bankAcc" class="col-sm-5 col-form-label">Bank
                                                         Account</label>
                                                     <div class="col-sm-7">
-                                                        <input formControlName="bankAcc" id="bankAcc" type="number"
+                                                        <input formControlName="bankAcc" id="bankAcc" type="text"
                                                             class="form-control">
                                                     </div>
                                                     <div *ngIf="bf.bankAcc.touched && bf.bankAcc.invalid"
                                                         class="alert alert-danger">
                                                         <div *ngIf="bf.bankAcc.errors.required" class="col-sm-7">
                                                             *required
+                                                        </div>
+                                                        <div *ngIf="bf.bankAcc.errors.pattern" class="col-sm-7">
+                                                            *numbers only
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1106,9 +1120,11 @@
                     </div>
 
                     <div class="row mt-2">
-                        <div class="col-md-12 px-4">
-                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                        <div class="col-md-12 px-4 py-2">
+                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                            <p class="dark-text-1 fs-14 "  *ngIf="!content7" (dblclick)="content7 = !content7">{{this.formData.detailsRemark[6].content}}</p>
+                            <input class="dark-text-1 fs-14 " *ngIf="content7" (keyup.enter)="content7 = false" (clickOutside)="content7 = false" [(ngModel)]=this.formData.detailsRemark[6].content>
+                            <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                         </div>
                     </div>
                     <div class="row">
@@ -1150,6 +1166,7 @@
                                             <th scope="col" (click)="sorting('other','name')">Label <i
                                                     class="fa fa-sort" aria-hidden="true"></i></th>
                                             <th scope="col">Value</th>
+                                            <th scope="col">Attachment</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -1167,7 +1184,16 @@
                                             </td>
                                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)"><input
                                                     [(ngModel)]="data.name"></td>
-                                            <td><a><input type="text" id="input" name="input"></a>
+                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.value}}
+                                            </td>
+                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)"><input
+                                                    [(ngModel)]="data.value"></td>
+                                            <td>
+                                                <i class="fa fa-folder-open" aria-hidden="true"
+                                                    (click)="openFile(shoeFiles,'bankOther',data)"></i>
+        
+                                                <input type="file" #fileInput id="fileUpload" name="fileUpload"
+                                                    multiple="multiple" style="display: none;" />
                                             </td>
                                         </tr>
                                     </tbody>
@@ -1176,9 +1202,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 px-4">
-                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                        <div class="col-md-12 px-4 py-2">
+                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                            <p class="dark-text-1 fs-14 "  *ngIf="!content8" (dblclick)="content8 = !content8">{{this.formData.detailsRemark[7].content}}</p>
+                            <input class="dark-text-1 fs-14 " *ngIf="content8" (keyup.enter)="content8 = false" (clickOutside)="content8 = false" [(ngModel)]=this.formData.detailsRemark[7].content>
+                            <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                         </div>
                     </div>
                     <div class="row">
@@ -1199,7 +1227,7 @@
                 </mat-tab>
             </mat-tab-group>
         </mat-step>
-        <!-- Commercial Info Complete -->
+        <!-- Bank Details Complete -->
 
         <!-- Employee Details -->
         <mat-step>
@@ -1230,15 +1258,16 @@
                                 <tr class="purple-bg text-white">
                                     <th scope="col" class="custom-width-60">Employee Category</th>
                                     <th scope="col">No. of Employees</th>
+                                    <th scope="col">Omani Employees</th>
+                                    <th scope="col">Non-Omani Employees</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let data of staffCategory ; index as index">
                                     <td>{{data.category}}</td>
-                                    <td>
-                                        {{data.number}}
-                                    </td>
-
+                                    <td>{{data.number}}</td>
+                                    <td>{{data.omani}}</td>
+                                    <td>{{data.nonOmani}}</td>
                                 </tr>
                             </tbody>
 
@@ -1300,6 +1329,8 @@
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th scope="col" (click)="sorting('employee','staffCategory')">Employee Category <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('employee','country')">Country <i
+                                        class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th scope="col" (click)="sorting('employee','passportNum')">Passport Number <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th scope="col" (click)="sorting('employee','recidentCard')">Resident card Number <i
@@ -1396,6 +1427,11 @@
                                         (keyup.enter)="enteredDetails( 'employee',data)">
                                         <input [(ngModel)]="data.staffCategory"></td>
                                     <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                        {{data.country}}</td>
+                                    <td *ngIf="data.isEdit && !data.isMoci"
+                                        (keyup.enter)="enteredDetails( 'employee',data)">
+                                        <input [(ngModel)]="data.country"></td>
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
                                         {{data.passportNum}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'employee',data)">
@@ -1434,9 +1470,11 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-12 px-4">
-                        <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                        <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                    <div class="col-md-12 px-4 py-2">
+                        <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                        <p class="dark-text-1 fs-14 "  *ngIf="!content9" (dblclick)="content9 = !content9">{{this.formData.detailsRemark[8].content}}</p>
+                        <input class="dark-text-1 fs-14 " *ngIf="content9" (keyup.enter)="content9 = false" (clickOutside)="content9 = false" [(ngModel)]=this.formData.detailsRemark[8].content>
+                        <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                     </div>
                 </div>
             </div>
@@ -1465,6 +1503,10 @@
                 <!-- OCCI Data -->
                 <mat-tab label="OCCI Data">
                     <div class="row">
+                        <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
+                            <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
+                        </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
                             <p class="fs-14">{{formData.ministriesData1.regDate}}</p>
@@ -1489,9 +1531,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 px-4">
-                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                        <div class="col-md-12 px-4 py-2">
+                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                            <p class="dark-text-1 fs-14 "  *ngIf="!content10" (dblclick)="content10 = !content10">{{this.formData.detailsRemark[9].content}}</p>
+                            <input class="dark-text-1 fs-14 " *ngIf="content10" (keyup.enter)="content10 = false" (clickOutside)="content10 = false" [(ngModel)]=this.formData.detailsRemark[9].content>
+                            <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                         </div>
                     </div>
                     <div class="row">
@@ -1565,9 +1609,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 px-4">
-                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                        <div class="col-md-12 px-4 py-2">
+                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                            <p class="dark-text-1 fs-14 "  *ngIf="!content11" (dblclick)="content11 = !content11">{{this.formData.detailsRemark[10].content}}</p>
+                            <input class="dark-text-1 fs-14 " *ngIf="content11" (keyup.enter)="content11 = false" (clickOutside)="content11 = false" [(ngModel)]=this.formData.detailsRemark[10].content>
+                            <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                         </div>
                     </div>
                     <div class="row">
@@ -1632,9 +1678,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 px-4">
-                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                        <div class="col-md-12 px-4 py-2">
+                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                            <p class="dark-text-1 fs-14 "  *ngIf="!content12" (dblclick)="content12 = !content12">{{this.formData.detailsRemark[11].content}}</p>
+                            <input class="dark-text-1 fs-14 " *ngIf="content12" (keyup.enter)="content12 = false" (clickOutside)="content12 = false" [(ngModel)]=this.formData.detailsRemark[11].content>
+                            <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                         </div>
                     </div>
                     <div class="row">
@@ -1702,9 +1750,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 px-4">
-                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                        <div class="col-md-12 px-4 py-2">
+                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                            <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
+                            <p class="dark-text-1 fs-14 "  *ngIf="!content13" (dblclick)="content13 = !content13">{{this.formData.detailsRemark[12].content}}</p>
+                            <input class="dark-text-1 fs-14 " *ngIf="content13" (keyup.enter)="content13 = false" (clickOutside)="content13 = false" [(ngModel)]=this.formData.detailsRemark[12].content>
                         </div>
                     </div>
                     <div class="row">
@@ -1762,9 +1812,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 px-4">
-                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                        <div class="col-md-12 px-4 py-2">
+                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                            <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
+                            <p class="dark-text-1 fs-14 "  *ngIf="!content14" (dblclick)="content14 = !content14">{{this.formData.detailsRemark[13].content}}</p>
+                            <input class="dark-text-1 fs-14 " *ngIf="content14" (keyup.enter)="content14 = false" (clickOutside)="content14 = false" [(ngModel)]=this.formData.detailsRemark[13].content>
                         </div>
                     </div>
                     <div class="row">
@@ -1839,9 +1891,11 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12 px-4">
-                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                        <div class="col-md-12 px-4 py-2">
+                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                            <p class="dark-text-1 fs-14 "  *ngIf="!content15" (dblclick)="content15 = !content15">{{this.formData.detailsRemark[14].content}}</p>
+                            <input class="dark-text-1 fs-14 " *ngIf="content15" (keyup.enter)="content15 = false" (clickOutside)="content15 = false" [(ngModel)]=this.formData.detailsRemark[14].content>
+                            <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                         </div>
                     </div>
                     <div class="row">
@@ -1906,9 +1960,11 @@
                         </div> -->
                     </div>
                     <div class="row pt-4">
-                        <div class="col-md-12 px-4">
-                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                        <div class="col-md-12 px-4 py-2">
+                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                            <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
+                            <p class="dark-text-1 fs-14 "  *ngIf="!content16" (dblclick)="content16 = !content16">{{this.formData.detailsRemark[15].content}}</p>
+                            <input class="dark-text-1 fs-14 " *ngIf="content16" (keyup.enter)="content16 = false" (clickOutside)="content16 = false" [(ngModel)]=this.formData.detailsRemark[15].content>
                         </div>
                     </div>
                     <div class="row">
@@ -2105,9 +2161,11 @@
 
 
             <div class="row pt-2">
-                <div class="col-md-12 px-4">
-                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                    <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                <div class="col-md-12 px-4 py-2">
+                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                    <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
+                    <p class="dark-text-1 fs-14 "  *ngIf="!content17" (dblclick)="content17 = !content17">{{this.formData.detailsRemark[16].content}}</p>
+                    <input class="dark-text-1 fs-14 " *ngIf="content17" (keyup.enter)="content17 = false" (clickOutside)="content17 = false" [(ngModel)]=this.formData.detailsRemark[16].content>
                 </div>
             </div>
             <div class="row">
@@ -2139,7 +2197,7 @@
                         <table class="table table-striped mb-0 ">
                             <thead>
                                 <tr class="purple-bg text-white">
-                                    <th scope="col"></th>
+                                    <!-- <th scope="col"></th> -->
                                     <th scope="col" class="custom-width-60" (click)="sorting('project','no')">No <i
                                             class="fa fa-sort" aria-hidden="true"></i> </th>
                                     <th scope="col" (click)="sorting('project','name')">Name of Project <i
@@ -2162,7 +2220,7 @@
                             <tbody>
                                 <tr *ngFor="let data of projectData | filter : searchText; index as index"
                                     (clickOutside)="enteredDetails( 'project',data)">
-                                    <td *ngIf="data.isMoci">
+                                    <!-- <td *ngIf="data.isMoci">
                                         <i class="fa fa-ban text-red fs-14" mat-raised-button
                                             matTooltip="Data fetched from interface - not editable"
                                             aria-hidden="true"></i>
@@ -2170,7 +2228,7 @@
                                     <td *ngIf="!data.isMoci">
                                         <i class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit Data"
                                             (click)="data.isEdit = true" aria-hidden="true"></i>
-                                    </td>
+                                    </td> -->
                                     <td>{{data.no}}</td>
                                     <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
                                         {{data.name}}</td>
@@ -2226,9 +2284,11 @@
             </div>
 
             <div class="row">
-                <div class="col-md-12 px-4">
-                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                    <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                <div class="col-md-12 px-4 py-2">
+                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                    <p class="dark-text-1 fs-14 "  *ngIf="!content18" (dblclick)="content18 = !content18">{{this.formData.detailsRemark[17].content}}</p>
+                    <input class="dark-text-1 fs-14 " *ngIf="content18" (keyup.enter)="content18 = false" (clickOutside)="content18 = false" [(ngModel)]=this.formData.detailsRemark[17].content>
+                    <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                 </div>
             </div>
             <div class="row">
@@ -2260,7 +2320,7 @@
                         <table class="table table-striped mb-0 ">
                             <thead>
                                 <tr class="purple-bg text-white">
-                                    <th scope="col"></th>
+                                    <!-- <th scope="col"></th> -->
                                     <th scope="col">
                                         <div class="d-flex"> <span> <a class=" text-white fs-14"><i
                                                         class="fa fa-check"></i></a> </span> <span class="ml-3 pl-1 ">
@@ -2268,10 +2328,10 @@
                                                 </a> </span> </div>
                                     </th>
                                     <th scope="col" class="custom-width-90" (click)="sorting('subcontractor','no')">
-                                        sub-contractor commercial reg number <i class="fa fa-sort"
+                                        Commercial Reg. Number <i class="fa fa-sort"
                                             aria-hidden="true"></i></th>
                                     <th scope="col" class="custom-width-250"
-                                        (click)="sorting('subcontractor','nameOfWork')">sub-contractor name<i
+                                        (click)="sorting('subcontractor','nameOfWork')">Name <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th scope="col" (click)="sorting('subcontractor','telephone')">Telephone <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
@@ -2286,7 +2346,7 @@
                             <tbody>
                                 <tr *ngFor="let data of subContractorData | filter : searchText; index as index"
                                     (clickOutside)="enteredDetails( 'subContractor',data)">
-                                    <td *ngIf="data.isMoci">
+                                    <!-- <td *ngIf="data.isMoci">
                                         <i class="fa fa-ban text-red fs-14" mat-raised-button
                                             matTooltip="Data fetched from interface - not editable"
                                             aria-hidden="true"></i>
@@ -2294,7 +2354,7 @@
                                     <td *ngIf="!data.isMoci">
                                         <i class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit Data"
                                             (click)="data.isEdit = true" aria-hidden="true"></i>
-                                    </td>
+                                    </td> -->
                                     <td>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value=""
@@ -2344,9 +2404,11 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-md-12 px-4">
-                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                    <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                <div class="col-md-12 px-4 py-2">
+                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                    <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
+                    <p class="dark-text-1 fs-14 "  *ngIf="!content19" (dblclick)="content19 = !content19">{{this.formData.detailsRemark[18].content}}</p>
+                    <input class="dark-text-1 fs-14 " *ngIf="content19" (keyup.enter)="content19 = false" (clickOutside)="content19 = false" [(ngModel)]=this.formData.detailsRemark[18].content>
                 </div>
             </div>
 
@@ -2379,7 +2441,7 @@
                         <table class="table table-striped mb-0 ">
                             <thead>
                                 <tr class="purple-bg text-white">
-                                    <th scope="col"></th>
+                                    <!-- <th scope="col"></th> -->
                                     <th scope="col" (click)="sorting('equipment','no')">SL No. <i class="fa fa-sort"
                                             aria-hidden="true"></i></th>
                                     <th scope="col" (click)="sorting('equipment','type')">Type of Equipment <i
@@ -2399,7 +2461,7 @@
                             <tbody>
                                 <tr *ngFor="let data of equipmentData | filter : searchText; index as index"
                                     (clickOutside)="enteredDetails( 'equipment',data)">
-                                    <td *ngIf="data.isMoci">
+                                    <!-- <td *ngIf="data.isMoci">
                                         <i class="fa fa-ban text-red fs-14" mat-raised-button
                                             matTooltip="Data fetched from interface - not editable"
                                             aria-hidden="true"></i>
@@ -2407,7 +2469,7 @@
                                     <td *ngIf="!data.isMoci">
                                         <i class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit Data"
                                             (click)="data.isEdit = true" aria-hidden="true"></i>
-                                    </td>
+                                    </td> -->
                                     <td>{{data.no}}</td>
                                     <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
                                         {{data.type}}</td>
@@ -2446,13 +2508,32 @@
                         </table>
                     </div>
                 </div>
-                <div class="col-md-12 px-4">
-                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                    <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                <div class="col-md-12 px-4 py-2">
+                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                    <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
+                    <p class="dark-text-1 fs-14 "  *ngIf="!content20" (dblclick)="content20 = !content20">{{this.formData.detailsRemark[19].content}}</p>
+                    <input class="dark-text-1 fs-14 " *ngIf="content20" (keyup.enter)="content20 = false" (clickOutside)="content20 = false" [(ngModel)]=this.formData.detailsRemark[19].content>
                 </div>
             </div>
 
             <div class="row">
+                <div class="col-md-12 mb-5 px-4">
+                    <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2" matStepperPrevious><i
+                            class="fa fa-caret-left"></i> Previous</button>
+                    <button type="button"
+                        class="btn border   btn-disabled-color-gray px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                        [disabled]="true">Next <i class="fa fa-caret-right"></i></button>
+                    <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        (click)="submitRegistration()">Finish</button>
+                    <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save
+                        as Draft</button>
+                    <a href="/#/landing/supplier-registration/dashboard">
+                        <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    </a>
+                </div>
+            </div>
+
+            <!-- <div class="row">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2" matStepperPrevious><i
                             class="fa fa-caret-left"></i> Previous</button>
@@ -2465,11 +2546,11 @@
                         <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                     </a>
                 </div>
-            </div>
+            </div> -->
         </mat-step>
 
         <!-- Site Visits -->
-        <mat-step>
+        <!-- <mat-step>
             <ng-template matStepLabel>Site Visits</ng-template>
 
             <div class="pt-2 pb-2">
@@ -2548,8 +2629,10 @@
                 </div>
             </div>
             <div class="row mt-2">
-                <div class="col-md-12 px-4">
-                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                <div class="col-md-12 px-4 py-2">
+                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                    <p class="dark-text-1 fs-14 "  *ngIf="!content21" (dblclick)="content21 = !content21">{{this.formData.detailsRemark[20].content}}</p>
+                    <input class="dark-text-1 fs-14 " *ngIf="content21" (keyup.enter)="content21 = false" (clickOutside)="content21 = false" [(ngModel)]=this.formData.detailsRemark[20].content>
                     <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                 </div>
             </div>
@@ -2561,10 +2644,8 @@
                     <button type="button"
                         class="btn border   btn-disabled-color-gray px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         [disabled]="true">Next <i class="fa fa-caret-right"></i></button>
-                    <!-- <a href="/#/landing/supplier-registration/dashboard"> -->
                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         (click)="submitRegistration()">Finish</button>
-                    <!-- </a> -->
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save
                         as Draft</button>
                     <a href="/#/landing/supplier-registration/dashboard">
@@ -2572,7 +2653,7 @@
                     </a>
                 </div>
             </div>
-        </mat-step>
+        </mat-step> -->
     </mat-horizontal-stepper>
 </div>
 <div *ngIf="completed">

@@ -39,7 +39,7 @@ export class LocalRegistrationComponent implements OnInit {
   bankform: FormGroup = new FormGroup({
     bankingId: new FormControl('', [Validators.required]),
     bankingIdname: new FormControl('', [Validators.required]),
-    bankAcc: new FormControl('', [Validators.required]),
+    bankAcc: new FormControl('', [Validators.required,, Validators.pattern("^[0-9]*$")]),
     bankName: new FormControl('', [Validators.required]),
     bankBranch: new FormControl('', [Validators.required]),
     holderName: new FormControl('', [Validators.required]),
@@ -134,12 +134,16 @@ export class LocalRegistrationComponent implements OnInit {
     this.staffCategory = []
     this.arrayOfCatagory.map( a => {
       let index = 0;
+      let omaniIndex = 0;
       this.formData.employeDetails.map( (d) => {
         if(d.staffCategory == a){
           index = index+1;
         }
+        if(d.country.toLowerCase() == 'omani') {
+          omaniIndex = omaniIndex+1;
+        }
       })
-      this.staffCategory.push({category: a, number: index});
+      this.staffCategory.push({category: a, number: index, omani: omaniIndex, nonOmani: index-omaniIndex});
     })
   }
 
@@ -238,6 +242,20 @@ export class LocalRegistrationComponent implements OnInit {
       }
       this.filesList =  this.formData.ministriesData3.loftc;
     }
+    if (this.selectedPage === 'bankOther') {
+      this.filesList = [];
+      this.otherData.map((d, i) => {
+        if (d.no == data.no) {
+          if (flag == false) {
+            d.documents.push(file.data);
+          }
+          d.documents.map((d1) => {
+            this.filesList.push(d1)
+            file.inProgress = false;
+          })
+        }
+      });
+    }
   }
 
   private upload(data, flag) {
@@ -322,6 +340,16 @@ export class LocalRegistrationComponent implements OnInit {
     if(this.selectedPage === 'loftc'){
       this.filesList = [];
       this.filesList = this.formData.ministriesData3.loftc;
+    }
+    if (this.selectedPage === 'bankOther') {
+      this.filesList = [];
+      this.otherData.map((d, i) => {
+        if (d.no == data.no) {
+          d.documents.map((d1) => {
+            this.filesList.push(d1)
+          })
+        }
+      });
     }
     this.open(content)
   }
@@ -411,6 +439,19 @@ export class LocalRegistrationComponent implements OnInit {
             this.filesList = this.formData.ministriesData3.loftc;
           }
         })
+      }
+      if (this.selectedPage === 'bankOther') {
+        this.filesList = [];
+        this.otherData.map((d, i) => {
+          if (d.no == this.uploadData.no) {
+            d.documents.filter((f, i) => {
+              if (f.name == file.name) {
+                d.documents.splice(i, 1)
+                this.filesList = d.documents
+              }
+            })
+          }
+        });
       }
     }
   }
@@ -822,23 +863,24 @@ export class LocalRegistrationComponent implements OnInit {
       }
     }
     if (datatype === 'other') {
-      if (data.nameOfWork !== "") {
+      if (data.name !== "") {
         this.otherData.map((d, i) => {
           if (d.no == data.no) {
             d = data
           }
         });
-        if (data.nameOfWork === " * ") {
-          data.nameOfWork = "",
+        if (data.name === " * ") {
+            data.name = "",
             data.isEdit = true;
         }
       } else {
         this.otherData.map((data, i) => {
-          if (data.nameOfWork == "") {
-            this.otherData.splice(i, 1);
+          if (data.name == "") {
+            // this.otherData.splice(i, 1);
+            data.name = 'test '+(i+1)+'';
           }
         })
-        this.alertService.pushError('nameOfWork can not be empty.')
+        this.alertService.pushError('name can not be empty.')
       }
     }
     if (datatype === 'activity') {
@@ -961,7 +1003,7 @@ export class LocalRegistrationComponent implements OnInit {
         this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetails, 'asc', str)
       }
       if (property === 'other') {
-        this.otherData = this.sortByPipe.transform(this.formData.otherDetails, 'asc', str)
+        this.otherData = this.sortByPipe.transform(this.formData.commercialInfo.otherDetails, 'asc', str)
       }
       if (property === 'activity') {
         this.activityData = this.sortByPipe.transform(this.formData.activities, 'asc', str)
@@ -996,7 +1038,7 @@ export class LocalRegistrationComponent implements OnInit {
         this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetails, 'desc', str)
       }
       if (property === 'other') {
-        this.otherData = this.sortByPipe.transform(this.formData.otherDetails, 'desc', str)
+        this.otherData = this.sortByPipe.transform(this.formData.commercialInfo.otherDetails, 'desc', str)
       }
       if (property === 'activity') {
         this.activityData = this.sortByPipe.transform(this.formData.activities, 'desc', str)
