@@ -310,13 +310,13 @@
                     </div>
                     <!-- <div class="row">
                         <div class="col-md-3 px-4 position-relative mb-3">
-                            <div class="landing-menu" (click)="openMenu()">
+                            <div class="landing-menu" (click)="activityMenu1 = !activityMenu1"  (clickOutside)="activityMenu1 = false">
                                 <div
                                     class="bg-light border rounded p-2 mb-0 fs-14 text-center font-italic font-weight-bold  dark-text-1 w-170">
                                     Address ID : {{selectedAddress.addressID}} <i class="fa fa-caret-down"
                                         aria-hidden="true"></i>
                                 </div>
-                                <ul *ngIf="activityMenu" class="landing-dropdown w-170">
+                                <ul *ngIf="activityMenu1" class="landing-dropdown w-170">
                                     <li *ngFor="let address of allAddresses" (click)="selectedAddress = address">
                                         {{address.addressID}}</li>
                                 </ul>
@@ -1577,11 +1577,11 @@
                         </div>
                         <div class="col-md-3 col-lg-3 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registered Activities </h5>
-                            <div class="landing-menu" (click)="openMenu()">
+                            <div class="landing-menu" (click)="activityMenu2 = !activityMenu2"  (clickOutside)="activityMenu2 = false">
                                 <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
                                     Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
                                 </div>
-                                <ul *ngIf="activityMenu" class="landing-dropdown w-170">
+                                <ul *ngIf="activityMenu2" class="landing-dropdown w-170">
                                     <li>Activity name 1</li>
                                     <li>Activity name 2</li>
                                     <li>Activity name 3</li>
@@ -1665,11 +1665,11 @@
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
-                            <div class="landing-menu" (click)="openMenu()">
+                            <div class="landing-menu" (click)="activityMenu3 = !activityMenu3"  (clickOutside)="activityMenu3 = false">
                                 <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
                                     Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
                                 </div>
-                                <ul *ngIf="activityMenu" class="landing-dropdown w-170">
+                                <ul *ngIf="activityMenu3" class="landing-dropdown w-170">
                                     <li>Activity name 1</li>
                                     <li>Activity name 2</li>
                                     <li>Activity name 3</li>
@@ -1737,11 +1737,11 @@
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
-                            <div class="landing-menu" (click)="openMenu()">
+                            <div class="landing-menu" (click)="activityMenu4 = !activityMenu4"  (clickOutside)="activityMenu4 = false">
                                 <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
                                     Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
                                 </div>
-                                <ul *ngIf="activityMenu" class="landing-dropdown w-170">
+                                <ul *ngIf="activityMenu4" class="landing-dropdown w-170">
                                     <li>Activity name 1</li>
                                     <li>Activity name 2</li>
                                     <li>Activity name 3</li>
@@ -1940,11 +1940,11 @@
                     <div class="row">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
-                            <div class="landing-menu" (click)="openMenu()">
+                            <div class="landing-menu" (click)="activityMenu5 = !activityMenu5"  (clickOutside)="activityMenu5 = false">
                                 <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
                                     Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
                                 </div>
-                                <ul *ngIf="activityMenu" class="landing-dropdown w-170">
+                                <ul *ngIf="activityMenu5" class="landing-dropdown w-170">
                                     <li>Activity name 1</li>
                                     <li>Activity name 2</li>
                                     <li>Activity name 3</li>
@@ -2020,11 +2020,11 @@
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
-                    <div class="landing-menu" (click)="openMenu()">
+                    <div class="landing-menu" (click)="activityMenu6 = !activityMenu6"  (clickOutside)="activityMenu6 = false">
                         <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
                             Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
                         </div>
-                        <ul *ngIf="activityMenu" class="landing-dropdown w-170">
+                        <ul *ngIf="activityMenu6" class="landing-dropdown w-170">
                             <li>Activity name 1</li>
                             <li>Activity name 2</li>
                             <li>Activity name 3</li>
@@ -2060,12 +2060,12 @@
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-4  px-4 pb-2">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
-                    <div class="landing-menu" (click)="activityMenu1 = !activityMenu1"
-                        (clickOutside)="activityMenu1 = false">
+                    <div class="landing-menu" (click)="activityMenu7 = !activityMenu7"
+                        (clickOutside)="activityMenu7 = false">
                         <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
                             Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
                         </div>
-                        <ul *ngIf="activityMenu1" class="landing-dropdown w-170">
+                        <ul *ngIf="activityMenu7" class="landing-dropdown w-170">
                             <li>Activity name 1</li>
                             <li>Activity name 2</li>
                             <li>Activity name 3</li>
@@ -2141,11 +2141,11 @@
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
-                    <div class="landing-menu" (click)="activityMenu3 = !activityMenu3">
+                    <div class="landing-menu" (click)="activityMenu8 = !activityMenu8"  (clickOutside)="activityMenu8 = false">
                         <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
                             Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
                         </div>
-                        <ul *ngIf="activityMenu3" class="landing-dropdown w-170">
+                        <ul *ngIf="activityMenu8" class="landing-dropdown w-170">
                             <li>Activity name 1</li>
                             <li>Activity name 2</li>
                             <li>Activity name 3</li>

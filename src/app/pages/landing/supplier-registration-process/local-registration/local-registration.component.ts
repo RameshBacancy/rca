@@ -135,15 +135,19 @@ export class LocalRegistrationComponent implements OnInit {
     this.arrayOfCatagory.map( a => {
       let index = 0;
       let omaniIndex = 0;
+      let nonOmaniIndex = 0;
       this.formData.employeDetails.map( (d) => {
         if(d.staffCategory == a){
           index = index+1;
-        }
-        if(d.country.toLowerCase() == 'omani') {
-          omaniIndex = omaniIndex+1;
+          if(d.country.toLowerCase() == 'omani') {
+            omaniIndex = omaniIndex+1;
+          }
+          else {
+            nonOmaniIndex = nonOmaniIndex+1
+          }
         }
       })
-      this.staffCategory.push({category: a, number: index, omani: omaniIndex, nonOmani: index-omaniIndex});
+      this.staffCategory.push({category: a, number: index, omani: omaniIndex, nonOmani: nonOmaniIndex});
     })
   }
 
@@ -592,6 +596,7 @@ export class LocalRegistrationComponent implements OnInit {
         "expDate": "",
         "experience": "",
         "appointmentDate": "",
+        "country": "-",
         "status": "",
         "statusDate": "",
         "staffCategory": "",
