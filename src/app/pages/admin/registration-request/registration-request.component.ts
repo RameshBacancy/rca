@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class RegistrationRequestComponent implements OnInit {
 
   data: any[] = [];
-  isdata: boolean = true;
+  isdata = false;
   closeResult: string;
   viewData: any;
 
@@ -23,32 +23,35 @@ export class RegistrationRequestComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.spinner.openSpinner();
     this.userData();
   }
 
-  approve(id){
+  approve(id) {
     this.spinner.openSpinner();
-    this.userService.approveReject(id,'approved')
+    this.userService.approveReject(id, 'approved');
   }
 
-  reject(id){
+  reject(id) {
     this.spinner.openSpinner();
-    this.userService.approveReject(id,'reject')
+    this.userService.approveReject(id, 'reject');
   }
 
-  userData(){
-    this.data = [];
-    this.data = this.userService.getrequests();
-    // issue here
-    // this.ref.detectChanges();
-
+  userData() {
+    this.userService.getrequests().subscribe(d => {
+      this.data = d.data.filter( m => {
+        if (m.register_status === 'finish') {
+        return m;
+        }
+      });
+      if (this.data.length > 0) {
+        this.isdata = true;
+        this.ref.detectChanges();
+      }
+    });
   }
   open(content, d) {
 
     this.viewData = d;
-    // console.log(this.viewData);
-
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
 
       this.closeResult = `Closed with: ${result}`;

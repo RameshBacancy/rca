@@ -22,20 +22,20 @@ export function createTranslateLoader(http: HttpClient) {
 const routes: Routes = [
   // { path: '', redirectTo: 'auth/login' },
   // { path: 'auth/login', component: LoginComponent },
-  { 
-    path: 'register', 
-    component: RegisterationComponent 
+  {
+    path: 'register',
+    component: RegisterationComponent
   },
   {
     path: 'login',
     component: LoginComponent
   },
   {
-    path:'forgetpassword',
-    component:ForgetPasswordComponent
+    path: 'forgetpassword',
+    component: ForgetPasswordComponent
   },
-  { 
-    path: 'supplierRegistration', 
+  {
+    path: 'supplierRegistration',
     component: SupplierRegisterComponent
   },
   {
@@ -52,9 +52,9 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    LoginComponent, 
-    SupplierRegisterComponent, 
-    RegisterationComponent, 
+    LoginComponent,
+    SupplierRegisterComponent,
+    RegisterationComponent,
     ForgetPasswordComponent,
   ],
   imports: [

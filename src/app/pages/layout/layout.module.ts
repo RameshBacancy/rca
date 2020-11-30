@@ -5,6 +5,10 @@ import { LandingSidebarComponent } from './landing-sidebar/landing-sidebar.compo
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -19,6 +23,11 @@ export function createTranslateLoader(http: HttpClient) {
   imports: [
     CommonModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatAutocompleteModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -317,3 +317,28 @@
           li:last-child { border-bottom: none;}
       }
   }
+  
+  // .color-white{
+  //   color: #fff !important;
+  // }
+  // .color-black{
+  //   color: #000 !important;
+  // }
+
+//  ::ng-deep{
+//     .mat-form-field-appearance-legacy .mat-form-field-underline{
+//       background-color: #fff;
+//     }
+//     .mat-form-field.mat-focused  .mat-form-field-ripple {
+//       background-color: rgb(194, 194, 194);
+//     }
+//     .mat-form-field-type-mat-native-select .mat-form-field-infix::before {
+//       color: #fff;
+//     }
+//     .mat-form-field-type-mat-native-select .mat-form-field-infix::after {
+//       color: #fff;
+//     }
+//     .mat-form-field-type-mat-native-select.mat-focused:not(.mat-form-field-invalid) .mat-form-field-infix::after{
+//       color: rgb(194, 194, 194);
+//     }
+//   }

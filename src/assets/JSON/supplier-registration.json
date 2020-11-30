@@ -217,7 +217,7 @@
                     "value": "-",
                     "documents": [],
                     "isEdit": false,
-                    "isMoci": true
+                    "isMoci": false
                 },
                 {
                     "no": 2,
@@ -225,7 +225,7 @@
                     "value": "-",
                     "documents": [],
                     "isEdit": false,
-                    "isMoci": true
+                    "isMoci": false
                 },
                 {
                     "no": 3,
@@ -233,7 +233,7 @@
                     "value": "-",
                     "documents": [],
                     "isEdit": false,
-                    "isMoci": true
+                    "isMoci": false
                 },
                 {
                     "no": 4,
@@ -241,7 +241,7 @@
                     "value": "-",
                     "documents": [],
                     "isEdit": false,
-                    "isMoci": true
+                    "isMoci": false
                 }
             ]
         },
@@ -990,10 +990,24 @@
         ],
         "BankDetails":[
             {
-            "bankAcc": "savings",
-            "bankName":"Bank Muscat",
-            "bankBranch": "-",
-            "holderName": "user"
+                "bankingId": "BK01",
+                "bankingIdname": "Muscat Bank of OMAN",
+                "bankAcc": "1234567890",
+                "bankName":"Bank Muscat",
+                "bankBranch": "-",
+                "holderName": "user",
+                "isMoci": true
+            }
+        ],
+        "individualBankDetails":[
+            {
+                "bankingId": "BK01",
+                "bankingIdname": "Muscat Bank of OMAN",
+                "bankAcc": "1234567890",
+                "bankName":"Bank Muscat",
+                "bankBranch": "-",
+                "holderName": "user",
+                "isMoci": true
             }
         ],
         "otherDetails": [
@@ -1025,6 +1039,141 @@
                 "attachment": "PDF",
                 "isEdit": false
             }
-        ]
+        ],
+        "personalData":[
+            {  
+                "no": 1,      
+                "nationality": "Indian",
+                "idtype":"Citizen Card",
+                "designation": "Project Manager",
+                "age":48,
+                "dob":"01/06/1972",
+                "members":"4",
+                "socialStatus" : "Married",
+                "familySecurity":"No",
+                "documents": [],
+                "isMoci": true,
+                "isEdit": false
+            },
+            {  
+                "no": 2,      
+                "nationality": "Omani",
+                "idtype":"Citizen Card1",
+                "designation": "CEO",
+                "age":34,
+                "dob":"12/10/1986",
+                "members":"4",
+                "socialStatus" : "Married",
+                "familySecurity":"No",
+                "documents": [],
+                "isMoci": true,
+                "isEdit": false
+            }
+        ],
+        "individualdetails": {
+            "generalInfo":{
+                "crNo": "1567 6578",
+                "civilNo": "1567 6578",
+                "expDate": "1567 6578",
+                "arabicName": "R Bala",
+                "englishName": "R Bala",
+                "companyInfo":"Company Info",
+                "activities": "1567 6578",
+                "bankName": "Bank Muscat",
+                "accNo": "7191 8000",
+                "accHolder": "Electroman LLC",
+                "omaniratio": "-"
+            },
+            "address": {
+                "addressDetails": [
+                    {
+                        "addressID" : "1",
+                        "addressLine1": "10-N, Martingale road",
+                        "addressLine2": "Suite 600",
+                        "language": "English",
+                        "country": "Oman",
+                        "isEdit": false,
+                        "isMoci": true
+                    },
+                    {
+                        "addressID" : "2",
+                        "addressLine1": "12-N, Martingale road",
+                        "addressLine2": "Suite 601",
+                        "language": "English",
+                        "country": "Oman",
+                        "isEdit": false,
+                        "isMoci": true
+                    }
+                ]
+            },
+            "personalData":[
+                {  
+                    "no": 1,      
+                    "nationality": "Indian",
+                    "idtype":"Citizen Card",
+                    "designation": "Project Manager",
+                    "age":48,
+                    "dob":"01/06/1972",
+                    "members":"4",
+                    "socialStatus" : "Married",
+                    "familySecurity":"No"
+                },
+                {  
+                    "no": 2,      
+                    "nationality": "Omani",
+                    "idtype":"Citizen Card",
+                    "designation": "CEO",
+                    "age":34,
+                    "dob":"12/10/1986",
+                    "members":"4",
+                    "socialStatus" : "Married",
+                    "familySecurity":"No"
+                }
+            ],
+            "comunicationMethod": [
+                {
+                    "no" : 1,
+                    "method": "Telephone",
+                    "value": "+919 515 6162",
+                    "isEdit": false,
+                    "isMoci":true
+                },
+                {
+                    "no" : 2,
+                    "method": "P.O.Box",
+                    "value": "762 - Muscat",
+                    "isEdit": false,
+                    "isMoci":true
+                },
+                {
+                    "no" : 3,
+                    "method": "Fax",
+                    "value": "414-589-8745",
+                    "isEdit": false,
+                    "isMoci":true
+                },
+                {
+                    "no" : 4,
+                    "method": "Legal Status",
+                    "value": "valid",
+                    "isEdit": false,
+                    "isMoci":true
+                },
+                {
+                    "no" : 5,
+                    "method": "P C",
+                    "value": "72666",
+                    "isEdit": false,
+                    "isMoci":true
+                },
+                {
+                    "no" : 6,
+                    "method": "Email",
+                    "value": "user@yopmail.com",
+                    "isEdit": false,
+                    "isMoci":true
+                }
+            ]
+        }
     }
 }

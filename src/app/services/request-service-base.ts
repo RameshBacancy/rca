@@ -25,10 +25,10 @@ export class RequestServiceBase {
       catchError(err => this.handleErrorBase(err)));
   }
   /**
-  * Executes a get http call to backend
-  * @param path path without base url
-  * @param body body object
-  */
+   * Executes a get http call to backend
+   * @param path path without base url
+   * @param body body object
+   */
   public httpGetImage(path) {
     return this.http.get(`${BASE_URL}${path}`, { responseType: 'text' }).pipe(data => data);
   }

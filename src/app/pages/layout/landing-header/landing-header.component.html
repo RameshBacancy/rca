@@ -9,11 +9,12 @@
       </div>
     </div>
     <span>
-      <a class="header-menu" ><i class="fa fa-home text-white fs-16 mr-3"></i> </a>
+      <a class="header-menu"><i class="fa fa-home text-white fs-16 mr-3"></i> </a>
     </span>
     <span>
-      <a class="header-menu-2" ><i class="fa fa-th text-white fs-16"></i></a>
+      <a class="header-menu-2"><i class="fa fa-th text-white fs-16"></i></a>
     </span>
+   
     <!-- <nav class="navbar navbar-expand-lg bg-light" style="height: 50px;padding: 2px;margin-left: 30px;">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
@@ -33,15 +34,25 @@
       </div>
     </nav> -->
   </div>
-  <div class="right-side" *ngIf="showsidebar">
-    <div class="landing-menu" (click)="openMenu()" (clickOutside)="handleClickOutside()">
-      <div class="landing-pic"></div>
-      <div *ngIf="headerMenu" class="landing-dropdown">
-        <ul>
-          <li><a routerLinkActive="active">My Profile</a></li>
-          <li *ngIf="showtabs" (click)="onChangePassword()"><a routerLinkActive="active">Change Password</a></li>
-          <li (click)="onLogOut()"><a routerLinkActive="active">Log out</a></li>
-        </ul>
+  <div class="right-side">
+    <!-- <span class="fs-18 color-white  font-weight-bold pr-3">{{'header.language' | translate}}  : </span>
+    <form class="pr-4">
+      <mat-form-field class="color-white">
+        <select matNativeControl class="color-white" required [(ngModel)]="selectedLanguage" name="language" (change)="changeLang(selectedLanguage)">
+          <option *ngFor="let lang of languageArray" class="color-black" [value]=lang>{{lang}}</option>
+        </select>
+      </mat-form-field>
+    </form> -->
+    <div class="right-side"  *ngIf="showsidebar">
+      <div class="landing-menu" (click)="openMenu()" (clickOutside)="handleClickOutside()">
+        <div class="landing-pic"></div>
+        <div *ngIf="headerMenu" class="landing-dropdown">
+          <ul>
+            <li><a routerLinkActive="active">My Profile</a></li>
+            <li *ngIf="showtabs" (click)="onChangePassword()"><a routerLinkActive="active">Change Password</a></li>
+            <li (click)="onLogOut()"><a routerLinkActive="active">Log out</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>

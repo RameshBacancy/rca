@@ -11,7 +11,7 @@ import { CmsService } from '../../../services/cms.service';
 export class AboutUsComponent implements OnInit {
   data;
   isdata: boolean = false;
-  constructor(private _cmsService: CmsService,private ref: ChangeDetectorRef, private spinner: SpinnerService) { }
+  constructor(private cmsService: CmsService, private ref: ChangeDetectorRef, private spinner: SpinnerService) { }
 
   ngOnInit(): void {
     this.spinner.openSpinner();
@@ -19,8 +19,8 @@ export class AboutUsComponent implements OnInit {
     this.spinner.closeSpinner();
   }
 
-  getData(){
-    this._cmsService.getCMS().subscribe(d => {
+  getData() {
+    this.cmsService.getCMS().subscribe(d => {
       this.data = d.data.data.filter((data: { page: string | string[]; }) => data.page.includes('About Us'));
       this.ref.detectChanges();
     });

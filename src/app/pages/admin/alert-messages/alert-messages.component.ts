@@ -13,7 +13,7 @@ import { SpinnerService } from 'src/app/services/spinner.service';
 })
 export class AlertMessagesComponent implements OnInit {
 
-  
+
   @ViewChild('mymodal', {static: false}) mymodal: ElementRef;
   data;
   isdata: boolean = false;
@@ -46,11 +46,11 @@ export class AlertMessagesComponent implements OnInit {
   errorMsg: string;
 
   constructor(
-    private ref: ChangeDetectorRef, 
+    private ref: ChangeDetectorRef,
     private modalService: NgbModal,
-    private _alertMessageService: AlertMessageService,
+    private alertMessageService: AlertMessageService,
     private spinner: SpinnerService,
-    private safeHtml: SafeHtmlPipe 
+    private safeHtml: SafeHtmlPipe
     ) { }
 
   ngOnInit(): void {
@@ -60,11 +60,11 @@ export class AlertMessagesComponent implements OnInit {
     this.getMessageData();
   }
 
-  getMessageData(){
-    this._alertMessageService.getMessages().subscribe(d => {
+  getMessageData() {
+    this.alertMessageService.getMessages().subscribe(d => {
       this.data = d.data.data;
-      if(this.data){
-        if(this.data.length > 0){
+      if (this.data) {
+        if (this.data.length > 0) {
           this.isdata = true;
         }
       }
@@ -73,32 +73,30 @@ export class AlertMessagesComponent implements OnInit {
   }
 
   save() {
-    if(this.title !=="" && this.description !== "" && this.status !== ""){
+    if (this.title !== '' && this.description !== '' && this.status !== '') {
       this.spinner.openSpinner();
-      if(!this.isnewData)  {
-          this._alertMessageService.addMessages(this.status, this.title, this.description).subscribe(d => {
+      if (!this.isnewData)  {
+          this.alertMessageService.addMessages(this.status, this.title, this.description).subscribe(d => {
             this.spinner.closeSpinner();
-        })
+        });
       } else {
-        this._alertMessageService.updateMessages(this.status, this.title, this.description, this.id).subscribe(d => {
+        this.alertMessageService.updateMessages(this.status, this.title, this.description, this.id).subscribe(d => {
           this.spinner.closeSpinner();
-        })
+        });
       }
       this.getMessageData();
       this.title = '',
       this.description = '';
     } else {
-      if(this.status !== ""){
+      if (this.status !== '') {
         this.open(this.mymodal);
-        this.errorMsg ="Status can not be empty.";
-      }
-      else if(this.title === ""){ 
+        this.errorMsg = 'Status can not be empty.';
+      } else if (this.title === '') {
         this.open(this.mymodal);
-        this.errorMsg ="Title can not be empty.";
-      }
-      else if(this.description === ""){ 
+        this.errorMsg = 'Title can not be empty.';
+      } else if (this.description === '') {
         this.open(this.mymodal);
-        this.errorMsg ="Description can not be empty.";
+        this.errorMsg = 'Description can not be empty.';
       }
     }
   }
@@ -109,28 +107,27 @@ export class AlertMessagesComponent implements OnInit {
     this.description = '';
   }
 
-  delete(id, name){
-    if(confirm('Do you want to delete page '+ name+ '.')){
+  delete(id, name) {
+    if (confirm('Do you want to delete page ' + name + '.')) {
       this.spinner.openSpinner();
-      this._alertMessageService.deleteMessages(id).subscribe(d => { 
+      this.alertMessageService.deleteMessages(id).subscribe(d => {
         this.spinner.closeSpinner();
       });
     }
   }
 
   open(content, data?) {
-    if(data){
-      this.heading = "Edit Alert"
+    if (data) {
+      this.heading = 'Edit Alert';
       this.isnewData = true;
-      this.id = data.id
+      this.id = data.id;
       this.status = data.status;
       this.title = data.title;
       this.description = this.safeHtml.transform(data.description, true);
-    }
-    else {
-      this.heading = "Add Alert"
+    } else {
+      this.heading = 'Add Alert';
       this.isnewData = false;
-      this.id = ''
+      this.id = '';
       this.status = '';
       this.title = '';
       this.description = '';

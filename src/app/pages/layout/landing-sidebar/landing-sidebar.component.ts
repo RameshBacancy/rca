@@ -11,23 +11,23 @@ export class LandingSidebarComponent implements OnInit {
   @Input() sidebarItems: any;
 
   isSubmenu: boolean;
-  arrowimg: string = 'arrow-right-white';
-  
+  arrowimg = 'arrow-right-white';
+
   constructor() { }
-  
+
   submenuFun() {
     this.isSubmenu = !this.isSubmenu;
     this.arrowimg = this.arrowimg == 'arrow-down-white' ? 'arrow-right-white' : 'arrow-down-white' ;
-    
+
   }
 
   ngOnInit() {
     // this.sidebarItems = this.sidebarData.getdata();
   }
 
-  arrowClicked(item){
+  arrowClicked(item) {
     item.disabled = !item.disabled;
-    
+
   }
 
 }

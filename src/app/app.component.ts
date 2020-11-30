@@ -11,9 +11,9 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public loading = false;
   public message: string = null;
-  public messageType: String;
+  public messageType: string;
 
-  private _subscriptions = [];
+  private subscriptions = [];
 
   constructor(
     private spinnerService: SpinnerService,
@@ -22,19 +22,19 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // Subscribe to spinner status
-    this._subscriptions.push(this.spinnerService.getSpinnerObs().subscribe(
+    this.subscriptions.push(this.spinnerService.getSpinnerObs().subscribe(
       val => this.loading = val,
     ));
-    this._subscriptions.push(this.alertService.getAlertObs().subscribe(
+    this.subscriptions.push(this.alertService.getAlertObs().subscribe(
       message => { this.message = message; }
     ));
-    this._subscriptions.push(this.alertService.getAlertTypeObs().subscribe(
+    this.subscriptions.push(this.alertService.getAlertTypeObs().subscribe(
       messageType => { this.messageType = messageType; }
     ));
   }
 
   ngOnDestroy() {
-    this._subscriptions.forEach(subscription => subscription.unsubscribe());
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
   closeAlert() {

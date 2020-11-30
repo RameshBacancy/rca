@@ -15,9 +15,9 @@ export interface Option {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LandingComponent implements OnInit {
-  viewSideBar:boolean = false;
+  viewSideBar: boolean = false;
   public title: string;
-  public currentUrl:string;
+  public currentUrl: string;
   url: string[];
   menu;
 
@@ -30,40 +30,36 @@ export class LandingComponent implements OnInit {
       this.currentUrl = this.router.url;
       this.url = this.currentUrl.split('/');
       this.title = this.url[this.url.length - 1];
-      if(this.title === 'dashboard'){
+      if (this.title === 'dashboard') {
         this.title = 'Supplier Portal';
-      }
-      else if(this.title === 'registration'){
-        this.title = 'Registration'
-      }
-      else if (this.title === 'about-us') {
-        this.title = 'About Us'
-      }
-      else if (this.title === 'how-to-register') {
-        this.title = 'How To Register'
-      }else if (this.title === 'login') {
-        this.title = 'Login'
+      } else if (this.title === 'registration') {
+        this.title = 'Registration';
+      } else if (this.title === 'about-us') {
+        this.title = 'About Us';
+      } else if (this.title === 'how-to-register') {
+        this.title = 'How To Register';
+      } else if (this.title === 'login') {
+        this.title = 'Login';
       }
       ref.detectChanges();
     });
    }
-  
+
   ngOnInit( ) {
     this.currentUrl = this.router.url;
     this.url = this.currentUrl.split('/');
     this.title = this.url[this.url.length - 1 ];
-    if(this.title === 'dashboard'){
+    if (this.title === 'dashboard') {
       this.title = 'Supplier Portal';
     }
-    if(this.title === 'registration'){
-      this.title = 'Registration'
+    if (this.title === 'registration') {
+      this.title = 'Registration';
     }
     this.menu = this.sidebarData.getdata();
   }
-  
 
 
-  onViewSidebar(val){
+  onViewSidebar(val) {
     this.viewSideBar = val;
   }
 

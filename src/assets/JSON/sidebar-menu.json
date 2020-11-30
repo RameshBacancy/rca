@@ -146,7 +146,7 @@
             "children": []
         },
         {
-            "name": "Registration Requests",
+            "name": "Supplier",
             "icon": "",
             "route": "/#/admin/request",
             "disabled": false,

@@ -3,7 +3,9 @@
     <!-- Show files Pop up-->
     <ng-template #shoeFiles let-modal>
         <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title"> Files</h4>
+            <h4 class="modal-title" id="modal-basic-title"> Files 
+                <i class="fa fa-ban text-red fs-14" type="button" placement="right" ngbTooltip="Data fetched from interface - not editable" *ngIf="isDataMoci"></i>
+            </h4>
             <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                 <span aria-hidden="true">×</span>
             </button>
@@ -32,7 +34,7 @@
 
             </section>
             <hr>
-            <section class="bg-white">
+            <section class="bg-white" *ngIf="!isDataMoci">
                 <div>Add New File</div>
                 <mat-card>
                     <mat-card-content>
@@ -655,7 +657,7 @@
                             <thead>
                                 <tr class="purple-bg text-white">
                                     <th scope="col"></th>
-                                    <th scope="col" (click)="sorting('communication','method')">Communication Method <i
+                                    <th scope="col" (click)="sorting('communication','method')">Label <i
                                             class="fa fa-sort" aria-hidden="true"></i> </th>
                                     <th scope="col" (click)="sorting('communication','value')">Value <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
@@ -818,7 +820,7 @@
                                                 <input [(ngModel)]="data.location"></td>
                                             <td>
                                                 <i class="fa fa-folder-open" aria-hidden="true"
-                                                    (click)="openFile(shoeFiles,'activityInfo',data)"></i>
+                                                    (click)="openFile(shoeFiles,'activityInfo',data, data.isMoci)"></i>
 
                                                 <input type="file" #fileInput id="fileUpload" name="fileUpload"
                                                     multiple="multiple" style="display: none;" />
@@ -1190,7 +1192,7 @@
                                                     [(ngModel)]="data.value"></td>
                                             <td>
                                                 <i class="fa fa-folder-open" aria-hidden="true"
-                                                    (click)="openFile(shoeFiles,'bankOther',data)"></i>
+                                                    (click)="openFile(shoeFiles,'bankOther',data, data.isMoci)"></i>
         
                                                 <input type="file" #fileInput id="fileUpload" name="fileUpload"
                                                     multiple="multiple" style="display: none;" />
@@ -1458,7 +1460,7 @@
                                         <input [(ngModel)]="data.omaniratio"></td>
                                     <td>
                                         <i class="fa fa-folder-open" aria-hidden="true"
-                                            (click)="openFile(shoeFiles,'employee',data)"></i>
+                                            (click)="openFile(shoeFiles,'employee',data, data.isMoci)"></i>
 
                                         <input type="file" #fileInput id="fileUpload" name="fileUpload"
                                             multiple="multiple" style="display: none;" />
@@ -2271,7 +2273,7 @@
                                         <input [(ngModel)]="data.completion"></td>
                                     <td>
                                         <i class="fa fa-folder-open" aria-hidden="true"
-                                            (click)="openFile(shoeFiles,'project',data)"></i>
+                                            (click)="openFile(shoeFiles,'project',data, data.isMoci)"></i>
 
                                         <input type="file" #fileInput id="fileUpload" name="fileUpload"
                                             multiple="multiple" style="display: none;" />

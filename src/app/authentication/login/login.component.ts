@@ -13,18 +13,18 @@ import { SpinnerService } from 'src/app/services/spinner.service';
 export class LoginComponent implements OnInit {
 
 
-  public user = {email:"",password:""};
-  public fuser = {email:""};
+  public user = {email: '', password: ''};
+  public fuser = {email: ''};
   message: any;
   closeResult: string;
   errmessage: string;
   validForm: boolean;
 
   constructor(
-    private _userService: UserService,
+    private userService: UserService,
     private router: Router,
     private modalService: NgbModal,
-    private _alertService: AlertService,
+    private alertService: AlertService,
     private spinner: SpinnerService
   ) { }
 
@@ -34,34 +34,31 @@ export class LoginComponent implements OnInit {
     this.spinner.closeSpinner();
   }
 
-  login()
-  {
+  login() {
     this.spinner.openSpinner();
-    this._userService.login(this.user.email,this.user.password);
+    this.userService.login(this.user.email, this.user.password);
   }
 
-  
-  forgetPass(email)
-  {
+
+  forgetPass(email) {
     this.spinner.openSpinner();
-    this._userService.forgetPass(email);
+    this.userService.forgetPass(email);
   }
 
   validateEmail(email) {
-    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    const emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     if (!emailReg.test(email)) {
       this.validForm = false;
-      this.errmessage = "please enter valid email";
-    }
-    else {
-      this.errmessage = "";
+      this.errmessage = 'please enter valid email';
+    } else {
+      this.errmessage = '';
       this.validForm = true;
     }
   }
 
   open(content, address?) {
-    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-    if(!emailReg.test(this.fuser.email)){
+    const emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    if (!emailReg.test(this.fuser.email)) {
       this.validForm = true;
     }
 

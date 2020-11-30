@@ -10,8 +10,8 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class RegisterationComponent implements OnInit {
 
-  doneRegistered: boolean = false;
-  viewSideBar: boolean = false;
+  doneRegistered = false;
+  viewSideBar = false;
   closeResult: string;
   form = new FormGroup({
     firstName: new FormControl('bacancy', []),
@@ -35,7 +35,7 @@ export class RegisterationComponent implements OnInit {
 
   ngOnInit(): void {
     if (!localStorage.getItem('newReg')) {
-      this.router.navigateByUrl('/auth/supplierRegistration')
+      this.router.navigateByUrl('/auth/supplierRegistration');
     }
   }
 
@@ -51,12 +51,12 @@ export class RegisterationComponent implements OnInit {
     }
   }
 
-  back(){
-      this.router.navigateByUrl('/auth/supplierRegistration')
-    
+  back() {
+      this.router.navigateByUrl('/auth/supplierRegistration');
+
   }
 
-  gotoFirst(){
+  gotoFirst() {
     this.router.navigateByUrl('/auth/supplierRegistration');
   }
 

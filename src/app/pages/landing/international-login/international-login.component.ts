@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class InternationalLoginComponent implements OnInit {
 
-  public user = {email:"",password:""}
+  public user = {email: '', password: ''};
   message: string;
   validForm: boolean = true;
 
@@ -20,30 +20,28 @@ export class InternationalLoginComponent implements OnInit {
   }
 
 
-  login(e)
-  {
+  login(e) {
     // console.log(this.user);
     localStorage.setItem('completeReg', 'T');
-    localStorage.setItem('internationalEmail', e)
-    const body = { email: e, register_type:'international'};
+    localStorage.setItem('internationalEmail', e);
+    const body = { email: e, register_type: 'international'};
     this.spinner.openSpinner();
-    this.userService.supplierRegistration(body)
+    this.userService.supplierRegistration(body);
   }
 
   validateEmail(email, psw) {
-    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+    const emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
     if (!emailReg.test(email)) {
       this.validForm = true;
-        this.message = "please enter valid email";
-    } else if( psw === ''){
+      this.message = 'Please enter valid email.';
+    } else if ( psw === '') {
       this.validForm = true;
-      this.message = "please enter valid password";
-    } 
-    else {
-      this.message = "";
+      this.message = 'Please enter valid password.';
+    } else {
+      this.message = '';
       this.validForm = false;
     }
   }
-  onViewSidebar(e){ 
+  onViewSidebar(e) {
   }
 }

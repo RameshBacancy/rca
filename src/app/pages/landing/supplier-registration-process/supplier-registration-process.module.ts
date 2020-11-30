@@ -44,11 +44,11 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatTooltipModule,
-    MatToolbarModule,  
-    MatIconModule,  
-    MatButtonModule,  
-    MatCardModule,  
-    MatProgressBarModule, 
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatProgressBarModule,
     RouterModule.forChild(routes)
   ]
 })

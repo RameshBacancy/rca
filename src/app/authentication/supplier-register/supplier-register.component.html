@@ -64,7 +64,7 @@
                                 {{'supplierRegPage.suppRegTypeLbl' | translate}} :</p>
                         </div>
                         <div class="form-check mr-3 mb-3">
-                            <input class="form-check-input" type="radio" id="local" value="local"
+                            <input class="form-check-input" type="radio" id="local" value="localcom"
                                 formControlName="regType">
                             <label class="form-check-label  ml-2"
                                 for="local">{{'supplierRegPage.suppRegTypeOp1' | translate}} </label>
@@ -84,20 +84,20 @@
                                 {{'supplierRegPage.localRegTypeLbl' | translate}} :</p>
                         </div>
                         <div class="form-check mr-3 mb-3">
-                            <input class="form-check-input" type="radio" id="localcomp" name="localcomp" checked>
+                            <input class="form-check-input" type="radio" id="localcomp" value="local" formControlName="localRegType" checked>
                             <label class="form-check-label  ml-2"
                                 for="localcomp">{{'supplierRegPage.localRegTypeOp1' | translate}}</label>
                         </div>
                         <div class="form-check mr-3 mb-3">
-                            <input class="form-check-input" type="radio" id="citizen" name="citizen">
+                            <input class="form-check-input" type="radio" id="citizen" value="individual" formControlName="localRegType">
                             <label class="form-check-label  ml-2"
                                 for="citizen">{{'supplierRegPage.localRegTypeOp2' | translate}}</label>
                         </div>
-                        <div class="form-check mr-3 mb-3">
-                            <input class="form-check-input" type="radio" id="govt" name="govt">
+                        <!-- <div class="form-check mr-3 mb-3">
+                            <input class="form-check-input" type="radio" id="govt" name="local">
                             <label class="form-check-label  ml-2"
                                 for="govt">{{'supplierRegPage.localRegTypeOp3' | translate}}</label>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-md-12 px-4 d-block  d-lg-flex">
                         <p class=" pt-2 mr-0 mr-lg-3  text-dark-grey font-weight-bold ">

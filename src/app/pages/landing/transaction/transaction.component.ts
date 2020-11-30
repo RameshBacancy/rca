@@ -16,21 +16,21 @@ export class TransactionComponent implements OnInit, AfterViewInit {
 
   constructor(private router: Router, private modelService: NgbModal) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.modelService.dismissAll();
-    if(localStorage.getItem('RegStatus') != 'finish'){
+    if (localStorage.getItem('RegStatus') != 'finish') {
       this.router.navigate(['/landing/supplier-registration/dashboard']);
     }
   }
-  ngAfterViewInit(){
-    if(localStorage.getItem('paymentStep')){
-      this.move(2) 
+  ngAfterViewInit() {
+    if (localStorage.getItem('paymentStep')) {
+      this.move(2);
     }
   }
 
-  payment(){
-    localStorage.setItem('paymentStep','true')
-    if(localStorage.getItem('paymentStep')){
+  payment() {
+    localStorage.setItem('paymentStep', 'true');
+    if (localStorage.getItem('paymentStep')) {
       this.router.navigate(['/landing/supplier-registration/payment']);
     }
   }
@@ -39,7 +39,7 @@ export class TransactionComponent implements OnInit, AfterViewInit {
     this.stepper.selectedIndex = index;
   }
 
-  Cancel(){
+  Cancel() {
     this.router.navigate(['/landing/supplier-registration/dashboard']);
   }
 }

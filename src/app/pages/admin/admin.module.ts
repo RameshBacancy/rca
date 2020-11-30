@@ -24,11 +24,11 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path:'dashboard',
+        path: 'dashboard',
         component : AdminDashboardComponent,
       },
       {
-        path:'cms',
+        path: 'cms',
         component : CmsPagesComponent,
       },
       {
@@ -42,22 +42,24 @@ const routes: Routes = [
     ]
   },
   {
-    path:'user',
+    path: 'user',
     loadChildren: () => import('../../authentication/authentication.module').then(m => m.AuthenticationModule)
   },
   {
-    path:'changepassword',
+    path: 'changepassword',
     component : ChangePasswordComponent,
   },
   { path: '**', redirectTo: '/admin/user/login', pathMatch: 'full' }
-]
+];
 
 @NgModule({
   declarations: [
     AdminComponent,
-    ChangePasswordComponent, 
-    AdminDashboardComponent, 
-    CmsPagesComponent, RegistrationRequestComponent, AlertMessagesComponent
+    ChangePasswordComponent,
+    AdminDashboardComponent,
+    CmsPagesComponent,
+    RegistrationRequestComponent,
+    AlertMessagesComponent,
   ],
   imports: [
     CommonModule,

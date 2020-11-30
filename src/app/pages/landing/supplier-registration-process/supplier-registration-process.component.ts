@@ -30,25 +30,25 @@ export class SupplierRegistrationProcessComponent implements OnInit {
 
   constructor(
     private alertService: AlertService,
-    private router : Router,
+    private router: Router,
     private modalService: NgbModal
     ) { }
-    
-  
-  ngOnInit(): void { 
+
+
+  ngOnInit(): void {
     this.modalService.dismissAll();
     localStorage.removeItem('1completeToken');
-    if(localStorage.getItem('RegStatus') != 'finish') {
-      if(localStorage.getItem('regType') === 'local'){
-        this.isLocal = true
+    if (localStorage.getItem('RegStatus') != 'finish') {
+      if (localStorage.getItem('regType') === 'local') {
+        this.isLocal = true;
       }
-      if(localStorage.getItem('regType') === 'individual'){
-        this.isIndividual = true
+      if (localStorage.getItem('regType') === 'individual') {
+        this.isIndividual = true;
       }
-      if(localStorage.getItem('regType') === 'international'){
-        this.isInternational = true
+      if (localStorage.getItem('regType') === 'international') {
+        this.isInternational = true;
       }
-    } else{
+    } else {
         this.router.navigateByUrl('/landing/supplier-registration/dashboard');
       }
   }

@@ -4,7 +4,7 @@ import { CanActivate, CanActivateChild } from '@angular/router';
 
 import { ReplaySubject, Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
-//import { UserService } from '../services/user.service';
+// import { UserService } from '../services/user.service';
 
 @Injectable({
     providedIn: 'root'
@@ -19,10 +19,9 @@ export class AuthGuard implements CanActivate {
     ) { }
 
     canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-        if(localStorage.getItem('completeReg')){ 
+        if (localStorage.getItem('completeReg')) {
             return true;
-        }
-        else{
+        } else {
             this.router.navigateByUrl('/auth/supplierRegistration');
             return false;
         }

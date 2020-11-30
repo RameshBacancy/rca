@@ -46,8 +46,8 @@ export class AlertService {
   }
 
   /**
-  * set the Error Message
-  */
+   * set the Error Message
+   */
   public pushError(message: string) {
     this.stopTimer();
     this.alertMessageSubj.next(message);
@@ -56,8 +56,8 @@ export class AlertService {
   }
 
   /**
-  * start the timer after alert will display
-  */
+   * start the timer after alert will display
+   */
   private startTimer() {
     this.timeoutOption = window.setTimeout(() => {
       this.stopTimer();
@@ -65,16 +65,16 @@ export class AlertService {
   }
 
   /**
-  * stop the timer when user click on close button or complete the timer
-  */
+   * stop the timer when user click on close button or complete the timer
+   */
   public stopTimer() {
     clearTimeout(this.timeoutOption);
     this.setDefaultValue();
   }
 
   /**
-  * set the default value to the variable
-  */
+   * set the default value to the variable
+   */
   private setDefaultValue() {
     this.alertMessageSubj.next(null);
     this.alertTypeSubj.next(null);

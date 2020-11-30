@@ -25,27 +25,28 @@ const routes: Routes = [
         canActivate: [AuthGuard]
       },
       {
-        path:'registration',
-        loadChildren: () => import('./supplier-registration-process/supplier-registration-process.module').then(m => m.SupplierRegistrationProcessModule),
+        path: 'registration',
+        loadChildren: () =>
+             import('./supplier-registration-process/supplier-registration-process.module').then(m => m.SupplierRegistrationProcessModule),
         canActivate: [AuthGuard]
       },
       {
-        path:'transaction',
+        path: 'transaction',
         loadChildren: () => import('./transaction/transaction.module').then(m => m.TransactionModule),
         canActivate: [AuthGuard]
       },
       {
-        path:'about-us',
+        path: 'about-us',
         component: AboutUsComponent,
         canActivate: [AuthGuard]
       },
       {
-        path:'how-to-register',
+        path: 'how-to-register',
         component: HowToRegisterComponent,
         canActivate: [AuthGuard]
       },
       {
-        path:'payment',
+        path: 'payment',
         component: PaymentComponent,
         canActivate: [AuthGuard]
       },

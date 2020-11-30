@@ -20,13 +20,13 @@ export class LocalRegistrationComponent implements OnInit {
   @ViewChild('stepper') private stepper: MatStepper;
   formData: any;
   closeResult: string;
-  order: boolean = false;
-  completed: boolean = false;
-  @Input("searchText") searchText: any;
+  order = false;
+  completed = false;
+  @Input('searchText') searchText: any;
 
-  editCompanyDetails: boolean = false;
-  editDirectorDetails: boolean = false;
-  editGeneralManagerDetails: boolean = false;
+  editCompanyDetails = false;
+  editDirectorDetails = false;
+  editGeneralManagerDetails = false;
 
   form: FormGroup = new FormGroup({
     addressID: new FormControl('', [Validators.required]),
@@ -39,7 +39,7 @@ export class LocalRegistrationComponent implements OnInit {
   bankform: FormGroup = new FormGroup({
     bankingId: new FormControl('', [Validators.required]),
     bankingIdname: new FormControl('', [Validators.required]),
-    bankAcc: new FormControl('', [Validators.required,, Validators.pattern("^[0-9]*$")]),
+    bankAcc: new FormControl('', [Validators.required, , Validators.pattern('^[0-9]*$')]),
     bankName: new FormControl('', [Validators.required]),
     bankBranch: new FormControl('', [Validators.required]),
     holderName: new FormControl('', [Validators.required]),
@@ -64,30 +64,31 @@ export class LocalRegistrationComponent implements OnInit {
   activityInfoData: any;
   BankDetails: any;
   compBranchInfoData: any;
-  activityMenu: boolean = false;
+  activityMenu = false;
   selected = new FormControl(0);
-  editAddress: boolean = false;
+  editAddress = false;
 
-  @ViewChild("fileInput", { static: false }) fileInput: ElementRef;
+  @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
   files = [];
   filesList = [];
   uploadData: any;
   selectedPage: any;
-  arrayOfCatagory= [];
+  arrayOfCatagory = [];
   staffCategory: any[];
   crNo: string;
   civilNo: string;
-  editBank: boolean = false;
+  editBank = false;
   editbankData: any;
   siteVisitData: any;
   isSiteVisit: any = 'no';
+  isDataMoci: any;
 
   constructor(
     private router: Router,
     private supplierData: SupplierRegistrationService,
     private modalService: NgbModal,
-    private _userService: UserService,
-    private ActivatedRoute: ActivatedRoute,
+    private userService: UserService,
+    private activatedRoute: ActivatedRoute,
     private sortByPipe: SortByPipe,
     private searchPipe: FilterPipe,
     private alertService: AlertService,
@@ -124,31 +125,30 @@ export class LocalRegistrationComponent implements OnInit {
     return this.bankform.controls;
   }
 
-  getEmployeeCategories(){
+  getEmployeeCategories() {
     this.staffCategory = [];
     this.arrayOfCatagory = [];
     this.formData.employeDetails.filter( d => {
       this.arrayOfCatagory.push(d.staffCategory);
-    })
+    });
     this.arrayOfCatagory = [... new Set(this.arrayOfCatagory)];
-    this.staffCategory = []
+    this.staffCategory = [];
     this.arrayOfCatagory.map( a => {
       let index = 0;
       let omaniIndex = 0;
       let nonOmaniIndex = 0;
       this.formData.employeDetails.map( (d) => {
-        if(d.staffCategory == a){
-          index = index+1;
-          if(d.country.toLowerCase() == 'omani') {
-            omaniIndex = omaniIndex+1;
-          }
-          else {
-            nonOmaniIndex = nonOmaniIndex+1
+        if (d.staffCategory == a) {
+          index = index + 1;
+          if (d.country.toLowerCase() == 'omani') {
+            omaniIndex = omaniIndex + 1;
+          } else {
+            nonOmaniIndex = nonOmaniIndex + 1;
           }
         }
-      })
+      });
       this.staffCategory.push({category: a, number: index, omani: omaniIndex, nonOmani: nonOmaniIndex});
-    })
+    });
   }
 
   changeTab() {
@@ -161,7 +161,7 @@ export class LocalRegistrationComponent implements OnInit {
     this.selected.setValue(0);
   }
 
-  preStep(number){
+  preStep(number) {
     this.selected.setValue(number);
   }
 
@@ -179,7 +179,7 @@ export class LocalRegistrationComponent implements OnInit {
           d.documents.map((d1) => {
             this.filesList.push(d1);
             file.inProgress = false;
-          })
+          });
         }
       });
     }
@@ -191,9 +191,9 @@ export class LocalRegistrationComponent implements OnInit {
             d.documents.push(file.data);
           }
           d.documents.map((d1) => {
-            this.filesList.push(d1)
+            this.filesList.push(d1);
             file.inProgress = false;
-          })
+          });
         }
       });
     }
@@ -205,9 +205,9 @@ export class LocalRegistrationComponent implements OnInit {
             d.documents.push(file.data);
           }
           d.documents.map((d1) => {
-            this.filesList.push(d1)
+            this.filesList.push(d1);
             file.inProgress = false;
-          })
+          });
         }
       });
     }
@@ -254,9 +254,9 @@ export class LocalRegistrationComponent implements OnInit {
             d.documents.push(file.data);
           }
           d.documents.map((d1) => {
-            this.filesList.push(d1)
+            this.filesList.push(d1);
             file.inProgress = false;
-          })
+          });
         }
       });
     }
@@ -292,16 +292,17 @@ export class LocalRegistrationComponent implements OnInit {
     fileInput.click();
   }
 
-  openFile(content, page, data) {
+  openFile(content, page, data, isMoci) {
     this.selectedPage = page;
+    this.isDataMoci = isMoci;
     this.uploadData = data;
     if (this.selectedPage === 'project') {
       this.filesList = [];
       this.projectData.map((d, i) => {
         if (d.no == data.no) {
           d.documents.map((d1) => {
-            this.filesList.push(d1)
-          })
+            this.filesList.push(d1);
+          });
         }
       });
     }
@@ -310,8 +311,8 @@ export class LocalRegistrationComponent implements OnInit {
       this.employeeData.map((d, i) => {
         if (d.name == data.name) {
           d.documents.map((d1) => {
-            this.filesList.push(d1)
-          })
+            this.filesList.push(d1);
+          });
         }
       });
     }
@@ -320,28 +321,28 @@ export class LocalRegistrationComponent implements OnInit {
       this.activityInfoData.map((d, i) => {
         if (d.activityName == data.activityName) {
           d.documents.map((d1) => {
-            this.filesList.push(d1)
-          })
+            this.filesList.push(d1);
+          });
         }
       });
     }
-    if(this.selectedPage === 'regCerti'){
+    if (this.selectedPage === 'regCerti') {
       this.filesList = [];
       this.filesList = this.formData.ministriesData1.regCerti;
     }
-    if(this.selectedPage === 'hplicenses'){
+    if (this.selectedPage === 'hplicenses') {
       this.filesList = [];
       this.filesList = this.formData.ministriesData2.hplicenses;
     }
-    if(this.selectedPage === 'pLOfCC'){
+    if (this.selectedPage === 'pLOfCC') {
       this.filesList = [];
       this.filesList = this.formData.ministriesData2.pLOfCC;
     }
-    if(this.selectedPage === 'lOTQI'){
+    if (this.selectedPage === 'lOTQI') {
       this.filesList = [];
       this.filesList = this.formData.ministriesData2.lOTQI;
     }
-    if(this.selectedPage === 'loftc'){
+    if (this.selectedPage === 'loftc') {
       this.filesList = [];
       this.filesList = this.formData.ministriesData3.loftc;
     }
@@ -350,12 +351,12 @@ export class LocalRegistrationComponent implements OnInit {
       this.otherData.map((d, i) => {
         if (d.no == data.no) {
           d.documents.map((d1) => {
-            this.filesList.push(d1)
-          })
+            this.filesList.push(d1);
+          });
         }
       });
     }
-    this.open(content)
+    this.open(content);
   }
 
   deleteFile(file) {
@@ -367,9 +368,9 @@ export class LocalRegistrationComponent implements OnInit {
             d.documents.filter((f, i) => {
               if (f.name == file.name) {
                 d.documents.splice(i, 1);
-                this.filesList = d.documents
+                this.filesList = d.documents;
               }
-            })
+            });
           }
         });
       }
@@ -379,10 +380,10 @@ export class LocalRegistrationComponent implements OnInit {
           if (d.name == this.uploadData.name) {
             d.documents.filter((f, i) => {
               if (f.name == file.name) {
-                d.documents.splice(i, 1)
-                this.filesList = d.documents
+                d.documents.splice(i, 1);
+                this.filesList = d.documents;
               }
-            })
+            });
           }
         });
       }
@@ -392,10 +393,10 @@ export class LocalRegistrationComponent implements OnInit {
           if (d.activityName == this.uploadData.activityName) {
             d.documents.filter((f, i) => {
               if (f.name == file.name) {
-                d.documents.splice(i, 1)
-                this.filesList = d.documents
+                d.documents.splice(i, 1);
+                this.filesList = d.documents;
               }
-            })
+            });
           }
         });
       }
@@ -406,7 +407,7 @@ export class LocalRegistrationComponent implements OnInit {
             this.formData.ministriesData1.regCerti.splice(i, 1);
             this.filesList = this.formData.ministriesData1.regCerti;
           }
-        })
+        });
       }
       if (this.selectedPage === 'hplicenses') {
         this.filesList = [];
@@ -415,7 +416,7 @@ export class LocalRegistrationComponent implements OnInit {
             this.formData.ministriesData2.hplicenses.splice(i, 1);
             this.filesList = this.formData.ministriesData2.hplicenses;
           }
-        })
+        });
       }
       if (this.selectedPage === 'pLOfCC') {
         this.filesList = [];
@@ -424,7 +425,7 @@ export class LocalRegistrationComponent implements OnInit {
             this.formData.ministriesData2.pLOfCC.splice(i, 1);
             this.filesList = this.formData.ministriesData2.pLOfCC;
           }
-        })
+        });
       }
       if (this.selectedPage === 'lOTQI') {
         this.filesList = [];
@@ -433,7 +434,7 @@ export class LocalRegistrationComponent implements OnInit {
             this.formData.ministriesData2.lOTQI.splice(i, 1);
             this.filesList = this.formData.ministriesData2.lOTQI;
           }
-        })
+        });
       }
       if (this.selectedPage === 'loftc') {
         this.filesList = [];
@@ -442,7 +443,7 @@ export class LocalRegistrationComponent implements OnInit {
             this.formData.ministriesData3.loftc.splice(i, 1);
             this.filesList = this.formData.ministriesData3.loftc;
           }
-        })
+        });
       }
       if (this.selectedPage === 'bankOther') {
         this.filesList = [];
@@ -450,17 +451,17 @@ export class LocalRegistrationComponent implements OnInit {
           if (d.no == this.uploadData.no) {
             d.documents.filter((f, i) => {
               if (f.name == file.name) {
-                d.documents.splice(i, 1)
-                this.filesList = d.documents
+                d.documents.splice(i, 1);
+                this.filesList = d.documents;
               }
-            })
+            });
           }
         });
       }
     }
   }
 
-  openbank(content, details?){
+  openbank(content, details?) {
     if (details) {
       this.bankform.patchValue(details);
       this.editBank = true;
@@ -471,14 +472,13 @@ export class LocalRegistrationComponent implements OnInit {
 
   open(content, address?) {
     if (address) {
-      if(!address.isMoci) {
-        this.selectedAddress = address
+      if (!address.isMoci) {
+        this.selectedAddress = address;
         this.form.patchValue(address);
         this.editAddress = true;
       }
-    }
-    else{
-      this.form.patchValue({'addressID': this.formData.address.addressDetails.length+1, 'country':'Oman'});
+    } else {
+      this.form.patchValue({addressID: this.formData.address.addressDetails.length + 1, country: 'Oman'});
     }
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -502,18 +502,18 @@ export class LocalRegistrationComponent implements OnInit {
     }
   }
 
-  alertNoAdd(){
+  alertNoAdd() {
     this.alertService.pushError('Not Allowed to add details for Local entities');
   }
 
   submitRegistration() {
     this.completed = true;
     localStorage.setItem('1completeToken', 'true');
-    localStorage.setItem('LocalRegComplete', "true");
+    localStorage.setItem('LocalRegComplete', 'true');
     localStorage.setItem('RegStatus', 'finish');
     this.spinner.openSpinner();
-    const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') }
-    this._userService.supplierRegistration(body)
+    const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
+    this.userService.supplierRegistration(body);
     // this.alertService.pushSuccess('Your data is submitted.');
     // this.router.navigateByUrl('/landing/supplier-registration/transaction');
   }
@@ -521,8 +521,8 @@ export class LocalRegistrationComponent implements OnInit {
   saveDraft() {
     localStorage.setItem('RegStatus', 'draft');
     this.spinner.openSpinner();
-    const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') }
-    this._userService.supplierRegistration(body)
+    const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
+    this.userService.supplierRegistration(body);
     this.alertService.pushWarning('Your data will be saved for 72 hours.');
     this.router.navigate(['/landing/supplier-registration/dashboard']);
   }
@@ -532,15 +532,14 @@ export class LocalRegistrationComponent implements OnInit {
       if (this.editAddress == true) {
         this.formData.address.addressDetails.filter((d, i) => {
           if (d.addressID == this.selectedAddress.addressID) {
-            this.selectedAddress = this.form.value
+            this.selectedAddress = this.form.value;
             this.formData.address.addressDetails.splice(i, 1, this.form.value);
           }
         });
         this.editAddress = false;
         this.form.reset();
-      }
-      else {
-        this.formData.address.addressDetails.push(this.form.value)
+      } else {
+        this.formData.address.addressDetails.push(this.form.value);
       }
       this.form.reset();
     }
@@ -549,14 +548,13 @@ export class LocalRegistrationComponent implements OnInit {
   submitbank() {
     if (this.bankform.status === 'VALID') {
       if (this.editBank == true) {
-        this.formData.commercialInfo.BankDetails.filter((d,i) => {
+        this.formData.commercialInfo.BankDetails.filter((d, i) => {
           if (d.bankAcc == this.editbankData.bankAcc) {
-            this.formData.commercialInfo.BankDetails.splice(i,1,this.bankform.value)
+            this.formData.commercialInfo.BankDetails.splice(i, 1, this.bankform.value);
           }
         });
         this.editBank = false;
-      }
-      else{
+      } else {
         this.BankDetails.push(this.bankform.value);
       }
       this.bankform.reset();
@@ -568,7 +566,7 @@ export class LocalRegistrationComponent implements OnInit {
       if (d.poBox == data.poBox) {
         this.formData.address.addressDetails.splice(i, 1);
       }
-    })
+    });
   }
 
   registrationComplete() {
@@ -582,197 +580,198 @@ export class LocalRegistrationComponent implements OnInit {
   addNewRow(datatype) {
     if (datatype === 'employee') {
       this.employeeData.map((data, i) => {
-        if (data.name == "") {
+        if (data.name == '') {
           this.employeeData.splice(i, 1);
         }
-      })
+      });
       this.newData = {
-        "name": " * ",
-        "qualification": "",
-        "specialization": "",
-        "jobTitle": "",
-        "designation": "",
-        "designationDate": "",
-        "expDate": "",
-        "experience": "",
-        "appointmentDate": "",
-        "country": "-",
-        "status": "",
-        "statusDate": "",
-        "staffCategory": "",
-        "passportNum": "",
-        "recidentCard": "",
-        "civilNo": "",
-        "crNo": "",
-        "omaniratio": "",
-        "isEdit": true,
-        "isMoci": false
+        name: ' * ',
+        qualification: '',
+        specialization: '',
+        jobTitle: '',
+        designation: '',
+        designationDate: '',
+        expDate: '',
+        experience: '',
+        appointmentDate: '',
+        country: '-',
+        status: '',
+        statusDate: '',
+        staffCategory: '',
+        passportNum: '',
+        recidentCard: '',
+        civilNo: '',
+        crNo: '',
+        documents: [],
+        omaniratio: '',
+        isEdit: true,
+        isMoci: false
       };
       this.employeeData.push(this.newData);
     }
     if (datatype === 'project') {
       this.projectData.map((data, i) => {
-        if (data.name == "") {
+        if (data.name == '') {
           this.projectData.splice(i, 1);
         }
-      })
+      });
       this.newData = {
-        "no": this.projectData.length + 1,
-        "name": " * ",
-        "client": "",
-        "consultent": "",
-        "costConsultent": "",
-        "value": "",
-        "period": "",
-        "completion": "",
-        "documents": [],
-        "isEdit": true,
-        "isMoci": false
+        no: this.projectData.length + 1,
+        name: ' * ',
+        client: '',
+        consultent: '',
+        costConsultent: '',
+        value: '',
+        period: '',
+        completion: '',
+        documents: [],
+        isEdit: true,
+        isMoci: false
       };
       this.projectData.push(this.newData);
     }
     if (datatype === 'subContractor') {
       this.subContractorData.map((data, i) => {
-        if (data.nameOfWork == "") {
+        if (data.nameOfWork == '') {
           this.subContractorData.splice(i, 1);
         }
-      })
+      });
       this.newData = {
-        "no": this.subContractorData.length + 1,
-        "nameOfWork": " * ",
-        "subContractor": "",
-        "crNo": "",
-        "telephone": "",
-        "fax": "",
-        "email": "",
-        "regWithRca": "",
-        "isEdit": true,
-        "isMoci": false
+        no: this.subContractorData.length + 1,
+        nameOfWork: ' * ',
+        subContractor: '',
+        crNo: '',
+        telephone: '',
+        fax: '',
+        email: '',
+        regWithRca: '',
+        isEdit: true,
+        isMoci: false
       };
       this.subContractorData.push(this.newData);
     }
     if (datatype === 'equipment') {
       this.equipmentData.map((data, i) => {
-        if (data.type == "") {
+        if (data.type == '') {
           this.equipmentData.splice(i, 1);
         }
-      })
+      });
       this.newData = {
-        "no": this.equipmentData.length + 1,
-        "type": " * ",
-        "quantity": "",
-        "capacity": "",
-        "year": "",
-        "regNo": "",
-        "approxValue": "",
-        "isEdit": true,
-        "isMoci": false
+        no: this.equipmentData.length + 1,
+        type: ' * ',
+        quantity: '',
+        capacity: '',
+        year: '',
+        regNo: '',
+        approxValue: '',
+        isEdit: true,
+        isMoci: false
       };
       this.equipmentData.push(this.newData);
     }
     if (datatype === 'other') {
       this.otherData.map((data, i) => {
-        if (data.nameOfWork == "") {
+        if (data.nameOfWork == '') {
           this.otherData.splice(i, 1);
         }
-      })
+      });
       this.newData = {
-        "no": this.otherData.length + 1,
-        "nameOfWork": " * ",
-        "attachment": "",
-        "isEdit": true
+        no: this.otherData.length + 1,
+        nameOfWork: ' * ',
+        attachment: '',
+        isEdit: true
       };
       this.otherData.push(this.newData);
     }
     if (datatype === 'activity') {
       this.activityData.map((data, i) => {
-        if (data.activityName == "") {
+        if (data.activityName == '') {
           this.activityData.splice(i, 1);
         }
-      })
+      });
       this.newData = {
-        "activityName": " * ",
-        "subActivity": "",
-        "sagment": "",
-        "family": "",
-        "class": "",
-        "commodity": "",
-        "isEdit": true,
-        "isMoci": false
+        activityName: ' * ',
+        subActivity: '',
+        sagment: '',
+        family: '',
+        class: '',
+        commodity: '',
+        isEdit: true,
+        isMoci: false
       };
       this.activityData.push(this.newData);
     }
     if (datatype === 'personal') {
       this.personalData.map((data, i) => {
-        if (data.personName == "") {
+        if (data.personName == '') {
           this.personalData.splice(i, 1);
         }
-      })
+      });
       this.newData = {
-        "personName": " * ",
-        "nationality": "",
-        "idType": "",
-        "idNo": "",
-        "designation": "",
-        "noOfShares": '',
-        "perShares": "",
-        "authorizationType": "",
-        "authorizationLimit": "",
-        "note": "",
-        "regDate": "",
-        "isEdit": true,
-        "isMoci": false
+        personName: ' * ',
+        nationality: '',
+        idType: '',
+        idNo: '',
+        designation: '',
+        noOfShares: '',
+        perShares: '',
+        authorizationType: '',
+        authorizationLimit: '',
+        note: '',
+        regDate: '',
+        isEdit: true,
+        isMoci: false
       };
       this.personalData.push(this.newData);
     }
     if (datatype === 'activityInfo') {
       this.activityInfoData.map((data, i) => {
-        if (data.activityName == "") {
+        if (data.activityName == '') {
           this.activityInfoData.splice(i, 1);
         }
-      })
+      });
       this.newData = {
-        "activityName": " * ",
-        "subActivity": "",
-        "establishmentDate": "",
-        "regDate": "",
-        "expDate": "",
-        "duration": "",
-        "companyGrade": "",
-        "location": "",
-        "documents": [],
-        "isEdit": true,
-        "isMoci": false
+        activityName: ' * ',
+        subActivity: '',
+        establishmentDate: '',
+        regDate: '',
+        expDate: '',
+        duration: '',
+        companyGrade: '',
+        location: '',
+        documents: [],
+        isEdit: true,
+        isMoci: false
       };
       this.activityInfoData.push(this.newData);
     }
-    if(datatype === 'communication'){
-      this.communicationData.map((data, i)=> {
-        if(data.method == ""){
-          this.communicationData.splice(i,1);
+    if (datatype === 'communication') {
+      this.communicationData.map((data, i) => {
+        if (data.value == '') {
+          this.communicationData.splice(i, 1);
         }
-      })
+      });
       this.newData = {
-        "no": this.communicationData.length+1,
-        "method":" * ",
-        "value":" ",
-        "isEdit": true,
-        "isMoci": false
+        no: this.communicationData.length + 1,
+        method: '',
+        value: ' * ',
+        isEdit: true,
+        isMoci: false
       };
       this.communicationData.push(this.newData);
     }
-    if(datatype === 'siteVisit') {
-      this.siteVisitData.map((data, i)=> {
-        if(data.label == ""){
-          this.siteVisitData.splice(i,1);
+    if (datatype === 'siteVisit') {
+      this.siteVisitData.map((data, i) => {
+        if (data.label == '') {
+          this.siteVisitData.splice(i, 1);
         }
-      })
+      });
       this.newData = {
-        "no": this.siteVisitData.length+1,
-        "label":" * ",
-        "value":" ",
-        "isEdit": true,
-        "isMoci": false
+        no: this.siteVisitData.length + 1,
+        label: ' * ',
+        value: ' ',
+        isEdit: true,
+        isMoci: false
       };
       this.siteVisitData.push(this.newData);
     }
@@ -782,212 +781,211 @@ export class LocalRegistrationComponent implements OnInit {
     data.isEdit = false;
     if (datatype === 'employee') {
 
-      if (data.name !== "") {
+      if (data.name !== '') {
         this.employeeData.map((d, i) => {
           if (d.name == data.name) {
-            if(data.staffCategory == "") {
-              data.staffCategory = "-";
+            if (data.staffCategory == '') {
+              data.staffCategory = '-';
             }
             d = data;
           }
         });
-        if (data.name === " * ") {
-          data.name = "",
+        if (data.name === ' * ') {
+          data.name = '',
           data.isEdit = true;
         }
       } else {
         this.employeeData.map((data, i) => {
-          if (data.name == "") {
+          if (data.name == '') {
             this.employeeData.splice(i, 1);
           }
-          
-        })
-        this.alertService.pushError('name can not be empty.')
+        });
+        this.alertService.pushError('name can not be empty.');
       }
-    this.getEmployeeCategories();
+      this.getEmployeeCategories();
     }
     if (datatype === 'project') {
 
-      if (data.name !== "") {
+      if (data.name !== '') {
         this.projectData.map((d, i) => {
           if (d.no == data.no) {
-            d = data
+            d = data;
           }
         });
-        if (data.name === " * ") {
-          data.name = "",
+        if (data.name === ' * ') {
+          data.name = '',
             data.isEdit = true;
         }
       } else {
         this.projectData.map((data, i) => {
-          if (data.name == "") {
+          if (data.name == '') {
             this.projectData.splice(i, 1);
           }
-        })
-        this.alertService.pushError('name can not be empty.')
+        });
+        this.alertService.pushError('name can not be empty.');
       }
     }
     if (datatype === 'subContractor') {
-      if (data.nameOfWork !== "") {
+      if (data.nameOfWork !== '') {
         this.subContractorData.map((d, i) => {
           if (d.no == data.no) {
-            d = data
+            d = data;
           }
         });
-        if (data.nameOfWork === " * ") {
-          data.nameOfWork = "",
+        if (data.nameOfWork === ' * ') {
+          data.nameOfWork = '',
             data.isEdit = true;
         }
       } else {
         this.subContractorData.map((data, i) => {
-          if (data.nameOfWork == "") {
+          if (data.nameOfWork == '') {
             this.subContractorData.splice(i, 1);
           }
-        })
-        this.alertService.pushError('nameOfWork can not be empty.')
+        });
+        this.alertService.pushError('nameOfWork can not be empty.');
       }
     }
     if (datatype === 'equipment') {
-      if (data.type !== "") {
+      if (data.type !== '') {
         this.equipmentData.map((d, i) => {
           if (d.no == data.no) {
-            d = data
+            d = data;
           }
         });
-        if (data.type === " * ") {
-          data.type = "",
+        if (data.type === ' * ') {
+          data.type = '',
             data.isEdit = true;
         }
       } else {
         this.equipmentData.map((data, i) => {
-          if (data.type == "") {
+          if (data.type == '') {
             this.equipmentData.splice(i, 1);
           }
-        })
-        this.alertService.pushError('type can not be empty.')
+        });
+        this.alertService.pushError('type can not be empty.');
       }
     }
     if (datatype === 'other') {
-      if (data.name !== "") {
+      if (data.name !== '') {
         this.otherData.map((d, i) => {
           if (d.no == data.no) {
-            d = data
+            d = data;
           }
         });
-        if (data.name === " * ") {
-            data.name = "",
+        if (data.name === ' * ') {
+            data.name = '',
             data.isEdit = true;
         }
       } else {
         this.otherData.map((data, i) => {
-          if (data.name == "") {
+          if (data.name == '') {
             // this.otherData.splice(i, 1);
-            data.name = 'test '+(i+1)+'';
+            data.name = 'test ' + (i + 1) + '';
           }
-        })
-        this.alertService.pushError('name can not be empty.')
+        });
+        this.alertService.pushError('name can not be empty.');
       }
     }
     if (datatype === 'activity') {
-      if (data.activityName !== "") {
+      if (data.activityName !== '') {
         this.activityData.map((d, i) => {
           if (d.activityName == data.activityName) {
-            d = data
+            d = data;
           }
         });
-        if (data.activityName === " * ") {
-          data.activityName = "",
+        if (data.activityName === ' * ') {
+          data.activityName = '',
             data.isEdit = true;
         }
       } else {
         this.activityData.map((data, i) => {
-          if (data.activityName == "") {
+          if (data.activityName == '') {
             this.activityData.splice(i, 1);
           }
-        })
-        this.alertService.pushError('Activity Name can not be empty.')
+        });
+        this.alertService.pushError('Activity Name can not be empty.');
       }
     }
     if (datatype === 'personal') {
-      if (data.personName !== "") {
+      if (data.personName !== '') {
         this.personalData.map((d, i) => {
           if (d.no == data.no) {
-            d = data
+            d = data;
           }
         });
-        if (data.personName === " * ") {
-          data.personName = "",
+        if (data.personName === ' * ') {
+          data.personName = '',
             data.isEdit = true;
         }
       } else {
         this.personalData.map((data, i) => {
-          if (data.personName == "") {
+          if (data.personName == '') {
             this.personalData.splice(i, 1);
           }
-        })
-        this.alertService.pushError('Person Name can not be empty.')
+        });
+        this.alertService.pushError('Person Name can not be empty.');
       }
     }
     if (datatype === 'activityInfo') {
-      if (data.activityName !== "") {
+      if (data.activityName !== '') {
         this.activityInfoData.map((d, i) => {
           if (d.activityName == data.activityName) {
-            d = data
+            d = data;
           }
         });
-        if (data.activityName === " * ") {
-          data.activityName = "",
+        if (data.activityName === ' * ') {
+          data.activityName = '',
             data.isEdit = true;
         }
       } else {
         this.activityInfoData.map((data, i) => {
-          if (data.activityName == "") {
+          if (data.activityName == '') {
             this.activityInfoData.splice(i, 1);
           }
-        })
-        this.alertService.pushError('Activity Name can not be empty.')
+        });
+        this.alertService.pushError('Activity Name can not be empty.');
       }
     }
-    if(datatype === 'communication'){
-      
-      if(data.method !== ""){
+    if (datatype === 'communication') {
+
+      if (data.method !== '') {
         this.communicationData.map((d, i) => {
-          if(d.no == data.no){
-            d = data
+          if (d.no == data.no) {
+            d = data;
           }
         });
-        if(data.method === " * "){
-          data.method ="",
+        if (data.value === ' * ') {
+          data.value = '',
           data.isEdit = true;
          }
       } else {
-        this.communicationData.map((data, i)=> {
-          if(data.method == ""){
-            this.communicationData.splice(i,1);
+        this.communicationData.map((data, i) => {
+          if (data.value == '') {
+            this.communicationData.splice(i, 1);
           }
-        })
-        this.alertService.pushError('Communication Method can not be empty.')
+        });
+        this.alertService.pushError('Value can not be empty.');
       }
     }
-    if(datatype === 'siteVisit'){
-      
-      if(data.label !== ""){
+    if (datatype === 'siteVisit') {
+
+      if (data.label !== '') {
         this.siteVisitData.map((d, i) => {
-          if(d.no == data.no){
-            d = data
+          if (d.no == data.no) {
+            d = data;
           }
         });
-        if(data.label === " * "){
-          data.label ="",
+        if (data.label === ' * ') {
+          data.label = '',
           data.isEdit = true;
          }
       } else {
-        this.siteVisitData.map((data, i)=> {
-          if(data.label == ""){
-            this.siteVisitData.splice(i,1);
+        this.siteVisitData.map((data, i) => {
+          if (data.label == '') {
+            this.siteVisitData.splice(i, 1);
           }
-        })
-        this.alertService.pushError('Label can not be empty.')
+        });
+        this.alertService.pushError('Label can not be empty.');
       }
     }
   }
@@ -996,72 +994,71 @@ export class LocalRegistrationComponent implements OnInit {
     this.order = !this.order;
     if (this.order === true) {
       if (property === 'employee') {
-        this.employeeData = this.sortByPipe.transform(this.formData.employeDetails, 'asc', str)
+        this.employeeData = this.sortByPipe.transform(this.formData.employeDetails, 'asc', str);
       }
       if (property === 'project') {
-        this.projectData = this.sortByPipe.transform(this.formData.projectDetails, 'asc', str)
+        this.projectData = this.sortByPipe.transform(this.formData.projectDetails, 'asc', str);
       }
       if (property === 'subcontractor') {
-        this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetails, 'asc', str)
+        this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetails, 'asc', str);
       }
       if (property === 'equipment') {
-        this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetails, 'asc', str)
+        this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetails, 'asc', str);
       }
       if (property === 'other') {
-        this.otherData = this.sortByPipe.transform(this.formData.commercialInfo.otherDetails, 'asc', str)
+        this.otherData = this.sortByPipe.transform(this.formData.commercialInfo.otherDetails, 'asc', str);
       }
       if (property === 'activity') {
-        this.activityData = this.sortByPipe.transform(this.formData.activities, 'asc', str)
+        this.activityData = this.sortByPipe.transform(this.formData.activities, 'asc', str);
       }
       if (property === 'personal') {
-        this.personalData = this.sortByPipe.transform(this.formData.personalDetails, 'asc', str)
+        this.personalData = this.sortByPipe.transform(this.formData.personalDetails, 'asc', str);
       }
       if (property === 'activityInfo') {
-        this.activityInfoData = this.sortByPipe.transform(this.formData.commercialInfo.activityInfo, 'asc', str)
+        this.activityInfoData = this.sortByPipe.transform(this.formData.commercialInfo.activityInfo, 'asc', str);
       }
       if (property === 'branchInfo') {
-        this.compBranchInfoData = this.sortByPipe.transform(this.formData.commercialInfo.compBranchInfo, 'asc', str)
+        this.compBranchInfoData = this.sortByPipe.transform(this.formData.commercialInfo.compBranchInfo, 'asc', str);
       }
-      if(property === 'communication'){
-        this.communicationData = this.sortByPipe.transform(this.formData.communicationDetails,'asc',str)
+      if (property === 'communication') {
+        this.communicationData = this.sortByPipe.transform(this.formData.comunicationMethod, 'asc', str);
       }
-      if(property === 'communication'){
-        this.siteVisitData = this.sortByPipe.transform(this.formData.siteVisit,'asc',str)
+      if (property === 'sitevisit') {
+        this.siteVisitData = this.sortByPipe.transform(this.formData.siteVisit, 'asc', str);
       }
-    }
-    else {
+    } else {
       if (property === 'employee') {
-        this.employeeData = this.sortByPipe.transform(this.formData.employeDetails, 'desc', str)
+        this.employeeData = this.sortByPipe.transform(this.formData.employeDetails, 'desc', str);
       }
       if (property === 'project') {
-        this.projectData = this.sortByPipe.transform(this.formData.projectDetails, 'desc', str)
+        this.projectData = this.sortByPipe.transform(this.formData.projectDetails, 'desc', str);
       }
       if (property === 'subcontractor') {
-        this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetails, 'desc', str)
+        this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetails, 'desc', str);
       }
       if (property === 'equipment') {
-        this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetails, 'desc', str)
+        this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetails, 'desc', str);
       }
       if (property === 'other') {
-        this.otherData = this.sortByPipe.transform(this.formData.commercialInfo.otherDetails, 'desc', str)
+        this.otherData = this.sortByPipe.transform(this.formData.commercialInfo.otherDetails, 'desc', str);
       }
       if (property === 'activity') {
-        this.activityData = this.sortByPipe.transform(this.formData.activities, 'desc', str)
+        this.activityData = this.sortByPipe.transform(this.formData.activities, 'desc', str);
       }
       if (property === 'personal') {
-        this.personalData = this.sortByPipe.transform(this.formData.personalDetails, 'desc', str)
+        this.personalData = this.sortByPipe.transform(this.formData.personalDetails, 'desc', str);
       }
       if (property === 'activityInfo') {
-        this.activityInfoData = this.sortByPipe.transform(this.formData.commercialInfo.activityInfo, 'desc', str)
+        this.activityInfoData = this.sortByPipe.transform(this.formData.commercialInfo.activityInfo, 'desc', str);
       }
       if (property === 'branchInfo') {
-        this.compBranchInfoData = this.sortByPipe.transform(this.formData.commercialInfo.compBranchInfo, 'desc', str)
+        this.compBranchInfoData = this.sortByPipe.transform(this.formData.commercialInfo.compBranchInfo, 'desc', str);
       }
-      if(property === 'communication'){
-        this.communicationData = this.sortByPipe.transform(this.formData.communicationDetails,'desc',str)
+      if (property === 'communication') {
+        this.communicationData = this.sortByPipe.transform(this.formData.comunicationMethod, 'desc', str);
       }
-      if(property === 'communication'){
-        this.siteVisitData = this.sortByPipe.transform(this.formData.siteVisit,'desc',str)
+      if (property === 'sitevisit') {
+        this.siteVisitData = this.sortByPipe.transform(this.formData.siteVisit, 'desc', str);
       }
     }
   }
@@ -1070,7 +1067,7 @@ export class LocalRegistrationComponent implements OnInit {
     this.activityMenu = !this.activityMenu;
   }
 
-  changeSite(){
-    console.log(this.isSiteVisit)
+  changeSite() {
+    console.log(this.isSiteVisit);
   }
 }

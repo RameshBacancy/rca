@@ -4,7 +4,7 @@ import { CanActivate, CanActivateChild } from '@angular/router';
 
 import { ReplaySubject, Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
-//import { UserService } from '../services/user.service';
+// import { UserService } from '../services/user.service';
 
 @Injectable({
     providedIn: 'root'
@@ -19,10 +19,9 @@ export class AdminGuard implements CanActivate {
     ) { }
 
     canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-        if(window.localStorage.getItem("LoginToken")){ 
+        if (window.localStorage.getItem('LoginToken')) {
             return true;
-        }
-        else{
+        } else {
             this.router.navigateByUrl('/admin/user/login');
             return false;
         }

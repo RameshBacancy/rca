@@ -14,23 +14,23 @@ export class AlertMessageService {
     private http: HttpClient
   ) { }
 
-  url= environment.API_BASE_URL;
+  url = environment.API_BASE_URL;
 
 
-  addMessages(status, title, data): Observable<any>{
-    return this.http.post<any>(this.url+'alert-message', {status: status, title: title, description: data})
+  addMessages(status, title, data): Observable<any> {
+    return this.http.post<any>(this.url + 'alert-message', {status: status, title: title, description: data});
   }
 
-  getMessages(): Observable<any>{
-      return this.http.get<any>(this.url+'alert-message')
-    
+  getMessages(): Observable<any> {
+      return this.http.get<any>(this.url + 'alert-message');
+
   }
 
-  updateMessages(status, title, data, id): Observable<any>{
-    return this.http.post<any>(this.url+'alert-message/'+id, {status: status, title: title, description: data, _method: 'PATCH'})
+  updateMessages(status, title, data, id): Observable<any> {
+    return this.http.post<any>(this.url + 'alert-message/' + id, { status: status, title: title, description: data, _method: 'PATCH'});
   }
 
-  deleteMessages(id): Observable<any>{
-    return this.http.delete<any>(this.url+'alert-message/'+id);
+  deleteMessages(id): Observable<any> {
+    return this.http.delete<any>(this.url + 'alert-message/' + id);
   }
 }

@@ -21,38 +21,36 @@ export class ForgetPasswordComponent implements OnInit {
   errorMsg: any;
 
   constructor(
-    private _userService: UserService,
-    private _alertService: AlertService,
+    private userService: UserService,
+    private alertService: AlertService,
     private router: Router,
-    private _Activatedroute:ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     private spinner: SpinnerService,
-    private location : Location
-  ) { 
-    
-  }
+    private location: Location
+  ) {  }
 
-  
+
   ngOnInit() {
-    this._Activatedroute.queryParams.subscribe((params) => {
-      this.user.token =params['token'];
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.user.token = params['token'];
     });
-    this.location.replaceState('forgetpassword')
-    
+    this.location.replaceState('forgetpassword');
+
   }
 
 
-  resetPassword(){
+  resetPassword() {
     this.spinner.openSpinner();
-    if(this.user.password.toString() == this.confirm_password){  
-      this._userService.resetPassword(this.user)
+    if (this.user.password.toString() == this.confirm_password) {
+      this.userService.resetPassword(this.user);
     } else {
       this.spinner.closeSpinner();
-      this.errorMsg = 'password mismatch'
+      this.errorMsg = 'password mismatch';
     }
   }
 
   cancel(){
-    this.router.navigateByUrl('/admin/user/login')
+    this.router.navigateByUrl('/admin/user/login');
   }
 
 }

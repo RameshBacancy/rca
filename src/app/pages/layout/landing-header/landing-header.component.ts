@@ -12,32 +12,33 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./landing-header.component.scss']
 })
 export class LandingHeaderComponent implements OnInit {
-  @Output() onViewSidebar: EventEmitter<any> = new EventEmitter();
+
   @Input() showsidebar: boolean;
   @Input() menuData;
+  @Output() onViewSidebar: EventEmitter<any> = new EventEmitter();
   public viewSideBar: boolean = false;
   public headerMenu: boolean = false;
   public openMessageWindow: boolean = false;
   public showUnreadMessage: boolean = true;
   public sidebarItems;
-  showtabs: boolean =true;
-  
+  showtabs: boolean = true;
+  public languageArray = ['English', 'Arabic', 'Hindi'];
+  selectedLanguage = 'English';
+
   constructor(
-    private router: Router, 
-    private _userService :UserService, 
-    private spinner: SpinnerService, 
-    private translate: TranslateService) 
-    {
+    private router: Router,
+    private userService: UserService,
+    private spinner: SpinnerService,
+    private translate: TranslateService) {
       this.translate.use('English');
     }
 
   ngOnInit() {
-    if(localStorage.getItem('supplierLogin') === 'true'){
+    if (localStorage.getItem('supplierLogin') === 'true') {
       this.showtabs = false;
     }
   }
 
-  public languageArray = ['English', 'Gujarati', 'Hindi'];
 
   changeLang(lang) {
     this.translate.use(lang);
@@ -48,8 +49,8 @@ export class LandingHeaderComponent implements OnInit {
   public toDashboard() {
   }
   /**
- * For open header menu
- */
+   * For open header menu
+   */
   public openMenu() {
     this.headerMenu = !this.headerMenu;
   }
@@ -66,27 +67,27 @@ export class LandingHeaderComponent implements OnInit {
   }
 
 
-  onViewSideBar(){
+  onViewSideBar() {
     this.viewSideBar = !this.viewSideBar;
     this.onViewSidebar.emit(this.viewSideBar);
   }
 
-  onLogOut(){
-    if(localStorage.getItem('supplierLogin') === 'true'){
+  onLogOut() {
+    if (localStorage.getItem('supplierLogin') === 'true') {
       localStorage.clear();
       this.router.navigate(['']);
     } else {
       this.spinner.openSpinner();
-      this._userService.logout();
+      this.userService.logout();
       this.spinner.closeSpinner();
       localStorage.clear();
       this.router.navigate(['/admin/user/login']);
     }
   }
 
-  onChangePassword(){
+  onChangePassword() {
     this.router.navigate(['/admin/changepassword']);
   }
 
-  
+
 }

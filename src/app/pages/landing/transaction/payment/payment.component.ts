@@ -13,13 +13,13 @@ export class PaymentComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem('paymentStep') != 'true'){
+    if (localStorage.getItem('paymentStep') != 'true') {
       this.router.navigate(['/landing/supplier-registration/dashboard']);
     }
   }
 
-  proceed(){
-    localStorage.setItem('paymentStep','Done')
+  proceed() {
+    localStorage.setItem('paymentStep','Done');
     this.router.navigate(['/landing/supplier-registration/transaction']);
   }
 }

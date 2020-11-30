@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertMessageService } from 'src/app/services/alert-message.service';
@@ -9,7 +9,7 @@ import { SafeHtmlPipe } from 'src/app/pipe/safeHtml.pipe';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewChecked {
 
   @ViewChild('nodeInput' ) fileInput: ElementRef;
   status: string;
@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private modalService: NgbModal,
     private router: Router,
-    private _alertMessage: AlertMessageService,
+    private alertMessage: AlertMessageService,
     private safeHtml: SafeHtmlPipe
   ) { }
 
@@ -32,81 +32,80 @@ export class DashboardComponent implements OnInit {
   }
 
   ngAfterViewChecked(): void {
-      if(localStorage.getItem('ModelShowed') != 'true'){
-        if(localStorage.getItem('paymentStep') != 'true'){
-          if(localStorage.getItem('RegStatus') == 'finish') {
+      if (localStorage.getItem('ModelShowed') != 'true') {
+        if (localStorage.getItem('paymentStep') != 'true') {
+          if (localStorage.getItem('RegStatus') == 'finish') {
             this.fileInput.nativeElement.click();
           }
         }
       }
   }
 
-  openModel(){
-    if(localStorage.getItem('RegStatus') === 'finish'){
+  openModel() {
+    if (localStorage.getItem('RegStatus') === 'finish') {
       this.fileInput.nativeElement.click();
-    }
-    else {
+    } else {
       this.router.navigateByUrl('/landing/supplier-registration/registration');
     }
   }
-  onRegistrationClick(){
-    if(localStorage.getItem('RegStatus') === 'finish') {
-      if(localStorage.getItem('arStatus') === 'pending') {
-        this._alertMessage.getMessages().subscribe( d => {
+  onRegistrationClick() {
+    if (localStorage.getItem('RegStatus') === 'finish') {
+      if (localStorage.getItem('arStatus') === 'pending') {
+        this.alertMessage.getMessages().subscribe( d => {
           d.data.data.filter( a => {
-            if (a.status =='pending'){
-              this.alertData = a
+            if (a.status == 'pending') {
+              this.alertData = a;
             }
-          })
-          if(this.alertData){
+          });
+          if (this.alertData) {
             this.status = this.alertData.title;
             this.approveRejectStatus = this.safeHtml.transform(this.alertData.description, true);
           } else {
-            this.status = "Approval Awaited";
-            this.approveRejectStatus = "Thank you for entering your registration details. <br/> We will review and get back to you soon.<br/>"
+            this.status = 'Approval Awaited';
+            this.approveRejectStatus = 'Thank you for entering your registration details. <br/> We will review and get back to you soon.<br/>';
           }
-        })
+        });
         this.gotopath = '/landing/supplier-registration/dashboard';
-      } else if(localStorage.getItem('arStatus') === 'approved') {
-        this._alertMessage.getMessages().subscribe( d => {
+      } else if (localStorage.getItem('arStatus') === 'approved') {
+        this.alertMessage.getMessages().subscribe( d => {
           d.data.data.filter( a => {
-            if (a.status =='approved'){
-              this.alertData = a
+            if (a.status == 'approved') {
+              this.alertData = a;
             }
-          })
-          if(this.alertData){
+          });
+          if (this.alertData) {
             this.status = this.alertData.title;
             this.approveRejectStatus = this.safeHtml.transform(this.alertData.description, true);
           } else {
-            this.status = "Approved";
-            this.approveRejectStatus = "Your Registration request is Approved by the Admin. <br/> For further procedure complete your payment. <br/>"
+            this.status = 'Approved';
+            this.approveRejectStatus = 'Your Registration request is Approved by the Admin. <br/> For further procedure complete your payment. <br/>';
           }
-        })
-        this.gotopath = '/landing/supplier-registration/transaction'; 
-      } else if(localStorage.getItem('arStatus') === 'reject') {
-        this._alertMessage.getMessages().subscribe( d => {
+        });
+        this.gotopath = '/landing/supplier-registration/transaction';
+      } else if (localStorage.getItem('arStatus') === 'reject') {
+        this.alertMessage.getMessages().subscribe( d => {
           d.data.data.filter( a => {
-            if (a.status =='reject'){
-              this.alertData = a
+            if (a.status == 'reject') {
+              this.alertData = a;
             }
-          })
-          if(this.alertData){
+          });
+          if (this.alertData) {
             this.status = this.alertData.title;
             this.approveRejectStatus = this.safeHtml.transform(this.alertData.description, true);
           } else {
-            this.status = "Rejected";
-            this.approveRejectStatus = "Your Registration request is Rejected by the Admin. <br/> If you have any queries regarding to this then contact with admin. <br/>"
+            this.status = 'Rejected';
+            this.approveRejectStatus = 'Your Registration request is Rejected by the Admin. <br/> If you have any queries regarding to this then contact with admin. <br/>';
           }
-        })
-        this.gotopath = '/landing/supplier-registration/dashboard'; 
+        });
+        this.gotopath = '/landing/supplier-registration/dashboard';
       }
     }
   }
 
-  goto(cancel?){
+  goto(cancel?) {
     localStorage.setItem('ModelShowed', 'true');
     this.modalService.dismissAll();
-    if(cancel){
+    if (cancel) {
         this.gotopath = '/landing/supplier-registration/dashboard';
     }
     this.router.navigateByUrl(this.gotopath);

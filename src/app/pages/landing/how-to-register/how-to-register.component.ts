@@ -9,14 +9,14 @@ import { CmsService } from 'src/app/services/cms.service';
 export class HowToRegisterComponent implements OnInit {
   data;
   isdata: boolean = false;
-  constructor(private _cmsService: CmsService,private ref: ChangeDetectorRef) { }
+  constructor(private cmsService: CmsService, private ref: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.getData();
   }
 
-  getData(){
-    this._cmsService.getCMS().subscribe(d => {
+  getData() {
+    this.cmsService.getCMS().subscribe(d => {
       this.data = d.data.data.filter((data: { page: string | string[]; }) => data.page.includes('How to Register'));
       this.ref.detectChanges();
     });

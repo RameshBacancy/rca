@@ -15,11 +15,11 @@ const routes: Routes = [
     // canActivate: [ProtectGuard],
   },
   {
-    path:'auth',
+    path: 'auth',
     loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
   },
   {
-    path:'admin',
+    path: 'admin',
     loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule)
   },
   { path: '**', redirectTo: '/auth/supplierRegistration', pathMatch: 'full' }

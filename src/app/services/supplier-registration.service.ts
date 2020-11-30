@@ -6,12 +6,11 @@ import * as data from '../../assets/JSON/supplier-registration.json';
 export class SupplierRegistrationService {
 
   constructor() { }
-  
-  getdata(){
-    if(localStorage.getItem('regType') === 'local'){
+
+  getdata() {
+    if (localStorage.getItem('regType') === 'local') {
       return data.localdetails;
-    }
-    else{
+    } else {
       return data.details;
     }
   }

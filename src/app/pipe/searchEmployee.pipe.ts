@@ -1,18 +1,12 @@
 import { Pipe, PipeTransform, Injectable } from '@angular/core';
 
 @Pipe({
-  name: 'filter'
+    name: 'filter'
 })
 @Injectable({
     providedIn: 'root'
-  })
+})
 export class FilterPipe implements PipeTransform {
-    transform(items: any, term: string): any {
-        if (!term) return items;
-        if (!items) return [];
-
-        return FilterPipe.filter(items, term);
-    }
 
     static filter(items: Array<{ [key: string]: any }>, term: string): Array<{ [key: string]: any }> {
 
@@ -28,7 +22,7 @@ export class FilterPipe implements PipeTransform {
                     continue;
                 }
 
-                let type = typeof item[property]
+                let type = typeof item[property];
                 if (item[property]) {
                     if (item[property].toString().toLowerCase().includes(toCompare)) {
                         return true;
@@ -40,6 +34,14 @@ export class FilterPipe implements PipeTransform {
             return false;
         });
     }
+
+    transform(items: any, term: string): any {
+        if (!term) { return items; }
+        if (!items) { return []; }
+
+        return FilterPipe.filter(items, term);
+    }
+
 }
 
 

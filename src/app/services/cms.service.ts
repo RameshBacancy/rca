@@ -14,23 +14,23 @@ export class CmsService {
     private http: HttpClient
   ) { }
 
-  url= environment.API_BASE_URL;
+  url = environment.API_BASE_URL;
 
 
-  addCMS(page, title, data): Observable<any>{
-    return this.http.post<any>(this.url+'cms', {page: page, title: title, description: data})
+  addCMS(page, title, data): Observable<any> {
+    return this.http.post<any>(this.url + 'cms', {page: page, title: title, description: data});
   }
 
-  getCMS(): Observable<any>{
-      return this.http.get<any>(this.url+'cms')
-    
+  getCMS(): Observable<any> {
+      return this.http.get<any>(this.url + 'cms');
+
   }
 
-  updateCMS(page, title, data, id): Observable<any>{
-    return this.http.post<any>(this.url+'cms/'+id, {page: page, title: title, description: data, _method: 'PATCH'})
+  updateCMS(page, title, data, id): Observable<any> {
+    return this.http.post<any>(this.url + 'cms/' + id, {page: page, title: title, description: data, _method: 'PATCH'});
   }
 
-  deleteCMS(id): Observable<any>{
-    return this.http.delete<any>(this.url+'cms/'+id);
+  deleteCMS(id): Observable<any> {
+    return this.http.delete<any>(this.url + 'cms/' + id);
   }
 }

@@ -6,11 +6,11 @@ import * as data from '../../assets/JSON/sidebar-menu.json';
 export class SidebarService {
 
   constructor() { }
-  
-  getdata(){
+
+  getdata() {
     return data.menu;
  }
-  getadmindata(){
+  getadmindata() {
     return data.admin;
   }
 }

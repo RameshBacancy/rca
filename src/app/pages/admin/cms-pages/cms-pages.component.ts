@@ -48,12 +48,12 @@ export class CmsPagesComponent implements OnInit {
   errorMsg: string;
 
   constructor(
-    private ref: ChangeDetectorRef, 
-    private modalService: NgbModal, 
-    private _cmsService: CmsService, 
-    private _alertService: AlertService,
+    private ref: ChangeDetectorRef,
+    private modalService: NgbModal,
+    private cmsService: CmsService,
+    private alertService: AlertService,
     private spinner: SpinnerService,
-    private safeHtml: SafeHtmlPipe 
+    private safeHtml: SafeHtmlPipe
     ) { }
 
   ngOnInit(): void {
@@ -63,11 +63,11 @@ export class CmsPagesComponent implements OnInit {
     // this.pagesOptions = ["How to Register", "About Us"];
   }
 
-  getCMSData(){
-    this._cmsService.getCMS().subscribe(d => {
+  getCMSData() {
+    this.cmsService.getCMS().subscribe(d => {
       this.data = d.data.data;
-      if(this.data){
-        if(this.data.length > 0){
+      if (this.data) {
+        if (this.data.length > 0) {
           this.isdata = true;
         }
       }
@@ -76,32 +76,30 @@ export class CmsPagesComponent implements OnInit {
   }
 
   save() {
-    if(this.title !=="" && this.description !== "" && this.page !== ""){
+    if (this.title !== '' && this.description !== '' && this.page !== '') {
       this.spinner.openSpinner();
-      if(!this.isnewData)  {
-          this._cmsService.addCMS(this.page, this.title, this.description).subscribe(d => {
+      if (!this.isnewData)  {
+          this.cmsService.addCMS(this.page, this.title, this.description).subscribe(d => {
             this.spinner.closeSpinner();
-        })
+        });
       } else {
-        this._cmsService.updateCMS(this.page, this.title, this.description, this.id).subscribe(d => {
+        this.cmsService.updateCMS(this.page, this.title, this.description, this.id).subscribe(d => {
           this.spinner.closeSpinner();
-        })
+        });
       }
       this.getCMSData();
       this.title = '',
       this.description = '';
     } else {
-      if(this.page !== ""){
+      if (this.page !== '') {
         this.open(this.mymodal);
-        this.errorMsg ="Page name can not be empty.";
-      }
-      else if(this.title === ""){ 
+        this.errorMsg = 'Page name can not be empty.';
+      } else if (this.title === '') {
         this.open(this.mymodal);
-        this.errorMsg ="Title can not be empty.";
-      }
-      else if(this.description === ""){ 
+        this.errorMsg = 'Title can not be empty.';
+      } else if (this.description === '') {
         this.open(this.mymodal);
-        this.errorMsg ="Description can not be empty.";
+        this.errorMsg = 'Description can not be empty.';
       }
     }
   }
@@ -112,10 +110,10 @@ export class CmsPagesComponent implements OnInit {
     this.description = '';
   }
 
-  delete(id, name){
-    if(confirm('Do you want to delete page '+ name+ '.')){
+  delete(id, name) {
+    if (confirm('Do you want to delete page ' + name + '.')) {
       this.spinner.openSpinner();
-      this._cmsService.deleteCMS(id).subscribe(d => { 
+      this.cmsService.deleteCMS(id).subscribe(d => {
         this.spinner.closeSpinner();
       });
       this.getCMSData();
@@ -123,18 +121,17 @@ export class CmsPagesComponent implements OnInit {
   }
 
   open(content, data?) {
-    if(data){
-      this.heading = "Edit CMS"
+    if (data) {
+      this.heading = 'Edit CMS';
       this.isnewData = true;
-      this.id = data.id
+      this.id = data.id;
       this.page = data.page;
       this.title = data.title;
       this.description = this.safeHtml.transform(data.description, true);
-    }
-    else {
-      this.heading = "Add CMS"
+    } else {
+      this.heading = 'Add CMS';
       this.isnewData = false;
-      this.id = ''
+      this.id = '';
       this.page = '';
       this.title = '';
       this.description = '';
