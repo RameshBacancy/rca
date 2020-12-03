@@ -1,0 +1,46 @@
+<div class="custom-tab-01">
+    <mat-horizontal-stepper [@.disabled]="true" #stepper>
+        <!-- General Info -->
+        <mat-step>
+            <ng-template matStepLabel>General Info</ng-template>
+            <div class="row">
+                <!-- <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
+                    <i class="fa fa-ban text-red fs-14" mat-raised-button
+                        matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
+                </div> -->
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
+                    <p class="fs-14">1567 6578</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Arabic Name</h5>
+                    <p class="fs-14 px-4">آر بالا</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">English Name</h5>
+                    <p class="fs-14">R Bala</p>
+                </div>
+                <!-- <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Company Info</h5>
+                <p class="fs-14">Company Info</p>
+            </div> -->
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12 mb-5 px-4">
+                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        [disabled]="true"><i class="fa fa-caret-left"></i> Previous</button>
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext>Next
+                        <i class="fa fa-caret-right"></i></button>
+                    <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                 (click)="move(6)">Finish</button> -->
+                    <a href="/#/landing/supplier-registration/dashboard">
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
+                    </a>
+                </div>
+            </div>
+
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

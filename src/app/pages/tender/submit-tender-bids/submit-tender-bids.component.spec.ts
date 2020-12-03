@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OpenTendersComponent } from './open-tenders.component';
+import { SubmitTenderBidsComponent } from './submit-tender-bids.component';
 
-describe('OpenTendersComponent', () => {
-  let component: OpenTendersComponent;
-  let fixture: ComponentFixture<OpenTendersComponent>;
+describe('SubmitTenderBidsComponent', () => {
+  let component: SubmitTenderBidsComponent;
+  let fixture: ComponentFixture<SubmitTenderBidsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OpenTendersComponent ]
+      declarations: [ SubmitTenderBidsComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OpenTendersComponent);
+    fixture = TestBed.createComponent(SubmitTenderBidsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

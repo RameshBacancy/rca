@@ -1,0 +1,13 @@
+@import 'src/assets/scss/index.scss';
+.row {
+    margin: 0;
+
+    td a {
+        text-decoration: none;
+        color: $color-black !important;
+    }
+    td a:hover {
+        color: $primary-purple !important;
+    }
+
+}

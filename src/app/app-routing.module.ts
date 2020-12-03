@@ -15,7 +15,7 @@ const routes: Routes = [
     // canActivate: [ProtectGuard],
   },
   {
-    path: 'e_tendering',
+    path: 'e-tendering',
     loadChildren: () => import('./pages/tender/tender.module').then(m => m.TenderModule)
   },
   {

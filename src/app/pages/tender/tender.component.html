@@ -1,8 +1,6 @@
 <app-landing-header (onViewSidebar)="onViewSidebar($event)" [showsidebar]="true" [menuData]="menu"></app-landing-header>
 <div class="landing-portal-content bg-white" [class.viewOpen]="!viewSideBar">
-
     <section class="bg-white">
         <router-outlet></router-outlet>
-        
     </section>
 </div>
