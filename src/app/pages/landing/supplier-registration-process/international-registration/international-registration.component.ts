@@ -125,6 +125,9 @@ export class InternationalRegistrationComponent implements OnInit {
       this.editBank = true;
       this.editbankData = details;
       this.open(content);
+    } else {
+      this.bankform.reset();
+      this.open(content);
     }
   }
 
@@ -136,6 +139,7 @@ export class InternationalRegistrationComponent implements OnInit {
         this.editAddress = true;
       }
     } else {
+      this.form.reset();
       this.form.patchValue({ addressID: this.formData.individualAddress.length + 1, country: 'Oman' });
     }
 
