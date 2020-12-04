@@ -12,6 +12,10 @@ import { GeneralTenderDetailComponent } from './general-tender-detail/general-te
 import { RegistrationOfQueriesComponent } from './registration-of-queries/registration-of-queries.component';
 import { TenderAddendumsComponent } from './tender-addendums/tender-addendums.component';
 import { SubmitTenderBidsComponent } from './submit-tender-bids/submit-tender-bids.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 @NgModule({
@@ -30,7 +34,11 @@ import { SubmitTenderBidsComponent } from './submit-tender-bids/submit-tender-bi
     LayoutModule,
     FormsModule,
     MatStepperModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatProgressBarModule,
   ]
 })
 export class TenderModule { }
