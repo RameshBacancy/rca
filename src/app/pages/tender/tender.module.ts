@@ -1,3 +1,4 @@
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatStepperModule } from '@angular/material/stepper';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -30,7 +31,8 @@ import { SubmitTenderBidsComponent } from './submit-tender-bids/submit-tender-bi
     LayoutModule,
     FormsModule,
     MatStepperModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTabsModule
   ]
 })
 export class TenderModule { }

@@ -1,1 +1,441 @@
-<p>registration-of-queries works!</p>
+<div class="custom-tab-01">
+    <mat-horizontal-stepper [@.disabled]="true" #stepper>
+        <!-- Request SIte visit -->
+        <mat-step>
+            <ng-template matStepLabel>Site Visit</ng-template>
+
+            <div class="row mt-4 ml-2">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender No</h5>
+                    <p class="fs-14">09/2017/MT</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Title</h5>
+                    <p class="fs-14 ">Supply & Commissioning of A/C Equipment's</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
+                    <p class="fs-14 ">1a</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
+                    <p class="fs-14 px-2">-</p>
+                </div>
+            </div>
+
+            <div class="row mt-5 mb-5 ml-2">
+                <div class="col-md-4  px-4 pb-4">
+                    <button type="button" class="btn btn-info btn-block px-3 py-2">Request for Site Visit</button>
+                </div>
+            </div>
+
+
+            <div class="row mt-5 ml-2">
+                <div class="col-md-12 mb-5 px-4">
+                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        [disabled]="true"><i class="fa fa-caret-left" matStepperPrevious></i> Previous </button>
+                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        matStepperNext>Next <i class="fa fa-caret-right"></i></button>
+
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                        matStepperNext>Submit
+                    </button>
+                    <a routerLink="landing/supplier-registration/dashboard">
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
+                    </a>
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                        as draft
+                    </button>
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                    </button>
+
+                </div>
+            </div>
+
+        </mat-step>
+
+        <!--  Tender Extension -->
+        <mat-step>
+            <ng-template matStepLabel>Extension of Time</ng-template>
+
+            <div class="row mt-4 ml-2">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender No</h5>
+                    <p class="fs-14">09/2017/MT</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Title</h5>
+                    <p class="fs-14 ">Supply & Commissioning of A/C Equipment's</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
+                    <p class="fs-14 ">1a</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
+                    <p class="fs-14 px-2">-</p>
+                </div>
+            </div>
+            <div class="row mt-2 ml-2">
+                <div class="col  px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
+                    <p class="fs-14 px-2">-</p>
+                </div>
+            </div>
+
+
+            <div class="row ml-2">
+                <div class="col-md-12  px-4 pb-2 mt-2">
+                    <label class="fs-16 font-weight-bold text-black dark-text-1 ">Submission Ext. Req. Dt</label>
+                    <select name="" id="" class="btn ml-4">
+                        <option value="">week 1</option>
+                        <option value="">week 2</option>
+                        <option value="">week 3</option>
+                        <option value="">week 4</option>
+                        <option value="">No Extn.</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-5 ml-2">
+                <div class="col-md-12  px-4 pb-2">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Reason for Extensions</h5>
+                </div>
+                <div class="col-md-6  px-4 pb-2">
+                    <textarea name="" class="form-control" id="" rows="5"></textarea>
+                </div>
+            </div>
+
+
+            <div class="row mt-5 ml-2">
+                <div class="col-md-12 mb-5 px-4">
+                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous </button>
+                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        matStepperNext>Next <i class="fa fa-caret-right"></i></button>
+
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                        matStepperNext>Submit
+                    </button>
+                    <a routerLink="landing/supplier-registration/dashboard">
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
+                    </a>
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                        as draft
+                    </button>
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                    </button>
+
+                </div>
+            </div>
+
+        </mat-step>
+
+        <!--  Technical inquiry -->
+        <mat-step>
+            <ng-template matStepLabel>Technical Inquiry</ng-template>
+
+            <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+                <mat-tab label="SUPPLY LINES">
+
+                    <div class="row mt-4 ml-2">
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender No</h5>
+                            <p class="fs-14">09/2017/MT</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Title</h5>
+                            <p class="fs-14 ">Supply & Commissioning of A/C Equipment's</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Revision No</h5>
+                            <p class="fs-14">1</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
+                            <p class="fs-14 ">1a</p>
+                        </div>
+                    </div>
+                    <div class="row mt-2 ml-2">
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
+                            <p class="fs-14 px-2">-</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
+                            <p class="fs-14 px-2">-</p>
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-3 ml-2">
+                        <!-- <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Establishment date</h5>
+                            <p class="fs-14">{{formData.generalInfo.regDate}}</p>
+                        </div> -->
+
+
+                        <div class="col-md-12 px-4 mb-3 mt-3">
+                            <div class="table-responsive">
+                                <!-- <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('other')"><i
+                                        class="fa fa-plus" aria-hidden="true"></i></button> -->
+                                <table class="table table-striped mb-0 ">
+                                    <thead>
+                                        <tr class="purple-bg text-white">
+
+                                            <th scope="col">Line No
+                                            </th>
+                                            <th scope="col">Item/Part Code
+                                            </th>
+                                            <th scope="col">Item/Part Code Description
+                                            </th>
+                                            <th scope="col">UoM
+                                            </th>
+                                            <th scope="col">Quantity
+                                            </th>
+                                            <th scope="col">Unit Price (OMR)
+                                            </th>
+                                            <th scope="col">Total Price (OMR)
+                                            </th>
+                                            <th scope="col">Document Attachment
+                                            </th>
+                                            <th scope="col">Queries
+                                            </th>
+                                            <th scope="col">Responses</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td><i class="fa fa-folder"></i></td>
+                                            <td><input type="text"></td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td><i class="fa fa-folder"></i></td>
+                                            <td><input type="text"></td>
+                                            <td>-</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td><i class="fa fa-folder"></i></td>
+                                            <td><input type="text"></td>
+                                            <td>-</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="SERVICE LINES">
+                    <div class="row mt-4 ml-2">
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender No</h5>
+                            <p class="fs-14">09/2017/MT</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Title</h5>
+                            <p class="fs-14 ">Supply & Commissioning of A/C Equipment's</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Revision No</h5>
+                            <p class="fs-14">1</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
+                            <p class="fs-14 ">1a</p>
+                        </div>
+                    </div>
+                    <div class="row mt-2 ml-2">
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
+                            <p class="fs-14 px-2">-</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
+                            <p class="fs-14 px-2">-</p>
+                        </div>
+                    </div>
+                    <div class="row mt-3 ml-2">
+
+                        <div class="col-md-12 px-4 mb-3 mt-3">
+                            <div class="table-responsive">
+                                <!-- <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('other')"><i
+                                        class="fa fa-plus" aria-hidden="true"></i></button> -->
+                                <table class="table table-striped mb-0 ">
+                                    <thead>
+                                        <tr class="purple-bg text-white">
+
+                                            <th scope="col">Line No
+                                            </th>
+                                            <th scope="col">Item/Part Code Description
+                                            </th>
+                                            <th scope="col">UoM
+                                            </th>
+                                            <th scope="col">Quantity
+                                            </th>
+                                            <th scope="col">Unit Price (OMR)
+                                            </th>
+                                            <th scope="col">Total Price (OMR)
+                                            </th>
+                                            <th scope="col">
+                                                Document Attachment
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td><i class="fa fa-folder"></i></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td><i class="fa fa-folder"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="CONTRACT BOQS">
+                    <div class="row mt-4 ml-2">
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender No</h5>
+                            <p class="fs-14">09/2017/MT</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Title</h5>
+                            <p class="fs-14 ">Supply & Commissioning of A/C Equipment's</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Revision No</h5>
+                            <p class="fs-14">1</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
+                            <p class="fs-14 ">1a</p>
+                        </div>
+                    </div>
+                    <div class="row mt-2 ml-2">
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
+                            <p class="fs-14 px-2">-</p>
+                        </div>
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
+                            <p class="fs-14 px-2">-</p>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12 px-4 mb-3 mt-3">
+                            <div class="table-responsive">
+                                <!-- <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('other')"><i
+                                        class="fa fa-plus" aria-hidden="true"></i></button> -->
+                                <table class="table table-striped mb-0 ">
+                                    <thead>
+                                        <tr class="purple-bg text-white">
+
+                                            <th scope="col">Line No
+                                            </th>
+                                            <th scope="col">Line Name
+                                            </th>
+                                            <th scope="col">Line Description
+                                            </th>
+                                            <th scope="col">Item No
+                                            </th>
+                                            <th scope="col">Item Name
+                                            </th>
+                                            <th scope="col">Item Description
+                                            </th>
+                                            <th scope="col">Item Type
+                                            </th>
+                                            <th scope="col">UoM
+                                            </th>
+                                            <th scope="col">Quantity
+                                            </th>
+                                            <th scope="col">Item Rate
+                                            </th>
+                                            <th scope="col">Value
+                                            </th>
+                                            <th scope="col">Document Attachment
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td><i class="fa fa-folder"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+
+            <div class="row mt-5 ml-2">
+                <div class="col-md-12 mb-5 px-4">
+                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous </button>
+                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        matStepperNext>Next <i class="fa fa-caret-right"></i></button>
+
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                        matStepperNext>Submit
+                    </button>
+                    <a routerLink="landing/supplier-registration/dashboard">
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
+                    </a>
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                        as draft
+                    </button>
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                    </button>
+                </div>
+            </div>
+
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>
