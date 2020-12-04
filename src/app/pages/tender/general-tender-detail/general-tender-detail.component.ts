@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GeneralTenderDetails } from 'src/app/models/tender.model';
 import { TenderService } from 'src/app/services/tender.service';
@@ -13,6 +14,7 @@ export class GeneralTenderDetailComponent implements OnInit {
   @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
   generalTenderDetail: GeneralTenderDetails;
   searchText: string;
+  selected = new FormControl(0);
   selectedPage: any;
   filesList: any[];
   tenderDocuments: any[];
@@ -29,7 +31,22 @@ export class GeneralTenderDetailComponent implements OnInit {
       this.generalTenderDetail = data;
     });
     this.tenderDocuments = [];
+    this.selected.setValue(0);
   }
+
+  changeTab() {
+    this.selected.setValue(this.selected.value + 1);
+  }
+  previousTab() {
+    this.selected.setValue(this.selected.value - 1);
+  }
+  newStep() {
+    this.selected.setValue(0);
+  }
+  preStep(number) {
+    this.selected.setValue(number);
+  }
+
 
   onClick() {
     const data = this.tenderDocuments;

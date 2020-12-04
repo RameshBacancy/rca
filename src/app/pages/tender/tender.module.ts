@@ -1,3 +1,4 @@
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatStepperModule } from '@angular/material/stepper';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -39,6 +40,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatButtonModule,
     MatCardModule,
     MatProgressBarModule,
+    MatTabsModule
   ]
 })
 export class TenderModule { }
