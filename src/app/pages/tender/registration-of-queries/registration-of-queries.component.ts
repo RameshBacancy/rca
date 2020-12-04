@@ -13,4 +13,10 @@ export class RegistrationOfQueriesComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  changeTab() {
+    this.selected.setValue(this.selected.value + 1);
+  }
+  previousTab() {
+    this.selected.setValue(this.selected.value - 1);
+  }
 }

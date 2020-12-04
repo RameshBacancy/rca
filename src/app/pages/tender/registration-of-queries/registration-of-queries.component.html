@@ -1,3 +1,27 @@
+<section>
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb bg-white mb-0">
+                    <li class="breadcrumb-item"><a routerLink="/landing/supplier-registration/dashboard">E-Tendering</a>
+                    </li>
+                    <li class="breadcrumb-item active">Registration of Queries</li>
+
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="dark-grey-bg ">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-12 ">
+                <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">Tender Queries</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
 <div class="custom-tab-01">
     <mat-horizontal-stepper [@.disabled]="true" #stepper>
         <!-- Request SIte visit -->
@@ -40,7 +64,7 @@
                     <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         matStepperNext>Submit
                     </button>
-                    <a routerLink="landing/supplier-registration/dashboard">
+                    <a routerLink="/landing/supplier-registration/dashboard">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                     </a>
                     <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
@@ -117,7 +141,7 @@
                     <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         matStepperNext>Submit
                     </button>
-                    <a routerLink="landing/supplier-registration/dashboard">
+                    <a routerLink="/landing/supplier-registration/dashboard">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                     </a>
                     <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
@@ -246,6 +270,31 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row mt-5 ml-2">
+                        <div class="col-md-12 mb-5 px-4">
+                            <button type="button"
+                                class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                matStepperPrevious><i class="fa fa-caret-left"></i> Previous </button>
+
+                            <button type="button" class="btn border  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                (click)="changeTab()" [disabled]="selected.value == 2">Next <i
+                                    class="fa fa-caret-right"></i></button>
+
+
+                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                matStepperNext>Submit
+                            </button>
+                            <a routerLink="/landing/supplier-registration/dashboard">
+                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
+                            </a>
+                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                                as draft
+                            </button>
+                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                            </button>
+                        </div>
+                    </div>
                 </mat-tab>
                 <mat-tab label="SERVICE LINES">
                     <div class="row mt-4 ml-2">
@@ -327,6 +376,31 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row mt-5 ml-2">
+                        <div class="col-md-12 mb-5 px-4">
+                            <button type="button"
+                                class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                (click)="previousTab()"><i class="fa fa-caret-left"></i> Previous </button>
+
+                            <button type="button" class="btn border  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                (click)="changeTab()" [disabled]="selected.value == 2">Next <i
+                                    class="fa fa-caret-right"></i></button>
+
+
+                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                matStepperNext>Submit
+                            </button>
+                            <a routerLink="/landing/supplier-registration/dashboard">
+                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
+                            </a>
+                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                                as draft
+                            </button>
+                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                            </button>
+                        </div>
+                    </div>
                 </mat-tab>
                 <mat-tab label="CONTRACT BOQS">
                     <div class="row mt-4 ml-2">
@@ -357,7 +431,7 @@
                             <p class="fs-14 px-2">-</p>
                         </div>
                     </div>
-                    <div class="row mt-3">
+                    <div class="row mt-3 ml-2">
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
                                 <!-- <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('other')"><i
@@ -412,30 +486,35 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row mt-5 ml-2">
+                        <div class="col-md-12 mb-5 px-4">
+                            <button type="button"
+                                class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                (click)="previousTab()"><i class="fa fa-caret-left"></i> Previous </button>
+
+                            <button type="button" class="btn border  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                [disabled]="true">Next <i class="fa fa-caret-right"></i></button>
+
+
+                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                matStepperNext>Submit
+                            </button>
+                            <a routerLink="/landing/supplier-registration/dashboard">
+                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
+                            </a>
+                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                                as draft
+                            </button>
+                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                            </button>
+                        </div>
+                    </div>
                 </mat-tab>
             </mat-tab-group>
 
-            <div class="row mt-5 ml-2">
-                <div class="col-md-12 mb-5 px-4">
-                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous </button>
-                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        matStepperNext>Next <i class="fa fa-caret-right"></i></button>
-
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                        matStepperNext>Submit
-                    </button>
-                    <a routerLink="landing/supplier-registration/dashboard">
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
-                    </a>
-                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
-                        as draft
-                    </button>
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
-                    </button>
-                </div>
-            </div>
 
         </mat-step>
+
     </mat-horizontal-stepper>
 </div>
