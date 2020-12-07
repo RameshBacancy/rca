@@ -1,0 +1,321 @@
+<section>
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb bg-white mb-0">
+                    <li class="breadcrumb-item"><a href="/#/landing/supplier-registration/dashboard">E-Tendring</a></li>
+                    <li class="breadcrumb-item"><a href="/#/landing/supplier-registration/dashboard">Supplier
+                            Dashboards</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">General Tender Detail</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="dark-grey-bg ">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-12 ">
+                <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">General Tender Detail</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="mt-2">
+    <!-- Show files Pop up-->
+    <!-- <ng-template #shoeFiles let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title"> Files
+            </h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body custom-modal-main">
+            <section class=" bg-white " style="min-height: 300px !important;">
+                <ng-container *ngIf="filesList.length != 0; else fileListTemplate">
+                    <div class="dark-text-1">
+                        Added File Names
+                    </div>
+                    <ul *ngFor="let item of filesList" style="background-color: white !important;">
+                        <li style="list-style-type: disc !important;">
+                            <span>
+                                {{item.name}}
+                            </span>
+                            <span class="pr-4 " style="float: right;max-height: 80%; right:5%;">
+                                <i class="fa fa-trash-o btn btn-danger" (click)="deleteFile(item)"></i>
+                            </span>
+                        </li>
+                        <hr>
+                    </ul>
+                </ng-container>
+                <ng-template #fileListTemplate>
+                    No Files Added
+                </ng-template>
+
+            </section>
+            <hr>
+            <section class="bg-white">
+                <div>Add New File</div>
+                <mat-card>
+                    <mat-card-content>
+                        <ul>
+                            <li *ngFor="let file of files">
+                                <span id="file-label">
+                                </span>
+                            </li>
+                        </ul>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-button color="warn" (click)="onClick()">
+                            <mat-icon>file_upload</mat-icon>
+                            Upload
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+            </section>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="button"
+                (click)="modal.close('Save click')">Done</button>
+        </div>
+    </ng-template> -->
+
+
+    <mat-horizontal-stepper [@.disabled]="true" #stepper>
+        <!-- Tender Program -->
+        <mat-step>
+            <ng-template matStepLabel>Tender Program</ng-template>
+            <div class="row mt-4 ml-2">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender No</h5>
+                    <p class="fs-14">09/2017/MT</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Title</h5>
+                    <p class="fs-14 ">Supply & Commissioning of A/C Equipment's</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
+                    <p class="fs-14 ">1a</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
+                    <p class="fs-14 px-2">-</p>
+                </div>
+            </div>
+            <div class="row mt-2 ml-2">
+                <div class="col  px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
+                    <p class="fs-14 px-2">-</p>
+                </div>
+            </div>
+            <div class="row mt-4 ml-2">
+                <!-- <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
+                    <i class="fa fa-ban text-red fs-14" mat-raised-button
+                        matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
+                </div> -->
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Start Date</h5>
+                    <p class="fs-14">01-11-19</p>
+                </div>
+                <div class="col  px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Submission Date</h5>
+                    <p class="fs-14 px-4">02-02-20</p>
+                </div>
+            </div>
+            <div class="row  ml-2">
+                <div class="col px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Last Date for Tender Queries</h5>
+                    <p class="fs-14">01-02-20</p>
+                </div>
+            </div>
+            <div class="row ml-3">
+                <div class="col">
+                    <span class="fs-16 font-weight-bold text-black dark-text-1 mr-4">Brief Description of Tender :
+                    </span>
+                    <span class="fs-14 text-black ">The scope of works of. the above comprises the introduction of Air
+                        Lock -
+                        Lobbies, Company replacement of the existing open-able windowsto fixed glass windows/ Gymnasium
+                        Floor</span>
+                </div>
+            </div>
+
+
+            <div class="row mt-5 ml-2">
+                <div class="col-md-12 mb-5 px-4">
+                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                       disabled ><i class="fa fa-caret-left"></i> Previous </button>
+                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        matStepperNext>Next <i class="fa fa-caret-right"></i></button>
+
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                        disabled>Submit
+                    </button>
+                    <a routerLink="/landing/supplier-registration/dashboard">
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
+                    </a>
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                        as draft
+                    </button>
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                    </button>
+                </div>
+            </div>
+
+        </mat-step>
+        <!-- Tender Participate -->
+        <mat-step>
+            <ng-template matStepLabel>Tender Participate</ng-template>
+            <div class="row mt-4 ml-2">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender No</h5>
+                    <p class="fs-14">09/2017/MT</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Title</h5>
+                    <p class="fs-14 ">Supply & Commissioning of A/C Equipment's</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
+                    <p class="fs-14 ">1a</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
+                    <p class="fs-14 px-2">-</p>
+                </div>
+            </div>
+            <div class="row mt-2 ml-2">
+                <div class="col  px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
+                    <p class="fs-14 px-2">-</p>
+                </div>
+            </div>
+            <div class="row mt-4 ml-2">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Participate</h5>
+
+                    <input class="form-check-input ml-2" type="radio" name='participate' checked>
+                    <label class="form-check-label ml-5 mr-5" for="yes">Yes </label>
+                    <input class="form-check-input" name='participate' type="radio">
+                    <label class="form-check-label ml-2" for="no">No </label>
+
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 mb-4">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Regret Reason</h5>
+                    <input type="text" class="w-100" placeholder="I am busy on another tender." >
+                    <!-- <select name="" id="" class="btn">
+                        <option value="">Reason 1</option>
+                        <option value="">Reason 2</option>
+                        <option value="">Reason 3</option>
+                    </select> -->
+                </div>
+            </div>
+            <div class="row  ml-2 mt-4">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Visit Required</h5>
+                    <input class="form-check-input ml-2" type="radio" name='siteVisit' checked>
+                    <label class="form-check-label ml-5 mr-5" for="yes">Yes </label>
+                    <input class="form-check-input" name='siteVisit' type="radio">
+                    <label class="form-check-label ml-2" for="no">No </label>
+                </div>
+                <div class="col px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Document Fee</h5>
+                    <p class="fs-14">1000 OMR</p>
+                </div>
+            </div>
+
+
+            <div class="row mt-5 ml-2">
+                <div class="col-md-12 mb-5 px-4">
+                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous </button>
+                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        matStepperNext>Next <i class="fa fa-caret-right"></i></button>
+
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                        disabled>Submit
+                    </button>
+                    <a routerLink="/landing/supplier-registration/dashboard">
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
+                    </a>
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                        as draft
+                    </button>
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                    </button>
+                </div>
+            </div>
+
+        </mat-step>
+        <!-- Tender Fees -->
+        <mat-step>
+            <ng-template matStepLabel>Tender Fees</ng-template>
+            <div class="row mt-4 ml-2">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender No</h5>
+                    <p class="fs-14">09/2017/MT</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Title</h5>
+                    <p class="fs-14 ">Supply & Commissioning of A/C Equipment's</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
+                    <p class="fs-14 ">1a</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
+                    <p class="fs-14 px-2">-</p>
+                </div>
+            </div>
+            <div class="row ml-2 mt-4">
+                <div class="col  px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
+                    <p class="fs-14 px-2">-</p>
+                </div>
+            </div>
+            <div class="row mt-4 ml-2">
+                <div class="col">
+                    <span class="fs-16 font-weight-bold text-black dark-text-1 mr-5">Tender Document Fee : </span>
+                    <span class="fs-14 text-black">1000 OMR</span>
+                </div>
+            </div>
+            <div class="row  ml-2 mt-4">
+                <div class="col">
+                    <span class="fs-16 font-weight-bold text-black dark-text-1 mr-5 ">Payment Mode : </span>
+
+                    <input class="form-check-input ml-2" type="radio" name='paymentMode' checked>
+                    <label class="form-check-label ml-5 mr-5" for="debit">Debit </label>
+                    <input class="form-check-input" name='paymentMode' type="radio">
+                    <label class="form-check-label  ml-2" for="credit">Credit </label>
+
+                </div>
+            </div>
+
+            <div class="row mt-5 ml-2">
+                <div class="col-md-12 mb-5 px-4">
+                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        (click)="preStep(2)" matStepperPrevious><i class="fa fa-caret-left"></i> Previous </button>
+                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        disabled>Next <i class="fa fa-caret-right"></i></button>
+                    <a routerLink="/e-tendering/general-tender-details/tender-fees">
+                        <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            >Submit
+                        </button>
+                    </a>
+                    <a routerLink="/landing/supplier-registration/dashboard">
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
+                    </a>
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                        as draft
+                    </button>
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                    </button>
+                </div>
+            </div>
+
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

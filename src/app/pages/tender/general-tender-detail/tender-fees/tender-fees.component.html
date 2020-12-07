@@ -1,0 +1,105 @@
+<section>
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb bg-white mb-0">
+                    <li class="breadcrumb-item"><a href="/#/landing/supplier-registration/dashboard">E-Tendring</a></li>
+                    <li class="breadcrumb-item"><a href="/#/landing/supplier-registration/dashboard">Supplier
+                            Dashboards</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Tender Fees</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="dark-grey-bg ">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-12 ">
+                <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">Tender Fees</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="bg-white pb-5">
+    <div class="container-fluid px-4">
+        <div class="row pt-5">
+            <div class="col-md-12 col-xl-4 col-lg-8  px-4 mx-auto shadow py-4">
+                <form #form="ngForm">
+                    <div class="row mb-3">
+                        <label for="name" class="form-label col-md-6 fs-16 text-dark-grey pt-2  font-weight-bold">Institution / Merchant </label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control fs-16" placeholder="Royale court affairs" >
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="last" class="form-label col-md-6 fs-16 text-dark-grey pt-2 font-weight-bold">website</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control fs-16" placeholder="www.rca.gov.om" >
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="last" class="form-label col-md-6 fs-16 text-dark-grey pt-2 font-weight-bold ">Amount - Omani Riyals</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control fs-16" placeholder="900 OMR" >
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="last" class="form-label col-md-6 fs-16 text-dark-grey pt-2 font-weight-bold ">Track ID</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control fs-16" placeholder="2589" >
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12 text-center ">
+                            <h3 class="fs-18 text-dark-grey mb-0 dark-grey-bg py-2 font-weight-bold" >Payment Card Information</h3>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="last" class="form-label col-md-6 fs-16 text-dark-grey pt-2 font-weight-bold ">Debit Card Number</label>
+                        <div class="col-md-6 d-flex align-items-center">
+                            <input type="text" class="form-control fs-16" placeholder="xxxxxxxxx" >
+                            <span class="ml-2"><a href="#"><i class="fa fa-question-circle fs-16 text-danger"></i></a></span> </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="last" class="form-label col-md-6 fs-16 text-dark-grey pt-2 font-weight-bold ">Valid Thru - Expiry Date</label>
+                        <div class="col-md-6 d-flex align-items-center">
+                            <div class="input-groupw-90">
+                                <select class="form-select form-control fs-16 ">
+                                    <option value="1">MM</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <div class="input-group  ml-2 w-90">
+                                <select class="form-select form-control fs-16 ">
+                                    <option value="1">YYYY</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </div>
+                            <span class="ml-2"><a href="#"><i class="fa fa-question-circle fs-16 text-danger"></i></a></span> </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="last" class="form-label col-md-6 fs-16 text-dark-grey pt-2 font-weight-bold ">Cardholder Name</label>
+                        <div class="col-md-6 d-flex align-items-center">
+                            <input type="text" class="form-control fs-16" placeholder="R.Bala" >
+                            <span class="ml-2"><a href="#"><i class="fa fa-question-circle fs-16 text-danger"></i></a></span> </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="last" class="form-label col-md-6 fs-16 text-dark-grey pt-2 font-weight-bold ">Card Secure code (CVV/CVC)</label>
+                        <div class="col-md-6 d-flex align-items-center">
+                            <input type="text" class="form-control fs-16 w-90" placeholder="XXX" >
+                            <span class="ml-2"> <i class="fa fa-credit-card-alt fs-16 text-dark-grey " ></i> </span> <span class="ml-2"><a href="#"><i class="fa fa-question-circle fs-16 text-danger"></i></a></span> </div>
+                    </div>
+                    <div class="mt-5 text-center">
+                        <button type="button" class="btn btn-primary  px-3 mx-1 py-1  fs-16 w-90" (click)="proceed()">Proceed </button>
+                        <a routerLink="/e-tendering/general-tender-details">
+                            <button type="button" class="btn btn-secondary px-3 py-1 mx-1 fs-16 w-90 "> Cancel</button>
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

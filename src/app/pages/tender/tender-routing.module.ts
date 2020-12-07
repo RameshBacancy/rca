@@ -29,7 +29,7 @@ const routes: Routes = [
       },
       {
         path: 'general-tender-details',
-        component: GeneralTenderDetailComponent
+        loadChildren: () => import('./general-tender-detail/general-tender-detail.module').then(m => m.GeneralTenderDetailModule)
       },
       {
         path: 'registration-of-queries',
