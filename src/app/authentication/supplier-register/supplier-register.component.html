@@ -150,7 +150,7 @@
                     : </span>
                 <mat-form-field appearance="fill">
                     <select matNativeControl required [(ngModel)]="CRNumber" (change)='getCR(CRNumber)'>
-                        <option value="" selected></option>
+                        <!-- <option value="" selected></option> -->
                         <option *ngFor="let option of filteredOptions | async" [value]="option">{{option}}</option>
                     </select>
                 </mat-form-field>

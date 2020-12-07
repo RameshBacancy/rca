@@ -1,3 +1,4 @@
+import { TenderGuard } from './../../guard/tender.guard';
 import { SubmitTenderBidsComponent } from './submit-tender-bids/submit-tender-bids.component';
 import { TenderAddendumsComponent } from './tender-addendums/tender-addendums.component';
 import { RegistrationOfQueriesComponent } from './registration-of-queries/registration-of-queries.component';
@@ -13,7 +14,7 @@ const routes: Routes = [
   {
     path: '',
     component: TenderComponent,
-    canActivate: [ProtectGuard],
+    canActivate: [ProtectGuard, TenderGuard],
     children: [
       {
         path: 'tender-dashboard',
