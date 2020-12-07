@@ -7,11 +7,13 @@ import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/guard/auth.guard';
 import { TenderComponent } from './tender.component';
+import { ProtectGuard } from 'src/app/guard/protect.guard';
 
 const routes: Routes = [
   {
     path: '',
     component: TenderComponent,
+    canActivate: [ProtectGuard],
     children: [
       {
         path: 'tender-dashboard',
