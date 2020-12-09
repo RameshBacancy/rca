@@ -98,16 +98,19 @@
                 <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
                     <p class="fs-14 ">1a</p>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
-                    <p class="fs-14 px-2">-</p>
+                </div> <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Hours Left</h5>
+                    <p class="fs-14 ">04:55:34</p>
                 </div>
             </div>
             <div class="row mt-2 ml-2">
-                <div class="col  px-4 ">
+                <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
                     <p class="fs-14 px-2">Published</p>
+                </div>
+                <div class="col px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
+                    <p class="fs-14 px-2">-</p>
                 </div>
             </div>
             <div class="row mt-4 ml-2">
@@ -119,21 +122,23 @@
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Start Date</h5>
                     <p class="fs-14">01-11-19</p>
                 </div>
-                <div class="col  px-4 ">
+                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Submission Date</h5>
-                    <p class="fs-14 px-4">02-02-20</p>
+                    <p class="fs-14">02-02-20</p>
                 </div>
-            </div>
-            <div class="row  ml-2">
                 <div class="col px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Last Date for Tender Queries</h5>
                     <p class="fs-14">01-02-20</p>
                 </div>
             </div>
-            <div class="row ml-3">
-                <div class="col">
+            <div class="row  ml-2">
+            </div>
+            <div class="row ml-2">
+                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                     <span class="fs-16 font-weight-bold text-black dark-text-1 mr-4">Brief Description of Tender :
                     </span>
+                </div>
+                <div class="col-md-6">
                     <span class="fs-14 text-black ">The scope of works of. the above comprises the introduction of Air
                         Lock -
                         Lobbies, Company replacement of the existing open-able windowsto fixed glass windows/ Gymnasium
@@ -180,15 +185,15 @@
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
                     <p class="fs-14 ">1a</p>
                 </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
-                    <p class="fs-14 px-2">-</p>
-                </div>
             </div>
             <div class="row mt-2 ml-2">
-                <div class="col  px-4 ">
+                <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
                     <p class="fs-14 px-2">Published</p>
+                </div>
+                <div class="col px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
+                    <p class="fs-14 px-2">-</p>
                 </div>
             </div>
             <div class="row mt-4 ml-2">
@@ -201,7 +206,13 @@
                     <label class="form-check-label ml-2" for="no">No </label>
 
                 </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 mb-4" *ngIf="!participated">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Document Fee</h5>
+                    <p class="fs-14">1000 OMR</p>
+                </div>
+            </div>
+            <div class="row  ml-2 mt-4">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4" *ngIf="!participated">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 mb-0">Regret Reason</h5>
                     <mat-form-field appearance="fill" class="mt-0">
                         <mat-select>
@@ -211,18 +222,12 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-            </div>
-            <div class="row  ml-2 mt-4">
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 mt-4">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 mt-4 mb-4"  *ngIf="participated">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Visit Required</h5>
                     <input class="form-check-input ml-2" type="radio" name='siteVisit' checked>
                     <label class="form-check-label ml-5 mr-5" for="yes">Yes </label>
                     <input class="form-check-input" name='siteVisit' type="radio">
                     <label class="form-check-label ml-2" for="no">No </label>
-                </div>
-                <div class="col px-4 mt-4">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Document Fee</h5>
-                    <p class="fs-14">1000 OMR</p>
                 </div>
             </div>
 
@@ -265,15 +270,15 @@
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
                     <p class="fs-14 ">1a</p>
                 </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
-                    <p class="fs-14 px-2">-</p>
-                </div>
             </div>
             <div class="row ml-2 mt-4">
-                <div class="col  px-4 ">
+                <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
                     <p class="fs-14 px-2">Published</p>
+                </div>
+                <div class="col px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
+                    <p class="fs-14 px-2">-</p>
                 </div>
             </div>
             <div class="row mt-4 ml-2">

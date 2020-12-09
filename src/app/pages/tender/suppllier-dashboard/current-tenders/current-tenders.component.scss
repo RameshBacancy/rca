@@ -11,3 +11,35 @@
     }
 
 }
+
+.refresh-btn {
+    font-size: $fontsize-25;
+    transform: scaleX(-1);
+}
+
+.color-purple{
+    color: $primary-purple !important;
+}
+
+.btn-outline-primary{
+    color:$primary-purple !important;
+    border-color: $primary-purple !important;
+
+}
+.btn-outline-primary:hover{
+    color: $color-white !important;
+    background-color:$primary-purple !important;
+
+}
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.btn-outline-primary:not(:disabled):not(.disabled).active,
+.show > .btn-outline-primary.dropdown-toggle {
+    color: $color-white !important;
+    background-color:  $primary-purple !important;
+    border-color: $primary-purple !important;
+}
+.btn-outline-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem $primary-purple-hover;
+}
+
+

@@ -1,6 +1,7 @@
 import { TenderService } from './../../../../services/tender.service';
 import { TenderDetail } from './../../../../models/tender.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FilterPipe } from 'src/app/pipe/searchEmployee.pipe';
 
 @Component({
   selector: 'app-current-tenders',
@@ -8,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./current-tenders.component.scss']
 })
 export class CurrentTendersComponent implements OnInit {
+
+  @Input('searchText') searchText: any;
   newTender: TenderDetail[];
 
-  constructor(private tenderService: TenderService) { }
+  constructor(
+    private tenderService: TenderService,
+    private searchPipe: FilterPipe,
+    ) { }
 
   ngOnInit(): void {
     this.tenderService.getCurrentTender().subscribe((data: TenderDetail[]) => {
