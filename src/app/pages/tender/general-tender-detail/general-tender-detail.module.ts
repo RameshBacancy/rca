@@ -12,6 +12,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { PipeModule } from 'src/app/pipe/pipe.module';
 
 const routes: Routes = [
   {
@@ -44,8 +47,11 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    PipeModule,
     RouterModule.forChild(routes),
     FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
     MatStepperModule,
     ReactiveFormsModule,
     MatIconModule,

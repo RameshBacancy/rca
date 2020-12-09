@@ -16,6 +16,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { PipeModule } from 'src/app/pipe/pipe.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
   ],
   imports: [
     CommonModule,
+    PipeModule,
+    NgbModule,
     TenderRoutingModule,
     LayoutModule,
     FormsModule,

@@ -15,6 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class SupplierRegisterComponent implements OnInit {
 
+  submitCivil;
   supplierSelection = false;
   showsNextReg = false;
   viewSideBar = false;

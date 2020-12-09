@@ -107,7 +107,7 @@
             <div class="row mt-2 ml-2">
                 <div class="col  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
-                    <p class="fs-14 px-2">-</p>
+                    <p class="fs-14 px-2">Published</p>
                 </div>
             </div>
             <div class="row mt-4 ml-2">
@@ -188,38 +188,39 @@
             <div class="row mt-2 ml-2">
                 <div class="col  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
-                    <p class="fs-14 px-2">-</p>
+                    <p class="fs-14 px-2">Published</p>
                 </div>
             </div>
             <div class="row mt-4 ml-2">
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Participate</h5>
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 mb-4">Participate</h5>
 
-                    <input class="form-check-input ml-2" type="radio" name='participate' checked>
+                    <input class="form-check-input ml-2" type="radio" id="yes" value="yes" name='participate' [checked]=participated (change)="changeParticipationStatus(true)">
                     <label class="form-check-label ml-5 mr-5" for="yes">Yes </label>
-                    <input class="form-check-input" name='participate' type="radio">
+                    <input class="form-check-input" id="no" value="no" name='participate' type="radio"  [checked]=!participated (change)="changeParticipationStatus(false)">
                     <label class="form-check-label ml-2" for="no">No </label>
 
                 </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 mb-4">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Regret Reason</h5>
-                    <input type="text" class="w-100" placeholder="I am busy on another tender." >
-                    <!-- <select name="" id="" class="btn">
-                        <option value="">Reason 1</option>
-                        <option value="">Reason 2</option>
-                        <option value="">Reason 3</option>
-                    </select> -->
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 mb-4" *ngIf="!participated">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 mb-0">Regret Reason</h5>
+                    <mat-form-field appearance="fill" class="mt-0">
+                        <mat-select>
+                            <mat-option *ngFor="let reason of regretReasons" [value]="reason">
+                            {{reason}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </div>
             </div>
             <div class="row  ml-2 mt-4">
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 mt-4">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Visit Required</h5>
                     <input class="form-check-input ml-2" type="radio" name='siteVisit' checked>
                     <label class="form-check-label ml-5 mr-5" for="yes">Yes </label>
                     <input class="form-check-input" name='siteVisit' type="radio">
                     <label class="form-check-label ml-2" for="no">No </label>
                 </div>
-                <div class="col px-4 ">
+                <div class="col px-4 mt-4">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Document Fee</h5>
                     <p class="fs-14">1000 OMR</p>
                 </div>
@@ -272,7 +273,7 @@
             <div class="row ml-2 mt-4">
                 <div class="col  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
-                    <p class="fs-14 px-2">-</p>
+                    <p class="fs-14 px-2">Published</p>
                 </div>
             </div>
             <div class="row mt-4 ml-2">
