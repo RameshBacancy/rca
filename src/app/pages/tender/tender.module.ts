@@ -18,6 +18,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PipeModule } from 'src/app/pipe/pipe.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatSelectModule } from '@angular/material/select';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     MatStepperModule,
     ReactiveFormsModule,
+    MatSelectModule,
     MatIconModule,
     MatButtonModule,
     MatCardModule,

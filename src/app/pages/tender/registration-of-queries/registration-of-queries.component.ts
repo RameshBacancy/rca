@@ -8,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationOfQueriesComponent implements OnInit {
   selected = new FormControl(0);
+  weekList: string[];
   constructor() { }
 
   ngOnInit(): void {
+    this.weekList = [
+      'Week 1',
+      'Week 2',
+      'Week 3',
+      'Week 4'
+    ];
   }
 
   changeTab() {
