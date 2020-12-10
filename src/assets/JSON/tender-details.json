@@ -1,0 +1,165 @@
+{
+    "tender": [
+        {
+            "no": 1,
+            "tenderNo": "09/2017/MT",
+            "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+            "startDate": "10-10-17",
+            "endDate": "10-11-17",
+            "tenderFee": 2000,
+            "remarks": "-",
+            "siteId": "1a",
+            "siteDescription": "",
+            "tenderStatus": ""
+        },
+        {
+            "no": 2,
+            "tenderNo": "21/2017/MT",
+            "tenderTitle": "facilities management contract technical,cleaning,pest control & Landscaping",
+            "startDate": "01-11-19",
+            "endDate": "01-12-19",
+            "tenderFee": 3000,
+            "remarks": "-",
+            "siteId": "2a",
+            "siteDescription": "",
+            "tenderStatus": ""
+        },
+        {
+            "no": 3,
+            "tenderNo": "75/2017/MT",
+            "tenderTitle": "MSC for MEP Installation",
+            "startDate": "09-12-09",
+            "endDate": "09-01-20",
+            "tenderFee": 300,
+            "remarks": "-",
+            "siteId": "3a",
+            "siteDescription": "",
+            "tenderStatus": ""
+        }
+    ],
+    "generalTenderDetails": {
+        "tenderNo": "09/2017/MT",
+        "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+        "siteID": "1a",
+        "siteDescription": "-",
+        "tenderStatus": "-",
+        "tenderProgram" : {
+            "tenderStartDate": "10-10-17",
+            "tenderSubmissionDate": "10-11-17",
+            "lastDateforTenderQueries": "01-01-21",
+            "days": "1",
+            "hours": "24",
+            "min": "1440",
+            "briefDescriptionofTender": "The scope of works of. the above comprises the introduction of Air Lock - Lobbies, Company replacement of the existing open-able windowsto fixed glass windows/ Gymnasium Floor"
+        },
+        "tenderParticipate": {
+            "participate": "yes",
+            "regretReason": "yes",
+            "siteVisitRequired": "does not fit my work schedule.",
+            "tenderDocumentFee": "100OMR"
+        },
+        "tenderFees": {
+            "tenderDocumentFee": "1000OMR",
+            "paymentMode": "debit"
+        },
+        "tenderDocuments": {
+            "tenderDocuments": []
+        },
+        "tenderBidsDisplay": {
+            "revisionNo": "",
+            "lineNo": "",
+            "itemPartCode": "",
+            "itemPartCodeDescription": "",
+            "uom": "",
+            "quantity": "",
+            "unitPrice": "",
+            "totalPrice": "",
+            "documentAttachment": []
+        },
+        "otherInfo": {
+            "freeField1": "",
+            "freeField2": "",
+            "freeField3": "",
+            "freeField4": "",
+            "freeField5": ""
+        }
+    },
+    "registrationOfQueries": {
+        "tenderExtension": {
+            "extensionRequestTime": "",
+            "reasonForExtension": "" 
+        },
+        "technicalQueries": {
+            "revisionNo": "",
+            "lineNo": "",
+            "itemPartCode": "",
+            "itemPartCodeDescription": "",
+            "uom": "",
+            "quantity": "",
+            "unitPrice": "",
+            "totalPrice": "",
+            "documentAttachment": [],
+            "Queries": "",
+            "Responses": ""
+        }
+    },
+    "tenderAddendums": {
+        "revisionNo": "",
+        "addendumId": "",
+        "addendumDate": "",
+        "queryNo": "",
+        "queryType": "",
+        "siteVisit": {
+            "visitDateAndTime": "",
+            "location": "",
+            "visitRemarks": "",
+            "specialInstruction ": "",
+            "gatePass": "",
+            "projectEnggName": "",
+            "contactNumber": ""
+        },
+        "extensions": {
+            "extensionDate": "",
+            "extensionTime": "",
+            "extensionRemarks": ""
+        },
+        "technicalResponses": {
+            "supplyBidsDetail": {
+                "lineNo": "",
+                "itemPartCode": "",
+                "itemPartCodeDescription": "",
+                "uom": "",
+                "quantity": "",
+                "unitPrice": "",
+                "totalPrice": "",
+                "documentAttachment": "",
+                "queries": "",
+                "responses": ""
+            },
+            "serviceBidsDetail": {
+                "lineNo": "",
+                "itemPartCode": "",
+                "itemPartCodeDescription": "",
+                "uom": "",
+                "quantity": "",
+                "unitPrice": "",
+                "totalPrice": "",
+                "documentAttachment": "",
+                "queries": "",
+                "responses": ""
+            },
+            "contractBidsDetail": {
+                "lineNo": "",
+                "itemPartCode": "",
+                "itemPartCodeDescription": "",
+                "uom": "",
+                "quantity": "",
+                "unitPrice": "",
+                "totalPrice": "",
+                "documentAttachment": "",
+                "queries": "",
+                "responses": ""
+            }
+        }
+    }
+}

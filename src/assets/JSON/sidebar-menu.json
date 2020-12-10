@@ -86,6 +86,13 @@
             "disabled": false,
             "children": [
                 {
+                    "name": "Current Tenders",
+                    "icon": "",
+                    "route": "/#/e-tendering/tender-dashboard/current-tenders",
+                    "disabled": false,
+                    "children": []
+                },
+                {
                     "name": "Tender Queries",
                     "icon": "",
                     "route": "",
