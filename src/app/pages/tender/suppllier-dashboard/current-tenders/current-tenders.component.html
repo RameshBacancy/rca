@@ -1,0 +1,68 @@
+<section>
+  <div class="container-fluid ">
+    <div class="row">
+      <div class="col-md-12">
+        <ol class="breadcrumb bg-white mb-0">
+          <li class="breadcrumb-item"><a href="/#/landing/supplier-registration/dashboard">E-Tendering</a></li>
+          <li class="breadcrumb-item"><a href="/#/landing/supplier-registration/dashboard">Supplier Dashboards</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Current Tenders </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="dark-grey-bg ">
+  <div class="container-fluid ">
+    <div class="row">
+      <div class="col-md-12 ">
+        <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">Current Tenders </h2>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="row">
+  <div class="col-md-12 px-4 mb-3 mt-3">
+    <div class="table-responsive">
+      <div class=" d-flex mb-2">
+        <input class="fs-16 p-1" [(ngModel)]="searchText" placeholder="Search text">
+  
+        <!-- <button class="btn btn-secondary ml-2 float-right mb-2" (click)="alertNoAdd()"  mat-raised-button
+                matTooltip="Not Allowed to add details for Local entities"><i
+                        class="fa fa-plus" aria-hidden="true"></i></button> -->
+        <div ngbDropdown class="d-inline-block ml-4">
+          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Tender</button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem>Tender</button>
+          </div>
+        </div>
+        <i class="fa fa-undo ml-4 refresh-btn color-purple align-self-center" aria-hidden="true"></i>
+        <span class="h5 ml-4 mb-0 font-weight-bold text-black-50 align-self-center"> Advanced Search <span class="font-weight-bold h5 color-purple"> &gt;</span></span>
+      </div>
+      <table class="table table-striped ">
+        <thead>
+          <tr class="purple-bg text-white">
+            <th scope="col">No</th>
+            <th scope="col">Tender No.</th>
+            <th scope="col">Tender Title</th>
+            <th scope="col">Start Date</th>
+            <th scope="col">End Date</th>
+            <th scope="col">Tender Frr(OMR)</th>
+            <th scope="col">Remark</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tenderDetail of newTender| filter : searchText;">
+            <td>{{ tenderDetail.no }}</td>
+            <td><a routerLink="/e-tendering/general-tender-details">{{ tenderDetail.tenderNo }}</a></td>
+            <td><a routerLink="/e-tendering/general-tender-details">{{ tenderDetail.tenderTitle }}</a></td>
+            <td>{{ tenderDetail.startDate }}</td>
+            <td>{{ tenderDetail.endDate }}</td>
+            <td>{{ tenderDetail.tenderFee }}</td>
+            <td>{{ tenderDetail.remarks }}</td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+</div>

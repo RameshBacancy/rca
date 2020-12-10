@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LandingHeaderComponent } from './landing-header/landing-header.component';
@@ -27,6 +28,7 @@ export function createTranslateLoader(http: HttpClient) {
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
+    RouterModule,
     MatAutocompleteModule,
     TranslateModule.forRoot({
       loader: {
