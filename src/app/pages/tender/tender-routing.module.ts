@@ -1,3 +1,4 @@
+import { MyInformationComponent } from './suppllier-dashboard/my-information/my-information.component';
 import { TenderGuard } from './../../guard/tender.guard';
 import { SubmitTenderBidsComponent } from './submit-tender-bids/submit-tender-bids.component';
 import { TenderAddendumsComponent } from './tender-addendums/tender-addendums.component';
@@ -45,6 +46,10 @@ const routes: Routes = [
       {
         path: 'submit-tender-bids',
         component: SubmitTenderBidsComponent
+      },
+      {
+        path: 'my-information',
+        component: MyInformationComponent
       },
       {
         path: '',
