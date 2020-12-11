@@ -1,3 +1,4 @@
+import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +7,21 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./supplier-collaboration.component.scss']
 })
 export class SupplierCollaborationComponent implements OnInit {
+  selected = new FormControl(0);
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  changeTab() {
+    this.selected.setValue(this.selected.value + 1);
+  }
+  previousTab() {
+    this.selected.setValue(this.selected.value - 1);
+  }
+  newStep() {
+    this.selected.setValue(0);
   }
 
 }

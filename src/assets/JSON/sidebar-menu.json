@@ -80,6 +80,20 @@
             ]
         },
         {
+            "name": "SUPPLIER COLLABORATION",
+            "icon": "",
+            "route": "/#/landing/supplier-collaboration",
+            "disabled": false,
+            "children": []
+        },
+        {
+            "name": "SUPPLIER PERFORMANCE",
+            "icon": "",
+            "route": "/#/landing/supplier-performance",
+            "disabled": false,
+            "children": []
+        },
+        {
             "name": "TENDERING",
             "icon": "",
             "route": "",

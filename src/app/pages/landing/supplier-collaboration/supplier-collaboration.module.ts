@@ -1,3 +1,5 @@
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatStepperModule } from '@angular/material/stepper';
 import { LayoutModule } from './../../layout/layout.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,6 +13,8 @@ import { SupplierCollaborationComponent } from './supplier-collaboration.compone
   imports: [
     CommonModule,
     LayoutModule,
+    MatStepperModule,
+    MatTabsModule,
     SupplierCollaborationRoutingModule,
   ]
 })

@@ -1,1 +1,260 @@
-<p>supplier-collaboration works!</p>
+<section>
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb bg-white mb-0">
+                    <li class="breadcrumb-item"><a routerLink="/landing/supplier-registration/dashboard">Home</a></li>
+                    <li class="breadcrumb-item"><a routerLink="/landing/supplier-registration/dashboard">Supplier
+                            Collaboration </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Collaboration </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="dark-grey-bg ">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-12 ">
+                <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">Collaboration</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container-fluid  mt-3">
+    <div class="bg-white px-4">
+        <mat-horizontal-stepper [@.disabled]="true" #stepper>
+            <mat-step>
+                <ng-template matStepLabel>Supplier Grade Details </ng-template>
+
+                <section class=" bg-white">
+                    <div class="container-fluid ">
+                        <div class="row mt-3 mt-3">
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Supplier Name</h5>
+                                <p class="fs-16 text-black dark-text-1 ">R. Bala</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Segment</h5>
+                                <p class="fs-16 text-black dark-text-1 ">-</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Family</h5>
+                                <p class="fs-16 text-black dark-text-1 ">-</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Class (Activity)</h5>
+                                <p class="fs-16 text-black dark-text-1 ">-</p>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Commodity (Sub Activity)</h5>
+                                <p class="fs-16 text-black dark-text-1 ">-</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Valid Form</h5>
+                                <p class="fs-16 text-black dark-text-1 ">-</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Valid To</h5>
+                                <p class="fs-16 text-black dark-text-1 ">-</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Grade</h5>
+                                <p class="fs-16 text-black dark-text-1 ">-</p>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Status</h5>
+                                <p class="fs-16 text-black dark-text-1 ">-</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Value of Work</h5>
+                                <p class="fs-16 text-black dark-text-1 ">-</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Fee</h5>
+                                <p class="fs-16 text-black dark-text-1 ">-</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Working Area</h5>
+                                <p class="fs-16 text-black dark-text-1 ">-</p>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Date of Update</h5>
+                                <p class="fs-16 text-black dark-text-1 ">-</p>
+                            </div>
+                        </div>
+
+                        <div class="row mt-2 mt-md-5">
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-4  px-4">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="row">
+                    <div class="col-md-12 mb-5 px-4">
+                        <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2" disabled><i
+                                class="fa fa-caret-left"></i> Previous</button>
+                        <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            matStepperNext>Next <i class="fa fa-caret-right"></i></button>
+
+                        <a routerLink="/landing/supplier-registration/dashboard">
+                            <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        </a>
+                    </div>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Supplier Payment</ng-template>
+
+                <section class=" bg-white">
+                    <div class="container-fluid ">
+                        <div class="row pt-4">
+                            <div class="col-md-4 px-3">
+                                <div class="row pt-3">
+                                    <div class="col-md-4 px-3">
+                                        <span class=" fs-16 font-weight-bold text-black dark-text-1 ">Reg. Payment
+                                            Fee</span>
+                                    </div>
+                                    <div class="col-md-4 px-3">
+                                        <span class=" fs-16 font-weight-bold text-black dark-text-1 ">900 OMR</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row pt-4">
+                            <div class="col-md-4 px-3">
+                                <div class="row pt-3">
+                                    <div class="col-md-4 px-3">
+                                        <span class=" fs-16 font-weight-bold text-black dark-text-1 ">Renewal
+                                            Fees</span>
+                                    </div>
+                                    <div class="col-md-4 px-3">
+                                        <span class=" fs-16 font-weight-bold text-black dark-text-1 ">900 OMR</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2 mt-md-5">
+                            <div class="col-md-12 d-block d-md-flex">
+                                <div class="mr-5 mb-3">
+                                    <p class=" text-dark-grey font-weight-bold ">Payment Mode</p>
+                                </div>
+                                <div class="form-check mr-3 ml-4 mb-3">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault1" checked>
+                                    <label class="form-check-label text-dark-grey font-weight-bold ml-2"
+                                        for="flexRadioDefault1">Debit </label>
+                                </div>
+                                <div class="form-check mr-3 mb-3">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault2">
+                                    <label class="form-check-label text-dark-grey font-weight-bold ml-2"
+                                        for="flexRadioDefault2">Credit </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-2 mt-md-5">
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-4  px-4">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="row">
+                    <div class="col-md-12 mb-5 px-4">
+                        <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2" matStepperPrevious><i
+                                class="fa fa-caret-left"></i> Previous</button>
+                        <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            matStepperNext>Next <i class="fa fa-caret-right"></i></button>
+
+                        <a routerLink="/landing/supplier-registration/dashboard">
+                            <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        </a>
+                    </div>
+                </div>
+            </mat-step>
+            <mat-step>
+                <ng-template matStepLabel>Supplier Update</ng-template>
+                <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+                    <mat-tab label="Profile Update">
+                        <div class="row ">
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-5 px-4">
+                                <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                    matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                                <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                    (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
+                                <a routerLink="/landing/supplier-registration/dashboard">
+                                    <button type="button"
+                                        class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                </a>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Activity Upgrade Request">
+                        <div class="row ">
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-5 px-4">
+                                <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                    (click)="previousTab()"><i class="fa fa-caret-left"></i> Previous</button>
+                                <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                    (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
+
+                                <a routerLink="/landing/supplier-registration/dashboard">
+                                    <button type="button"
+                                        class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                </a>
+                            </div>
+                        </div>
+                    </mat-tab>
+                    <mat-tab label="Renewal Upgrade Request">
+                        <div class="row ">
+
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 mb-5 px-4">
+                                <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                    (click)="previousTab()"><i class="fa fa-caret-left"></i> Previous</button>
+                                <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                    disabled>Next <i class="fa fa-caret-right"></i></button>
+                                    <a routerLink="/landing/supplier-registration/dashboard">
+                                        <button type="button"
+                                            class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Done</button>
+                                    </a>
+                                <a routerLink="/landing/supplier-registration/dashboard">
+                                    <button type="button"
+                                        class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                </a>
+                            </div>
+                        </div>
+                    </mat-tab>
+
+                </mat-tab-group>
+
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+
+</section>
