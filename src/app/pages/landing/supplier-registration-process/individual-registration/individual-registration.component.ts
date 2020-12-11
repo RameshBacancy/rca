@@ -189,19 +189,18 @@ export class IndividualRegistrationComponent implements OnInit {
   }
   submitRegistration() {
     this.completed = true;
-    localStorage.setItem('LocalRegComplete', 'true');
     localStorage.setItem('1completeToken', 'true');
+    localStorage.setItem('LocalRegComplete', 'true');
     localStorage.setItem('RegStatus', 'finish');
     this.spinner.openSpinner();
-    const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), email: localStorage.getItem('internationalEmail'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType')};
-      this.userService.supplierRegistration(body);
-      this.alertService.pushSuccess('Your data is submitted.');
+    const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
+    this.userService.supplierRegistration(body);
       // this.router.navigateByUrl('/landing/supplier-registration/transaction');
   }
   saveDraft() {
     localStorage.setItem('RegStatus', 'draft');
     this.spinner.openSpinner();
-    const body = {email: localStorage.getItem('internationalEmail'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType')};
+    const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
     this.userService.supplierRegistration(body);
     this.alertService.pushWarning('Your data will be saved for 72 hours.');
     this.router.navigate(['/landing/supplier-registration/dashboard']);
