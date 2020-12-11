@@ -152,10 +152,14 @@
                     class=" pt-2 ml-2 mr-0 mr-lg-3  text-dark-grey font-weight-bold ">{{'supplierRegPage.compCRNo' | translate}}
                     : </span>
                 <mat-form-field appearance="fill">
-                    <select matNativeControl required [(ngModel)]="CRNumber" (change)='getCR(CRNumber)'>
-                        <!-- <option value="" selected></option> -->
+                    <!-- <select matNativeControl required [(ngModel)]="CRNumber" (change)='getCR(CRNumber)'>
                         <option *ngFor="let option of filteredOptions | async" [value]="option">{{option}}</option>
-                    </select>
+                    </select> -->
+                    <mat-select required matNativeControl [(ngModel)]="CRNumber" (selectionChange)='getCR(CRNumber)'>
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
                 <!-- <mat-form-field class="example-full-width  mr-0 mr-lg-3  text-center w-170">
                   <input type="text"
