@@ -21,11 +21,12 @@
             </div>
             <!-- <div> -->
             <!-- <span class="fs-18 text-dark-grey font-weight-bold pr-3">{{'header.language' | translate}}  : </span> -->
-                <mat-form-field>
-                    <select matNativeControl required [(ngModel)]="selectedLanguage" (change)="changeLang(selectedLanguage)">
-                      <option *ngFor="let lang of languageArray"  [value]=lang>{{lang}}</option>
-                    </select>
-                  </mat-form-field>
+            <mat-form-field>
+                <select matNativeControl required [(ngModel)]="selectedLanguage"
+                    (change)="changeLang(selectedLanguage)">
+                    <option *ngFor="let lang of languageArray" [value]=lang>{{lang}}</option>
+                </select>
+            </mat-form-field>
             <!-- <nav class="btn-purple navbar navbar-expand-lg">
                     <button class=" navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                       aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
@@ -84,12 +85,14 @@
                                 {{'supplierRegPage.localRegTypeLbl' | translate}} :</p>
                         </div>
                         <div class="form-check mr-3 mb-3">
-                            <input class="form-check-input" type="radio" id="localcomp" value="local" formControlName="localRegType" checked>
+                            <input class="form-check-input" type="radio" id="localcomp" value="local"
+                                formControlName="localRegType" checked>
                             <label class="form-check-label  ml-2"
                                 for="localcomp">{{'supplierRegPage.localRegTypeOp1' | translate}}</label>
                         </div>
                         <div class="form-check mr-3 mb-3">
-                            <input class="form-check-input" type="radio" id="citizen" value="individual" formControlName="localRegType">
+                            <input class="form-check-input" type="radio" id="citizen" value="individual"
+                                formControlName="localRegType">
                             <label class="form-check-label  ml-2"
                                 for="citizen">{{'supplierRegPage.localRegTypeOp2' | translate}}</label>
                         </div>
@@ -171,8 +174,7 @@
             <!-- </form> -->
             <div class="row">
                 <div class="col-md-12 mb-5 px-4 mt-5" *ngIf="submitCivil && this.form.value.regType != 'international'">
-                    <button type="button" class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2"
-                        [disabled]="this.form.value.registrationNo == ''"
+                    <button type="button" class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2" [disabled]="isDisable"
                         (click)="submitNext()">{{'supplierRegPage.submitBtnLbl' | translate}} </button>
                 </div>
                 <div class="col-md-12 mb-5 px-4 mt-5"

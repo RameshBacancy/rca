@@ -5,7 +5,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertService } from 'src/app/services/alert.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { Observable } from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -19,11 +19,12 @@ export class SupplierRegisterComponent implements OnInit {
   supplierSelection = false;
   showsNextReg = false;
   viewSideBar = false;
+  isDisable = true;
 
   myControl = new FormControl();
   options: string[] = [
-         '1086391 - Omantel', '1086393 - Petroleum Development Oman', '1216194 - Raysut Cement', '1024511 - The Shaksy Group'
-        ];
+    '1086391 - Omantel', '1086393 - Petroleum Development Oman', '1216194 - Raysut Cement', '1024511 - The Shaksy Group'
+  ];
   selectedLanguage: any = 'English';
   filteredOptions: Observable<string[]>;
   CRNumber: any;
@@ -44,20 +45,24 @@ export class SupplierRegisterComponent implements OnInit {
     private alertService: AlertService,
     private spinner: SpinnerService,
     private translate: TranslateService) {
-      this.translate.use('English');
-    }
+    this.translate.use('English');
+  }
 
   ngOnInit(): void {
-      localStorage.clear();
-      this.router.navigate(['/landing/supplier-registration/dashboard']);
-      if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'false') {
-        this.showsNextReg = true;
-      }
-      this.filteredOptions = this.myControl.valueChanges
+    localStorage.clear();
+    this.router.navigate(['/landing/supplier-registration/dashboard']);
+    if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'false') {
+      this.showsNextReg = true;
+    }
+    this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),
         map(value => this._filter(value))
       );
+
+    this.form.valueChanges.subscribe(() => {
+      this.isDisable = (this.form.value.registrationNo && this.form.value.civilNo) ? false : true;
+    });
   }
 
 
@@ -73,12 +78,13 @@ export class SupplierRegisterComponent implements OnInit {
 
   getCR(id) {
     let x = id.split(' - ');
-    this.form.value.registrationNo = x[0];
+    // this.form.value.registrationNo = x[0];
+    this.form.get('registrationNo').setValue(x[0]);
     this.companyName = x[1];
   }
 
   submitNext() {
-    this.form.patchValue({registrationNo : this.form.value.registrationNo});
+    this.form.patchValue({ registrationNo: this.form.value.registrationNo });
     // localStorage.setItem('comName', this.companyName);
     // this.form.patchValue({registrationNo : this.myControl.value});
     let type = 'international';
@@ -100,14 +106,14 @@ export class SupplierRegisterComponent implements OnInit {
 
   submitReg() {
     // if (this.form.status === 'VALID') {
-      this.userService.localRegistration(this.form.value.registrationNo.toString());
-      this.spinner.openSpinner();
-      const body = {
-        civil_number: localStorage.getItem('civilReg'),
-        cr_number: localStorage.getItem('commercialReg'),
-        register_type: localStorage.getItem('regType')
-      };
-      this.userService.supplierRegistration(body);
+    this.userService.localRegistration(this.form.value.registrationNo.toString());
+    this.spinner.openSpinner();
+    const body = {
+      civil_number: localStorage.getItem('civilReg'),
+      cr_number: localStorage.getItem('commercialReg'),
+      register_type: localStorage.getItem('regType')
+    };
+    this.userService.supplierRegistration(body);
     //  }
   }
 
