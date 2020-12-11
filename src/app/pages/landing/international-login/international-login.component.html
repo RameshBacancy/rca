@@ -25,48 +25,12 @@
 <section class="container-fluid">
     <div class="row">
         <div class="col-md-3 offset-md-2">
-            <form class="" #form="ngForm" (ngSubmit)="login(user.email)">
-                <!-- <h3 class="text-center text-info">Login</h3> -->
-                <!--email-->
-                <div class="row mb-3">
-                    <div class="col-md-12 mb-4">
-                        <div class="form-group">
-                            <!-- <label for="username"  class="text-info">Email:</label><br> -->
-                            <input type="email" placeholder="Email" class="form-control fs-14" (keyup)="validateEmail(user.email, user.password)" name="email"
-                                id="email" #email="ngModel" [(ngModel)]="user.email" required />
-                        </div>
-                    </div>
-                    <!-- password -->
-                    <div class="col-md-12 mb-4">
-                        <div class="form-group">
-                            <!-- <label for="password" class="text-info">Password:</label><br> -->
-                            <input type="password" placeholder="Password" class="form-control fs-14"
-                                id="password" #password="ngModel" (keyup)="validateEmail(user.email, user.password)" [(ngModel)]="user.password" name="password"
-                                appNoContainSpace="ngModel" required />
-                        </div>
-                        
-                    </div>
-                    <div class="col-md-12 ">
-                        <div class="form-group">
-                            <button type="submit" [disabled]='validForm' name="submit"
-                                class="btn btn-primary  px-3 mx-1 py-2 w-100 fs-14 mb-2 mb-2"
-                                value="Login">Login</button>
-                        </div>
-                    </div>
-                    <div class="col-md-12 mb-4 d-flex fs-14">
-                        <div class="form-group">
-                            <p class=" text alert text-red font-weight-bold">{{message}}</p>
-                        </div>
-                    </div>
-                </div>
-            </form>
             
-
             <form [formGroup]="loginForm" (ngSubmit)="login(loginForm.value)">
                 <div class="form-group mt-4">
                     <!-- <label>Email</label> -->
-                    <input type="text" formControlName="email" class="form-control fs-14" placeholder="e-mail">
-                    <div *ngIf="f.email.touched && f.email.invalid" class="text alert text-red pl-0">
+                    <input type="text" formControlName="email"  class="form-control">
+                    <div *ngIf="f.email.touched && f.email.invalid" class="text-red pl-0">
                         <div *ngIf="f.email.errors.required">email is required.</div>
                         <div *ngIf="f.email.errors.email">Please enter valid email address.</div>
                     </div>
@@ -74,8 +38,8 @@
                 <div class="form-row">
                     <div class="form-group col">
                         <!-- <label>Password</label> -->
-                        <input type="password" formControlName="password" class="form-control" placeholder="password" >
-                        <div *ngIf="f.password.touched && f.password.invalid" class="text alert text-red pl-0">
+                        <input type="password" formControlName="password" class="form-control">
+                        <div *ngIf="f.password.touched && f.password.invalid" class="text-red pl-0">
                             <div *ngIf="f.password.errors.required">password is required.</div>
                         </div>
                     </div>
