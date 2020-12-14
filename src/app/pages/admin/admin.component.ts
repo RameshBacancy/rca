@@ -21,23 +21,37 @@ export class AdminComponent implements OnInit {
     router.events.subscribe(e => {
       this.currentUrl = this.router.url;
       this.url = this.currentUrl.split('/');
+
       this.title = this.url[this.url.length - 1];
-      if (this.title === 'cms') {
-        this.title = 'CMS';
-      } else if (this.title === 'dashboard') {
-        this.title = 'Admin Panel';
-      } else if (this.title === 'request') {
-        this.title = 'Supplier';
-      }
-      ref.detectChanges();
+      this.setTitle(this.title);
     });
     this.menus = this.sidebarData.getadmindata();
   }
 
   ngOnInit(): void {
-
+    this.setTitle(this.title);
   }
 
+
+  private setTitle(titleName: string): void {
+    switch (titleName) {
+      case 'cms':
+        this.title = 'CMS';
+        break;
+      case 'dashboard':
+        this.title = 'Admin Panel';
+        break;
+      case 'suppler-register-request-info':
+        this.title = 'Supplier';
+        break;
+      case 'alert-messages':
+        this.title = 'Alert Messages';
+        break;
+      default:
+        this.title = 'Admin Panel';
+        break;
+    }
+  }
 
   onViewSidebar(val) {
     this.viewSideBar = val;

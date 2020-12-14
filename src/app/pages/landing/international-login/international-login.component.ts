@@ -1,3 +1,4 @@
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SpinnerService } from 'src/app/services/spinner.service';
@@ -10,21 +11,34 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class InternationalLoginComponent implements OnInit {
 
-  public user = {email: '', password: ''};
+  public user = { email: '', password: '' };
+  public loginForm: FormGroup;
   message: string;
   validForm: boolean = true;
 
-  constructor( private router: Router, private userService: UserService, private spinner: SpinnerService) { }
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private spinner: SpinnerService,
+    private formBuilder: FormBuilder) { }
+
 
   ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+    });
   }
 
 
+  // convenience getter for easy access to form fields
+  get f() { return this.loginForm.controls; }
+
+
   login(e) {
-    // console.log(this.user);
     localStorage.setItem('completeReg', 'T');
     localStorage.setItem('internationalEmail', e);
-    const body = { email: e, register_type: 'international'};
+    const body = { email: this.loginForm.value.email, register_type: 'international' };
     this.spinner.openSpinner();
     this.userService.supplierRegistration(body);
   }
@@ -34,7 +48,7 @@ export class InternationalLoginComponent implements OnInit {
     if (!emailReg.test(email)) {
       this.validForm = true;
       this.message = 'Please enter valid email.';
-    } else if ( psw === '') {
+    } else if (psw === '') {
       this.validForm = true;
       this.message = 'Please enter valid password.';
     } else {

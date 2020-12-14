@@ -32,7 +32,12 @@ input[type=number] {
 
 .btn:hover {    color: #000;    background-color: #c2c9ce;    border-color: #c2c9ce;}
 
-
+.dlt-btn-size {
+  font-size: 1.5rem;
+}
+.text-purple {
+  color: $primary-purple;
+}
 // ::ng-deep .mat-horizontal-stepper-header{
 //   pointer-events: none !important;
 // }
