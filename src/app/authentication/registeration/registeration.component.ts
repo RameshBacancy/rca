@@ -35,7 +35,7 @@ export class RegisterationComponent implements OnInit {
 
   ngOnInit(): void {
     if (!localStorage.getItem('newReg')) {
-      this.router.navigateByUrl('/auth/supplierRegistration');
+      this.router.navigateByUrl('/auth/supplier-registration');
     }
   }
 
@@ -52,12 +52,12 @@ export class RegisterationComponent implements OnInit {
   }
 
   back() {
-      this.router.navigateByUrl('/auth/supplierRegistration');
+      this.router.navigateByUrl('/auth/supplier-registration');
 
   }
 
   gotoFirst() {
-    this.router.navigateByUrl('/auth/supplierRegistration');
+    this.router.navigateByUrl('/auth/supplier-registration');
   }
 
   onViewSidebar(val) {

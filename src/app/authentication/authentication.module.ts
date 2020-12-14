@@ -36,17 +36,17 @@ const routes: Routes = [
     component: ForgetPasswordComponent
   },
   {
-    path: 'supplierRegistration',
+    path: 'supplier-registration',
     component: SupplierRegisterComponent
   },
   {
     path: '',
-    redirectTo: '/auth/supplierRegistration',
+    redirectTo: '/auth/supplier-registration',
     pathMatch: 'full'
   },
   {
     path: '**',
-    redirectTo: '/auth/supplierRegistration',
+    redirectTo: '/auth/supplier-registration',
     pathMatch: 'full'
   }
 ];

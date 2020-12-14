@@ -41,7 +41,7 @@ export class AdminComponent implements OnInit {
       case 'dashboard':
         this.title = 'Admin Panel';
         break;
-      case 'request':
+      case 'suppler-register-request-info':
         this.title = 'Supplier';
         break;
       case 'alert-messages':
