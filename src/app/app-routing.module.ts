@@ -6,7 +6,7 @@ import { ProtectGuard } from './guard/protect.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/auth/supplierRegistration',
+    redirectTo: '/auth/supplier-registration',
     pathMatch: 'full'
   },
   {
@@ -26,7 +26,7 @@ const routes: Routes = [
     path: 'admin',
     loadChildren: () => import('./pages/admin/admin.module').then(m => m.AdminModule)
   },
-  { path: '**', redirectTo: '/auth/supplierRegistration', pathMatch: 'full' }
+  { path: '**', redirectTo: '/auth/supplier-registration', pathMatch: 'full' }
 ];
 
 @NgModule({

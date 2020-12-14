@@ -1,0 +1,11 @@
+.card-custom{
+    height: 300px;
+    width:350px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    h2{
+        cursor: pointer;
+    }
+}

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AlertService } from 'src/app/services/alert.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -19,11 +20,13 @@ export class LoginComponent implements OnInit {
   closeResult: string;
   errmessage: string;
   validForm: boolean;
+  public loginForm: FormGroup;
 
   constructor(
     private userService: UserService,
     private router: Router,
     private modalService: NgbModal,
+    private formBuilder: FormBuilder,
     private alertService: AlertService,
     private spinner: SpinnerService
   ) { }
@@ -31,12 +34,19 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     // this.spinner.openSpinner();
     localStorage.clear();
-    this.spinner.closeSpinner();
+    this.spinner.closeSpinner(); 
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+    });
   }
+  
+  // convenience getter for easy access to form fields
+  get f() { return this.loginForm.controls; }
 
   login() {
     this.spinner.openSpinner();
-    this.userService.login(this.user.email, this.user.password);
+    this.userService.login(this.loginForm.value.email, this.loginForm.value.password);
   }
 
 

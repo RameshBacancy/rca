@@ -383,15 +383,15 @@
                                 <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
                                     {{data.age}} </td>
                                 <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'personal',data)">
-                                    <input [(ngModel)]="data.age"></td>
+                                    <input type="number"  [(ngModel)]="data.age"></td>
                                 <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
                                     {{data.dob}}</td>
                                 <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'personal',data)">
-                                    <input [(ngModel)]="data.dob"></td>
+                                    <input type="date" [(ngModel)]="data.dob"></td>
                                 <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.members}}
                                 </td>
                                 <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'personal',data)">
-                                    <input [(ngModel)]="data.members"></td>
+                                    <input  type="number" [(ngModel)]="data.members"></td>
                                 <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.socialStatus}}
                                 </td>
                                 <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'personal',data)">

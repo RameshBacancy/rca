@@ -24,7 +24,7 @@ export class ProtectGuard implements CanActivate {
         } else if (!localStorage.getItem('newReg') && localStorage.getItem('regType') === 'international') {
             return true;
         } else {
-            this.router.navigateByUrl('/auth/supplierRegistration');
+            this.router.navigateByUrl('/auth/supplier-registration');
             return false;
         }
     }

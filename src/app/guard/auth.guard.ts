@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate {
         if (localStorage.getItem('completeReg')) {
             return true;
         } else {
-            this.router.navigateByUrl('/auth/supplierRegistration');
+            this.router.navigateByUrl('/auth/supplier-registration');
             return false;
         }
     }

@@ -73,7 +73,7 @@
                 {
                     "name": "Forgot Password",
                     "icon": "",
-                    "route": "",
+                    "route": "/#/landing/",
                     "disabled": false,
                     "children": []
                 }
@@ -169,7 +169,7 @@
         {
             "name": "Supplier",
             "icon": "",
-            "route": "/#/admin/request",
+            "route": "/#/admin/suppler-register-request-info",
             "disabled": false,
             "children": []
         },
