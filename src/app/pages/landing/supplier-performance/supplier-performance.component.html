@@ -1,0 +1,146 @@
+<section>
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb bg-white mb-0">
+                    <li class="breadcrumb-item"><a href="/#/landing/supplier-registration/dashboard">Supplier</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Supplier Performance</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="dark-grey-bg ">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="col-md-12 ">
+                <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">Supplier Performance</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="custom-tab-01">
+    <mat-horizontal-stepper [@.disabled]="true" #stepper>
+        <mat-step>
+            <ng-template matStepLabel>Delivery Statistics</ng-template>
+            <div class="row mt-5">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Order No</h5>
+                    <p class="fs-14 px-4">-</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Site</h5>
+                    <p class="fs-14 px-4">-</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Part No</h5>
+                    <p class="fs-14 px-4">-</p>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Part Description</h5>
+                    <p class="fs-14 px-4">-</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Order Quantity</h5>
+                    <p class="fs-14 px-4">-</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Quantity Received</h5>
+                    <p class="fs-14 px-4">-</p>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Quantity Returned</h5>
+                    <p class="fs-14 px-4">-</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Delivery Date</h5>
+                    <p class="fs-14 px-4">-</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Actual Delivery Date</h5>
+                    <p class="fs-14 px-4">-</p>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Late Delivery Cahnges</h5>
+                    <p class="fs-14 px-4">-</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Date of Update</h5>
+                    <p class="fs-14 px-4">-</p>
+                </div>
+            </div>
+    
+    
+            <div class="row mt-4">
+                <div class="col-md-12 mb-5 px-4">
+                    <button type="button" class="btn border btn-disabled color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        [disabled]="true"><i class="fa fa-caret-left"></i> Previous</button>
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext>Next
+                        <i class="fa fa-caret-right"></i></button>
+                    <button type="button" class="btn border btn-disabled color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]=true>Submit</button>
+                    <!-- <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2">Save as
+                        Draft</button> -->
+                    <a href="/#/landing/supplier-registration/dashboard">
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    </a>
+                </div>
+            </div>
+    
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Quality Statistics</ng-template>
+            <div class="row mt-5">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Number of Receipts</h5>
+                    <p class="fs-14 px-4">-</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">% Returned</h5>
+                    <p class="fs-14 px-4">-</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Number of Returns</h5>
+                    <p class="fs-14 px-4">-</p>
+                </div>
+            </div>
+            <div class="row mt-1">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Number of Scraps</h5>
+                    <p class="fs-14 px-4">-</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">% Scrapped</h5>
+                    <p class="fs-14 px-4">-</p>
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Date of Update</h5>
+                    <p class="fs-14 px-4">-</p>
+                </div>
+            </div>
+    
+    
+            <div class="row mt-4">
+                <div class="col-md-12 mb-5 px-4">
+                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" disabled>Next
+                        <i class="fa fa-caret-right"></i></button>
+                    <button type="button" class="btn border btn-disabled color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2">Submit</button>
+                    <!-- <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2">Save as
+                        Draft</button> -->
+                    <a href="/#/landing/supplier-registration/dashboard">
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    </a>
+                </div>
+            </div>
+    
+        </mat-step>
+    
+    </mat-horizontal-stepper>
+</div>
