@@ -37,7 +37,7 @@ export class InternationalLoginComponent implements OnInit {
 
   login(e) {
     localStorage.setItem('completeReg', 'T');
-    localStorage.setItem('internationalEmail', e);
+    localStorage.setItem('internationalEmail', e.email);
     const body = { email: this.loginForm.value.email, register_type: 'international' };
     this.spinner.openSpinner();
     this.userService.supplierRegistration(body);

@@ -74,15 +74,15 @@ export class LandingHeaderComponent implements OnInit {
   }
 
   onLogOut() {
-    if (localStorage.getItem('supplierLogin') === 'true') {
-      localStorage.clear();
-      this.router.navigate(['']);
-    } else {
+    if (localStorage.getItem('supplierLogin') === 'false') {
       this.spinner.openSpinner();
       this.userService.logout();
       this.spinner.closeSpinner();
       localStorage.clear();
       this.router.navigate(['/admin/user/login']);
+    } else {
+      localStorage.clear();
+      this.router.navigate(['']);
     }
   }
 
