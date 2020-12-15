@@ -393,7 +393,7 @@
                                         {{data.age}} </td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'personal',data)">
-                                        <input type="number" [(ngModel)]="data.age"></td>
+                                        <input type="number" [(ngModel)]="data.age" min="0" onkeydown="return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"></td>
                                     <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.dob}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
@@ -403,7 +403,7 @@
                                     </td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'personal',data)">
-                                        <input type="number" [(ngModel)]="data.members"></td>
+                                        <input type="number" [(ngModel)]="data.members" min="0" onkeydown="return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"></td>
                                     <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.socialStatus}}
                                     </td>
