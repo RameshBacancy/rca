@@ -143,7 +143,7 @@
                                     <div class="col-md-12 ">
                                         <div class="form-group row mb-3">
                                             <label for="addressID" class="col-sm-5 col-form-label"> Address
-                                                ID</label>
+                                                ID<span class="text-red">*</span></label>
                                             <div class="col-sm-7">
                                                 <input formControlName="addressID" id="addressID" type="text"
                                                     class="form-control" readonly>
@@ -158,7 +158,7 @@
                                         <div class="form-group row mb-3">
                                             <label for="addressline1" class="col-sm-5 col-form-label">Address
                                                 Line
-                                                1</label>
+                                                1<span class="text-red">*</span></label>
                                             <div class="col-sm-7">
                                                 <input formControlName="addressline1" id="addressline1" type="text"
                                                     class="form-control">
@@ -173,7 +173,7 @@
                                         <div class="form-group row mb-3">
                                             <label for="addressline2" class="col-sm-5 col-form-label">Address
                                                 Line
-                                                2</label>
+                                                2<span class="text-red">*</span></label>
                                             <div class="col-sm-7">
                                                 <input formControlName="addressline2" id="addressline2" type="text"
                                                     class="form-control">
@@ -198,7 +198,8 @@
                                     </div>
                                 </div> -->
                                         <div class="form-group row mb-3">
-                                            <label for="country" class="col-sm-5 col-form-label">Country
+                                            <label for="country" class="col-sm-5 col-form-label">Country<span
+                                                    class="text-red">*</span>
                                             </label>
                                             <div class="col-sm-7">
                                                 <input formControlName="country" id="country" type="text"
@@ -267,8 +268,8 @@
 
                         <input class="fs-16 custom-height-35" [(ngModel)]="searchText" placeholder="Search text">
 
-                        <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('personal')"><i
-                                class="fa fa-plus" aria-hidden="true"></i></button>
+                        <button class="btn btn-secondary ml-2 float-right mb-2" [disabled]='!showBtn'
+                            (click)="addNewRow('personal')"><i class="fa fa-plus" aria-hidden="true"></i></button>
                         <table class="table table-striped ">
                             <thead>
                                 <tr class="purple-bg text-white">
@@ -287,59 +288,68 @@
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th scope="col" (click)="sorting('personal','passport')">Passport <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                <tr *ngFor="let data of personalData | filter : searchText; index as index"
-                                    (clickOutside)="enteredDetails( 'personal',data)">
+                                <tr *ngFor="let data of personalData | filter : searchText; index as index">
+                                    <!-- 
+                                    (clickOutside)="enteredDetails( 'personal',data)" -->
                                     <td *ngIf="data.isMoci">
                                         <i class="fa fa-ban text-red fs-14" mat-raised-button
                                             matTooltip="Data fetched from interface - not editable"
                                             aria-hidden="true"></i>
                                     </td>
                                     <td *ngIf="!data.isMoci">
-                                        <i class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit Data"
-                                            (click)="data.isEdit = true" aria-hidden="true"></i>
+                                        <i class="fa fa-pencil-square-o fs-14" *ngIf="!data.isEdit && showBtn"
+                                            mat-raised-button matTooltip="Edit Data"
+                                            (click)="data.isEdit = true; this.showBtn=false;" aria-hidden="true"></i>
+                                        <i class="fa fa-save fs-20 background-purple text-white p-1" *ngIf="data.isEdit"
+                                            mat-raised-button matTooltip="Save Data"
+                                            (click)="enteredDetails( 'personal',data)" aria-hidden="true"></i>
                                     </td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.personName}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'personal',data)"><input
-                                            [(ngModel)]="data.personName"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                            [(ngModel)]="data.personName"><span class="text-red">*required</span></td>
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.nationality}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'personal',data)">
                                         <input [(ngModel)]="data.nationality"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.idType}} </td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'personal',data)">
                                         <input [(ngModel)]="data.idType"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.idNo}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'personal',data)">
                                         <input [(ngModel)]="data.idNo"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.designation}}
                                     </td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'personal',data)">
                                         <input [(ngModel)]="data.designation"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.residentNo}}
                                     </td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'personal',data)">
                                         <input [(ngModel)]="data.residentNo"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.passport}}
                                     </td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'personal',data)">
                                         <input [(ngModel)]="data.passport"></td>
+                                    <td *ngIf="data.isMoci || !data.isEdit"></td>
+                                    <td *ngIf="data.isEdit && !data.isMoci"><i class="fa fa-trash text-red dlt-btn-size"
+                                            aria-hidden="true" (click)="deleteRow('personal',data)"></i></td>
 
                                 </tr>
                             </tbody>
@@ -359,144 +369,31 @@
             </p>
         </div>
     </div> -->
+            <div class="row px-2 py-2" *ngIf="!showBtn">
+                <div class="col-md-12 px-4">
+                    <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move
+                        forward.</p>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
-                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" matStepperPrevious><i
-                            class="fa fa-caret-left"></i> Previous</button>
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext>Next
+                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
+                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                        [disabled]='!showBtn' matStepperNext>Next
                         <i class="fa fa-caret-right"></i></button>
                     <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
-                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
+                        (click)="saveDraft()">Save as
                         Draft</button>
-                    <a href="/#/landing/supplier-registration/dashboard">
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            [disabled]='!showBtn'>Cancel</button>
                     </a>
                 </div>
             </div>
-            <!-- Address Model Pop-Up Form -->
-            <ng-template #mymodal let-modal>
-                <div class="modal-header">
-                    <h4 class="modal-title" id="modal-basic-title">Add Address</h4>
-                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <form [formGroup]="form" (ngSubmit)="submit() ; modal.close('Save click')">
-                    <div class="modal-body custom-modal-main">
-                        <section class=" bg-white ">
-                            <div>
-                                <div class="row ">
-                                    <div class="col-md-12 ">
-                                        <div class="form-group row mb-3">
-                                            <label for="poBox" class="col-sm-5 col-form-label">P.O.Box</label>
-                                            <div class="col-sm-7">
-                                                <input formControlName="poBox" id="poBox" type="text"
-                                                    class="form-control">
-                                            </div>
-                                            <div *ngIf="f.poBox.touched && f.poBox.invalid" class="alert alert-danger">
-                                                <div *ngIf="f.poBox.errors.required" class="col-sm-7">*required
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row mb-3">
-                                            <label for="supplierBranch" class="col-sm-5 col-form-label">Supplier
-                                                Branch</label>
-                                            <div class="col-sm-7">
-                                                <input formControlName="supplierBranch" id="supplierBranch" type="text"
-                                                    class="form-control">
-                                            </div>
-                                            <div *ngIf="f.supplierBranch.touched && f.supplierBranch.invalid"
-                                                class="alert alert-danger">
-                                                <div *ngIf="f.supplierBranch.errors.required" class="col-sm-7">
-                                                    *required</div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row mb-3">
-                                            <label for="sponsorName" class="col-sm-5 col-form-label">Sponsor
-                                                Name</label>
-                                            <div class="col-sm-7">
-                                                <input formControlName="sponsorName" id="sponsorName" type="text"
-                                                    class="form-control">
-                                            </div>
-                                            <div *ngIf="f.sponsorName.touched && f.sponsorName.invalid"
-                                                class="alert alert-danger">
-                                                <div *ngIf="f.sponsorName.errors.required" class="col-sm-7">
-                                                    *required</div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row mb-3">
-                                            <label for="SponsorNationalId" class="col-sm-5 col-form-label">Sponsor
-                                                National ID / Resident
-                                                ID</label>
-                                            <div class="col-sm-7">
-                                                <input formControlName="SponsorNationalId" id="SponsorNationalId"
-                                                    type="text" class="form-control">
-                                            </div>
-                                            <div *ngIf="f.SponsorNationalId.touched && f.SponsorNationalId.invalid"
-                                                class="alert alert-danger">
-                                                <div *ngIf="f.SponsorNationalId.errors.required" class="col-sm-7">
-                                                    *required</div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row mb-3">
-                                            <label for="postalCode" class="col-sm-5 col-form-label">Postal
-                                                Code</label>
-                                            <div class="col-sm-7">
-                                                <input formControlName="postalCode" id="postalCode" type="text"
-                                                    class="form-control">
-                                            </div>
-                                            <div *ngIf="f.postalCode.touched && f.postalCode.invalid"
-                                                class="alert alert-danger">
-                                                <div *ngIf="f.postalCode.errors.required" class="col-sm-7">
-                                                    *required</div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row mb-3">
-                                            <label for="authorizedSignatory" class="col-sm-5 col-form-label">Authorized
-                                                Signatory</label>
-                                            <div class="col-sm-7">
-                                                <input formControlName="authorizedSignatory" id="authorizedSignatory"
-                                                    type="text" class="form-control">
-                                            </div>
-                                            <div *ngIf="f.authorizedSignatory.touched && f.authorizedSignatory.invalid"
-                                                class="alert alert-danger">
-                                                <div *ngIf="f.authorizedSignatory.errors.required" class="col-sm-7">
-                                                    *required</div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row mb-3">
-                                            <label for="authorizedResidentId" class="col-sm-5 col-form-label">Authorized
-                                                National ID /
-                                                Resident ID</label>
-                                            <div class="col-sm-7">
-                                                <input formControlName="authorizedResidentId" id="authorizedResidentId"
-                                                    type="text" class="form-control">
-                                            </div>
-                                            <div *ngIf="f.authorizedResidentId.touched && f.authorizedResidentId.invalid"
-                                                class="alert alert-danger">
-                                                <div *ngIf="f.authorizedResidentId.errors.required" class="col-sm-7">
-                                                    *required</div>
-                                            </div>
-                                        </div>
-                                        <div class="row mt-5">
-                                            <div class="col-md-12 mb-5 px-4"> </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            type="submit">Submit</button>
-                        <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
-                            (click)="form.reset(); modal.close('Save click')">Back</button>
-                        <!-- <button type="button" class="btn btn-outline-dark"
-             (click)="modal.close('Save click')">Ok</button> -->
-                    </div>
-                </form>
-            </ng-template>
+
         </mat-step>
         <!-- Communication Methods -->
         <mat-step>
@@ -571,7 +468,7 @@
                                 <input class="fs-16 custom-height-35" [(ngModel)]="searchText"
                                     placeholder="Search text">
 
-                                <button class="btn btn-secondary ml-2 float-right mb-2"
+                                <button class="btn btn-secondary ml-2 float-right mb-2" [disabled]='!showBtn'
                                     (click)="addNewRow('activity')"><i class="fa fa-plus"
                                         aria-hidden="true"></i></button>
                                 <table class="table table-striped ">
@@ -585,6 +482,7 @@
                                             <th scope="col" (click)="sorting('activity','subActivity')">Sub Activity
                                                 <i class="fa fa-sort" aria-hidden="true"></i>
                                             </th>
+                                            <th></th>
                                             <!-- <th scope="col" (click)="sorting('activity','sagment')">Segment 
                                         <i class="fa fa-sort" aria-hidden="true"
                                             ></i>
@@ -604,43 +502,53 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let data of activityData | filter : searchText; index as index"
-                                            (clickOutside)="enteredDetails( 'activity',data)">
+                                        <tr *ngFor="let data of activityData | filter : searchText; index as index">
+                                            <!-- 
+                                            (clickOutside)="enteredDetails( 'activity',data)" -->
                                             <td *ngIf="data.isMoci">
                                                 <i class="fa fa-ban text-red fs-14" mat-raised-button
                                                     matTooltip="Data fetched from interface - not editable"
                                                     aria-hidden="true"></i>
                                             </td>
                                             <td *ngIf="!data.isMoci">
-                                                <i class="fa fa-pencil-square-o fs-14" mat-raised-button
-                                                    matTooltip="Edit Data" (click)="data.isEdit = true"
+                                                <i class="fa fa-pencil-square-o fs-14" *ngIf="!data.isEdit && showBtn"
+                                                    mat-raised-button matTooltip="Edit Data"
+                                                    (click)="data.isEdit = true; this.showBtn=false;"
                                                     aria-hidden="true"></i>
+                                                <i class="fa fa-save fs-20 background-purple text-white p-1"
+                                                    *ngIf="data.isEdit" mat-raised-button matTooltip="Save Data"
+                                                    (click)="enteredDetails( 'activity',data)" aria-hidden="true"></i>
                                             </td>
-                                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                                 {{data.activityName}}
                                             </td>
                                             <td *ngIf="data.isEdit && !data.isMoci"
                                                 (keyup.enter)="enteredDetails( 'activity',data)">
-                                                <input [(ngModel)]="data.activityName"></td>
-                                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                                <input [(ngModel)]="data.activityName"><span class="text-red">*</span>
+                                            </td>
+                                            <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                                 {{data.subActivity}}
                                             </td>
                                             <td *ngIf="data.isEdit && !data.isMoci"
                                                 (keyup.enter)="enteredDetails( 'activity',data)">
                                                 <input [(ngModel)]="data.subActivity"></td>
-                                            <!-- <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                            <td *ngIf="data.isMoci || !data.isEdit"></td>
+                                            <td *ngIf="data.isEdit && !data.isMoci"><i
+                                                    class="fa fa-trash text-red dlt-btn-size" aria-hidden="true"
+                                                    (click)="deleteRow('activity',data)"></i></td>
+                                            <!-- <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.sagment}} </td>
                                     <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'activity',data)">
                                         <input [(ngModel)]="data.sagment"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.family}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'activity',data)">
                                         <input [(ngModel)]="data.family"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">{{data.class}}
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">{{data.class}}
                                     </td>
                                     <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'activity',data)">
                                         <input [(ngModel)]="data.class"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.commodity}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'activity',data)">
                                         <input [(ngModel)]="data.commodity"></td> -->
@@ -684,20 +592,30 @@
                             <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                         </div>
                     </div>
+
+                    <div class="row px-2 py-2" *ngIf="!showBtn">
+                        <div class="col-md-12 px-4">
+                            <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move
+                                forward.</p>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                                matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                                [disabled]='!showBtn' matStepperPrevious><i class="fa fa-caret-left"></i>
+                                Previous</button>
                             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
+                                [disabled]='!showBtn' (click)="changeTab()">Next <i
+                                    class="fa fa-caret-right"></i></button>
                             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                     (click)="move(6)">Finish</button> -->
-                            <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2"
-                                (click)="saveDraft()">Save as
+                            <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()"
+                                [disabled]='!showBtn'>Save as
                                 Draft</button>
-                            <a href="/#/landing/supplier-registration/dashboard">
-                                <button type="button"
-                                    class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                            <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
+                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                    [disabled]='!showBtn'>Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -762,7 +680,7 @@
                                             <div class="col-md-12 ">
                                                 <div class="form-group row mb-3">
                                                     <label for="bankingId" class="col-sm-5 col-form-label">Banking
-                                                        Id</label>
+                                                        Id<span class="text-red">*</span></label>
                                                     <div class="col-sm-7">
                                                         <input formControlName="bankingId" id="bankingId" type="text"
                                                             class="form-control">
@@ -776,7 +694,7 @@
                                                 </div>
                                                 <div class="form-group row mb-3">
                                                     <label for="bankingIdname" class="col-sm-5 col-form-label">Banking
-                                                        Id Name</label>
+                                                        Id Name<span class="text-red">*</span></label>
                                                     <div class="col-sm-7">
                                                         <input formControlName="bankingIdname" id="bankingIdname"
                                                             type="text" class="form-control">
@@ -790,7 +708,7 @@
                                                 </div>
                                                 <div class="form-group row mb-3">
                                                     <label for="bankAcc" class="col-sm-5 col-form-label">Bank
-                                                        Account</label>
+                                                        Account<span class="text-red">*</span></label>
                                                     <div class="col-sm-7">
                                                         <input formControlName="bankAcc" id="bankAcc" type="text"
                                                             class="form-control">
@@ -807,7 +725,7 @@
                                                 </div>
                                                 <div class="form-group row mb-3">
                                                     <label for="bankName" class="col-sm-5 col-form-label">Bank
-                                                        Name</label>
+                                                        Name<span class="text-red">*</span></label>
                                                     <div class="col-sm-7">
                                                         <input formControlName="bankName" id="bankName" type="text"
                                                             class="form-control">
@@ -819,7 +737,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row mb-3">
-                                                    <label for="bankBranch" class="col-sm-5 col-form-label">Bank Branch
+                                                    <label for="bankBranch" class="col-sm-5 col-form-label">Bank
+                                                        Branch<span class="text-red">*</span>
                                                     </label>
                                                     <div class="col-sm-7">
                                                         <input formControlName="bankBranch" id="bankBranch" type="text"
@@ -834,7 +753,7 @@
                                                 <div class="form-group row mb-3">
                                                     <label for="holderName" class="col-sm-5 col-form-label">Account
                                                         holder
-                                                        name
+                                                        name<span class="text-red">*</span>
                                                     </label>
                                                     <div class="col-sm-7">
                                                         <input formControlName="holderName" id="holderName" type="text"
@@ -864,7 +783,7 @@
                             </div>
                         </form>
                     </ng-template>
-                    
+
                     <div class="row">
                         <div class="col-md-12 px-4">
                             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
@@ -872,20 +791,28 @@
                         </div>
                     </div>
 
+                    <div class="row px-2 py-2" *ngIf="!showBtn">
+                        <div class="col-md-12 px-4">
+                            <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move
+                                forward.</p>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                                (click)="previousTab()"><i class="fa fa-caret-left"></i> Previous</button>
+                                [disabled]='!showBtn' (click)="previousTab()"><i class="fa fa-caret-left"></i>
+                                Previous</button>
                             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
+                                [disabled]='!showBtn' (click)="changeTab()">Next <i
+                                    class="fa fa-caret-right"></i></button>
                             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                     (click)="move(6)">Finish</button> -->
-                            <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2"
+                            <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft()">Save as
                                 Draft</button>
-                            <a href="/#/landing/supplier-registration/dashboard">
-                                <button type="button"
-                                    class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                            <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
+                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                    [disabled]='!showBtn'>Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -895,8 +822,8 @@
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
                                 <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
-                                <!-- <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('other')"><i
-                                class="fa fa-plus" aria-hidden="true"></i></button> -->
+                                <button class="btn btn-secondary ml-2 float-right mb-2" [disabled]='!showBtn'
+                                    (click)="addNewRow('other')"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                 <table class="table table-striped mb-0 ">
                                     <thead>
                                         <tr class="purple-bg text-white">
@@ -912,25 +839,40 @@
                                             <th scope="col" (click)="sorting('other','name')">Label <i
                                                     class="fa fa-sort" aria-hidden="true"></i></th>
                                             <th scope="col">Value </th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr *ngFor="let data of otherData | filter : searchText; index as index"
-                                            (clickOutside)="enteredDetails( 'other',data)">
-                                            <td>
+                                        <tr *ngFor="let data of otherData | filter : searchText; index as index">
+                                            <!-- 
+                                            (clickOutside)="enteredDetails( 'other',data)" -->
+                                            <td *ngIf="!data.isEdit">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" value=""
                                                         id="flexCheckDefault-1">
                                                     <span class="ml-2"> <a class=" text-blaack fs-14"><i
                                                                 class="fa fa-ellipsis-v  "></i> </a></span> </div>
                                             </td>
-                                            <td>{{data.no}}</td>
-                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.name}}
+                                            <td *ngIf="data.isEdit">
+                                                <i class="fa fa-save fs-20 background-purple text-white p-1"
+                                                    mat-raised-button matTooltip="Save Data"
+                                                    (click)="enteredDetails( 'other',data)" aria-hidden="true"></i>
+                                            </td>
+                                            <td>{{index + 1}}</td>
+                                            <td *ngIf="!data.isEdit" (dblclick)="dblclick(data)">{{data.name}}
                                             </td>
                                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)"><input
-                                                    [(ngModel)]="data.name"></td>
-                                            <td><a><input type="text" id="input" name="input"></a>
+                                                    [(ngModel)]="data.name"><span class="text-red">*</span></td>
+                                            <td *ngIf="!data.isEdit" (dblclick)="dblclick(data)">{{data.value}}</td>
+                                            <td *ngIf="data.isEdit">
+                                                <input type="text" id="input" name="input" [(ngModel)]="data.value">
+                                                <span class="text-red">*</span>
                                             </td>
+                                            <!-- <td *ngIf="data.isMoci || !data.isEdit"></td> -->
+                                            <td *ngIf="data.isEdit"><i class="fa fa-trash text-red dlt-btn-size"
+                                                    aria-hidden="true" (click)="deleteRow('other',data)"></i>
+                                            </td>
+                                            <td *ngIf="!data.isEdit"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -942,20 +884,27 @@
                         </div>
                     </div>
 
+                    <div class="row px-2 py-2" *ngIf="!showBtn">
+                        <div class="col-md-12 px-4">
+                            <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move
+                                forward.</p>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                                (click)="previousTab()"><i class="fa fa-caret-left"></i> Previous</button>
+                                [disabled]='!showBtn' (click)="previousTab()"><i class="fa fa-caret-left"></i>
+                                Previous</button>
                             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                matStepperNext>Next <i class="fa fa-caret-right"></i></button>
+                                [disabled]='!showBtn' matStepperNext>Next <i class="fa fa-caret-right"></i></button>
                             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                     (click)="move(6)">Finish</button> -->
-                            <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2"
+                            <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft()">Save as
                                 Draft</button>
-                            <a href="/#/landing/supplier-registration/dashboard">
-                                <button type="button"
-                                    class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                            <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
+                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                    [disabled]='!showBtn'>Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -973,8 +922,8 @@
 
                         <input class="fs-16 custom-height-35" [(ngModel)]="searchText" placeholder="Search text">
 
-                        <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('staff')"><i
-                                class="fa fa-plus" aria-hidden="true"></i></button>
+                        <button class="btn btn-secondary ml-2 float-right mb-2" [disabled]='!showBtn'
+                            (click)="addNewRow('staff')"><i class="fa fa-plus" aria-hidden="true"></i></button>
                         <table class="table table-striped ">
                             <thead>
                                 <tr class="purple-bg text-white">
@@ -1008,19 +957,25 @@
                                             aria-hidden="true"></i></th>
                                     <th scope="col" (click)="sorting('staff','statusDate')">Status date <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let data of staffData | filter : searchText; index as index"
-                                    (clickOutside)="enteredDetails( 'staff',data)">
+                                <tr *ngFor="let data of staffData | filter : searchText; index as index">
+                                    <!-- 
+                                    (clickOutside)="enteredDetails( 'staff',data)" -->
                                     <td *ngIf="data.isMoci">
                                         <i class="fa fa-ban text-red fs-14" mat-raised-button
                                             matTooltip="Data fetched from interface - not editable"
                                             aria-hidden="true"></i>
                                     </td>
                                     <td *ngIf="!data.isMoci">
-                                        <i class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit Data"
-                                            (click)="data.isEdit = true" aria-hidden="true"></i>
+                                        <i class="fa fa-pencil-square-o fs-14" *ngIf="!data.isEdit && showBtn"
+                                            mat-raised-button matTooltip="Edit Data"
+                                            (click)="data.isEdit = true; this.showBtn=false;" aria-hidden="true"></i>
+                                        <i class="fa fa-save fs-20 background-purple text-white p-1" *ngIf="data.isEdit"
+                                            mat-raised-button matTooltip="Save Data"
+                                            (click)="enteredDetails( 'staff',data)" aria-hidden="true"></i>
                                     </td>
                                     <td>
                                         <div class="form-check">
@@ -1029,65 +984,67 @@
                                             <span class="ml-2"> <a class=" text-blaack fs-14"><i
                                                         class="fa fa-ellipsis-v  "></i> </a></span> </div>
                                     </td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.name}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'staff',data)">
-                                        <input [(ngModel)]="data.name"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                        <input [(ngModel)]="data.name"><span class="text-red">*required</span></td>
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.qualification}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'staff',data)">
                                         <input [(ngModel)]="data.qualification"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.specialization}}
                                     </td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'staff',data)">
                                         <input [(ngModel)]="data.specialization"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.jobTitle}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'staff',data)">
                                         <input [(ngModel)]="data.jobTitle"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.designation}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'staff',data)">
                                         <input [(ngModel)]="data.designation"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.designationDate}}
                                     </td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'staff',data)">
                                         <input [(ngModel)]="data.designationDate"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.expDate}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'staff',data)">
                                         <input [(ngModel)]="data.expDate"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.experience}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'staff',data)">
                                         <input [(ngModel)]="data.experience"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.appointmentDate}}
                                     </td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'staff',data)">
                                         <input [(ngModel)]="data.appointmentDate"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.status}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'staff',data)">
                                         <input [(ngModel)]="data.status"></td>
-                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="data.isEdit = true">
+                                    <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.statusDate}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'staff',data)">
                                         <input [(ngModel)]="data.statusDate"></td>
-
+                                    <td *ngIf="data.isMoci || !data.isEdit"></td>
+                                    <td *ngIf="data.isEdit && !data.isMoci"><i class="fa fa-trash text-red dlt-btn-size"
+                                            aria-hidden="true" (click)="deleteRow('staff',data)"></i></td>
                                 </tr>
                             </tbody>
 
@@ -1100,20 +1057,27 @@
                 </div>
             </div>
 
+            <div class="row px-2 py-2" *ngIf="!showBtn">
+                <div class="col-md-12 px-4">
+                    <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move forward.</p>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
-                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" matStepperPrevious><i
-                            class="fa fa-caret-left"></i> Previous</button>
+                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
+                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
                     <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        [disabled]="true"><i class="fa fa-caret-left"></i> Next</button>
+                        [disabled]="true" [disabled]='!showBtn'><i class="fa fa-caret-left"></i> Next</button>
                     <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        (click)="submitRegistration()">Finish</button>
+                        (click)="submitRegistration()" [disabled]='!showBtn'>Finish</button>
                     <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
-                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
+                        (click)="saveDraft()">Save as
                         Draft</button>
-                    <a href="/#/landing/supplier-registration/dashboard">
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            [disabled]='!showBtn'>Cancel</button>
                     </a>
                 </div>
             </div>

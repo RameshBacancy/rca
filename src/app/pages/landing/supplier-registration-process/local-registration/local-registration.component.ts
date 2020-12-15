@@ -583,10 +583,10 @@ export class LocalRegistrationComponent implements OnInit {
     this.router.navigate(['/landing/supplier-registration/dashboard']);
   }
 
-  dblclick(data){
-    if(this.showBtn === true){
-      if(!data.isMoci){
-        data.isEdit= true;
+  dblclick(data) {
+    if (this.showBtn === true) {
+      if (!data.isMoci) {
+        data.isEdit = true;
         this.showBtn = false;
       }
     }
@@ -799,8 +799,8 @@ export class LocalRegistrationComponent implements OnInit {
       if (datatype === 'employee') {
 
         if (data.name !== '') {
-          if(data.staffCategory !==''){
-            if(data.country !== ''){
+          if (data.staffCategory !== '') {
+            if (data.country !== '') {
               this.employeeData.map((d, i) => {
                 if (d.name == data.name) {
                   // if (data.staffCategory == '') {
@@ -810,7 +810,7 @@ export class LocalRegistrationComponent implements OnInit {
                 }
               });
               if (data.name === ' * ') {
-                  data.name = '',
+                data.name = '',
                   data.isEdit = true;
               }
               this.showBtn = true;
@@ -1067,7 +1067,7 @@ export class LocalRegistrationComponent implements OnInit {
           });
           if (data.activityName === ' * ') {
             data.activityName = '',
-            data.isEdit = true;
+              data.isEdit = true;
           }
           this.showBtn = true;
         } else {

@@ -1,27 +1,41 @@
 @import 'src/assets/scss/index.scss';
 
- 
+
 ul {
-    background-color: $grey-light-color;
-    li {
-      list-style-type: none;
-      a {
-        color:$primary-blue;
-        text-decoration: none
-      }
+  background-color: $grey-light-color;
+
+  li {
+    list-style-type: none;
+
+    a {
+      color: $primary-blue;
+      text-decoration: none
     }
-    li:hover {
-     cursor: pointer;
-    }
+  }
+
+  li:hover {
+    cursor: pointer;
+  }
 }
 
-.btn-disabled-color-gray{
+.btn-disabled-color-gray {
   background-color: $grey-light-color !important;
 }
 
 
-.btn:hover {    color: #000;    background-color: #c2c9ce;    border-color: #c2c9ce;}
+.btn:hover {
+  color: #000;
+  background-color: #c2c9ce;
+  border-color: #c2c9ce;
+}
 
+.dlt-btn-size {
+  font-size: 1.5rem;
+}
+
+.text-purple {
+  color: $primary-purple;
+}
 
 // ::ng-deep .mat-horizontal-stepper-header{
 //   pointer-events: none !important;
@@ -32,6 +46,7 @@ ul {
 // }
 
 
-::ng-deep .mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
-    background-color: #0279c1;
+::ng-deep .mat-tab-group.mat-primary .mat-ink-bar,
+.mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: #0279c1;
 }
