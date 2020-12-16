@@ -9,24 +9,26 @@
                 "companyInfo": "Company Info",
                 "activities": [
                     {
-                        "activityName": "",
-                        "subActivity": "",
+                        "id":"1",
+                        "activityName": "1",
+                        "subActivity": "1",
                         "sagment": "",
                         "family": "",
                         "class": "",
                         "commodity": "",
-                        "isEdit": true,
-                        "isMoci": false
+                        "isEdit": false,
+                        "isMoci": true
                     },
                     {
-                        "activityName": "",
-                        "subActivity": "",
+                        "id":"2",
+                        "activityName": "2",
+                        "subActivity": "2",
                         "sagment": "",
                         "family": "",
                         "class": "",
                         "commodity": "",
-                        "isEdit": true,
-                        "isMoci": false
+                        "isEdit": false,
+                        "isMoci": true
                     }
                 ],
                 "detailsRemark": "Details Not Applicable"
@@ -156,6 +158,7 @@
             "activityInfoTab": {
                 "activityInfo": [
                     {
+                        "id":"1",
                         "activityName": "Test1",
                         "subActivity": "Test1",
                         "establishmentDate": "-",
@@ -169,6 +172,7 @@
                         "isMoci": true
                     },
                     {
+                        "id":"2",
                         "activityName": "Test2",
                         "subActivity": "Test2",
                         "establishmentDate": "-",

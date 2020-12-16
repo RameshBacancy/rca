@@ -76,21 +76,21 @@
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">User Id</h5>
-                            <p class="fs-14 px-4">{{civilNo}}</p>
+                            <p class="fs-14 px-4">{{generalInfo.civilNo}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
-                            <p class="fs-14">{{crNo}}</p>
+                            <p class="fs-14">{{generalInfo.crNo}}</p>
                         </div>
                     </div>
                     <div class="row pl-2">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Arabic Name</h5>
-                            <p class="fs-14 px-4">آر بالا</p>
+                            <p class="fs-14 px-4">{{generalInfo.arabicName}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">English Name</h5>
-                            <p class="fs-14">R Bala</p>
+                            <p class="fs-14">{{generalInfo.englishName}}</p>
                         </div>
                     </div>
                     <div class="row pl-2">
@@ -104,11 +104,11 @@
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Company Name</h5>
-                            <p class="fs-14 px-4">Company Name</p>
+                            <p class="fs-14 px-4">{{generalInfo.companyInfo}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Company C R Number</h5>
-                            <p class="fs-14 px-4">{{crNo}}</p>
+                            <p class="fs-14 px-4">{{generalInfo.crNo}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -212,10 +212,10 @@
                     <div class="row px-2 py-2">
                         <div class="col-md-12 px-4">
                             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
-                            <p class="dark-text-1 fs-14 " *ngIf="!content1" (dblclick)="content1 = !content1">
-                                {{this.formData.detailsRemark[0].content}}</p>
-                            <input class="dark-text-1 fs-14 " *ngIf="content1" (keyup.enter)="content1 = false"
-                                (clickOutside)="content1 = false" [(ngModel)]=this.formData.detailsRemark[0].content>
+                            <p class="dark-text-1 fs-14 " *ngIf="!content1 && showBtn" (dblclick)="content1 = !content1">
+                                {{generalInfo.detailsRemark}}</p>
+                            <input class="dark-text-1 fs-14 " *ngIf="content1 && showBtn" (keyup.enter)="content1 = false"
+                                (clickOutside)="content1 = false" [(ngModel)]=generalInfo.detailsRemark>
                         </div>
                     </div>
                     <div class="row px-2 py-2" *ngIf="!showBtn">
@@ -387,9 +387,9 @@
                             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
                             <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                             <p class="dark-text-1 fs-14 " *ngIf="!content2" (dblclick)="content2 = !content2">
-                                {{this.formData.detailsRemark[1].content}}</p>
+                                {{this.formData.generalInfoStep.addressInfoTab.detailsRemark}}</p>
                             <input class="dark-text-1 fs-14 " *ngIf="content2" (keyup.enter)="content2 = false"
-                                (clickOutside)="content2 = false" [(ngModel)]=this.formData.detailsRemark[1].content>
+                                (clickOutside)="content2 = false" [(ngModel)]=this.formData.generalInfoStep.addressInfoTab.detailsRemark>
                         </div>
                     </div>
                     <div class="row px-2 py-2" *ngIf="!showBtn">
@@ -662,9 +662,9 @@
                     <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
                     <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                     <p class="dark-text-1 fs-14 " *ngIf="!content3" (dblclick)="content3 = !content3">
-                        {{this.formData.detailsRemark[2].content}}</p>
+                        {{this.formData.personalDetailsStep.detailsRemark}}</p>
                     <input class="dark-text-1 fs-14 " *ngIf="content3" (keyup.enter)="content3 = false"
-                        (clickOutside)="content3 = false" [(ngModel)]=this.formData.detailsRemark[2].content>
+                        (clickOutside)="content3 = false" [(ngModel)]=this.formData.personalDetailsStep.detailsRemark>
                 </div>
             </div>
             <div class="row px-2 py-2" *ngIf="!showBtn">
@@ -756,9 +756,9 @@
                 <div class="col-md-12 px-4 py-2">
                     <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
                     <p class="dark-text-1 fs-14 " *ngIf="!content4" (dblclick)="content4 = !content4">
-                        {{this.formData.detailsRemark[3].content}}</p>
+                        {{this.formData.communicationMethodStep.detailsRemark}}</p>
                     <input class="dark-text-1 fs-14 " *ngIf="content4" (keyup.enter)="content4 = false"
-                        (clickOutside)="content4 = false" [(ngModel)]=this.formData.detailsRemark[3].content>
+                        (clickOutside)="content4 = false" [(ngModel)]=this.formData.communicationMethodStep.detailsRemark>
                     <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                 </div>
             </div>
@@ -917,9 +917,9 @@
                         <div class="col-md-12 px-4 py-2">
                             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
                             <p class="dark-text-1 fs-14 " *ngIf="!content5" (dblclick)="content5 = !content5">
-                                {{this.formData.detailsRemark[4].content}}</p>
+                                {{this.formData.bankDetailStep.activityInfoTab.detailsRemark}}</p>
                             <input class="dark-text-1 fs-14 " *ngIf="content5" (keyup.enter)="content5 = false"
-                                (clickOutside)="content5 = false" [(ngModel)]=this.formData.detailsRemark[4].content>
+                                (clickOutside)="content5 = false" [(ngModel)]=this.formData.bankDetailStep.activityInfoTab.detailsRemark>
                             <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                         </div>
                     </div>
@@ -996,9 +996,9 @@
                         <div class="col-md-12 px-4 py-2">
                             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
                             <p class="dark-text-1 fs-14 " *ngIf="!content6" (dblclick)="content6 = !content6">
-                                {{this.formData.detailsRemark[5].content}}</p>
+                                {{this.formData.bankDetailStep.bankDetailsTab.detailsRemark}}</p>
                             <input class="dark-text-1 fs-14 " *ngIf="content6" (keyup.enter)="content6 = false"
-                                (clickOutside)="content6 = false" [(ngModel)]=this.formData.detailsRemark[5].content>
+                                (clickOutside)="content6 = false" [(ngModel)]=this.formData.bankDetailStep.bankDetailsTab.detailsRemark>
                             <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                         </div>
                     </div>
@@ -1161,19 +1161,19 @@
                     <div class="row ">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Cash capital</h5>
-                            <p class="fs-14">{{formData.commercialInfo.compFinanceInfo.cashCapital}}</p>
+                            <p class="fs-14">{{compFinanceInfoData.cashCapital}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Kind capital</h5>
-                            <p class="fs-14">{{formData.commercialInfo.compFinanceInfo.kindCapital}}</p>
+                            <p class="fs-14">{{compFinanceInfoData.kindCapital}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">No. of shares</h5>
-                            <p class="fs-14">{{formData.commercialInfo.compFinanceInfo.noOfShares}}</p>
+                            <p class="fs-14">{{compFinanceInfoData.noOfShares}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Share Value</h5>
-                            <p class="fs-14">{{formData.commercialInfo.compFinanceInfo.shareValue}}</p>
+                            <p class="fs-14">{{compFinanceInfoData.shareValue}}</p>
                         </div>
                     </div>
 
@@ -1230,9 +1230,9 @@
                         <div class="col-md-12 px-4 py-2">
                             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
                             <p class="dark-text-1 fs-14 " *ngIf="!content7" (dblclick)="content7 = !content7">
-                                {{this.formData.detailsRemark[6].content}}</p>
+                                {{this.formData.bankDetailStep.companyInfoTab.detailsRemark}}</p>
                             <input class="dark-text-1 fs-14 " *ngIf="content7" (keyup.enter)="content7 = false"
-                                (clickOutside)="content7 = false" [(ngModel)]=this.formData.detailsRemark[6].content>
+                                (clickOutside)="content7 = false" [(ngModel)]=this.formData.bankDetailStep.companyInfoTab.detailsRemark>
                             <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                         </div>
                     </div>
@@ -1326,9 +1326,9 @@
                         <div class="col-md-12 px-4 py-2">
                             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
                             <p class="dark-text-1 fs-14 " *ngIf="!content8" (dblclick)="content8 = !content8">
-                                {{this.formData.detailsRemark[7].content}}</p>
+                                {{this.formData.bankDetailStep.otherInfoTab.detailsRemark}}</p>
                             <input class="dark-text-1 fs-14 " *ngIf="content8" (keyup.enter)="content8 = false"
-                                (clickOutside)="content8 = false" [(ngModel)]=this.formData.detailsRemark[7].content>
+                                (clickOutside)="content8 = false" [(ngModel)]=this.formData.bankDetailStep.otherInfoTab.detailsRemark>
                             <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                         </div>
                     </div>
@@ -1610,15 +1610,15 @@
                         </table>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12 px-4 py-2">
-                        <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
-                        <p class="dark-text-1 fs-14 " *ngIf="!content9" (dblclick)="content9 = !content9">
-                            {{this.formData.detailsRemark[8].content}}</p>
-                        <input class="dark-text-1 fs-14 " *ngIf="content9" (keyup.enter)="content9 = false"
-                            (clickOutside)="content9 = false" [(ngModel)]=this.formData.detailsRemark[8].content>
-                        <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 px-4 py-2">
+                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
+                    <p class="dark-text-1 fs-14 " *ngIf="!content9" (dblclick)="content9 = !content9">
+                        {{this.formData.employeeDetailsStep.detailsRemark}}</p>
+                    <input class="dark-text-1 fs-14 " *ngIf="content9" (keyup.enter)="content9 = false"
+                        (clickOutside)="content9 = false" [(ngModel)]=this.formData.employeeDetailsStep.detailsRemark>
+                    <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                 </div>
             </div>
             <div class="row px-2 py-2" *ngIf="!showBtn">
@@ -1660,34 +1660,34 @@
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
-                            <p class="fs-14">{{formData.ministriesData1.regDate}}</p>
+                            <p class="fs-14">{{ministriesData1.occiDataTab.regDate}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date</h5>
-                            <p class="fs-14">{{formData.ministriesData1.expDate}}</p>
+                            <p class="fs-14">{{ministriesData1.occiDataTab.expDate}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Membership Number</h5>
-                            <p class="fs-14">{{formData.ministriesData1.membershipNum}}</p>
+                            <p class="fs-14">{{ministriesData1.occiDataTab.membershipNumber}}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Company Grade</h5>
-                            <p class="fs-14">{{formData.ministriesData1.compGrade}}</p>
+                            <p class="fs-14">{{ministriesData1.occiDataTab.companyGrade}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
-                            <p class="fs-14">{{crNo}}</p>
+                            <p class="fs-14">{{ministriesData1.occiDataTab.crNo}}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 px-4 py-2">
                             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
-                            <p class="dark-text-1 fs-14 " *ngIf="!content10" (dblclick)="content10 = !content10">
-                                {{this.formData.detailsRemark[9].content}}</p>
+                            <p class="dark-text-1 fs-14 " *ngIf="!content10" (dblclick)="content10 = !content10"> 
+                                {{ministriesData1.occiDataTab.detailsRemark}}</p>
                             <input class="dark-text-1 fs-14 " *ngIf="content10" (keyup.enter)="content10 = false"
-                                (clickOutside)="content10 = false" [(ngModel)]=this.formData.detailsRemark[9].content>
+                                (clickOutside)="content10 = false" [(ngModel)]=ministriesData1.occiDataTab.detailsRemark>
                             <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                         </div>
                     </div>
@@ -1730,11 +1730,11 @@
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
-                            <p class="fs-14">{{crNo}}</p>
+                            <p class="fs-14">{{ministriesData1.tenderBoardDataTab.crNo}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Company Grade</h5>
-                            <p class="fs-14">{{formData.ministriesData1.compGrade}}</p>
+                            <p class="fs-14">{{ministriesData1.tenderBoardDataTab.companyGrade}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registered Activities </h5>
@@ -1754,15 +1754,15 @@
                     <div class="row">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
-                            <p class="fs-14">{{formData.ministriesData1.regDate}}</p>
+                            <p class="fs-14">{{ministriesData1.tenderBoardDataTab.regDate}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date</h5>
-                            <p class="fs-14">{{formData.ministriesData1.expDate}}</p>
+                            <p class="fs-14">{{ministriesData1.tenderBoardDataTab.expDate}}</p>
                         </div>
                         <div class="col  px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Certificate</h5>
-                            <!-- <p class="fs-14">{{formData.ministriesData1.regCerti}}</p> -->
+                            <p class="fs-14">{{ministriesData1.tenderBoardDataTab.registrationCertificate}}</p>
                             <i class="fa fa-folder-open" aria-hidden="true" (click)="openFile(shoeFiles,'regCerti','')">
                                 Add Document</i>
 
@@ -1774,9 +1774,9 @@
                         <div class="col-md-12 px-4 py-2">
                             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
                             <p class="dark-text-1 fs-14 " *ngIf="!content11" (dblclick)="content11 = !content11">
-                                {{this.formData.detailsRemark[10].content}}</p>
+                                {{ministriesData1.tenderBoardDataTab.detailsRemark}}</p>
                             <input class="dark-text-1 fs-14 " *ngIf="content11" (keyup.enter)="content11 = false"
-                                (clickOutside)="content11 = false" [(ngModel)]=this.formData.detailsRemark[10].content>
+                                (clickOutside)="content11 = false" [(ngModel)]=ministriesData1.tenderBoardDataTab.detailsRemark>
                             <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                         </div>
                     </div>
@@ -1815,25 +1815,25 @@
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Civil Number</h5>
-                            <p class="fs-14">{{civilNo}}</p>
+                            <p class="fs-14">{{ministriesData1.municipalityDataTab.civilNo}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Location</h5>
-                            <p class="fs-14">{{formData.ministriesData1.location}}</p>
+                            <p class="fs-14">{{ministriesData1.municipalityDataTab.location}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3  px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Number</h5>
-                            <p class="fs-14">{{crNo}}</p>
+                            <p class="fs-14">{{ministriesData1.municipalityDataTab.crNo}}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
-                            <p class="fs-14">{{formData.ministriesData1.regDate}}</p>
+                            <p class="fs-14">{{ministriesData1.municipalityDataTab.regDate}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date</h5>
-                            <p class="fs-14">{{formData.ministriesData1.expDate}}</p>
+                            <p class="fs-14">{{ministriesData1.municipalityDataTab.expDate}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
@@ -1854,9 +1854,9 @@
                         <div class="col-md-12 px-4 py-2">
                             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
                             <p class="dark-text-1 fs-14 " *ngIf="!content12" (dblclick)="content12 = !content12">
-                                {{this.formData.detailsRemark[11].content}}</p>
+                                {{ministriesData1.municipalityDataTab.detailsRemark}}</p>
                             <input class="dark-text-1 fs-14 " *ngIf="content12" (keyup.enter)="content12 = false"
-                                (clickOutside)="content12 = false" [(ngModel)]=this.formData.detailsRemark[11].content>
+                                (clickOutside)="content12 = false" [(ngModel)]=ministriesData1.municipalityDataTab.detailsRemark>
                             <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                         </div>
                     </div>
@@ -1902,21 +1902,21 @@
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
-                            <p class="fs-14">{{crNo}}</p>
+                            <p class="fs-14">{{ministriesData2.mofDataTab.crNo}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
-                            <p class="fs-14">{{formData.ministriesData2.regDate}}</p>
+                            <p class="fs-14">{{ministriesData2.mofDataTab.regDate}}</p>
                         </div>
                         <div class="col  px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tax Certificate Number</h5>
-                            <p class="fs-14">{{formData.ministriesData2.taxCertiNo}}r</p>
+                            <p class="fs-14">{{ministriesData2.mofDataTab.taxCertificateNumber}}r</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date</h5>
-                            <p class="fs-14">{{formData.ministriesData2.expDate}}</p>
+                            <p class="fs-14">{{ministriesData2.mofDataTab.expDate}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
@@ -1938,9 +1938,9 @@
                             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
                             <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                             <p class="dark-text-1 fs-14 " *ngIf="!content13" (dblclick)="content13 = !content13">
-                                {{this.formData.detailsRemark[12].content}}</p>
+                                {{ministriesData2.mofDataTab.detailsRemark}}</p>
                             <input class="dark-text-1 fs-14 " *ngIf="content13" (keyup.enter)="content13 = false"
-                                (clickOutside)="content13 = false" [(ngModel)]=this.formData.detailsRemark[12].content>
+                                (clickOutside)="content13 = false" [(ngModel)]=ministriesData2.mofDataTab.detailsRemark>
                         </div>
                     </div>
                     <div class="row px-2 py-2" *ngIf="!showBtn">
@@ -1979,15 +1979,15 @@
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
-                            <p class="fs-14">{{crNo}}</p>
+                            <p class="fs-14">{{ministriesData2.mohDataTab.crNo}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
-                            <p class="fs-14">{{formData.ministriesData2.regDate}}</p>
+                            <p class="fs-14">{{ministriesData2.mohDataTab.regDate}}</p>
                         </div>
                         <div class="col-md-4 col-lg-4  px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Health and pharmacy licenses</h5>
-                            <!-- <p class="fs-14">{{formData.ministriesData2.hplicenses}}</p> -->
+                            <!-- <p class="fs-14">{{ministriesData2.mohDataTab.healthAndPharmacyLicenses}}</p> -->
                             <i class="fa fa-folder-open" aria-hidden="true"
                                 (click)="openFile(shoeFiles,'hplicenses','')"> Add Document</i>
 
@@ -1998,11 +1998,11 @@
                     <div class="row pt-2">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">End Date</h5>
-                            <p class="fs-14">{{formData.ministriesData2.expDate}}</p>
+                            <p class="fs-14">{{ministriesData2.mohDataTab.expDate}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Type of activity </h5>
-                            <p class="fs-14">{{formData.ministriesData2.typeOfactivity}}</p>
+                            <p class="fs-14">{{ministriesData2.mohDataTab.typeOfActivity}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -2010,9 +2010,9 @@
                             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
                             <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                             <p class="dark-text-1 fs-14 " *ngIf="!content14" (dblclick)="content14 = !content14">
-                                {{this.formData.detailsRemark[13].content}}</p>
+                                {{ministriesData2.mohDataTab.detailsRemark}}</p>
                             <input class="dark-text-1 fs-14 " *ngIf="content14" (keyup.enter)="content14 = false"
-                                (clickOutside)="content14 = false" [(ngModel)]=this.formData.detailsRemark[13].content>
+                                (clickOutside)="content14 = false" [(ngModel)]=ministriesData2.mohDataTab.detailsRemark>
                         </div>
                     </div>
                     <div class="row px-2 py-2" *ngIf="!showBtn">
@@ -2053,7 +2053,7 @@
                                 Consulting
                                 Companies
                             </h5>
-                            <!-- <p class="fs-14">{{formData.ministriesData2.pLOfCC}}</p> -->
+                            <!-- <p class="fs-14">{{ministriesData2.mociDataTab.perAndLiceOfConsCom}}</p> -->
                             <i class="fa fa-folder-open" aria-hidden="true" (click)="openFile(shoeFiles,'pLOfCC','')">
                                 Add Document</i>
 
@@ -2064,7 +2064,7 @@
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Licenses of Training and
                                 Qualifying
                                 Institutes</h5>
-                            <!-- <p class="fs-14">{{formData.ministriesData2.lOTQI}}</p> -->
+                            <!-- <p class="fs-14">{{ministriesData2.mociDataTab.liceOfTraAndQuaInst}}</p> -->
                             <i class="fa fa-folder-open" aria-hidden="true" (click)="openFile(shoeFiles,'lOTQI','')">
                                 Add Document</i>
 
@@ -2075,11 +2075,11 @@
                     <div class="row pt-2">
                         <div class="col-md-6 col-lg-6 col-xl-4  px-4  py-4">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Agencies and Trademarks</h5>
-                            <p class="fs-14">{{formData.ministriesData2.AT}}</p>
+                            <p class="fs-14">{{ministriesData2.mociDataTab.ageAndTread}}</p>
                         </div>
-                        <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
+                        <div class="col-md-6 col-lg-6 col-xl-4 px-4 py-4">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Foreign Investment</h5>
-                            <p class="fs-14">{{formData.ministriesData2.foreignInve}}</p>
+                            <p class="fs-14">{{ministriesData2.mociDataTab.foreignInvestment}}</p>
                         </div>
                     </div>
                     <div class="row pt-2">
@@ -2087,20 +2087,20 @@
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Percentage of government
                                 ownership
                             </h5>
-                            <p class="fs-14">{{formData.ministriesData2.perOfGO}}</p>
+                            <p class="fs-14">{{ministriesData2.mociDataTab.perOfGovOwn}}</p>
                         </div>
                         <div class="col-md-6 col-lg-6 col-xl-4  px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Accredited agencies</h5>
-                            <p class="fs-14">{{formData.ministriesData2.accrAgencies}}</p>
+                            <p class="fs-14">{{ministriesData2.mociDataTab.accrAgencies}}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 px-4 py-2">
                             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
                             <p class="dark-text-1 fs-14 " *ngIf="!content15" (dblclick)="content15 = !content15">
-                                {{this.formData.detailsRemark[14].content}}</p>
+                                {{ministriesData2.mociDataTab.detailsRemark}}</p>
                             <input class="dark-text-1 fs-14 " *ngIf="content15" (keyup.enter)="content15 = false"
-                                (clickOutside)="content15 = false" [(ngModel)]=this.formData.detailsRemark[14].content>
+                                (clickOutside)="content15 = false" [(ngModel)]=ministriesData2.mociDataTab.detailsRemark>
                             <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                         </div>
                     </div>
@@ -2140,15 +2140,15 @@
                         <div class="col-md-3 col-lg-3  px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Number
                             </h5>
-                            <p class="fs-14">{{crNo}}</p>
+                            <p class="fs-14">{{ministriesData2.smallMediumEntDataTab.crNo}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
-                            <p class="fs-14">{{formData.ministriesData2.regDate}}</p>
+                            <p class="fs-14">{{ministriesData2.smallMediumEntDataTab.regDate}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">End Date</h5>
-                            <p class="fs-14">{{formData.ministriesData2.expDate}}</p>
+                            <p class="fs-14">{{ministriesData2.smallMediumEntDataTab.expDate}}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -2179,9 +2179,9 @@
                             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
                             <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                             <p class="dark-text-1 fs-14 " *ngIf="!content16" (dblclick)="content16 = !content16">
-                                {{this.formData.detailsRemark[15].content}}</p>
+                                {{ministriesData2.smallMediumEntDataTab.detailsRemark}}</p>
                             <input class="dark-text-1 fs-14 " *ngIf="content16" (keyup.enter)="content16 = false"
-                                (clickOutside)="content16 = false" [(ngModel)]=this.formData.detailsRemark[15].content>
+                                (clickOutside)="content16 = false" [(ngModel)]=ministriesData2.smallMediumEntDataTab.detailsRemark>
                         </div>
                     </div>
                     <div class="row px-2 py-2" *ngIf="!showBtn">
@@ -2229,19 +2229,19 @@
             <div class="row pb-2">
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Licenses for fire resistant</h5>
-                    <p class="fs-14">{{formData.ministriesData3.fireResistant}}</p>
+                    <p class="fs-14">{{ministriesData3.authorityOfCivilDefenseData.licensesForFireResistant}}</p>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Number</h5>
-                    <p class="fs-14">{{crNo}}</p>
+                    <p class="fs-14">{{ministriesData3.authorityOfCivilDefenseData.crNo}}</p>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
-                    <p class="fs-14">{{formData.ministriesData3.regDate}}</p>
+                    <p class="fs-14">{{ministriesData3.authorityOfCivilDefenseData.regDate}}</p>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date</h5>
-                    <p class="fs-14">{{formData.ministriesData3.expDate}}</p>
+                    <p class="fs-14">{{ministriesData3.authorityOfCivilDefenseData.expDate}}</p>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
@@ -2274,15 +2274,15 @@
             <div class="row pb-2">
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Number</h5>
-                    <p class="fs-14">{{crNo}}</p>
+                    <p class="fs-14">{{ministriesData3.capitalMarketData.crNo}}</p>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
-                    <p class="fs-14">{{formData.ministriesData3.regDate}}</p>
+                    <!-- <p class="fs-14">{{ministriesData3.capitalMarketData.regDate}}</p> -->
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date</h5>
-                    <p class="fs-14">{{formData.ministriesData3.expDate}}</p>
+                    <!-- <p class="fs-14">{{ministriesData3.capitalMarketData.expDate}}</p> -->
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-4  px-4 pb-2">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
@@ -2320,12 +2320,12 @@
             <div class="row pb-2">
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">CR Number</h5>
-                    <p class="fs-14">{{crNo}}</p>
+                    <p class="fs-14">{{ministriesData3.creditBureauData.crNo}}</p>
                 </div>
                 <div class="col px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">List of financially troubled companies
                     </h5>
-                    <!-- <p class="fs-14">{{formData.ministriesData3.loftc}}</p> -->
+                    <!-- <p class="fs-14">{{ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies}}</p> -->
                     <i class="fa fa-folder-open" aria-hidden="true" (click)="openFile(shoeFiles,'loftc','')"> Add
                         Document</i>
 
@@ -2350,20 +2350,20 @@
             <div class="row pb-2">
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">CR Number</h5>
-                    <p class="fs-14">{{crNo}}</p>
+                    <p class="fs-14">{{ministriesData3.distRulesReviewBoardData.crNo}}</p>
                 </div>
 
                 <div class="col-md-6 col-lg-6 col-xl-4  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Number</h5>
-                    <p class="fs-14">{{crNo}}</p>
+                    <p class="fs-14">{{ministriesData3.distRulesReviewBoardData.regNumber}}</p>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
-                    <p class="fs-14">{{formData.ministriesData3.regDate}}</p>
+                    <p class="fs-14">{{ministriesData3.distRulesReviewBoardData.regDate}}</p>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date</h5>
-                    <p class="fs-14">{{formData.ministriesData3.expDate}}</p>
+                    <p class="fs-14">{{ministriesData3.distRulesReviewBoardData.expDate}}</p>
                 </div>
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
@@ -2392,9 +2392,9 @@
                     <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
                     <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                     <p class="dark-text-1 fs-14 " *ngIf="!content17" (dblclick)="content17 = !content17">
-                        {{this.formData.detailsRemark[16].content}}</p>
+                        {{ministriesData3.detailsRemark}}</p>
                     <input class="dark-text-1 fs-14 " *ngIf="content17" (keyup.enter)="content17 = false"
-                        (clickOutside)="content17 = false" [(ngModel)]=this.formData.detailsRemark[16].content>
+                        (clickOutside)="content17 = false" [(ngModel)]=ministriesData3.detailsRemark>
                 </div>
             </div>
             <div class="row px-2 py-2" *ngIf="!showBtn">
@@ -2531,9 +2531,9 @@
                 <div class="col-md-12 px-4 py-2">
                     <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
                     <p class="dark-text-1 fs-14 " *ngIf="!content18" (dblclick)="content18 = !content18">
-                        {{this.formData.detailsRemark[17].content}}</p>
+                        {{this.formData.projectDetailsStep.detailsRemark}}</p>
                     <input class="dark-text-1 fs-14 " *ngIf="content18" (keyup.enter)="content18 = false"
-                        (clickOutside)="content18 = false" [(ngModel)]=this.formData.detailsRemark[17].content>
+                        (clickOutside)="content18 = false" [(ngModel)]=this.formData.projectDetailsStep.detailsRemark>
                     <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                 </div>
             </div>
@@ -2645,12 +2645,12 @@
                                         <div class="d-flex">
                                             <div class="form-check mr-3 mb-3">
                                                 <input [checked]='data.regWithRca' class="form-check-input"
-                                                    name='{{data.nameOfWork}}' type="radio" id="yes" value="yes">
+                                                    name='{{data.no}}' type="radio" id="yes" value="yes">
                                                 <label class="form-check-label font-italic ml-2" for="yes">Yes </label>
                                             </div>
                                             <div class="form-check mr-3 mb-3">
                                                 <input [checked]='!data.regWithRca' class="form-check-input"
-                                                    name='{{data.nameOfWork}}' type="radio" id="no" value="no">
+                                                    name='{{data.no}}' type="radio" id="no" value="no">
                                                 <label class="form-check-label font-italic ml-2" for="no">No </label>
                                             </div>
                                         </div>
@@ -2663,13 +2663,15 @@
                         </table>
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12 px-4 py-2">
                     <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
                     <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                     <p class="dark-text-1 fs-14 " *ngIf="!content19" (dblclick)="content19 = !content19">
-                        {{this.formData.detailsRemark[18].content}}</p>
+                        {{this.formData.subContractorDetailsStep.detailsRemark}}</p>
                     <input class="dark-text-1 fs-14 " *ngIf="content19" (keyup.enter)="content19 = false"
-                        (clickOutside)="content19 = false" [(ngModel)]=this.formData.detailsRemark[18].content>
+                        (clickOutside)="content19 = false" [(ngModel)]=this.formData.subContractorDetailsStep.detailsRemark>
                 </div>
             </div>
             <div class="row px-2 py-2" *ngIf="!showBtn">
@@ -2782,13 +2784,15 @@
                         </table>
                     </div>
                 </div>
+            </div>
+            <div class="row">
                 <div class="col-md-12 px-4 py-2">
                     <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
                     <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
                     <p class="dark-text-1 fs-14 " *ngIf="!content20" (dblclick)="content20 = !content20">
-                        {{this.formData.detailsRemark[19].content}}</p>
+                        {{this.formData.equipmentDetailsStep.detailsRemark}}</p>
                     <input class="dark-text-1 fs-14 " *ngIf="content20" (keyup.enter)="content20 = false"
-                        (clickOutside)="content20 = false" [(ngModel)]=this.formData.detailsRemark[19].content>
+                        (clickOutside)="content20 = false" [(ngModel)]=this.formData.equipmentDetailsStep.detailsRemark>
                 </div>
             </div>
 
