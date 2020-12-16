@@ -1,3 +1,4 @@
+import { OtherInfo } from './../../../../models/tender.model';
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -55,6 +56,7 @@ export class InternationalRegistrationComponent implements OnInit {
   equipmentData: any[];
   otherData: any[];
   activityData: any[];
+  activityDetail: any;
 
   isLocal = false;
   isIndividual = false;
@@ -95,17 +97,19 @@ export class InternationalRegistrationComponent implements OnInit {
   ngOnInit(): void {
     this.showBtn = true;
     this.formData = this.supplierData.getdata();
-    this.selectedAddress = this.formData.individualAddress[0];
-    this.allAddresses = this.formData.individualAddress;
-    this.internationalAddress = this.formData.individualAddress;
-    this.personalData = this.formData.personalDetails;
-    this.staffData = this.formData.staffDetails;
-    this.communicationData = this.formData.communicationDetails;
-    this.subContractorData = this.formData.subContractorDetails;
-    this.equipmentData = this.formData.equipmentDetails;
-    this.BankDetails = this.formData.BankDetails;
-    this.otherData = this.formData.otherDetails;
-    this.activityData = this.formData.activities;
+    this.selectedAddress = this.formData.generalInfoStep.generalInfo.address[0];
+    this.allAddresses = this.formData.generalInfoStep.generalInfo.address;
+    this.internationalAddress = this.formData.generalInfoStep.generalInfo.address[0];
+    this.personalData = this.formData.personalDetailsStep.personalDetails;
+    this.staffData = this.formData.employeeDetailsStep.employeeDetails;
+    this.communicationData = this.formData.communicationDetailsStep;
+    // this.subContractorData = this.formData.subContractorDetailsStep.subContractorDetails;
+    // this.equipmentData = this.formData.equipmentDetailsStep.equipmentDetails;
+
+    this.BankDetails = this.formData.commercialInfoStep.bankInfoTab.bankDetails;
+    this.otherData = this.formData.commercialInfoStep.otherInfoTab.otherInfo;
+    this.activityData = this.formData.commercialInfoStep.activityInfoTab.activities;
+    this.activityDetail = this.formData.commercialInfoStep.activityInfoTab;
     // this.loadData(this.formData.individualAddress[0]); 
   }
 
@@ -142,7 +146,7 @@ export class InternationalRegistrationComponent implements OnInit {
       }
     } else {
       this.form.reset();
-      this.form.patchValue({ addressID: this.formData.individualAddress.length + 1, country: 'Oman' });
+      this.form.patchValue({ addressID: this.formData.generalInfoStep.generalInfo.address.length + 1, country: 'Oman' });
     }
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -168,16 +172,16 @@ export class InternationalRegistrationComponent implements OnInit {
   submit() {
     if (this.form.status === 'VALID') {
       if (this.editAddress == true) {
-        this.formData.individualAddress.filter((d, i) => {
+        this.formData.generalInfoStep.generalInfo.address.filter((d, i) => {
           if (d.addressID == this.selectedAddress.addressID) {
             this.selectedAddress = this.form.value;
-            this.formData.individualAddress.splice(i, 1, this.form.value);
+            this.formData.generalInfoStep.generalInfo.address.splice(i, 1, this.form.value);
           }
         });
         this.editAddress = false;
         this.form.reset();
       } else {
-        this.formData.individualAddress.push(this.form.value);
+        this.formData.generalInfoStep.generalInfo.address.push(this.form.value);
       }
       this.form.reset();
     }
@@ -207,9 +211,9 @@ export class InternationalRegistrationComponent implements OnInit {
   submitbank() {
     if (this.bankform.status === 'VALID') {
       if (this.editBank == true) {
-        this.formData.BankDetails.filter((d, i) => {
+        this.formData.commercialInfoStep.bankInfoTab.bankDetails.filter((d, i) => {
           if (d.bankAcc == this.editbankData.bankAcc) {
-            this.formData.BankDetails.splice(i, 1, this.bankform.value);
+            this.formData.commercialInfoStep.bankInfoTab.bankDetails.splice(i, 1, this.bankform.value);
           }
         });
         this.editBank = false;
@@ -604,44 +608,44 @@ export class InternationalRegistrationComponent implements OnInit {
     this.order = !this.order;
     if (this.order === true) {
       if (property === 'staff') {
-        this.staffData = this.sortByPipe.transform(this.formData.staffDetails, 'asc', str);
+        this.staffData = this.sortByPipe.transform(this.formData.employeeDetailsStep.employeeDetails, 'asc', str);
       }
       if (property === 'communication') {
-        this.communicationData = this.sortByPipe.transform(this.formData.communicationDetails, 'asc', str);
+        this.communicationData = this.sortByPipe.transform(this.formData.communicationDetailsStep, 'asc', str);
       }
-      if (property === 'subcontractor') {
-        this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetails, 'asc', str);
-      }
-      if (property === 'equipment') {
-        this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetails, 'asc', str);
-      }
+      // if (property === 'subcontractor') {
+      //   this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetailsStep.subContractorDetails, 'asc', str);
+      // }
+      // if (property === 'equipment') {
+      //   this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetailsStep.equipmentDetails, 'asc', str);
+      // }
       if (property === 'other') {
-        this.otherData = this.sortByPipe.transform(this.formData.otherDetails, 'asc', str);
+        this.otherData = this.sortByPipe.transform(this.formData.ormData.commercialInfoStep.otherInfoTab.OtherInfo, 'asc', str);
       }
       if (property === 'activity') {
-        this.activityData = this.sortByPipe.transform(this.formData.activities, 'asc', str);
+        this.activityData = this.sortByPipe.transform(this.formData.commercialInfoStep.activityInfoTab.activities, 'asc', str);
       }
       if (property === 'personal') {
         this.personalData = this.sortByPipe.transform(this.formData.personalDetails, 'asc', str);
       }
     } else {
       if (property === 'staff') {
-        this.staffData = this.sortByPipe.transform(this.formData.staffDetails, 'desc', str);
+        this.staffData = this.sortByPipe.transform(this.formData.employeeDetailsStep.employeeDetails, 'desc', str);
       }
-      if (property === 'communication') {
-        this.communicationData = this.sortByPipe.transform(this.formData.communicationDetails, 'desc', str);
-      }
+      // if (property === 'communication') {
+      //   this.communicationData = this.sortByPipe.transform(this.formData.communicationDetailsStep, 'desc', str);
+      // }
       if (property === 'subcontractor') {
-        this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetails, 'desc', str);
+        this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetailsStep.subContractorDetails, 'desc', str);
       }
-      if (property === 'equipment') {
-        this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetails, 'desc', str);
-      }
+      // if (property === 'equipment') {
+      //   this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetailsStep.equipmentDetails, 'desc', str);
+      // }
       if (property === 'other') {
-        this.otherData = this.sortByPipe.transform(this.formData.otherDetails, 'desc', str);
+        this.otherData = this.sortByPipe.transform(this.formData.ormData.commercialInfoStep.otherInfoTab.OtherInfo, 'desc', str);
       }
       if (property === 'activity') {
-        this.activityData = this.sortByPipe.transform(this.formData.activities, 'desc', str);
+        this.activityData = this.sortByPipe.transform(this.formData.commercialInfoStep.activityInfoTab.activities, 'desc', str);
       }
       if (property === 'personal') {
         this.personalData = this.sortByPipe.transform(this.formData.personalDetails, 'desc', str);
@@ -652,9 +656,9 @@ export class InternationalRegistrationComponent implements OnInit {
   selectChange(event) {
     let dp = this.formData;
 
-    if (dp.individualAddress != undefined && event.target.selectedIndex > dp.individualAddress.length) {
+    if (dp.generalInfoStep.generalInfo.address != undefined && event.target.selectedIndex > dp.generalInfoStep.generalInfo.address.length) {
 
-      this.loadData(dp.individualAddress[event.target.selectedIndex]);
+      this.loadData(dp.generalInfoStep.generalInfo.address[event.target.selectedIndex]);
     } else {
 
       this.loadData(dp.dropdownAll[event.target.selectedIndex]);

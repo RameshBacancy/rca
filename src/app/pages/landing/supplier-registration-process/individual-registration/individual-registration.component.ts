@@ -110,18 +110,18 @@ export class IndividualRegistrationComponent implements OnInit {
   ngOnInit(): void {
     this.showBtn = true;
     this.formData = this.supplierData.getdata();
-    this.selectedAddress = this.formData.individualAddress[0];
-    this.allAddresses = this.formData.individualAddress;
-    this.internationalAddress = this.formData.individualAddress;
-    this.personalData = this.formData.personalData;
-    this.staffData = this.formData.staffDetails;
-    this.communicationData = this.formData.communicationDetails;
-    this.subContractorData = this.formData.subContractorDetails;
-    this.equipmentData = this.formData.equipmentDetails;
-    this.BankDetails = this.formData.individualBankDetails;
-    this.otherData = this.formData.otherDetails;
-    this.activityData = this.formData.activities;
-    // this.loadData(this.formData.individualAddress[0]);
+    this.selectedAddress = this.formData.generalInfoStep.generalInfo.address[0];
+    this.allAddresses = this.formData.generalInfoStep.generalInfo.address;
+    this.internationalAddress = this.formData.generalInfoStep.generalInfo.address;
+    this.personalData = this.formData.personalDetailsStep.personalDetails;
+    // this.staffData = this.formData.staffDetails;
+    this.communicationData = this.formData.communicationDetailsStep;
+    // this.subContractorData = this.formData.subContractorDetails;
+    // this.equipmentData = this.formData.equipmentDetails;
+    this.BankDetails = this.formData.commercialInfoStep.bankInfoTab.bankDetails;
+    this.otherData = this.formData.commercialInfoStep.otherInfoTab.otherInfo;
+    this.activityData = this.formData.commercialInfoStep.activityInfoTab;
+    // this.loadData(this.formData.generalInfoStep.generalInfo.address[0]);
   }
 
   public openMenu() {
@@ -149,7 +149,7 @@ export class IndividualRegistrationComponent implements OnInit {
       }
     } else {
       this.form.reset();
-      this.form.patchValue({ addressID: this.formData.individualAddress.length + 1, country: 'Oman' });
+      this.form.patchValue({ addressID: this.formData.generalInfoStep.generalInfo.address.length + 1, country: 'Oman' });
     }
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -175,16 +175,16 @@ export class IndividualRegistrationComponent implements OnInit {
   submit() {
     if (this.form.status === 'VALID') {
       if (this.editAddress == true) {
-        this.formData.individualAddress.filter((d, i) => {
+        this.formData.generalInfoStep.generalInfo.address.filter((d, i) => {
           if (d.addressID == this.selectedAddress.addressID) {
             this.selectedAddress = this.form.value;
-            this.formData.individualAddress.splice(i, 1, this.form.value);
+            this.formData.generalInfoStep.generalInfo.address.splice(i, 1, this.form.value);
           }
         });
         this.editAddress = false;
         this.form.reset();
       } else {
-        this.formData.individualAddress.push(this.form.value);
+        this.formData.generalInfoStep.generalInfo.address.push(this.form.value);
       }
       this.form.reset();
     }
@@ -211,9 +211,9 @@ export class IndividualRegistrationComponent implements OnInit {
   submitbank() {
     if (this.bankform.status === 'VALID') {
       if (this.editBank == true) {
-        this.formData.individualBankDetails.filter((d, i) => {
+        this.formData.commercialInfoStep.bankInfoTab.bankDetails.filter((d, i) => {
           if (d.bankAcc == this.editbankData.bankAcc) {
-            this.formData.individualBankDetails.splice(i, 1, this.bankform.value);
+            this.formData.commercialInfoStep.bankInfoTab.bankDetails.splice(i, 1, this.bankform.value);
           }
         });
         this.editBank = false;
@@ -225,9 +225,9 @@ export class IndividualRegistrationComponent implements OnInit {
   }
 
   delete(data) {
-    this.formData.address.addressDetails.filter((d, i) => {
+    this.formData.address.filter((d, i) => {
       if (d.poBox == data.poBox) {
-        this.formData.address.addressDetails.splice(i, 1);
+        this.formData.address.splice(i, 1);
       }
     });
   }
@@ -255,32 +255,32 @@ export class IndividualRegistrationComponent implements OnInit {
     this.showBtn = false;
 
     if (datatype === 'staff') {
-      this.staffData.map((data, i) => {
-        if (data.name == '') {
-          this.staffData.splice(i, 1);
-        }
-      });
-      this.newData = {
-        name: ' * ',
-        qualification: '',
-        specialization: '',
-        jobTitle: '',
-        designation: '',
-        designationDate: '',
-        expDate: '',
-        experience: '',
-        appointmentDate: '',
-        status: '',
-        statusDate: '',
-        staffCategory: '',
-        passportNum: '',
-        recidentCard: '',
-        civilNo: '',
-        crNo: '',
-        omaniratio: '',
-        isEdit: true
-      };
-      this.staffData.push(this.newData);
+      // this.staffData.map((data, i) => {
+      //   if (data.name == '') {
+      //     this.staffData.splice(i, 1);
+      //   }
+      // });
+      // this.newData = {
+      //   name: ' * ',
+      //   qualification: '',
+      //   specialization: '',
+      //   jobTitle: '',
+      //   designation: '',
+      //   designationDate: '',
+      //   expDate: '',
+      //   experience: '',
+      //   appointmentDate: '',
+      //   status: '',
+      //   statusDate: '',
+      //   staffCategory: '',
+      //   passportNum: '',
+      //   recidentCard: '',
+      //   civilNo: '',
+      //   crNo: '',
+      //   omaniratio: '',
+      //   isEdit: true
+      // };
+      // this.staffData.push(this.newData);
     }
     if (datatype === 'communication') {
       this.communicationData.map((data, i) => {
@@ -296,43 +296,43 @@ export class IndividualRegistrationComponent implements OnInit {
       };
       this.communicationData.push(this.newData);
     }
-    if (datatype === 'subContractor') {
-      this.subContractorData.map((data, i) => {
-        if (data.nameOfWork == '') {
-          this.subContractorData.splice(i, 1);
-        }
-      });
-      this.newData = {
-        no: this.subContractorData.length + 1,
-        nameOfWork: ' * ',
-        subContractor: '',
-        crNo: '',
-        telephone: '',
-        fax: '',
-        email: '',
-        regWithRca: '',
-        isEdit: true
-      };
-      this.subContractorData.push(this.newData);
-    }
-    if (datatype === 'equipment') {
-      this.equipmentData.map((data, i) => {
-        if (data.type == '') {
-          this.equipmentData.splice(i, 1);
-        }
-      });
-      this.newData = {
-        no: this.equipmentData.length + 1,
-        type: ' * ',
-        quantity: '',
-        capacity: '',
-        year: '',
-        regNo: '',
-        approxValue: '',
-        isEdit: true
-      };
-      this.equipmentData.push(this.newData);
-    }
+    // if (datatype === 'subContractor') {
+      // this.subContractorData.map((data, i) => {
+      //   if (data.nameOfWork == '') {
+      //     this.subContractorData.splice(i, 1);
+      //   }
+      // });
+      // this.newData = {
+      //   no: this.subContractorData.length + 1,
+      //   nameOfWork: ' * ',
+      //   subContractor: '',
+      //   crNo: '',
+      //   telephone: '',
+      //   fax: '',
+      //   email: '',
+      //   regWithRca: '',
+      //   isEdit: true
+      // };
+      // this.subContractorData.push(this.newData);
+    // }
+    // if (datatype === 'equipment') {
+    //   this.equipmentData.map((data, i) => {
+    //     if (data.type == '') {
+    //       this.equipmentData.splice(i, 1);
+    //     }
+    //   });
+    //   this.newData = {
+    //     no: this.equipmentData.length + 1,
+    //     type: ' * ',
+    //     quantity: '',
+    //     capacity: '',
+    //     year: '',
+    //     regNo: '',
+    //     approxValue: '',
+    //     isEdit: true
+    //   };
+    //   this.equipmentData.push(this.newData);
+    // }
     if (datatype === 'other') {
       this.otherData.map((data, i) => {
         if (data.nameOfWork == '') {
@@ -394,11 +394,11 @@ export class IndividualRegistrationComponent implements OnInit {
     if (datatype === 'staff') {
 
       if (data.name !== '') {
-        this.staffData.map((d, i) => {
-          if (d.name == data.name) {
-            d = data;
-          }
-        });
+        // this.staffData.map((d, i) => {
+        //   if (d.name == data.name) {
+        //     d = data;
+        //   }
+        // });
         if (data.name === ' * ') {
           data.name = '',
             data.isEdit = true;
@@ -439,11 +439,11 @@ export class IndividualRegistrationComponent implements OnInit {
     }
     if (datatype === 'subContractor') {
       if (data.nameOfWork !== '') {
-        this.subContractorData.map((d, i) => {
-          if (d.no == data.no) {
-            d = data;
-          }
-        });
+        // this.subContractorData.map((d, i) => {
+        //   if (d.no == data.no) {
+        //     d = data;
+        //   }
+        // });
         if (data.nameOfWork === ' * ') {
           data.nameOfWork = '',
             data.isEdit = true;
@@ -461,11 +461,11 @@ export class IndividualRegistrationComponent implements OnInit {
     }
     if (datatype === 'equipment') {
       if (data.type !== '') {
-        this.equipmentData.map((d, i) => {
-          if (d.no == data.no) {
-            d = data;
-          }
-        });
+        // this.equipmentData.map((d, i) => {
+        //   if (d.no == data.no) {
+        //     d = data;
+        //   }
+        // });
         if (data.type === ' * ') {
           data.type = '',
             data.isEdit = true;
@@ -553,19 +553,19 @@ export class IndividualRegistrationComponent implements OnInit {
   deleteRow(datatype, data) {
     this.showBtn = true;
     if (datatype === 'subContractor') {
-      this.subContractorData.map((d, i) => {
-        if (d.no == data.no) {
-          this.subContractorData.splice(i, 1);
-        }
-      });
+      // this.subContractorData.map((d, i) => {
+      //   if (d.no == data.no) {
+      //     this.subContractorData.splice(i, 1);
+      //   }
+      // });
     }
-    if (datatype === 'equipment') {
-      this.equipmentData.map((d, i) => {
-        if (d.no == data.no) {
-          this.equipmentData.splice(i, 1);
-        }
-      });
-    }
+    // if (datatype === 'equipment') {
+    //   this.equipmentData.map((d, i) => {
+    //     if (d.no == data.no) {
+    //       this.equipmentData.splice(i, 1);
+    //     }
+    //   });
+    // }
     if (datatype === 'other') {
       this.otherData.map((d, i) => {
         if (d.no == data.no) {
@@ -592,45 +592,45 @@ export class IndividualRegistrationComponent implements OnInit {
   sorting(property, str) {
     this.order = !this.order;
     if (this.order === true) {
-      if (property === 'staff') {
-        this.staffData = this.sortByPipe.transform(this.formData.staffDetails, 'asc', str);
-      }
+      // if (property === 'staff') {
+      //   this.staffData = this.sortByPipe.transform(this.formData.staffDetails, 'asc', str);
+      // }
       if (property === 'communication') {
-        this.communicationData = this.sortByPipe.transform(this.formData.communicationDetails, 'asc', str);
+        this.communicationData = this.sortByPipe.transform(this.formData.communicationDetailsStep, 'asc', str);
       }
-      if (property === 'subcontractor') {
-        this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetails, 'asc', str);
-      }
-      if (property === 'equipment') {
-        this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetails, 'asc', str);
-      }
+      // if (property === 'subcontractor') {
+      //   this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetails, 'asc', str);
+      // }
+      // if (property === 'equipment') {
+      //   this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetails, 'asc', str);
+      // }
       if (property === 'other') {
-        this.otherData = this.sortByPipe.transform(this.formData.otherDetails, 'asc', str);
+        this.otherData = this.sortByPipe.transform(this.formData.commercialInfoStep.otherInfoTab.otherInfo, 'asc', str);
       }
       if (property === 'activity') {
-        this.activityData = this.sortByPipe.transform(this.formData.activities, 'asc', str);
+        this.activityData = this.sortByPipe.transform(this.formData.commercialInfoStep.activityInfoTab, 'asc', str);
       }
       if (property === 'personal') {
         this.personalData = this.sortByPipe.transform(this.formData.personalData, 'asc', str);
       }
     } else {
-      if (property === 'staff') {
-        this.staffData = this.sortByPipe.transform(this.formData.staffDetails, 'desc', str);
-      }
+      // if (property === 'staff') {
+      //   this.staffData = this.sortByPipe.transform(this.formData.staffDetails, 'desc', str);
+      // }
       if (property === 'communication') {
-        this.communicationData = this.sortByPipe.transform(this.formData.communicationDetails, 'desc', str);
+        this.communicationData = this.sortByPipe.transform(this.formData.communicationDetailsStep, 'desc', str);
       }
-      if (property === 'subcontractor') {
-        this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetails, 'desc', str);
-      }
-      if (property === 'equipment') {
-        this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetails, 'desc', str);
-      }
+      // if (property === 'subcontractor') {
+      //   this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetails, 'desc', str);
+      // }
+      // if (property === 'equipment') {
+      //   this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetails, 'desc', str);
+      // }
       if (property === 'other') {
-        this.otherData = this.sortByPipe.transform(this.formData.otherDetails, 'desc', str);
+        this.otherData = this.sortByPipe.transform(this.formData.commercialInfoStep.otherInfoTab.otherInfo, 'desc', str);
       }
       if (property === 'activity') {
-        this.activityData = this.sortByPipe.transform(this.formData.activities, 'desc', str);
+        this.activityData = this.sortByPipe.transform(this.formData.commercialInfoStep.activityInfoTab, 'desc', str);
       }
       if (property === 'personal') {
         this.personalData = this.sortByPipe.transform(this.formData.personalData, 'desc', str);
@@ -641,9 +641,9 @@ export class IndividualRegistrationComponent implements OnInit {
   selectChange(event) {
     var dp = this.formData;
 
-    if (dp.individualAddress != undefined && event.target.selectedIndex > dp.individualAddress.length) {
+    if (dp.generalInfoStep.generalInfo.address != undefined && event.target.selectedIndex > dp.generalInfoStep.generalInfo.address.length) {
 
-      this.loadData(dp.individualAddress[event.target.selectedIndex]);
+      this.loadData(dp.generalInfoStep.generalInfo.address[event.target.selectedIndex]);
     } else {
 
       this.loadData(dp.dropdownAll[event.target.selectedIndex]);

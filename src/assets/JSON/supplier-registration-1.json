@@ -597,22 +597,22 @@
                 "englishName": "R Bala",
                 "companyInfo": "Company Info",
                 "address": [
-                    {
-                        "addressID": "1",
-                        "addressLine1": "10-N, Martingale road",
-                        "addressLine2": "Suite 600",
-                        "language": "English",
-                        "country": "Oman",
-                        "isEdit": false,
+                    {   
+                        "id":1,
+                        "addressID" : "MCT",
+                        "addressline1":"4907  August Lane",
+                        "addressline2":"Young",
+                        "language":"English",
+                        "country":"United States",
                         "isMoci": true
                     },
                     {
-                        "addressID": "2",
-                        "addressLine1": "12-N, Martingale road",
-                        "addressLine2": "Suite 601",
-                        "language": "English",
-                        "country": "Oman",
-                        "isEdit": false,
+                        "id":2,
+                        "addressID" : "NO",
+                        "addressline1":"64  London Road",
+                        "addressline2":"COMER",
+                        "language":"French",
+                        "country":"United Kingdom",
                         "isMoci": true
                     }
                 ],
@@ -736,22 +736,22 @@
                 "englishName": "R Bala",
                 "companyInfo": "Company Info",
                 "address": [
-                    {
-                        "addressID": "1",
-                        "addressLine1": "10-N, Martingale road",
-                        "addressLine2": "Suite 600",
-                        "language": "English",
-                        "country": "Oman",
-                        "isEdit": false,
+                    {   
+                        "id":1,
+                        "addressID" : "MCT",
+                        "addressline1":"4907  August Lane",
+                        "addressline2":"Young",
+                        "language":"English",
+                        "country":"United States",
                         "isMoci": true
                     },
                     {
-                        "addressID": "2",
-                        "addressLine1": "12-N, Martingale road",
-                        "addressLine2": "Suite 601",
-                        "language": "English",
-                        "country": "Oman",
-                        "isEdit": false,
+                        "id":2,
+                        "addressID" : "NO",
+                        "addressline1":"64  London Road",
+                        "addressline2":"COMER",
+                        "language":"French",
+                        "country":"United Kingdom",
                         "isMoci": true
                     }
                 ],
