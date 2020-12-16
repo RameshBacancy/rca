@@ -1,0 +1,962 @@
+{
+    "local": {
+        "generalInfoStep": {
+            "generalInfoTab": {
+                "crNo": "1567 6578",
+                "civilNo": "1567 6578",
+                "arabicName": "R Bala",
+                "englishName": "R Bala",
+                "companyInfo": "Company Info",
+                "activities": [
+                    {
+                        "activityName": "",
+                        "subActivity": "",
+                        "sagment": "",
+                        "family": "",
+                        "class": "",
+                        "commodity": "",
+                        "isEdit": true,
+                        "isMoci": false
+                    },
+                    {
+                        "activityName": "",
+                        "subActivity": "",
+                        "sagment": "",
+                        "family": "",
+                        "class": "",
+                        "commodity": "",
+                        "isEdit": true,
+                        "isMoci": false
+                    }
+                ],
+                "detailsRemark": "Details Not Applicable"
+            },
+            "addressInfoTab": {
+                "address": [
+                    {
+                        "addressID": "1",
+                        "addressLine1": "10-N, Martingale road",
+                        "addressLine2": "Suite 600",
+                        "language": "English",
+                        "country": "Oman",
+                        "isEdit": false,
+                        "isMoci": true
+                    },
+                    {
+                        "addressID": "2",
+                        "addressLine1": "12-N, Martingale road",
+                        "addressLine2": "Suite 601",
+                        "language": "English",
+                        "country": "Oman",
+                        "isEdit": false,
+                        "isMoci": true
+                    }
+                ],
+                "detailsRemark": "Details Not Applicable"
+            }
+        },
+        "personalDetailsStep": {
+            "personalDetails": [
+                {
+                    "personName": "R Bala",
+                    "nationality": "Omani",
+                    "idType": "",
+                    "idNo": "",
+                    "designation": "Director",
+                    "noOfShares": 3,
+                    "perShares": "20%",
+                    "authorizationType": "",
+                    "authorizationLimit": "",
+                    "note": "",
+                    "Reg. Date": "",
+                    "isEdit": false,
+                    "isMoci": true
+                },
+                {
+                    "personName": "R P",
+                    "nationality": "Omani",
+                    "idType": "-",
+                    "idNo": "-",
+                    "designation": "Additional Directors",
+                    "noOfShares": 5,
+                    "perShares": "40%",
+                    "authorizationType": "-",
+                    "authorizationLimit": "-",
+                    "note": "-",
+                    "regDate": "-",
+                    "isEdit": false,
+                    "isMoci": true
+                },
+                {
+                    "personName": "R K",
+                    "nationality": "Omani",
+                    "idType": "-",
+                    "idNo": "-",
+                    "designation": "Additional Directors",
+                    "noOfShares": 8,
+                    "perShares": "50%",
+                    "authorizationType": "-",
+                    "authorizationLimit": "-",
+                    "note": "-",
+                    "Reg. Date": "-",
+                    "isEdit": false,
+                    "isMoci": true
+                }
+            ],
+            "detailsRemark": "Details Not Applicable"
+        },
+        "communicationMethodStep": {
+            "communicationMethod": [
+                {
+                    "no": 1,
+                    "method": "Telephone",
+                    "value": "+919 515 6162",
+                    "isEdit": false,
+                    "isMoci": true
+                },
+                {
+                    "no": 2,
+                    "method": "P.O.Box",
+                    "value": "762 - Muscat",
+                    "isEdit": false,
+                    "isMoci": true
+                },
+                {
+                    "no": 3,
+                    "method": "Fax",
+                    "value": "414-589-8745",
+                    "isEdit": false,
+                    "isMoci": true
+                },
+                {
+                    "no": 4,
+                    "method": "Legal Status",
+                    "value": "valid",
+                    "isEdit": false,
+                    "isMoci": true
+                },
+                {
+                    "no": 5,
+                    "method": "P C",
+                    "value": "72666",
+                    "isEdit": false,
+                    "isMoci": true
+                },
+                {
+                    "no": 6,
+                    "method": "Email",
+                    "value": "user@yopmail.com",
+                    "isEdit": false,
+                    "isMoci": true
+                }
+            ],
+            "detailsRemark": "Details Not Applicable"
+        },
+        "bankDetailStep": {
+            "activityInfoTab": {
+                "activityInfo": [
+                    {
+                        "activityName": "Test1",
+                        "subActivity": "Test1",
+                        "establishmentDate": "-",
+                        "regDate": "-",
+                        "expDate": "-",
+                        "duration": "-",
+                        "companyGrade": "-",
+                        "location": "-",
+                        "isEdit": false,
+                        "documents": [],
+                        "isMoci": true
+                    },
+                    {
+                        "activityName": "Test2",
+                        "subActivity": "Test2",
+                        "establishmentDate": "-",
+                        "regDate": "-",
+                        "expDate": "-",
+                        "duration": "-",
+                        "companyGrade": "-",
+                        "location": "-",
+                        "isEdit": false,
+                        "documents": [],
+                        "isMoci": true
+                    }
+                ],
+                "detailsRemark": "Details Not Applicable"
+            },
+            "bankDetailsTab": {
+                "BankDetails": [
+                    {
+                        "bankingId": "BK01",
+                        "bankingIdname": "Muscat Bank of OMAN",
+                        "bankAcc": "1234567890",
+                        "bankName": "Bank Muscat",
+                        "bankBranch": "-",
+                        "holderName": "user",
+                        "isMoci": true
+                    }
+                ],
+                "detailsRemark": "Details Not Applicable"
+            },
+            "companyInfoTab": {
+                "compFinanceInfo": {
+                    "cashCapital": "Cash Capital",
+                    "kindCapital": "Kind Capital",
+                    "noOfShares": "1",
+                    "shareValue": "100"
+                },
+                "compBranchInfo": [
+                    {
+                        "reqDate": "1-1-2020",
+                        "branchId": "12387",
+                        "branchActivity": "New Activity",
+                        "branchActivityNo": 1,
+                        "isMoci": true
+                    },
+                    {
+                        "reqDate": "1-2-2020",
+                        "branchId": "98654",
+                        "branchActivity": "New Activity2",
+                        "branchActivityNo": 2,
+                        "isMoci": true
+                    }
+                ],
+                "detailsRemark": "Details Not Applicable"
+            },
+            "otherInfoTab": {
+                "otherDetails": [
+                    {
+                        "no": 1,
+                        "name": "test 1",
+                        "value": "-",
+                        "documents": [],
+                        "isEdit": false,
+                        "isMoci": false
+                    },
+                    {
+                        "no": 2,
+                        "name": "test 2",
+                        "value": "-",
+                        "documents": [],
+                        "isEdit": false,
+                        "isMoci": false
+                    },
+                    {
+                        "no": 3,
+                        "name": "test 3",
+                        "value": "-",
+                        "documents": [],
+                        "isEdit": false,
+                        "isMoci": false
+                    },
+                    {
+                        "no": 4,
+                        "name": "test 4",
+                        "value": "-",
+                        "documents": [],
+                        "isEdit": false,
+                        "isMoci": false
+                    }
+                ],
+                "detailsRemark": "Details Not Applicable"
+            }
+        },
+        "employeeDetailsStep": {
+            "crNo": "1567 6578",
+            "civilNo": "1567 6578",
+            "omanizationRatio": 82342,
+            "employeDetails": [
+                {
+                    "no": 1,
+                    "name": "R Bala",
+                    "qualification": "Btech",
+                    "specialization": "Literature",
+                    "jobTitle": "6001",
+                    "designation": "Project Manager",
+                    "designationDate": "21-05-2001",
+                    "expDate": "15-09-2011",
+                    "experience": "02yrs",
+                    "appointmentDate": "11-01-2010",
+                    "status": "Active",
+                    "statusDate": "12-02-2019",
+                    "staffCategory": "A",
+                    "country": "Omani",
+                    "passportNum": "A459SG576",
+                    "recidentCard": "786132",
+                    "civilNo": "1567 6578",
+                    "crNo": "1567 6578",
+                    "omaniratio": "8765",
+                    "isEdit": false,
+                    "documents": [],
+                    "isMoci": true
+                },
+                {
+                    "no": 2,
+                    "name": "R P",
+                    "qualification": "BE",
+                    "specialization": "Thinker",
+                    "jobTitle": "1062",
+                    "designation": "Board Manager",
+                    "designationDate": "01-12-2001",
+                    "expDate": "01-05-2011",
+                    "experience": "0yrs",
+                    "appointmentDate": "11-04-2012",
+                    "status": "Active",
+                    "statusDate": "11-12-2020",
+                    "staffCategory": "B",
+                    "country": "Omani",
+                    "passportNum": "A287894H",
+                    "recidentCard": "786132",
+                    "civilNo": "1567 1234",
+                    "crNo": "1854 6789",
+                    "omaniratio": "1234",
+                    "isEdit": false,
+                    "documents": [],
+                    "isMoci": true
+                },
+                {
+                    "no": 3,
+                    "name": "R K",
+                    "qualification": "School Dropout",
+                    "specialization": "Thinker",
+                    "jobTitle": "6003",
+                    "designation": "CEO",
+                    "designationDate": "11-02-2001",
+                    "expDate": "11-02-2009",
+                    "experience": "0yrs",
+                    "appointmentDate": "11-02-2020",
+                    "status": "Active",
+                    "statusDate": "11-02-2020",
+                    "staffCategory": "A",
+                    "country": "non-Omani",
+                    "passportNum": "A287894H",
+                    "recidentCard": "786132",
+                    "civilNo": "3456 6578",
+                    "crNo": "2342 2344",
+                    "omaniratio": "2387",
+                    "isEdit": false,
+                    "documents": [],
+                    "isMoci": true
+                }
+            ],
+            "detailsRemark": "Details Not Applicable"
+        },
+        "ministriesData1Step": {
+            "occiDataTab": {
+                "regDate": "11-02-2009",
+                "expDate": "15-09-2011",
+                "membershipNumber": "MNHGR232G",
+                "companyGrade": "Grade 1",
+                "crNo": "1567 6578",
+                "detailsRemark": "Details Not Applicable"
+            },
+            "tenderBoardDataTab": {
+                "crNo": "1567 6578",
+                "companyGrade": "Grade 1",
+                "registeredActivities": [
+                    "Activity 1",
+                    "Activity 2",
+                    "Activity 3",
+                    "Activity 4"
+                ],
+                "regDate": "11-02-2009",
+                "expDate": "15-09-2011",
+                "registrationCertificate": [],
+                "detailsRemark": "Details Not Applicable"
+            },
+            "municipalityDataTab": {
+                "civilNo": "1567 1234",
+                "location": "Muscat",
+                "crNo": "1567 6578",
+                "regDate": "11-02-2009",
+                "expDate": "15-09-2011",
+                "activities": [
+                    "Activity 1",
+                    "Activity 2",
+                    "Activity 3",
+                    "Activity 4"
+                ],
+                "detailsRemark": "Details Not Applicable"
+            }
+        },
+        "ministriesData2Step": {
+            "mofDataTab": {
+                "crNo": "1567 6578",
+                "regDate": "11-02-2009",
+                "taxCertificateNumber": "MNHGR232Gr",
+                "expDate": "15-09-2011",
+                "activities": [
+                    "Activity 1",
+                    "Activity 2",
+                    "Activity 3",
+                    "Activity 4"
+                ],
+                "detailsRemark": "Details Not Applicable"
+            },
+            "mohDataTab": {
+                "crNo": "1567 6578",
+                "regDate": "11-02-2009",
+                "healthAndPharmacyLicenses": [],
+                "expDate": "15-09-2011",
+                "typeOfActivity": "Manufacturing and Trade",
+                "detailsRemark": "Details Not Applicable"
+            },
+            "mociDataTab": {
+                "perAndLiceOfConsCom": [],
+                "liceOfTraAndQuaInst": [],
+                "ageAndTread": "Amazon",
+                "foreignInvestment": "Amazon",
+                "perOfGovOwn": "52%",
+                "accrAgencies": "Amazon",
+                "detailsRemark": "Details Not Applicable"
+            },
+            "smallMediumEntDataTab": {
+                "crNo": "1567 6578",
+                "regDate": "11-02-2009",
+                "expDate": "15-09-2011",
+                "activities": [
+                    "Activity 1",
+                    "Activity 2",
+                    "Activity 3",
+                    "Activity 4"
+                ],
+                "detailsRemark": "Details Not Applicable"
+            }
+        },
+        "ministriesData3Step": {
+            "authorityOfCivilDefenseData": {
+                "licensesForFireResistant": "Yes, Available for meta area",
+                "crNo": "1567 6578",
+                "regDate": "11-02-2009",
+                "expDate": "15-09-2011",
+                "activities": [
+                    "Activity 1",
+                    "Activity 2",
+                    "Activity 3",
+                    "Activity 4"
+                ]
+            },
+            "capitalMarketData": {
+                "crNo": "1567 6578",
+                "regDate": "11-02-2009",
+                "expDate": "15-09-2011",
+                "activities": [
+                    "Activity 1",
+                    "Activity 2",
+                    "Activity 3",
+                    "Activity 4"
+                ]
+            },
+            "creditBureauData": {
+                "crNo": "1567 6578",
+                "listOfFinanciallyTroubledCompanies": []
+            },
+            "distRulesReviewBoardData": {
+                "crNo": "1567 6578",
+                "regNumber": "1854 6789",
+                "regDate": "11-02-2009",
+                "expDate": "15-09-2011",
+                "activities": [
+                    "Activity 1",
+                    "Activity 2",
+                    "Activity 3",
+                    "Activity 4"
+                ]
+            },
+            "detailsRemark": "Details Not Applicable"
+        },
+        "projectDetailsStep": {
+            "projectDetails": [
+                {
+                    "no": 1,
+                    "name": "Yibal Project for PDO",
+                    "client": "QRB",
+                    "consultent": "Khatib & Alami and Partners",
+                    "costConsultent": "Milcris",
+                    "value": "400,000",
+                    "period": "2016 - 2018 ",
+                    "completion": "2018",
+                    "documents": [],
+                    "isEdit": false,
+                    "isMoci": false
+                },
+                {
+                    "no": 2,
+                    "name": "Grand Mall-Carrefour",
+                    "client": "Majid Al Futtaim",
+                    "consultent": "ME Studio Engineering",
+                    "costConsultent": "Majan Engineering",
+                    "value": "254,000",
+                    "period": "2017 - 2018",
+                    "completion": "2019",
+                    "documents": [],
+                    "isEdit": false,
+                    "isMoci": false
+                },
+                {
+                    "no": 3,
+                    "name": "OMAN Post Off. Ruwi",
+                    "client": "QRB",
+                    "consultent": "OMAN POST",
+                    "costConsultent": "Tahpi pty Ltd",
+                    "value": "1,000,000",
+                    "period": "2018 - 2021",
+                    "completion": "",
+                    "documents": [],
+                    "isEdit": false,
+                    "isMoci": false
+                }
+            ],
+            "detailsRemark": "Details Not Applicable"
+        },
+        "subContractorDetailsStep": {
+            "subContractorDetails": [
+                {
+                    "no": 1,
+                    "nameOfWork": "Orion",
+                    "subContractor": "-",
+                    "crNo": "-",
+                    "telephone": "+96345678977",
+                    "fax": "+96345678977",
+                    "email": "subi@orion.com",
+                    "regWithRca": true,
+                    "isEdit": false,
+                    "isMoci": false
+                },
+                {
+                    "no": 2,
+                    "nameOfWork": "scorpion",
+                    "subContractor": "-",
+                    "crNo": "-",
+                    "telephone": "+96342347897",
+                    "fax": "+96342347897",
+                    "email": "subi@orion.com",
+                    "regWithRca": false,
+                    "isEdit": false,
+                    "isMoci": false
+                }
+            ],
+            "detailsRemark": "Details Not Applicable"
+        },
+        "equipmentDetailsStep": {
+            "equipmentDetails": [
+                {
+                    "no": 1,
+                    "type": "Pickup",
+                    "quantity": "2",
+                    "capacity": "2400CC",
+                    "year": "2018",
+                    "regNo": "S 2020",
+                    "approxValue": "5000 OMR",
+                    "isEdit": false,
+                    "isMoci": false
+                },
+                {
+                    "no": 2,
+                    "type": "Salon",
+                    "quantity": "1",
+                    "capacity": "2000CC",
+                    "year": "2019",
+                    "regNo": "R 1235",
+                    "approxValue": "7500 OMR",
+                    "isEdit": false,
+                    "isMoci": false
+                },
+                {
+                    "no": 3,
+                    "type": "-",
+                    "quantity": "-",
+                    "capacity": "-",
+                    "year": "-",
+                    "regNo": "-",
+                    "approxValue": "-",
+                    "isEdit": false,
+                    "isMoci": false
+                },
+                {
+                    "no": 4,
+                    "type": "-",
+                    "quantity": "-",
+                    "capacity": "-",
+                    "year": "-",
+                    "regNo": "-",
+                    "approxValue": "-",
+                    "isEdit": false,
+                    "isMoci": false
+                }
+            ],
+            "detailsRemark": "Details Not Applicable"
+        }
+    },
+    "individual": {
+        "generalInfoStep": {
+            "generalInfo": {
+                "crNo": "1567 6578",
+                "civilNo": "1567 6578",
+                "arabicName": "R Bala",
+                "englishName": "R Bala",
+                "companyInfo": "Company Info",
+                "address": [
+                    {
+                        "addressID": "1",
+                        "addressLine1": "10-N, Martingale road",
+                        "addressLine2": "Suite 600",
+                        "language": "English",
+                        "country": "Oman",
+                        "isEdit": false,
+                        "isMoci": true
+                    },
+                    {
+                        "addressID": "2",
+                        "addressLine1": "12-N, Martingale road",
+                        "addressLine2": "Suite 601",
+                        "language": "English",
+                        "country": "Oman",
+                        "isEdit": false,
+                        "isMoci": true
+                    }
+                ],
+                "detailsRemark": "Details Not Applicable"
+            }
+        },
+        "personalDetailsStep": {
+            "personalDetails": [
+                {
+                    "no": 1,
+                    "nationality": "Indian",
+                    "idtype": "Citizen Card",
+                    "designation": "Project Manager",
+                    "age": 48,
+                    "dob": "01/06/1972",
+                    "members": "4",
+                    "socialStatus": "Married",
+                    "familySecurity": "No",
+                    "documents": [],
+                    "isMoci": true,
+                    "isEdit": false
+                },
+                {
+                    "no": 2,
+                    "nationality": "Omani",
+                    "idtype": "Citizen Card1",
+                    "designation": "CEO",
+                    "age": 34,
+                    "dob": "12/10/1986",
+                    "members": "4",
+                    "socialStatus": "Married",
+                    "familySecurity": "No",
+                    "documents": [],
+                    "isMoci": true,
+                    "isEdit": false
+                }
+            ],
+            "detailsRemark": "Details Not Applicable"
+        },
+        "communicationDetailsStep": {
+            "telephone": "+919 515 6162",
+            "poBox": "762 - Muscat",
+            "fax": "414-589-8745",
+            "legalStatus": "valid",
+            "pc": "72666",
+            "email": "user@yopmail.com",
+            "detailsRemark": "Details Not Applicable"
+        },
+        "commercialInfoStep": {
+            "activityInfoTab": {
+                "regDate": "11-02-2009",
+                "expDate": "15-09-2011",
+                "workLocation": "Muscat",
+                "activities": [
+                    "Activity 1",
+                    "Activity 2",
+                    "Activity 3",
+                    "Activity 4"
+                ],
+                "detailsRemark": "Details Not Applicable"
+            },
+            "bankInfoTab": {
+                "bankDetails": [
+                    {
+                        "bankingId": "BK01",
+                        "bankingIdname": "Muscat Bank of OMAN",
+                        "bankAcc": "1234567890",
+                        "bankName": "Bank Muscat",
+                        "bankBranch": "-",
+                        "holderName": "user",
+                        "isMoci": true
+                    }
+                ],
+                "detailsRemark": "Details Not Applicable"
+            },
+            "otherInfoTab": {
+                "otherInfo": [
+                    {
+                        "no": 1,
+                        "name": "test 1",
+                        "value": "-",
+                        "nameOfWork": "Organization Structure",
+                        "attachment": "PDF",
+                        "isEdit": false
+                    },
+                    {
+                        "no": 2,
+                        "name": "test 2",
+                        "value": "-",
+                        "nameOfWork": "Tax Certificate",
+                        "attachment": "PDF",
+                        "isEdit": false
+                    },
+                    {
+                        "no": 3,
+                        "name": "test 3",
+                        "value": "-",
+                        "nameOfWork": "Certificates",
+                        "attachment": "PDF",
+                        "isEdit": false
+                    },
+                    {
+                        "no": 4,
+                        "name": "test 4",
+                        "value": "-",
+                        "nameOfWork": "-",
+                        "attachment": "PDF",
+                        "isEdit": false
+                    }
+                ],
+                "detailsRemark": "Details Not Applicable"
+            }
+        }
+    },
+    "international": {
+        "generalInfoStep": {
+            "generalInfo": {
+                "crNo": "1567 6578",
+                "civilNo": "1567 6578",
+                "arabicName": "R Bala",
+                "englishName": "R Bala",
+                "companyInfo": "Company Info",
+                "address": [
+                    {
+                        "addressID": "1",
+                        "addressLine1": "10-N, Martingale road",
+                        "addressLine2": "Suite 600",
+                        "language": "English",
+                        "country": "Oman",
+                        "isEdit": false,
+                        "isMoci": true
+                    },
+                    {
+                        "addressID": "2",
+                        "addressLine1": "12-N, Martingale road",
+                        "addressLine2": "Suite 601",
+                        "language": "English",
+                        "country": "Oman",
+                        "isEdit": false,
+                        "isMoci": true
+                    }
+                ],
+                "detailsRemark": "Details Not Applicable"
+            }
+        },
+        "personalDetailsStep": {
+            "personalDetails": [
+                {
+                    "personName": "R Bala",
+                    "nationality": "Omani",
+                    "idType": "",
+                    "idNo": "",
+                    "designation": "Additional Director",
+                    "residentNo": 3,
+                    "passport": "FJ974IVT6",
+                    "isMoci": true,
+                    "isEdit": false
+                },
+                {
+                    "personName": "R P",
+                    "nationality": "Omani",
+                    "idType": "-",
+                    "idNo": "-",
+                    "designation": "Director",
+                    "residentNo": 5,
+                    "passport": "C586HFD2",
+                    "isMoci": true,
+                    "isEdit": false
+                },
+                {
+                    "personName": "R D",
+                    "nationality": "Omani",
+                    "idType": "-",
+                    "idNo": "-",
+                    "designation": "Additional Director",
+                    "residentNo": 8,
+                    "passport": "FJ974IVT6",
+                    "isMoci": true,
+                    "isEdit": false
+                }
+            ],
+            "detailsRemark": "Details Not Applicable"
+        },
+        "communicationDetailsStep": {
+            "telephone": "+919 515 6162",
+            "poBox": "762 - Muscat",
+            "fax": "414-589-8745",
+            "legalStatus": "valid",
+            "pc": "72666",
+            "email": "user@yopmail.com",
+            "detailsRemark": "Details Not Applicable"
+        },
+        "commercialInfoStep": {
+            "activityInfoTab": {
+                "regDate": "11-02-2009",
+                "expDate": "15-09-2011",
+                "establishmentDate": "15-09-2011",
+                "companyGrade": "Grade 1",
+                "activities": [
+                    {
+                        "activityName": "Activity1",
+                        "subActivity": "Activity1",
+                        "sagment": "Sagment",
+                        "family": "Family",
+                        "class": "Class",
+                        "commodity": "Commodity",
+                        "isEdit": false,
+                        "isMoci": true
+                    },
+                    {
+                        "activityName": "Activity2",
+                        "subActivity": "Activity2",
+                        "sagment": "Sagment",
+                        "family": "Family",
+                        "class": "Class",
+                        "commodity": "Commodity",
+                        "isEdit": false,
+                        "isMoci": true
+                    }
+                ],
+                "detailsRemark": "Details Not Applicable"
+            },
+            "bankInfoTab": {
+                "bankDetails": [
+                    {
+                        "bankingId": "BK01",
+                        "bankingIdname": "Muscat Bank of OMAN",
+                        "bankAcc": "1234567890",
+                        "bankName": "Bank Muscat",
+                        "bankBranch": "-",
+                        "holderName": "user",
+                        "isMoci": true
+                    }
+                ],
+                "detailsRemark": "Details Not Applicable"
+            },
+            "otherInfoTab": {
+                "otherInfo": [
+                    {
+                        "no": 1,
+                        "name": "test 1",
+                        "value": "-",
+                        "nameOfWork": "Organization Structure",
+                        "attachment": "PDF",
+                        "isEdit": false
+                    },
+                    {
+                        "no": 2,
+                        "name": "test 2",
+                        "value": "-",
+                        "nameOfWork": "Tax Certificate",
+                        "attachment": "PDF",
+                        "isEdit": false
+                    },
+                    {
+                        "no": 3,
+                        "name": "test 3",
+                        "value": "-",
+                        "nameOfWork": "Certificates",
+                        "attachment": "PDF",
+                        "isEdit": false
+                    },
+                    {
+                        "no": 4,
+                        "name": "test 4",
+                        "value": "-",
+                        "nameOfWork": "-",
+                        "attachment": "PDF",
+                        "isEdit": false
+                    }
+                ],
+                "detailsRemark": "Details Not Applicable"
+            }
+        },
+        "employeeDetailsStep": {
+            "employeeDetails": [
+                {
+                    "no": 1,
+                    "name": "R Bala",
+                    "qualification": "Btech",
+                    "specialization": "Literature",
+                    "jobTitle": "6001",
+                    "designation": "Project Manager",
+                    "designationDate": "21-05-2001",
+                    "expDate": "15-09-2011",
+                    "experience": "02yrs",
+                    "appointmentDate": "11-01-2010",
+                    "status": "Active",
+                    "statusDate": "12-02-2019",
+                    "staffCategory": "A",
+                    "passportNum": "A459SG576",
+                    "recidentCard": "786132",
+                    "civilNo": "1567 6578",
+                    "crNo": "1567 6578",
+                    "omaniratio": "8765",
+                    "isEdit": false,
+                    "isMoci": true
+                },
+                {
+                    "no": 2,
+                    "name": "R P",
+                    "qualification": "BE",
+                    "specialization": "Thinker",
+                    "jobTitle": "1062",
+                    "designation": "Board Manager",
+                    "designationDate": "01-12-2001",
+                    "expDate": "01-05-2011",
+                    "experience": "0yrs",
+                    "appointmentDate": "11-04-2012",
+                    "status": "Active",
+                    "statusDate": "11-12-2020",
+                    "staffCategory": "A",
+                    "passportNum": "A287894H",
+                    "recidentCard": "786132",
+                    "civilNo": "1567 1234",
+                    "crNo": "1854 6789",
+                    "omaniratio": "1234",
+                    "isEdit": false,
+                    "isMoci": true
+                },
+                {
+                    "no": 3,
+                    "name": "R K",
+                    "qualification": "School Dropout",
+                    "specialization": "Thinker",
+                    "jobTitle": "6003",
+                    "designation": "CEO",
+                    "designationDate": "11-02-2001",
+                    "expDate": "11-02-2009",
+                    "experience": "0yrs",
+                    "appointmentDate": "11-02-2020",
+                    "status": "Active",
+                    "statusDate": "11-02-2020",
+                    "staffCategory": "A",
+                    "passportNum": "A287894H",
+                    "recidentCard": "786132",
+                    "civilNo": "3456 6578",
+                    "crNo": "2342 2344",
+                    "omaniratio": "2387",
+                    "isEdit": false,
+                    "isMoci": true
+                }
+            ],
+            "detailsRemark": "Details Not Applicable"
+        }
+    }
+}
