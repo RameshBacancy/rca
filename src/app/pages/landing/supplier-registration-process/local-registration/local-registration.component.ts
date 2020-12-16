@@ -127,7 +127,6 @@ export class LocalRegistrationComponent implements OnInit {
     this.getEmployeeCategories();
     this.crNo = localStorage.getItem('commercialReg');
     this.civilNo = localStorage.getItem('civilReg');
-    console.log(this.communicationData);
   }
 
   get f() {
@@ -781,7 +780,6 @@ export class LocalRegistrationComponent implements OnInit {
           this.communicationData.splice(i, 1);
         }
       });
-      debugger;
       this.newData = {
         no: parseInt(this.communicationData[this.communicationData.length-1].no, 10) + 1,
         method: '',
@@ -1247,7 +1245,6 @@ export class LocalRegistrationComponent implements OnInit {
     }
     if (datatype === 'communication') {
       this.communicationData.map((d, i) => {
-        debugger;
         if (d.no == data.no) {
           this.communicationData.splice(i, 1);
         }
