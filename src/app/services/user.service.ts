@@ -76,6 +76,10 @@ export class UserService {
             localStorage.setItem('arStatus', d.data.status);
             this.spinner.closeSpinner();
             this.router.navigate(['/landing/supplier-registration/dashboard']);
+          },
+          (error) => {
+            this.alertService.pushError(error.error.message) ;
+            this.spinner.closeSpinner();
           });
     }
 
