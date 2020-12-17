@@ -32,7 +32,7 @@ const routes: Routes = [
         component : CmsPagesComponent,
       },
       {
-        path: 'request',
+        path: 'suppler-register-request-info',
         component: RegistrationRequestComponent
       },
       {

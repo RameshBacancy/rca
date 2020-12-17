@@ -1,7 +1,8 @@
 <div class="row">
     <div class="col-md-12 px-4 mb-3 mt-3">
         <div class="table-responsive">
-            <button class=" color-white-text background-purple-custom btn ml-2 float-right mb-2" (click)="open(mymodal)">Add
+            <button class=" color-white-text background-purple-custom btn ml-2 float-right mb-2"
+                (click)="open(mymodal)">Add
                 New Page</button>
             <table class="table table-striped ">
                 <thead>
@@ -16,13 +17,19 @@
                         <tr *ngFor="let d of data">
                             <td>{{d.page}}</td>
                             <td>{{d.title}}</td>
-                            <td><i class="fa fa-eye btn btn-warning mr-2" aria-hidden="true" (click)="open(mymodal, d)"></i><i class="fa fa-pencil-square-o btn btn-primary mr-2" aria-hidden="true" (click)="open(mymodal, d)"></i><i class="fa fa-trash btn btn-secondary mr-2 red-bg" aria-hidden="true" (click)="delete(d.id, d.name)"></i></td>
+                            <td><i class="fa fa-eye btn btn-warning mr-2" aria-hidden="true"
+                                    (click)="open(mymodal, d)"></i><i class="fa fa-pencil-square-o btn btn-primary mr-2"
+                                    aria-hidden="true" (click)="open(mymodal, d)"></i><i
+                                    class="fa fa-trash btn btn-secondary mr-2 red-bg" aria-hidden="true"
+                                    (click)="delete(d.id, d.page)"></i></td>
                         </tr>
                     </ng-container>
                     <ng-template #newDeb>
                         <!-- <div class="spinner-border text-muted"></div> -->
                         <tr>
-                            <td colspan="3" class="text-align-center"><div class="spinner-border text-muted"></div></td>
+                            <td colspan="3" class="text-align-center">
+                                <div class="spinner-border text-muted"></div>
+                            </td>
                         </tr>
                     </ng-template>
 
@@ -56,12 +63,15 @@
                                 </ul>
                         </div> -->
                         <h4 class="w-100">
+                            <span class="text-red">*</span>
                             <input type="text" placeholder="Page Name" class="w-100 fs-14 py-2 px-2" [(ngModel)]="page">
                         </h4>
                         <h4 class="w-100">
+                            <span class="text-red">*</span>
                             <input type="text" placeholder="Title" class="w-100 fs-14 py-2 px-2" [(ngModel)]="title">
                         </h4>
                         <div class="bg-white">
+                            <span class="text-red">*</span>
                             <angular-editor [(ngModel)]="description" [config]="config"></angular-editor>
                         </div>
                         <!-- <div class="mt-3">
@@ -77,7 +87,9 @@
         </section>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" type="submit" (click)="save();modal.close('Save click');">Save</button>
+        <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" type="submit"
+            [disabled]="this.title == '' || this.description == '' || this.page == ''"
+            (click)="save();modal.close('Save click');">Save</button>
         <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
             (click)=" modal.close('Save click')">Cancel</button>
 

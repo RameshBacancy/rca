@@ -1,19 +1,33 @@
-.custom-width-60{
+@import 'src/assets/scss/index.scss';
+
+.custom-width-60 {
     min-width: 60px;
 }
-.custom-width-80{
+
+.custom-width-80 {
     width: 80px;
 }
-.custom-width-90{
+
+.custom-width-90 {
     min-width: 90px;
 }
-.custom-width-100{
+
+.custom-width-100 {
     width: 100px;
 }
-.custom-width-250{
+
+.custom-width-250 {
     min-width: 250px;
+}
+
+.dlt-btn-size {
+    font-size: 1.5rem;
+}
+
+.text-purple {
+    color: $primary-purple;
 }
 
 ::ng-deep .mat-horizontal-stepper-header {
     pointer-events: none !important;
-  }
+}

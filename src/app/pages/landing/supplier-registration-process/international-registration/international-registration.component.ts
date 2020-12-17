@@ -70,6 +70,7 @@ export class InternationalRegistrationComponent implements OnInit {
   editbankData: any;
 
   selected = new FormControl(0);
+  showBtn: boolean;
 
 
   constructor(
@@ -92,6 +93,7 @@ export class InternationalRegistrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.showBtn = true;
     this.formData = this.supplierData.getdata();
     this.selectedAddress = this.formData.individualAddress[0];
     this.allAddresses = this.formData.individualAddress;
@@ -236,7 +238,17 @@ export class InternationalRegistrationComponent implements OnInit {
     this.router.navigate(['/landing/supplier-registration/dashboard']);
   }
 
+  dblclick(data) {
+    if (this.showBtn === true) {
+      if (!data.isMoci) {
+        data.isEdit = true;
+        this.showBtn = false;
+      }
+    }
+  }
+
   addNewRow(datatype) {
+    this.showBtn = false;
     if (datatype === 'staff') {
       this.staffData.map((data, i) => {
         if (data.name == '') {
@@ -244,7 +256,7 @@ export class InternationalRegistrationComponent implements OnInit {
         }
       });
       this.newData = {
-        name: ' * ',
+        name: '',
         qualification: '',
         specialization: '',
         jobTitle: '',
@@ -318,14 +330,13 @@ export class InternationalRegistrationComponent implements OnInit {
     }
     if (datatype === 'other') {
       this.otherData.map((data, i) => {
-        if (data.nameOfWork == '') {
+        if (data.name == '') {
           this.otherData.splice(i, 1);
         }
       });
       this.newData = {
-        no: this.otherData.length + 1,
-        nameOfWork: ' * ',
-        attachment: '',
+        name: '',
+        value: '',
         isEdit: true
       };
       this.otherData.push(this.newData);
@@ -337,7 +348,7 @@ export class InternationalRegistrationComponent implements OnInit {
         }
       });
       this.newData = {
-        activityName: ' * ',
+        activityName: '',
         subActivity: '',
         sagment: '',
         family: '',
@@ -355,7 +366,7 @@ export class InternationalRegistrationComponent implements OnInit {
         }
       });
       this.newData = {
-        personName: ' * ',
+        personName: '',
         nationality: '',
         idType: '',
         idNo: '',
@@ -387,13 +398,15 @@ export class InternationalRegistrationComponent implements OnInit {
           data.name = '',
             data.isEdit = true;
         }
+        this.showBtn = true;
       } else {
-        this.staffData.map((data, i) => {
-          if (data.name == '') {
-            this.staffData.splice(i, 1);
-          }
-        });
-        this.alertService.pushError('name can not be empty.');
+        // this.staffData.map((data, i) => {
+        //   if (data.name == '') {
+        //     this.staffData.splice(i, 1);
+        //   }
+        // });
+        data.isEdit = true;
+        this.alertService.pushError('Name can not be empty.');
       }
     }
     if (datatype === 'communication') {
@@ -408,12 +421,14 @@ export class InternationalRegistrationComponent implements OnInit {
           data.method = '',
             data.isEdit = true;
         }
+        this.showBtn = true;
       } else {
-        this.communicationData.map((data, i) => {
-          if (data.method == '') {
-            this.communicationData.splice(i, 1);
-          }
-        });
+        // this.communicationData.map((data, i) => {
+        //   if (data.method == '') {
+        //     this.communicationData.splice(i, 1);
+        //   }
+        // });
+        data.isEdit = true;
         this.alertService.pushError('Communication Method can not be empty.');
       }
     }
@@ -428,12 +443,14 @@ export class InternationalRegistrationComponent implements OnInit {
           data.nameOfWork = '',
             data.isEdit = true;
         }
+        this.showBtn = true;
       } else {
-        this.subContractorData.map((data, i) => {
-          if (data.nameOfWork == '') {
-            this.subContractorData.splice(i, 1);
-          }
-        });
+        // this.subContractorData.map((data, i) => {
+        //   if (data.nameOfWork == '') {
+        //     this.subContractorData.splice(i, 1);
+        //   }
+        // });
+        data.isEdit = true;
         this.alertService.pushError('nameOfWork can not be empty.');
       }
     }
@@ -448,33 +465,38 @@ export class InternationalRegistrationComponent implements OnInit {
           data.type = '',
             data.isEdit = true;
         }
+        this.showBtn = true;
       } else {
-        this.equipmentData.map((data, i) => {
-          if (data.type == '') {
-            this.equipmentData.splice(i, 1);
-          }
-        });
+        // this.equipmentData.map((data, i) => {
+        //   if (data.type == '') {
+        //     this.equipmentData.splice(i, 1);
+        //   }
+        // });
+        data.isEdit = true;
         this.alertService.pushError('type can not be empty.');
       }
     }
     if (datatype === 'other') {
-      if (data.nameOfWork !== '') {
+      if (data.name !== '' && data.value !== '') {
         this.otherData.map((d, i) => {
-          if (d.no == data.no) {
+          if (d.name == data.name && d.value == data.value) {
             d = data;
           }
         });
-        if (data.nameOfWork === ' * ') {
-          data.nameOfWork = '',
+        // this.otherData.push(data);
+        if (data.name === ' * ') {
+          data.name = '',
             data.isEdit = true;
         }
+        this.showBtn = true;
       } else {
-        this.otherData.map((data, i) => {
-          if (data.nameOfWork == '') {
-            this.otherData.splice(i, 1);
-          }
-        });
-        this.alertService.pushError('nameOfWork can not be empty.');
+        // this.otherData.map((data, i) => {
+        //   if (data.nameOfWork == '') {
+        //     this.otherData.splice(i, 1);
+        //   }
+        // });
+        data.isEdit = true;
+        this.alertService.pushError('Label and value both are required.');
       }
     }
     if (datatype === 'activity') {
@@ -488,12 +510,14 @@ export class InternationalRegistrationComponent implements OnInit {
           data.activityName = '',
             data.isEdit = true;
         }
+        this.showBtn = true;
       } else {
-        this.activityData.map((data, i) => {
-          if (data.activityName == '') {
-            this.activityData.splice(i, 1);
-          }
-        });
+        // this.activityData.map((data, i) => {
+        //   if (data.activityName == '') {
+        //     this.activityData.splice(i, 1);
+        //   }
+        // });
+        data.isEdit = true;
         this.alertService.pushError('Activity Name can not be empty.');
       }
     }
@@ -508,14 +532,70 @@ export class InternationalRegistrationComponent implements OnInit {
           data.personName = '',
             data.isEdit = true;
         }
+        this.showBtn = true;
       } else {
-        this.personalData.map((data, i) => {
-          if (data.personName == '') {
-            this.personalData.splice(i, 1);
-          }
-        });
+        // this.personalData.map((data, i) => {
+        //   if (data.personName == '') {
+        //     this.personalData.splice(i, 1);
+        //   }
+        // });
+        data.isEdit = true;
         this.alertService.pushError('Person Name can not be empty.');
       }
+    }
+
+  }
+
+  deleteRow(datatype, data) {
+    this.showBtn = true;
+    if (datatype === 'staff') {
+      this.staffData.map((d, i) => {
+        if (d.name == data.name) {
+          this.staffData.splice(i, 1);
+        }
+      });
+    }
+    if (datatype === 'communication') {
+      this.communicationData.map((d, i) => {
+        if (d.no == data.no) {
+          this.communicationData.splice(i, 1);
+        }
+      });
+    }
+    if (datatype === 'subContractor') {
+      this.subContractorData.map((d, i) => {
+        if (d.no == data.no) {
+          this.subContractorData.splice(i, 1);
+        }
+      });
+    }
+    if (datatype === 'equipment') {
+      this.equipmentData.map((d, i) => {
+        if (d.no == data.no) {
+          this.equipmentData.splice(i, 1);
+        }
+      });
+    }
+    if (datatype === 'other') {
+      this.otherData.map((d, i) => {
+        if (d.name == data.name && d.value == data.value) {
+          this.otherData.splice(i, 1);
+        }
+      });
+    }
+    if (datatype === 'activity') {
+      this.activityData.map((d, i) => {
+        if (d.activityName == data.activityName && d.subActivity == data.subActivity) {
+          this.activityData.splice(i, 1);
+        }
+      });
+    }
+    if (datatype === 'personal') {
+      this.personalData.map((d, i) => {
+        if (d.personName == data.personName && d.nationality == data.nationality) {
+          this.personalData.splice(i, 1);
+        }
+      });
     }
 
   }

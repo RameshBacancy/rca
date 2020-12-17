@@ -21,6 +21,7 @@ export class IndividualRegistrationComponent implements OnInit {
   allAddresses: any;
   editBank: boolean;
   editbankData: any;
+  showBtn: boolean;
 
   constructor(
     private router: Router,
@@ -32,7 +33,7 @@ export class IndividualRegistrationComponent implements OnInit {
     private searchPipe: FilterPipe,
     private spinner: SpinnerService,
     private alertService: AlertService
-    ) { }
+  ) { }
 
   get f() {
     return this.form.controls;
@@ -99,14 +100,15 @@ export class IndividualRegistrationComponent implements OnInit {
   selectedPage: any;
 
 
-    loadData(data) {
-      var d = [];
-      d.push(data);
-      this.formData = this.supplierData.getdata();
-      this.internationalAddress = d;
-    }
+  loadData(data) {
+    var d = [];
+    d.push(data);
+    this.formData = this.supplierData.getdata();
+    this.internationalAddress = d;
+  }
 
   ngOnInit(): void {
+    this.showBtn = true;
     this.formData = this.supplierData.getdata();
     this.selectedAddress = this.formData.individualAddress[0];
     this.allAddresses = this.formData.individualAddress;
@@ -147,10 +149,10 @@ export class IndividualRegistrationComponent implements OnInit {
       }
     } else {
       this.form.reset();
-      this.form.patchValue({addressID: this.formData.individualAddress.length + 1, country: 'Oman'});
+      this.form.patchValue({ addressID: this.formData.individualAddress.length + 1, country: 'Oman' });
     }
 
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
 
       this.closeResult = `Closed with: ${result}`;
 
@@ -166,7 +168,7 @@ export class IndividualRegistrationComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 
@@ -189,19 +191,18 @@ export class IndividualRegistrationComponent implements OnInit {
   }
   submitRegistration() {
     this.completed = true;
-    localStorage.setItem('LocalRegComplete', 'true');
     localStorage.setItem('1completeToken', 'true');
+    localStorage.setItem('LocalRegComplete', 'true');
     localStorage.setItem('RegStatus', 'finish');
     this.spinner.openSpinner();
-    const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), email: localStorage.getItem('internationalEmail'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType')};
-      this.userService.supplierRegistration(body);
-      this.alertService.pushSuccess('Your data is submitted.');
-      // this.router.navigateByUrl('/landing/supplier-registration/transaction');
+    const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
+    this.userService.supplierRegistration(body);
+    // this.router.navigateByUrl('/landing/supplier-registration/transaction');
   }
   saveDraft() {
     localStorage.setItem('RegStatus', 'draft');
     this.spinner.openSpinner();
-    const body = {email: localStorage.getItem('internationalEmail'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType')};
+    const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
     this.userService.supplierRegistration(body);
     this.alertService.pushWarning('Your data will be saved for 72 hours.');
     this.router.navigate(['/landing/supplier-registration/dashboard']);
@@ -241,7 +242,18 @@ export class IndividualRegistrationComponent implements OnInit {
     this.router.navigate(['/landing/supplier-registration/dashboard']);
   }
 
+  dblclick(data) {
+    if (this.showBtn === true) {
+      if (!data.isMoci) {
+        data.isEdit = true;
+        this.showBtn = false;
+      }
+    }
+  }
+
   addNewRow(datatype) {
+    this.showBtn = false;
+
     if (datatype === 'staff') {
       this.staffData.map((data, i) => {
         if (data.name == '') {
@@ -361,13 +373,13 @@ export class IndividualRegistrationComponent implements OnInit {
       });
       this.newData = {
         no: this.personalData.length + 1,
-        nationality: ' * ',
+        nationality: '',
         idtype: '',
         designation: '',
         age: '',
         dob: '',
         members: '',
-        socialStatus : '',
+        socialStatus: '',
         familySecurity: '',
         documents: [],
         isMoci: false,
@@ -388,15 +400,17 @@ export class IndividualRegistrationComponent implements OnInit {
           }
         });
         if (data.name === ' * ') {
-         data.name = '',
-         data.isEdit = true;
+          data.name = '',
+            data.isEdit = true;
         }
+        this.showBtn = true;
       } else {
-        this.staffData.map((data, i) => {
-          if (data.name == '') {
-            this.staffData.splice(i, 1);
-          }
-        });
+        // this.staffData.map((data, i) => {
+        //   if (data.name == '') {
+        //     this.staffData.splice(i, 1);
+        //   }
+        // });
+        data.isEdit = true;
         this.alertService.pushError('name can not be empty.');
       }
     }
@@ -410,14 +424,16 @@ export class IndividualRegistrationComponent implements OnInit {
         });
         if (data.method === ' * ') {
           data.method = '',
-          data.isEdit = true;
-         }
+            data.isEdit = true;
+        }
+        this.showBtn = true;
       } else {
-        this.communicationData.map((data, i) => {
-          if (data.method == '') {
-            this.communicationData.splice(i, 1);
-          }
-        });
+        // this.communicationData.map((data, i) => {
+        //   if (data.method == '') {
+        //     this.communicationData.splice(i, 1);
+        //   }
+        // });
+        data.isEdit = true;
         this.alertService.pushError('Communication Method can not be empty.');
       }
     }
@@ -430,14 +446,16 @@ export class IndividualRegistrationComponent implements OnInit {
         });
         if (data.nameOfWork === ' * ') {
           data.nameOfWork = '',
-          data.isEdit = true;
-         }
+            data.isEdit = true;
+        }
+        this.showBtn = true;
       } else {
-        this.subContractorData.map((data, i) => {
-          if (data.nameOfWork == '') {
-            this.subContractorData.splice(i, 1);
-          }
-        });
+        // this.subContractorData.map((data, i) => {
+        //   if (data.nameOfWork == '') {
+        //     this.subContractorData.splice(i, 1);
+        //   }
+        // });
+        data.isEdit = true;
         this.alertService.pushError('nameOfWork can not be empty.');
       }
     }
@@ -450,14 +468,16 @@ export class IndividualRegistrationComponent implements OnInit {
         });
         if (data.type === ' * ') {
           data.type = '',
-          data.isEdit = true;
-         }
+            data.isEdit = true;
+        }
+        this.showBtn = true;
       } else {
-        this.equipmentData.map((data, i) => {
-          if (data.type == '') {
-            this.equipmentData.splice(i, 1);
-          }
-        });
+        // this.equipmentData.map((data, i) => {
+        //   if (data.type == '') {
+        //     this.equipmentData.splice(i, 1);
+        //   }
+        // });
+        data.isEdit = true;
         this.alertService.pushError('type can not be empty.');
       }
     }
@@ -470,14 +490,16 @@ export class IndividualRegistrationComponent implements OnInit {
         });
         if (data.nameOfWork === ' * ') {
           data.nameOfWork = '',
-          data.isEdit = true;
-         }
+            data.isEdit = true;
+        }
+        this.showBtn = true;
       } else {
-        this.otherData.map((data, i) => {
-          if (data.nameOfWork == '') {
-            this.otherData.splice(i, 1);
-          }
-        });
+        // this.otherData.map((data, i) => {
+        //   if (data.nameOfWork == '') {
+        //     this.otherData.splice(i, 1);
+        //   }
+        // });
+        data.isEdit = true;
         this.alertService.pushError('nameOfWork can not be empty.');
       }
     }
@@ -490,14 +512,16 @@ export class IndividualRegistrationComponent implements OnInit {
         });
         if (data.activityName === ' * ') {
           data.activityName = '',
-          data.isEdit = true;
-         }
+            data.isEdit = true;
+        }
+        this.showBtn = true;
       } else {
-        this.activityData.map((data, i) => {
-          if (data.activityName == '') {
-            this.activityData.splice(i, 1);
-          }
-        });
+        // this.activityData.map((data, i) => {
+        //   if (data.activityName == '') {
+        //     this.activityData.splice(i, 1);
+        //   }
+        // });
+        data.isEdit = true;
         this.alertService.pushError('Activity Name can not be empty.');
       }
     }
@@ -510,21 +534,62 @@ export class IndividualRegistrationComponent implements OnInit {
         });
         if (data.nationality === ' * ') {
           data.nationality = '',
-          data.isEdit = true;
-         }
+            data.isEdit = true;
+        }
+        this.showBtn = true;
       } else {
-        this.personalData.map((data, i) => {
-          if (data.nationality == '') {
-            this.personalData.splice(i, 1);
-          }
-        });
+        // this.personalData.map((data, i) => {
+        //   if (data.nationality == '') {
+        //     this.personalData.splice(i, 1);
+        //   }
+        // });
+        data.isEdit = true;
         this.alertService.pushError('Nationality can not be empty.');
       }
     }
 
   }
 
-  sorting( property, str) {
+  deleteRow(datatype, data) {
+    this.showBtn = true;
+    if (datatype === 'subContractor') {
+      this.subContractorData.map((d, i) => {
+        if (d.no == data.no) {
+          this.subContractorData.splice(i, 1);
+        }
+      });
+    }
+    if (datatype === 'equipment') {
+      this.equipmentData.map((d, i) => {
+        if (d.no == data.no) {
+          this.equipmentData.splice(i, 1);
+        }
+      });
+    }
+    if (datatype === 'other') {
+      this.otherData.map((d, i) => {
+        if (d.no == data.no) {
+          this.otherData.splice(i, 1);
+        }
+      });
+    }
+    if (datatype === 'activity') {
+      this.activityData.map((d, i) => {
+        if (d.activityName == data.activityName) {
+          this.activityData.splice(i, 1);
+        }
+      });
+    }
+    if (datatype === 'personal') {
+      this.personalData.map((d, i) => {
+        if (d.no == data.no) {
+          this.personalData.splice(i, 1);
+        }
+      });
+    }
+  }
+
+  sorting(property, str) {
     this.order = !this.order;
     if (this.order === true) {
       if (property === 'staff') {
@@ -581,100 +646,100 @@ export class IndividualRegistrationComponent implements OnInit {
       this.loadData(dp.individualAddress[event.target.selectedIndex]);
     } else {
 
-    this.loadData(dp.dropdownAll[event.target.selectedIndex]);
+      this.loadData(dp.dropdownAll[event.target.selectedIndex]);
     }
 
   }
   changeTab() {
     this.selected.setValue(this.selected.value + 1);
- }
- previousTab() {
-   this.selected.setValue(this.selected.value - 1);
- }
-
- callUploadService(file, data, flag) {
-  const formData = new FormData();
-  formData.append('file', file.data);
-  file.inProgress = true;
-  if (this.selectedPage === 'personal') {
-    this.filesList = [];
-    this.personalData.map((d, i) => {
-      if (d.no == data.no) {
-        if (flag == false) {
-          d.documents.push(file.data);
-        }
-        d.documents.map((d1) => {
-          this.filesList.push(d1);
-          file.inProgress = false;
-        });
-      }
-    });
   }
-}
-
-private upload(data, flag) {
-  this.fileInput.nativeElement.value = '';
-  this.files.forEach(file => {
-    this.callUploadService(file, data, flag);
-  });
-}
-
-onClick() {
-  let data = this.uploadData;
-  const fileInput = this.fileInput.nativeElement;
-  var flag = false;
-  fileInput.onchange = () => {
-    for (let index = 0; index < fileInput.files.length; index++) {
-      const file = fileInput.files[index];
-      this.filesList.filter(f => {
-        if (f.name.toString() == file.name.toString()) {
-          alert('already have similar name file.');
-          flag = true;
-        }
-      });
-      if (flag == false) {
-        this.files = [];
-        this.files.push({ data: file, inProgress: false, progress: 0 });
-      }
-    }
-    this.upload(data, flag);
-  };
-  fileInput.click();
-}
-
-openFile(content, page, data, isMoci) {
-  this.isDataMoci = isMoci;
-  this.selectedPage = page;
-  this.uploadData = data;
-  if (this.selectedPage === 'personal') {
-    this.filesList = [];
-    this.personalData.map((d, i) => {
-      if (d.no == data.no) {
-        d.documents.map((d1) => {
-          this.filesList.push(d1);
-        });
-      }
-    });
+  previousTab() {
+    this.selected.setValue(this.selected.value - 1);
   }
-  this.open(content);
-}
 
-deleteFile(file) {
-  if (confirm('Do you want to delete ' + file.name + '?')) {
+  callUploadService(file, data, flag) {
+    const formData = new FormData();
+    formData.append('file', file.data);
+    file.inProgress = true;
     if (this.selectedPage === 'personal') {
       this.filesList = [];
-      this.personalData.map((d) => {
-        if (d.no == this.uploadData.no) {
-          d.documents.filter((f, i) => {
-            if (f.name == file.name) {
-              d.documents.splice(i, 1);
-              this.filesList = d.documents;
-            }
+      this.personalData.map((d, i) => {
+        if (d.no == data.no) {
+          if (flag == false) {
+            d.documents.push(file.data);
+          }
+          d.documents.map((d1) => {
+            this.filesList.push(d1);
+            file.inProgress = false;
           });
         }
       });
     }
   }
-}
+
+  private upload(data, flag) {
+    this.fileInput.nativeElement.value = '';
+    this.files.forEach(file => {
+      this.callUploadService(file, data, flag);
+    });
+  }
+
+  onClick() {
+    let data = this.uploadData;
+    const fileInput = this.fileInput.nativeElement;
+    var flag = false;
+    fileInput.onchange = () => {
+      for (let index = 0; index < fileInput.files.length; index++) {
+        const file = fileInput.files[index];
+        this.filesList.filter(f => {
+          if (f.name.toString() == file.name.toString()) {
+            alert('already have similar name file.');
+            flag = true;
+          }
+        });
+        if (flag == false) {
+          this.files = [];
+          this.files.push({ data: file, inProgress: false, progress: 0 });
+        }
+      }
+      this.upload(data, flag);
+    };
+    fileInput.click();
+  }
+
+  openFile(content, page, data, isMoci) {
+    this.isDataMoci = isMoci;
+    this.selectedPage = page;
+    this.uploadData = data;
+    if (this.selectedPage === 'personal') {
+      this.filesList = [];
+      this.personalData.map((d, i) => {
+        if (d.no == data.no) {
+          d.documents.map((d1) => {
+            this.filesList.push(d1);
+          });
+        }
+      });
+    }
+    this.open(content);
+  }
+
+  deleteFile(file) {
+    if (confirm('Do you want to delete ' + file.name + '?')) {
+      if (this.selectedPage === 'personal') {
+        this.filesList = [];
+        this.personalData.map((d) => {
+          if (d.no == this.uploadData.no) {
+            d.documents.filter((f, i) => {
+              if (f.name == file.name) {
+                d.documents.splice(i, 1);
+                this.filesList = d.documents;
+              }
+            });
+          }
+        });
+      }
+    }
+  }
 
 }

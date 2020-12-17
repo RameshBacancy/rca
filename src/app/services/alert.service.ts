@@ -61,7 +61,7 @@ export class AlertService {
   private startTimer() {
     this.timeoutOption = window.setTimeout(() => {
       this.stopTimer();
-    }, 4000);
+    }, 6000);
   }
 
   /**

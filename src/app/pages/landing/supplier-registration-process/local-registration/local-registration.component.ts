@@ -82,6 +82,7 @@ export class LocalRegistrationComponent implements OnInit {
   siteVisitData: any;
   isSiteVisit: any = 'no';
   isDataMoci: any;
+  showBtn: boolean;
 
   constructor(
     private router: Router,
@@ -97,6 +98,7 @@ export class LocalRegistrationComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.showBtn = true;
     this.formData = this.supplierData.getdata();
     this.allAddresses = this.formData.address.addressDetails;
     this.activityData = this.formData.activities;
@@ -128,16 +130,16 @@ export class LocalRegistrationComponent implements OnInit {
   getEmployeeCategories() {
     this.staffCategory = [];
     this.arrayOfCatagory = [];
-    this.formData.employeDetails.filter( d => {
+    this.formData.employeDetails.filter(d => {
       this.arrayOfCatagory.push(d.staffCategory);
     });
     this.arrayOfCatagory = [... new Set(this.arrayOfCatagory)];
     this.staffCategory = [];
-    this.arrayOfCatagory.map( a => {
+    this.arrayOfCatagory.map(a => {
       let index = 0;
       let omaniIndex = 0;
       let nonOmaniIndex = 0;
-      this.formData.employeDetails.map( (d) => {
+      this.formData.employeDetails.map((d) => {
         if (d.staffCategory == a) {
           index = index + 1;
           if (d.country.toLowerCase() == 'omani') {
@@ -147,7 +149,7 @@ export class LocalRegistrationComponent implements OnInit {
           }
         }
       });
-      this.staffCategory.push({category: a, number: index, omani: omaniIndex, nonOmani: nonOmaniIndex});
+      this.staffCategory.push({ category: a, number: index, omani: omaniIndex, nonOmani: nonOmaniIndex });
     });
   }
 
@@ -216,35 +218,35 @@ export class LocalRegistrationComponent implements OnInit {
       if (flag == false) {
         this.formData.ministriesData1.regCerti.push(file.data);
       }
-      this.filesList =  this.formData.ministriesData1.regCerti;
+      this.filesList = this.formData.ministriesData1.regCerti;
     }
     if (this.selectedPage === 'hplicenses') {
       this.filesList = [];
       if (flag == false) {
         this.formData.ministriesData2.hplicenses.push(file.data);
       }
-      this.filesList =  this.formData.ministriesData2.hplicenses;
+      this.filesList = this.formData.ministriesData2.hplicenses;
     }
     if (this.selectedPage === 'pLOfCC') {
       this.filesList = [];
       if (flag == false) {
         this.formData.ministriesData2.pLOfCC.push(file.data);
       }
-      this.filesList =  this.formData.ministriesData2.pLOfCC;
+      this.filesList = this.formData.ministriesData2.pLOfCC;
     }
     if (this.selectedPage === 'lOTQI') {
       this.filesList = [];
       if (flag == false) {
         this.formData.ministriesData2.lOTQI.push(file.data);
       }
-      this.filesList =  this.formData.ministriesData2.lOTQI;
+      this.filesList = this.formData.ministriesData2.lOTQI;
     }
     if (this.selectedPage === 'loftc') {
       this.filesList = [];
       if (flag == false) {
         this.formData.ministriesData3.loftc.push(file.data);
       }
-      this.filesList =  this.formData.ministriesData3.loftc;
+      this.filesList = this.formData.ministriesData3.loftc;
     }
     if (this.selectedPage === 'bankOther') {
       this.filesList = [];
@@ -482,7 +484,7 @@ export class LocalRegistrationComponent implements OnInit {
       }
     } else {
       this.form.reset();
-      this.form.patchValue({addressID: this.formData.address.addressDetails.length + 1, country: 'Oman'});
+      this.form.patchValue({ addressID: this.formData.address.addressDetails.length + 1, country: 'Oman' });
     }
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -581,7 +583,17 @@ export class LocalRegistrationComponent implements OnInit {
     this.router.navigate(['/landing/supplier-registration/dashboard']);
   }
 
+  dblclick(data) {
+    if (this.showBtn === true) {
+      if (!data.isMoci) {
+        data.isEdit = true;
+        this.showBtn = false;
+      }
+    }
+  }
+
   addNewRow(datatype) {
+    this.showBtn = false;
     if (datatype === 'employee') {
       this.employeeData.map((data, i) => {
         if (data.name == '') {
@@ -589,7 +601,7 @@ export class LocalRegistrationComponent implements OnInit {
         }
       });
       this.newData = {
-        name: ' * ',
+        name: '',
         qualification: '',
         specialization: '',
         jobTitle: '',
@@ -598,7 +610,7 @@ export class LocalRegistrationComponent implements OnInit {
         expDate: '',
         experience: '',
         appointmentDate: '',
-        country: '-',
+        country: '',
         status: '',
         statusDate: '',
         staffCategory: '',
@@ -621,7 +633,7 @@ export class LocalRegistrationComponent implements OnInit {
       });
       this.newData = {
         no: this.projectData.length + 1,
-        name: ' * ',
+        name: '',
         client: '',
         consultent: '',
         costConsultent: '',
@@ -642,7 +654,7 @@ export class LocalRegistrationComponent implements OnInit {
       });
       this.newData = {
         no: this.subContractorData.length + 1,
-        nameOfWork: ' * ',
+        nameOfWork: '',
         subContractor: '',
         crNo: '',
         telephone: '',
@@ -662,7 +674,7 @@ export class LocalRegistrationComponent implements OnInit {
       });
       this.newData = {
         no: this.equipmentData.length + 1,
-        type: ' * ',
+        type: '',
         quantity: '',
         capacity: '',
         year: '',
@@ -681,7 +693,7 @@ export class LocalRegistrationComponent implements OnInit {
       });
       this.newData = {
         no: this.otherData.length + 1,
-        nameOfWork: ' * ',
+        nameOfWork: '',
         attachment: '',
         isEdit: true
       };
@@ -694,7 +706,7 @@ export class LocalRegistrationComponent implements OnInit {
         }
       });
       this.newData = {
-        activityName: ' * ',
+        activityName: '',
         subActivity: '',
         sagment: '',
         family: '',
@@ -712,7 +724,7 @@ export class LocalRegistrationComponent implements OnInit {
         }
       });
       this.newData = {
-        personName: ' * ',
+        personName: '',
         nationality: '',
         idType: '',
         idNo: '',
@@ -735,7 +747,7 @@ export class LocalRegistrationComponent implements OnInit {
         }
       });
       this.newData = {
-        activityName: ' * ',
+        activityName: '',
         subActivity: '',
         establishmentDate: '',
         regDate: '',
@@ -758,7 +770,7 @@ export class LocalRegistrationComponent implements OnInit {
       this.newData = {
         no: this.communicationData.length + 1,
         method: '',
-        value: ' * ',
+        value: '',
         isEdit: true,
         isMoci: false
       };
@@ -772,7 +784,7 @@ export class LocalRegistrationComponent implements OnInit {
       });
       this.newData = {
         no: this.siteVisitData.length + 1,
-        label: ' * ',
+        label: '',
         value: ' ',
         isEdit: true,
         isMoci: false
@@ -782,215 +794,455 @@ export class LocalRegistrationComponent implements OnInit {
   }
 
   enteredDetails(datatype, data) {
-    data.isEdit = false;
-    if (datatype === 'employee') {
+    if (data.isEdit === true) {
+      data.isEdit = false;
+      if (datatype === 'employee') {
 
-      if (data.name !== '') {
-        this.employeeData.map((d, i) => {
-          if (d.name == data.name) {
-            if (data.staffCategory == '') {
-              data.staffCategory = '-';
+        if (data.name !== '') {
+          if (data.staffCategory !== '') {
+            if (data.country !== '') {
+              this.employeeData.map((d, i) => {
+                if (d.name == data.name) {
+                  // if (data.staffCategory == '') {
+                  //   data.staffCategory = '-';
+                  // }
+                  d = data;
+                }
+              });
+              if (data.name === ' * ') {
+                data.name = '',
+                  data.isEdit = true;
+              }
+              this.showBtn = true;
+            } else {
+              data.isEdit = true;
+              this.alertService.pushError('Country Name can not be empty.');
             }
-            d = data;
+          } else {
+            data.isEdit = true;
+            this.alertService.pushError('Employee Category can not be empty.');
           }
-        });
-        if (data.name === ' * ') {
-          data.name = '',
+        } else {
+          // this.showBtn = true;
+          // this.employeeData.map((data, i) => {
+          //   if (data.name == '') {
+          //     this.employeeData.splice(i, 1);
+          //   }
+          // });
           data.isEdit = true;
+          this.alertService.pushError('Name can not be empty.');
+          //   this.showBtn = false;
+          // if (confirm('Do you want to remove new entered data ?')) {
+          //   this.showBtn = true;
+          //   this.employeeData.map((data, i) => {
+          //     if (data.name == '') {
+          //       this.employeeData.splice(i, 1);
+          //     }
+          //   });
+          // }
+          // else {
+          // data.isEdit = true;
+          // }
         }
-      } else {
-        this.employeeData.map((data, i) => {
-          if (data.name == '') {
-            this.employeeData.splice(i, 1);
-          }
-        });
-        this.alertService.pushError('name can not be empty.');
+        this.getEmployeeCategories();
       }
+      if (datatype === 'project') {
+
+        if (data.name !== '') {
+          this.projectData.map((d, i) => {
+            if (d.no == data.no) {
+              d = data;
+            }
+          });
+          if (data.name === ' * ') {
+            data.name = '',
+              data.isEdit = true;
+          }
+          this.showBtn = true;
+        } else {
+          // this.showBtn = true;
+          // this.projectData.map((data, i) => {
+          //   if (data.name == '') {
+          //     this.projectData.splice(i, 1);
+          //   }
+          // });
+          data.isEdit = true;
+          this.alertService.pushError('Name can not be empty.');
+          // this.showBtn = false;
+          // if (confirm('Do you want to remove new entered data ?')) {
+          //   this.showBtn = true;
+          //   this.projectData.map((data, i) => {
+          //     if (data.name == '') {
+          //       this.projectData.splice(i, 1);
+          //     }
+          //   });
+          // }
+          // else {
+          //   data.isEdit = true;
+          // }
+        }
+      }
+      if (datatype === 'subContractor') {
+        if (data.nameOfWork !== '') {
+          this.subContractorData.map((d, i) => {
+            if (d.no == data.no) {
+              d = data;
+            }
+          });
+          if (data.nameOfWork === ' * ') {
+            data.nameOfWork = '',
+              data.isEdit = true;
+          }
+          this.showBtn = true;
+        } else {
+          // this.showBtn = true;
+          // this.subContractorData.map((data, i) => {
+          //   if (data.nameOfWork == '') {
+          //     this.subContractorData.splice(i, 1);
+          //   }
+          // });
+          data.isEdit = true;
+          this.alertService.pushError('Name Of Work can not be empty.');
+          // this.showBtn = false;
+          // if (confirm('Do you want to remove new entered data ?')) {
+          //   this.showBtn = true;
+          //   this.subContractorData.map((data, i) => {
+          //     if (data.nameOfWork == '') {
+          //       this.subContractorData.splice(i, 1);
+          //     }
+          //   });
+          // }
+          // else {
+          //   data.isEdit = true;
+          // }
+        }
+      }
+      if (datatype === 'equipment') {
+        if (data.type !== '') {
+          this.equipmentData.map((d, i) => {
+            if (d.no == data.no) {
+              d = data;
+            }
+          });
+          if (data.type === ' * ') {
+            data.type = '',
+              data.isEdit = true;
+          }
+          this.showBtn = true;
+        } else {
+          // this.showBtn = true;
+          // this.equipmentData.map((data, i) => {
+          //   if (data.type == '') {
+          //     this.equipmentData.splice(i, 1);
+          //   }
+          // });
+          data.isEdit = true;
+          this.alertService.pushError('Type of Equipment can not be empty.');
+          // this.showBtn = false;
+          // if (confirm('Do you want to remove new entered data ?')) {
+          //   this.showBtn = true;
+          //   this.equipmentData.map((data, i) => {
+          //     if (data.type == '') {
+          //       this.equipmentData.splice(i, 1);
+          //     }
+          //   });
+          // }
+          // else {
+          //   data.isEdit = true;
+          // }
+        }
+      }
+      if (datatype === 'other') {
+        if (data.name !== '') {
+          this.otherData.map((d, i) => {
+            if (d.no == data.no) {
+              d = data;
+            }
+          });
+          if (data.name === ' * ') {
+            data.name = '',
+              data.isEdit = true;
+          }
+          this.showBtn = true;
+        } else {
+          // this.showBtn = true;
+          // this.otherData.map((data, i) => {
+          //   if (data.name == '') {
+          //     // this.otherData.splice(i, 1);
+          //     data.name = 'test ' + (i + 1) + '';
+          //   }
+          // });
+          data.isEdit = true;
+          this.alertService.pushError('Name can not be empty.');
+          // this.showBtn = false;
+          // if (confirm('Do you want to remove new entered data ?')) {
+          //   this.showBtn = true;
+          //   this.otherData.map((data, i) => {
+          //     if (data.name == '') {
+          //       this.otherData.splice(i, 1);
+          //       data.name = 'test ' + (i + 1) + '';
+          //     }
+          //   });
+          // }
+          // else {
+          //   data.isEdit = true;
+          // }
+        }
+      }
+      if (datatype === 'activity') {
+        if (data.activityName !== '') {
+          this.activityData.map((d, i) => {
+            if (d.activityName == data.activityName) {
+              d = data;
+            }
+          });
+          if (data.activityName === ' * ') {
+            data.activityName = '',
+              data.isEdit = true;
+          }
+          this.showBtn = true;
+        } else {
+          // this.showBtn = true;
+          // this.activityData.map((data, i) => {
+          //   if (data.activityName == '') {
+          //     this.activityData.splice(i, 1);
+          //   }
+          // });
+          data.isEdit = true;
+          this.alertService.pushError('Activity Name can not be empty.');
+          // if (confirm('Do you want to remove new entered data ?')) {
+          //   this.showBtn = true;
+          //   this.activityData.map((data, i) => {
+          //   if (data.activityName == '') {
+          //     this.activityData.splice(i, 1);
+          //   }
+          // });
+          // }
+          // else {
+          //   data.isEdit = true;
+          // }
+        }
+      }
+      if (datatype === 'personal') {
+        if (data.personName !== '') {
+          this.personalData.map((d, i) => {
+            if (d.no == data.no) {
+              d = data;
+            }
+          });
+          if (data.personName === ' * ') {
+            data.personName = '',
+              data.isEdit = true;
+          }
+          this.showBtn = true;
+        } else {
+          // this.showBtn = true;
+          // this.personalData.map((data, i) => {
+          //   if (data.personName == '') {
+          //     this.personalData.splice(i, 1);
+          //   }
+          // });
+          data.isEdit = true;
+          this.alertService.pushError('Person Name can not be empty.');
+          // this.showBtn = false;
+          // if (confirm('Do you want to remove new entered data ?')) {
+          //   this.showBtn = true;
+          //   this.personalData.map((data, i) => {
+          //     if (data.personName == '') {
+          //       this.personalData.splice(i, 1);
+          //     }
+          //   });
+          // }
+          // else {
+          //   data.isEdit = true;
+          // }
+        }
+      }
+      if (datatype === 'activityInfo') {
+        if (data.activityName !== '') {
+          this.activityInfoData.map((d, i) => {
+            if (d.activityName == data.activityName) {
+              d = data;
+            }
+          });
+          if (data.activityName === ' * ') {
+            data.activityName = '',
+              data.isEdit = true;
+          }
+          this.showBtn = true;
+        } else {
+          // this.showBtn = true;
+          // this.activityInfoData.map((data, i) => {
+          //   if (data.activityName == '') {
+          //     this.activityInfoData.splice(i, 1);
+          //   }
+          // });
+          data.isEdit = true;
+          this.alertService.pushError('Activity Name can not be empty.');
+          // this.showBtn = false;
+          // if (confirm('Do you want to remove new entered data ?')) {
+          //   this.showBtn = true;
+          //   this.activityInfoData.map((data, i) => {
+          //     if (data.activityName == '') {
+          //       this.activityInfoData.splice(i, 1);
+          //     }
+          //   });
+          //   // this.alertService.pushError('Activity Name can not be empty.');
+          // }
+          // else {
+          //   data.isEdit = true;
+          // }
+        }
+      }
+      if (datatype === 'communication') {
+        if (data.value !== '') {
+          this.communicationData.map((d, i) => {
+            if (d.no == data.no) {
+              d = data;
+            }
+          });
+          if (data.value === ' * ') {
+            data.value = '',
+              data.isEdit = true;
+          }
+          this.showBtn = true;
+        } else {
+          // this.showBtn = true;
+          // this.communicationData.map((data, i) => {
+          //   if (data.value == '') {
+          //     this.communicationData.splice(i, 1);
+          //   }
+          // });
+          data.isEdit = true;
+          this.alertService.pushError('Value can not be empty.');
+
+          // this.showBtn = false;
+          // if (confirm('Do you want to remove new entered data ?')) {
+          //   this.showBtn = true;
+          //   this.communicationData.map((data, i) => {
+          //     if (data.value == '') {
+          //       this.communicationData.splice(i, 1);
+          //     }
+          //   });
+          //   // this.alertService.pushError('Value can not be empty.');
+          // }
+          // else {
+          //   data.isEdit = true;
+          // }
+        }
+      }
+      if (datatype === 'siteVisit') {
+
+        if (data.label !== '') {
+          this.siteVisitData.map((d, i) => {
+            if (d.no == data.no) {
+              d = data;
+            }
+          });
+          if (data.label === ' * ') {
+            data.label = '',
+              data.isEdit = true;
+          }
+          this.showBtn = true;
+        } else {
+          // this.showBtn = true;
+          // this.siteVisitData.map((data, i) => {
+          //   if (data.label == '') {
+          //     this.siteVisitData.splice(i, 1);
+          //   }
+          // });
+          data.isEdit = true;
+          this.alertService.pushError('Label can not be empty.');
+          // this.showBtn = false;
+          // if (confirm('Do you want to remove new entered data ?')) {
+          //   this.showBtn = true;
+          //   this.siteVisitData.map((data, i) => {
+          //     if (data.label == '') {
+          //       this.siteVisitData.splice(i, 1);
+          //     }
+          //   });
+          //   // this.alertService.pushError('Label can not be empty.');
+          // }
+          // else {
+          //   data.isEdit = true;
+          // }
+        }
+      }
+    }
+  }
+
+  deleteRow(datatype, data) {
+    this.showBtn = true;
+    if (datatype === 'employee') {
+      this.employeeData.map((d, i) => {
+        if (d.name == data.name) {
+          this.employeeData.splice(i, 1);
+        }
+      });
       this.getEmployeeCategories();
     }
     if (datatype === 'project') {
-
-      if (data.name !== '') {
-        this.projectData.map((d, i) => {
-          if (d.no == data.no) {
-            d = data;
-          }
-        });
-        if (data.name === ' * ') {
-          data.name = '',
-            data.isEdit = true;
+      this.projectData.map((d, i) => {
+        if (d.no == data.no) {
+          this.projectData.splice(i, 1);
         }
-      } else {
-        this.projectData.map((data, i) => {
-          if (data.name == '') {
-            this.projectData.splice(i, 1);
-          }
-        });
-        this.alertService.pushError('name can not be empty.');
-      }
+      });
     }
     if (datatype === 'subContractor') {
-      if (data.nameOfWork !== '') {
-        this.subContractorData.map((d, i) => {
-          if (d.no == data.no) {
-            d = data;
-          }
-        });
-        if (data.nameOfWork === ' * ') {
-          data.nameOfWork = '',
-            data.isEdit = true;
+      this.subContractorData.map((d, i) => {
+        if (d.no == data.no) {
+          this.subContractorData.splice(i, 1);
         }
-      } else {
-        this.subContractorData.map((data, i) => {
-          if (data.nameOfWork == '') {
-            this.subContractorData.splice(i, 1);
-          }
-        });
-        this.alertService.pushError('nameOfWork can not be empty.');
-      }
+      });
     }
     if (datatype === 'equipment') {
-      if (data.type !== '') {
-        this.equipmentData.map((d, i) => {
-          if (d.no == data.no) {
-            d = data;
-          }
-        });
-        if (data.type === ' * ') {
-          data.type = '',
-            data.isEdit = true;
+      this.equipmentData.map((d, i) => {
+        if (d.no == data.no) {
+          this.equipmentData.splice(i, 1);
         }
-      } else {
-        this.equipmentData.map((data, i) => {
-          if (data.type == '') {
-            this.equipmentData.splice(i, 1);
-          }
-        });
-        this.alertService.pushError('type can not be empty.');
-      }
+      });
     }
     if (datatype === 'other') {
-      if (data.name !== '') {
-        this.otherData.map((d, i) => {
-          if (d.no == data.no) {
-            d = data;
-          }
-        });
-        if (data.name === ' * ') {
-            data.name = '',
-            data.isEdit = true;
+      this.otherData.map((d, i) => {
+        if (d.no == data.no) {
+          this.otherData.splice(i, 1);
         }
-      } else {
-        this.otherData.map((data, i) => {
-          if (data.name == '') {
-            // this.otherData.splice(i, 1);
-            data.name = 'test ' + (i + 1) + '';
-          }
-        });
-        this.alertService.pushError('name can not be empty.');
-      }
+      });
     }
     if (datatype === 'activity') {
-      if (data.activityName !== '') {
-        this.activityData.map((d, i) => {
-          if (d.activityName == data.activityName) {
-            d = data;
-          }
-        });
-        if (data.activityName === ' * ') {
-          data.activityName = '',
-            data.isEdit = true;
+      this.activityData.map((d, i) => {
+        if (d.activityName == data.activityName) {
+          this.activityData.splice(i, 1);
         }
-      } else {
-        this.activityData.map((data, i) => {
-          if (data.activityName == '') {
-            this.activityData.splice(i, 1);
-          }
-        });
-        this.alertService.pushError('Activity Name can not be empty.');
-      }
+      });
     }
     if (datatype === 'personal') {
-      if (data.personName !== '') {
-        this.personalData.map((d, i) => {
-          if (d.no == data.no) {
-            d = data;
-          }
-        });
-        if (data.personName === ' * ') {
-          data.personName = '',
-            data.isEdit = true;
+      this.personalData.map((d, i) => {
+        if (d.no == data.no) {
+          this.personalData.splice(i, 1);
         }
-      } else {
-        this.personalData.map((data, i) => {
-          if (data.personName == '') {
-            this.personalData.splice(i, 1);
-          }
-        });
-        this.alertService.pushError('Person Name can not be empty.');
-      }
+      });
     }
     if (datatype === 'activityInfo') {
-      if (data.activityName !== '') {
-        this.activityInfoData.map((d, i) => {
-          if (d.activityName == data.activityName) {
-            d = data;
-          }
-        });
-        if (data.activityName === ' * ') {
-          data.activityName = '',
-            data.isEdit = true;
+      this.activityInfoData.map((d, i) => {
+        if (d.activityName == data.activityName) {
+          this.activityInfoData.splice(i, 1);
         }
-      } else {
-        this.activityInfoData.map((data, i) => {
-          if (data.activityName == '') {
-            this.activityInfoData.splice(i, 1);
-          }
-        });
-        this.alertService.pushError('Activity Name can not be empty.');
-      }
+      });
     }
     if (datatype === 'communication') {
-
-      if (data.method !== '') {
-        this.communicationData.map((d, i) => {
-          if (d.no == data.no) {
-            d = data;
-          }
-        });
-        if (data.value === ' * ') {
-          data.value = '',
-          data.isEdit = true;
-         }
-      } else {
-        this.communicationData.map((data, i) => {
-          if (data.value == '') {
-            this.communicationData.splice(i, 1);
-          }
-        });
-        this.alertService.pushError('Value can not be empty.');
-      }
+      this.communicationData.map((d, i) => {
+        if (d.no == data.no) {
+          this.communicationData.splice(i, 1);
+        }
+      });
     }
     if (datatype === 'siteVisit') {
-
-      if (data.label !== '') {
-        this.siteVisitData.map((d, i) => {
-          if (d.no == data.no) {
-            d = data;
-          }
-        });
-        if (data.label === ' * ') {
-          data.label = '',
-          data.isEdit = true;
-         }
-      } else {
-        this.siteVisitData.map((data, i) => {
-          if (data.label == '') {
-            this.siteVisitData.splice(i, 1);
-          }
-        });
-        this.alertService.pushError('Label can not be empty.');
-      }
+      this.siteVisitData.map((d, i) => {
+        if (d.no == data.no) {
+          this.siteVisitData.splice(i, 1);
+        }
+      });
     }
   }
 

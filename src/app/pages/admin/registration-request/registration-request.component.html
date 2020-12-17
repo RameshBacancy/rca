@@ -23,12 +23,8 @@
                             <td *ngIf="!d.cr_number">-</td>
                             <td *ngIf="d.email">{{d.email}}</td>
                             <td *ngIf="!d.email">-</td>
-                            <td *ngIf="d.register_type == 'local'">Local</td>
-                            <td *ngIf="d.register_type == 'international'">International</td>
-                            <td *ngIf="d.register_type == 'individual'">Individual</td>
-                            <td *ngIf="d.status == 'approved'">Approved</td>
-                            <td *ngIf="d.status == 'reject'">Reject</td>
-                            <td *ngIf="d.status == 'pending'">Pending</td>
+                            <td>{{ d.register_type | titlecase}}</td>
+                            <td>{{ d.status | titlecase }}</td>
                             <td>
                                 <i class="fa fa-eye btn btn-warning mr-2" aria-hidden="true" (click)="open(mymodal, d)"></i>
                                 <i class="fa fa-check btn btn-primary mr-2" aria-hidden="true" (click)="approve(d.id)"></i>

@@ -15,6 +15,7 @@ export class LandingHeaderComponent implements OnInit {
 
   @Input() showsidebar: boolean;
   @Input() menuData;
+  @Input() isAdmin = false;
   @Output() onViewSidebar: EventEmitter<any> = new EventEmitter();
   public viewSideBar: boolean = false;
   public headerMenu: boolean = false;
@@ -30,8 +31,8 @@ export class LandingHeaderComponent implements OnInit {
     private userService: UserService,
     private spinner: SpinnerService,
     private translate: TranslateService) {
-      this.translate.use('English');
-    }
+    this.translate.use('English');
+  }
 
   ngOnInit() {
     if (localStorage.getItem('supplierLogin') === 'true') {
@@ -73,15 +74,15 @@ export class LandingHeaderComponent implements OnInit {
   }
 
   onLogOut() {
-    if (localStorage.getItem('supplierLogin') === 'true') {
-      localStorage.clear();
-      this.router.navigate(['']);
-    } else {
+    if (localStorage.getItem('supplierLogin') === 'false') {
       this.spinner.openSpinner();
       this.userService.logout();
       this.spinner.closeSpinner();
       localStorage.clear();
       this.router.navigate(['/admin/user/login']);
+    } else {
+      localStorage.clear();
+      this.router.navigate(['']);
     }
   }
 
@@ -89,5 +90,7 @@ export class LandingHeaderComponent implements OnInit {
     this.router.navigate(['/admin/changepassword']);
   }
 
-
+  onHomePageClick(): void {
+    !this.isAdmin ? this.router.navigateByUrl('/landing/supplier-registration/dashboard') : this.router.navigateByUrl('/admin/dashboard');
+  }
 }

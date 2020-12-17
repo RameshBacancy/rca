@@ -13,68 +13,43 @@
                             <p class="fs-14 texd text-dark pb-3">Connect to what's next </p>
                         </div>
                     </div>
-                    <form class="" #form="ngForm">
-                        <!-- <h3 class="text-center text-info">Login</h3> -->
-                        <!--email-->
+                    <form [formGroup]="loginForm" (ngSubmit)="login()">
                         <div class="row mb-3">
                             <div class="col-md-12 mb-4">
                                 <div class="form-group">
-                                    <!-- <label for="username"  class="text-info">Email:</label><br> -->
-                                    <input type="text" placeholder="Email" class="form-control fs-14" name="email"
-                                        id="email" #email="ngModel" [(ngModel)]="user.email" required />
-                                </div>
-
-
-                                <!-- pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$" -->
-                                <!-- <div *ngIf="!email.valid && (email.touched || email.dirty)">
-                                    <div *ngIf="email.errors.required" class="alert alert-danger">
-                                        Email is required
+                                    <!-- <label for="username" class="text-info">Email:</label><br> -->
+                                    <input type="text" formControlName="email" class="form-control">
+                                    <div *ngIf="f.email.touched && f.email.invalid" class="text-red pl-0">
+                                        <div *ngIf="f.email.errors.required">email is required.</div>
+                                        <div *ngIf="f.email.errors.email">Please enter valid email address.</div>
                                     </div>
-                                    <div *ngIf="email.errors?.pattern" class="alert alert-danger">
-                              Email must be valid
-                          </div> 
-                                </div> -->
+                                </div>
                             </div>
-                            <!-- password -->
                             <div class="col-md-12 mb-4">
                                 <div class="form-group">
                                     <!-- <label for="password" class="text-info">Password:</label><br> -->
-                                    <input type="password" placeholder="Password" class="form-control fs-14"
-                                        id="password" #password="ngModel" [(ngModel)]="user.password" name="password"
-                                        appNoContainSpace="ngModel" required />
+                                    <input type="password" formControlName="password" class="form-control">
+                                    <div *ngIf="f.password.touched && f.password.invalid" class="text-red pl-0">
+                                        <div *ngIf="f.password.errors.required">password is required.</div>
+                                        <div *ngIf="f.password.errors.pattern">password is.</div>
+                                    </div>
                                 </div>
-                                <!-- <div *ngIf="password.invalid && (password.touched || password.dirty)">
-                                    <div *ngIf="password.errors.required" class="alert alert-danger">
-                                        password is required
-                                    </div>
-                                    minlength="6
-                                    <div *ngIf="password.errors.minlength" class="alert alert-danger">
-                                        Name must be at least 6 characters long.
-                                    </div>
-                                    <div *ngIf="password.errors.spaceNotAllowed" class="alert alert-danger">
-                                        Space is not allowed
-                                    </div>
-                                </div> -->
                             </div>
                             <div class="col-md-12 ">
                                 <div class="form-group">
-                                    <button type="button" [disabled]="form.invalid"
-                                        class="btn btn-primary  px-3 mx-1 py-2 w-100 fs-14 mb-2 mb-2"
-                                         (click)="login()">Login</button>
+                                    <button type="submit" [disabled]="loginForm.invalid"
+                                        class="btn btn-primary  px-3 mx-1 py-2 w-100 fs-14 mb-2 mb-2">Login</button>
                                 </div>
-                            </div>
-                            <div class="col-md-12 mb-4 d-flex fs-14" *ngIf="message !== ''">
-                                <div class="form-group">
-                                    <p class=" text alert text-red font-weight-bold">{{message}}</p>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <!-- <p class=" texd text-dark font-weight-bold">Change Password </p> -->
-                                <p class=" texd text-dark font-weight-bold forgetpass" (click)="open(mymodal)">Forgot
-                                    password</p>
                             </div>
                         </div>
                     </form>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!-- <p class=" texd text-dark font-weight-bold">Change Password </p> -->
+                            <p class=" texd text-dark font-weight-bold forgetpass" (click)="open(mymodal)">Forgot
+                                password</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -96,27 +71,27 @@
                             </div>
                             <!--email-->
                             <div class="col-md-12 mb-4">
-                                <div class="form-group d-flex">
+                                <div class="form-group d-flex mb-0">
                                     <label class="col col-md-2 pt-3">Email: </label>
-                                     <input type="text" placeholder="Email" name="fuser" class="col-md-10 form-control fs-14"
-                                        id="fuser" #fuser="ngModel" (keyup)="validateEmail(fuser.email)" [(ngModel)]="fuser.email" required />
+                                    <input type="text" placeholder="Email" name="fuser"
+                                        class="col-md-10 form-control fs-14" id="fuser" #fuser="ngModel"
+                                        (keyup)="validateEmail(fuser.email)" [(ngModel)]="fuser.email" required />
                                 </div>
-                            </div>
-                            <div class="col-md-12 mb-4 d-flex fs-14" *ngIf="!validForm">
-                                <div class="form-group">
-                                    <p class=" text alert text-red font-weight-bold">{{errmessage}}</p>
+                                <div class="form-group d-flex" *ngIf="!validForm">
+                                    <label class="col col-md-2 pt-3 invisible">Email</label>
+                                    <p class=" text alert text-red pl-0">{{errmessage}}</p>
                                 </div>
                             </div>
                         </div>
                     </section>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" [disabled]="!validForm" name="submit"
+                    <button type="submit" [disabled]="!validForm || fuser.email == ''" name="submit"
                         class="btn btn-primary  px-3 mx-1 py-2  fs-14 mb-2" value="Email">Confirm Email</button>
                     <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
                         (click)="form.reset(); modal.close('Save click')">Back</button>
                 </div>
-                </form>
+            </form>
         </ng-template>
     </div>
 </div>

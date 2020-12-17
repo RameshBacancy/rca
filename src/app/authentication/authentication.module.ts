@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MatSelectModule } from '@angular/material/select';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -35,17 +36,17 @@ const routes: Routes = [
     component: ForgetPasswordComponent
   },
   {
-    path: 'supplierRegistration',
+    path: 'supplier-registration',
     component: SupplierRegisterComponent
   },
   {
     path: '',
-    redirectTo: '/auth/supplierRegistration',
+    redirectTo: '/auth/supplier-registration',
     pathMatch: 'full'
   },
   {
     path: '**',
-    redirectTo: '/auth/supplierRegistration',
+    redirectTo: '/auth/supplier-registration',
     pathMatch: 'full'
   }
 ];
@@ -64,6 +65,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
+    MatSelectModule,
     MatAutocompleteModule,
     HttpClientModule,
     TranslateModule.forRoot({

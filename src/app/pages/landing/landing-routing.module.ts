@@ -10,50 +10,64 @@ import { HowToRegisterComponent } from './how-to-register/how-to-register.compon
 
 const routes: Routes = [
   {
-    path: 'supplier-registration',
+    path: '',
     component: LandingComponent,
     canActivate: [ProtectGuard],
-    children:[
+    children: [
       {
-        path: '',
-        redirectTo: '/landing/supplier-registration/dashboard',
-        pathMatch: 'full'
+        path: 'supplier-registration',
+        children: [
+          {
+            path: '',
+            redirectTo: '/landing/supplier-registration/dashboard',
+            pathMatch: 'full'
+          },
+          {
+            path: 'dashboard',
+            loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'registration',
+            loadChildren: () =>
+              import('./supplier-registration-process/supplier-registration-process.module').then(m => m.SupplierRegistrationProcessModule),
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'transaction',
+            loadChildren: () => import('./transaction/transaction.module').then(m => m.TransactionModule),
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'about-us',
+            component: AboutUsComponent,
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'how-to-register',
+            component: HowToRegisterComponent,
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'payment',
+            component: PaymentComponent,
+            canActivate: [AuthGuard]
+          },
+          {
+            path: 'login',
+            component: InternationalLoginComponent,
+          }
+        ]
       },
       {
-        path: 'dashboard',
-        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
-        canActivate: [AuthGuard]
+        path: 'supplier-collaboration',
+        loadChildren: () => import('./supplier-collaboration/supplier-collaboration.module').then(m => m.SupplierCollaborationModule)
       },
       {
-        path: 'registration',
-        loadChildren: () =>
-             import('./supplier-registration-process/supplier-registration-process.module').then(m => m.SupplierRegistrationProcessModule),
-        canActivate: [AuthGuard]
+        path: 'supplier-performance',
+        loadChildren: () => import('./supplier-performance/supplier-performance.module').then(m => m.SupplierPerformanceModule)
       },
-      {
-        path: 'transaction',
-        loadChildren: () => import('./transaction/transaction.module').then(m => m.TransactionModule),
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'about-us',
-        component: AboutUsComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'how-to-register',
-        component: HowToRegisterComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'payment',
-        component: PaymentComponent,
-        canActivate: [AuthGuard]
-      },
-      {
-        path: 'login',
-        component: InternationalLoginComponent,
-      }
+
     ]
   },
   {

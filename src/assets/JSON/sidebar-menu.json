@@ -73,11 +73,25 @@
                 {
                     "name": "Forgot Password",
                     "icon": "",
-                    "route": "",
+                    "route": "/#/landing/",
                     "disabled": false,
                     "children": []
                 }
             ]
+        },
+        {
+            "name": "SUPPLIER COLLABORATION",
+            "icon": "",
+            "route": "/#/landing/supplier-collaboration",
+            "disabled": false,
+            "children": []
+        },
+        {
+            "name": "SUPPLIER PERFORMANCE",
+            "icon": "",
+            "route": "/#/landing/supplier-performance",
+            "disabled": false,
+            "children": []
         },
         {
             "name": "TENDERING",
@@ -155,7 +169,7 @@
         {
             "name": "Supplier",
             "icon": "",
-            "route": "/#/admin/request",
+            "route": "/#/admin/suppler-register-request-info",
             "disabled": false,
             "children": []
         },
