@@ -76,7 +76,9 @@ export class UserService {
             localStorage.setItem('arStatus', d.data.status);
             this.spinner.closeSpinner();
             this.router.navigate(['/landing/supplier-registration/dashboard']);
-          });
+          },
+          (error) => this.handleError(error)
+        );
     }
 
     login(email, password) {
@@ -89,11 +91,8 @@ export class UserService {
                 this.alertService.pushSuccess('Login Successfully!');
                 this.spinner.closeSpinner();
               },
-              (error) => {
-                this.alertService.pushError(error.error.message) ;
-                this.spinner.closeSpinner();
-              }
-              );
+              (error) => this.handleError(error)
+            );
 
     }
 
@@ -102,10 +101,7 @@ export class UserService {
             this.alertService.pushSuccess('We sent you an email to reset your password.');
             this.spinner.closeSpinner();
           },
-          e => {
-            this.alertService.pushError(e.error.message);
-            this.spinner.closeSpinner();
-           }
+          (error) => this.handleError(error)
           );
     }
 
@@ -117,10 +113,7 @@ export class UserService {
                 this.router.navigateByUrl('/admin/user/login');
                 this.spinner.closeSpinner();
             },
-            (error) => {
-                this.alertService.pushError(error.error.message);
-                this.spinner.closeSpinner();
-            }
+            (error) => this.handleError(error)
           );
     }
 
@@ -138,10 +131,7 @@ export class UserService {
                         this.router.navigateByUrl('/admin/user/login');
                         this.spinner.closeSpinner();
                     },
-                    (error) => {
-                        this.alertService.pushError(error.error.message);
-                        this.spinner.closeSpinner();
-                    }
+                    (error) => this.handleError(error)
                 );
     }
 
@@ -154,5 +144,12 @@ export class UserService {
             this.spinner.closeSpinner();
           });
         return this.http.post<any>(this.url + 'status-change', { id: id, status: status });
+    }
+    
+    handleError(error) {
+        const err = error.error.message || error.message
+        console.log(err);
+        this.alertService.pushError(err);
+        this.spinner.closeSpinner();
     }
 }
