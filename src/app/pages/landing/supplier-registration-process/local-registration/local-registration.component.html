@@ -67,7 +67,11 @@
         <!-- General Info Start-->
         <mat-step>
             <ng-template matStepLabel>General Info</ng-template>
-            <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+            <mat-tab-group 
+                [selectedIndex]="selected.value" 
+                (selectedIndexChange)="selected.setValue($event)"
+                *ngIf="(generalInfo$ | async)?.generalInfoTab as generalInfo"
+                >
                 <mat-tab label="General Info">
                     <div class="row pl-2">
                         <div class="col-xl-12 px-4 pb-2 ">
@@ -212,10 +216,11 @@
                     <div class="row px-2 py-2">
                         <div class="col-md-12 px-4">
                             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
-                            <p class="dark-text-1 fs-14 " *ngIf="!content1 && showBtn" (dblclick)="content1 = !content1">
-                                {{generalInfo.detailsRemark}}</p>
-                            <input class="dark-text-1 fs-14 " *ngIf="content1 && showBtn" (keyup.enter)="content1 = false"
-                                (clickOutside)="content1 = false" [(ngModel)]=generalInfo.detailsRemark>
+                            <!-- <p class="dark-text-1 fs-14 " *ngIf="!content1 && showBtn" (dblclick)="content1 = !content1">
+                                {{generalInfo.detailsRemark}}</p> -->
+                            <!-- <input class="dark-text-1 fs-14 " *ngIf="content1 && showBtn" (keyup.enter)="content1 = false"
+                                (clickOutside)="content1 = false" [(ngModel)]=generalInfo.detailsRemark> -->
+                                <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                         </div>
                     </div>
                     <div class="row px-2 py-2" *ngIf="!showBtn">
@@ -385,11 +390,11 @@
                     <div class="row">
                         <div class="col-md-12 px-4 py-2">
                             <p class="dark-text-1 fs-14 font-weight-bold mb-0">Details / Notes</p>
-                            <!-- <p class="dark-text-1 fs-14 ">Details Not Applicable</p> -->
-                            <p class="dark-text-1 fs-14 " *ngIf="!content2" (dblclick)="content2 = !content2">
+                            <!-- <p class="dark-text-1 fs-14 " *ngIf="!content2" (dblclick)="content2 = !content2">
                                 {{this.formData.generalInfoStep.addressInfoTab.detailsRemark}}</p>
                             <input class="dark-text-1 fs-14 " *ngIf="content2" (keyup.enter)="content2 = false"
-                                (clickOutside)="content2 = false" [(ngModel)]=this.formData.generalInfoStep.addressInfoTab.detailsRemark>
+                                (clickOutside)="content2 = false" [(ngModel)]=this.formData.generalInfoStep.addressInfoTab.detailsRemark> -->
+                                <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                         </div>
                     </div>
                     <div class="row px-2 py-2" *ngIf="!showBtn">

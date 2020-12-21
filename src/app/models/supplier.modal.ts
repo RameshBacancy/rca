@@ -1,6 +1,6 @@
 // General info step
 export interface GeneralInfoStep {
-    generalInfoTab: GeneralInfoStep;
+    generalInfoTab: GeneralInfoTab;
     addressInfoTab: AddressInfoTab;
 }
 
@@ -11,10 +11,10 @@ export interface GeneralInfoTab {
     arabicName: string;
     englishName: string;
     companyInfo: string;
-    activities: Activities[];
+    generalInfoDetails: Activities[];
 }
 export interface Activities {
-    id: string;
+    activityID: string;
     activityName: string;
     subActivity: string;
     sagment: string;

@@ -74,6 +74,7 @@ export class UserService {
         this.reqHttp.httpPost('supplier-register', body).subscribe(d => {
             localStorage.setItem('RegStatus', d.data.register_status);
             localStorage.setItem('arStatus', d.data.status);
+            this.setToken(d.data.authToken);
             this.spinner.closeSpinner();
             this.router.navigate(['/landing/supplier-registration/dashboard']);
           },

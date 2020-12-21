@@ -1,4 +1,7 @@
-import { Component, OnInit, ViewChild, Input, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { GeneralInfoStep, GeneralInfoTab, Address, Activities } from './../../../../models/supplier.modal';
+import { map, takeUntil, tap } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { Component, OnInit, ViewChild, Input, ElementRef, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SupplierRegistrationService } from 'src/app/services/supplier-registration.service';
@@ -15,7 +18,7 @@ import { SpinnerService } from 'src/app/services/spinner.service';
   templateUrl: './local-registration.component.html',
   styleUrls: ['./local-registration.component.scss']
 })
-export class LocalRegistrationComponent implements OnInit {
+export class LocalRegistrationComponent implements OnInit, OnDestroy {
 
   @ViewChild('stepper') private stepper: MatStepper;
   formData: any;
@@ -56,12 +59,15 @@ export class LocalRegistrationComponent implements OnInit {
 
 
   selectedAddress: any;
-  allAddresses: any;
   addressMenu: boolean;
-  activityData: any;
   personalData: any;
   communicationData: any;
   activityInfoData: any;
+  
+  // general info tab
+  activityData: Activities[];
+  allAddresses: Address[];
+ 
   BankDetails: any;
   compBranchInfoData: any;
   activityMenu = false;
@@ -83,15 +89,17 @@ export class LocalRegistrationComponent implements OnInit {
   isSiteVisit: any = 'no';
   isDataMoci: any;
   showBtn: boolean;
-  generalInfo: any;
+  generalInfo$: Observable<any>;
   compFinanceInfoData: any;
   ministriesData1: any;
   ministriesData2: any;
   ministriesData3: any;
+  destroy$: Subject<boolean> = new Subject();
+
 
   constructor(
     private router: Router,
-    private supplierData: SupplierRegistrationService,
+    private supplierService: SupplierRegistrationService,
     private modalService: NgbModal,
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
@@ -103,11 +111,13 @@ export class LocalRegistrationComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.loadData();
     this.showBtn = true;
-    this.formData = this.supplierData.getdata();
-    this.generalInfo = this.formData.generalInfoStep.generalInfoTab;
-    this.activityData = this.formData.generalInfoStep.generalInfoTab.activities;
-    this.allAddresses = this.formData.generalInfoStep.addressInfoTab.address;
+    this.formData = this.supplierService.getdata();
+    // this.generalInfo = this.formData.generalInfoStep.generalInfoTab;
+    // this.generalInfo = this.formData.generalInfoStep.generalInfoTab;
+    // this.activityData = this.formData.generalInfoStep.generalInfoTab.activities;
+    // this.allAddresses = this.formData.generalInfoStep.addressInfoTab.address;
     this.selectedAddress = this.formData.generalInfoStep.addressInfoTab.address[0];
     this.personalData = this.formData.personalDetailsStep.personalDetails;
     this.communicationData = this.formData.communicationMethodStep.communicationMethod;
@@ -127,6 +137,22 @@ export class LocalRegistrationComponent implements OnInit {
     this.getEmployeeCategories();
     this.crNo = localStorage.getItem('commercialReg');
     this.civilNo = localStorage.getItem('civilReg');
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
+  }
+
+  loadData() {
+    this.generalInfo$ = this.supplierService.getGeneralInfoStep();
+    this.generalInfo$.
+      pipe(
+        takeUntil(this.destroy$)
+      ).subscribe((res: GeneralInfoStep) => {
+        this.activityData = res.generalInfoTab.generalInfoDetails;
+        this.allAddresses = res.addressInfoTab.address;
+      });
   }
 
   get f() {
@@ -494,7 +520,7 @@ export class LocalRegistrationComponent implements OnInit {
       }
     } else {
       this.form.reset();
-      this.form.patchValue({ addressID: this.formData.generalInfoStep.addressInfoTab.address.length + 1, country: 'Oman' });
+      this.form.patchValue({ addressID: this.allAddresses.length + 1, country: 'Oman' });
     }
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -546,16 +572,16 @@ export class LocalRegistrationComponent implements OnInit {
   submit() {
     if (this.form.status === 'VALID') {
       if (this.editAddress == true) {
-        this.formData.generalInfoStep.addressInfoTab.address.filter((d, i) => {
+        this.allAddresses.filter((d, i) => {
           if (d.addressID == this.selectedAddress.addressID) {
             this.selectedAddress = this.form.value;
-            this.formData.generalInfoStep.addressInfoTab.address.splice(i, 1, this.form.value);
+            this.allAddresses.splice(i, 1, this.form.value);
           }
         });
         this.editAddress = false;
         this.form.reset();
       } else {
-        this.formData.generalInfoStep.addressInfoTab.address.push(this.form.value);
+        this.allAddresses.push(this.form.value);
       }
       this.form.reset();
     }
@@ -611,7 +637,7 @@ export class LocalRegistrationComponent implements OnInit {
         }
       });
       this.newData = {
-        no:  parseInt(this.employeeData[this.employeeData.length-1].no, 10) + 1,
+        no: parseInt(this.employeeData[this.employeeData.length - 1].no, 10) + 1,
         name: '',
         qualification: '',
         specialization: '',
@@ -643,7 +669,7 @@ export class LocalRegistrationComponent implements OnInit {
         }
       });
       this.newData = {
-        no: parseInt(this.projectData[this.projectData.length-1].no, 10) + 1,
+        no: parseInt(this.projectData[this.projectData.length - 1].no, 10) + 1,
         name: '',
         client: '',
         consultent: '',
@@ -664,7 +690,7 @@ export class LocalRegistrationComponent implements OnInit {
         }
       });
       this.newData = {
-        no: parseInt(this.subContractorData[this.subContractorData.length-1].no, 10) + 1,
+        no: parseInt(this.subContractorData[this.subContractorData.length - 1].no, 10) + 1,
         nameOfWork: '',
         subContractor: '',
         crNo: '',
@@ -684,7 +710,7 @@ export class LocalRegistrationComponent implements OnInit {
         }
       });
       this.newData = {
-        no: parseInt(this.equipmentData[this.equipmentData.length-1].no, 10) + 1,
+        no: parseInt(this.equipmentData[this.equipmentData.length - 1].no, 10) + 1,
         type: '',
         quantity: '',
         capacity: '',
@@ -717,7 +743,7 @@ export class LocalRegistrationComponent implements OnInit {
         }
       });
       this.newData = {
-        id: parseInt(this.activityData[this.activityData.length-1].id, 10) + 1,
+        activityID: parseInt(this.activityData[this.activityData.length - 1].activityID, 10) + 1,
         activityName: '',
         subActivity: '',
         sagment: '',
@@ -759,7 +785,7 @@ export class LocalRegistrationComponent implements OnInit {
         }
       });
       this.newData = {
-        id: parseInt(this.activityInfoData[this.activityInfoData.length-1].id, 10) + 1,
+        id: parseInt(this.activityInfoData[this.activityInfoData.length - 1].id, 10) + 1,
         activityName: '',
         subActivity: '',
         establishmentDate: '',
@@ -781,7 +807,7 @@ export class LocalRegistrationComponent implements OnInit {
         }
       });
       this.newData = {
-        no: parseInt(this.communicationData[this.communicationData.length-1].no, 10) + 1,
+        no: parseInt(this.communicationData[this.communicationData.length - 1].no, 10) + 1,
         method: '',
         value: '',
         isEdit: true,
@@ -1005,7 +1031,7 @@ export class LocalRegistrationComponent implements OnInit {
       if (datatype === 'activity') {
         if (data.activityName !== '') {
           this.activityData.map((d, i) => {
-            if (d.id == data.id) {
+            if (d.activityID == data.activityID) {
               d = data;
             }
           });
@@ -1224,7 +1250,7 @@ export class LocalRegistrationComponent implements OnInit {
     }
     if (datatype === 'activity') {
       this.activityData.map((d, i) => {
-        if (d.id == data.id) {
+        if (d.activityID == data.activityID) {
           this.activityData.splice(i, 1);
         }
       });
@@ -1278,7 +1304,13 @@ export class LocalRegistrationComponent implements OnInit {
         this.otherData = this.sortByPipe.transform(this.formData.bankDetailStep.otherInfoTab.otherDetails, 'asc', str);
       }
       if (property === 'activity') {
-        this.activityData = this.sortByPipe.transform(this.formData.generalInfoStep.generalInfoTab.activities, 'asc', str);
+        // this.activityData = this.sortByPipe.transform(this.formData.generalInfoStep.generalInfoTab.activities, 'asc', str);
+        this.activityData = this.sortByPipe.transform(this.activityData, 'asc', str);
+
+        // this.generalInfo$ = this.generalInfo$.pipe(map(res => {
+        //   res.generalInfoTab.generalInfoDetails = this.sortByPipe.transform(res.generalInfoTab.generalInfoDetails, 'asc', str);
+        //   return res;
+        // }));
       }
       if (property === 'personal') {
         this.personalData = this.sortByPipe.transform(this.formData.personalDetailsStep.personalDetails, 'asc', str);
@@ -1312,7 +1344,12 @@ export class LocalRegistrationComponent implements OnInit {
         this.otherData = this.sortByPipe.transform(this.formData.bankDetailStep.otherInfoTab.otherDetails, 'desc', str);
       }
       if (property === 'activity') {
-        this.activityData = this.sortByPipe.transform(this.formData.generalInfoStep.generalInfoTab.activities, 'desc', str);
+        this.activityData = this.sortByPipe.transform(this.activityData, 'desc', str);
+        // this.generalInfo$ = this.generalInfo$.pipe(map(res => {
+        //   res.generalInfoTab.generalInfoDetails = this.sortByPipe.transform(res.generalInfoTab.generalInfoDetails, 'desc', str);
+        //   console.log('res.generalInfoTab.generalInfoDetails :>> ', res.generalInfoTab.generalInfoDetails);
+        //   return res;
+        // }), tap(res => console.log('res >> ', res)));
       }
       if (property === 'personal') {
         this.personalData = this.sortByPipe.transform(this.formData.personalDetailsStep.personalDetails, 'desc', str);

@@ -82,6 +82,7 @@ export class LandingHeaderComponent implements OnInit {
       this.router.navigate(['/admin/user/login']);
     } else {
       localStorage.clear();
+      sessionStorage.clear();
       this.router.navigate(['']);
     }
   }
