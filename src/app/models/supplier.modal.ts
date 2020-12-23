@@ -345,3 +345,90 @@ export interface Documents {
     name: string;
     path: string;
 }
+
+
+
+
+
+// individual supplier register modal
+
+// general info step individual
+export interface GeneralInfoStepInd {
+    generalInfo: GeneralInfoInd;
+}
+
+export interface GeneralInfoInd {
+    crNo: string;
+    civilNo: string;
+    arabicName: string;
+    englishName: string;
+    companyInfo: string;
+    address: AddressInd[];
+}
+
+export interface AddressInd {
+    id: number;
+    addressID: string;
+    addressLine1: string;
+    addressLine2: string;
+    language: string;
+    country: string;
+    isMoci: boolean;
+}
+
+// personal details individual
+export interface PersonalDetailsStepInd {
+    personalDetails: PersonalDetailsInd[];
+}
+
+export interface PersonalDetailsInd {
+    no: number;
+    nationality: string;
+    idtype: string;
+    designation: string;
+    age: string;
+    dob: string;
+    members: string;
+    socialStatus: string;
+    familySecurity: string;
+    documents: any;
+    isMoci: boolean;
+    isEdit: boolean;
+}
+
+
+
+
+// international supplier register modal
+
+
+// general step is same as individual general step
+
+export interface PersonalDetailsStepInter {
+    personalDetails: PersonalDetailsInter;
+}
+
+export interface PersonalDetailsInter {
+    personName: string;
+    nationality: string;
+    idType: string;
+    idNo: string;
+    designation: string;
+    residentNo: string;
+    passport: string;
+    isMoci: boolean;
+    isEdit: boolean;
+}
+
+
+// communication method step modal
+
+export interface CommunicationDetailsStep {
+    telephone: string;
+    poBox: string;
+    fax: string;
+    legalStatus: string;
+    pc: string;
+    email: string;
+    detailsRemark: string;
+}
