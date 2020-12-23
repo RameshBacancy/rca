@@ -23,6 +23,7 @@ export interface Activities {
     commodity: string;
     isEdit: boolean;
     isMoci: boolean;
+    isUpdate?: boolean;
 }
 
 // General info address

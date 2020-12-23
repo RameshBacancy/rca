@@ -1,4 +1,28 @@
-import { GeneralInfoStep, GeneralInfoTab, Address, Activities, PersonalDetailsStep, PersonalDetails, CommunicationMethodStep, CommunicationMethod, ActivityInfo, BankDetails, CompFinanceInfo, CompBranchInfo, OtherDetails, BankDetailStep, EmployeeDetailsStep, EmployeDetails, MinistriesData1Step, ProjectDetailsStep, ProjectDetails, MinistriesData2Step, MinistriesData3Step, SubContractorDetailsStep, SubContractorDetails, EquipmentDetailsStep, EquipmentDetails } from './../../../../models/supplier.modal';
+import {
+  GeneralInfoStep,
+  GeneralInfoTab,
+  Address, Activities,
+  PersonalDetailsStep,
+  PersonalDetails,
+  CommunicationMethodStep,
+  CommunicationMethod,
+  ActivityInfo,
+  BankDetails,
+  CompFinanceInfo,
+  CompBranchInfo,
+  OtherDetails,
+  BankDetailStep,
+  EmployeeDetailsStep,
+  EmployeDetails,
+  MinistriesData1Step,
+  ProjectDetailsStep,
+  ProjectDetails,
+  MinistriesData2Step,
+  MinistriesData3Step,
+  SubContractorDetailsStep,
+  SubContractorDetails,
+  EquipmentDetailsStep, EquipmentDetails
+} from './../../../../models/supplier.modal';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 import { Component, OnInit, ViewChild, Input, ElementRef, ChangeDetectorRef, OnDestroy } from '@angular/core';
@@ -146,6 +170,13 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
 
   destroy$: Subject<boolean> = new Subject();
 
+  // for send draft data
+  localRegisterDraft: any;
+
+  // variable for updated draft
+  generalActivityDraft: any[] = [];
+  generalAddressDraft: any[] = [];
+
 
   constructor(
     private router: Router,
@@ -157,7 +188,11 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     private searchPipe: FilterPipe,
     private alertService: AlertService,
     private spinner: SpinnerService,
-  ) { }
+  ) {
+    this.localRegisterDraft = {
+      data: {}
+    };
+  }
 
 
   ngOnInit(): void {
@@ -738,6 +773,23 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
   }
 
   saveDraft() {
+
+
+
+    // this.localRegisterDraft = {
+    //   "supplierType": localStorage.getItem('regType'),
+    //   "status": "Draft",
+    //   "supplierId": localStorage.getItem('civilReg'),
+    //   "setTimeFlag": false,
+    //   "stepper": "General Info",
+    //   data: {
+
+    //   }
+    // }
+
+
+    // debugger;
+
     localStorage.setItem('RegStatus', 'draft');
     this.spinner.openSpinner();
     const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
@@ -928,7 +980,8 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         class: '',
         commodity: '',
         isEdit: true,
-        isMoci: false
+        isMoci: false,
+        isUpdate: false
       };
       this.activityData.push(this.newData);
     }
@@ -1203,12 +1256,22 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
           this.activityData.map((d, i) => {
             if (d.activityID == data.activityID) {
               d = data;
+
+              // console.log('draftData.hasOwnPropert :>> ', draftData.hasOwnProperty('isUpdate'));
+              if (!d.hasOwnProperty('isUpdate')) {
+                d['isUpdate'] = true;
+              }
+
+              if (this.generalActivityDraft.length === 0) {
+                this.generalActivityDraft.push({ ...d });
+              } else {
+                const index = this.generalActivityDraft.findIndex(activity => activity.activityID === d.activityID);
+                index === -1 ? this.generalActivityDraft.push({ ...d }) : this.generalActivityDraft[index] = { ...d };
+              }
+              console.log('this. :>> ', this.generalActivityDraft);
+
             }
           });
-          if (data.activityName === ' * ') {
-            data.activityName = '',
-              data.isEdit = true;
-          }
           this.showBtn = true;
         } else {
           // this.showBtn = true;

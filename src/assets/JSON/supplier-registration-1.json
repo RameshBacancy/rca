@@ -29,6 +29,17 @@
                         "commodity": "",
                         "isEdit": false,
                         "isMoci": true
+                    },
+                    {
+                        "activityID":"3",
+                        "activityName": "a1",
+                        "subActivity": "1a",
+                        "sagment": "a",
+                        "family": "a",
+                        "class": "a",
+                        "commodity": "",
+                        "isEdit": false,
+                        "isMoci": false                    
                     }
                 ],
                 "detailsRemark": "Details Not Applicable"
