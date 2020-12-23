@@ -285,9 +285,9 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
   submitbank() {
     if (this.bankform.status === 'VALID') {
       if (this.editBank == true) {
-        this.formData.commercialInfoStep.bankInfoTab.bankDetails.filter((d, i) => {
+        this.BankDetails.filter((d, i) => {
           if (d.bankAcc == this.editbankData.bankAcc) {
-            this.formData.commercialInfoStep.bankInfoTab.bankDetails.splice(i, 1, this.bankform.value);
+            this.BankDetails.splice(i, 1, this.bankform.value);
           }
         });
         this.editBank = false;
