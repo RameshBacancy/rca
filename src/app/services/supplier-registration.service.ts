@@ -1,4 +1,4 @@
-import { GeneralInfoStep } from './../models/supplier.modal';
+import { BankDetailStep, CommunicationMethodStep, EmployeeDetailsStep, EquipmentDetailsStep, GeneralInfoStep, MinistriesData1Step, MinistriesData2Step, MinistriesData3Step, PersonalDetailsStep, ProjectDetailsStep, SubContractorDetailsStep } from './../models/supplier.modal';
 import { RequestServiceBase } from './request-service-base';
 import { map, shareReplay } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -34,4 +34,53 @@ export class SupplierRegistrationService {
     // .subscribe(res => console.log('res >> ', res));
   }
 
+  getPersonalInfoStep(): Observable<PersonalDetailsStep> {
+    return this.reqHttp.httpGet('get-personal-data')
+      .pipe(map(res => res.data.personalDetailsStep), shareReplay());
+  }
+
+  getCommunticationInfoStep(): Observable<any> {
+    return this.reqHttp.httpGet('get-communication-data')
+      .pipe(map(res => res.data.communicationMethodStep), shareReplay());
+  }
+
+  getBankInfoStep(): Observable<BankDetailStep> {
+    return this.reqHttp.httpGet('get-bank-data')
+      .pipe(map(res => res.data.bankDetailStep), shareReplay());
+  }
+
+  getEmployeeInfoStep(): Observable<EmployeeDetailsStep> {
+    return this.reqHttp.httpGet('get-employee-data')
+      .pipe(map(res => res.data.employeeDetailsStep), shareReplay());
+  }
+
+  getMinistriesData1Step(): Observable<MinistriesData1Step> {
+    return this.reqHttp.httpGet('get-ministries-data1')
+      .pipe(map(res => res.data.ministriesData1Step), shareReplay());
+  }
+
+  getMinistriesData2Step(): Observable<MinistriesData2Step> {
+    return this.reqHttp.httpGet('get-ministries-data2')
+      .pipe(map(res => res.data.ministriesData2Step), shareReplay());
+  }
+
+  getMinistriesData3Step(): Observable<MinistriesData3Step> {
+    return this.reqHttp.httpGet('get-ministries-data3')
+      .pipe(map(res => res.data.ministriesData3Step), shareReplay());
+  }
+
+  getProjectInfoStep(): Observable<ProjectDetailsStep> {
+    return this.reqHttp.httpGet('get-project-data')
+      .pipe(map(res => res.data.projectDetailsStep), shareReplay());
+  }
+
+  getSubContratorInfoStep(): Observable<SubContractorDetailsStep> {
+    return this.reqHttp.httpGet('get-subcontractor-data')
+      .pipe(map(res => res.data.subContractorDetailsStep), shareReplay());
+  }
+
+  getEquipmentInfoStep(): Observable<EquipmentDetailsStep> {
+    return this.reqHttp.httpGet('get-equipment-data')
+      .pipe(map(res => res.data.equipmentDetailsStep), shareReplay());
+  }
 }
