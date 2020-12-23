@@ -9,7 +9,7 @@
                 "companyInfo": "Company Info",
                 "activities": [
                     {
-                        "id":"1",
+                        "activityID":"1",
                         "activityName": "1",
                         "subActivity": "1",
                         "sagment": "",
@@ -20,7 +20,7 @@
                         "isMoci": true
                     },
                     {
-                        "id":"2",
+                        "activityID":"2",
                         "activityName": "2",
                         "subActivity": "2",
                         "sagment": "",
@@ -158,7 +158,7 @@
             "activityInfoTab": {
                 "activityInfo": [
                     {
-                        "id":"1",
+                        "activityID":"1",
                         "activityName": "Test1",
                         "subActivity": "Test1",
                         "establishmentDate": "-",
@@ -172,7 +172,7 @@
                         "isMoci": true
                     },
                     {
-                        "id":"2",
+                        "activityID":"2",
                         "activityName": "Test2",
                         "subActivity": "Test2",
                         "establishmentDate": "-",
@@ -604,8 +604,8 @@
                     {   
                         "id":1,
                         "addressID" : "MCT",
-                        "addressline1":"4907  August Lane",
-                        "addressline2":"Young",
+                        "addressLine1":"4907  August Lane",
+                        "addressLine2":"Young",
                         "language":"English",
                         "country":"United States",
                         "isMoci": true
@@ -613,8 +613,8 @@
                     {
                         "id":2,
                         "addressID" : "NO",
-                        "addressline1":"64  London Road",
-                        "addressline2":"COMER",
+                        "addressLine1":"64  London Road",
+                        "addressLine2":"COMER",
                         "language":"French",
                         "country":"United Kingdom",
                         "isMoci": true
@@ -743,8 +743,8 @@
                     {   
                         "id":1,
                         "addressID" : "MCT",
-                        "addressline1":"4907  August Lane",
-                        "addressline2":"Young",
+                        "addressLine1":"4907  August Lane",
+                        "addressLine2":"Young",
                         "language":"English",
                         "country":"United States",
                         "isMoci": true
@@ -752,8 +752,8 @@
                     {
                         "id":2,
                         "addressID" : "NO",
-                        "addressline1":"64  London Road",
-                        "addressline2":"COMER",
+                        "addressLine1":"64  London Road",
+                        "addressLine2":"COMER",
                         "language":"French",
                         "country":"United Kingdom",
                         "isMoci": true

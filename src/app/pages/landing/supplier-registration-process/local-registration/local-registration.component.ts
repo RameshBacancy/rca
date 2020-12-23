@@ -1,4 +1,4 @@
-import { GeneralInfoStep, GeneralInfoTab, Address, Activities } from './../../../../models/supplier.modal';
+import { GeneralInfoStep, GeneralInfoTab, Address, Activities, PersonalDetailsStep, PersonalDetails, CommunicationMethodStep, CommunicationMethod, ActivityInfo, BankDetails, CompFinanceInfo, CompBranchInfo, OtherDetails, BankDetailStep, EmployeeDetailsStep, EmployeDetails, MinistriesData1Step, ProjectDetailsStep, ProjectDetails, MinistriesData2Step, MinistriesData3Step, SubContractorDetailsStep, SubContractorDetails, EquipmentDetailsStep, EquipmentDetails } from './../../../../models/supplier.modal';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 import { Component, OnInit, ViewChild, Input, ElementRef, ChangeDetectorRef, OnDestroy } from '@angular/core';
@@ -12,6 +12,8 @@ import { AlertService } from 'src/app/services/alert.service';
 import { MatStepper } from '@angular/material/stepper';
 import { UserService } from 'src/app/services/user.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import * as uuid from 'uuid/v4';
+
 
 @Component({
   selector: 'app-local-registration',
@@ -21,11 +23,16 @@ import { SpinnerService } from 'src/app/services/spinner.service';
 export class LocalRegistrationComponent implements OnInit, OnDestroy {
 
   @ViewChild('stepper') private stepper: MatStepper;
-  formData: any;
-  closeResult: string;
-  order = false;
-  completed = false;
   @Input('searchText') searchText: any;
+  formData: any;
+
+  //close model pop-up
+  closeResult: string;
+
+  // for order of sorting
+  order = false;
+
+  completed = false;
 
   editCompanyDetails = false;
   editDirectorDetails = false;
@@ -49,51 +56,94 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     isMoci: new FormControl(false)
   });
 
-  employeeData: any[];
-  employeeSearch: string;
+
+  // employeeSearch: string;
+
+  //to add new blank data 
   newData: any;
-  projectData: any[];
-  subContractorData: any[];
-  equipmentData: any[];
-  otherData: any[];
 
 
-  selectedAddress: any;
-  addressMenu: boolean;
-  personalData: any;
-  communicationData: any;
-  activityInfoData: any;
-  
-  // general info tab
+
+
+  // addressMenu: boolean;
+
+  //personal detail tab
+  personalData$: Observable<PersonalDetailsStep>;
+  personalData: PersonalDetails[];
+
+  // bank detail step
+  bankDetailStep$: Observable<BankDetailStep>;
+  activityInfoData: ActivityInfo[];
+  BankDetails: BankDetails[];
+  compFinanceInfoData: CompFinanceInfo;
+  compBranchInfoData: CompBranchInfo[];
+  otherData: OtherDetails[];
+  editBank = false;
+  editbankData: any;
+
+  //communication method step
+  communicationData$: Observable<CommunicationMethodStep>;
+  communicationData: CommunicationMethod[]
+
+  // general info step
   activityData: Activities[];
   allAddresses: Address[];
- 
-  BankDetails: any;
-  compBranchInfoData: any;
-  activityMenu = false;
-  selected = new FormControl(0);
+  generalInfo$: Observable<any>;
+  selectedAddress: Address;
   editAddress = false;
 
+  //employee detail step
+  employeeData$: Observable<EmployeeDetailsStep>;
+  employeeData: EmployeDetails[];
+  arrayOfCatagory = [];
+  staffCategory: any[];
+  showTable: boolean;
+
+  //ministries1 data step
+  ministriesData1$: Observable<MinistriesData1Step>;
+  ministriesData1: MinistriesData1Step;
+
+  //ministries2 data step
+  ministriesData2$: Observable<MinistriesData2Step>;
+  ministriesData2: MinistriesData2Step;
+
+  //ministries3 data step
+  ministriesData3$: Observable<MinistriesData3Step>;
+  ministriesData3: MinistriesData3Step;
+
+  //project detial step
+  projectData$: Observable<ProjectDetailsStep>;
+  projectData: ProjectDetails[];
+
+  //subContrator info step
+  subContractorData$: Observable<SubContractorDetailsStep>;
+  subContractorData: SubContractorDetails[];
+
+  //equipment info stop
+  equipmentData$: Observable<EquipmentDetailsStep>;
+  equipmentData: EquipmentDetails[];
+
+  activityMenu = false;
+  selected = new FormControl(0);
+
+  // file input 
   @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
   files = [];
   filesList = [];
   uploadData: any;
   selectedPage: any;
-  arrayOfCatagory = [];
-  staffCategory: any[];
+  isDataMoci: any;
+
   crNo: string;
   civilNo: string;
-  editBank = false;
-  editbankData: any;
+
+  // site visit step
   siteVisitData: any;
   isSiteVisit: any = 'no';
-  isDataMoci: any;
+
+  //show-hide buttons
   showBtn: boolean;
-  generalInfo$: Observable<any>;
-  compFinanceInfoData: any;
-  ministriesData1: any;
-  ministriesData2: any;
-  ministriesData3: any;
+
   destroy$: Subject<boolean> = new Subject();
 
 
@@ -113,28 +163,29 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadData();
     this.showBtn = true;
+    this.showTable = false;
     this.formData = this.supplierService.getdata();
     // this.generalInfo = this.formData.generalInfoStep.generalInfoTab;
     // this.generalInfo = this.formData.generalInfoStep.generalInfoTab;
     // this.activityData = this.formData.generalInfoStep.generalInfoTab.activities;
     // this.allAddresses = this.formData.generalInfoStep.addressInfoTab.address;
-    this.selectedAddress = this.formData.generalInfoStep.addressInfoTab.address[0];
-    this.personalData = this.formData.personalDetailsStep.personalDetails;
-    this.communicationData = this.formData.communicationMethodStep.communicationMethod;
-    this.activityInfoData = this.formData.bankDetailStep.activityInfoTab.activityInfo;
-    this.BankDetails = this.formData.bankDetailStep.bankDetailsTab.BankDetails;
-    this.compFinanceInfoData = this.formData.bankDetailStep.companyInfoTab.compFinanceInfo;
-    this.compBranchInfoData = this.formData.bankDetailStep.companyInfoTab.compBranchInfo;
-    this.ministriesData1 = this.formData.ministriesData1Step;
-    this.ministriesData2 = this.formData.ministriesData2Step;
-    this.ministriesData3 = this.formData.ministriesData3Step;
-    this.employeeData = this.formData.employeeDetailsStep.employeDetails;
-    this.projectData = this.formData.projectDetailsStep.projectDetails;
-    this.subContractorData = this.formData.subContractorDetailsStep.subContractorDetails;
-    this.equipmentData = this.formData.equipmentDetailsStep.equipmentDetails;
-    this.otherData = this.formData.bankDetailStep.otherInfoTab.otherDetails;
+    // this.selectedAddress = this.formData.generalInfoStep.addressInfoTab.address[0];
+    // this.personalData = this.formData.personalDetailsStep.personalDetails;
+    // this.communicationData$ = this.formData.communicationMethodStep.communicationMethod;
+    // this.activityInfoData = this.formData.bankDetailStep.activityInfoTab.activityInfo;
+    // this.BankDetails = this.formData.bankDetailStep.bankDetailsTab.BankDetails;
+    // this.compFinanceInfoData = this.formData.bankDetailStep.companyInfoTab.compFinanceInfo;
+    // this.compBranchInfoData = this.formData.bankDetailStep.companyInfoTab.compBranchInfo;
+    // this.otherData = this.formData.bankDetailStep.otherInfoTab.otherDetails;
+    // this.ministriesData1 = this.formData.ministriesData1Step;
+    // this.ministriesData2 = this.formData.ministriesData2Step;
+    // this.ministriesData3 = this.formData.ministriesData3Step;
+    // this.employeeData = this.formData.employeeDetailsStep.employeDetails;
+    // this.projectData = this.formData.projectDetailsStep.projectDetails;
+    // this.subContractorData = this.formData.subContractorDetailsStep.subContractorDetails;
+    // this.equipmentData = this.formData.equipmentDetailsStep.equipmentDetails;
     // this.siteVisitData = this.formData.siteVisit;
-    this.getEmployeeCategories();
+    // this.getEmployeeCategories();
     this.crNo = localStorage.getItem('commercialReg');
     this.civilNo = localStorage.getItem('civilReg');
   }
@@ -145,6 +196,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
   }
 
   loadData() {
+    // general info step
     this.generalInfo$ = this.supplierService.getGeneralInfoStep();
     this.generalInfo$.
       pipe(
@@ -152,7 +204,132 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       ).subscribe((res: GeneralInfoStep) => {
         this.activityData = res.generalInfoTab.generalInfoDetails;
         this.allAddresses = res.addressInfoTab.address;
+        this.selectedAddress = res.addressInfoTab.address[0];
+        if (!this.activityData[0]) {
+          this.activityData = this.formData.generalInfoStep.generalInfoTab.activities;
+          this.allAddresses = this.formData.generalInfoStep.addressInfoTab.address;
+          this.selectedAddress = this.formData.generalInfoStep.addressInfoTab.address[0];
+        }
       });
+
+    //personal detail step
+    this.personalData$ = this.supplierService.getPersonalInfoStep();
+    this.personalData$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((res: PersonalDetailsStep) => {
+      this.personalData = res.personalDetails;
+      if (!this.personalData[0]) {
+        this.personalData = this.formData.personalDetailsStep.personalDetails;
+      }
+    });
+
+    //communication method step
+    this.communicationData$ = this.supplierService.getCommunticationInfoStep();
+    this.communicationData$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((res: CommunicationMethodStep) => {
+      this.communicationData = res.communicationMethod;
+      if (!this.communicationData[0]) {
+        this.communicationData = this.formData.communicationMethodStep.communicationMethod;
+      }
+    });
+
+    // bank details step
+    this.bankDetailStep$ = this.supplierService.getBankInfoStep();
+    this.bankDetailStep$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((res: BankDetailStep) => {
+      this.activityInfoData = res.activityInfoTab.activityInfo;
+      this.BankDetails = res.bankDetailsTab.BankDetails;
+      this.compFinanceInfoData = res.companyInfoTab.compFinanceInfo;
+      this.compBranchInfoData = res.companyInfoTab.compBranchInfo;
+      this.otherData = res.otherInfoTab.otherDetails;
+      if (!this.activityInfoData[0]) {
+        this.activityInfoData = this.formData.bankDetailStep.activityInfoTab.activityInfo;
+        this.BankDetails = this.formData.bankDetailStep.bankDetailsTab.BankDetails;
+        this.compFinanceInfoData = this.formData.bankDetailStep.companyInfoTab.compFinanceInfo;
+        this.compBranchInfoData = this.formData.bankDetailStep.companyInfoTab.compBranchInfo;
+        this.otherData = this.formData.bankDetailStep.otherInfoTab.otherDetails;
+      }
+    });
+
+    //employee detail step
+    this.employeeData$ = this.supplierService.getEmployeeInfoStep();
+    this.employeeData$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((res: EmployeeDetailsStep) => {
+      this.employeeData = res.employeDetails;
+      if (!this.employeeData[0]) {
+        this.employeeData = this.formData.employeeDetailsStep.employeDetails;
+      }
+      this.getEmployeeCategories();
+    });
+
+    //ministries1 data step
+    this.ministriesData1$ = this.supplierService.getMinistriesData1Step();
+    this.ministriesData1$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((res: MinistriesData1Step) => {
+      this.ministriesData1 = res;
+      if (!this.ministriesData1.occiDataTab[0]) {
+        this.ministriesData1 = this.formData.ministriesData1Step;
+      }
+    });
+
+    //ministries2 data step
+    this.ministriesData2$ = this.supplierService.getMinistriesData2Step();
+    this.ministriesData2$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((res: MinistriesData2Step) => {
+      this.ministriesData2 = res;
+      if (!this.ministriesData2.mofDataTab[0]) {
+        this.ministriesData2 = this.formData.ministriesData2Step;
+      }
+    });
+
+    //ministries3 data step
+    this.ministriesData3$ = this.supplierService.getMinistriesData3Step();
+    this.ministriesData3$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((res: MinistriesData3Step) => {
+      this.ministriesData3 = res;
+      if (!this.ministriesData3.authorityOfCivilDefenseData[0]) {
+        this.ministriesData3 = this.formData.ministriesData3Step;
+      }
+    });
+
+    //project detail step
+    this.projectData$ = this.supplierService.getProjectInfoStep();
+    this.projectData$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((res: ProjectDetailsStep) => {
+      this.projectData = res.projectDetails;
+      if (!this.projectData[0]) {
+        this.projectData = this.formData.projectDetailsStep.projectDetails;
+      }
+    });
+
+    //subcontrator detail step
+    this.subContractorData$ = this.supplierService.getSubContratorInfoStep();
+    this.subContractorData$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((res: SubContractorDetailsStep) => {
+      this.subContractorData = res.subContractorDetails;
+      if (!this.subContractorData[0]) {
+        this.subContractorData = this.formData.subContractorDetailsStep.subContractorDetails;
+      }
+    });
+
+    //equipment detail step
+    this.equipmentData$ = this.supplierService.getEquipmentInfoStep();
+    this.equipmentData$.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((res: EquipmentDetailsStep) => {
+      this.equipmentData = res.equipmentDetails;
+      if (!this.equipmentData[0]) {
+        this.equipmentData = this.formData.equipmentDetailsStep.equipmentDetails;
+      }
+    });
   }
 
   get f() {
@@ -166,7 +343,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
   getEmployeeCategories() {
     this.staffCategory = [];
     this.arrayOfCatagory = [];
-    this.formData.employeeDetailsStep.employeDetails.filter(d => {
+    this.employeeData.filter(d => {
       this.arrayOfCatagory.push(d.staffCategory);
     });
     this.arrayOfCatagory = [... new Set(this.arrayOfCatagory)];
@@ -175,7 +352,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       let index = 0;
       let omaniIndex = 0;
       let nonOmaniIndex = 0;
-      this.formData.employeeDetailsStep.employeDetails.map((d) => {
+      this.employeeData.map((d) => {
         if (d.staffCategory == a) {
           index = index + 1;
           if (d.country.toLowerCase() == 'omani') {
@@ -210,28 +387,28 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     if (this.selectedPage === 'project') {
       this.filesList = [];
       this.projectData.map((d, i) => {
-        if (d.no == data.no) {
-          if (flag == false) {
-            d.documents.push(file.data);
-          }
-          d.documents.map((d1) => {
-            this.filesList.push(d1);
-            file.inProgress = false;
-          });
-        }
+        // if (d.no == data.no) {
+        //   if (flag == false) {
+        //     d.documents.push(file.data);
+        //   }
+        //   d.documents.map((d1) => {
+        //     this.filesList.push(d1);
+        //     file.inProgress = false;
+        //   });
+        // }
       });
     }
     if (this.selectedPage === 'employee') {
       this.filesList = [];
       this.employeeData.map((d, i) => {
         if (d.name == data.name) {
-          if (flag == false) {
-            d.documents.push(file.data);
-          }
-          d.documents.map((d1) => {
-            this.filesList.push(d1);
-            file.inProgress = false;
-          });
+          // if (flag == false) {
+          //   d.documents.push(file.data);
+          // }
+          // d.documents.map((d1) => {
+          //   this.filesList.push(d1);
+          //   file.inProgress = false;
+          // });
         }
       });
     }
@@ -239,62 +416,62 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       this.filesList = [];
       this.activityInfoData.map((d, i) => {
         if (d.activityName == data.activityName) {
-          if (flag == false) {
-            d.documents.push(file.data);
-          }
-          d.documents.map((d1) => {
-            this.filesList.push(d1);
-            file.inProgress = false;
-          });
+          // if (flag == false) {
+          //   d.documents.push(file.data);
+          // }
+          // d.documents.map((d1) => {
+          //   this.filesList.push(d1);
+          //   file.inProgress = false;
+          // });
         }
       });
     }
     if (this.selectedPage === 'regCerti') {
       this.filesList = [];
-      if (flag == false) {
-        this.ministriesData1.tenderBoardDataTab.registrationCertificate.push(file.data);
-      }
-      this.filesList = this.ministriesData1.tenderBoardDataTab.registrationCertificate;
+      // if (flag == false) {
+      //   this.ministriesData1.tenderBoardDataTab.registrationCertificate.push(file.data);
+      // }
+      // this.filesList = this.ministriesData1.tenderBoardDataTab.registrationCertificate;
     }
     if (this.selectedPage === 'hplicenses') {
       this.filesList = [];
-      if (flag == false) {
-        this.ministriesData2.mohDataTab.healthAndPharmacyLicenses.push(file.data);
-      }
-      this.filesList = this.ministriesData2.mohDataTab.healthAndPharmacyLicenses;
+      // if (flag == false) {
+      //   this.ministriesData2.mohDataTab.healthAndPharmacyLicenses.push(file.data);
+      // }
+      // this.filesList = this.ministriesData2.mohDataTab.healthAndPharmacyLicenses;
     }
     if (this.selectedPage === 'pLOfCC') {
       this.filesList = [];
-      if (flag == false) {
-        this.ministriesData2.mociDataTab.perAndLiceOfConsCom.push(file.data);
-      }
-      this.filesList = this.ministriesData2.mociDataTab.perAndLiceOfConsCom;
+      // if (flag == false) {
+      //   this.ministriesData2.mociDataTab.perAndLiceOfConsCom.push(file.data);
+      // }
+      // this.filesList = this.ministriesData2.mociDataTab.perAndLiceOfConsCom;
     }
     if (this.selectedPage === 'lOTQI') {
       this.filesList = [];
-      if (flag == false) {
-        this.ministriesData2.mociDataTab.liceOfTraAndQuaInst.push(file.data);
-      }
-      this.filesList = this.ministriesData2.mociDataTab.liceOfTraAndQuaInst;
+      // if (flag == false) {
+      //   this.ministriesData2.mociDataTab.liceOfTraAndQuaInst.push(file.data);
+      // }
+      // this.filesList = this.ministriesData2.mociDataTab.liceOfTraAndQuaInst;
     }
     if (this.selectedPage === 'loftc') {
       this.filesList = [];
-      if (flag == false) {
-        this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies.push(file.data);
-      }
-      this.filesList = this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies;
+      // if (flag == false) {
+      //   this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies.push(file.data);
+      // }
+      // this.filesList = this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies;
     }
     if (this.selectedPage === 'bankOther') {
       this.filesList = [];
       this.otherData.map((d, i) => {
         if (d.no == data.no) {
-          if (flag == false) {
-            d.documents.push(file.data);
-          }
-          d.documents.map((d1) => {
-            this.filesList.push(d1);
-            file.inProgress = false;
-          });
+          // if (flag == false) {
+          //   d.documents.push(file.data);
+          // }
+          // d.documents.map((d1) => {
+          //   this.filesList.push(d1);
+          //   file.inProgress = false;
+          // });
         }
       });
     }
@@ -336,61 +513,61 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     this.uploadData = data;
     if (this.selectedPage === 'project') {
       this.filesList = [];
-      this.projectData.map((d, i) => {
-        if (d.no == data.no) {
-          d.documents.map((d1) => {
-            this.filesList.push(d1);
-          });
-        }
-      });
+      // this.projectData.map((d, i) => {
+      //   if (d.no == data.no) {
+      //     d.documents.map((d1) => {
+      //       this.filesList.push(d1);
+      //     });
+      //   }
+      // });
     }
     if (this.selectedPage === 'employee') {
       this.filesList = [];
       this.employeeData.map((d, i) => {
-        if (d.name == data.name) {
-          d.documents.map((d1) => {
-            this.filesList.push(d1);
-          });
-        }
+        // if (d.name == data.name) {
+        //   d.documents.map((d1) => {
+        //     this.filesList.push(d1);
+        //   });
+        // }
       });
     }
     if (this.selectedPage === 'activityInfo') {
       this.filesList = [];
       this.activityInfoData.map((d, i) => {
-        if (d.activityName == data.activityName) {
-          d.documents.map((d1) => {
-            this.filesList.push(d1);
-          });
-        }
+        // if (d.activityName == data.activityName) {
+        //   d.documents.map((d1) => {
+        //     this.filesList.push(d1);
+        //   });
+        // }
       });
     }
     if (this.selectedPage === 'regCerti') {
       this.filesList = [];
-      this.filesList = this.ministriesData1.tenderBoardDataTab.registrationCertificate;
+      // this.filesList = this.ministriesData1.tenderBoardDataTab.registrationCertificate;
     }
     if (this.selectedPage === 'hplicenses') {
       this.filesList = [];
-      this.filesList = this.ministriesData2.mohDataTab.healthAndPharmacyLicenses;
+      // this.filesList = this.ministriesData2.mohDataTab.healthAndPharmacyLicenses;
     }
     if (this.selectedPage === 'pLOfCC') {
       this.filesList = [];
-      this.filesList = this.ministriesData2.mociDataTab.perAndLiceOfConsCom;
+      // this.filesList = this.ministriesData2.mociDataTab.perAndLiceOfConsCom;
     }
     if (this.selectedPage === 'lOTQI') {
       this.filesList = [];
-      this.filesList = this.ministriesData2.mociDataTab.liceOfTraAndQuaInst;
+      // this.filesList = this.ministriesData2.mociDataTab.liceOfTraAndQuaInst;
     }
     if (this.selectedPage === 'loftc') {
       this.filesList = [];
-      this.filesList = this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies;
+      // this.filesList = this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies;
     }
     if (this.selectedPage === 'bankOther') {
       this.filesList = [];
       this.otherData.map((d, i) => {
         if (d.no == data.no) {
-          d.documents.map((d1) => {
-            this.filesList.push(d1);
-          });
+          // d.documents.map((d1) => {
+          //   this.filesList.push(d1);
+          // });
         }
       });
     }
@@ -403,12 +580,12 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         this.filesList = [];
         this.projectData.map((d) => {
           if (d.no == this.uploadData.no) {
-            d.documents.filter((f, i) => {
-              if (f.name == file.name) {
-                d.documents.splice(i, 1);
-                this.filesList = d.documents;
-              }
-            });
+            // d.documents.filter((f, i) => {
+            //   if (f.name == file.name) {
+            //     d.documents.splice(i, 1);
+            //     this.filesList = d.documents;
+            //   }
+            // });
           }
         });
       }
@@ -416,12 +593,12 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         this.filesList = [];
         this.employeeData.map((d, i) => {
           if (d.name == this.uploadData.name) {
-            d.documents.filter((f, i) => {
-              if (f.name == file.name) {
-                d.documents.splice(i, 1);
-                this.filesList = d.documents;
-              }
-            });
+            // d.documents.filter((f, i) => {
+            //   if (f.name == file.name) {
+            //     d.documents.splice(i, 1);
+            //     this.filesList = d.documents;
+            //   }
+            // });
           }
         });
       }
@@ -429,70 +606,70 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         this.filesList = [];
         this.activityInfoData.map((d, i) => {
           if (d.activityName == this.uploadData.activityName) {
-            d.documents.filter((f, i) => {
-              if (f.name == file.name) {
-                d.documents.splice(i, 1);
-                this.filesList = d.documents;
-              }
-            });
+            // d.documents.filter((f, i) => {
+            //   if (f.name == file.name) {
+            //     d.documents.splice(i, 1);
+            //     this.filesList = d.documents;
+            //   }
+            // });
           }
         });
       }
       if (this.selectedPage === 'regCerti') {
         this.filesList = [];
-        this.ministriesData1.tenderBoardDataTab.registrationCertificate.filter((f, i) => {
-          if (f.name == file.name) {
-            this.ministriesData1.tenderBoardDataTab.registrationCertificate.splice(i, 1);
-            this.filesList = this.ministriesData1.tenderBoardDataTab.registrationCertificate;
-          }
-        });
+        // this.ministriesData1.tenderBoardDataTab.registrationCertificate.filter((f, i) => {
+        //   if (f.name == file.name) {
+        //     this.ministriesData1.tenderBoardDataTab.registrationCertificate.splice(i, 1);
+        //     this.filesList = this.ministriesData1.tenderBoardDataTab.registrationCertificate;
+        //   }
+        // });
       }
       if (this.selectedPage === 'hplicenses') {
         this.filesList = [];
-        this.ministriesData2.mohDataTab.healthAndPharmacyLicenses.filter((f, i) => {
-          if (f.name == file.name) {
-            this.ministriesData2.mohDataTab.healthAndPharmacyLicenses.splice(i, 1);
-            this.filesList = this.ministriesData2.mohDataTab.healthAndPharmacyLicenses;
-          }
-        });
+        // this.ministriesData2.mohDataTab.healthAndPharmacyLicenses.filter((f, i) => {
+        //   if (f.name == file.name) {
+        //     this.ministriesData2.mohDataTab.healthAndPharmacyLicenses.splice(i, 1);
+        //     this.filesList = this.ministriesData2.mohDataTab.healthAndPharmacyLicenses;
+        //   }
+        // });
       }
       if (this.selectedPage === 'pLOfCC') {
         this.filesList = [];
-        this.ministriesData2.mociDataTab.perAndLiceOfConsCom.filter((f, i) => {
-          if (f.name == file.name) {
-            this.ministriesData2.mociDataTab.perAndLiceOfConsCom.splice(i, 1);
-            this.filesList = this.ministriesData2.mociDataTab.perAndLiceOfConsCom;
-          }
-        });
+        // this.ministriesData2.mociDataTab.perAndLiceOfConsCom.filter((f, i) => {
+        //   if (f.name == file.name) {
+        //     this.ministriesData2.mociDataTab.perAndLiceOfConsCom.splice(i, 1);
+        //     this.filesList = this.ministriesData2.mociDataTab.perAndLiceOfConsCom;
+        //   }
+        // });
       }
       if (this.selectedPage === 'lOTQI') {
         this.filesList = [];
-        this.ministriesData2.mociDataTab.liceOfTraAndQuaInst.filter((f, i) => {
-          if (f.name == file.name) {
-            this.ministriesData2.mociDataTab.liceOfTraAndQuaInst.splice(i, 1);
-            this.filesList = this.ministriesData2.mociDataTab.liceOfTraAndQuaInst;
-          }
-        });
+        // this.ministriesData2.mociDataTab.liceOfTraAndQuaInst.filter((f, i) => {
+        //   if (f.name == file.name) {
+        //     this.ministriesData2.mociDataTab.liceOfTraAndQuaInst.splice(i, 1);
+        //     this.filesList = this.ministriesData2.mociDataTab.liceOfTraAndQuaInst;
+        //   }
+        // });
       }
       if (this.selectedPage === 'loftc') {
         this.filesList = [];
-        this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies.filter((f, i) => {
-          if (f.name == file.name) {
-            this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies.splice(i, 1);
-            this.filesList = this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies;
-          }
-        });
+        // this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies.filter((f, i) => {
+        //   if (f.name == file.name) {
+        //     this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies.splice(i, 1);
+        //     this.filesList = this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies;
+        //   }
+        // });
       }
       if (this.selectedPage === 'bankOther') {
         this.filesList = [];
         this.otherData.map((d, i) => {
           if (d.no == this.uploadData.no) {
-            d.documents.filter((f, i) => {
-              if (f.name == file.name) {
-                d.documents.splice(i, 1);
-                this.filesList = d.documents;
-              }
-            });
+            // d.documents.filter((f, i) => {
+            // if (f.name == file.name) {
+            //   d.documents.splice(i, 1);
+            //   this.filesList = d.documents;
+            // }
+            // });
           }
         });
       }
@@ -520,7 +697,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       }
     } else {
       this.form.reset();
-      this.form.patchValue({ addressID: this.allAddresses.length + 1, country: 'Oman' });
+      this.form.patchValue({ addressID: uuid(), country: 'Oman' });
     }
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -590,9 +767,9 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
   submitbank() {
     if (this.bankform.status === 'VALID') {
       if (this.editBank == true) {
-        this.formData.bankDetailStep.bankDetailsTab.BankDetails.filter((d, i) => {
+        this.BankDetails.filter((d, i) => {
           if (d.bankAcc == this.editbankData.bankAcc) {
-            this.formData.bankDetailStep.bankDetailsTab.BankDetails.splice(i, 1, this.bankform.value);
+            this.BankDetails.splice(i, 1, this.bankform.value);
           }
         });
         this.editBank = false;
@@ -637,7 +814,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         }
       });
       this.newData = {
-        no: parseInt(this.employeeData[this.employeeData.length - 1].no, 10) + 1,
+        no: uuid(),
         name: '',
         qualification: '',
         specialization: '',
@@ -669,7 +846,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         }
       });
       this.newData = {
-        no: parseInt(this.projectData[this.projectData.length - 1].no, 10) + 1,
+        no: uuid(),
         name: '',
         client: '',
         consultent: '',
@@ -690,7 +867,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         }
       });
       this.newData = {
-        no: parseInt(this.subContractorData[this.subContractorData.length - 1].no, 10) + 1,
+        no: uuid(),
         nameOfWork: '',
         subContractor: '',
         crNo: '',
@@ -710,7 +887,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         }
       });
       this.newData = {
-        no: parseInt(this.equipmentData[this.equipmentData.length - 1].no, 10) + 1,
+        no: uuid(),
         type: '',
         quantity: '',
         capacity: '',
@@ -724,9 +901,9 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     }
     if (datatype === 'other') {
       this.otherData.map((data, i) => {
-        if (data.nameOfWork == '') {
-          this.otherData.splice(i, 1);
-        }
+        // if (data.nameOfWork == '') {
+        //   this.otherData.splice(i, 1);
+        // }
       });
       this.newData = {
         no: this.otherData.length + 1,
@@ -743,7 +920,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         }
       });
       this.newData = {
-        activityID: parseInt(this.activityData[this.activityData.length - 1].activityID, 10) + 1,
+        activityID: uuid(),
         activityName: '',
         subActivity: '',
         sagment: '',
@@ -755,29 +932,29 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       };
       this.activityData.push(this.newData);
     }
-    if (datatype === 'personal') {
-      this.personalData.map((data, i) => {
-        if (data.personName == '') {
-          this.personalData.splice(i, 1);
-        }
-      });
-      this.newData = {
-        personName: '',
-        nationality: '',
-        idType: '',
-        idNo: '',
-        designation: '',
-        noOfShares: '',
-        perShares: '',
-        authorizationType: '',
-        authorizationLimit: '',
-        note: '',
-        regDate: '',
-        isEdit: true,
-        isMoci: false
-      };
-      this.personalData.push(this.newData);
-    }
+    // if (datatype === 'personal') {
+    //   this.personalData.map((data, i) => {
+    //     if (data.personName == '') {
+    //       this.personalData.splice(i, 1);
+    //     }
+    //   });
+    //   this.newData = {
+    //     personName: '',
+    //     nationality: '',
+    //     idType: '',
+    //     idNo: '',
+    //     designation: '',
+    //     noOfShares: '',
+    //     perShares: '',
+    //     authorizationType: '',
+    //     authorizationLimit: '',
+    //     note: '',
+    //     regDate: '',
+    //     isEdit: true,
+    //     isMoci: false
+    //   };
+    //   this.personalData.push(this.newData);
+    // }
     if (datatype === 'activityInfo') {
       this.activityInfoData.map((data, i) => {
         if (data.activityName == '') {
@@ -785,7 +962,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         }
       });
       this.newData = {
-        id: parseInt(this.activityInfoData[this.activityInfoData.length - 1].id, 10) + 1,
+        activityID: uuid(),
         activityName: '',
         subActivity: '',
         establishmentDate: '',
@@ -807,7 +984,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         }
       });
       this.newData = {
-        no: parseInt(this.communicationData[this.communicationData.length - 1].no, 10) + 1,
+        no: uuid(),
         method: '',
         value: '',
         isEdit: true,
@@ -928,10 +1105,6 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
               d = data;
             }
           });
-          if (data.nameOfWork === ' * ') {
-            data.nameOfWork = '',
-              data.isEdit = true;
-          }
           this.showBtn = true;
         } else {
           // this.showBtn = true;
@@ -998,10 +1171,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
               d = data;
             }
           });
-          if (data.name === ' * ') {
-            data.name = '',
-              data.isEdit = true;
-          }
+          data.isEdit = false;
           this.showBtn = true;
         } else {
           // this.showBtn = true;
@@ -1062,45 +1232,45 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
           // }
         }
       }
-      if (datatype === 'personal') {
-        if (data.personName !== '') {
-          this.personalData.map((d, i) => {
-            if (d.no == data.no) {
-              d = data;
-            }
-          });
-          if (data.personName === ' * ') {
-            data.personName = '',
-              data.isEdit = true;
-          }
-          this.showBtn = true;
-        } else {
-          // this.showBtn = true;
-          // this.personalData.map((data, i) => {
-          //   if (data.personName == '') {
-          //     this.personalData.splice(i, 1);
-          //   }
-          // });
-          data.isEdit = true;
-          this.alertService.pushError('Person Name can not be empty.');
-          // this.showBtn = false;
-          // if (confirm('Do you want to remove new entered data ?')) {
-          //   this.showBtn = true;
-          //   this.personalData.map((data, i) => {
-          //     if (data.personName == '') {
-          //       this.personalData.splice(i, 1);
-          //     }
-          //   });
-          // }
-          // else {
-          //   data.isEdit = true;
-          // }
-        }
-      }
+      // if (datatype === 'personal') {
+      //   if (data.personName !== '') {
+      //     this.personalData.map((d, i) => {
+      //       if (d.no == data.no) {
+      //         d = data;
+      //       }
+      //     });
+      //     if (data.personName === ' * ') {
+      //       data.personName = '',
+      //         data.isEdit = true;
+      //     }
+      //     this.showBtn = true;
+      //   } else {
+      //     // this.showBtn = true;
+      //     // this.personalData.map((data, i) => {
+      //     //   if (data.personName == '') {
+      //     //     this.personalData.splice(i, 1);
+      //     //   }
+      //     // });
+      //     data.isEdit = true;
+      //     this.alertService.pushError('Person Name can not be empty.');
+      //     // this.showBtn = false;
+      //     // if (confirm('Do you want to remove new entered data ?')) {
+      //     //   this.showBtn = true;
+      //     //   this.personalData.map((data, i) => {
+      //     //     if (data.personName == '') {
+      //     //       this.personalData.splice(i, 1);
+      //     //     }
+      //     //   });
+      //     // }
+      //     // else {
+      //     //   data.isEdit = true;
+      //     // }
+      //   }
+      // }
       if (datatype === 'activityInfo') {
         if (data.activityName !== '') {
           this.activityInfoData.map((d, i) => {
-            if (d.id == data.id) {
+            if (d.activityID == data.activityID) {
               d = data;
             }
           });
@@ -1255,16 +1425,16 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         }
       });
     }
-    if (datatype === 'personal') {
-      this.personalData.map((d, i) => {
-        if (d.no == data.no) {
-          this.personalData.splice(i, 1);
-        }
-      });
-    }
+    // if (datatype === 'personal') {
+    //   this.personalData.map((d, i) => {
+    //     if (d.no == data.no) {
+    //       this.personalData.splice(i, 1);
+    //     }
+    //   });
+    // }
     if (datatype === 'activityInfo') {
       this.activityInfoData.map((d, i) => {
-        if (d.id == data.id) {
+        if (d.activityID == data.activityID) {
           this.activityInfoData.splice(i, 1);
         }
       });
@@ -1289,79 +1459,69 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     this.order = !this.order;
     if (this.order === true) {
       if (property === 'employee') {
-        this.employeeData = this.sortByPipe.transform(this.formData.formData.employeeDetailsStep.employeDetails, 'asc', str);
+        this.employeeData = this.sortByPipe.transform(this.employeeData, 'asc', str);
       }
       if (property === 'project') {
-        this.projectData = this.sortByPipe.transform(this.formData.projectDetailsStep.projectDetails, 'asc', str);
+        this.projectData = this.sortByPipe.transform(this.projectData, 'asc', str);
       }
       if (property === 'subcontractor') {
-        this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetailsStep.subContractorDetails, 'asc', str);
+        this.subContractorData = this.sortByPipe.transform(this.subContractorData, 'asc', str);
       }
       if (property === 'equipment') {
-        this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetailsStep.equipmentDetails, 'asc', str);
+        this.equipmentData = this.sortByPipe.transform(this.equipmentData, 'asc', str);
       }
       if (property === 'other') {
-        this.otherData = this.sortByPipe.transform(this.formData.bankDetailStep.otherInfoTab.otherDetails, 'asc', str);
+        this.otherData = this.sortByPipe.transform(this.otherData, 'asc', str);
       }
       if (property === 'activity') {
         // this.activityData = this.sortByPipe.transform(this.formData.generalInfoStep.generalInfoTab.activities, 'asc', str);
         this.activityData = this.sortByPipe.transform(this.activityData, 'asc', str);
-
-        // this.generalInfo$ = this.generalInfo$.pipe(map(res => {
-        //   res.generalInfoTab.generalInfoDetails = this.sortByPipe.transform(res.generalInfoTab.generalInfoDetails, 'asc', str);
-        //   return res;
-        // }));
       }
       if (property === 'personal') {
-        this.personalData = this.sortByPipe.transform(this.formData.personalDetailsStep.personalDetails, 'asc', str);
+        this.personalData = this.sortByPipe.transform(this.personalData, 'asc', str);
       }
       if (property === 'activityInfo') {
-        this.activityInfoData = this.sortByPipe.transform(this.formData.bankDetailStep.activityInfoTab.activityInfo, 'asc', str);
+        this.activityInfoData = this.sortByPipe.transform(this.activityInfoData, 'asc', str);
       }
       if (property === 'branchInfo') {
-        this.compBranchInfoData = this.sortByPipe.transform(this.formData.bankDetailStep.companyInfoTab.compBranchInfo, 'asc', str);
+        this.compBranchInfoData = this.sortByPipe.transform(this.compBranchInfoData, 'asc', str);
       }
       if (property === 'communication') {
-        this.communicationData = this.sortByPipe.transform(this.formData.communicationMethodStep.communicationMethod, 'asc', str);
+        this.communicationData = this.sortByPipe.transform(this.communicationData, 'asc', str);
       }
       // if (property === 'sitevisit') {
       //   this.siteVisitData = this.sortByPipe.transform(this.formData.siteVisit, 'asc', str);
       // }
     } else {
       if (property === 'employee') {
-        this.employeeData = this.sortByPipe.transform(this.formData.formData.employeeDetailsStep.employeDetails, 'desc', str);
+        this.employeeData = this.sortByPipe.transform(this.employeeData, 'desc', str);
       }
       if (property === 'project') {
-        this.projectData = this.sortByPipe.transform(this.formData.projectDetailsStep.projectDetails, 'desc', str);
+        this.projectData = this.sortByPipe.transform(this.projectData, 'desc', str);
       }
       if (property === 'subcontractor') {
-        this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetailsStep.subContractorDetails, 'desc', str);
+        this.subContractorData = this.sortByPipe.transform(this.subContractorData, 'desc', str);
       }
       if (property === 'equipment') {
-        this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetailsStep.equipmentDetails, 'desc', str);
+        this.equipmentData = this.sortByPipe.transform(this.equipmentData, 'desc', str);
       }
       if (property === 'other') {
-        this.otherData = this.sortByPipe.transform(this.formData.bankDetailStep.otherInfoTab.otherDetails, 'desc', str);
+        this.otherData = this.sortByPipe.transform(this.otherData, 'desc', str);
       }
       if (property === 'activity') {
         this.activityData = this.sortByPipe.transform(this.activityData, 'desc', str);
-        // this.generalInfo$ = this.generalInfo$.pipe(map(res => {
-        //   res.generalInfoTab.generalInfoDetails = this.sortByPipe.transform(res.generalInfoTab.generalInfoDetails, 'desc', str);
-        //   console.log('res.generalInfoTab.generalInfoDetails :>> ', res.generalInfoTab.generalInfoDetails);
-        //   return res;
-        // }), tap(res => console.log('res >> ', res)));
       }
       if (property === 'personal') {
-        this.personalData = this.sortByPipe.transform(this.formData.personalDetailsStep.personalDetails, 'desc', str);
+        this.personalData = this.sortByPipe.transform(this.personalData, 'desc', str);
       }
       if (property === 'activityInfo') {
-        this.activityInfoData = this.sortByPipe.transform(this.formData.bankDetailStep.activityInfoTab.activityInfo, 'desc', str);
+        this.activityInfoData = this.sortByPipe.transform(this.activityInfoData, 'desc', str);
       }
       if (property === 'branchInfo') {
-        this.compBranchInfoData = this.sortByPipe.transform(this.formData.bankDetailStep.companyInfoTab.compBranchInfo, 'desc', str);
+        this.compBranchInfoData = this.sortByPipe.transform(this.compBranchInfoData, 'desc', str);
       }
       if (property === 'communication') {
-        this.communicationData = this.sortByPipe.transform(this.formData.communicationMethodStep.communicationMethod, 'desc', str);
+        this.communicationData = this.sortByPipe.transform(this.communicationData, 'desc', str);
       }
       // if (property === 'sitevisit') {
       //   this.siteVisitData = this.sortByPipe.transform(this.formData.siteVisit, 'desc', str);

@@ -47,6 +47,7 @@ export interface PersonalDetailsStep {
 }
 
 export interface PersonalDetails {
+    personId: number;
     personName: string;
     nationality: string;
     idType: string;
@@ -86,7 +87,7 @@ export interface ActivityInfoTab {
     activityInfo: ActivityInfo[];
 }
 export interface ActivityInfo {
-    id: string;
+    activityID: string;
     activityName: string;
     subActivity: string;
     establishmentDate: string;
@@ -96,10 +97,9 @@ export interface ActivityInfo {
     companyGrade: string;
     location: string;
     isEdit: boolean;
-    documents: string[];
+    documents: Documents;
     isMoci: boolean;
 }
-
 export interface BankDetailsTab {
     BankDetails: BankDetails[];
 }
@@ -112,7 +112,6 @@ export interface BankDetails {
     holderName: string;
     isMoci: boolean;
 }
-
 export interface CompanyInfoTab {
     compFinanceInfo: CompFinanceInfo;
     compBranchInfo: CompBranchInfo[];
@@ -130,16 +129,14 @@ export interface CompBranchInfo {
     branchActivityNo: number;
     isMoci: boolean;
 }
-
 export interface OtherInfoTab {
     otherDetails: OtherDetails[];
 }
-
 export interface OtherDetails {
     no: number;
-    name: number;
-    value: number;
-    documents: string[];
+    name: string;
+    value: string;
+    documents: Documents;
     isEdit: boolean;
     isMoci: boolean;
 }
@@ -173,7 +170,7 @@ export interface EmployeDetails {
     crNo: number;
     omaniratio: string;
     isEdit: boolean;
-    documents: string[];
+    documents: Documents;
     isMoci: boolean;
 }
 
@@ -199,7 +196,7 @@ export interface TenderBoardDataTab {
     registeredActivities: string[];
     regDate: string;
     expDate: string;
-    registrationCertificate: string[];
+    registrationCertificate: Documents;
 }
 
 export interface MunicipalityDataTab {
@@ -231,14 +228,14 @@ export interface MofDataTab {
 export interface MohDataTab {
     crNo: number;
     regDate: string;
-    healthAndPharmacyLicenses: string[];
+    healthAndPharmacyLicenses: Documents;
     expDate: string;
     typeOfActivity: string;
 }
 
 export interface MociDataTab {
-    perAndLiceOfConsCom: string[];
-    liceOfTraAndQuaInst: string[];
+    perAndLiceOfConsCom: Documents;
+    liceOfTraAndQuaInst: Documents;
     ageAndTread: string;
     foreignInvestment: string;
     perOfGovOwn: string;
@@ -278,7 +275,7 @@ export interface CapitalMarketData {
 
 export interface CreditBureauData {
     crNo: number;
-    listOfFinanciallyTroubledCompanies: string[]
+    listOfFinanciallyTroubledCompanies: Documents
 }
 
 export interface DistRulesReviewBoardData {
@@ -303,7 +300,7 @@ export interface ProjectDetails {
     value: number;
     period: string;
     completion: number;
-    documents: string[];
+    documents: Documents;
     isEdit: boolean;
     isMoci: boolean;
 }
@@ -343,3 +340,8 @@ export interface EquipmentDetails {
     isMoci: boolean;
 }
 
+// Documents
+export interface Documents {
+    name: string;
+    path: string;
+}
