@@ -67,257 +67,261 @@
         <!-- General Info -->
         <mat-step>
             <ng-template matStepLabel>General Info</ng-template>
-            <div class="row">
-                <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
-                    <i class="fa fa-ban text-red fs-14" mat-raised-button
-                        matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
-                    <p class="fs-14">1567 6578</p>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Arabic Name</h5>
-                    <p class="fs-14 px-4">آر بالا</p>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">English Name</h5>
-                    <p class="fs-14">R Bala</p>
-                </div>
-                <!-- <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Company Info</h5>
-                <p class="fs-14">Company Info</p>
-            </div> -->
-            </div>
-            <div class="row">
-                <div class="col-md-12 col-lg-12 col-xl-12">
-                    <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">
+            <ng-container *ngIf="(generalInfoStep$ | async) as generalInfo">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
                         <i class="fa fa-ban text-red fs-14" mat-raised-button
-                            matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i> Company Info
-                    </h4>
+                            matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
+                        <p class="fs-14">{{ generalInfo.generalInfo.companyInfo }}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Arabic Name</h5>
+                        <p class="fs-14 px-4">آر بالا</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">English Name</h5>
+                        <p class="fs-14">{{ generalInfo.generalInfo.englishName }}</p>
+                    </div>
+                    <!-- <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Company Info</h5>
+                    <p class="fs-14">Company Info</p>
+                </div> -->
                 </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1">Company Name</h5>
-                    <p class="fs-14">Company Name</p>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1">Company C R Number</h5>
-                    <p class="fs-14">1567 6578</p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12 px-4 mb-3 mt-3">
-                    <div class="table-responsive">
-
-                        <input class="fs-16 custom-height-35" [(ngModel)]="searchText" placeholder="Search text">
-
-                        <button class="btn btn-secondary ml-2 float-right mb-2" (click)="open(mymodal)"><i
-                                class="fa fa-plus" aria-hidden="true"></i></button>
-                        <table class="table table-striped ">
-                            <thead>
-                                <tr class="purple-bg text-white">
-                                    <th scope="col"></th>
-                                    <th scope="col">Address Id</th>
-                                    <th scope="col">Address Line 1</th>
-                                    <th scope="col">Address Line 2</th>
-                                    <th scope="col">Language</th>
-                                    <th scope="col">Country</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let data of allAddresses | filter : searchText; index as index">
-                                    <td *ngIf="data.isMoci">
-                                        <i class="fa fa-ban text-red fs-14" mat-raised-button
-                                            matTooltip="Data fetched from interface - not editable"
-                                            aria-hidden="true"></i>
-                                    </td>
-                                    <td *ngIf="!data.isMoci">
-                                        <i class="fa fa-pencil-square-o fs-14" mat-raised-button
-                                            matTooltip="Edit Address" (click)="open(mymodal, data)"
-                                            aria-hidden="true"></i>
-                                    </td>
-                                    <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
-                                        {{data.addressID}}
-                                    </td>
-                                    <td *ngIf="data.isMoci">
-                                        {{data.addressID}}
-                                    </td>
-                                    <!-- <td *ngIf="data.isEdit && !data.isMoci"
-                                    (keyup.enter)="enteredDetails( 'activity',data)">
-                                    <input [(ngModel)]="data.addressID"></td> -->
-                                    <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
-                                        {{data.addressline1}}
-                                    </td>
-                                    <td *ngIf="data.isMoci">
-                                        {{data.addressline1}}
-                                    </td>
-                                    <!-- <td *ngIf="data.isEdit && !data.isMoci"
-                                (keyup.enter)="enteredDetails( 'activity',data)">
-                                <input [(ngModel)]="data.addressLine1"></td> -->
-                                    <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
-                                        {{data.addressline2}}
-                                    </td>
-                                    <td *ngIf="data.isMoci">
-                                        {{data.addressline2}}
-                                    </td>
-                                    <!-- <td *ngIf="data.isEdit && !data.isMoci"
-                                (keyup.enter)="enteredDetails( 'activity',data)">
-                                <input [(ngModel)]="data.addressLine2"></td> -->
-                                    <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
-                                        {{data.language}}
-                                    </td>
-                                    <td *ngIf="data.isMoci">
-                                        {{data.language}}
-                                    </td>
-                                    <!-- <td *ngIf="data.isEdit && !data.isMoci"
-                                (keyup.enter)="enteredDetails( 'activity',data)">
-                                <input [(ngModel)]="data.language"></td> -->
-
-                                    <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
-                                        {{data.country}}
-                                    </td>
-                                    <td *ngIf="data.isMoci">
-                                        {{data.country}}
-                                    </td>
-                                    <!-- <td *ngIf="data.isEdit && !data.isMoci"
-                                (keyup.enter)="enteredDetails( 'activity',data)">
-                                <input [(ngModel)]="data.country"></td> -->
-                                </tr>
-                            </tbody>
-
-                        </table>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xl-12">
+                        <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">
+                            <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i> Company Info
+                        </h4>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1">Company Name</h5>
+                        <p class="fs-14">{{ generalInfo.generalInfo.companyInfo }}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1">Company C R Number</h5>
+                        <p class="fs-14">{{ generalInfo.generalInfo.companyInfo }}</p>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-12 px-4">
-                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                    <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+    
+                <div class="row">
+                    <div class="col-md-12 px-4 mb-3 mt-3">
+                        <div class="table-responsive">
+    
+                            <input class="fs-16 custom-height-35" [(ngModel)]="searchText" placeholder="Search text">
+    
+                            <button class="btn btn-secondary ml-2 float-right mb-2" (click)="open(mymodal)"><i
+                                    class="fa fa-plus" aria-hidden="true"></i></button>
+                            <table class="table table-striped ">
+                                <thead>
+                                    <tr class="purple-bg text-white">
+                                        <th scope="col"></th>
+                                        <th scope="col">Address Id</th>
+                                        <th scope="col">Address Line 1</th>
+                                        <th scope="col">Address Line 2</th>
+                                        <th scope="col">Language</th>
+                                        <th scope="col">Country</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of allAddresses | filter : searchText; index as index">
+                                        <td *ngIf="data.isMoci">
+                                            <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                                matTooltip="Data fetched from interface - not editable"
+                                                aria-hidden="true"></i>
+                                        </td>
+                                        <td *ngIf="!data.isMoci">
+                                            <i class="fa fa-pencil-square-o fs-14" mat-raised-button
+                                                matTooltip="Edit Address" (click)="open(mymodal, data)"
+                                                aria-hidden="true"></i>
+                                        </td>
+                                        <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
+                                            <!-- {{data.addressID}} -->
+                                            {{index + 1}}
+                                        </td>
+                                        <td *ngIf="data.isMoci">
+                                            <!-- {{data.addressID}} -->
+                                            {{ index+1 }}
+                                        </td>
+                                        <!-- <td *ngIf="data.isEdit && !data.isMoci"
+                                        (keyup.enter)="enteredDetails( 'activity',data)">
+                                        <input [(ngModel)]="data.addressID"></td> -->
+                                        <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
+                                            {{data.addressLine1}}
+                                        </td>
+                                        <td *ngIf="data.isMoci">
+                                            {{data.addressLine1}}
+                                        </td>
+                                        <!-- <td *ngIf="data.isEdit && !data.isMoci"
+                                    (keyup.enter)="enteredDetails( 'activity',data)">
+                                    <input [(ngModel)]="data.addressLine1"></td> -->
+                                        <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
+                                            {{data.addressLine2}}
+                                        </td>
+                                        <td *ngIf="data.isMoci">
+                                            {{data.addressLine2}}
+                                        </td>
+                                        <!-- <td *ngIf="data.isEdit && !data.isMoci"
+                                    (keyup.enter)="enteredDetails( 'activity',data)">
+                                    <input [(ngModel)]="data.addressLine2"></td> -->
+                                        <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
+                                            {{data.language}}
+                                        </td>
+                                        <td *ngIf="data.isMoci">
+                                            {{data.language}}
+                                        </td>
+                                        <!-- <td *ngIf="data.isEdit && !data.isMoci"
+                                    (keyup.enter)="enteredDetails( 'activity',data)">
+                                    <input [(ngModel)]="data.language"></td> -->
+    
+                                        <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
+                                            {{data.country}}
+                                        </td>
+                                        <td *ngIf="data.isMoci">
+                                            {{data.country}}
+                                        </td>
+                                        <!-- <td *ngIf="data.isEdit && !data.isMoci"
+                                    (keyup.enter)="enteredDetails( 'activity',data)">
+                                    <input [(ngModel)]="data.country"></td> -->
+                                    </tr>
+                                </tbody>
+    
+                            </table>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <!-- Address Model Pop-Up Form -->
-            <ng-template #mymodal let-modal>
-                <div class="modal-header">
-                    <h4 class="modal-title" id="modal-basic-title">Add Address</h4>
-                    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                        <span aria-hidden="true">×</span>
-                    </button>
+    
+                <div class="row">
+                    <div class="col-md-12 px-4">
+                        <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                        <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                    </div>
                 </div>
-                <form [formGroup]="form" (ngSubmit)="submit() ; modal.close('Save click')">
-                    <div class="modal-body custom-modal-main">
-                        <section class=" bg-white ">
-                            <div>
-                                <div class="row ">
-                                    <div class="col-md-12 ">
-                                        <div class="form-group row mb-3">
-                                            <label for="addressID" class="col-sm-5 col-form-label"> Address
-                                                ID<span class="text-red">*</span></label>
-                                            <div class="col-sm-7">
-                                                <input formControlName="addressID" id="addressID" type="text"
-                                                    class="form-control" readonly>
-                                            </div>
-                                            <div *ngIf="f.addressID.touched && f.addressID.invalid"
-                                                class="alert alert-danger">
-                                                <div *ngIf="f.addressID.errors.required" class="col-sm-7">
-                                                    *required
+    
+                <!-- Address Model Pop-Up Form -->
+                <ng-template #mymodal let-modal>
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modal-basic-title">Add Address</h4>
+                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <form [formGroup]="form" (ngSubmit)="submit() ; modal.close('Save click')">
+                        <div class="modal-body custom-modal-main">
+                            <section class=" bg-white ">
+                                <div>
+                                    <div class="row ">
+                                        <div class="col-md-12 ">
+                                            <div class="form-group row mb-3">
+                                                <label for="addressID" class="col-sm-5 col-form-label"> Address
+                                                    ID<span class="text-red">*</span></label>
+                                                <div class="col-sm-7">
+                                                    <input formControlName="addressID" id="addressID" type="text"
+                                                        class="form-control" readonly>
+                                                </div>
+                                                <div *ngIf="f.addressID.touched && f.addressID.invalid"
+                                                    class="alert alert-danger">
+                                                    <div *ngIf="f.addressID.errors.required" class="col-sm-7">
+                                                        *required
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row mb-3">
-                                            <label for="addressline1" class="col-sm-5 col-form-label">Address
-                                                Line
-                                                1<span class="text-red">*</span></label>
-                                            <div class="col-sm-7">
-                                                <input formControlName="addressline1" id="addressline1" type="text"
-                                                    class="form-control">
-                                            </div>
-                                            <div *ngIf="f.addressline1.touched && f.addressline1.invalid"
-                                                class="alert alert-danger">
-                                                <div *ngIf="f.addressline1.errors.required" class="col-sm-7">
-                                                    *required
+                                            <div class="form-group row mb-3">
+                                                <label for="addressLine1" class="col-sm-5 col-form-label">Address
+                                                    Line
+                                                    1<span class="text-red">*</span></label>
+                                                <div class="col-sm-7">
+                                                    <input formControlName="addressLine1" id="addressLine1" type="text"
+                                                        class="form-control">
+                                                </div>
+                                                <div *ngIf="f.addressLine1.touched && f.addressLine1.invalid"
+                                                    class="alert alert-danger">
+                                                    <div *ngIf="f.addressLine1.errors.required" class="col-sm-7">
+                                                        *required
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row mb-3">
-                                            <label for="addressline2" class="col-sm-5 col-form-label">Address
-                                                Line
-                                                2<span class="text-red">*</span></label>
-                                            <div class="col-sm-7">
-                                                <input formControlName="addressline2" id="addressline2" type="text"
-                                                    class="form-control">
+                                            <div class="form-group row mb-3">
+                                                <label for="addressLine2" class="col-sm-5 col-form-label">Address
+                                                    Line
+                                                    2<span class="text-red">*</span></label>
+                                                <div class="col-sm-7">
+                                                    <input formControlName="addressLine2" id="addressLine2" type="text"
+                                                        class="form-control">
+                                                </div>
+                                                <div *ngIf="f.addressLine2.touched && f.addressLine2.invalid"
+                                                    class="alert alert-danger">
+                                                    <div *ngIf="f.addressLine2.errors.required" class="col-sm-7">
+                                                        *required</div>
+                                                </div>
                                             </div>
-                                            <div *ngIf="f.addressline2.touched && f.addressline2.invalid"
-                                                class="alert alert-danger">
-                                                <div *ngIf="f.addressline2.errors.required" class="col-sm-7">
-                                                    *required</div>
-                                            </div>
-                                        </div>
-                                        <!-- <div class="form-group row mb-3">
-                                        <label for="language" class="col-sm-5 col-form-label">Language
-                                        </label>
-                                        <div class="col-sm-7">
-                                            <input formControlName="language" id="language" type="text"
-                                                class="form-control">
-                                        </div>
-                                        <div *ngIf="f.language.touched && f.language.invalid"
-                                            class="alert alert-danger">
-                                            <div *ngIf="f.language.errors.required" class="col-sm-7">
-                                                *required</div>
-                                        </div>
-                                    </div> -->
-                                        <div class="form-group row mb-3">
-                                            <label for="country" class="col-sm-5 col-form-label">Country<span
-                                                    class="text-red">*</span>
+                                            <!-- <div class="form-group row mb-3">
+                                            <label for="language" class="col-sm-5 col-form-label">Language
                                             </label>
                                             <div class="col-sm-7">
-                                                <input formControlName="country" id="country" type="text"
+                                                <input formControlName="language" id="language" type="text"
                                                     class="form-control">
                                             </div>
-                                            <div *ngIf="f.country.touched && f.country.invalid"
+                                            <div *ngIf="f.language.touched && f.language.invalid"
                                                 class="alert alert-danger">
-                                                <div *ngIf="f.country.errors.required" class="col-sm-7">
-                                                    *required
+                                                <div *ngIf="f.language.errors.required" class="col-sm-7">
+                                                    *required</div>
+                                            </div>
+                                        </div> -->
+                                            <div class="form-group row mb-3">
+                                                <label for="country" class="col-sm-5 col-form-label">Country<span
+                                                        class="text-red">*</span>
+                                                </label>
+                                                <div class="col-sm-7">
+                                                    <input formControlName="country" id="country" type="text"
+                                                        class="form-control">
+                                                </div>
+                                                <div *ngIf="f.country.touched && f.country.invalid"
+                                                    class="alert alert-danger">
+                                                    <div *ngIf="f.country.errors.required" class="col-sm-7">
+                                                        *required
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div class="row mt-5">
-                                            <div class="col-md-12 mb-5 px-4"> </div>
+    
+                                            <div class="row mt-5">
+                                                <div class="col-md-12 mb-5 px-4"> </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </section>
+                            </section>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" type="submit"
+                                [disabled]="this.form.status !== 'VALID'">Submit</button>
+                            <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
+                                (click)="form.reset(); modal.close('Save click')">Cancel</button>
+    
+                        </div>
+                    </form>
+                </ng-template>
+    
+                <div class="row">
+                    <div class="col-md-12 mb-5 px-4">
+                        <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            [disabled]="true"><i class="fa fa-caret-left"></i> Previous</button>
+                        <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext>Next
+                            <i class="fa fa-caret-right"></i></button>
+                        <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                     (click)="move(6)">Finish</button> -->
+                        <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                            Draft</button>
+                        <a href="/#/landing/supplier-registration/dashboard">
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        </a>
                     </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" type="submit"
-                            [disabled]="this.form.status !== 'VALID'">Submit</button>
-                        <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
-                            (click)="form.reset(); modal.close('Save click')">Cancel</button>
-
-                    </div>
-                </form>
-            </ng-template>
-
-            <div class="row">
-                <div class="col-md-12 mb-5 px-4">
-                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        [disabled]="true"><i class="fa fa-caret-left"></i> Previous</button>
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext>Next
-                        <i class="fa fa-caret-right"></i></button>
-                    <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                 (click)="move(6)">Finish</button> -->
-                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
-                        Draft</button>
-                    <a href="/#/landing/supplier-registration/dashboard">
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                    </a>
                 </div>
-            </div>
-
+    
+            </ng-container>
         </mat-step>
         <!-- Personal Details -->
         <mat-step>
@@ -472,47 +476,49 @@
         <!-- Communication Methods -->
         <mat-step>
             <ng-template matStepLabel>Communication Methods</ng-template>
+            <ng-container *ngIf="communicationData">
 
-            <div class="row">
-                <div class="col-md-3 col-lg-3 col-xl-12 px-4 pb-2 ">
-                    <i class="fa fa-ban text-red fs-14" mat-raised-button
-                        matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 col-xl-12 px-4 pb-2 ">
+                        <i class="fa fa-ban text-red fs-14" mat-raised-button
+                            matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Telephone</h5>
+                        <p class="fs-14">{{communicationData.telephone || '-'}}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">P.O. Box</h5>
+                        <p class="fs-14">{{communicationData.poBox || '-'}}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Fax</h5>
+                        <p class="fs-14">{{communicationData.fax || '-'}}</p>
+                    </div>
                 </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Telephone</h5>
-                    <p class="fs-14">{{communicationData.telephone}}</p>
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">legal status</h5>
+                        <p class="fs-14">{{communicationData.legalStatus || '-'}}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">PC</h5>
+                        <p class="fs-14">{{communicationData.pc || '-'}}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email</h5>
+                        <p class="fs-14">{{communicationData.email || '-'}}</p>
+                        <!-- <input type="email" class="fs-14" [(ngModel)]=comunicationData.email> -->
+                    </div>
                 </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">P.O. Box</h5>
-                    <p class="fs-14">{{communicationData.poBox}}</p>
+                <div class="row">
+                    <div class="col-md-12 px-4">
+                        <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                        <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                    </div>
                 </div>
-                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Fax</h5>
-                    <p class="fs-14">{{communicationData.fax}}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">legal status</h5>
-                    <p class="fs-14">{{communicationData.legalStatus}}</p>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">PC</h5>
-                    <p class="fs-14">{{communicationData.pc}}</p>
-                </div>
-                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email</h5>
-                    <p class="fs-14">{{communicationData.email}}</p>
-                    <!-- <input type="email" class="fs-14" [(ngModel)]=comunicationData.email> -->
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12 px-4">
-                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                    <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
-                </div>
-            </div>
 
+            </ng-container>
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" matStepperPrevious><i
@@ -535,51 +541,46 @@
 
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <mat-tab label="Activity Info">
-                    <div class="row mt-3 mb-5">
-                        <!-- <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Establishment date</h5>
-                        <p class="fs-14">{{activityData.regDate}}</p>
-                    </div> -->
-                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
+                    <ng-container *ngIf="activityData">
+                        <div class="row mt-3 mb-5">
+                            <!-- <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Establishment date</h5>
                             <p class="fs-14">{{activityData.regDate}}</p>
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date </h5>
-                            <p class="fs-14">{{activityData.expDate}}</p>
-                        </div>
-                        <div class="col-md-3 col-lg-3 col-xl-2 px-4">
-                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Work Location</h5>
-                            <p class="fs-14">Work Location</p>
-                        </div>
-                        <div class="col-md-3 col-lg-3 px-4 ">
-                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
-                            <div class="landing-menu" (click)="activityMenu2 = !activityMenu2"
-                                (clickOutside)="activityMenu2 = false">
-                                <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
-                                    Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </div> -->
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
+                                <p class="fs-14">{{activityData.regDate}}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date </h5>
+                                <p class="fs-14">{{activityData.expDate}}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Work Location</h5>
+                                <p class="fs-14">{{ activityData.workLocation }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 px-4 ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
+                                <div class="landing-menu" (click)="activityMenu2 = !activityMenu2"
+                                    (clickOutside)="activityMenu2 = false">
+                                    <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
+                                        Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
+                                    </div>
+                                    <ul *ngIf="activityMenu2" class="landing-dropdown w-170">
+                                        <li *ngFor="let activity of activityData['activities']">{{ activity }}</li>
+                                        <!-- <li>Activity name 2</li>
+                                        <li>Activity name 3</li> -->
+                                    </ul>
                                 </div>
-                                <ul *ngIf="activityMenu2" class="landing-dropdown w-170">
-                                    <li>Activity name 1</li>
-                                    <li>Activity name 2</li>
-                                    <li>Activity name 3</li>
-                                </ul>
                             </div>
                         </div>
-                    </div>
-                    <!-- <div class="row">
-                    <div class="col-md-12 px-4 ">
-                        <p class="bg-light border rounded p-2 fs-14 w-120 text-center">Attachments</p>
-                        <p class=" border p-2 fs-14 w-120 rounded sky-blue-bg text-white text-center">Documents (1)
-                        </p>
-                    </div>
-                </div> -->
-                    <div class="row">
-                        <div class="col-md-12 px-4">
-                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                        <div class="row">
+                            <div class="col-md-12 px-4">
+                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                                <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                            </div>
                         </div>
-                    </div>
+                    </ng-container>
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -599,48 +600,57 @@
                     </div>
                 </mat-tab>
                 <mat-tab label="Bank Details">
-                    <div class="row ">
-                        <div class="col-md-12 px-4 ">
-                            <button class="btn btn-secondary ml-2 " (click)="openbank(bankModel)"><i class="fa fa-plus"
-                                    aria-hidden="true"></i></button>
-                        </div>
-                    </div>
-                    <div class="shadow p-3 mb-5" *ngFor="let data of BankDetails">
+                    <ng-container *ngIf="BankDetails">
                         <div class="row ">
-                            <div class="col-md-12 col-lg-12 col-xl-12 px-4 " *ngIf="data.isMoci">
-                                <i class="fa fa-ban text-red fs-14" mat-raised-button
-                                    matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-md-12 col-lg-12 col-xl-12 px-4 " *ngIf="!data.isMoci">
-                                <i class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit Data"
-                                    (click)="openbank(bankModel,data)" aria-hidden="true"></i>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id</h5>
-                                <p class="fs-14">{{data.bankingId}}</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id Name</h5>
-                                <p class="fs-14">{{data.bankingIdname}}</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Account</h5>
-                                <p class="fs-14">{{data.bankAcc}}</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Name</h5>
-                                <p class="fs-14">{{data.bankName}}</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Branch</h5>
-                                <p class="fs-14">{{data.bankBranch}}</p>
-                            </div>
-                            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account Holder Name</h5>
-                                <p class="fs-14">{{data.holderName}}</p>
+                            <div class="col-md-12 px-4 ">
+                                <button class="btn btn-secondary ml-2 " (click)="openbank(bankModel)"><i class="fa fa-plus"
+                                        aria-hidden="true"></i></button>
                             </div>
                         </div>
-                    </div>
+                        <div class="shadow p-3 mb-5" *ngFor="let data of BankDetails">
+                            <div class="row ">
+                                <div class="col-md-12 col-lg-12 col-xl-12 px-4 " *ngIf="data.isMoci">
+                                    <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                        matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-md-12 col-lg-12 col-xl-12 px-4 " *ngIf="!data.isMoci">
+                                    <i class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit Data"
+                                        (click)="openbank(bankModel,data)" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id</h5>
+                                    <p class="fs-14">{{data.bankingId}}</p>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id Name</h5>
+                                    <p class="fs-14">{{data.bankingIdname}}</p>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Account</h5>
+                                    <p class="fs-14">{{data.bankAcc}}</p>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Name</h5>
+                                    <p class="fs-14">{{data.bankName}}</p>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Branch</h5>
+                                    <p class="fs-14">{{data.bankBranch}}</p>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account Holder Name</h5>
+                                    <p class="fs-14">{{data.holderName}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 px-4">
+                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                                <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                            </div>
+                        </div>
+
+                    </ng-container>
                     <!-- add/edit bank pop-up -->
                     <ng-template #bankModel let-modal>
                         <div class="modal-header">
@@ -761,12 +771,7 @@
                             </div>
                         </form>
                     </ng-template>
-                    <div class="row">
-                        <div class="col-md-12 px-4">
-                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
-                        </div>
-                    </div>
+                   
 
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
@@ -787,56 +792,58 @@
                     </div>
                 </mat-tab>
                 <mat-tab label="Other Info">
-                    <div class="row">
-                        <div class="col-md-12 px-4 mb-3 mt-3">
-                            <div class="table-responsive">
-                                <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
-                                <!-- <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('other')"><i
-                                    class="fa fa-plus" aria-hidden="true"></i></button> -->
-                                <table class="table table-striped mb-0 ">
-                                    <thead>
-                                        <tr class="purple-bg text-white">
-                                            <th scope="col">
-                                                <div class="d-flex"> <span> <a class=" text-white fs-14"><i
-                                                                class="fa fa-check"></i></a> </span> <span
-                                                        class="ml-3 pl-1 "> <a class=" text-white fs-14"> <i
-                                                                class="fa fa-ellipsis-v "></i>
-                                                        </a> </span> </div>
-                                            </th>
-                                            <th scope="col" (click)="sorting('other','no')">No. <i class="fa fa-sort"
-                                                    aria-hidden="true"></i></th>
-                                            <th scope="col" (click)="sorting('other','name')">Label <i
-                                                    class="fa fa-sort" aria-hidden="true"></i></th>
-                                            <th scope="col">Value </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let data of otherData | filter : searchText; index as index">
-                                            <!--  (clickOutside)="enteredDetails( 'other',data)" -->
-                                            <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckDefault-1">
-                                                    <span class="ml-2"> <a class=" text-blaack fs-14"><i
-                                                                class="fa fa-ellipsis-v  "></i> </a></span> </div>
-                                            </td>
-                                            <td>{{data.no}}</td>
-                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.name}}
-                                            </td>
-                                            <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)"><input
-                                                    [(ngModel)]="data.name"></td>
-                                            <td><a><input type="text" id="input" name="input"></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                    <ng-container *ngIf="otherData">
+                        <div class="row">
+                            <div class="col-md-12 px-4 mb-3 mt-3">
+                                <div class="table-responsive">
+                                    <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
+                                    <!-- <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('other')"><i
+                                        class="fa fa-plus" aria-hidden="true"></i></button> -->
+                                    <table class="table table-striped mb-0 ">
+                                        <thead>
+                                            <tr class="purple-bg text-white">
+                                                <th scope="col">
+                                                    <div class="d-flex"> <span> <a class=" text-white fs-14"><i
+                                                                    class="fa fa-check"></i></a> </span> <span
+                                                            class="ml-3 pl-1 "> <a class=" text-white fs-14"> <i
+                                                                    class="fa fa-ellipsis-v "></i>
+                                                            </a> </span> </div>
+                                                </th>
+                                                <th scope="col" (click)="sorting('other','no')">No. <i class="fa fa-sort"
+                                                        aria-hidden="true"></i></th>
+                                                <th scope="col" (click)="sorting('other','name')">Label <i
+                                                        class="fa fa-sort" aria-hidden="true"></i></th>
+                                                <th scope="col">Value </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let data of otherData | filter : searchText; index as index">
+                                                <!--  (clickOutside)="enteredDetails( 'other',data)" -->
+                                                <td>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="checkbox" value=""
+                                                            id="flexCheckDefault-1">
+                                                        <span class="ml-2"> <a class=" text-blaack fs-14"><i
+                                                                    class="fa fa-ellipsis-v  "></i> </a></span> </div>
+                                                </td>
+                                                <td>{{data.no}}</td>
+                                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.name}}
+                                                </td>
+                                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)"><input
+                                                        [(ngModel)]="data.name"></td>
+                                                <td><a><input type="text" id="input" name="input"></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-12 px-4">
+                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                                <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                             </div>
                         </div>
-                        <div class="col-md-12 px-4">
-                            <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
-                            <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
-                        </div>
-                    </div>
+                    </ng-container>
 
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">

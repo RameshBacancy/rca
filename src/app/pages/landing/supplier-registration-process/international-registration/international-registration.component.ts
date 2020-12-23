@@ -1,5 +1,8 @@
+import { SupplierInternationalRegisterService } from './../../../../services/supplier-international-register.service';
+import { takeUntil } from 'rxjs/operators';
+import { GeneralInfoStepInd, AddressInd, CommunicationDetailsStep } from './../../../../models/supplier.modal';
 import { OtherInfo } from './../../../../models/tender.model';
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, OnDestroy } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -10,13 +13,18 @@ import { FilterPipe } from 'src/app/pipe/searchEmployee.pipe';
 import { AlertService } from 'src/app/services/alert.service';
 import { UserService } from 'src/app/services/user.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
+import { SupplierIndividualRegisterService } from 'src/app/services/supplier-individual-register.service';
+import { Observable, Subject } from 'rxjs';
+import * as uuid from 'uuid/v4';
+
+
 
 @Component({
   selector: 'app-international-registration',
   templateUrl: './international-registration.component.html',
   styleUrls: ['./international-registration.component.scss']
 })
-export class InternationalRegistrationComponent implements OnInit {
+export class InternationalRegistrationComponent implements OnInit, OnDestroy {
 
   @ViewChild('stepper') private stepper: MatStepper;
   formData: any;
@@ -31,8 +39,8 @@ export class InternationalRegistrationComponent implements OnInit {
 
   form: FormGroup = new FormGroup({
     addressID: new FormControl('', [Validators.required]),
-    addressline1: new FormControl('', [Validators.required]),
-    addressline2: new FormControl('', [Validators.required]),
+    addressLine1: new FormControl('', [Validators.required]),
+    addressLine2: new FormControl('', [Validators.required]),
     // language: new FormControl('English', [Validators.required]),
     country: new FormControl('Oman', [Validators.required]),
     isMoci: new FormControl(false)
@@ -51,7 +59,7 @@ export class InternationalRegistrationComponent implements OnInit {
   staffData: any[];
   staffSearch: string;
   newData: any;
-  communicationData: any[];
+  communicationData: CommunicationDetailsStep;
   subContractorData: any[];
   equipmentData: any[];
   otherData: any[];
@@ -67,12 +75,15 @@ export class InternationalRegistrationComponent implements OnInit {
   selectedAddress: any;
   activityMenu: boolean;
   editAddress = false;
-  allAddresses: any;
+  allAddresses: AddressInd[];
   editBank: boolean;
   editbankData: any;
 
   selected = new FormControl(0);
   showBtn: boolean;
+
+  destroy$: Subject<boolean> = new Subject();
+  generalInfoStep$: Observable<GeneralInfoStepInd>;
 
 
   constructor(
@@ -84,7 +95,8 @@ export class InternationalRegistrationComponent implements OnInit {
     private sortByPipe: SortByPipe,
     private searchPipe: FilterPipe,
     private spinner: SpinnerService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private internationalService: SupplierInternationalRegisterService
   ) { }
 
   loadData(data) {
@@ -95,23 +107,85 @@ export class InternationalRegistrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadFormData();
     this.showBtn = true;
     this.formData = this.supplierData.getdata();
-    this.selectedAddress = this.formData.generalInfoStep.generalInfo.address[0];
-    this.allAddresses = this.formData.generalInfoStep.generalInfo.address;
-    this.internationalAddress = this.formData.generalInfoStep.generalInfo.address[0];
-    this.personalData = this.formData.personalDetailsStep.personalDetails;
-    this.staffData = this.formData.employeeDetailsStep.employeeDetails;
-    this.communicationData = this.formData.communicationDetailsStep;
+    // this.selectedAddress = this.formData.generalInfoStep.generalInfo.address[0];
+    // this.allAddresses = this.formData.generalInfoStep.generalInfo.address;
+    // this.internationalAddress = this.formData.generalInfoStep.generalInfo.address[0];
+    // this.personalData = this.formData.personalDetailsStep.personalDetails;
+    // this.staffData = this.formData.employeeDetailsStep.employeeDetails;
+    // this.communicationData = this.formData.communicationDetailsStep;
     // this.subContractorData = this.formData.subContractorDetailsStep.subContractorDetails;
     // this.equipmentData = this.formData.equipmentDetailsStep.equipmentDetails;
 
-    this.BankDetails = this.formData.commercialInfoStep.bankInfoTab.bankDetails;
-    this.otherData = this.formData.commercialInfoStep.otherInfoTab.otherInfo;
-    this.activityData = this.formData.commercialInfoStep.activityInfoTab.activities;
-    this.activityDetail = this.formData.commercialInfoStep.activityInfoTab;
+    // this.BankDetails = this.formData.commercialInfoStep.bankInfoTab.bankDetails;
+    // this.otherData = this.formData.commercialInfoStep.otherInfoTab.otherInfo;
+    // this.activityData = this.formData.commercialInfoStep.activityInfoTab.activities;
+    // this.activityDetail = this.formData.commercialInfoStep.activityInfoTab;
     // this.loadData(this.formData.individualAddress[0]); 
   }
+
+  ngOnDestroy() {
+    this.destroy$.next(true);
+    this.destroy$.complete();
+  }
+
+  loadFormData(): void {
+    this.generalInfoStep$ = this.internationalService.getGeneralInfoStep();
+    this.generalInfoStep$.pipe(takeUntil(this.destroy$))
+      .subscribe(res => {
+        this.selectedAddress = res.generalInfo.address[0];
+        this.allAddresses = res.generalInfo.address;
+
+        if (!this.allAddresses[0]) {
+          this.selectedAddress = this.formData.generalInfoStep.generalInfo.address[0];
+          this.allAddresses = this.formData.generalInfoStep.generalInfo.address;
+        }
+      });
+    this.internationalService.getPersonalInfoStep().pipe(takeUntil(this.destroy$)).
+      subscribe(res => {
+        this.personalData = res.personalDetails;
+
+        if (!this.personalData[0]) {
+          this.personalData = this.formData.personalDetailsStep.personalDetails;
+        }
+      });
+
+    this.internationalService.getCommunicationInfoStep().pipe(takeUntil(this.destroy$)).
+      subscribe(res => {
+        this.communicationData = res;
+      });
+
+    this.internationalService.getEmployeeInfoStep().pipe(takeUntil(this.destroy$)).
+      subscribe(res => {
+        this.staffData = res;
+
+        if (!this.staffData[0]) {
+          this.staffData = this.formData.employeeDetailsStep.employeeDetails;
+        }
+      });
+
+    this.internationalService.getCommercialInfoStep().pipe(takeUntil(this.destroy$)).
+      subscribe(res => {
+        console.log('res :>> ', res);
+        this.activityDetail = res.activityInfoTab;
+        this.activityData = this.activityDetail.activities;
+        this.BankDetails = res.bankInfoTab.bankDetails;
+        this.otherData = res.otherInfoTab.otherInfo;
+
+        if (!this.activityData) {
+          this.activityData = this.formData.commercialInfoStep.activityInfoTab.activities;
+        }
+        if (!this.BankDetails) {
+          this.BankDetails = this.formData.commercialInfoStep.bankInfoTab.bankDetails;
+        }
+        if (!this.otherData[0]) {
+          this.otherData = this.formData.commercialInfoStep.otherInfoTab.otherInfo;
+        }
+      });
+  }
+
 
   get f() {
     return this.form.controls;
@@ -146,7 +220,7 @@ export class InternationalRegistrationComponent implements OnInit {
       }
     } else {
       this.form.reset();
-      this.form.patchValue({ addressID: this.formData.generalInfoStep.generalInfo.address.length + 1, country: 'Oman' });
+      this.form.patchValue({ addressID: uuid(), country: 'Oman' });
     }
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -172,16 +246,16 @@ export class InternationalRegistrationComponent implements OnInit {
   submit() {
     if (this.form.status === 'VALID') {
       if (this.editAddress == true) {
-        this.formData.generalInfoStep.generalInfo.address.filter((d, i) => {
+        this.allAddresses.filter((d, i) => {
           if (d.addressID == this.selectedAddress.addressID) {
             this.selectedAddress = this.form.value;
-            this.formData.generalInfoStep.generalInfo.address.splice(i, 1, this.form.value);
+            this.allAddresses.splice(i, 1, this.form.value);
           }
         });
         this.editAddress = false;
         this.form.reset();
       } else {
-        this.formData.generalInfoStep.generalInfo.address.push(this.form.value);
+        this.allAddresses.push(this.form.value);
       }
       this.form.reset();
     }
@@ -281,20 +355,20 @@ export class InternationalRegistrationComponent implements OnInit {
       };
       this.staffData.push(this.newData);
     }
-    if (datatype === 'communication') {
-      this.communicationData.map((data, i) => {
-        if (data.method == '') {
-          this.communicationData.splice(i, 1);
-        }
-      });
-      this.newData = {
-        no: this.communicationData.length + 1,
-        method: ' * ',
-        value: ' ',
-        isEdit: true
-      };
-      this.communicationData.push(this.newData);
-    }
+    // if (datatype === 'communication') {
+    //   this.communicationData.map((data, i) => {
+    //     if (data.method == '') {
+    //       this.communicationData.splice(i, 1);
+    //     }
+    //   });
+    //   this.newData = {
+    //     no: this.communicationData.length + 1,
+    //     method: ' * ',
+    //     value: ' ',
+    //     isEdit: true
+    //   };
+    //   this.communicationData.push(this.newData);
+    // }
     if (datatype === 'subContractor') {
       this.subContractorData.map((data, i) => {
         if (data.nameOfWork == '') {
@@ -413,29 +487,29 @@ export class InternationalRegistrationComponent implements OnInit {
         this.alertService.pushError('Name can not be empty.');
       }
     }
-    if (datatype === 'communication') {
+    // if (datatype === 'communication') {
 
-      if (data.method !== '') {
-        this.communicationData.map((d, i) => {
-          if (d.no == data.no) {
-            d = data;
-          }
-        });
-        if (data.method === ' * ') {
-          data.method = '',
-            data.isEdit = true;
-        }
-        this.showBtn = true;
-      } else {
-        // this.communicationData.map((data, i) => {
-        //   if (data.method == '') {
-        //     this.communicationData.splice(i, 1);
-        //   }
-        // });
-        data.isEdit = true;
-        this.alertService.pushError('Communication Method can not be empty.');
-      }
-    }
+    // if (data.method !== '') {
+    //   this.communicationData.map((d, i) => {
+    //     if (d.no == data.no) {
+    //       d = data;
+    //     }
+    //   });
+    //   if (data.method === ' * ') {
+    //     data.method = '',
+    //       data.isEdit = true;
+    //   }
+    //   this.showBtn = true;
+    // } else {
+    // this.communicationData.map((data, i) => {
+    //   if (data.method == '') {
+    //     this.communicationData.splice(i, 1);
+    //   }
+    // });
+    //   data.isEdit = true;
+    //   this.alertService.pushError('Communication Method can not be empty.');
+    // }
+    // }
     if (datatype === 'subContractor') {
       if (data.nameOfWork !== '') {
         this.subContractorData.map((d, i) => {
@@ -559,13 +633,13 @@ export class InternationalRegistrationComponent implements OnInit {
         }
       });
     }
-    if (datatype === 'communication') {
-      this.communicationData.map((d, i) => {
-        if (d.no == data.no) {
-          this.communicationData.splice(i, 1);
-        }
-      });
-    }
+    // if (datatype === 'communication') {
+    //   this.communicationData.map((d, i) => {
+    //     if (d.no == data.no) {
+    //       this.communicationData.splice(i, 1);
+    //     }
+    //   });
+    // }
     if (datatype === 'subContractor') {
       this.subContractorData.map((d, i) => {
         if (d.no == data.no) {
@@ -608,11 +682,11 @@ export class InternationalRegistrationComponent implements OnInit {
     this.order = !this.order;
     if (this.order === true) {
       if (property === 'staff') {
-        this.staffData = this.sortByPipe.transform(this.formData.employeeDetailsStep.employeeDetails, 'asc', str);
+        this.staffData = this.sortByPipe.transform(this.staffData, 'asc', str);
       }
-      if (property === 'communication') {
-        this.communicationData = this.sortByPipe.transform(this.formData.communicationDetailsStep, 'asc', str);
-      }
+      // if (property === 'communication') {
+      //   this.communicationData = this.sortByPipe.transform(this.formData.communicationDetailsStep, 'asc', str);
+      // }
       // if (property === 'subcontractor') {
       //   this.subContractorData = this.sortByPipe.transform(this.formData.subContractorDetailsStep.subContractorDetails, 'asc', str);
       // }
@@ -620,17 +694,17 @@ export class InternationalRegistrationComponent implements OnInit {
       //   this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetailsStep.equipmentDetails, 'asc', str);
       // }
       if (property === 'other') {
-        this.otherData = this.sortByPipe.transform(this.formData.ormData.commercialInfoStep.otherInfoTab.OtherInfo, 'asc', str);
+        this.otherData = this.sortByPipe.transform(this.otherData, 'asc', str);
       }
       if (property === 'activity') {
-        this.activityData = this.sortByPipe.transform(this.formData.commercialInfoStep.activityInfoTab.activities, 'asc', str);
+        this.activityData = this.sortByPipe.transform(this.activityData, 'asc', str);
       }
       if (property === 'personal') {
-        this.personalData = this.sortByPipe.transform(this.formData.personalDetails, 'asc', str);
+        this.personalData = this.sortByPipe.transform(this.personalData, 'asc', str);
       }
     } else {
       if (property === 'staff') {
-        this.staffData = this.sortByPipe.transform(this.formData.employeeDetailsStep.employeeDetails, 'desc', str);
+        this.staffData = this.sortByPipe.transform(this.staffData, 'desc', str);
       }
       // if (property === 'communication') {
       //   this.communicationData = this.sortByPipe.transform(this.formData.communicationDetailsStep, 'desc', str);
@@ -642,13 +716,13 @@ export class InternationalRegistrationComponent implements OnInit {
       //   this.equipmentData = this.sortByPipe.transform(this.formData.equipmentDetailsStep.equipmentDetails, 'desc', str);
       // }
       if (property === 'other') {
-        this.otherData = this.sortByPipe.transform(this.formData.ormData.commercialInfoStep.otherInfoTab.OtherInfo, 'desc', str);
+        this.otherData = this.sortByPipe.transform(this.otherData, 'desc', str);
       }
       if (property === 'activity') {
-        this.activityData = this.sortByPipe.transform(this.formData.commercialInfoStep.activityInfoTab.activities, 'desc', str);
+        this.activityData = this.sortByPipe.transform(this.activityData, 'desc', str);
       }
       if (property === 'personal') {
-        this.personalData = this.sortByPipe.transform(this.formData.personalDetails, 'desc', str);
+        this.personalData = this.sortByPipe.transform(this.personalData, 'desc', str);
       }
     }
   }
