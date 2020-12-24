@@ -83,4 +83,11 @@ export class SupplierRegistrationService {
     return this.reqHttp.httpGet('get-equipment-data')
       .pipe(map(res => res.data.equipmentDetailsStep), shareReplay());
   }
+
+
+  storeLocalData(data: any) {
+    this.reqHttp.httpPost('local-register-draft', data).subscribe(res => {
+      console.log('res :>> ', res);
+    });
+  }
 }

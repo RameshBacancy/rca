@@ -38,6 +38,7 @@ export interface Address {
     country: string;
     isEdit: boolean;
     isMoci: boolean;
+    isUpdate?: boolean;
 }
 
 

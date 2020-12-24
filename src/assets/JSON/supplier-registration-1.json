@@ -63,6 +63,15 @@
                         "country": "Oman",
                         "isEdit": false,
                         "isMoci": true
+                    },
+                    {
+                        "addressID": "3",
+                        "addressLine1": "12-N,",
+                        "addressLine2": "Suite 6012",
+                        "language": "English",
+                        "country": "Oman",
+                        "isEdit": false,
+                        "isMoci": false
                     }
                 ],
                 "detailsRemark": "Details Not Applicable"

@@ -62,13 +62,15 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
   editDirectorDetails = false;
   editGeneralManagerDetails = false;
 
+  // address form
   form: FormGroup = new FormGroup({
     addressID: new FormControl('', [Validators.required]),
     addressLine1: new FormControl('', [Validators.required]),
     addressLine2: new FormControl('', [Validators.required]),
     // language: new FormControl(''),
     country: new FormControl('', [Validators.required]),
-    isMoci: new FormControl(false)
+    isMoci: new FormControl(false),
+    isUpdate: new FormControl()
   });
   bankform: FormGroup = new FormGroup({
     bankingId: new FormControl('', [Validators.required]),
@@ -732,7 +734,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       }
     } else {
       this.form.reset();
-      this.form.patchValue({ addressID: uuid(), country: 'Oman' });
+      this.form.patchValue({ addressID: uuid(), country: 'Oman', isUpdate: false });
     }
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -774,21 +776,26 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
 
   saveDraft() {
 
+    const data: any = {};
 
+    if (this.generalActivityDraft.length > 0) {
+      data.generalInfoStep = { activities: this.generalActivityDraft };
+    }
 
-    // this.localRegisterDraft = {
-    //   "supplierType": localStorage.getItem('regType'),
-    //   "status": "Draft",
-    //   "supplierId": localStorage.getItem('civilReg'),
-    //   "setTimeFlag": false,
-    //   "stepper": "General Info",
-    //   data: {
+    if (this.generalAddressDraft.length > 0) {
+      data.generalInfoStep = { ...data.generalInfoStep, address: this.generalAddressDraft };
+    }
+    this.localRegisterDraft = {
+      "supplierType": localStorage.getItem('regType'),
+      "status": "Draft",
+      "supplierId": localStorage.getItem('civilReg'),
+      "setTimeFlag": false,
+      "stepper": "General Info",
+      data
+    };
 
-    //   }
-    // }
+    this.supplierService.storeLocalData(this.localRegisterDraft);
 
-
-    // debugger;
 
     localStorage.setItem('RegStatus', 'draft');
     this.spinner.openSpinner();
@@ -798,6 +805,16 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     this.router.navigate(['/landing/supplier-registration/dashboard']);
   }
 
+  // private removeIsUpdate(arr: any[]): any {
+  //   return arr.map((data: any) => {
+  //     if (data.hasOwnProperty('isUpdate')) {
+  //       delete data.isUpdate;
+  //     }
+  //     return data;
+  //   });
+  // }
+
+  // submit address 
   submit() {
     if (this.form.status === 'VALID') {
       if (this.editAddress == true) {
@@ -810,8 +827,21 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         this.editAddress = false;
         this.form.reset();
       } else {
+        this.selectedAddress = this.form.value;
         this.allAddresses.push(this.form.value);
       }
+      if (this.selectedAddress.isUpdate === null) {
+        this.selectedAddress['isUpdate'] = true;
+      }
+      if (this.generalAddressDraft.length === 0) {
+        this.generalAddressDraft.push({ ...this.selectedAddress });
+      } else {
+        const index = this.generalAddressDraft.findIndex(address => address.addressID === this.selectedAddress.addressID);
+        index === -1 ?
+          this.generalAddressDraft.push({ ...this.selectedAddress }) :
+          this.generalAddressDraft[index] = { ...this.selectedAddress };
+      }
+
       this.form.reset();
     }
   }
@@ -1257,19 +1287,15 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
             if (d.activityID == data.activityID) {
               d = data;
 
-              // console.log('draftData.hasOwnPropert :>> ', draftData.hasOwnProperty('isUpdate'));
               if (!d.hasOwnProperty('isUpdate')) {
                 d['isUpdate'] = true;
               }
-
               if (this.generalActivityDraft.length === 0) {
                 this.generalActivityDraft.push({ ...d });
               } else {
                 const index = this.generalActivityDraft.findIndex(activity => activity.activityID === d.activityID);
                 index === -1 ? this.generalActivityDraft.push({ ...d }) : this.generalActivityDraft[index] = { ...d };
               }
-              console.log('this. :>> ', this.generalActivityDraft);
-
             }
           });
           this.showBtn = true;
