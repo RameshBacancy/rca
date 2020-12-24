@@ -26,7 +26,7 @@ export class UserService {
         private alertService: AlertService,
         private spinner: SpinnerService,
         private reqHttp: RequestServiceBase
-        ) { }
+    ) { }
 
     createAcceptHeader() {
         let headers = new Headers();
@@ -37,12 +37,12 @@ export class UserService {
         sessionStorage.setItem('authToken', token);
     }
 
-    registrationLogin(num , str, type) {
+    registrationLogin(num, str, type) {
         if (type === 'local') {
             localStorage.setItem('regType', 'local');
         }
         if (type === 'individual') {
-        localStorage.setItem('regType', 'individual');
+            localStorage.setItem('regType', 'individual');
         }
         localStorage.setItem('foreign', 'false');
         if (str === 'civil') {
@@ -74,26 +74,29 @@ export class UserService {
         this.reqHttp.httpPost('supplier-register', body).subscribe(d => {
             localStorage.setItem('RegStatus', d.data.register_status);
             localStorage.setItem('arStatus', d.data.status);
+            localStorage.setItem('setDraftTime', d.data.setDraftTime);
+            localStorage.setItem('stepper', d.data.stepper);
+            localStorage.setItem('supplierId', d.data.id);
             this.setToken(d.data.authToken);
             this.spinner.closeSpinner();
             this.router.navigate(['/landing/supplier-registration/dashboard']);
-          },
-          (error) => this.handleError(error)
+        },
+            (error) => this.handleError(error)
         );
     }
 
     login(email, password) {
         localStorage.setItem('supplierLogin', 'false');
-        this.reqHttp.httpPost( 'login', { email: email, password: password }).subscribe(
+        this.reqHttp.httpPost('login', { email: email, password: password }).subscribe(
             (response) => {
                 this.setToken(response.data.token);
                 window.localStorage.setItem('LoginToken', '' + Math.random());
                 this.router.navigateByUrl('/admin/dashboard');
                 this.alertService.pushSuccess('Login Successfully!');
                 this.spinner.closeSpinner();
-              },
-              (error) => this.handleError(error)
-            );
+            },
+            (error) => this.handleError(error)
+        );
 
     }
 
@@ -101,9 +104,9 @@ export class UserService {
         this.reqHttp.httpPost('forgot-password', { email: email }).subscribe(d => {
             this.alertService.pushSuccess('We sent you an email to reset your password.');
             this.spinner.closeSpinner();
-          },
-          (error) => this.handleError(error)
-          );
+        },
+            (error) => this.handleError(error)
+        );
     }
 
     resetPassword(body) {
@@ -115,7 +118,7 @@ export class UserService {
                 this.spinner.closeSpinner();
             },
             (error) => this.handleError(error)
-          );
+        );
     }
 
     logout() {
@@ -125,15 +128,15 @@ export class UserService {
     changePassword(oldPassword, newPassword, confirmPassword) {
         this.reqHttp.httpPost('change-password',
             { old_password: oldPassword, new_password: newPassword, confirm_password: confirmPassword })
-                .subscribe(
-                    (response) => {
-                        this.alertService.pushSuccess(response.message);
-                        this.setToken(response.data.token);
-                        this.router.navigateByUrl('/admin/user/login');
-                        this.spinner.closeSpinner();
-                    },
-                    (error) => this.handleError(error)
-                );
+            .subscribe(
+                (response) => {
+                    this.alertService.pushSuccess(response.message);
+                    this.setToken(response.data.token);
+                    this.router.navigateByUrl('/admin/user/login');
+                    this.spinner.closeSpinner();
+                },
+                (error) => this.handleError(error)
+            );
     }
 
     getrequests() {
@@ -143,10 +146,10 @@ export class UserService {
     approveReject(id, status) {
         this.reqHttp.httpPost('status-change', { id: id, status: status }).subscribe(d => {
             this.spinner.closeSpinner();
-          });
+        });
         return this.http.post<any>(this.url + 'status-change', { id: id, status: status });
     }
-    
+
     handleError(error) {
         const err = error.error.message || error.message
         console.log(err);

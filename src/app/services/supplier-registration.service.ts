@@ -85,9 +85,7 @@ export class SupplierRegistrationService {
   }
 
 
-  storeLocalData(data: any) {
-    this.reqHttp.httpPost('local-register-draft', data).subscribe(res => {
-      console.log('res :>> ', res);
-    });
+  storeLocalData(dataObj: any): Observable<any> {
+    return this.reqHttp.httpPost('local-register-draft', dataObj);
   }
 }

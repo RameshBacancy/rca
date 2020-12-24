@@ -241,7 +241,7 @@
                                 [disabled]='!showBtn' (click)="changeTab()">Next <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="saveDraft()">Save as
+                                (click)="saveDraft(0)">Save as
                                 Draft</button>
                             <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -415,7 +415,7 @@
                                 (click)="newStep()" [disabled]='!showBtn' matStepperNext>Next <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="saveDraft()">Save as
+                                (click)="saveDraft(0)">Save as
                                 Draft</button>
                             <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -695,7 +695,7 @@
                             [disabled]='!showBtn' matStepperNext>Next
                             <i class="fa fa-caret-right"></i></button>
                         <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                            (click)="saveDraft()">Save
+                            (click)="saveDraft(1)">Save
                             as
                             Draft</button>
                         <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
@@ -797,7 +797,7 @@
                         [disabled]='!showBtn' matStepperNext>Next
                         <i class="fa fa-caret-right"></i></button>
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                        (click)="saveDraft()">Save
+                        (click)="saveDraft(2)">Save
                         as
                         Draft</button>
                     <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
@@ -960,7 +960,7 @@
                                 [disabled]='!showBtn' (click)="changeTab()">Next <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="saveDraft()">Save as
+                                (click)="saveDraft(3)">Save as
                                 Draft</button>
                             <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -1040,7 +1040,7 @@
                                 [disabled]='!showBtn' (click)="changeTab()">Next <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="saveDraft()">Save as
+                                (click)="saveDraft(3)">Save as
                                 Draft</button>
                             <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -1275,7 +1275,7 @@
                                 [disabled]='!showBtn' (click)="changeTab()">Next <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="saveDraft()">Save as
+                                (click)="saveDraft(3)">Save as
                                 Draft</button>
                             <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -1379,7 +1379,7 @@
                                 (click)="newStep()" [disabled]='!showBtn' matStepperNext>Next <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="saveDraft()">Save as
+                                (click)="saveDraft(3)">Save as
                                 Draft</button>
                             <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -1677,7 +1677,7 @@
                         [disabled]='!showBtn' matStepperNext>Next
                         <i class="fa fa-caret-right"></i></button>
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                        (click)="saveDraft()">Save
+                        (click)="saveDraft(4)">Save
                         as
                         Draft</button>
                     <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
@@ -1749,7 +1749,7 @@
                                 [disabled]='!showBtn' (click)="changeTab()">Next <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="saveDraft()">Save as
+                                (click)="saveDraft(5)">Save as
                                 Draft</button>
                             <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -1849,7 +1849,7 @@
                                 [disabled]='!showBtn' (click)="changeTab()">Next <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="saveDraft()">Save as
+                                (click)="saveDraft(5)">Save as
                                 Draft</button>
                             <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -1940,7 +1940,7 @@
                                 (click)="newStep()" [disabled]='!showBtn' matStepperNext>Next <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="saveDraft()">Save as
+                                (click)="saveDraft(5)">Save as
                                 Draft</button>
                             <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -2037,7 +2037,7 @@
                                 [disabled]='!showBtn' (click)="changeTab()">Next <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="saveDraft()">Save as
+                                (click)="saveDraft(6)">Save as
                                 Draft</button>
                             <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -2110,7 +2110,7 @@
                                 [disabled]='!showBtn' (click)="changeTab()">Next <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="saveDraft()">Save as
+                                (click)="saveDraft(6)">Save as
                                 Draft</button>
                             <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -2203,7 +2203,7 @@
                                 [disabled]='!showBtn' (click)="changeTab()">Next <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="saveDraft()">Save as
+                                (click)="saveDraft(6)">Save as
                                 Draft</button>
                             <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -2295,7 +2295,7 @@
                                 (click)="newStep()" [disabled]='!showBtn' matStepperNext>Next <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="saveDraft()">Save as
+                                (click)="saveDraft(6)">Save as
                                 Draft</button>
                             <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -2538,7 +2538,7 @@
                         [disabled]='!showBtn' matStepperNext>Next
                         <i class="fa fa-caret-right"></i></button>
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                        (click)="saveDraft()">Save
+                        (click)="saveDraft(7)">Save
                         as
                         Draft</button>
                     <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
@@ -2678,7 +2678,7 @@
                         [disabled]='!showBtn' matStepperNext>Next
                         <i class="fa fa-caret-right"></i></button>
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                        (click)="saveDraft()">Save
+                        (click)="saveDraft(8)">Save
                         as
                         Draft</button>
                     <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
@@ -2817,7 +2817,7 @@
                         [disabled]='!showBtn' matStepperNext>Next
                         <i class="fa fa-caret-right"></i></button>
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                        (click)="saveDraft()">Save
+                        (click)="saveDraft(9)">Save
                         as
                         Draft</button>
                     <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
@@ -2942,7 +2942,7 @@
                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         (click)="submitRegistration()">Finish</button>
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                        (click)="saveDraft()">Save
+                        (click)="saveDraft(10)">Save
                         as Draft</button>
                     <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                         <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
