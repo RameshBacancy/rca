@@ -25,7 +25,7 @@ import {
 } from './../../../../models/supplier.modal';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
-import { Component, OnInit, ViewChild, Input, ElementRef, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, ElementRef, ChangeDetectorRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SupplierRegistrationService } from 'src/app/services/supplier-registration.service';
@@ -44,7 +44,7 @@ import * as uuid from 'uuid/v4';
   templateUrl: './local-registration.component.html',
   styleUrls: ['./local-registration.component.scss']
 })
-export class LocalRegistrationComponent implements OnInit, OnDestroy {
+export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('stepper') private stepper: MatStepper;
   @Input('searchText') searchText: any;
@@ -183,7 +183,12 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
   bankActivityInfoDraft: any[] = [];
   bankDetalsDraft: any[] = [];
   bankOtherInfoDraft: any[] = [];
+  employeeDraft: any[] = [];
+  projectDraft: any[] = [];
+  subcontractorDraft: any[] = [];
+  equipmentDraft: any[] = [];
 
+  setDraftTime: any;
 
 
   constructor(
@@ -205,6 +210,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadData();
+    this.setDraftTime = localStorage.getItem('setDraftTime');
     this.showBtn = true;
     this.showTable = false;
     this.formData = this.supplierService.getdata();
@@ -236,6 +242,10 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroy$.next(true);
     this.destroy$.complete();
+  }
+
+  ngAfterViewInit() {
+    this.stepper.selectedIndex = localStorage.getItem('stepper') === 'null' ? 0 : +localStorage.getItem('stepper');
   }
 
   loadData() {
@@ -430,7 +440,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     if (this.selectedPage === 'project') {
       this.filesList = [];
       this.projectData.map((d, i) => {
-        if (d.no == data.no) {
+        if (d.projectID == data.projectID) {
           if (flag == false) {
             d.documents=file.data;
           }
@@ -442,7 +452,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     if (this.selectedPage === 'employee') {
       this.filesList = [];
       this.employeeData.map((d, i) => {
-        if (d.name == data.name) {
+        if (d.employeeID == data.employeeID) {
           if (flag == false) {
             d.documents = file.data;
           }
@@ -466,7 +476,6 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     if (this.selectedPage === 'regCerti') {
       this.filesList = [];
       this.ministriesData1.tenderBoardDataTab.registrationCertificate = file.data;
-      console.log(this.ministriesData1.tenderBoardDataTab.registrationCertificate);
       this.filesList.push(this.ministriesData1.tenderBoardDataTab.registrationCertificate);
     }
     if (this.selectedPage === 'hplicenses') {
@@ -500,7 +509,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     if (this.selectedPage === 'bankOther') {
       this.filesList = [];
       this.otherData.map((d, i) => {
-        if (d.no == data.no) {
+        if (d.otherID == data.otherID) {
           if (flag == false) {
             d.documents = file.data;
           }
@@ -548,7 +557,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     if (this.selectedPage === 'project') {
       this.filesList = [];
       this.projectData.map((d, i) => {
-        if (d.no == data.no) {
+        if (d.projectID == data.projectID) {
           if(Object.keys(d.documents).length != 0){
             this.filesList.push(d.documents);
           }
@@ -558,7 +567,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     if (this.selectedPage === 'employee') {
       this.filesList = [];
       this.employeeData.map((d, i) => {
-        if (d.name == data.name) {
+        if (d.employeeID == data.employeeID) {
           if(Object.keys(d.documents).length != 0){
             this.filesList.push(d.documents);
           }
@@ -576,7 +585,6 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       });
     }
     if (this.selectedPage === 'regCerti') {
-      console.log(Object.keys(this.ministriesData1.tenderBoardDataTab.registrationCertificate).length);
       this.filesList = [];
       if(this.ministriesData1.tenderBoardDataTab.registrationCertificate.name){
         this.filesList.push(this.ministriesData1.tenderBoardDataTab.registrationCertificate);
@@ -609,7 +617,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     if (this.selectedPage === 'bankOther') {
       this.filesList = [];
       this.otherData.map((d, i) => {
-        if (d.no == data.no) {
+        if (d.otherID == data.otherID) {
           if(Object.keys(d.documents).length != 0){
             this.filesList.push(d.documents);
           }
@@ -617,7 +625,6 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       });
     }
     this.open(content);
-    console.log(this.filesList);
   }
 
   deleteFile(file) {
@@ -625,7 +632,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       if (this.selectedPage === 'project') {
         this.filesList = [];
         this.projectData.map((d) => {
-          if (d.no == this.uploadData.no) {
+          if (d.projectID == this.uploadData.projectID) {
             d.documents = {};
             // d.documents.filter((f, i) => {
             //   if (f.name == file.name) {
@@ -639,7 +646,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       if (this.selectedPage === 'employee') {
         this.filesList = [];
         this.employeeData.map((d, i) => {
-          if (d.no == this.uploadData.no) {
+          if (d.employeeID == this.uploadData.employeeID) {
             d.documents = {};
             // d.documents.filter((f, i) => {
             //   if (f.name == file.name) {
@@ -663,7 +670,6 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
             // });
           }
         });
-        console.log(this.activityInfoData);
       }
       if (this.selectedPage === 'regCerti') {
         this.filesList = [];
@@ -718,7 +724,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       if (this.selectedPage === 'bankOther') {
         this.filesList = [];
         this.otherData.map((d, i) => {
-          if (d.no == this.uploadData.no) {
+          if (d.otherID == this.uploadData.otherID) {
             d.documents = {};
             // d.documents.filter((f, i) => {
             // if (f.name == file.name) {
@@ -795,7 +801,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     // this.router.navigateByUrl('/landing/supplier-registration/transaction');
   }
 
-  saveDraft() {
+  saveDraft(step:number = 0) {
 
     const data: any = {};
 
@@ -823,26 +829,67 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       data.bankDetailStep = {  ...data.bankDetailStep, otherDetails: this.bankOtherInfoDraft }
     }
 
+    if (this.employeeDraft.length > 0) {
+      data.employeeDetailsStep = { employeDetails: this.employeeDraft }
+    }
+
+    if (this.projectDraft.length > 0) {
+      data.projectDetailsStep = { projectDetails: this.projectDraft }
+    }
+
+    if (this.subcontractorDraft.length > 0) {
+      data.subContractorDetailsStep = { subContractorDetails: this.subcontractorDraft }
+    }
+
+    if (this.equipmentDraft.length > 0) {
+      data.equipmentDetailsStep = { equipmentDetails: this.equipmentDraft }
+    }
+
     this.localRegisterDraft = {
-      "supplierType": localStorage.getItem('regType'),
-      "status": "Draft",
-      "supplierId": localStorage.getItem('civilReg'),
-      "setTimeFlag": false,
-      "stepper": "General Info",
+      supplierType: localStorage.getItem('regType'),
+      status: 'Draft',
+      supplierId: localStorage.getItem('supplierId'),
+      setTimeFlag: this.setDraftTime === 'null' ? true : false,
+      stepper: String(step),
       data
     };
+    this.supplierService.storeLocalData(this.localRegisterDraft)
+      .subscribe(
+        () => {
+          this.callSupplierRegister();
+        },
+        (err) => {
+          console.log('err :>> ', err);
+        },
+      );
 
-    console.log(this.localRegisterDraft)
+
+    // console.log(this.localRegisterDraft)
 
     // this.supplierService.storeLocalData(this.localRegisterDraft);
 
 
-    localStorage.setItem('RegStatus', 'draft');
-    this.spinner.openSpinner();
-    const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
+    // localStorage.setItem('RegStatus', 'draft');
+    // this.spinner.openSpinner();
+    // const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
     // this.userService.supplierRegistration(body);
     // this.alertService.pushWarning('Your data will be saved for 72 hours.');
     // this.router.navigate(['/landing/supplier-registration/dashboard']);
+  }
+
+
+  private callSupplierRegister(): void {
+    localStorage.setItem('RegStatus', 'draft');
+    this.spinner.openSpinner();
+    const body = {
+      civil_number: localStorage.getItem('civilReg'),
+      cr_number: localStorage.getItem('commercialReg'),
+      register_status: localStorage.getItem('RegStatus'),
+      register_type: localStorage.getItem('regType')
+    };
+    this.userService.supplierRegistration(body);
+    this.alertService.pushWarning('Your data will be saved for 72 hours.');
+    this.router.navigate(['/landing/supplier-registration/dashboard']);
   }
 
   // private removeIsUpdate(arr: any[]): any {
@@ -853,6 +900,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
   //     return data;
   //   });
   // }
+
 
   // submit address 
   submit() {
@@ -890,7 +938,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     if (this.bankform.status === 'VALID') {
       if (this.editBank == true) {
         this.BankDetails.filter((d, i) => {
-          if (d.bankAcc == this.editbankData.bankAcc && d.bankingId == this.editbankData.bankingId) {
+          if (d.bankingId == this.editbankData.bankingId) {
             this.editbankData = this.bankform.value; 
             this.BankDetails.splice(i, 1, this.bankform.value);
           }
@@ -908,12 +956,11 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         this.bankDetalsDraft.push({ ...this.editbankData });
       } else {
         const index = this.bankDetalsDraft.findIndex(bank => 
-          (bank.bankingId === this.editbankData.bankingId && bank.bankAcc === this.editbankData.bankAcc));
+          (bank.bankingId === this.editbankData.bankingId));
         index === -1 ?
           this.bankDetalsDraft.push({ ...this.editbankData }) :
           this.bankDetalsDraft[index] = { ...this.editbankData };
       }
-      console.log(this.bankDetalsDraft)
       this.bankform.reset();
     }
   }
@@ -952,7 +999,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         }
       });
       this.newData = {
-        no: uuid(),
+        employeeID: uuid(),
         name: '',
         qualification: '',
         specialization: '',
@@ -973,7 +1020,8 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         documents: {},
         omaniratio: '',
         isEdit: true,
-        isMoci: false
+        isMoci: false,
+        isUpdate: false
       };
       this.employeeData.push(this.newData);
     }
@@ -984,7 +1032,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         }
       });
       this.newData = {
-        no: uuid(),
+        projectID: uuid(),
         name: '',
         client: '',
         consultent: '',
@@ -994,7 +1042,8 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         completion: '',
         documents: {},
         isEdit: true,
-        isMoci: false
+        isMoci: false,
+        isUpdate: false
       };
       this.projectData.push(this.newData);
     }
@@ -1005,7 +1054,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         }
       });
       this.newData = {
-        no: uuid(),
+        contractorID: uuid(),
         nameOfWork: '',
         subContractor: '',
         crNo: '',
@@ -1014,7 +1063,8 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         email: '',
         regWithRca: '',
         isEdit: true,
-        isMoci: false
+        isMoci: false,
+        isUpdate: false
       };
       this.subContractorData.push(this.newData);
     }
@@ -1025,7 +1075,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         }
       });
       this.newData = {
-        no: uuid(),
+        equipmentID: uuid(),
         type: '',
         quantity: '',
         capacity: '',
@@ -1033,18 +1083,19 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         regNo: '',
         approxValue: '',
         isEdit: true,
-        isMoci: false
+        isMoci: false,
+        isUpdate: false
       };
       this.equipmentData.push(this.newData);
     }
     if (datatype === 'other') {
       this.otherData.map((data, i) => {
-        // if (data.nameOfWork == '') {
-        //   this.otherData.splice(i, 1);
-        // }
+        if (data.name == '') {
+          this.otherData.splice(i, 1);
+        }
       });
       this.newData = {
-        no: uuid(),
+        otherID: uuid(),
         name: "test 1",
         value: "-",
         documents: {},
@@ -1127,7 +1178,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         }
       });
       this.newData = {
-        no: uuid(),
+        communicationID: uuid(),
         method: '',
         value: '',
         isEdit: true,
@@ -1136,21 +1187,21 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       };
       this.communicationData.push(this.newData);
     }
-    if (datatype === 'siteVisit') {
-      this.siteVisitData.map((data, i) => {
-        if (data.label == '') {
-          this.siteVisitData.splice(i, 1);
-        }
-      });
-      this.newData = {
-        no: this.siteVisitData.length + 1,
-        label: '',
-        value: ' ',
-        isEdit: true,
-        isMoci: false
-      };
-      this.siteVisitData.push(this.newData);
-    }
+    // if (datatype === 'siteVisit') {
+    //   this.siteVisitData.map((data, i) => {
+    //     if (data.label == '') {
+    //       this.siteVisitData.splice(i, 1);
+    //     }
+    //   });
+    //   this.newData = {
+    //     no: this.siteVisitData.length + 1,
+    //     label: '',
+    //     value: ' ',
+    //     isEdit: true,
+    //     isMoci: false
+    //   };
+    //   this.siteVisitData.push(this.newData);
+    // }
   }
 
   enteredDetails(datatype, data) {
@@ -1162,11 +1213,18 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
           if (data.staffCategory !== '') {
             if (data.country !== '') {
               this.employeeData.map((d, i) => {
-                if (d.no == data.no) {
-                  // if (data.staffCategory == '') {
-                  //   data.staffCategory = '-';
-                  // }
+                if (d.employeeID == data.employeeID) {
                   d = data;
+
+                  if (!d.hasOwnProperty('isUpdate')) {
+                    d['isUpdate'] = true;
+                  }
+                  if (this.employeeDraft.length === 0) {
+                    this.employeeDraft.push({ ...d });
+                  } else {
+                    const index = this.employeeDraft.findIndex(employee => employee.employeeID === d.employeeID);
+                    index === -1 ? this.employeeDraft.push({ ...d }) : this.employeeDraft[index] = { ...d };
+                  }
                 }
               });
               if (data.name === ' * ') {
@@ -1183,26 +1241,8 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
             this.alertService.pushError('Employee Category can not be empty.');
           }
         } else {
-          // this.showBtn = true;
-          // this.employeeData.map((data, i) => {
-          //   if (data.name == '') {
-          //     this.employeeData.splice(i, 1);
-          //   }
-          // });
           data.isEdit = true;
           this.alertService.pushError('Name can not be empty.');
-          //   this.showBtn = false;
-          // if (confirm('Do you want to remove new entered data ?')) {
-          //   this.showBtn = true;
-          //   this.employeeData.map((data, i) => {
-          //     if (data.name == '') {
-          //       this.employeeData.splice(i, 1);
-          //     }
-          //   });
-          // }
-          // else {
-          // data.isEdit = true;
-          // }
         }
         this.getEmployeeCategories();
       }
@@ -1210,14 +1250,20 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
 
         if (data.name !== '') {
           this.projectData.map((d, i) => {
-            if (d.no == data.no) {
+            if (d.projectID == data.projectID) {
               d = data;
+              if (!d.hasOwnProperty('isUpdate')) {
+                d['isUpdate'] = true;
+              }
+              if (this.projectDraft.length === 0) {
+                this.projectDraft.push({ ...d });
+              } else {
+                const index = this.projectDraft.findIndex(project => project.projectID === d.projectID);
+                index === -1 ? this.projectDraft.push({ ...d }) : this.projectDraft[index] = { ...d };
+              }
             }
           });
-          if (data.name === ' * ') {
-            data.name = '',
-              data.isEdit = true;
-          }
+          
           this.showBtn = true;
         } else {
           // this.showBtn = true;
@@ -1245,8 +1291,17 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       if (datatype === 'subContractor') {
         if (data.nameOfWork !== '') {
           this.subContractorData.map((d, i) => {
-            if (d.no == data.no) {
+            if (d.contractorID == data.contractorID) {
               d = data;
+              if (!d.hasOwnProperty('isUpdate')) {
+                d['isUpdate'] = true;
+              }
+              if (this.subcontractorDraft.length === 0) {
+                this.subcontractorDraft.push({ ...d });
+              } else {
+                const index = this.subcontractorDraft.findIndex(contractor => contractor.contractorID === d.contractorID);
+                index === -1 ? this.subcontractorDraft.push({ ...d }) : this.subcontractorDraft[index] = { ...d };
+              }
             }
           });
           this.showBtn = true;
@@ -1276,14 +1331,19 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       if (datatype === 'equipment') {
         if (data.type !== '') {
           this.equipmentData.map((d, i) => {
-            if (d.no == data.no) {
+            if (d.equipmentID == data.equipmentID) {
               d = data;
+              if (!d.hasOwnProperty('isUpdate')) {
+                d['isUpdate'] = true;
+              }
+              if (this.equipmentDraft.length === 0) {
+                this.equipmentDraft.push({ ...d });
+              } else {
+                const index = this.equipmentDraft.findIndex(equipment => equipment.equipmentID === d.equipmentID);
+                index === -1 ? this.equipmentDraft.push({ ...d }) : this.equipmentDraft[index] = { ...d };
+              }
             }
           });
-          if (data.type === ' * ') {
-            data.type = '',
-              data.isEdit = true;
-          }
           this.showBtn = true;
         } else {
           // this.showBtn = true;
@@ -1311,7 +1371,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       if (datatype === 'other') {
         if (data.name !== '') {
           this.otherData.map((d, i) => {
-            if (d.no == data.no) {
+            if (d.otherID == data.otherID) {
               d = data;
               if (!d.hasOwnProperty('isUpdate')) {
                 d['isUpdate'] = true;
@@ -1319,12 +1379,11 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
               if (this.bankOtherInfoDraft.length === 0) {
                 this.bankOtherInfoDraft.push({ ...d });
               } else {
-                const index = this.bankOtherInfoDraft.findIndex(other => other.no === d.no);
+                const index = this.bankOtherInfoDraft.findIndex(other => other.otherID === d.otherID);
                 index === -1 ? this.bankOtherInfoDraft.push({ ...d }) : this.bankOtherInfoDraft[index] = { ...d };
               }
             }
           });
-          console.log(this.bankOtherInfoDraft);
           data.isEdit = false;
           this.showBtn = true;
         } else {
@@ -1443,7 +1502,6 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
               }
             }
           });
-          console.log(this.bankActivityInfoDraft);
           this.showBtn = true;
         } else {
           // this.showBtn = true;
@@ -1472,7 +1530,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       if (datatype === 'communication') {
         if (data.value !== '') {
           this.communicationData.map((d, i) => {
-            if (d.no == data.no) {
+            if (d.communicationID == data.communicationID) {
               d = data;
 
               if (!d.hasOwnProperty('isUpdate')) {
@@ -1481,12 +1539,11 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
               if (this.communicationDraft.length === 0) {
                 this.communicationDraft.push({ ...d });
               } else {
-                const index = this.communicationDraft.findIndex(communicaton => communicaton.no === d.no);
+                const index = this.communicationDraft.findIndex(communicaton => communicaton.communicationID === d.communicationID);
                 index === -1 ? this.communicationDraft.push({ ...d }) : this.communicationDraft[index] = { ...d };
               }
             }
           });
-          console.log(this.communicationDraft);
           this.showBtn = true;
         } else {
           data.isEdit = true;
@@ -1537,7 +1594,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     this.showBtn = true;
     if (datatype === 'employee') {
       this.employeeData.map((d, i) => {
-        if (d.no == data.no) {
+        if (d.employeeID == data.employeeID) {
           this.employeeData.splice(i, 1);
         }
       });
@@ -1545,28 +1602,28 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     }
     if (datatype === 'project') {
       this.projectData.map((d, i) => {
-        if (d.no == data.no) {
+        if (d.projectID == data.projectID) {
           this.projectData.splice(i, 1);
         }
       });
     }
     if (datatype === 'subContractor') {
       this.subContractorData.map((d, i) => {
-        if (d.no == data.no) {
+        if (d.contractorID == data.contractorID) {
           this.subContractorData.splice(i, 1);
         }
       });
     }
     if (datatype === 'equipment') {
       this.equipmentData.map((d, i) => {
-        if (d.no == data.no) {
+        if (d.equipmentID == data.equipmentID) {
           this.equipmentData.splice(i, 1);
         }
       });
     }
     if (datatype === 'other') {
       this.otherData.map((d, i) => {
-        if (d.no == data.no) {
+        if (d.otherID == data.otherID) {
           this.otherData.splice(i, 1);
         }
       });
@@ -1594,7 +1651,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     }
     if (datatype === 'communication') {
       this.communicationData.map((d, i) => {
-        if (d.no == data.no) {
+        if (d.communicationID == data.communicationID) {
           this.communicationData.splice(i, 1);
         }
       });

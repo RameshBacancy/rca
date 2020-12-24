@@ -49,7 +49,7 @@ export interface PersonalDetailsStep {
 }
 
 export interface PersonalDetails {
-    personId: number;
+    personId: string;
     personName: string;
     nationality: string;
     idType: string;
@@ -63,6 +63,7 @@ export interface PersonalDetails {
     regDate: string;
     isEdit: boolean;
     isMoci: boolean;
+    isUpdate?: boolean;
 }
 
 // Communication Method Step
@@ -70,11 +71,12 @@ export interface CommunicationMethodStep {
     communicationMethod: CommunicationMethod[];
 }
 export interface CommunicationMethod {
-    no: number;
+    communicationID: string;
     method: string;
     value: string;
     isEdit: boolean;
     isMoci: boolean;
+    isUpdate?: boolean;
 }
 
 // Bank detail step
@@ -101,6 +103,7 @@ export interface ActivityInfo {
     isEdit: boolean;
     documents: Documents;
     isMoci: boolean;
+    isUpdate?: boolean;
 }
 export interface BankDetailsTab {
     BankDetails: BankDetails[];
@@ -113,6 +116,7 @@ export interface BankDetails {
     bankBranch: string;
     holderName: string;
     isMoci: boolean;
+    isUpdate?: boolean;
 }
 export interface CompanyInfoTab {
     compFinanceInfo: CompFinanceInfo;
@@ -135,12 +139,13 @@ export interface OtherInfoTab {
     otherDetails: OtherDetails[];
 }
 export interface OtherDetails {
-    no: number;
+    otherID: string;
     name: string;
     value: string;
     documents: Documents;
     isEdit: boolean;
     isMoci: boolean;
+    isUpdate?: boolean;
 }
 
 
@@ -152,7 +157,7 @@ export interface EmployeeDetailsStep {
     employeDetails: EmployeDetails[]
 }
 export interface EmployeDetails {
-    no: number;
+    employeeID: string;
     name: string;
     qualification: string;
     specialization: string;
@@ -174,6 +179,7 @@ export interface EmployeDetails {
     isEdit: boolean;
     documents: Documents;
     isMoci: boolean;
+    isUpdate?: boolean;
 }
 
 
@@ -183,7 +189,6 @@ export interface MinistriesData1Step {
     tenderBoardDataTab: TenderBoardDataTab;
     municipalityDataTab: MunicipalityDataTab;
 }
-
 export interface OcciDataTab {
     regDate: string;
     expDate: string;
@@ -191,7 +196,6 @@ export interface OcciDataTab {
     companyGrade: string;
     crNo: number;
 }
-
 export interface TenderBoardDataTab {
     crNo: number;
     companyGrade: string;
@@ -200,7 +204,6 @@ export interface TenderBoardDataTab {
     expDate: string;
     registrationCertificate: Documents;
 }
-
 export interface MunicipalityDataTab {
     civilNo: number;
     location: string;
@@ -218,7 +221,6 @@ export interface MinistriesData2Step {
     mociDataTab: MociDataTab;
     smallMediumEntDataTab: SmallMediumEntDataTab;
 }
-
 export interface MofDataTab {
     crNo: number;
     regDate: string;
@@ -226,7 +228,6 @@ export interface MofDataTab {
     activities: string[];
     expDate: string;
 }
-
 export interface MohDataTab {
     crNo: number;
     regDate: string;
@@ -234,7 +235,6 @@ export interface MohDataTab {
     expDate: string;
     typeOfActivity: string;
 }
-
 export interface MociDataTab {
     perAndLiceOfConsCom: Documents;
     liceOfTraAndQuaInst: Documents;
@@ -259,7 +259,6 @@ export interface MinistriesData3Step {
     creditBureauData: CreditBureauData;
     distRulesReviewBoardData: DistRulesReviewBoardData;
 }
-
 export interface AuthorityOfCivilDefenseData {
     licensesForFireResistant: string;
     crNo: number;
@@ -267,19 +266,16 @@ export interface AuthorityOfCivilDefenseData {
     expDate: string;
     activities: string[];
 }
-
 export interface CapitalMarketData {
     crNo: number;
     regDate: string;
     expDate: string;
     activities: string[];
 }
-
 export interface CreditBureauData {
     crNo: number;
     listOfFinanciallyTroubledCompanies: Documents
 }
-
 export interface DistRulesReviewBoardData {
     crNo: number;
     regNumber: number;
@@ -294,7 +290,7 @@ export interface ProjectDetailsStep {
 }
 
 export interface ProjectDetails {
-    no: number;
+    projectID: string;
     name: string;
     client: string;
     consultent: string;
@@ -305,6 +301,7 @@ export interface ProjectDetails {
     documents: Documents;
     isEdit: boolean;
     isMoci: boolean;
+    isUpdate?: boolean;
 }
 
 // Sub contractor detail step
@@ -313,7 +310,7 @@ export interface SubContractorDetailsStep {
 }
 
 export interface SubContractorDetails {
-    no: number;
+    contractorID: string;
     nameOfWork: string;
     subContractor: string;
     crNo: number;
@@ -323,6 +320,7 @@ export interface SubContractorDetails {
     regWithRca: boolean;
     isEdit: boolean;
     isMoci: boolean;
+    isUpdate?: boolean;
 }
 
 // Equipment Details Step
@@ -331,7 +329,7 @@ export interface EquipmentDetailsStep {
 }
 
 export interface EquipmentDetails {
-    no: number;
+    equipmentID: string;
     type: string;
     quantity: number;
     capacity: string;
