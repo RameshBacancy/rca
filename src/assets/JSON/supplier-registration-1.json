@@ -169,7 +169,7 @@
                     "method": "Email",
                     "value": "user@yopmail.com",
                     "isEdit": false,
-                    "isMoci": true
+                    "isMoci": false
                 }
             ],
             "detailsRemark": "Details Not Applicable"
@@ -188,7 +188,7 @@
                         "companyGrade": "-",
                         "location": "-",
                         "isEdit": false,
-                        "documents": [],
+                        "documents": {"name": "document.pdf", "path":""},
                         "isMoci": true
                     },
                     {
@@ -202,8 +202,8 @@
                         "companyGrade": "-",
                         "location": "-",
                         "isEdit": false,
-                        "documents": [],
-                        "isMoci": true
+                        "documents": {"name": "document.pdf", "path":""},
+                        "isMoci": false
                     }
                 ],
                 "detailsRemark": "Details Not Applicable"
@@ -217,7 +217,7 @@
                         "bankName": "Bank Muscat",
                         "bankBranch": "-",
                         "holderName": "user",
-                        "isMoci": true
+                        "isMoci": false
                     }
                 ],
                 "detailsRemark": "Details Not Applicable"
@@ -253,7 +253,7 @@
                         "no": 1,
                         "name": "test 1",
                         "value": "-",
-                        "documents": [],
+                        "documents": {"name": "document.pdf", "path":""},
                         "isEdit": false,
                         "isMoci": false
                     },
@@ -261,7 +261,7 @@
                         "no": 2,
                         "name": "test 2",
                         "value": "-",
-                        "documents": [],
+                        "documents": {"name": "document.pdf", "path":""},
                         "isEdit": false,
                         "isMoci": false
                     },
@@ -269,7 +269,7 @@
                         "no": 3,
                         "name": "test 3",
                         "value": "-",
-                        "documents": [],
+                        "documents": {"name": "document.pdf", "path":""},
                         "isEdit": false,
                         "isMoci": false
                     },
@@ -277,7 +277,7 @@
                         "no": 4,
                         "name": "test 4",
                         "value": "-",
-                        "documents": [],
+                        "documents": {"name": "document.pdf", "path":""},
                         "isEdit": false,
                         "isMoci": false
                     }
@@ -311,7 +311,7 @@
                     "crNo": "1567 6578",
                     "omaniratio": "8765",
                     "isEdit": false,
-                    "documents": [],
+                    "documents": {"name": "document.pdf", "path":""},
                     "isMoci": true
                 },
                 {
@@ -335,7 +335,7 @@
                     "crNo": "1854 6789",
                     "omaniratio": "1234",
                     "isEdit": false,
-                    "documents": [],
+                    "documents": {"name": "document.pdf", "path":""},
                     "isMoci": true
                 },
                 {
@@ -359,7 +359,7 @@
                     "crNo": "2342 2344",
                     "omaniratio": "2387",
                     "isEdit": false,
-                    "documents": [],
+                    "documents": {"name": "document.pdf", "path":""},
                     "isMoci": true
                 }
             ],
@@ -385,7 +385,7 @@
                 ],
                 "regDate": "11-02-2009",
                 "expDate": "15-09-2011",
-                "registrationCertificate": [],
+                "registrationCertificate": {},
                 "detailsRemark": "Details Not Applicable"
             },
             "municipalityDataTab": {
@@ -420,14 +420,14 @@
             "mohDataTab": {
                 "crNo": "1567 6578",
                 "regDate": "11-02-2009",
-                "healthAndPharmacyLicenses": [],
+                "healthAndPharmacyLicenses": {},
                 "expDate": "15-09-2011",
                 "typeOfActivity": "Manufacturing and Trade",
                 "detailsRemark": "Details Not Applicable"
             },
             "mociDataTab": {
-                "perAndLiceOfConsCom": [],
-                "liceOfTraAndQuaInst": [],
+                "perAndLiceOfConsCom": {},
+                "liceOfTraAndQuaInst": {},
                 "ageAndTread": "Amazon",
                 "foreignInvestment": "Amazon",
                 "perOfGovOwn": "52%",
@@ -473,7 +473,7 @@
             },
             "creditBureauData": {
                 "crNo": "1567 6578",
-                "listOfFinanciallyTroubledCompanies": []
+                "listOfFinanciallyTroubledCompanies": {}
             },
             "distRulesReviewBoardData": {
                 "crNo": "1567 6578",
@@ -500,7 +500,7 @@
                     "value": "400,000",
                     "period": "2016 - 2018 ",
                     "completion": "2018",
-                    "documents": [],
+                    "documents": {"name": "document.pdf", "path":""},
                     "isEdit": false,
                     "isMoci": false
                 },
@@ -513,7 +513,7 @@
                     "value": "254,000",
                     "period": "2017 - 2018",
                     "completion": "2019",
-                    "documents": [],
+                    "documents": {"name": "document.pdf", "path":""},
                     "isEdit": false,
                     "isMoci": false
                 },
@@ -526,7 +526,7 @@
                     "value": "1,000,000",
                     "period": "2018 - 2021",
                     "completion": "",
-                    "documents": [],
+                    "documents": {"name": "document.pdf", "path":""},
                     "isEdit": false,
                     "isMoci": false
                 }
@@ -655,7 +655,7 @@
                     "members": "4",
                     "socialStatus": "Married",
                     "familySecurity": "No",
-                    "documents": [],
+                    "documents": {"name": "document.pdf", "path":""},
                     "isMoci": true,
                     "isEdit": false
                 },
@@ -669,7 +669,7 @@
                     "members": "4",
                     "socialStatus": "Married",
                     "familySecurity": "No",
-                    "documents": [],
+                    "documents": {"name": "document.pdf", "path":""},
                     "isMoci": true,
                     "isEdit": false
                 }

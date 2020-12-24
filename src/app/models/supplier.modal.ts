@@ -344,8 +344,8 @@ export interface EquipmentDetails {
 
 // Documents
 export interface Documents {
-    name: string;
-    path: string;
+    name?: string;
+    path?: string;
 }
 
 

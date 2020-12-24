@@ -79,7 +79,8 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     bankName: new FormControl('', [Validators.required]),
     bankBranch: new FormControl('', [Validators.required]),
     holderName: new FormControl('', [Validators.required]),
-    isMoci: new FormControl(false)
+    isMoci: new FormControl(false),
+    isUpdate: new FormControl()
   });
 
 
@@ -178,6 +179,11 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
   // variable for updated draft
   generalActivityDraft: any[] = [];
   generalAddressDraft: any[] = [];
+  communicationDraft: any[] = [];
+  bankActivityInfoDraft: any[] = [];
+  bankDetalsDraft: any[] = [];
+  bankOtherInfoDraft: any[] = [];
+
 
 
   constructor(
@@ -424,28 +430,24 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     if (this.selectedPage === 'project') {
       this.filesList = [];
       this.projectData.map((d, i) => {
-        // if (d.no == data.no) {
-        //   if (flag == false) {
-        //     d.documents.push(file.data);
-        //   }
-        //   d.documents.map((d1) => {
-        //     this.filesList.push(d1);
-        //     file.inProgress = false;
-        //   });
-        // }
+        if (d.no == data.no) {
+          if (flag == false) {
+            d.documents=file.data;
+          }
+            this.filesList.push(d.documents);
+            file.inProgress = false;
+        }
       });
     }
     if (this.selectedPage === 'employee') {
       this.filesList = [];
       this.employeeData.map((d, i) => {
         if (d.name == data.name) {
-          // if (flag == false) {
-          //   d.documents.push(file.data);
-          // }
-          // d.documents.map((d1) => {
-          //   this.filesList.push(d1);
-          //   file.inProgress = false;
-          // });
+          if (flag == false) {
+            d.documents = file.data;
+          }
+            this.filesList.push(d.documents);
+            file.inProgress = false;
         }
       });
     }
@@ -453,62 +455,57 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       this.filesList = [];
       this.activityInfoData.map((d, i) => {
         if (d.activityName == data.activityName) {
-          // if (flag == false) {
-          //   d.documents.push(file.data);
-          // }
-          // d.documents.map((d1) => {
-          //   this.filesList.push(d1);
-          //   file.inProgress = false;
-          // });
+          if (flag == false) {
+            d.documents = file.data;
+          }
+            this.filesList.push(d.documents);
+            file.inProgress = false;
         }
       });
     }
     if (this.selectedPage === 'regCerti') {
       this.filesList = [];
-      // if (flag == false) {
-      //   this.ministriesData1.tenderBoardDataTab.registrationCertificate.push(file.data);
-      // }
-      // this.filesList = this.ministriesData1.tenderBoardDataTab.registrationCertificate;
+      this.ministriesData1.tenderBoardDataTab.registrationCertificate = file.data;
+      console.log(this.ministriesData1.tenderBoardDataTab.registrationCertificate);
+      this.filesList.push(this.ministriesData1.tenderBoardDataTab.registrationCertificate);
     }
     if (this.selectedPage === 'hplicenses') {
       this.filesList = [];
-      // if (flag == false) {
-      //   this.ministriesData2.mohDataTab.healthAndPharmacyLicenses.push(file.data);
-      // }
-      // this.filesList = this.ministriesData2.mohDataTab.healthAndPharmacyLicenses;
+      if (flag == false) {
+        this.ministriesData2.mohDataTab.healthAndPharmacyLicenses = file.data;
+      }
+      this.filesList.push(this.ministriesData2.mohDataTab.healthAndPharmacyLicenses);
     }
     if (this.selectedPage === 'pLOfCC') {
       this.filesList = [];
-      // if (flag == false) {
-      //   this.ministriesData2.mociDataTab.perAndLiceOfConsCom.push(file.data);
-      // }
-      // this.filesList = this.ministriesData2.mociDataTab.perAndLiceOfConsCom;
+      if (flag == false) {
+        this.ministriesData2.mociDataTab.perAndLiceOfConsCom = file.data;
+      }
+      this.filesList.push(this.ministriesData2.mociDataTab.perAndLiceOfConsCom);
     }
     if (this.selectedPage === 'lOTQI') {
       this.filesList = [];
-      // if (flag == false) {
-      //   this.ministriesData2.mociDataTab.liceOfTraAndQuaInst.push(file.data);
-      // }
-      // this.filesList = this.ministriesData2.mociDataTab.liceOfTraAndQuaInst;
+      if (flag == false) {
+        this.ministriesData2.mociDataTab.liceOfTraAndQuaInst = file.data;
+      }
+      this.filesList.push(this.ministriesData2.mociDataTab.liceOfTraAndQuaInst);
     }
     if (this.selectedPage === 'loftc') {
       this.filesList = [];
-      // if (flag == false) {
-      //   this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies.push(file.data);
-      // }
-      // this.filesList = this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies;
+      if (flag == false) {
+        this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies = file.data;
+      }
+      this.filesList.push(this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies);
     }
     if (this.selectedPage === 'bankOther') {
       this.filesList = [];
       this.otherData.map((d, i) => {
         if (d.no == data.no) {
-          // if (flag == false) {
-          //   d.documents.push(file.data);
-          // }
-          // d.documents.map((d1) => {
-          //   this.filesList.push(d1);
-          //   file.inProgress = false;
-          // });
+          if (flag == false) {
+            d.documents = file.data;
+          }
+            this.filesList.push(d.documents);
+            file.inProgress = false;
         }
       });
     }
@@ -528,12 +525,12 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     fileInput.onchange = () => {
       for (let index = 0; index < fileInput.files.length; index++) {
         const file = fileInput.files[index];
-        this.filesList.filter(f => {
-          if (f.name.toString() == file.name.toString()) {
-            alert('already have similar name file.');
-            flag = true;
-          }
-        });
+        // this.filesList.filter(f => {
+        //   if (f.name == file.name) {
+        //     alert('already have similar name file.');
+        //     flag = true;
+        //   }
+        // });
         if (flag == false) {
           this.files = [];
           this.files.push({ data: file, inProgress: false, progress: 0 });
@@ -550,65 +547,77 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     this.uploadData = data;
     if (this.selectedPage === 'project') {
       this.filesList = [];
-      // this.projectData.map((d, i) => {
-      //   if (d.no == data.no) {
-      //     d.documents.map((d1) => {
-      //       this.filesList.push(d1);
-      //     });
-      //   }
-      // });
+      this.projectData.map((d, i) => {
+        if (d.no == data.no) {
+          if(Object.keys(d.documents).length != 0){
+            this.filesList.push(d.documents);
+          }
+        }
+      });
     }
     if (this.selectedPage === 'employee') {
       this.filesList = [];
       this.employeeData.map((d, i) => {
-        // if (d.name == data.name) {
-        //   d.documents.map((d1) => {
-        //     this.filesList.push(d1);
-        //   });
-        // }
+        if (d.name == data.name) {
+          if(Object.keys(d.documents).length != 0){
+            this.filesList.push(d.documents);
+          }
+        }
       });
     }
     if (this.selectedPage === 'activityInfo') {
       this.filesList = [];
       this.activityInfoData.map((d, i) => {
-        // if (d.activityName == data.activityName) {
-        //   d.documents.map((d1) => {
-        //     this.filesList.push(d1);
-        //   });
-        // }
+        if (d.activityID == data.activityID) {
+          if(Object.keys(d.documents).length != 0){
+            this.filesList.push(d.documents);
+          }
+        }
       });
     }
     if (this.selectedPage === 'regCerti') {
+      console.log(Object.keys(this.ministriesData1.tenderBoardDataTab.registrationCertificate).length);
       this.filesList = [];
-      // this.filesList = this.ministriesData1.tenderBoardDataTab.registrationCertificate;
+      if(this.ministriesData1.tenderBoardDataTab.registrationCertificate.name){
+        this.filesList.push(this.ministriesData1.tenderBoardDataTab.registrationCertificate);
+      }
     }
     if (this.selectedPage === 'hplicenses') {
       this.filesList = [];
-      // this.filesList = this.ministriesData2.mohDataTab.healthAndPharmacyLicenses;
+      if(this.ministriesData2.mohDataTab.healthAndPharmacyLicenses.name){
+        this.filesList.push(this.ministriesData2.mohDataTab.healthAndPharmacyLicenses);
+      }
     }
     if (this.selectedPage === 'pLOfCC') {
       this.filesList = [];
-      // this.filesList = this.ministriesData2.mociDataTab.perAndLiceOfConsCom;
+      if(this.ministriesData2.mociDataTab.perAndLiceOfConsCom.name){
+        this.filesList.push(this.ministriesData2.mociDataTab.perAndLiceOfConsCom);
+      }
     }
     if (this.selectedPage === 'lOTQI') {
       this.filesList = [];
-      // this.filesList = this.ministriesData2.mociDataTab.liceOfTraAndQuaInst;
+      if(this.ministriesData2.mociDataTab.liceOfTraAndQuaInst.name){
+        this.filesList.push(this.ministriesData2.mociDataTab.liceOfTraAndQuaInst);
+      }
     }
     if (this.selectedPage === 'loftc') {
       this.filesList = [];
-      // this.filesList = this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies;
+      if(this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies.name){
+        this.filesList.push(this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies);
+      }
     }
     if (this.selectedPage === 'bankOther') {
       this.filesList = [];
       this.otherData.map((d, i) => {
         if (d.no == data.no) {
-          // d.documents.map((d1) => {
-          //   this.filesList.push(d1);
-          // });
+          if(Object.keys(d.documents).length != 0){
+            this.filesList.push(d.documents);
+          }
         }
       });
     }
     this.open(content);
+    console.log(this.filesList);
   }
 
   deleteFile(file) {
@@ -617,6 +626,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         this.filesList = [];
         this.projectData.map((d) => {
           if (d.no == this.uploadData.no) {
+            d.documents = {};
             // d.documents.filter((f, i) => {
             //   if (f.name == file.name) {
             //     d.documents.splice(i, 1);
@@ -629,7 +639,8 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       if (this.selectedPage === 'employee') {
         this.filesList = [];
         this.employeeData.map((d, i) => {
-          if (d.name == this.uploadData.name) {
+          if (d.no == this.uploadData.no) {
+            d.documents = {};
             // d.documents.filter((f, i) => {
             //   if (f.name == file.name) {
             //     d.documents.splice(i, 1);
@@ -642,8 +653,9 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       if (this.selectedPage === 'activityInfo') {
         this.filesList = [];
         this.activityInfoData.map((d, i) => {
-          if (d.activityName == this.uploadData.activityName) {
-            // d.documents.filter((f, i) => {
+          if (d.activityID == this.uploadData.activityID) {
+            d.documents = {};
+          // d.documents.filter((f, i) => {
             //   if (f.name == file.name) {
             //     d.documents.splice(i, 1);
             //     this.filesList = d.documents;
@@ -651,9 +663,11 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
             // });
           }
         });
+        console.log(this.activityInfoData);
       }
       if (this.selectedPage === 'regCerti') {
         this.filesList = [];
+        this.ministriesData1.tenderBoardDataTab.registrationCertificate = {};
         // this.ministriesData1.tenderBoardDataTab.registrationCertificate.filter((f, i) => {
         //   if (f.name == file.name) {
         //     this.ministriesData1.tenderBoardDataTab.registrationCertificate.splice(i, 1);
@@ -663,6 +677,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       }
       if (this.selectedPage === 'hplicenses') {
         this.filesList = [];
+        this.ministriesData2.mohDataTab.healthAndPharmacyLicenses = {};
         // this.ministriesData2.mohDataTab.healthAndPharmacyLicenses.filter((f, i) => {
         //   if (f.name == file.name) {
         //     this.ministriesData2.mohDataTab.healthAndPharmacyLicenses.splice(i, 1);
@@ -672,6 +687,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       }
       if (this.selectedPage === 'pLOfCC') {
         this.filesList = [];
+        this.ministriesData2.mociDataTab.perAndLiceOfConsCom = {};
         // this.ministriesData2.mociDataTab.perAndLiceOfConsCom.filter((f, i) => {
         //   if (f.name == file.name) {
         //     this.ministriesData2.mociDataTab.perAndLiceOfConsCom.splice(i, 1);
@@ -681,6 +697,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       }
       if (this.selectedPage === 'lOTQI') {
         this.filesList = [];
+        this.ministriesData2.mociDataTab.liceOfTraAndQuaInst = {};
         // this.ministriesData2.mociDataTab.liceOfTraAndQuaInst.filter((f, i) => {
         //   if (f.name == file.name) {
         //     this.ministriesData2.mociDataTab.liceOfTraAndQuaInst.splice(i, 1);
@@ -690,6 +707,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       }
       if (this.selectedPage === 'loftc') {
         this.filesList = [];
+        this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies = {};
         // this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies.filter((f, i) => {
         //   if (f.name == file.name) {
         //     this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies.splice(i, 1);
@@ -701,6 +719,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         this.filesList = [];
         this.otherData.map((d, i) => {
           if (d.no == this.uploadData.no) {
+            d.documents = {};
             // d.documents.filter((f, i) => {
             // if (f.name == file.name) {
             //   d.documents.splice(i, 1);
@@ -721,6 +740,8 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       this.open(content);
     } else {
       this.bankform.reset();
+      this.bankform.patchValue({ bankingId: uuid(), isMoci:false, isUpdate: false });
+      this.editbankData = this.bankform.value;
       this.open(content);
     }
   }
@@ -734,7 +755,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       }
     } else {
       this.form.reset();
-      this.form.patchValue({ addressID: uuid(), country: 'Oman', isUpdate: false });
+      this.form.patchValue({ addressID: uuid(), country: 'Oman', isMoci:false, isUpdate: false });
     }
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -785,6 +806,23 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     if (this.generalAddressDraft.length > 0) {
       data.generalInfoStep = { ...data.generalInfoStep, address: this.generalAddressDraft };
     }
+
+    if (this.communicationDraft.length > 0) {
+      data.communicationMethodStep = { communication: this.communicationDraft }
+    }
+
+    if (this.bankActivityInfoDraft.length > 0) {
+      data.bankDetailStep = { activityInfo: this.bankActivityInfoDraft }
+    }
+
+    if (this.bankDetalsDraft.length > 0) {
+      data.bankDetailStep = {  ...data.bankDetailStep, BankDetails: this.bankDetalsDraft }
+    }
+
+    if (this.bankOtherInfoDraft.length > 0) {
+      data.bankDetailStep = {  ...data.bankDetailStep, otherDetails: this.bankOtherInfoDraft }
+    }
+
     this.localRegisterDraft = {
       "supplierType": localStorage.getItem('regType'),
       "status": "Draft",
@@ -794,15 +832,17 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
       data
     };
 
-    this.supplierService.storeLocalData(this.localRegisterDraft);
+    console.log(this.localRegisterDraft)
+
+    // this.supplierService.storeLocalData(this.localRegisterDraft);
 
 
     localStorage.setItem('RegStatus', 'draft');
     this.spinner.openSpinner();
     const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
-    this.userService.supplierRegistration(body);
-    this.alertService.pushWarning('Your data will be saved for 72 hours.');
-    this.router.navigate(['/landing/supplier-registration/dashboard']);
+    // this.userService.supplierRegistration(body);
+    // this.alertService.pushWarning('Your data will be saved for 72 hours.');
+    // this.router.navigate(['/landing/supplier-registration/dashboard']);
   }
 
   // private removeIsUpdate(arr: any[]): any {
@@ -850,14 +890,30 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
     if (this.bankform.status === 'VALID') {
       if (this.editBank == true) {
         this.BankDetails.filter((d, i) => {
-          if (d.bankAcc == this.editbankData.bankAcc) {
+          if (d.bankAcc == this.editbankData.bankAcc && d.bankingId == this.editbankData.bankingId) {
+            this.editbankData = this.bankform.value; 
             this.BankDetails.splice(i, 1, this.bankform.value);
           }
         });
         this.editBank = false;
       } else {
-        this.BankDetails.push(this.bankform.value);
+          this.editbankData = this.bankform.value; 
+          this.BankDetails.push(this.bankform.value);
       }
+
+      if (this.editbankData.isUpdate === null) {
+        this.editbankData['isUpdate'] = true;
+      }
+      if (this.bankDetalsDraft.length === 0) {
+        this.bankDetalsDraft.push({ ...this.editbankData });
+      } else {
+        const index = this.bankDetalsDraft.findIndex(bank => 
+          (bank.bankingId === this.editbankData.bankingId && bank.bankAcc === this.editbankData.bankAcc));
+        index === -1 ?
+          this.bankDetalsDraft.push({ ...this.editbankData }) :
+          this.bankDetalsDraft[index] = { ...this.editbankData };
+      }
+      console.log(this.bankDetalsDraft)
       this.bankform.reset();
     }
   }
@@ -914,7 +970,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         recidentCard: '',
         civilNo: '',
         crNo: '',
-        documents: [],
+        documents: {},
         omaniratio: '',
         isEdit: true,
         isMoci: false
@@ -936,7 +992,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         value: '',
         period: '',
         completion: '',
-        documents: [],
+        documents: {},
         isEdit: true,
         isMoci: false
       };
@@ -988,10 +1044,13 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         // }
       });
       this.newData = {
-        no: this.otherData.length + 1,
-        nameOfWork: '',
-        attachment: '',
-        isEdit: true
+        no: uuid(),
+        name: "test 1",
+        value: "-",
+        documents: {},
+        isEdit: true,
+        isMoci: false,
+        isUpdate: false
       };
       this.otherData.push(this.newData);
     }
@@ -1054,9 +1113,10 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         duration: '',
         companyGrade: '',
         location: '',
-        documents: [],
+        documents: {},
         isEdit: true,
-        isMoci: false
+        isMoci: false,
+        isUpdate: false,
       };
       this.activityInfoData.push(this.newData);
     }
@@ -1071,7 +1131,8 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
         method: '',
         value: '',
         isEdit: true,
-        isMoci: false
+        isMoci: false,
+        isUpdate: false
       };
       this.communicationData.push(this.newData);
     }
@@ -1252,8 +1313,18 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
           this.otherData.map((d, i) => {
             if (d.no == data.no) {
               d = data;
+              if (!d.hasOwnProperty('isUpdate')) {
+                d['isUpdate'] = true;
+              }
+              if (this.bankOtherInfoDraft.length === 0) {
+                this.bankOtherInfoDraft.push({ ...d });
+              } else {
+                const index = this.bankOtherInfoDraft.findIndex(other => other.no === d.no);
+                index === -1 ? this.bankOtherInfoDraft.push({ ...d }) : this.bankOtherInfoDraft[index] = { ...d };
+              }
             }
           });
+          console.log(this.bankOtherInfoDraft);
           data.isEdit = false;
           this.showBtn = true;
         } else {
@@ -1361,12 +1432,18 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
           this.activityInfoData.map((d, i) => {
             if (d.activityID == data.activityID) {
               d = data;
+              if (!d.hasOwnProperty('isUpdate')) {
+                d['isUpdate'] = true;
+              }
+              if (this.bankActivityInfoDraft.length === 0) {
+                this.bankActivityInfoDraft.push({ ...d });
+              } else {
+                const index = this.bankActivityInfoDraft.findIndex(activity => activity.activityID === d.activityID);
+                index === -1 ? this.bankActivityInfoDraft.push({ ...d }) : this.bankActivityInfoDraft[index] = { ...d };
+              }
             }
           });
-          if (data.activityName === ' * ') {
-            data.activityName = '',
-              data.isEdit = true;
-          }
+          console.log(this.bankActivityInfoDraft);
           this.showBtn = true;
         } else {
           // this.showBtn = true;
@@ -1397,36 +1474,23 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy {
           this.communicationData.map((d, i) => {
             if (d.no == data.no) {
               d = data;
+
+              if (!d.hasOwnProperty('isUpdate')) {
+                d['isUpdate'] = true;
+              }
+              if (this.communicationDraft.length === 0) {
+                this.communicationDraft.push({ ...d });
+              } else {
+                const index = this.communicationDraft.findIndex(communicaton => communicaton.no === d.no);
+                index === -1 ? this.communicationDraft.push({ ...d }) : this.communicationDraft[index] = { ...d };
+              }
             }
           });
-          if (data.value === ' * ') {
-            data.value = '',
-              data.isEdit = true;
-          }
+          console.log(this.communicationDraft);
           this.showBtn = true;
         } else {
-          // this.showBtn = true;
-          // this.communicationData.map((data, i) => {
-          //   if (data.value == '') {
-          //     this.communicationData.splice(i, 1);
-          //   }
-          // });
           data.isEdit = true;
           this.alertService.pushError('Value can not be empty.');
-
-          // this.showBtn = false;
-          // if (confirm('Do you want to remove new entered data ?')) {
-          //   this.showBtn = true;
-          //   this.communicationData.map((data, i) => {
-          //     if (data.value == '') {
-          //       this.communicationData.splice(i, 1);
-          //     }
-          //   });
-          //   // this.alertService.pushError('Value can not be empty.');
-          // }
-          // else {
-          //   data.isEdit = true;
-          // }
         }
       }
       if (datatype === 'siteVisit') {

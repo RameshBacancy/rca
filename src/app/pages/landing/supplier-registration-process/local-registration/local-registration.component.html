@@ -22,7 +22,7 @@
                             <span>
                                 {{item.name}}
                             </span>
-                            <span class="pr-4 " style="float: right;max-height: 80%; right:5%;">
+                            <span class="pr-4 " *ngIf="!isDataMoci" style="float: right;max-height: 80%; right:5%;">
                                 <i class="fa fa-trash-o btn btn-danger" (click)="deleteFile(item)"></i>
                             </span>
                         </li>
@@ -35,7 +35,7 @@
 
             </section>
             <hr>
-            <section class="bg-white" *ngIf="!isDataMoci">
+            <section class="bg-white" *ngIf="filesList.length == 0 && !isDataMoci">
                 <div>Add New File</div>
                 <mat-card>
                     <mat-card-content>
@@ -55,6 +55,12 @@
                         </button>
                     </mat-card-actions>
                 </mat-card>
+            </section>
+            <section *ngIf="filesList.length > 0 && !isDataMoci">
+                <p class="text-red">You can add only one File.</p>
+            </section>
+            <section *ngIf="filesList.length > 0 && isDataMoci">
+                <p class="text-red">Data fetched from interface - not editable</p>
             </section>
         </div>
         <div class="modal-footer">
@@ -913,8 +919,8 @@
                                                 (keyup.enter)="enteredDetails( 'activityInfo',data)">
                                                 <input [(ngModel)]="data.location"></td>
                                             <td>
-                                                <i class="fa fa-folder-open" aria-hidden="true"></i>
-                                                <!--  (click)="openFile(shoeFiles,'activityInfo',data, data.isMoci)" -->
+                                                <i class="fa fa-folder-open" aria-hidden="true" (click)="openFile(shoeFiles,'activityInfo',data, data.isMoci)"></i>
+                                               
                                                 <input type="file" #fileInput id="fileUpload" name="fileUpload"
                                                     multiple="multiple" style="display: none;" />
                                             </td>
@@ -972,7 +978,7 @@
                                     aria-hidden="true"></i></button>
                         </div>
                     </div>
-                    <div class="shadow p-3 mb-5" *ngFor="let data of BankDetails">
+                    <div class="shadow p-3 mb-5" *ngFor="let data of BankDetails;index as index">
                         <div class="row ">
                             <div class="col-md-12 col-lg-12 col-xl-12 px-4 " *ngIf="data.isMoci">
                                 <i class="fa fa-ban text-red fs-14" mat-raised-button
@@ -984,7 +990,7 @@
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                                 <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id</h5>
-                                <p class="fs-14">{{data.bankingId}}</p>
+                                <p class="fs-14">{{index + 1}}</p>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                                 <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id Name</h5>
@@ -1042,7 +1048,7 @@
                             </a>
                         </div>
                     </div>
-                    <!-- banck form pop-up -->
+                    <!-- bank form pop-up -->
                     <ng-template #bankModel let-modal>
                         <div class="modal-header">
                             <h4 class="modal-title" id="modal-basic-title">Add Bank Detail</h4>
@@ -1059,10 +1065,10 @@
                                             <div class="col-md-12 ">
                                                 <div class="form-group row mb-3">
                                                     <label for="bankingId" class="col-sm-5 col-form-label">Banking
-                                                        Id<span class="text-red">*</span></label>
+                                                        Id</label>
                                                     <div class="col-sm-7">
                                                         <input formControlName="bankingId" id="bankingId" type="text"
-                                                            class="form-control">
+                                                            class="form-control" readonly>
                                                     </div>
                                                     <div *ngIf="bf.bankingId.touched && bf.bankingId.invalid"
                                                         class="alert alert-danger">
@@ -1284,8 +1290,8 @@
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
                                 <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
-                                <!-- <button class="btn btn-secondary ml-2 float-right mb-2"  [disabled]='!showBtn' (click)="addNewRow('other')"><i
-                                        class="fa fa-plus" aria-hidden="true"></i></button> -->
+                                <button class="btn btn-secondary ml-2 float-right mb-2" [disabled]='!showBtn'
+                                    (click)="addNewRow('other')"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                 <table class="table table-striped mb-0 ">
                                     <thead>
                                         <tr class="purple-bg text-white">
@@ -1297,9 +1303,11 @@
                                                         </a> </span> </div>
                                             </th>
                                             <!-- (click)="sorting('other','no')" <i class="fa fa-sort" aria-hidden="true"></i> -->
-                                            <th scope="col" >No.</th>
-                                            <th scope="col" (click)="sorting('other','name')">Label <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                            <th scope="col" (click)="sorting('other','value')">Value <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                            <th scope="col">No.</th>
+                                            <th scope="col" (click)="sorting('other','name')">Label <i
+                                                    class="fa fa-sort" aria-hidden="true"></i></th>
+                                            <th scope="col" (click)="sorting('other','value')">Value <i
+                                                    class="fa fa-sort" aria-hidden="true"></i></th>
                                             <th scope="col">Attachment</th>
                                             <!-- <th></th> -->
                                         </tr>
@@ -1332,9 +1340,8 @@
                                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)"><input
                                                     [(ngModel)]="data.value"></td>
                                             <td>
-                                                <i class="fa fa-folder-open" aria-hidden="true"></i>
-                                                <!-- 
-                                                    (click)="openFile(shoeFiles,'bankOther',data, data.isMoci)" -->
+                                                <i class="fa fa-folder-open" aria-hidden="true" (click)="openFile(shoeFiles,'bankOther',data, data.isMoci)" ></i>
+                                                
                                                 <input type="file" #fileInput id="fileUpload" name="fileUpload"
                                                     multiple="multiple" style="display: none;" />
                                             </td>
@@ -1625,9 +1632,9 @@
                                             (keyup.enter)="enteredDetails( 'employee',data)">
                                             <input [(ngModel)]="data.omaniratio"></td>
                                         <td>
-                                            <i class="fa fa-folder-open" aria-hidden="true"></i>
-                                            <!-- 
-                                                (click)="openFile(shoeFiles,'employee',data, data.isMoci)" -->
+                                            <i class="fa fa-folder-open" aria-hidden="true"
+                                                (click)="openFile(shoeFiles,'employee',data, data.isMoci)"></i>
+                                                
                                             <input type="file" #fileInput id="fileUpload" name="fileUpload"
                                                 multiple="multiple" style="display: none;" />
                                         </td>
@@ -1789,7 +1796,8 @@
                                 <button class="btn btn-outline-secondary" id="dropdownBasic1"
                                     ngbDropdownToggle>Activities</button>
                                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                    <button ngbDropdownItem *ngFor="let activity of ministriesData1.tenderBoardDataTab.registeredActivities">{{activity}}</button>
+                                    <button ngbDropdownItem
+                                        *ngFor="let activity of ministriesData1.tenderBoardDataTab.registeredActivities">{{activity}}</button>
                                     <!-- <button ngbDropdownItem>Activity name 2</button>
                                     <button ngbDropdownItem>Activity name 3</button> -->
                                 </div>
@@ -1807,10 +1815,10 @@
                         </div>
                         <div class="col  px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Certificate</h5>
-                            <p class="fs-14">{{ministriesData1.tenderBoardDataTab.registrationCertificate}}</p>
-                            <i class="fa fa-folder-open" aria-hidden="true">
+                            <!-- <p class="fs-14">{{ministriesData1.tenderBoardDataTab.registrationCertificate}}</p> -->
+                            <i class="fa fa-folder-open" aria-hidden="true" (click)="openFile(shoeFiles,'regCerti','')">
                                 Add Document</i>
-                            <!-- (click)="openFile(shoeFiles,'regCerti','')" -->
+
                             <input type="file" #fileInput id="fileUpload" name="fileUpload" multiple="multiple"
                                 style="display: none;" />
                         </div>
@@ -1898,7 +1906,8 @@
                                 <button class="btn btn-outline-secondary" id="dropdownBasic1"
                                     ngbDropdownToggle>Activities</button>
                                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                    <button ngbDropdownItem *ngFor="let activity of ministriesData1.municipalityDataTab.activities">{{activity}}</button>
+                                    <button ngbDropdownItem
+                                        *ngFor="let activity of ministriesData1.municipalityDataTab.activities">{{activity}}</button>
                                     <!-- <button ngbDropdownItem>Activity name 2</button>
                                     <button ngbDropdownItem>Activity name 3</button> -->
                                 </div>
@@ -1992,7 +2001,8 @@
                                     <button class="btn btn-outline-secondary" id="dropdownBasic1"
                                         ngbDropdownToggle>Activities</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                        <button ngbDropdownItem *ngFor="let activity of ministriesData2.mofDataTab.activities">{{activity}}</button>
+                                        <button ngbDropdownItem
+                                            *ngFor="let activity of ministriesData2.mofDataTab.activities">{{activity}}</button>
                                         <!-- <button ngbDropdownItem>Activity name 2</button>
                                         <button ngbDropdownItem>Activity name 3</button> -->
                                     </div>
@@ -2057,9 +2067,9 @@
                                 <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Health and pharmacy licenses
                                 </h5>
                                 <!-- <p class="fs-14">{{ministriesData2.mohDataTab.healthAndPharmacyLicenses}}</p> -->
-                                <i class="fa fa-folder-open" aria-hidden="true"> Add Document</i>
-                                <!-- 
-                                    (click)="openFile(shoeFiles,'hplicenses','')" -->
+                                <i class="fa fa-folder-open" aria-hidden="true"
+                                    (click)="openFile(shoeFiles,'hplicenses','')"> Add Document</i>
+
                                 <input type="file" #fileInput id="fileUpload" name="fileUpload" multiple="multiple"
                                     style="display: none;" />
                             </div>
@@ -2124,9 +2134,10 @@
                                     Companies
                                 </h5>
                                 <!-- <p class="fs-14">{{ministriesData2.mociDataTab.perAndLiceOfConsCom}}</p> -->
-                                <i class="fa fa-folder-open" aria-hidden="true">
+                                <i class="fa fa-folder-open" aria-hidden="true"
+                                    (click)="openFile(shoeFiles,'pLOfCC','')">
                                     Add Document</i>
-                                <!--  (click)="openFile(shoeFiles,'pLOfCC','')" -->
+
                                 <input type="file" #fileInput id="fileUpload" name="fileUpload" multiple="multiple"
                                     style="display: none;" />
                             </div>
@@ -2135,9 +2146,10 @@
                                     Qualifying
                                     Institutes</h5>
                                 <!-- <p class="fs-14">{{ministriesData2.mociDataTab.liceOfTraAndQuaInst}}</p> -->
-                                <i class="fa fa-folder-open" aria-hidden="true">
+                                <i class="fa fa-folder-open" aria-hidden="true"
+                                    (click)="openFile(shoeFiles,'lOTQI','')">
                                     Add Document</i>
-                                <!--  (click)="openFile(shoeFiles,'lOTQI','')" -->
+
                                 <input type="file" #fileInput id="fileUpload" name="fileUpload" multiple="multiple"
                                     style="display: none;" />
                             </div>
@@ -2241,7 +2253,8 @@
                                     <button class="btn btn-outline-secondary" id="dropdownBasic1"
                                         ngbDropdownToggle>Activities</button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                                        <button ngbDropdownItem *ngFor="let activity of ministriesData2.smallMediumEntDataTab.activities">{{activity}}</button>
+                                        <button ngbDropdownItem
+                                            *ngFor="let activity of ministriesData2.smallMediumEntDataTab.activities">{{activity}}</button>
                                         <!-- <button ngbDropdownItem>Activity name 2</button>
                                         <button ngbDropdownItem>Activity name 3</button> -->
                                     </div>
@@ -2343,7 +2356,8 @@
                         <button class="btn btn-outline-secondary" id="dropdownBasic1"
                             ngbDropdownToggle>Activities</button>
                         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                            <button ngbDropdownItem *ngFor="let activity of ministriesData3.authorityOfCivilDefenseData.activities">{{activity}}</button>
+                            <button ngbDropdownItem
+                                *ngFor="let activity of ministriesData3.authorityOfCivilDefenseData.activities">{{activity}}</button>
                             <!-- <button ngbDropdownItem>Activity name 2</button>
                             <button ngbDropdownItem>Activity name 3</button> -->
                         </div>
@@ -2393,7 +2407,8 @@
                         <button class="btn btn-outline-secondary" id="dropdownBasic1"
                             ngbDropdownToggle>Activities</button>
                         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                            <button ngbDropdownItem *ngFor="let activity of ministriesData3.capitalMarketData.activities">{{activity}}</button>
+                            <button ngbDropdownItem
+                                *ngFor="let activity of ministriesData3.capitalMarketData.activities">{{activity}}</button>
                             <!-- <button ngbDropdownItem>Activity name 1</button>
                             <button ngbDropdownItem>Activity name 2</button>
                             <button ngbDropdownItem>Activity name 3</button> -->
@@ -2428,9 +2443,9 @@
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">List of financially troubled companies
                     </h5>
                     <!-- <p class="fs-14">{{ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies}}</p> -->
-                    <i class="fa fa-folder-open" aria-hidden="true"> Add
+                    <i class="fa fa-folder-open" aria-hidden="true" (click)="openFile(shoeFiles,'loftc','')"> Add
                         Document</i>
-                    <!-- (click)="openFile(shoeFiles,'loftc','')" -->
+
                     <input type="file" #fileInput id="fileUpload" name="fileUpload" multiple="multiple"
                         style="display: none;" />
                 </div>
@@ -2484,7 +2499,8 @@
                         <button class="btn btn-outline-secondary" id="dropdownBasic1"
                             ngbDropdownToggle>Activities</button>
                         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                            <button ngbDropdownItem *ngFor="let activity of ministriesData3.distRulesReviewBoardData.activities">{{activity}}</button>
+                            <button ngbDropdownItem
+                                *ngFor="let activity of ministriesData3.distRulesReviewBoardData.activities">{{activity}}</button>
                             <!-- <button ngbDropdownItem>Activity name 1</button>
                             <button ngbDropdownItem>Activity name 2</button>
                             <button ngbDropdownItem>Activity name 3</button> -->
@@ -2624,9 +2640,8 @@
                                         (keyup.enter)="enteredDetails( 'project',data)">
                                         <input [(ngModel)]="data.completion"></td>
                                     <td>
-                                        <i class="fa fa-folder-open" aria-hidden="true"></i>
-                                        <!-- 
-                                            (click)="openFile(shoeFiles,'project',data, data.isMoci)" -->
+                                        <i class="fa fa-folder-open" aria-hidden="true" (click)="openFile(shoeFiles,'project',data, data.isMoci)"></i>
+                                        
                                         <input type="file" #fileInput id="fileUpload" name="fileUpload"
                                             multiple="multiple" style="display: none;" />
                                     </td>
