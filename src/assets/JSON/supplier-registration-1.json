@@ -39,7 +39,8 @@
                         "class": "a",
                         "commodity": "",
                         "isEdit": false,
-                        "isMoci": false                    
+                        "isMoci": false,
+                        "isUpdate": false                 
                     }
                 ],
                 "detailsRemark": "Details Not Applicable"
@@ -71,7 +72,8 @@
                         "language": "English",
                         "country": "Oman",
                         "isEdit": false,
-                        "isMoci": false
+                        "isMoci": false,
+                        "isUpdate": false
                     }
                 ],
                 "detailsRemark": "Details Not Applicable"
@@ -80,6 +82,7 @@
         "personalDetailsStep": {
             "personalDetails": [
                 {
+                    "personId": "1",
                     "personName": "R Bala",
                     "nationality": "Omani",
                     "idType": "",
@@ -95,6 +98,7 @@
                     "isMoci": true
                 },
                 {
+                    "personId": "2",
                     "personName": "R P",
                     "nationality": "Omani",
                     "idType": "-",
@@ -110,6 +114,7 @@
                     "isMoci": true
                 },
                 {
+                    "personId": "3",
                     "personName": "R K",
                     "nationality": "Omani",
                     "idType": "-",
@@ -130,46 +135,47 @@
         "communicationMethodStep": {
             "communicationMethod": [
                 {
-                    "no": 1,
+                    "communicationID": 1,
                     "method": "Telephone",
                     "value": "+919 515 6162",
                     "isEdit": false,
                     "isMoci": true
                 },
                 {
-                    "no": 2,
+                    "communicationID": 2,
                     "method": "P.O.Box",
                     "value": "762 - Muscat",
                     "isEdit": false,
                     "isMoci": true
                 },
                 {
-                    "no": 3,
+                    "communicationID": 3,
                     "method": "Fax",
                     "value": "414-589-8745",
                     "isEdit": false,
                     "isMoci": true
                 },
                 {
-                    "no": 4,
+                    "communicationID": 4,
                     "method": "Legal Status",
                     "value": "valid",
                     "isEdit": false,
                     "isMoci": true
                 },
                 {
-                    "no": 5,
+                    "communicationID": 5,
                     "method": "P C",
                     "value": "72666",
                     "isEdit": false,
                     "isMoci": true
                 },
                 {
-                    "no": 6,
+                    "communicationID": 6,
                     "method": "Email",
                     "value": "user@yopmail.com",
                     "isEdit": false,
-                    "isMoci": false
+                    "isMoci": false,
+                    "isUpdate": false
                 }
             ],
             "detailsRemark": "Details Not Applicable"
@@ -203,7 +209,8 @@
                         "location": "-",
                         "isEdit": false,
                         "documents": {"name": "document.pdf", "path":""},
-                        "isMoci": false
+                        "isMoci": false,
+                        "isUpdate": false
                     }
                 ],
                 "detailsRemark": "Details Not Applicable"
@@ -250,36 +257,40 @@
             "otherInfoTab": {
                 "otherDetails": [
                     {
-                        "no": 1,
+                        "otherID": 1,
                         "name": "test 1",
                         "value": "-",
                         "documents": {"name": "document.pdf", "path":""},
                         "isEdit": false,
-                        "isMoci": false
+                        "isMoci": false,
+                        "isUpdate": false
                     },
                     {
-                        "no": 2,
+                        "otherID": 2,
                         "name": "test 2",
                         "value": "-",
                         "documents": {"name": "document.pdf", "path":""},
                         "isEdit": false,
-                        "isMoci": false
+                        "isMoci": false,
+                        "isUpdate": false
                     },
                     {
-                        "no": 3,
+                        "otherID": 3,
                         "name": "test 3",
                         "value": "-",
                         "documents": {"name": "document.pdf", "path":""},
                         "isEdit": false,
-                        "isMoci": false
+                        "isMoci": false,
+                        "isUpdate": false
                     },
                     {
-                        "no": 4,
+                        "otherID": 4,
                         "name": "test 4",
                         "value": "-",
                         "documents": {"name": "document.pdf", "path":""},
                         "isEdit": false,
-                        "isMoci": false
+                        "isMoci": false,
+                        "isUpdate": false
                     }
                 ],
                 "detailsRemark": "Details Not Applicable"
@@ -291,7 +302,7 @@
             "omanizationRatio": 82342,
             "employeDetails": [
                 {
-                    "no": 1,
+                    "employeeID": 1,
                     "name": "R Bala",
                     "qualification": "Btech",
                     "specialization": "Literature",
@@ -315,7 +326,7 @@
                     "isMoci": true
                 },
                 {
-                    "no": 2,
+                    "employeeID": 2,
                     "name": "R P",
                     "qualification": "BE",
                     "specialization": "Thinker",
@@ -339,7 +350,7 @@
                     "isMoci": true
                 },
                 {
-                    "no": 3,
+                    "employeeID": 3,
                     "name": "R K",
                     "qualification": "School Dropout",
                     "specialization": "Thinker",
@@ -492,7 +503,7 @@
         "projectDetailsStep": {
             "projectDetails": [
                 {
-                    "no": 1,
+                    "projectID": 1,
                     "name": "Yibal Project for PDO",
                     "client": "QRB",
                     "consultent": "Khatib & Alami and Partners",
@@ -502,10 +513,11 @@
                     "completion": "2018",
                     "documents": {"name": "document.pdf", "path":""},
                     "isEdit": false,
-                    "isMoci": false
+                    "isMoci": false,
+                    "isUpdate": false
                 },
                 {
-                    "no": 2,
+                    "projectID": 2,
                     "name": "Grand Mall-Carrefour",
                     "client": "Majid Al Futtaim",
                     "consultent": "ME Studio Engineering",
@@ -515,10 +527,11 @@
                     "completion": "2019",
                     "documents": {"name": "document.pdf", "path":""},
                     "isEdit": false,
-                    "isMoci": false
+                    "isMoci": false,
+                    "isUpdate": false
                 },
                 {
-                    "no": 3,
+                    "projectID": 3,
                     "name": "OMAN Post Off. Ruwi",
                     "client": "QRB",
                     "consultent": "OMAN POST",
@@ -528,7 +541,8 @@
                     "completion": "",
                     "documents": {"name": "document.pdf", "path":""},
                     "isEdit": false,
-                    "isMoci": false
+                    "isMoci": false,
+                    "isUpdate": false
                 }
             ],
             "detailsRemark": "Details Not Applicable"
@@ -536,7 +550,7 @@
         "subContractorDetailsStep": {
             "subContractorDetails": [
                 {
-                    "no": 1,
+                    "contractorID": 1,
                     "nameOfWork": "Orion",
                     "subContractor": "-",
                     "crNo": "-",
@@ -545,10 +559,11 @@
                     "email": "subi@orion.com",
                     "regWithRca": true,
                     "isEdit": false,
-                    "isMoci": false
+                    "isMoci": false,
+                    "isUpdate": false
                 },
                 {
-                    "no": 2,
+                    "contractorID": 2,
                     "nameOfWork": "scorpion",
                     "subContractor": "-",
                     "crNo": "-",
@@ -557,7 +572,8 @@
                     "email": "subi@orion.com",
                     "regWithRca": false,
                     "isEdit": false,
-                    "isMoci": false
+                    "isMoci": false,
+                    "isUpdate": false
                 }
             ],
             "detailsRemark": "Details Not Applicable"
@@ -565,7 +581,7 @@
         "equipmentDetailsStep": {
             "equipmentDetails": [
                 {
-                    "no": 1,
+                    "equipmentID": 1,
                     "type": "Pickup",
                     "quantity": "2",
                     "capacity": "2400CC",
@@ -573,10 +589,11 @@
                     "regNo": "S 2020",
                     "approxValue": "5000 OMR",
                     "isEdit": false,
-                    "isMoci": false
+                    "isMoci": false,
+                    "isUpdate": false
                 },
                 {
-                    "no": 2,
+                    "equipmentID": 2,
                     "type": "Salon",
                     "quantity": "1",
                     "capacity": "2000CC",
@@ -584,10 +601,11 @@
                     "regNo": "R 1235",
                     "approxValue": "7500 OMR",
                     "isEdit": false,
-                    "isMoci": false
+                    "isMoci": false,
+                    "isUpdate": false
                 },
                 {
-                    "no": 3,
+                    "equipmentID": 3,
                     "type": "-",
                     "quantity": "-",
                     "capacity": "-",
@@ -595,10 +613,11 @@
                     "regNo": "-",
                     "approxValue": "-",
                     "isEdit": false,
-                    "isMoci": false
+                    "isMoci": false,
+                    "isUpdate": false
                 },
                 {
-                    "no": 4,
+                    "equipmentID": 4,
                     "type": "-",
                     "quantity": "-",
                     "capacity": "-",
@@ -606,7 +625,8 @@
                     "regNo": "-",
                     "approxValue": "-",
                     "isEdit": false,
-                    "isMoci": false
+                    "isMoci": false,
+                    "isUpdate": false
                 }
             ],
             "detailsRemark": "Details Not Applicable"
