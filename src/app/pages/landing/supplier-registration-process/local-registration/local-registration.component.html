@@ -429,7 +429,7 @@
                         <div class="modal-header">
                             <h4 class="modal-title" id="modal-basic-title">Add Address</h4>
                             <button type="button" class="close" aria-label="Close"
-                                (click)="modal.dismiss('Cross click')">
+                                (click)="modal.dismiss('Cross click'); editAddress = false;">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
@@ -523,7 +523,7 @@
                                 <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" type="submit"
                                     [disabled]="this.form.status !== 'VALID'">Submit</button>
                                 <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
-                                    (click)="form.reset(); modal.close('Save click')">Cancel</button>
+                                    (click)="form.reset(); modal.close('Save click');  editAddress = false;">Cancel</button>
 
                             </div>
                         </form>
@@ -1053,7 +1053,7 @@
                         <div class="modal-header">
                             <h4 class="modal-title" id="modal-basic-title">Add Bank Detail</h4>
                             <button type="button" class="close" aria-label="Close"
-                                (click)="modal.dismiss('Cross click')">
+                                (click)="modal.dismiss('Cross click'); editBank = false;">
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
@@ -1163,7 +1163,7 @@
                                 <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" type="submit"
                                     [disabled]='!bankform.valid'>Submit</button>
                                 <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
-                                    (click)="form.reset(); modal.close('Save click')">Cancel</button>
+                                    (click)="form.reset(); modal.close('Save click'); editBank = false;">Cancel</button>
 
                             </div>
                         </form>
@@ -1309,7 +1309,7 @@
                                             <th scope="col" (click)="sorting('other','value')">Value <i
                                                     class="fa fa-sort" aria-hidden="true"></i></th>
                                             <th scope="col">Attachment</th>
-                                            <!-- <th></th> -->
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -1345,8 +1345,8 @@
                                                 <input type="file" #fileInput id="fileUpload" name="fileUpload"
                                                     multiple="multiple" style="display: none;" />
                                             </td>
-                                            <!-- <td  *ngIf="data.isMoci || !data.isEdit"></td>
-                                            <td  *ngIf="data.isEdit && !data.isMoci"><i class="fa fa-trash text-red dlt-btn-size" aria-hidden="true" (click)="deleteRow('other',data)"></i></td> -->
+                                            <td  *ngIf="data.isMoci || !data.isEdit"></td>
+                                            <td  *ngIf="data.isEdit && !data.isMoci"><i class="fa fa-trash text-red dlt-btn-size" aria-hidden="true" (click)="deleteRow('other',data)"></i></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -2774,12 +2774,12 @@
                                         <div class="d-flex">
                                             <div class="form-check mr-3 mb-3">
                                                 <input [checked]='data.regWithRca' class="form-check-input"
-                                                    name='{{data.no}}' type="radio" id="yes" value="yes">
+                                                    name='{{data.contractorID}}' type="radio" id="yes" value="yes">
                                                 <label class="form-check-label font-italic ml-2" for="yes">Yes </label>
                                             </div>
                                             <div class="form-check mr-3 mb-3">
                                                 <input [checked]='!data.regWithRca' class="form-check-input"
-                                                    name='{{data.no}}' type="radio" id="no" value="no">
+                                                    name='{{data.contractorID}}' type="radio" id="no" value="no">
                                                 <label class="form-check-label font-italic ml-2" for="no">No </label>
                                             </div>
                                         </div>

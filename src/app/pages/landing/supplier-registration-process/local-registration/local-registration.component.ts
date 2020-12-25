@@ -442,10 +442,10 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       this.projectData.map((d, i) => {
         if (d.projectID == data.projectID) {
           if (flag == false) {
-            d.documents=file.data;
+            d.documents = file.data;
           }
-            this.filesList.push(d.documents);
-            file.inProgress = false;
+          this.filesList.push(d.documents);
+          file.inProgress = false;
         }
       });
     }
@@ -456,8 +456,8 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
           if (flag == false) {
             d.documents = file.data;
           }
-            this.filesList.push(d.documents);
-            file.inProgress = false;
+          this.filesList.push(d.documents);
+          file.inProgress = false;
         }
       });
     }
@@ -468,8 +468,8 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
           if (flag == false) {
             d.documents = file.data;
           }
-            this.filesList.push(d.documents);
-            file.inProgress = false;
+          this.filesList.push(d.documents);
+          file.inProgress = false;
         }
       });
     }
@@ -513,8 +513,8 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
           if (flag == false) {
             d.documents = file.data;
           }
-            this.filesList.push(d.documents);
-            file.inProgress = false;
+          this.filesList.push(d.documents);
+          file.inProgress = false;
         }
       });
     }
@@ -558,7 +558,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       this.filesList = [];
       this.projectData.map((d, i) => {
         if (d.projectID == data.projectID) {
-          if(Object.keys(d.documents).length != 0){
+          if (Object.keys(d.documents).length != 0) {
             this.filesList.push(d.documents);
           }
         }
@@ -568,7 +568,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       this.filesList = [];
       this.employeeData.map((d, i) => {
         if (d.employeeID == data.employeeID) {
-          if(Object.keys(d.documents).length != 0){
+          if (Object.keys(d.documents).length != 0) {
             this.filesList.push(d.documents);
           }
         }
@@ -578,7 +578,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       this.filesList = [];
       this.activityInfoData.map((d, i) => {
         if (d.activityID == data.activityID) {
-          if(Object.keys(d.documents).length != 0){
+          if (Object.keys(d.documents).length != 0) {
             this.filesList.push(d.documents);
           }
         }
@@ -586,31 +586,31 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     }
     if (this.selectedPage === 'regCerti') {
       this.filesList = [];
-      if(this.ministriesData1.tenderBoardDataTab.registrationCertificate.name){
+      if (this.ministriesData1.tenderBoardDataTab.registrationCertificate.name) {
         this.filesList.push(this.ministriesData1.tenderBoardDataTab.registrationCertificate);
       }
     }
     if (this.selectedPage === 'hplicenses') {
       this.filesList = [];
-      if(this.ministriesData2.mohDataTab.healthAndPharmacyLicenses.name){
+      if (this.ministriesData2.mohDataTab.healthAndPharmacyLicenses.name) {
         this.filesList.push(this.ministriesData2.mohDataTab.healthAndPharmacyLicenses);
       }
     }
     if (this.selectedPage === 'pLOfCC') {
       this.filesList = [];
-      if(this.ministriesData2.mociDataTab.perAndLiceOfConsCom.name){
+      if (this.ministriesData2.mociDataTab.perAndLiceOfConsCom.name) {
         this.filesList.push(this.ministriesData2.mociDataTab.perAndLiceOfConsCom);
       }
     }
     if (this.selectedPage === 'lOTQI') {
       this.filesList = [];
-      if(this.ministriesData2.mociDataTab.liceOfTraAndQuaInst.name){
+      if (this.ministriesData2.mociDataTab.liceOfTraAndQuaInst.name) {
         this.filesList.push(this.ministriesData2.mociDataTab.liceOfTraAndQuaInst);
       }
     }
     if (this.selectedPage === 'loftc') {
       this.filesList = [];
-      if(this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies.name){
+      if (this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies.name) {
         this.filesList.push(this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies);
       }
     }
@@ -618,7 +618,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       this.filesList = [];
       this.otherData.map((d, i) => {
         if (d.otherID == data.otherID) {
-          if(Object.keys(d.documents).length != 0){
+          if (Object.keys(d.documents).length != 0) {
             this.filesList.push(d.documents);
           }
         }
@@ -662,7 +662,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         this.activityInfoData.map((d, i) => {
           if (d.activityID == this.uploadData.activityID) {
             d.documents = {};
-          // d.documents.filter((f, i) => {
+            // d.documents.filter((f, i) => {
             //   if (f.name == file.name) {
             //     d.documents.splice(i, 1);
             //     this.filesList = d.documents;
@@ -746,7 +746,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       this.open(content);
     } else {
       this.bankform.reset();
-      this.bankform.patchValue({ bankingId: uuid(), isMoci:false, isUpdate: false });
+      this.bankform.patchValue({ bankingId: uuid(), isMoci: false, isUpdate: false });
       this.editbankData = this.bankform.value;
       this.open(content);
     }
@@ -761,7 +761,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       }
     } else {
       this.form.reset();
-      this.form.patchValue({ addressID: uuid(), country: 'Oman', isMoci:false, isUpdate: false });
+      this.form.patchValue({ addressID: uuid(), country: 'Oman', isMoci: false, isUpdate: false });
     }
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -801,7 +801,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     // this.router.navigateByUrl('/landing/supplier-registration/transaction');
   }
 
-  saveDraft(step:number = 0) {
+  saveDraft(step: number = 0) {
 
     const data: any = {};
 
@@ -822,11 +822,11 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     }
 
     if (this.bankDetalsDraft.length > 0) {
-      data.bankDetailStep = {  ...data.bankDetailStep, BankDetails: this.bankDetalsDraft }
+      data.bankDetailStep = { ...data.bankDetailStep, BankDetails: this.bankDetalsDraft }
     }
 
     if (this.bankOtherInfoDraft.length > 0) {
-      data.bankDetailStep = {  ...data.bankDetailStep, otherDetails: this.bankOtherInfoDraft }
+      data.bankDetailStep = { ...data.bankDetailStep, otherDetails: this.bankOtherInfoDraft }
     }
 
     if (this.employeeDraft.length > 0) {
@@ -936,30 +936,40 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
 
   submitbank() {
     if (this.bankform.status === 'VALID') {
+      let index = this.BankDetails.findIndex(bank => (bank.bankAcc == this.bankform.value.bankAcc && bank.bankingId != this.bankform.value.bankingId));
       if (this.editBank == true) {
-        this.BankDetails.filter((d, i) => {
-          if (d.bankingId == this.editbankData.bankingId) {
-            this.editbankData = this.bankform.value; 
-            this.BankDetails.splice(i, 1, this.bankform.value);
-          }
-        });
+        if (index == -1) {
+          this.BankDetails.filter((d, i) => {
+            if (d.bankingId == this.editbankData.bankingId) {
+              this.editbankData = this.bankform.value;
+              this.BankDetails.splice(i, 1, this.bankform.value);
+            }
+          });
+        } else {
+          this.alertService.pushError('Already added this Account.');
+        }
         this.editBank = false;
       } else {
-          this.editbankData = this.bankform.value; 
+        if (index == -1) {
+          this.editbankData = this.bankform.value;
           this.BankDetails.push(this.bankform.value);
+        } else {
+          this.alertService.pushError('Already added this Account.');
+        }
       }
-
-      if (this.editbankData.isUpdate === null) {
-        this.editbankData['isUpdate'] = true;
-      }
-      if (this.bankDetalsDraft.length === 0) {
-        this.bankDetalsDraft.push({ ...this.editbankData });
-      } else {
-        const index = this.bankDetalsDraft.findIndex(bank => 
-          (bank.bankingId === this.editbankData.bankingId));
-        index === -1 ?
-          this.bankDetalsDraft.push({ ...this.editbankData }) :
-          this.bankDetalsDraft[index] = { ...this.editbankData };
+      if (index == -1) {
+        if (this.editbankData.isUpdate === null) {
+          this.editbankData['isUpdate'] = true;
+        }
+        if (this.bankDetalsDraft.length === 0) {
+          this.bankDetalsDraft.push({ ...this.editbankData });
+        } else {
+          const index = this.bankDetalsDraft.findIndex(bank =>
+            (bank.bankingId === this.editbankData.bankingId));
+          index === -1 ?
+            this.bankDetalsDraft.push({ ...this.editbankData }) :
+            this.bankDetalsDraft[index] = { ...this.editbankData };
+        }
       }
       this.bankform.reset();
     }
@@ -1061,7 +1071,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         telephone: '',
         fax: '',
         email: '',
-        regWithRca: '',
+        regWithRca: false,
         isEdit: true,
         isMoci: false,
         isUpdate: false
@@ -1227,10 +1237,6 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
                   }
                 }
               });
-              if (data.name === ' * ') {
-                data.name = '',
-                  data.isEdit = true;
-              }
               this.showBtn = true;
             } else {
               data.isEdit = true;
@@ -1263,7 +1269,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
               }
             }
           });
-          
+
           this.showBtn = true;
         } else {
           // this.showBtn = true;
@@ -1598,6 +1604,12 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
           this.employeeData.splice(i, 1);
         }
       });
+      let index = this.employeeDraft.findIndex(employee => employee.employeeID == data.employeeID);
+      index !== -1 ?
+        this.employeeDraft[index].isUpdate === false ?
+          this.employeeDraft.splice(index, 1) :
+          this.employeeDraft[index]['isDelete'] = true
+        : null;
       this.getEmployeeCategories();
     }
     if (datatype === 'project') {
@@ -1606,6 +1618,12 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
           this.projectData.splice(i, 1);
         }
       });
+      let index = this.projectDraft.findIndex(project => project.projectID == data.projectID);
+      index !== -1 ?
+        this.projectDraft[index].isUpdate === false ?
+          this.projectDraft.splice(index, 1) :
+          this.projectDraft[index]['isDelete'] = true
+        : null;
     }
     if (datatype === 'subContractor') {
       this.subContractorData.map((d, i) => {
@@ -1613,6 +1631,12 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
           this.subContractorData.splice(i, 1);
         }
       });
+      let index = this.subcontractorDraft.findIndex(contractor => contractor.contractorID == data.contractorID);
+      index !== -1 ?
+        this.subcontractorDraft[index].isUpdate === false ?
+          this.subcontractorDraft.splice(index, 1) :
+          this.subcontractorDraft[index]['isDelete'] = true
+        : null;
     }
     if (datatype === 'equipment') {
       this.equipmentData.map((d, i) => {
@@ -1620,6 +1644,12 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
           this.equipmentData.splice(i, 1);
         }
       });
+      let index = this.equipmentDraft.findIndex(equipment => equipment.equipmentID == data.equipmentID);
+      index !== -1 ?
+        this.equipmentDraft[index].isUpdate === false ?
+          this.equipmentDraft.splice(index, 1) :
+          this.equipmentDraft[index]['isDelete'] = true
+        : null;
     }
     if (datatype === 'other') {
       this.otherData.map((d, i) => {
@@ -1627,6 +1657,12 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
           this.otherData.splice(i, 1);
         }
       });
+      let index = this.bankOtherInfoDraft.findIndex(other => other.otherID == data.otherID);
+      index !== -1 ?
+        this.bankOtherInfoDraft[index].isUpdate === false ?
+          this.bankOtherInfoDraft.splice(index, 1) :
+          this.bankOtherInfoDraft[index]['isDelete'] = true
+        : null;
     }
     if (datatype === 'activity') {
       this.activityData.map((d, i) => {
@@ -1634,6 +1670,13 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
           this.activityData.splice(i, 1);
         }
       });
+      let index = this.generalActivityDraft.findIndex(activity => activity.activityID == data.activityID);
+      index !== -1 ?
+        this.generalActivityDraft[index].isUpdate === false ?
+          this.generalActivityDraft.splice(index, 1) :
+          this.generalActivityDraft[index]['isDelete'] = true
+        : null;
+      // this.generalActivityDraft[index].isUpdate = null
     }
     // if (datatype === 'personal') {
     //   this.personalData.map((d, i) => {
@@ -1648,6 +1691,12 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
           this.activityInfoData.splice(i, 1);
         }
       });
+      let index = this.bankActivityInfoDraft.findIndex(activity => activity.activityID == data.activityID);
+      index !== -1 ?
+        this.bankActivityInfoDraft[index].isUpdate === false ?
+          this.bankActivityInfoDraft.splice(index, 1) :
+          this.bankActivityInfoDraft[index]['isDelete'] = true
+        : null;
     }
     if (datatype === 'communication') {
       this.communicationData.map((d, i) => {
@@ -1655,6 +1704,12 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
           this.communicationData.splice(i, 1);
         }
       });
+      let index = this.communicationDraft.findIndex(communication => communication.communicationID == data.communicationID);
+      index !== -1 ?
+        this.communicationDraft[index].isUpdate === false ?
+          this.communicationDraft.splice(index, 1) :
+          this.communicationDraft[index]['isDelete'] = true
+        : null;
     }
     if (datatype === 'siteVisit') {
       this.siteVisitData.map((d, i) => {

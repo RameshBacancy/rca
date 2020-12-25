@@ -9,7 +9,7 @@
                 "companyInfo": "Company Info",
                 "activities": [
                     {
-                        "activityID":"1",
+                        "activityID":"1sdfvd",
                         "activityName": "1",
                         "subActivity": "1",
                         "sagment": "",
@@ -20,7 +20,7 @@
                         "isMoci": true
                     },
                     {
-                        "activityID":"2",
+                        "activityID":"2Dcxzc3552",
                         "activityName": "2",
                         "subActivity": "2",
                         "sagment": "",
@@ -31,12 +31,12 @@
                         "isMoci": true
                     },
                     {
-                        "activityID":"3",
-                        "activityName": "a1",
-                        "subActivity": "1a",
-                        "sagment": "a",
-                        "family": "a",
-                        "class": "a",
+                        "activityID":"3sfvfd365",
+                        "activityName": "a",
+                        "subActivity": "",
+                        "sagment": "",
+                        "family": "",
+                        "class": "",
                         "commodity": "",
                         "isEdit": false,
                         "isMoci": false,
@@ -48,7 +48,7 @@
             "addressInfoTab": {
                 "address": [
                     {
-                        "addressID": "1",
+                        "addressID": "1zsdfc452",
                         "addressLine1": "10-N, Martingale road",
                         "addressLine2": "Suite 600",
                         "language": "English",
@@ -57,7 +57,7 @@
                         "isMoci": true
                     },
                     {
-                        "addressID": "2",
+                        "addressID": "2esv452",
                         "addressLine1": "12-N, Martingale road",
                         "addressLine2": "Suite 601",
                         "language": "English",
@@ -66,10 +66,10 @@
                         "isMoci": true
                     },
                     {
-                        "addressID": "3",
+                        "addressID": "3drtht452",
                         "addressLine1": "12-N,",
                         "addressLine2": "Suite 6012",
-                        "language": "English",
+                        "language": "",
                         "country": "Oman",
                         "isEdit": false,
                         "isMoci": false,
@@ -82,7 +82,7 @@
         "personalDetailsStep": {
             "personalDetails": [
                 {
-                    "personId": "1",
+                    "personId": "1fg57thg",
                     "personName": "R Bala",
                     "nationality": "Omani",
                     "idType": "",
@@ -98,7 +98,7 @@
                     "isMoci": true
                 },
                 {
-                    "personId": "2",
+                    "personId": "2dfvfd5857",
                     "personName": "R P",
                     "nationality": "Omani",
                     "idType": "-",
@@ -114,7 +114,7 @@
                     "isMoci": true
                 },
                 {
-                    "personId": "3",
+                    "personId": "3sdff6528572",
                     "personName": "R K",
                     "nationality": "Omani",
                     "idType": "-",
@@ -135,42 +135,42 @@
         "communicationMethodStep": {
             "communicationMethod": [
                 {
-                    "communicationID": 1,
+                    "communicationID": "1s5s541d",
                     "method": "Telephone",
                     "value": "+919 515 6162",
                     "isEdit": false,
                     "isMoci": true
                 },
                 {
-                    "communicationID": 2,
+                    "communicationID": "25s5d5c5s12d4",
                     "method": "P.O.Box",
                     "value": "762 - Muscat",
                     "isEdit": false,
                     "isMoci": true
                 },
                 {
-                    "communicationID": 3,
+                    "communicationID": "3sdc465x4c56dsc",
                     "method": "Fax",
                     "value": "414-589-8745",
                     "isEdit": false,
                     "isMoci": true
                 },
                 {
-                    "communicationID": 4,
+                    "communicationID": "4c54cdd2d",
                     "method": "Legal Status",
                     "value": "valid",
                     "isEdit": false,
                     "isMoci": true
                 },
                 {
-                    "communicationID": 5,
+                    "communicationID": "545x21s54csxz1",
                     "method": "P C",
                     "value": "72666",
                     "isEdit": false,
                     "isMoci": true
                 },
                 {
-                    "communicationID": 6,
+                    "communicationID": "6jsdcds452d1xm5",
                     "method": "Email",
                     "value": "user@yopmail.com",
                     "isEdit": false,
@@ -184,7 +184,7 @@
             "activityInfoTab": {
                 "activityInfo": [
                     {
-                        "activityID":"1",
+                        "activityID":"czv525tgh1",
                         "activityName": "Test1",
                         "subActivity": "Test1",
                         "establishmentDate": "-",
@@ -198,7 +198,7 @@
                         "isMoci": true
                     },
                     {
-                        "activityID":"2",
+                        "activityID":"asdvfdg54212",
                         "activityName": "Test2",
                         "subActivity": "Test2",
                         "establishmentDate": "-",
@@ -224,7 +224,8 @@
                         "bankName": "Bank Muscat",
                         "bankBranch": "-",
                         "holderName": "user",
-                        "isMoci": false
+                        "isMoci": false,
+                        "isUpdate":false
                     }
                 ],
                 "detailsRemark": "Details Not Applicable"
@@ -257,7 +258,7 @@
             "otherInfoTab": {
                 "otherDetails": [
                     {
-                        "otherID": 1,
+                        "otherID": "1dfgbf54254",
                         "name": "test 1",
                         "value": "-",
                         "documents": {"name": "document.pdf", "path":""},
@@ -266,7 +267,7 @@
                         "isUpdate": false
                     },
                     {
-                        "otherID": 2,
+                        "otherID": "2dsvdfv525420",
                         "name": "test 2",
                         "value": "-",
                         "documents": {"name": "document.pdf", "path":""},
@@ -275,7 +276,7 @@
                         "isUpdate": false
                     },
                     {
-                        "otherID": 3,
+                        "otherID": "3dvdfv453257fghn",
                         "name": "test 3",
                         "value": "-",
                         "documents": {"name": "document.pdf", "path":""},
@@ -284,7 +285,7 @@
                         "isUpdate": false
                     },
                     {
-                        "otherID": 4,
+                        "otherID": "4sgdb7542ftygc",
                         "name": "test 4",
                         "value": "-",
                         "documents": {"name": "document.pdf", "path":""},
@@ -302,7 +303,7 @@
             "omanizationRatio": 82342,
             "employeDetails": [
                 {
-                    "employeeID": 1,
+                    "employeeID": "dfgb456gfyj45",
                     "name": "R Bala",
                     "qualification": "Btech",
                     "specialization": "Literature",
@@ -326,7 +327,7 @@
                     "isMoci": true
                 },
                 {
-                    "employeeID": 2,
+                    "employeeID": "sfgb4523hvgj452",
                     "name": "R P",
                     "qualification": "BE",
                     "specialization": "Thinker",
@@ -350,7 +351,7 @@
                     "isMoci": true
                 },
                 {
-                    "employeeID": 3,
+                    "employeeID": "xfgn453fgj45",
                     "name": "R K",
                     "qualification": "School Dropout",
                     "specialization": "Thinker",
@@ -371,7 +372,8 @@
                     "omaniratio": "2387",
                     "isEdit": false,
                     "documents": {"name": "document.pdf", "path":""},
-                    "isMoci": true
+                    "isMoci": false,
+                    "isUpdate":false
                 }
             ],
             "detailsRemark": "Details Not Applicable"
@@ -503,7 +505,7 @@
         "projectDetailsStep": {
             "projectDetails": [
                 {
-                    "projectID": 1,
+                    "projectID": "fgh453fghn452",
                     "name": "Yibal Project for PDO",
                     "client": "QRB",
                     "consultent": "Khatib & Alami and Partners",
@@ -517,7 +519,7 @@
                     "isUpdate": false
                 },
                 {
-                    "projectID": 2,
+                    "projectID":"sdb53fghm453",
                     "name": "Grand Mall-Carrefour",
                     "client": "Majid Al Futtaim",
                     "consultent": "ME Studio Engineering",
@@ -531,7 +533,7 @@
                     "isUpdate": false
                 },
                 {
-                    "projectID": 3,
+                    "projectID":"egyh6354656",
                     "name": "OMAN Post Off. Ruwi",
                     "client": "QRB",
                     "consultent": "OMAN POST",
@@ -550,7 +552,7 @@
         "subContractorDetailsStep": {
             "subContractorDetails": [
                 {
-                    "contractorID": 1,
+                    "contractorID": "srfg4153ghj452",
                     "nameOfWork": "Orion",
                     "subContractor": "-",
                     "crNo": "-",
@@ -563,7 +565,7 @@
                     "isUpdate": false
                 },
                 {
-                    "contractorID": 2,
+                    "contractorID": "dzg453dfg52",
                     "nameOfWork": "scorpion",
                     "subContractor": "-",
                     "crNo": "-",
@@ -581,7 +583,7 @@
         "equipmentDetailsStep": {
             "equipmentDetails": [
                 {
-                    "equipmentID": 1,
+                    "equipmentID": "fxh53fg45",
                     "type": "Pickup",
                     "quantity": "2",
                     "capacity": "2400CC",
@@ -593,7 +595,7 @@
                     "isUpdate": false
                 },
                 {
-                    "equipmentID": 2,
+                    "equipmentID": "serg562cfg52",
                     "type": "Salon",
                     "quantity": "1",
                     "capacity": "2000CC",
@@ -605,7 +607,7 @@
                     "isUpdate": false
                 },
                 {
-                    "equipmentID": 3,
+                    "equipmentID": "aegv532drfgb52",
                     "type": "-",
                     "quantity": "-",
                     "capacity": "-",
@@ -617,7 +619,7 @@
                     "isUpdate": false
                 },
                 {
-                    "equipmentID": 4,
+                    "equipmentID": "sh52xdf452xfgh",
                     "type": "-",
                     "quantity": "-",
                     "capacity": "-",
