@@ -68,17 +68,20 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
     addressLine2: new FormControl('', [Validators.required]),
     language: new FormControl(''),
     country: new FormControl('Oman', [Validators.required]),
-    isMoci: new FormControl(false)
+    isEdit: new FormControl(false),
+    isMoci: new FormControl(false),
+    isUpdate: new FormControl()
   });
 
   bankform: FormGroup = new FormGroup({
-    bankingId: new FormControl('', [Validators.required]),
+    bankingID: new FormControl('', [Validators.required]),
     bankingIdname: new FormControl('', [Validators.required]),
     bankAcc: new FormControl('', [Validators.required, , Validators.pattern('^[0-9]*$')]),
     bankName: new FormControl('', [Validators.required]),
     bankBranch: new FormControl('', [Validators.required]),
     holderName: new FormControl('', [Validators.required]),
-    isMoci: new FormControl(false)
+    isMoci: new FormControl(false),
+    isUpdate: new FormControl()
   });
 
   staffData: any[];
@@ -111,6 +114,17 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
   uploadData: any;
   selectedPage: any;
 
+  // for send draft data
+  localRegisterDraft: any;
+
+  // address for draft data;
+  generalAddressDraft: any[] = [];
+  personalDetailsDraft: any[] = [];
+  bankDetalsDraft: any[] = [];
+
+
+  setDraftTime: any;
+
 
   loadData(data) {
     var d = [];
@@ -120,7 +134,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-
+    this.setDraftTime = localStorage.getItem('setDraftTime');
     this.loadFormData();
 
     this.showBtn = true;
@@ -144,7 +158,29 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+
+  getTimeDiff() {
+    if (!(this.setDraftTime === 'null')) {
+      const startTime: any = new Date(this.setDraftTime);
+      const endTime: any = new Date();
+      const timeDiff = Math.floor((endTime - startTime) / 3600000);
+      return timeDiff;
+    } else {
+      return 0;
+    }
+
+  }
+
   private loadFormData(): void {
+
+    if (!(this.setDraftTime === 'null')) {
+      const diff = this.getTimeDiff();
+      if (diff > 72) {
+        this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
+      }
+    }
+
+
     this.generalInfoStep$ = this.individualService.getGeneralInfoStep();
     this.generalInfoStep$.pipe(takeUntil(this.destroy$)).
       subscribe(res => {
@@ -208,6 +244,8 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
       this.open(content);
     } else {
       this.bankform.reset();
+      this.bankform.patchValue({ bankingID: uuid(), isMoci: false, isUpdate: false });
+      this.editbankData = this.bankform.value;
       this.open(content);
     }
   }
@@ -220,7 +258,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
       }
     } else {
       this.form.reset();
-      this.form.patchValue({ addressID: uuid(), country: 'Oman' });
+      this.form.patchValue({ addressID: uuid(), isEdit: false, isUpdate: false, country: 'Oman' });
     }
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -245,6 +283,18 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
 
   submit() {
     if (this.form.status === 'VALID') {
+      // if (this.editAddress == true) {
+      //   this.allAddresses.filter((d, i) => {
+      //     if (d.addressID == this.selectedAddress.addressID) {
+      //       this.selectedAddress = this.form.value;
+      //       this.allAddresses.splice(i, 1, this.form.value);
+      //     }
+      //   });
+      //   this.editAddress = false;
+      //   this.form.reset();
+      // } else {
+      //   this.allAddresses.push(this.form.value);
+      // }
       if (this.editAddress == true) {
         this.allAddresses.filter((d, i) => {
           if (d.addressID == this.selectedAddress.addressID) {
@@ -255,7 +305,19 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
         this.editAddress = false;
         this.form.reset();
       } else {
+        this.selectedAddress = this.form.value;
         this.allAddresses.push(this.form.value);
+      }
+      if (this.selectedAddress.isUpdate === null) {
+        this.selectedAddress['isUpdate'] = true;
+      }
+      if (this.generalAddressDraft.length === 0) {
+        this.generalAddressDraft.push({ ...this.selectedAddress });
+      } else {
+        const index = this.generalAddressDraft.findIndex(address => address.addressID === this.selectedAddress.addressID);
+        index === -1 ?
+          this.generalAddressDraft.push({ ...this.selectedAddress }) :
+          this.generalAddressDraft[index] = { ...this.selectedAddress };
       }
       this.form.reset();
     }
@@ -270,7 +332,34 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
     this.userService.supplierRegistration(body);
     // this.router.navigateByUrl('/landing/supplier-registration/transaction');
   }
-  saveDraft() {
+  saveDraft(step: number = 0) {
+
+    const data: any = {};
+
+    if (this.generalAddressDraft.length > 0) {
+      data.generalInfoStep = [...this.generalAddressDraft];
+    }
+
+    if (this.personalDetailsDraft.length > 0) {
+      data.personalDetailStep = [...this.personalDetailsDraft];
+    }
+
+    if (this.bankDetalsDraft.length > 0) {
+      data.bankDetailStep = { BankDetails: this.bankDetalsDraft }
+    }
+
+    this.localRegisterDraft = {
+      supplierType: localStorage.getItem('regType'),
+      status: 'Draft',
+      supplierId: localStorage.getItem('supplierId'),
+      setDraftTime: this.setDraftTime === 'null' ? new Date().toISOString() : null,
+      removeDraftTime: false,
+      stepper: String(step),
+      data
+    };
+
+    // call api for save draft
+
     localStorage.setItem('RegStatus', 'draft');
     this.spinner.openSpinner();
     const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
@@ -280,16 +369,49 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
   }
 
   submitbank() {
+    let bankAccFlag: boolean = false;
     if (this.bankform.status === 'VALID') {
-      if (this.editBank == true) {
-        this.BankDetails.filter((d, i) => {
-          if (d.bankAcc == this.editbankData.bankAcc) {
-            this.BankDetails.splice(i, 1, this.bankform.value);
+      // check user has already addded this account or not
+      this.BankDetails.filter(bank => {
+        if (bank.bankAcc == this.bankform.value.bankAcc) {
+          if (bank.bankingID != this.bankform.value.bankingID) {
+            bankAccFlag = true;
           }
-        });
-        this.editBank = false;
+        }
+      });
+
+      // if already have added this account
+      if (bankAccFlag) {
+        this.alertService.pushError('Already added this Account.');
       } else {
-        this.BankDetails.push(this.bankform.value);
+        if (this.editBank == true) {
+          this.BankDetails.filter((d, i) => {
+            if (d.bankingID == this.editbankData.bankingID) {
+              this.editbankData = this.bankform.value;
+              this.editbankData['isUpdate'] = true;
+              this.BankDetails.splice(i, 1, this.bankform.value);
+            }
+          });
+          this.editBank = false;
+        } else {
+          this.editbankData = this.bankform.value;
+          this.BankDetails.push(this.bankform.value);
+        }
+
+        // check/set isUpdate 
+        // if (this.editbankData.isUpdate == null) {
+        //   this.editbankData['isUpdate'] = true;
+        // }
+        //add bank data to draft
+        if (this.bankDetalsDraft.length === 0) {
+          this.bankDetalsDraft.push({ ...this.editbankData });
+        } else {
+          const index = this.bankDetalsDraft.findIndex(bank =>
+            (bank.bankingID === this.editbankData.bankingID));
+          index === -1 ?
+            this.bankDetalsDraft.push({ ...this.editbankData }) :
+            this.bankDetalsDraft[index] = { ...this.editbankData };
+        }
       }
       this.bankform.reset();
     }
@@ -444,6 +566,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
       });
       this.newData = {
         no: this.personalData.length + 1,
+        personalID: uuid(),
         nationality: '',
         idtype: '',
         designation: '',
@@ -454,7 +577,8 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
         familySecurity: '',
         documents: [],
         isMoci: false,
-        isEdit: true
+        isEdit: true,
+        isUpdate: false
       };
       this.personalData.push(this.newData);
     }
@@ -599,8 +723,19 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
     if (datatype === 'personal') {
       if (data.nationality !== '') {
         this.personalData.map((d, i) => {
-          if (d.no == data.no) {
+          if (d.personalID == data.personalID) {
             d = data;
+
+            if (!d.hasOwnProperty('isUpdate')) {
+              d['isUpdate'] = true;
+            }
+            if (this.personalDetailsDraft.length === 0) {
+              this.personalDetailsDraft.push({ ...d });
+            } else {
+              const index = this.personalDetailsDraft.findIndex(personal => personal.personalID === d.personalID);
+              index === -1 ? this.personalDetailsDraft.push({ ...d }) : this.personalDetailsDraft[index] = { ...d };
+            }
+
           }
         });
         if (data.nationality === ' * ') {
@@ -657,6 +792,12 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
           this.personalData.splice(i, 1);
         }
       });
+      let index = this.personalDetailsDraft.findIndex(personal => personal.personalID == data.personalID);
+      index !== -1 ?
+        this.personalDetailsDraft[index].isUpdate === false ?
+          this.personalDetailsDraft.splice(index, 1) :
+          this.personalDetailsDraft[index]['isDelete'] = true
+        : null;
     }
   }
 

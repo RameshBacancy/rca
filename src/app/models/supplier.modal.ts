@@ -383,6 +383,7 @@ export interface PersonalDetailsStepInd {
 
 export interface PersonalDetailsInd {
     no: number;
+    personalID: string;
     nationality: string;
     idtype: string;
     designation: string;

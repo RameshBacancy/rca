@@ -836,20 +836,39 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
 
   // finish stepper
   submitRegistration() {
+
+    this.localDraftData(10, true);
+
+    this.supplierService.storeLocalData(this.localRegisterDraft)
+      .subscribe(
+        () => {
+          this.finishStepper();
+        },
+        (err) => {
+          console.log('err :>> ', err);
+        },
+      );
+  }
+
+  private finishStepper() {
     this.completed = true;
     localStorage.setItem('1completeToken', 'true');
     localStorage.setItem('LocalRegComplete', 'true');
     localStorage.setItem('RegStatus', 'finish');
     this.spinner.openSpinner();
-    const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
+    const body = {
+      civil_number: localStorage.getItem('civilReg'),
+      cr_number: localStorage.getItem('commercialReg'),
+      register_status: localStorage.getItem('RegStatus'),
+      register_type: localStorage.getItem('regType')
+    };
     this.userService.supplierRegistration(body);
     // this.alertService.pushSuccess('Your data is submitted.');
     // this.router.navigateByUrl('/landing/supplier-registration/transaction');
   }
 
-  // draft call
-  saveDraft(step: number = 0) {
 
+  private localDraftData(step: number = 0, removeFlag: boolean = false) {
     const data: any = {};
 
     if (this.generalActivityDraft.length > 0) {
@@ -896,10 +915,17 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       supplierType: localStorage.getItem('regType'),
       status: 'Draft',
       supplierId: localStorage.getItem('supplierId'),
-      setTimeFlag: this.setDraftTime === 'null' ? true : false,
+      setDraftTime: this.setDraftTime === 'null' ? new Date().toISOString() : null,
+      removeDraftTime: removeFlag,
       stepper: String(step),
       data
     };
+  }
+
+  // draft call
+  saveDraft(step: number = 0) {
+
+    this.localDraftData(step, false);
     this.supplierService.storeLocalData(this.localRegisterDraft)
       .subscribe(
         () => {
