@@ -211,7 +211,28 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
 
   ngOnInit(): void {
     this.setDraftTime = localStorage.getItem('setDraftTime');
-    this.loadData();
+    if (!(this.setDraftTime === 'null')) {
+      const diff = this.getTimeDiff();
+      if (diff > 72) {
+        this.supplierService.deleteDraftData().subscribe(res => {
+          this.spinner.openSpinner();
+          const body = {
+            civil_number: localStorage.getItem('civilReg'),
+            cr_number: localStorage.getItem('commercialReg'),
+            register_status: localStorage.getItem('RegStatus'),
+            register_type: localStorage.getItem('regType')
+          };
+          this.userService.supplierRegistration(body);
+          this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
+          this.loadData();
+        })
+      } else {
+        this.loadData();
+      }
+    } else {
+      this.loadData();
+    }
+
     this.showBtn = true;
     this.showTable = false;
     this.formData = this.supplierService.getdata();
@@ -263,13 +284,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
 
   loadData() {
 
-    if (!(this.setDraftTime === 'null')) {
-      const diff = this.getTimeDiff();
-      if (diff > 72) {
-        this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
-      }
 
-    }
 
     // general info step
     this.generalInfo$ = this.supplierService.getGeneralInfoStep();
