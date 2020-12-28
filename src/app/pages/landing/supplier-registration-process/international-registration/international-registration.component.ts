@@ -90,6 +90,18 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
   generalInfoStep$: Observable<GeneralInfoStepInd>;
 
 
+  // draft variable
+  generalAddressDraft: any[] = [];
+  personalDetailsDraft: any[] = [];
+  bankActivityDraft: any[] = [];
+  bankDetailDraft: any[] = [];
+  bankOtherDraft: any[] = [];
+  employeeDetailsDraft: any[] = [];
+  internationalRegistrationDraft: any;
+
+  setDraftTime: any;
+
+
   constructor(
     private router: Router,
     private supplierData: SupplierRegistrationService,
@@ -111,6 +123,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.setDraftTime = localStorage.getItem('setDraftTime');
     this.loadFormData();
     this.showBtn = true;
     this.formData = this.supplierData.getdata();
@@ -178,8 +191,8 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         this.otherData = res.otherInfoTab.otherInfo;
 
         if (!this.activityData[0]) {
-        this.activityDetail = this.formData.commercialInfoStep.activityInfoTab;
-        this.activityData = this.formData.commercialInfoStep.activityInfoTab.activities;
+          this.activityDetail = this.formData.commercialInfoStep.activityInfoTab;
+          this.activityData = this.formData.commercialInfoStep.activityInfoTab.activities;
         }
         if (!this.bankDetails[0]) {
           this.bankDetails = this.formData.commercialInfoStep.bankInfoTab.bankDetails;
@@ -265,6 +278,18 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         this.selectedAddress = this.form.value;
         this.allAddresses.push(this.form.value);
       }
+      if (this.selectedAddress.isUpdate === null) {
+        this.selectedAddress['isUpdate'] = true;
+      }
+      if (this.generalAddressDraft.length === 0) {
+        this.generalAddressDraft.push({ ...this.selectedAddress });
+      } else {
+        const index = this.generalAddressDraft.findIndex(address => address.addressID === this.selectedAddress.addressID);
+        index === -1 ?
+          this.generalAddressDraft.push({ ...this.selectedAddress }) :
+          this.generalAddressDraft[index] = { ...this.selectedAddress };
+      }
+
       this.form.reset();
     }
   }
@@ -280,7 +305,52 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
     this.alertService.pushSuccess('Your data is submitted.');
     // this.router.navigateByUrl('/landing/supplier-registration/transaction');
   }
+
+
+  private internationalDraftData(step: number = 0, removeFlag: boolean = false) {
+    const data: any = {};
+
+    if (this.generalAddressDraft.length > 0) {
+      data.generalInfoStep = [...this.generalAddressDraft];
+    }
+
+    if (this.personalDetailsDraft.length > 0) {
+      data.personalDetailsStep = [...this.personalDetailsDraft];
+    }
+
+    if (this.bankActivityDraft.length > 0) {
+      data.commercialInfoStep = { activities: this.bankActivityDraft }
+    }
+
+    if (this.bankDetailDraft.length > 0) {
+      data.commercialInfoStep = { ...data.commercialInfoStep, bankDetails: this.bankDetailDraft }
+    }
+
+    if (this.bankOtherDraft.length > 0) {
+      data.commercialInfoStep = { ...data.commercialInfoStep, otherInfo: this.bankOtherDraft }
+    }
+
+    if (this.employeeDetailsDraft.length > 0) {
+      data.employeeDetailsStep = [...this.employeeDetailsDraft];
+    }
+
+
+    this.internationalRegistrationDraft = {
+      supplierType: localStorage.getItem('regType'),
+      status: 'Draft',
+      supplierId: localStorage.getItem('supplierId'),
+      setDraftTime: this.setDraftTime === 'null' ? new Date().toISOString() : null,
+      removeDraftTime: removeFlag,
+      stepper: String(step),
+      data
+    };
+  }
+
+
   saveDraft() {
+
+    this.internationalDraftData(0, false);
+
     localStorage.setItem('RegStatus', 'draft');
     this.spinner.openSpinner();
     // tslint:disable-next-line: max-line-length
@@ -310,7 +380,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
           this.bankDetails.filter((d, i) => {
             if (d.bankingID == this.editbankData.bankingID) {
               this.editbankData = this.bankform.value;
-              this.editbankData['isUpdate'] = true;
+              // this.editbankData['isUpdate'] = true;
               this.bankDetails.splice(i, 1, this.bankform.value);
             }
           });
@@ -319,8 +389,23 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
           this.editbankData = this.bankform.value;
           this.bankDetails.push(this.bankform.value);
         }
+
+        // check/set isUpdate 
+        if (this.editbankData.isUpdate == null) {
+          this.editbankData['isUpdate'] = true;
+        }
+        //add bank data to draft
+        if (this.bankDetailDraft.length === 0) {
+          this.bankDetailDraft.push({ ...this.editbankData });
+        } else {
+          const index = this.bankDetailDraft.findIndex(bank =>
+            (bank.bankingID === this.editbankData.bankingID));
+          index === -1 ?
+            this.bankDetailDraft.push({ ...this.editbankData }) :
+            this.bankDetailDraft[index] = { ...this.editbankData };
+        }
       }
-      // this.bankform.reset();
+      this.bankform.reset();
     }
   }
 
@@ -506,6 +591,16 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         this.staffData.map((d, i) => {
           if (d.employeeID == data.employeeID) {
             d = data;
+
+            if (!d.hasOwnProperty('isUpdate')) {
+              d['isUpdate'] = true;
+            }
+            if (this.employeeDetailsDraft.length === 0) {
+              this.employeeDetailsDraft.push({ ...d });
+            } else {
+              const index = this.employeeDetailsDraft.findIndex(employee => employee.employeeID === d.employeeID);
+              index === -1 ? this.employeeDetailsDraft.push({ ...d }) : this.employeeDetailsDraft[index] = { ...d };
+            }
           }
         });
         this.showBtn = true;
@@ -542,55 +637,65 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
     //   this.alertService.pushError('Communication Method can not be empty.');
     // }
     // }
-    if (datatype === 'subContractor') {
-      if (data.nameOfWork !== '') {
-        this.subContractorData.map((d, i) => {
-          if (d.no == data.no) {
-            d = data;
-          }
-        });
-        if (data.nameOfWork === ' * ') {
-          data.nameOfWork = '',
-            data.isEdit = true;
-        }
-        this.showBtn = true;
-      } else {
-        // this.subContractorData.map((data, i) => {
-        //   if (data.nameOfWork == '') {
-        //     this.subContractorData.splice(i, 1);
-        //   }
-        // });
-        data.isEdit = true;
-        this.alertService.pushError('nameOfWork can not be empty.');
-      }
-    }
-    if (datatype === 'equipment') {
-      if (data.type !== '') {
-        this.equipmentData.map((d, i) => {
-          if (d.no == data.no) {
-            d = data;
-          }
-        });
-        if (data.type === ' * ') {
-          data.type = '',
-            data.isEdit = true;
-        }
-        this.showBtn = true;
-      } else {
-        // this.equipmentData.map((data, i) => {
-        //   if (data.type == '') {
-        //     this.equipmentData.splice(i, 1);
-        //   }
-        // });
-        data.isEdit = true;
-        this.alertService.pushError('type can not be empty.');
-      }
-    }
+    // if (datatype === 'subContractor') {
+    //   if (data.nameOfWork !== '') {
+    //     this.subContractorData.map((d, i) => {
+    //       if (d.no == data.no) {
+    //         d = data;
+    //       }
+    //     });
+    //     if (data.nameOfWork === ' * ') {
+    //       data.nameOfWork = '',
+    //         data.isEdit = true;
+    //     }
+    //     this.showBtn = true;
+    //   } else {
+    //     // this.subContractorData.map((data, i) => {
+    //     //   if (data.nameOfWork == '') {
+    //     //     this.subContractorData.splice(i, 1);
+    //     //   }
+    //     // });
+    //     data.isEdit = true;
+    //     this.alertService.pushError('nameOfWork can not be empty.');
+    //   }
+    // }
+    // if (datatype === 'equipment') {
+    //   if (data.type !== '') {
+    //     this.equipmentData.map((d, i) => {
+    //       if (d.no == data.no) {
+    //         d = data;
+    //       }
+    //     });
+    //     if (data.type === ' * ') {
+    //       data.type = '',
+    //         data.isEdit = true;
+    //     }
+    //     this.showBtn = true;
+    //   } else {
+    //     // this.equipmentData.map((data, i) => {
+    //     //   if (data.type == '') {
+    //     //     this.equipmentData.splice(i, 1);
+    //     //   }
+    //     // });
+    //     data.isEdit = true;
+    //     this.alertService.pushError('type can not be empty.');
+    //   }
+    // }
     if (datatype === 'other') {
       if (data.name !== '' && data.value !== '') {
         this.otherData.map((d, i) => {
           if (d.otherID == data.otherID) {
             d = data;
+
+            if (!d.hasOwnProperty('isUpdate')) {
+              d['isUpdate'] = true;
+            }
+            if (this.bankOtherDraft.length === 0) {
+              this.bankOtherDraft.push({ ...d });
+            } else {
+              const index = this.bankOtherDraft.findIndex(other => other.otherID === d.otherID);
+              index === -1 ? this.bankOtherDraft.push({ ...d }) : this.bankOtherDraft[index] = { ...d };
+            }
           }
         });
         this.showBtn = true;
@@ -609,6 +714,16 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         this.activityData.map((d, i) => {
           if (d.activityID == data.activityID) {
             d = data;
+
+            if (!d.hasOwnProperty('isUpdate')) {
+              d['isUpdate'] = true;
+            }
+            if (this.bankActivityDraft.length === 0) {
+              this.bankActivityDraft.push({ ...d });
+            } else {
+              const index = this.bankActivityDraft.findIndex(activity => activity.activityID === d.activityID);
+              index === -1 ? this.bankActivityDraft.push({ ...d }) : this.bankActivityDraft[index] = { ...d };
+            }
           }
         });
         if (data.activityName === ' * ') {
@@ -631,6 +746,16 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         this.personalData.map((d, i) => {
           if (d.personalID == data.personalID) {
             d = data;
+
+            if (!d.hasOwnProperty('isUpdate')) {
+              d['isUpdate'] = true;
+            }
+            if (this.personalDetailsDraft.length === 0) {
+              this.personalDetailsDraft.push({ ...d });
+            } else {
+              const index = this.personalDetailsDraft.findIndex(personal => personal.personalID === d.personalID);
+              index === -1 ? this.personalDetailsDraft.push({ ...d }) : this.personalDetailsDraft[index] = { ...d };
+            }
           }
         });
         this.showBtn = true;
@@ -655,6 +780,12 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
           this.staffData.splice(i, 1);
         }
       });
+      const index = this.employeeDetailsDraft.findIndex(employee => employee.employeeID === data.employeeID);
+      index !== -1 ?
+        this.employeeDetailsDraft[index].isUpdate === false ?
+          this.employeeDetailsDraft.splice(index, 1) :
+          this.employeeDetailsDraft[index]['isDelete'] = true
+        : null;
     }
     // if (datatype === 'communication') {
     //   this.communicationData.map((d, i) => {
@@ -663,26 +794,32 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
     //     }
     //   });
     // }
-    if (datatype === 'subContractor') {
-      this.subContractorData.map((d, i) => {
-        if (d.no == data.no) {
-          this.subContractorData.splice(i, 1);
-        }
-      });
-    }
-    if (datatype === 'equipment') {
-      this.equipmentData.map((d, i) => {
-        if (d.no == data.no) {
-          this.equipmentData.splice(i, 1);
-        }
-      });
-    }
+    // if (datatype === 'subContractor') {
+    //   this.subContractorData.map((d, i) => {
+    //     if (d.no == data.no) {
+    //       this.subContractorData.splice(i, 1);
+    //     }
+    //   });
+    // }
+    // if (datatype === 'equipment') {
+    //   this.equipmentData.map((d, i) => {
+    //     if (d.no == data.no) {
+    //       this.equipmentData.splice(i, 1);
+    //     }
+    //   });
+    // }
     if (datatype === 'other') {
       this.otherData.map((d, i) => {
         if (d.otherID == data.otherID) {
           this.otherData.splice(i, 1);
         }
       });
+      const index = this.bankOtherDraft.findIndex(other => other.otherID === data.otherID);
+      index !== -1 ?
+        this.bankOtherDraft[index].isUpdate === false ?
+          this.bankOtherDraft.splice(index, 1) :
+          this.bankOtherDraft[index]['isDelete'] = true
+        : null;
     }
     if (datatype === 'activity') {
       this.activityData.map((d, i) => {
@@ -690,6 +827,12 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
           this.activityData.splice(i, 1);
         }
       });
+      const index = this.bankActivityDraft.findIndex(activity => activity.activityID === data.activityID);
+      index !== -1 ?
+        this.bankActivityDraft[index].isUpdate === false ?
+          this.bankActivityDraft.splice(index, 1) :
+          this.bankActivityDraft[index]['isDelete'] = true
+        : null;
     }
     if (datatype === 'personal') {
       this.personalData.map((d, i) => {
@@ -697,6 +840,12 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
           this.personalData.splice(i, 1);
         }
       });
+      let index = this.personalDetailsDraft.findIndex(personal => personal.personalID == data.personalID);
+      index !== -1 ?
+        this.personalDetailsDraft[index].isUpdate === false ?
+          this.personalDetailsDraft.splice(index, 1) :
+          this.personalDetailsDraft[index]['isDelete'] = true
+        : null;
     }
 
   }

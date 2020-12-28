@@ -116,7 +116,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
   selectedPage: any;
 
   // for send draft data
-  localRegisterDraft: any;
+  individualRegisterDraft: any;
 
   // address for draft data;
   generalAddressDraft: any[] = [];
@@ -356,7 +356,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
       data.bankDetailStep = { ...data.bankDetailStep, otherInfo: this.otherInfoDraft }
     }
 
-    this.localRegisterDraft = {
+    this.individualRegisterDraft = {
       supplierType: localStorage.getItem('regType'),
       status: 'Draft',
       supplierId: localStorage.getItem('supplierId'),
@@ -397,7 +397,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
           this.BankDetails.filter((d, i) => {
             if (d.bankingID == this.editbankData.bankingID) {
               this.editbankData = this.bankform.value;
-              this.editbankData['isUpdate'] = true;
+              // this.editbankData['isUpdate'] = true;
               this.BankDetails.splice(i, 1, this.bankform.value);
             }
           });
@@ -408,9 +408,9 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
         }
 
         // check/set isUpdate 
-        // if (this.editbankData.isUpdate == null) {
-        //   this.editbankData['isUpdate'] = true;
-        // }
+        if (this.editbankData.isUpdate == null) {
+          this.editbankData['isUpdate'] = true;
+        }
         //add bank data to draft
         if (this.bankDetailsDraft.length === 0) {
           this.bankDetailsDraft.push({ ...this.editbankData });

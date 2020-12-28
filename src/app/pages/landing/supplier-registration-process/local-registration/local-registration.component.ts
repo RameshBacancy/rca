@@ -1043,7 +1043,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
           this.BankDetails.filter((d, i) => {
             if (d.bankingID == this.editbankData.bankingID) {
               this.editbankData = this.bankform.value;
-              this.editbankData['isUpdate'] = true;
+              // this.editbankData['isUpdate'] = true;
               this.BankDetails.splice(i, 1, this.bankform.value);
             }
           });
@@ -1054,9 +1054,9 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         }
 
         // check/set isUpdate 
-        // if (this.editbankData.isUpdate == null) {
-        //   this.editbankData['isUpdate'] = true;
-        // }
+        if (this.editbankData.isUpdate == null) {
+          this.editbankData['isUpdate'] = true;
+        }
         //add bank data to draft
         if (this.bankDetalsDraft.length === 0) {
           this.bankDetalsDraft.push({ ...this.editbankData });
