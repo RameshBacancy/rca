@@ -109,7 +109,7 @@ export interface BankDetailsTab {
     BankDetails: BankDetails[];
 }
 export interface BankDetails {
-    bankingId: string;
+    bankingID: string;
     bankingIdname: string;
     bankAcc: string;
     bankName: string;

@@ -70,10 +70,11 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     // language: new FormControl(''),
     country: new FormControl('', [Validators.required]),
     isMoci: new FormControl(false),
+    isEdit: new FormControl(false),
     isUpdate: new FormControl()
   });
   bankform: FormGroup = new FormGroup({
-    bankingId: new FormControl('', [Validators.required]),
+    bankingID: new FormControl('', [Validators.required]),
     bankingIdname: new FormControl('', [Validators.required]),
     bankAcc: new FormControl('', [Validators.required, , Validators.pattern('^[0-9]*$')]),
     bankName: new FormControl('', [Validators.required]),
@@ -209,8 +210,8 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
 
 
   ngOnInit(): void {
-    this.loadData();
     this.setDraftTime = localStorage.getItem('setDraftTime');
+    this.loadData();
     this.showBtn = true;
     this.showTable = false;
     this.formData = this.supplierService.getdata();
@@ -248,7 +249,28 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     this.stepper.selectedIndex = localStorage.getItem('stepper') === 'null' ? 0 : +localStorage.getItem('stepper');
   }
 
+  getTimeDiff() {
+    if (!(this.setDraftTime === 'null')) {
+      const startTime: any = new Date(this.setDraftTime);
+      const endTime: any = new Date();
+      const timeDiff = Math.floor((endTime - startTime) / 3600000);
+      return timeDiff;
+    } else {
+      return 0;
+    }
+
+  }
+
   loadData() {
+
+    if (!(this.setDraftTime === 'null')) {
+      const diff = this.getTimeDiff();
+      if (diff > 72) {
+        this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
+      }
+
+    }
+
     // general info step
     this.generalInfo$ = this.supplierService.getGeneralInfoStep();
     this.generalInfo$.
@@ -746,7 +768,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       this.open(content);
     } else {
       this.bankform.reset();
-      this.bankform.patchValue({ bankingId: uuid(), isMoci: false, isUpdate: false });
+      this.bankform.patchValue({ bankingID: uuid(), isMoci: false, isUpdate: false });
       this.editbankData = this.bankform.value;
       this.open(content);
     }
@@ -761,7 +783,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       }
     } else {
       this.form.reset();
-      this.form.patchValue({ addressID: uuid(), country: 'Oman', isMoci: false, isUpdate: false });
+      this.form.patchValue({ addressID: uuid(), country: 'Oman', isEdit: false, isMoci: false, isUpdate: false });
     }
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -936,11 +958,11 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
 
   submitbank() {
     if (this.bankform.status === 'VALID') {
-      let index = this.BankDetails.findIndex(bank => (bank.bankAcc == this.bankform.value.bankAcc && bank.bankingId != this.bankform.value.bankingId));
+      let index = this.BankDetails.findIndex(bank => (bank.bankAcc == this.bankform.value.bankAcc && bank.bankingID != this.bankform.value.bankingID));
       if (this.editBank == true) {
         if (index == -1) {
           this.BankDetails.filter((d, i) => {
-            if (d.bankingId == this.editbankData.bankingId) {
+            if (d.bankingID == this.editbankData.bankingID) {
               this.editbankData = this.bankform.value;
               this.BankDetails.splice(i, 1, this.bankform.value);
             }
@@ -965,7 +987,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
           this.bankDetalsDraft.push({ ...this.editbankData });
         } else {
           const index = this.bankDetalsDraft.findIndex(bank =>
-            (bank.bankingId === this.editbankData.bankingId));
+            (bank.bankingID === this.editbankData.bankingID));
           index === -1 ?
             this.bankDetalsDraft.push({ ...this.editbankData }) :
             this.bankDetalsDraft[index] = { ...this.editbankData };

@@ -29,18 +29,6 @@
                         "commodity": "",
                         "isEdit": false,
                         "isMoci": true
-                    },
-                    {
-                        "activityID":"3sfvfd365",
-                        "activityName": "a",
-                        "subActivity": "",
-                        "sagment": "",
-                        "family": "",
-                        "class": "",
-                        "commodity": "",
-                        "isEdit": false,
-                        "isMoci": false,
-                        "isUpdate": false                 
                     }
                 ],
                 "detailsRemark": "Details Not Applicable"
@@ -64,16 +52,6 @@
                         "country": "Oman",
                         "isEdit": false,
                         "isMoci": true
-                    },
-                    {
-                        "addressID": "3drtht452",
-                        "addressLine1": "12-N,",
-                        "addressLine2": "Suite 6012",
-                        "language": "",
-                        "country": "Oman",
-                        "isEdit": false,
-                        "isMoci": false,
-                        "isUpdate": false
                     }
                 ],
                 "detailsRemark": "Details Not Applicable"
@@ -168,14 +146,6 @@
                     "value": "72666",
                     "isEdit": false,
                     "isMoci": true
-                },
-                {
-                    "communicationID": "6jsdcds452d1xm5",
-                    "method": "Email",
-                    "value": "user@yopmail.com",
-                    "isEdit": false,
-                    "isMoci": false,
-                    "isUpdate": false
                 }
             ],
             "detailsRemark": "Details Not Applicable"
@@ -196,21 +166,6 @@
                         "isEdit": false,
                         "documents": {"name": "document.pdf", "path":""},
                         "isMoci": true
-                    },
-                    {
-                        "activityID":"asdvfdg54212",
-                        "activityName": "Test2",
-                        "subActivity": "Test2",
-                        "establishmentDate": "-",
-                        "regDate": "-",
-                        "expDate": "-",
-                        "duration": "-",
-                        "companyGrade": "-",
-                        "location": "-",
-                        "isEdit": false,
-                        "documents": {"name": "document.pdf", "path":""},
-                        "isMoci": false,
-                        "isUpdate": false
                     }
                 ],
                 "detailsRemark": "Details Not Applicable"
@@ -218,14 +173,13 @@
             "bankDetailsTab": {
                 "BankDetails": [
                     {
-                        "bankingId": "BK01",
+                        "bankingID": "BK01",
                         "bankingIdname": "Muscat Bank of OMAN",
                         "bankAcc": "1234567890",
                         "bankName": "Bank Muscat",
                         "bankBranch": "-",
                         "holderName": "user",
-                        "isMoci": false,
-                        "isUpdate":false
+                        "isMoci": true
                     }
                 ],
                 "detailsRemark": "Details Not Applicable"
@@ -349,31 +303,6 @@
                     "isEdit": false,
                     "documents": {"name": "document.pdf", "path":""},
                     "isMoci": true
-                },
-                {
-                    "employeeID": "xfgn453fgj45",
-                    "name": "R K",
-                    "qualification": "School Dropout",
-                    "specialization": "Thinker",
-                    "jobTitle": "6003",
-                    "designation": "CEO",
-                    "designationDate": "11-02-2001",
-                    "expDate": "11-02-2009",
-                    "experience": "0yrs",
-                    "appointmentDate": "11-02-2020",
-                    "status": "Active",
-                    "statusDate": "11-02-2020",
-                    "staffCategory": "A",
-                    "country": "non-Omani",
-                    "passportNum": "A287894H",
-                    "recidentCard": "786132",
-                    "civilNo": "3456 6578",
-                    "crNo": "2342 2344",
-                    "omaniratio": "2387",
-                    "isEdit": false,
-                    "documents": {"name": "document.pdf", "path":""},
-                    "isMoci": false,
-                    "isUpdate":false
                 }
             ],
             "detailsRemark": "Details Not Applicable"
