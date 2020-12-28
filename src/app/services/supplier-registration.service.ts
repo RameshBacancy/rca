@@ -88,4 +88,8 @@ export class SupplierRegistrationService {
   storeLocalData(dataObj: any): Observable<any> {
     return this.reqHttp.httpPost('local-register-draft', dataObj);
   }
+
+  deleteDraftData() {
+    return this.reqHttp.httpDelete('delete-draft');
+  }
 }
