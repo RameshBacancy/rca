@@ -366,15 +366,15 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
       data
     };
 
-    console.log(this.localRegisterDraft)
+
     // call api for save draft
 
-    // localStorage.setItem('RegStatus', 'draft');
-    // this.spinner.openSpinner();
-    // const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
-    // this.userService.supplierRegistration(body);
-    // this.alertService.pushWarning('Your data will be saved for 72 hours.');
-    // this.router.navigate(['/landing/supplier-registration/dashboard']);
+    localStorage.setItem('RegStatus', 'draft');
+    this.spinner.openSpinner();
+    const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
+    this.userService.supplierRegistration(body);
+    this.alertService.pushWarning('Your data will be saved for 72 hours.');
+    this.router.navigate(['/landing/supplier-registration/dashboard']);
   }
 
   submitbank() {
@@ -914,8 +914,8 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
         //   }
         // });
         // if (flag == false) {
-          this.files = [];
-          this.files.push({ data: file, inProgress: false, progress: 0 });
+        this.files = [];
+        this.files.push({ data: file, inProgress: false, progress: 0 });
         // }
       }
       this.upload(data, flag);
