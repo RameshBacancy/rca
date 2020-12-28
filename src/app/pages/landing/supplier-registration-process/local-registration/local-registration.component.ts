@@ -282,6 +282,8 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         this.selectedAddress = res.addressInfoTab.address[0];
         if (!this.activityData[0]) {
           this.activityData = this.formData.generalInfoStep.generalInfoTab.activities;
+        }
+        if (!this.allAddresses[0]) {
           this.allAddresses = this.formData.generalInfoStep.addressInfoTab.address;
           this.selectedAddress = this.formData.generalInfoStep.addressInfoTab.address[0];
         }
@@ -321,9 +323,15 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       this.otherData = res.otherInfoTab.otherDetails;
       if (!this.activityInfoData[0]) {
         this.activityInfoData = this.formData.bankDetailStep.activityInfoTab.activityInfo;
-        this.BankDetails = this.formData.bankDetailStep.bankDetailsTab.BankDetails;
-        this.compFinanceInfoData = this.formData.bankDetailStep.companyInfoTab.compFinanceInfo;
+        // this.compFinanceInfoData = this.formData.bankDetailStep.companyInfoTab.compFinanceInfo;
+      }
+      if (!this.compBranchInfoData[0]) {
         this.compBranchInfoData = this.formData.bankDetailStep.companyInfoTab.compBranchInfo;
+      }
+      if (!this.BankDetails[0]) {
+        this.BankDetails = this.formData.bankDetailStep.bankDetailsTab.BankDetails;
+      }
+      if (!this.otherData[0]) {
         this.otherData = this.formData.bankDetailStep.otherInfoTab.otherDetails;
       }
     });
@@ -407,14 +415,17 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     });
   }
 
+  // get address form
   get f() {
     return this.form.controls;
   }
 
+  // get bank form
   get bf() {
     return this.bankform.controls;
   }
 
+  // get employee categories
   getEmployeeCategories() {
     this.staffCategory = [];
     this.arrayOfCatagory = [];
@@ -441,6 +452,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     });
   }
 
+  //functions to change tabs internally
   changeTab() {
     this.selected.setValue(this.selected.value + 1);
   }
@@ -450,11 +462,16 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
   newStep() {
     this.selected.setValue(0);
   }
-
   preStep(number) {
     this.selected.setValue(number);
   }
 
+  // cancel call
+  Cancel() {
+    this.router.navigate(['/landing/supplier-registration/dashboard']);
+  }
+
+  // function to upload selected file
   callUploadService(file, data, flag) {
     const formData = new FormData();
     formData.append('file', file.data);
@@ -549,6 +566,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     });
   }
 
+  // function call on upload click
   onClick() {
     let data = this.uploadData;
     const fileInput = this.fileInput.nativeElement;
@@ -572,6 +590,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     fileInput.click();
   }
 
+  //open file upload model
   openFile(content, page, data, isMoci) {
     this.selectedPage = page;
     this.isDataMoci = isMoci;
@@ -649,6 +668,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     this.open(content);
   }
 
+  // delete file from list
   deleteFile(file) {
     if (confirm('Do you want to delete ' + file.name + '?')) {
       if (this.selectedPage === 'project') {
@@ -760,6 +780,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     }
   }
 
+  //open bank model
   openbank(content, details?) {
     if (details) {
       this.bankform.patchValue(details);
@@ -774,6 +795,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     }
   }
 
+  //open address model
   open(content, address?) {
     if (address) {
       if (!address.isMoci) {
@@ -807,10 +829,12 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     }
   }
 
+  //Non editable alert
   alertNoAdd() {
     this.alertService.pushError('Not Allowed to add details for Local entities');
   }
 
+  // finish stepper
   submitRegistration() {
     this.completed = true;
     localStorage.setItem('1completeToken', 'true');
@@ -823,6 +847,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     // this.router.navigateByUrl('/landing/supplier-registration/transaction');
   }
 
+  // draft call
   saveDraft(step: number = 0) {
 
     const data: any = {};
@@ -956,33 +981,42 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     }
   }
 
+  // submit bank detail
   submitbank() {
+    let bankAccFlag: boolean = false;
     if (this.bankform.status === 'VALID') {
-      let index = this.BankDetails.findIndex(bank => (bank.bankAcc == this.bankform.value.bankAcc && bank.bankingID != this.bankform.value.bankingID));
-      if (this.editBank == true) {
-        if (index == -1) {
+      // check user has already addded this account or not
+      this.BankDetails.filter(bank => {
+        if (bank.bankAcc == this.bankform.value.bankAcc) {
+          if (bank.bankingID != this.bankform.value.bankingID) {
+            bankAccFlag = true;
+          }
+        }
+      });
+
+      // if already have added this account
+      if (bankAccFlag) {
+        this.alertService.pushError('Already added this Account.');
+      } else {
+        if (this.editBank == true) {
           this.BankDetails.filter((d, i) => {
             if (d.bankingID == this.editbankData.bankingID) {
               this.editbankData = this.bankform.value;
+              this.editbankData['isUpdate'] = true;
               this.BankDetails.splice(i, 1, this.bankform.value);
             }
           });
+          this.editBank = false;
         } else {
-          this.alertService.pushError('Already added this Account.');
-        }
-        this.editBank = false;
-      } else {
-        if (index == -1) {
           this.editbankData = this.bankform.value;
           this.BankDetails.push(this.bankform.value);
-        } else {
-          this.alertService.pushError('Already added this Account.');
         }
-      }
-      if (index == -1) {
-        if (this.editbankData.isUpdate === null) {
-          this.editbankData['isUpdate'] = true;
-        }
+
+        // check/set isUpdate 
+        // if (this.editbankData.isUpdate == null) {
+        //   this.editbankData['isUpdate'] = true;
+        // }
+        //add bank data to draft
         if (this.bankDetalsDraft.length === 0) {
           this.bankDetalsDraft.push({ ...this.editbankData });
         } else {
@@ -997,22 +1031,20 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     }
   }
 
-  delete(data) {
-    this.formData.address.addressDetails.filter((d, i) => {
-      if (d.poBox == data.poBox) {
-        this.formData.address.addressDetails.splice(i, 1);
-      }
-    });
-  }
+  // delete(data) {
+  //   this.formData.address.addressDetails.filter((d, i) => {
+  //     if (d.poBox == data.poBox) {
+  //       this.formData.address.addressDetails.splice(i, 1);
+  //     }
+  //   });
+  // }
 
-  registrationComplete() {
-    this.completed = true;
-  }
+  // registrationComplete() {
+  //   this.completed = true;
+  // }
 
-  Cancel() {
-    this.router.navigate(['/landing/supplier-registration/dashboard']);
-  }
 
+  //dbl click on data
   dblclick(data) {
     if (this.showBtn === true) {
       if (!data.isMoci) {
@@ -1022,6 +1054,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     }
   }
 
+  // add new data row in table
   addNewRow(datatype) {
     this.showBtn = false;
     if (datatype === 'employee') {
@@ -1236,6 +1269,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     // }
   }
 
+  // edit data in table
   enteredDetails(datatype, data) {
     if (data.isEdit === true) {
       data.isEdit = false;
@@ -1618,6 +1652,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     }
   }
 
+  //delete row from table
   deleteRow(datatype, data) {
     this.showBtn = true;
     if (datatype === 'employee') {
@@ -1742,6 +1777,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     }
   }
 
+  // sorting for table
   sorting(property, str) {
     this.order = !this.order;
     if (this.order === true) {
