@@ -22,7 +22,7 @@
                             <span>
                                 {{item.name}}
                             </span>
-                            <span class="pr-4 " style="float: right;max-height: 80%; right:5%;">
+                            <span class="pr-4 " *ngIf="!isDataMoci" style="float: right;max-height: 80%; right:5%;">
                                 <i class="fa fa-trash-o btn btn-danger" (click)="deleteFile(item)"></i>
                             </span>
                         </li>
@@ -35,7 +35,7 @@
 
             </section>
             <hr>
-            <section class="bg-white" *ngIf="!isDataMoci">
+            <section class="bg-white" *ngIf="filesList.length == 0 && !isDataMoci">
                 <div>Add New File</div>
                 <mat-card>
                     <mat-card-content>
@@ -55,6 +55,12 @@
                         </button>
                     </mat-card-actions>
                 </mat-card>
+            </section>
+            <section *ngIf="filesList.length > 0 && !isDataMoci">
+                <p class="text-red">You can add only one File.</p>
+            </section>
+            <section *ngIf="filesList.length > 0 && isDataMoci">
+                <p class="text-red">Data fetched from interface - not editable</p>
             </section>
         </div>
         <div class="modal-footer">
@@ -94,7 +100,8 @@
                     <div class="col-md-12 col-lg-12 col-xl-12">
                         <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">
                             <i class="fa fa-ban text-red fs-14" mat-raised-button
-                                matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i> Company Info
+                                matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i> Company
+                            Info
                         </h4>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4">
@@ -106,13 +113,13 @@
                         <p class="fs-14">{{ generalInfo.generalInfo.companyInfo }}</p>
                     </div>
                 </div>
-    
+
                 <div class="row">
                     <div class="col-md-12 px-4 mb-3 mt-3">
                         <div class="table-responsive">
-    
+
                             <input class="fs-16 custom-height-35" [(ngModel)]="searchText" placeholder="Search text">
-    
+
                             <button class="btn btn-secondary ml-2 float-right mb-2" (click)="open(mymodal)"><i
                                     class="fa fa-plus" aria-hidden="true"></i></button>
                             <table class="table table-striped ">
@@ -139,25 +146,23 @@
                                                 aria-hidden="true"></i>
                                         </td>
                                         <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
-                                            <!-- {{data.addressID}} -->
                                             {{index + 1}}
                                         </td>
                                         <td *ngIf="data.isMoci">
-                                            <!-- {{data.addressID}} -->
-                                            {{ index+1 }}
+                                            {{index + 1}}
+                                        </td>
+                                        <!-- <td *ngIf="data.isEdit && !data.isMoci"
+                                            (keyup.enter)="enteredDetails( 'activity',data)">
+                                            <input [(ngModel)]="data.addressID"></td> -->
+                                        <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
+                                            {{data.addressLine1}}
+                                        </td>
+                                        <td *ngIf="data.isMoci">
+                                            {{data.addressLine1}}
                                         </td>
                                         <!-- <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'activity',data)">
-                                        <input [(ngModel)]="data.addressID"></td> -->
-                                        <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
-                                            {{data.addressLine1}}
-                                        </td>
-                                        <td *ngIf="data.isMoci">
-                                            {{data.addressLine1}}
-                                        </td>
-                                        <!-- <td *ngIf="data.isEdit && !data.isMoci"
-                                    (keyup.enter)="enteredDetails( 'activity',data)">
-                                    <input [(ngModel)]="data.addressLine1"></td> -->
+                                        <input [(ngModel)]="data.addressLine1"></td> -->
                                         <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
                                             {{data.addressLine2}}
                                         </td>
@@ -165,8 +170,8 @@
                                             {{data.addressLine2}}
                                         </td>
                                         <!-- <td *ngIf="data.isEdit && !data.isMoci"
-                                    (keyup.enter)="enteredDetails( 'activity',data)">
-                                    <input [(ngModel)]="data.addressLine2"></td> -->
+                                        (keyup.enter)="enteredDetails( 'activity',data)">
+                                        <input [(ngModel)]="data.addressLine2"></td> -->
                                         <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
                                             {{data.language}}
                                         </td>
@@ -174,9 +179,9 @@
                                             {{data.language}}
                                         </td>
                                         <!-- <td *ngIf="data.isEdit && !data.isMoci"
-                                    (keyup.enter)="enteredDetails( 'activity',data)">
-                                    <input [(ngModel)]="data.language"></td> -->
-    
+                                        (keyup.enter)="enteredDetails( 'activity',data)">
+                                        <input [(ngModel)]="data.language"></td> -->
+
                                         <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
                                             {{data.country}}
                                         </td>
@@ -184,28 +189,29 @@
                                             {{data.country}}
                                         </td>
                                         <!-- <td *ngIf="data.isEdit && !data.isMoci"
-                                    (keyup.enter)="enteredDetails( 'activity',data)">
-                                    <input [(ngModel)]="data.country"></td> -->
+                                        (keyup.enter)="enteredDetails( 'activity',data)">
+                                        <input [(ngModel)]="data.country"></td> -->
                                     </tr>
                                 </tbody>
-    
+
                             </table>
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="row">
                     <div class="col-md-12 px-4">
                         <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
                         <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                     </div>
                 </div>
-    
+
                 <!-- Address Model Pop-Up Form -->
                 <ng-template #mymodal let-modal>
                     <div class="modal-header">
                         <h4 class="modal-title" id="modal-basic-title">Add Address</h4>
-                        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                        <button type="button" class="close" aria-label="Close"
+                            (click)="modal.dismiss('Cross click'); editAddress = false;">
                             <span aria-hidden="true">×</span>
                         </button>
                     </div>
@@ -286,7 +292,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-    
+
                                             <div class="row mt-5">
                                                 <div class="col-md-12 mb-5 px-4"> </div>
                                             </div>
@@ -299,28 +305,38 @@
                             <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" type="submit"
                                 [disabled]="this.form.status !== 'VALID'">Submit</button>
                             <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
-                                (click)="form.reset(); modal.close('Save click')">Cancel</button>
-    
+                                (click)="form.reset(); modal.close('Save click');  editAddress = false;">Cancel</button>
+
                         </div>
                     </form>
                 </ng-template>
-    
+
+                <div class="row px-2 py-2" *ngIf="!showBtn">
+                    <div class="col-md-12 px-4">
+                        <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move forward.
+                        </p>
+                    </div>
+                </div>
+
                 <div class="row">
                     <div class="col-md-12 mb-5 px-4">
-                        <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        <button type="button"
+                            class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
                             [disabled]="true"><i class="fa fa-caret-left"></i> Previous</button>
-                        <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext>Next
+                        <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" [disabled]='!showBtn'
+                            matStepperNext>Next
                             <i class="fa fa-caret-right"></i></button>
                         <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                      (click)="move(6)">Finish</button> -->
-                        <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft(0)">Save as
+                        <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft(0)" [disabled]='!showBtn'>Save
+                            as
                             Draft</button>
-                        <a href="/#/landing/supplier-registration/dashboard">
-                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        <a  [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'>Cancel</button>
                         </a>
                     </div>
                 </div>
-    
+
             </ng-container>
         </mat-step>
         <!-- Personal Details -->
@@ -397,7 +413,9 @@
                                         {{data.age}} </td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'personal',data)">
-                                        <input type="number" [(ngModel)]="data.age" min="0" onkeydown="return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"></td>
+                                        <input type="number" [(ngModel)]="data.age" min="0"
+                                            onkeydown="return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))">
+                                    </td>
                                     <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.dob}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
@@ -407,7 +425,9 @@
                                     </td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'personal',data)">
-                                        <input type="number" [(ngModel)]="data.members" min="0" onkeydown="return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))"></td>
+                                        <input type="number" [(ngModel)]="data.members" min="0"
+                                            onkeydown="return event.keyCode === 8 || event.keyCode === 46 ? true : !isNaN(Number(event.key))">
+                                    </td>
                                     <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.socialStatus}}
                                     </td>
@@ -519,18 +539,24 @@
                 </div>
 
             </ng-container>
+            <div class="row px-2 py-2" *ngIf="!showBtn">
+                <div class="col-md-12 px-4">
+                    <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move forward.
+                    </p>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
-                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" matStepperPrevious><i
+                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" matStepperPrevious [disabled]='!showBtn'><i
                             class="fa fa-caret-left"></i> Previous</button>
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext>Next
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext [disabled]='!showBtn'>Next
                         <i class="fa fa-caret-right"></i></button>
                     <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                  (click)="move(6)">Finish</button> -->
-                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft(2)">Save as
+                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft(2)" [disabled]='!showBtn'>Save as
                         Draft</button>
-                    <a href="/#/landing/supplier-registration/dashboard">
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                    <a  [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'>Cancel</button>
                     </a>
                 </div>
             </div>
@@ -561,17 +587,25 @@
                             </div>
                             <div class="col-md-3 col-lg-3 px-4 ">
                                 <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
-                                <div class="landing-menu" (click)="activityMenu2 = !activityMenu2"
+                                <div ngbDropdown class="d-inline-block">
+                                    <button class="btn btn-outline-secondary" id="dropdownBasic1"
+                                        ngbDropdownToggle>Activities</button>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                        <button ngbDropdownItem
+                                            *ngFor="let activity of activityData.activities">{{activity}}</button>
+                                        <!-- <button ngbDropdownItem>Activity name 2</button>
+                                        <button ngbDropdownItem>Activity name 3</button> -->
+                                    </div>
+                                </div>
+                                <!-- <div class="landing-menu" (click)="activityMenu2 = !activityMenu2"
                                     (clickOutside)="activityMenu2 = false">
                                     <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
                                         Activities<i class="fa fa-caret-down" aria-hidden="true"></i>
                                     </div>
                                     <ul *ngIf="activityMenu2" class="landing-dropdown w-170">
                                         <li *ngFor="let activity of activityData['activities']">{{ activity }}</li>
-                                        <!-- <li>Activity name 2</li>
-                                        <li>Activity name 3</li> -->
                                     </ul>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                         <div class="row">
@@ -581,19 +615,27 @@
                             </div>
                         </div>
                     </ng-container>
+
+                    <div class="row px-2 py-2" *ngIf="!showBtn">
+                        <div class="col-md-12 px-4">
+                            <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move forward.
+                            </p>
+                        </div>
+                    </div>
+
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
-                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
                                 matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
-                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" [disabled]='!showBtn'
                                 (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
                             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         (click)="move(6)">Finish</button> -->
-                            <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2"
+                            <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(3)">Save as
                                 Draft</button>
-                            <a href="/#/landing/supplier-registration/dashboard">
-                                <button type="button"
+                            <a  [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
+                                <button type="button" [disabled]='!showBtn'
                                     class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                             </a>
                         </div>
@@ -603,8 +645,8 @@
                     <ng-container *ngIf="BankDetails">
                         <div class="row ">
                             <div class="col-md-12 px-4 ">
-                                <button class="btn btn-secondary ml-2 " (click)="openbank(bankModel)"><i class="fa fa-plus"
-                                        aria-hidden="true"></i></button>
+                                <button class="btn btn-secondary ml-2 " (click)="openbank(bankModel)"><i
+                                        class="fa fa-plus" aria-hidden="true"></i></button>
                             </div>
                         </div>
                         <div class="shadow p-3 mb-5" *ngFor="let data of BankDetails;index as index;">
@@ -771,22 +813,28 @@
                             </div>
                         </form>
                     </ng-template>
-                   
+
+                    <div class="row px-2 py-2" *ngIf="!showBtn">
+                        <div class="col-md-12 px-4">
+                            <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move forward.
+                            </p>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
-                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="previousTab()"><i class="fa fa-caret-left"></i> Previous</button>
-                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" [disabled]='!showBtn'
                                 (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
                             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         (click)="move(6)">Finish</button> -->
-                            <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2"
+                            <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(3)">Save as
                                 Draft</button>
-                            <a href="/#/landing/supplier-registration/dashboard">
+                            <a  [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                                 <button type="button"
-                                    class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                    class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'>Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -797,8 +845,8 @@
                             <div class="col-md-12 px-4 mb-3 mt-3">
                                 <div class="table-responsive">
                                     <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
-                                    <!-- <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('other')"><i
-                                        class="fa fa-plus" aria-hidden="true"></i></button> -->
+                                    <button class="btn btn-secondary ml-2 float-right mb-2" (click)="addNewRow('other')"><i
+                                        class="fa fa-plus" aria-hidden="true"></i></button>
                                     <table class="table table-striped mb-0 ">
                                         <thead>
                                             <tr class="purple-bg text-white">
@@ -809,30 +857,41 @@
                                                                     class="fa fa-ellipsis-v "></i>
                                                             </a> </span> </div>
                                                 </th>
-                                                <th scope="col" (click)="sorting('other','no')">No. <i class="fa fa-sort"
-                                                        aria-hidden="true"></i></th>
+                                                <th scope="col">No. </th>
                                                 <th scope="col" (click)="sorting('other','name')">Label <i
                                                         class="fa fa-sort" aria-hidden="true"></i></th>
                                                 <th scope="col">Value </th>
+                                                <th></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let data of otherData | filter : searchText; index as index">
                                                 <!--  (clickOutside)="enteredDetails( 'other',data)" -->
-                                                <td>
+                                                <td  *ngIf="!data.isEdit">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value=""
                                                             id="flexCheckDefault-1">
                                                         <span class="ml-2"> <a class=" text-blaack fs-14"><i
                                                                     class="fa fa-ellipsis-v  "></i> </a></span> </div>
                                                 </td>
-                                                <td>{{data.no}}</td>
+                                                <td *ngIf="data.isEdit">
+                                                    <i class="fa fa-save fs-20 background-purple text-white p-1"
+                                                    mat-raised-button matTooltip="Save Data"
+                                                    (click)="enteredDetails( 'other',data)" aria-hidden="true"></i>
+                                                </td>
+                                                <td>{{index + 1}}</td>
                                                 <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.name}}
                                                 </td>
-                                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)"><input
-                                                        [(ngModel)]="data.name"></td>
-                                                <td><a><input type="text" id="input" name="input"></a>
-                                                </td>
+                                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)">
+                                                    <input [(ngModel)]="data.name"></td>
+                                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.value}}
+                                                    </td>
+                                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)">
+                                                        <input [(ngModel)]="data.value"></td>
+                                                <!-- <td><a><input type="text" id="input" name="input"></a> </td> -->
+                                                <td *ngIf="!data.isEdit"></td>
+                                                <td *ngIf="data.isEdit"><i class="fa fa-trash text-red dlt-btn-size"
+                                                        aria-hidden="true" (click)="deleteRow('other',data)"></i></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -845,23 +904,29 @@
                         </div>
                     </ng-container>
 
+                    <div class="row px-2 py-2" *ngIf="!showBtn">
+                        <div class="col-md-12 px-4">
+                            <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move forward.
+                            </p>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
-                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="previousTab()"><i class="fa fa-caret-left"></i> Previous</button>
                             <button type="button"
-                                class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
                                 [disabled]="true"><i class="fa fa-caret-left"></i> Next</button>
                             <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                 (click)="submitRegistration()">Finish</button>
                             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         (click)="move(6)">Finish</button> -->
-                            <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2"
+                            <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(3)">Save as
                                 Draft</button>
-                            <a href="/#/landing/supplier-registration/dashboard">
+                            <a  [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                                 <button type="button"
-                                    class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                    class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'>Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -882,7 +947,7 @@
                         Please use registration ID for tracking the status of registration through portal.<br />
                         You will receive confirmation Email shortly on your registered Email ID.<br />
                         <span class="font-weight-bold mt-3 d-block">Thank You</span> </p>
-                    <a href="/#/landing/supplier-registration/dashboard">
+                    <a  [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Close</button>
                     </a>
                 </div>

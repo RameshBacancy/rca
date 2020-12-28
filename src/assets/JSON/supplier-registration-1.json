@@ -573,21 +573,11 @@
                 "companyInfo": "Company Info",
                 "address": [
                     {   
-                        "id":1,
-                        "addressID" : "MCT",
+                        "addressID" : "df5dfs25",
                         "addressLine1":"4907  August Lane",
                         "addressLine2":"Young",
                         "language":"English",
                         "country":"United States",
-                        "isMoci": true
-                    },
-                    {
-                        "id":2,
-                        "addressID" : "NO",
-                        "addressLine1":"64  London Road",
-                        "addressLine2":"COMER",
-                        "language":"French",
-                        "country":"United Kingdom",
                         "isMoci": true
                     }
                 ],
@@ -597,28 +587,12 @@
         "personalDetailsStep": {
             "personalDetails": [
                 {
-                    "no": 1,
                     "personalID": "akdioemm",
                     "nationality": "Indian",
                     "idtype": "Citizen Card",
                     "designation": "Project Manager",
                     "age": 48,
                     "dob": "01/06/1972",
-                    "members": "4",
-                    "socialStatus": "Married",
-                    "familySecurity": "No",
-                    "documents": {"name": "document.pdf", "path":""},
-                    "isMoci": true,
-                    "isEdit": false
-                },
-                {
-                    "no": 2,
-                    "personalID": "aaododiee",
-                    "nationality": "Omani",
-                    "idtype": "Citizen Card1",
-                    "designation": "CEO",
-                    "age": 34,
-                    "dob": "12/10/1986",
                     "members": "4",
                     "socialStatus": "Married",
                     "familySecurity": "No",
@@ -654,7 +628,7 @@
             "bankInfoTab": {
                 "bankDetails": [
                     {
-                        "bankingID": "BK01",
+                        "bankingID": "sds57457",
                         "bankingIdname": "Muscat Bank of OMAN",
                         "bankAcc": "1234567890",
                         "bankName": "Bank Muscat",
@@ -668,7 +642,7 @@
             "otherInfoTab": {
                 "otherInfo": [
                     {
-                        "no": 1,
+                        "otherID": 1,
                         "name": "test 1",
                         "value": "-",
                         "nameOfWork": "Organization Structure",
@@ -676,7 +650,7 @@
                         "isEdit": false
                     },
                     {
-                        "no": 2,
+                        "otherID": 2,
                         "name": "test 2",
                         "value": "-",
                         "nameOfWork": "Tax Certificate",
@@ -684,7 +658,7 @@
                         "isEdit": false
                     },
                     {
-                        "no": 3,
+                        "otherID": 3,
                         "name": "test 3",
                         "value": "-",
                         "nameOfWork": "Certificates",
@@ -692,7 +666,7 @@
                         "isEdit": false
                     },
                     {
-                        "no": 4,
+                        "otherID": 4,
                         "name": "test 4",
                         "value": "-",
                         "nameOfWork": "-",
@@ -714,21 +688,11 @@
                 "companyInfo": "Company Info",
                 "address": [
                     {   
-                        "id":1,
-                        "addressID" : "MCT",
+                        "addressID" : "jas5asja4s",
                         "addressLine1":"4907  August Lane",
                         "addressLine2":"Young",
                         "language":"English",
                         "country":"United States",
-                        "isMoci": true
-                    },
-                    {
-                        "id":2,
-                        "addressID" : "NO",
-                        "addressLine1":"64  London Road",
-                        "addressLine2":"COMER",
-                        "language":"French",
-                        "country":"United Kingdom",
                         "isMoci": true
                     }
                 ],
@@ -738,6 +702,7 @@
         "personalDetailsStep": {
             "personalDetails": [
                 {
+                    "personalID": "jsd545ds4d5",
                     "personName": "R Bala",
                     "nationality": "Omani",
                     "idType": "",
@@ -749,6 +714,7 @@
                     "isEdit": false
                 },
                 {
+                    "personalID": "jsd545ds4d5",
                     "personName": "R P",
                     "nationality": "Omani",
                     "idType": "-",
@@ -756,17 +722,6 @@
                     "designation": "Director",
                     "residentNo": 5,
                     "passport": "C586HFD2",
-                    "isMoci": true,
-                    "isEdit": false
-                },
-                {
-                    "personName": "R D",
-                    "nationality": "Omani",
-                    "idType": "-",
-                    "idNo": "-",
-                    "designation": "Additional Director",
-                    "residentNo": 8,
-                    "passport": "FJ974IVT6",
                     "isMoci": true,
                     "isEdit": false
                 }
@@ -790,18 +745,9 @@
                 "companyGrade": "Grade 1",
                 "activities": [
                     {
+                        "activityID": "2Dcxzc3552",
                         "activityName": "Activity1",
                         "subActivity": "Activity1",
-                        "sagment": "Sagment",
-                        "family": "Family",
-                        "class": "Class",
-                        "commodity": "Commodity",
-                        "isEdit": false,
-                        "isMoci": true
-                    },
-                    {
-                        "activityName": "Activity2",
-                        "subActivity": "Activity2",
                         "sagment": "Sagment",
                         "family": "Family",
                         "class": "Class",
@@ -815,7 +761,7 @@
             "bankInfoTab": {
                 "bankDetails": [
                     {
-                        "bankingId": "BK01",
+                        "bankingID": "BK01",
                         "bankingIdname": "Muscat Bank of OMAN",
                         "bankAcc": "1234567890",
                         "bankName": "Bank Muscat",
@@ -829,35 +775,27 @@
             "otherInfoTab": {
                 "otherInfo": [
                     {
-                        "no": 1,
+                        "otherID": 1,
                         "name": "test 1",
                         "value": "-",
-                        "nameOfWork": "Organization Structure",
-                        "attachment": "PDF",
                         "isEdit": false
                     },
                     {
-                        "no": 2,
+                        "otherID": 2,
                         "name": "test 2",
                         "value": "-",
-                        "nameOfWork": "Tax Certificate",
-                        "attachment": "PDF",
                         "isEdit": false
                     },
                     {
-                        "no": 3,
+                        "otherID": 3,
                         "name": "test 3",
                         "value": "-",
-                        "nameOfWork": "Certificates",
-                        "attachment": "PDF",
                         "isEdit": false
                     },
                     {
-                        "no": 4,
+                        "otherID": 4,
                         "name": "test 4",
                         "value": "-",
-                        "nameOfWork": "-",
-                        "attachment": "PDF",
                         "isEdit": false
                     }
                 ],
@@ -867,7 +805,7 @@
         "employeeDetailsStep": {
             "employeeDetails": [
                 {
-                    "no": 1,
+                    "employeeID": "f5f5c1c5dc5dc",
                     "name": "R Bala",
                     "qualification": "Btech",
                     "specialization": "Literature",
@@ -889,7 +827,7 @@
                     "isMoci": true
                 },
                 {
-                    "no": 2,
+                    "employeeID": "d5d5dd2dc2c",
                     "name": "R P",
                     "qualification": "BE",
                     "specialization": "Thinker",
@@ -911,7 +849,7 @@
                     "isMoci": true
                 },
                 {
-                    "no": 3,
+                    "employeeID": "d5dcf5d5x2x",
                     "name": "R K",
                     "qualification": "School Dropout",
                     "specialization": "Thinker",

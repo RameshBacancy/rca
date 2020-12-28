@@ -568,7 +568,7 @@
                         <div class="row mt-3 mb-5">
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                                 <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Establishment date</h5>
-                                <p class="fs-14">{{activityDetail.regDate}}</p>
+                                <p class="fs-14">{{activityDetail.establishmentDate}}</p>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                                 <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
@@ -627,14 +627,14 @@
                     </div>
                 </mat-tab>
                 <mat-tab label="Bank Details">
-                    <ng-container *ngIf="BankDetails">
+                    <ng-container *ngIf="bankDetails">
                         <div class="row ">
                             <div class="col-md-12 px-4 ">
                                 <button class="btn btn-secondary ml-2 " (click)="openbank(bankModel)"><i class="fa fa-plus"
                                         aria-hidden="true"></i></button>
                             </div>
                         </div>
-                        <div class="shadow p-3 mb-5" *ngFor="let data of BankDetails">
+                        <div class="shadow p-3 mb-5" *ngFor="let data of bankDetails; index as index">
                             <div class="row ">
                                 <div class="col-md-12 col-lg-12 col-xl-12 px-4 " *ngIf="data.isMoci">
                                     <i class="fa fa-ban text-red fs-14" mat-raised-button
@@ -646,7 +646,7 @@
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id</h5>
-                                    <p class="fs-14">{{data.bankingId}}</p>
+                                    <p class="fs-14">{{index + 1}}</p>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id Name</h5>
@@ -686,15 +686,15 @@
                                             <div class="row ">
                                                 <div class="col-md-12 ">
                                                     <div class="form-group row mb-3">
-                                                        <label for="bankingId" class="col-sm-5 col-form-label">Banking
+                                                        <label for="bankingID" class="col-sm-5 col-form-label">Banking
                                                             Id<span class="text-red">*</span></label>
                                                         <div class="col-sm-7">
-                                                            <input formControlName="bankingId" id="bankingId" type="text"
-                                                                class="form-control">
+                                                            <input formControlName="bankingID" id="bankingID" type="text"
+                                                                class="form-control" readonly>
                                                         </div>
-                                                        <div *ngIf="bf.bankingId.touched && bf.bankingId.invalid"
+                                                        <div *ngIf="bf.bankingID.touched && bf.bankingID.invalid"
                                                             class="alert alert-danger">
-                                                            <div *ngIf="bf.bankingId.errors.required" class="col-sm-7">
+                                                            <div *ngIf="bf.bankingID.errors.required" class="col-sm-7">
                                                                 *required
                                                             </div>
                                                         </div>

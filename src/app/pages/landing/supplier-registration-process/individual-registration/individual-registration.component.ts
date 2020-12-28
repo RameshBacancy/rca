@@ -62,14 +62,15 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
   editDirectorDetails = false;
   editGeneralManagerDetails = false;
 
+  // address form
   form: FormGroup = new FormGroup({
     addressID: new FormControl('', [Validators.required]),
     addressLine1: new FormControl('', [Validators.required]),
     addressLine2: new FormControl('', [Validators.required]),
-    language: new FormControl(''),
-    country: new FormControl('Oman', [Validators.required]),
-    isEdit: new FormControl(false),
+    // language: new FormControl(''),
+    country: new FormControl('', [Validators.required]),
     isMoci: new FormControl(false),
+    isEdit: new FormControl(false),
     isUpdate: new FormControl()
   });
 
@@ -91,7 +92,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
   subContractorData: any[];
   equipmentData: any[];
   otherData: any[];
-  activityData: any[];
+  activityData: any;
 
   isLocal = false;
   isIndividual = false;
@@ -120,7 +121,9 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
   // address for draft data;
   generalAddressDraft: any[] = [];
   personalDetailsDraft: any[] = [];
-  bankDetalsDraft: any[] = [];
+  bankDetailsDraft: any[] = [];
+  otherInfoDraft: any[] = [];
+
 
 
   setDraftTime: any;
@@ -157,7 +160,6 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
     this.destroy$.next(true);
     this.destroy$.complete();
   }
-
 
   getTimeDiff() {
     if (!(this.setDraftTime === 'null')) {
@@ -258,7 +260,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
       }
     } else {
       this.form.reset();
-      this.form.patchValue({ addressID: uuid(), isEdit: false, isUpdate: false, country: 'Oman' });
+      this.form.patchValue({ addressID: uuid(), country: 'Oman', isEdit: false, isMoci: false, isUpdate: false });
     }
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
@@ -332,6 +334,8 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
     this.userService.supplierRegistration(body);
     // this.router.navigateByUrl('/landing/supplier-registration/transaction');
   }
+
+
   saveDraft(step: number = 0) {
 
     const data: any = {};
@@ -344,8 +348,12 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
       data.personalDetailStep = [...this.personalDetailsDraft];
     }
 
-    if (this.bankDetalsDraft.length > 0) {
-      data.bankDetailStep = { BankDetails: this.bankDetalsDraft }
+    if (this.bankDetailsDraft.length > 0) {
+      data.bankDetailStep = { BankDetails: this.bankDetailsDraft }
+    }
+
+    if (this.otherInfoDraft.length > 0) {
+      data.bankDetailStep = { ...data.bankDetailStep, otherInfo: this.otherInfoDraft }
     }
 
     this.localRegisterDraft = {
@@ -358,14 +366,15 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
       data
     };
 
+    console.log(this.localRegisterDraft)
     // call api for save draft
 
-    localStorage.setItem('RegStatus', 'draft');
-    this.spinner.openSpinner();
-    const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
-    this.userService.supplierRegistration(body);
-    this.alertService.pushWarning('Your data will be saved for 72 hours.');
-    this.router.navigate(['/landing/supplier-registration/dashboard']);
+    // localStorage.setItem('RegStatus', 'draft');
+    // this.spinner.openSpinner();
+    // const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
+    // this.userService.supplierRegistration(body);
+    // this.alertService.pushWarning('Your data will be saved for 72 hours.');
+    // this.router.navigate(['/landing/supplier-registration/dashboard']);
   }
 
   submitbank() {
@@ -403,14 +412,14 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
         //   this.editbankData['isUpdate'] = true;
         // }
         //add bank data to draft
-        if (this.bankDetalsDraft.length === 0) {
-          this.bankDetalsDraft.push({ ...this.editbankData });
+        if (this.bankDetailsDraft.length === 0) {
+          this.bankDetailsDraft.push({ ...this.editbankData });
         } else {
-          const index = this.bankDetalsDraft.findIndex(bank =>
+          const index = this.bankDetailsDraft.findIndex(bank =>
             (bank.bankingID === this.editbankData.bankingID));
           index === -1 ?
-            this.bankDetalsDraft.push({ ...this.editbankData }) :
-            this.bankDetalsDraft[index] = { ...this.editbankData };
+            this.bankDetailsDraft.push({ ...this.editbankData }) :
+            this.bankDetailsDraft[index] = { ...this.editbankData };
         }
       }
       this.bankform.reset();
@@ -475,88 +484,89 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
       // };
       // this.staffData.push(this.newData);
     }
-    // if (datatype === 'communication') {
-    //   this.communicationData.map((data, i) => {
-    //     if (data.method == '') {
-    //       this.communicationData.splice(i, 1);
-    //     }
-    //   });
-    //   this.newData = {
-    //     no: this.communicationData.length + 1,
-    //     method: ' * ',
-    //     value: ' ',
-    //     isEdit: true
-    //   };
-    //   this.communicationData.push(this.newData);
-    // }
-    // if (datatype === 'subContractor') {
-    // this.subContractorData.map((data, i) => {
-    //   if (data.nameOfWork == '') {
-    //     this.subContractorData.splice(i, 1);
-    //   }
-    // });
-    // this.newData = {
-    //   no: this.subContractorData.length + 1,
-    //   nameOfWork: ' * ',
-    //   subContractor: '',
-    //   crNo: '',
-    //   telephone: '',
-    //   fax: '',
-    //   email: '',
-    //   regWithRca: '',
-    //   isEdit: true
-    // };
-    // this.subContractorData.push(this.newData);
-    // }
-    // if (datatype === 'equipment') {
-    //   this.equipmentData.map((data, i) => {
-    //     if (data.type == '') {
-    //       this.equipmentData.splice(i, 1);
-    //     }
-    //   });
-    //   this.newData = {
-    //     no: this.equipmentData.length + 1,
-    //     type: ' * ',
-    //     quantity: '',
-    //     capacity: '',
-    //     year: '',
-    //     regNo: '',
-    //     approxValue: '',
-    //     isEdit: true
-    //   };
-    //   this.equipmentData.push(this.newData);
-    // }
+    if (datatype === 'communication') {
+      //   this.communicationData.map((data, i) => {
+      //     if (data.method == '') {
+      //       this.communicationData.splice(i, 1);
+      //     }
+      //   });
+      //   this.newData = {
+      //     no: this.communicationData.length + 1,
+      //     method: ' * ',
+      //     value: ' ',
+      //     isEdit: true
+      //   };
+      //   this.communicationData.push(this.newData);
+    }
+    if (datatype === 'subContractor') {
+      // this.subContractorData.map((data, i) => {
+      //   if (data.nameOfWork == '') {
+      //     this.subContractorData.splice(i, 1);
+      //   }
+      // });
+      // this.newData = {
+      //   no: this.subContractorData.length + 1,
+      //   nameOfWork: ' * ',
+      //   subContractor: '',
+      //   crNo: '',
+      //   telephone: '',
+      //   fax: '',
+      //   email: '',
+      //   regWithRca: '',
+      //   isEdit: true
+      // };
+      // this.subContractorData.push(this.newData);
+    }
+    if (datatype === 'equipment') {
+      //   this.equipmentData.map((data, i) => {
+      //     if (data.type == '') {
+      //       this.equipmentData.splice(i, 1);
+      //     }
+      //   });
+      //   this.newData = {
+      //     no: this.equipmentData.length + 1,
+      //     type: ' * ',
+      //     quantity: '',
+      //     capacity: '',
+      //     year: '',
+      //     regNo: '',
+      //     approxValue: '',
+      //     isEdit: true
+      //   };
+      //   this.equipmentData.push(this.newData);
+    }
+    if (datatype === 'activity') {
+      //   this.activityData.map((data, i) => {
+      //     if (data.activityName == '') {
+      //       this.activityData.splice(i, 1);
+      //     }
+      //   });
+      //   this.newData = {
+      //     activityName: '',
+      //     subActivity: '',
+      //     sagment: '',
+      //     family: '',
+      //     class: '',
+      //     commodity: '',
+      //     isEdit: true,
+      //     isMoci: false
+      //   };
+      //   this.activityData.push(this.newData);
+    }
     if (datatype === 'other') {
       this.otherData.map((data, i) => {
-        if (data.nameOfWork == '') {
+        if (data.name == '') {
           this.otherData.splice(i, 1);
         }
       });
       this.newData = {
-        no: this.otherData.length + 1,
-        nameOfWork: ' * ',
-        attachment: '',
-        isEdit: true
+        otherID: uuid(),
+        name: "",
+        value: "",
+        isEdit: true,
+        isUpdate: false
       };
       this.otherData.push(this.newData);
-    }
-    if (datatype === 'activity') {
-      this.activityData.map((data, i) => {
-        if (data.activityName == '') {
-          this.activityData.splice(i, 1);
-        }
-      });
-      this.newData = {
-        activityName: ' * ',
-        subActivity: '',
-        sagment: '',
-        family: '',
-        class: '',
-        commodity: '',
-        isEdit: true,
-        isMoci: false
-      };
-      this.activityData.push(this.newData);
     }
     if (datatype === 'personal') {
       this.personalData.map((data, i) => {
@@ -565,7 +575,6 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
         }
       });
       this.newData = {
-        no: this.personalData.length + 1,
         personalID: uuid(),
         nationality: '',
         idtype: '',
@@ -587,106 +596,133 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
   enteredDetails(datatype, data) {
     data.isEdit = false;
     if (datatype === 'staff') {
-
-      if (data.name !== '') {
-        // this.staffData.map((d, i) => {
-        //   if (d.name == data.name) {
-        //     d = data;
-        //   }
-        // });
-        if (data.name === ' * ') {
-          data.name = '',
-            data.isEdit = true;
-        }
-        this.showBtn = true;
-      } else {
-        // this.staffData.map((data, i) => {
-        //   if (data.name == '') {
-        //     this.staffData.splice(i, 1);
-        //   }
-        // });
-        data.isEdit = true;
-        this.alertService.pushError('name can not be empty.');
-      }
+      // if (data.name !== '') {
+      // this.staffData.map((d, i) => {
+      //   if (d.name == data.name) {
+      //     d = data;
+      //   }
+      // });
+      //   if (data.name === ' * ') {
+      //     data.name = '',
+      //       data.isEdit = true;
+      //   }
+      //   this.showBtn = true;
+      // } else {
+      // this.staffData.map((data, i) => {
+      //   if (data.name == '') {
+      //     this.staffData.splice(i, 1);
+      //   }
+      // });
+      //   data.isEdit = true;
+      //   this.alertService.pushError('name can not be empty.');
+      // }
     }
-    // if (datatype === 'communication') {
+    if (datatype === 'communication') {
 
-    //   if (data.method !== '') {
-    //     this.communicationData.map((d, i) => {
-    //       if (d.no == data.no) {
-    //         d = data;
-    //       }
-    //     });
-    //     if (data.method === ' * ') {
-    //       data.method = '',
-    //         data.isEdit = true;
-    //     }
-    //     this.showBtn = true;
-    //   } else {
-    //     // this.communicationData.map((data, i) => {
-    //     //   if (data.method == '') {
-    //     //     this.communicationData.splice(i, 1);
-    //     //   }
-    //     // });
-    //     data.isEdit = true;
-    //     this.alertService.pushError('Communication Method can not be empty.');
-    //   }
-    // }
+      //   if (data.method !== '') {
+      //     this.communicationData.map((d, i) => {
+      //       if (d.no == data.no) {
+      //         d = data;
+      //       }
+      //     });
+      //     if (data.method === ' * ') {
+      //       data.method = '',
+      //         data.isEdit = true;
+      //     }
+      //     this.showBtn = true;
+      //   } else {
+      //     // this.communicationData.map((data, i) => {
+      //     //   if (data.method == '') {
+      //     //     this.communicationData.splice(i, 1);
+      //     //   }
+      //     // });
+      //     data.isEdit = true;
+      //     this.alertService.pushError('Communication Method can not be empty.');
+      //   }
+    }
     if (datatype === 'subContractor') {
-      if (data.nameOfWork !== '') {
-        // this.subContractorData.map((d, i) => {
-        //   if (d.no == data.no) {
-        //     d = data;
-        //   }
-        // });
-        if (data.nameOfWork === ' * ') {
-          data.nameOfWork = '',
-            data.isEdit = true;
-        }
-        this.showBtn = true;
-      } else {
-        // this.subContractorData.map((data, i) => {
-        //   if (data.nameOfWork == '') {
-        //     this.subContractorData.splice(i, 1);
-        //   }
-        // });
-        data.isEdit = true;
-        this.alertService.pushError('nameOfWork can not be empty.');
-      }
+      // if (data.nameOfWork !== '') {
+      // this.subContractorData.map((d, i) => {
+      //   if (d.no == data.no) {
+      //     d = data;
+      //   }
+      // });
+      // if (data.nameOfWork === ' * ') {
+      //   data.nameOfWork = '',
+      //     data.isEdit = true;
+      // }
+      // this.showBtn = true;
+      // } else {
+      // this.subContractorData.map((data, i) => {
+      //   if (data.nameOfWork == '') {
+      //     this.subContractorData.splice(i, 1);
+      //   }
+      // });
+      //   data.isEdit = true;
+      //   this.alertService.pushError('nameOfWork can not be empty.');
+      // }
     }
     if (datatype === 'equipment') {
-      if (data.type !== '') {
-        // this.equipmentData.map((d, i) => {
-        //   if (d.no == data.no) {
-        //     d = data;
-        //   }
-        // });
-        if (data.type === ' * ') {
-          data.type = '',
-            data.isEdit = true;
-        }
-        this.showBtn = true;
-      } else {
-        // this.equipmentData.map((data, i) => {
-        //   if (data.type == '') {
-        //     this.equipmentData.splice(i, 1);
-        //   }
-        // });
-        data.isEdit = true;
-        this.alertService.pushError('type can not be empty.');
-      }
+      // if (data.type !== '') {
+      // this.equipmentData.map((d, i) => {
+      //   if (d.no == data.no) {
+      //     d = data;
+      //   }
+      // });
+      //   if (data.type === ' * ') {
+      //     data.type = '',
+      //       data.isEdit = true;
+      //   }
+      //   this.showBtn = true;
+      // } else {
+      // this.equipmentData.map((data, i) => {
+      //   if (data.type == '') {
+      //     this.equipmentData.splice(i, 1);
+      //   }
+      // });
+      //   data.isEdit = true;
+      //   this.alertService.pushError('type can not be empty.');
+      // }
+    }
+    if (datatype === 'activity') {
+      // if (data.activityName !== '') {
+      //   this.activityData.map((d, i) => {
+      //     if (d.no == data.no) {
+      //       d = data;
+      //     }
+      //   });
+      //   if (data.activityName === ' * ') {
+      //     data.activityName = '',
+      //       data.isEdit = true;
+      //   }
+      //   this.showBtn = true;
+      // } else {
+      // this.activityData.map((data, i) => {
+      //   if (data.activityName == '') {
+      //     this.activityData.splice(i, 1);
+      //   }
+      // });
+      //   data.isEdit = true;
+      //   this.alertService.pushError('Activity Name can not be empty.');
+      // }
     }
     if (datatype === 'other') {
-      if (data.nameOfWork !== '') {
+      if (data.name !== '') {
         this.otherData.map((d, i) => {
-          if (d.no == data.no) {
+          if (d.otherID == data.otherID) {
             d = data;
+
+            if (!d.hasOwnProperty('isUpdate')) {
+              d['isUpdate'] = true;
+            }
+            if (this.otherInfoDraft.length === 0) {
+              this.otherInfoDraft.push({ ...d });
+            } else {
+              const index = this.otherInfoDraft.findIndex(other => other.otherID === d.otherID);
+              index === -1 ? this.otherInfoDraft.push({ ...d }) : this.otherInfoDraft[index] = { ...d };
+            }
           }
         });
-        if (data.nameOfWork === ' * ') {
-          data.nameOfWork = '',
-            data.isEdit = true;
-        }
         this.showBtn = true;
       } else {
         // this.otherData.map((data, i) => {
@@ -695,29 +731,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
         //   }
         // });
         data.isEdit = true;
-        this.alertService.pushError('nameOfWork can not be empty.');
-      }
-    }
-    if (datatype === 'activity') {
-      if (data.activityName !== '') {
-        this.activityData.map((d, i) => {
-          if (d.no == data.no) {
-            d = data;
-          }
-        });
-        if (data.activityName === ' * ') {
-          data.activityName = '',
-            data.isEdit = true;
-        }
-        this.showBtn = true;
-      } else {
-        // this.activityData.map((data, i) => {
-        //   if (data.activityName == '') {
-        //     this.activityData.splice(i, 1);
-        //   }
-        // });
-        data.isEdit = true;
-        this.alertService.pushError('Activity Name can not be empty.');
+        this.alertService.pushError('Name can not be empty.');
       }
     }
     if (datatype === 'personal') {
@@ -738,10 +752,6 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
 
           }
         });
-        if (data.nationality === ' * ') {
-          data.nationality = '',
-            data.isEdit = true;
-        }
         this.showBtn = true;
       } else {
         // this.personalData.map((data, i) => {
@@ -774,7 +784,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
     // }
     if (datatype === 'other') {
       this.otherData.map((d, i) => {
-        if (d.no == data.no) {
+        if (d.otherID == data.otherID) {
           this.otherData.splice(i, 1);
         }
       });
@@ -876,14 +886,8 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
     if (this.selectedPage === 'personal') {
       this.filesList = [];
       this.personalData.map((d, i) => {
-        if (d.no == data.no) {
-          if (flag == false) {
-            d.documents.push(file.data);
-          }
-          d.documents.map((d1) => {
-            this.filesList.push(d1);
-            file.inProgress = false;
-          });
+        if (d.personalID == data.personalID) {
+          this.filesList.push(d.documents);
         }
       });
     }
@@ -903,16 +907,16 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
     fileInput.onchange = () => {
       for (let index = 0; index < fileInput.files.length; index++) {
         const file = fileInput.files[index];
-        this.filesList.filter(f => {
-          if (f.name.toString() == file.name.toString()) {
-            alert('already have similar name file.');
-            flag = true;
-          }
-        });
-        if (flag == false) {
+        // this.filesList.filter(f => {
+        //   if (f.name.toString() == file.name.toString()) {
+        //     alert('already have similar name file.');
+        //     flag = true;
+        //   }
+        // });
+        // if (flag == false) {
           this.files = [];
           this.files.push({ data: file, inProgress: false, progress: 0 });
-        }
+        // }
       }
       this.upload(data, flag);
     };
@@ -926,10 +930,8 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
     if (this.selectedPage === 'personal') {
       this.filesList = [];
       this.personalData.map((d, i) => {
-        if (d.no == data.no) {
-          d.documents.map((d1) => {
-            this.filesList.push(d1);
-          });
+        if (d.personalID == data.personalID) {
+          this.filesList.push(d.documents);
         }
       });
     }
@@ -941,13 +943,8 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
       if (this.selectedPage === 'personal') {
         this.filesList = [];
         this.personalData.map((d) => {
-          if (d.no == this.uploadData.no) {
-            d.documents.filter((f, i) => {
-              if (f.name == file.name) {
-                d.documents.splice(i, 1);
-                this.filesList = d.documents;
-              }
-            });
+          if (d.personalID == this.uploadData.personalID) {
+            d.documents = {};
           }
         });
       }

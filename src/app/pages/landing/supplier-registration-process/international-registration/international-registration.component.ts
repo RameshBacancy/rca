@@ -37,23 +37,27 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
   editDirectorDetails = false;
   editGeneralManagerDetails = false;
 
+  // address form
   form: FormGroup = new FormGroup({
     addressID: new FormControl('', [Validators.required]),
     addressLine1: new FormControl('', [Validators.required]),
     addressLine2: new FormControl('', [Validators.required]),
-    // language: new FormControl('English', [Validators.required]),
-    country: new FormControl('Oman', [Validators.required]),
-    isMoci: new FormControl(false)
+    // language: new FormControl(''),
+    country: new FormControl('', [Validators.required]),
+    isMoci: new FormControl(false),
+    isEdit: new FormControl(false),
+    isUpdate: new FormControl()
   });
 
   bankform: FormGroup = new FormGroup({
-    bankingId: new FormControl('', [Validators.required]),
+    bankingID: new FormControl('', [Validators.required]),
     bankingIdname: new FormControl('', [Validators.required]),
     bankAcc: new FormControl('', [Validators.required, , Validators.pattern('^[0-9]*$')]),
     bankName: new FormControl('', [Validators.required]),
     bankBranch: new FormControl('', [Validators.required]),
     holderName: new FormControl('', [Validators.required]),
-    isMoci: new FormControl(false)
+    isMoci: new FormControl(false),
+    isUpdate: new FormControl(false)
   });
 
   staffData: any[];
@@ -70,7 +74,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
   isIndividual = false;
   isInternational = false;
   personalData: any;
-  BankDetails: any;
+  bankDetails: any;
   internationalAddress: any[];
   selectedAddress: any;
   activityMenu: boolean;
@@ -168,17 +172,17 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
 
     this.internationalService.getCommercialInfoStep().pipe(takeUntil(this.destroy$)).
       subscribe(res => {
-        console.log('res :>> ', res);
         this.activityDetail = res.activityInfoTab;
         this.activityData = this.activityDetail.activities;
-        this.BankDetails = res.bankInfoTab.bankDetails;
+        this.bankDetails = res.bankInfoTab.bankDetails;
         this.otherData = res.otherInfoTab.otherInfo;
 
-        if (!this.activityData) {
-          this.activityData = this.formData.commercialInfoStep.activityInfoTab.activities;
+        if (!this.activityData[0]) {
+        this.activityDetail = this.formData.commercialInfoStep.activityInfoTab;
+        this.activityData = this.formData.commercialInfoStep.activityInfoTab.activities;
         }
-        if (!this.BankDetails) {
-          this.BankDetails = this.formData.commercialInfoStep.bankInfoTab.bankDetails;
+        if (!this.bankDetails[0]) {
+          this.bankDetails = this.formData.commercialInfoStep.bankInfoTab.bankDetails;
         }
         if (!this.otherData[0]) {
           this.otherData = this.formData.commercialInfoStep.otherInfoTab.otherInfo;
@@ -207,6 +211,8 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
       this.open(content);
     } else {
       this.bankform.reset();
+      this.bankform.patchValue({ bankingID: uuid(), isMoci: false, isUpdate: false });
+      this.editbankData = this.bankform.value;
       this.open(content);
     }
   }
@@ -220,8 +226,9 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
       }
     } else {
       this.form.reset();
-      this.form.patchValue({ addressID: uuid(), country: 'Oman' });
+      this.form.patchValue({ addressID: uuid(), country: 'Oman', isEdit: false, isMoci: false, isUpdate: false });
     }
+
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
 
@@ -255,6 +262,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         this.editAddress = false;
         this.form.reset();
       } else {
+        this.selectedAddress = this.form.value;
         this.allAddresses.push(this.form.value);
       }
       this.form.reset();
@@ -283,18 +291,36 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
   }
 
   submitbank() {
+    let bankAccFlag: boolean = false;
     if (this.bankform.status === 'VALID') {
-      if (this.editBank == true) {
-        this.BankDetails.filter((d, i) => {
-          if (d.bankAcc == this.editbankData.bankAcc) {
-            this.BankDetails.splice(i, 1, this.bankform.value);
+      // check user has already addded this account or not
+      this.bankDetails.filter(bank => {
+        if (bank.bankAcc == this.bankform.value.bankAcc) {
+          if (bank.bankingID != this.bankform.value.bankingID) {
+            bankAccFlag = true;
           }
-        });
-        this.editBank = false;
+        }
+      });
+
+      // if already have added this account
+      if (bankAccFlag) {
+        this.alertService.pushError('Already added this Account.');
       } else {
-        this.BankDetails.push(this.bankform.value);
+        if (this.editBank == true) {
+          this.bankDetails.filter((d, i) => {
+            if (d.bankingID == this.editbankData.bankingID) {
+              this.editbankData = this.bankform.value;
+              this.editbankData['isUpdate'] = true;
+              this.bankDetails.splice(i, 1, this.bankform.value);
+            }
+          });
+          this.editBank = false;
+        } else {
+          this.editbankData = this.bankform.value;
+          this.bankDetails.push(this.bankform.value);
+        }
       }
-      this.bankform.reset();
+      // this.bankform.reset();
     }
   }
 
@@ -334,6 +360,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         }
       });
       this.newData = {
+        employeeID: uuid(),
         name: '',
         qualification: '',
         specialization: '',
@@ -351,7 +378,8 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         civilNo: '',
         crNo: '',
         omaniratio: '',
-        isEdit: true
+        isEdit: true,
+        isUpdate: false
       };
       this.staffData.push(this.newData);
     }
@@ -384,7 +412,8 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         fax: '',
         email: '',
         regWithRca: '',
-        isEdit: true
+        isEdit: true,
+        isUpdate: false
       };
       this.subContractorData.push(this.newData);
     }
@@ -402,7 +431,8 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         year: '',
         regNo: '',
         approxValue: '',
-        isEdit: true
+        isEdit: true,
+        isUpdate: false
       };
       this.equipmentData.push(this.newData);
     }
@@ -413,9 +443,11 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         }
       });
       this.newData = {
+        otherID: uuid(),
         name: '',
         value: '',
-        isEdit: true
+        isEdit: true,
+        isUpdate: false
       };
       this.otherData.push(this.newData);
     }
@@ -426,6 +458,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         }
       });
       this.newData = {
+        activityID: uuid(),
         activityName: '',
         subActivity: '',
         sagment: '',
@@ -433,7 +466,8 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         class: '',
         commodity: '',
         isEdit: true,
-        isMoci: false
+        isMoci: false,
+        isUpdate: false
       };
       this.activityData.push(this.newData);
     }
@@ -444,6 +478,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         }
       });
       this.newData = {
+        personalID: uuid(),
         personName: '',
         nationality: '',
         idType: '',
@@ -456,7 +491,8 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         note: '',
         regDate: '',
         isEdit: true,
-        isMoci: false
+        isMoci: false,
+        isUpdate: false
       };
       this.personalData.push(this.newData);
     }
@@ -468,14 +504,10 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
 
       if (data.name !== '') {
         this.staffData.map((d, i) => {
-          if (d.name == data.name) {
+          if (d.employeeID == data.employeeID) {
             d = data;
           }
         });
-        if (data.name === ' * ') {
-          data.name = '',
-            data.isEdit = true;
-        }
         this.showBtn = true;
       } else {
         // this.staffData.map((data, i) => {
@@ -557,15 +589,10 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
     if (datatype === 'other') {
       if (data.name !== '' && data.value !== '') {
         this.otherData.map((d, i) => {
-          if (d.name == data.name && d.value == data.value) {
+          if (d.otherID == data.otherID) {
             d = data;
           }
         });
-        // this.otherData.push(data);
-        if (data.name === ' * ') {
-          data.name = '',
-            data.isEdit = true;
-        }
         this.showBtn = true;
       } else {
         // this.otherData.map((data, i) => {
@@ -580,7 +607,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
     if (datatype === 'activity') {
       if (data.activityName !== '') {
         this.activityData.map((d, i) => {
-          if (d.no == data.no) {
+          if (d.activityID == data.activityID) {
             d = data;
           }
         });
@@ -602,14 +629,10 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
     if (datatype === 'personal') {
       if (data.personName !== '') {
         this.personalData.map((d, i) => {
-          if (d.no == data.no) {
+          if (d.personalID == data.personalID) {
             d = data;
           }
         });
-        if (data.personName === ' * ') {
-          data.personName = '',
-            data.isEdit = true;
-        }
         this.showBtn = true;
       } else {
         // this.personalData.map((data, i) => {
@@ -628,7 +651,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
     this.showBtn = true;
     if (datatype === 'staff') {
       this.staffData.map((d, i) => {
-        if (d.name == data.name) {
+        if (d.employeeID == data.employeeID) {
           this.staffData.splice(i, 1);
         }
       });
@@ -656,21 +679,21 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
     }
     if (datatype === 'other') {
       this.otherData.map((d, i) => {
-        if (d.name == data.name && d.value == data.value) {
+        if (d.otherID == data.otherID) {
           this.otherData.splice(i, 1);
         }
       });
     }
     if (datatype === 'activity') {
       this.activityData.map((d, i) => {
-        if (d.activityName == data.activityName && d.subActivity == data.subActivity) {
+        if (d.activityID == data.activityID) {
           this.activityData.splice(i, 1);
         }
       });
     }
     if (datatype === 'personal') {
       this.personalData.map((d, i) => {
-        if (d.personName == data.personName && d.nationality == data.nationality) {
+        if (d.personalID == data.personalID) {
           this.personalData.splice(i, 1);
         }
       });
