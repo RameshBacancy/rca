@@ -850,13 +850,14 @@
                                     <table class="table table-striped mb-0 ">
                                         <thead>
                                             <tr class="purple-bg text-white">
-                                                <th scope="col">
+                                                <th scope="col"></th>
+                                                <!-- <th scope="col">
                                                     <div class="d-flex"> <span> <a class=" text-white fs-14"><i
                                                                     class="fa fa-check"></i></a> </span> <span
                                                             class="ml-3 pl-1 "> <a class=" text-white fs-14"> <i
                                                                     class="fa fa-ellipsis-v "></i>
                                                             </a> </span> </div>
-                                                </th>
+                                                </th> -->
                                                 <th scope="col">No. </th>
                                                 <th scope="col" (click)="sorting('other','name')">Label <i
                                                         class="fa fa-sort" aria-hidden="true"></i></th>
@@ -867,7 +868,21 @@
                                         <tbody>
                                             <tr *ngFor="let data of otherData | filter : searchText; index as index">
                                                 <!--  (clickOutside)="enteredDetails( 'other',data)" -->
-                                                <td  *ngIf="!data.isEdit">
+                                                <td *ngIf="data.isMoci">
+                                                    <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                                        matTooltip="Data fetched from interface - not editable"
+                                                        aria-hidden="true"></i>
+                                                </td>
+                                                <td *ngIf="!data.isMoci">
+                                                    <i class="fa fa-pencil-square-o fs-14" *ngIf="!data.isEdit && showBtn"
+                                                        mat-raised-button matTooltip="Edit Data"
+                                                        (click)="data.isEdit = true; this.showBtn=false;"
+                                                        aria-hidden="true"></i>
+                                                    <i class="fa fa-save fs-20 background-purple text-white p-1"
+                                                        *ngIf="data.isEdit" mat-raised-button matTooltip="Save Data"
+                                                        (click)="enteredDetails( 'other',data)" aria-hidden="true"></i>
+                                                </td>
+                                                <!-- <td  *ngIf="!data.isEdit">
                                                     <div class="form-check">
                                                         <input class="form-check-input" type="checkbox" value=""
                                                             id="flexCheckDefault-1">
@@ -878,7 +893,7 @@
                                                     <i class="fa fa-save fs-20 background-purple text-white p-1"
                                                     mat-raised-button matTooltip="Save Data"
                                                     (click)="enteredDetails( 'other',data)" aria-hidden="true"></i>
-                                                </td>
+                                                </td> -->
                                                 <td>{{index + 1}}</td>
                                                 <td *ngIf="!data.isEdit" (dblclick)="dblclick(data)">{{data.name}}
                                                 </td>

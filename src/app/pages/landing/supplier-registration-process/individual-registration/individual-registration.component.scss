@@ -30,6 +30,16 @@ ul {
     display: none;
 }
 
+
+thead{
+    tr {
+      th {
+        font-size: 16px;
+        font-weight: 500;
+      }
+    }
+  }
+
 @media(min-width:768px) {
     .nav-tabs {
         display: flex;

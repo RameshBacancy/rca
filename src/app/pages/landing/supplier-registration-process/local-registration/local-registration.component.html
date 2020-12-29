@@ -1295,13 +1295,14 @@
                                 <table class="table table-striped mb-0 ">
                                     <thead>
                                         <tr class="purple-bg text-white">
-                                            <th scope="col">
+                                            <th></th>
+                                            <!-- <th scope="col">
                                                 <div class="d-flex"> <span> <a class=" text-white fs-14"><i
                                                                 class="fa fa-check"></i></a> </span> <span
                                                         class="ml-3 pl-1 "> <a class=" text-white fs-14"> <i
                                                                 class="fa fa-ellipsis-v "></i>
                                                         </a> </span> </div>
-                                            </th>
+                                            </th> -->
                                             <!-- (click)="sorting('other','no')" <i class="fa fa-sort" aria-hidden="true"></i> -->
                                             <th scope="col">No.</th>
                                             <th scope="col" (click)="sorting('other','name')">Label <i
@@ -1316,7 +1317,21 @@
                                         <tr *ngFor="let data of otherData | filter : searchText; index as index">
                                             <!-- 
                                             (clickOutside)="enteredDetails( 'other',data)" -->
-                                            <td *ngIf="!data.isEdit">
+                                            <td *ngIf="data.isMoci">
+                                                <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                                    matTooltip="Data fetched from interface - not editable"
+                                                    aria-hidden="true"></i>
+                                            </td>
+                                            <td *ngIf="!data.isMoci">
+                                                <i class="fa fa-pencil-square-o fs-14" *ngIf="!data.isEdit && showBtn"
+                                                    mat-raised-button matTooltip="Edit Data"
+                                                    (click)="data.isEdit = true; this.showBtn=false;"
+                                                    aria-hidden="true"></i>
+                                                <i class="fa fa-save fs-20 background-purple text-white p-1"
+                                                    *ngIf="data.isEdit" mat-raised-button matTooltip="Save Data"
+                                                    (click)="enteredDetails( 'other',data)" aria-hidden="true"></i>
+                                            </td>
+                                            <!-- <td *ngIf="!data.isEdit">
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox" value=""
                                                         id="flexCheckDefault-1">
@@ -1327,7 +1342,7 @@
                                                 <i class="fa fa-save fs-20 background-purple text-white p-1"
                                                     mat-raised-button matTooltip="Save Data"
                                                     (click)="enteredDetails( 'other',data)" aria-hidden="true"></i>
-                                            </td>
+                                            </td> -->
                                             <td>{{index + 1}}</td>
                                             <td *ngIf="!data.isEdit"  (dblclick)="dblclick(data);">
                                                 {{data.name}}
@@ -1462,13 +1477,13 @@
                                 <thead>
                                     <tr class="purple-bg text-white">
                                         <th scope="col"></th>
-                                        <th scope="col">
+                                        <!-- <th scope="col">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value=""
                                                     id="flexCheckDefault-1">
                                                 <span class="ml-2"> <a class=" text-black fs-14"><i
                                                             class="fa fa-ellipsis-v  "></i> </a></span> </div>
-                                        </th>
+                                        </th> -->
                                         <th scope="col" (click)="sorting('employee','name')">Employee Name <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('employee','qualification')">Employee
@@ -1528,13 +1543,13 @@
                                                 *ngIf="data.isEdit" mat-raised-button matTooltip="Save Data"
                                                 (click)="enteredDetails( 'employee',data)" aria-hidden="true"></i>
                                         </td>
-                                        <td>
+                                        <!-- <td>
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value=""
                                                     id="flexCheckDefault-1">
                                                 <span class="ml-2"> <a class=" text-black fs-14"><i
                                                             class="fa fa-ellipsis-v  "></i> </a></span> </div>
-                                        </td>
+                                        </td> -->
                                         <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data);">
                                             {{data.name}}</td>
                                         <td *ngIf="data.isEdit && !data.isMoci"
@@ -2702,13 +2717,13 @@
                         <table class="table table-striped mb-0 ">
                             <thead>
                                 <tr class="purple-bg text-white">
-                                    <!-- <th scope="col"></th> -->
-                                    <th scope="col">
+                                    <th scope="col"></th>
+                                    <!-- <th scope="col">
                                         <div class="d-flex"> <span> <a class=" text-white fs-14"><i
                                                         class="fa fa-check"></i></a> </span> <span class="ml-3 pl-1 ">
                                                 <a class=" text-white fs-14"> <i class="fa fa-ellipsis-v "></i>
                                                 </a> </span> </div>
-                                    </th>
+                                    </th> -->
                                     <!--  (click)="sorting('subcontractor','no')"  <i class="fa fa-sort" aria-hidden="true"></i>-->
                                     <th scope="col" class="custom-width-90">
                                         Commercial Reg. Number</th>
@@ -2730,12 +2745,23 @@
                                 <tr *ngFor="let data of subContractorData | filter : searchText; index as index">
                                     <!-- 
                                     (clickOutside)="enteredDetails( 'subContractor',data)" -->
-                                    <!-- <td *ngIf="data.isMoci">
+                                    
+                                    <td *ngIf="data.isMoci">
                                         <i class="fa fa-ban text-red fs-14" mat-raised-button
                                             matTooltip="Data fetched from interface - not editable"
                                             aria-hidden="true"></i>
-                                    </td> -->
-                                    <td *ngIf="data.isEdit">
+                                    </td>
+                                    <td *ngIf="!data.isMoci">
+                                        <i class="fa fa-pencil-square-o fs-14" *ngIf="!data.isEdit && showBtn"
+                                            mat-raised-button matTooltip="Edit Data"
+                                            (click)="data.isEdit = true; this.showBtn=false;"
+                                            aria-hidden="true"></i>
+                                        <i class="fa fa-save fs-20 background-purple text-white p-1"
+                                            *ngIf="data.isEdit" mat-raised-button matTooltip="Save Data"
+                                            (click)="enteredDetails( 'subContractor',data)" aria-hidden="true"></i>
+                                    </td>
+
+                                    <!-- <td *ngIf="data.isEdit">
                                         <i class="fa fa-save fs-20 background-purple text-white p-1" mat-raised-button
                                             matTooltip="Save Data" (click)="enteredDetails( 'subContractor',data)"
                                             aria-hidden="true"></i>
@@ -2746,7 +2772,7 @@
                                                 id="flexCheckDefault-1">
                                             <span class="ml-2"> <a class=" text-blaack fs-14"><i
                                                         class="fa fa-ellipsis-v  "></i> </a></span> </div>
-                                    </td>
+                                    </td> -->
                                     <td>{{index + 1}}</td>
                                     <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data);">
                                         {{data.nameOfWork}}
