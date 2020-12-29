@@ -82,7 +82,8 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
     bankBranch: new FormControl('', [Validators.required]),
     holderName: new FormControl('', [Validators.required]),
     isMoci: new FormControl(false),
-    isUpdate: new FormControl()
+    isUpdate: new FormControl(),
+    isEdit: new FormControl(false)
   });
 
   staffData: any[];
@@ -269,7 +270,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
       this.open(content);
     } else {
       this.bankform.reset();
-      this.bankform.patchValue({ bankingID: uuid(), isMoci: false, isUpdate: false });
+      this.bankform.patchValue({ bankingID: uuid(), isMoci: false, isEdit: false, isUpdate: false });
       this.editbankData = this.bankform.value;
       this.open(content);
     }
@@ -372,7 +373,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
     //   data
     // };
 
-    this.localDraftData(step, false);
+    this.individualDraftData(step, false);
     this.individualService.storeIndividualData(this.individualRegisterDraft)
       .subscribe(
         () => {
@@ -402,7 +403,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
     this.router.navigate(['/landing/supplier-registration/dashboard']);
   }
 
-  localDraftData(step: number = 0, removeFlag: boolean = false) {
+  individualDraftData(step: number = 0, removeFlag: boolean = false) {
 
     const data: any = {};
 
@@ -415,11 +416,11 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
     }
 
     if (this.bankDetailsDraft.length > 0) {
-      data.bankDetailStep = { BankDetails: this.bankDetailsDraft }
+      data.commercialInfoStep = { bankDetails: this.bankDetailsDraft }
     }
 
     if (this.otherInfoDraft.length > 0) {
-      data.bankDetailStep = { ...data.bankDetailStep, otherInfo: this.otherInfoDraft }
+      data.commercialInfoStep = { ...data.commercialInfoStep, otherInfo: this.otherInfoDraft }
     }
 
 
@@ -621,7 +622,8 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
         name: "",
         value: "",
         isEdit: true,
-        isUpdate: false
+        isUpdate: false,
+        isMoci: false
       };
       this.otherData.push(this.newData);
     }
