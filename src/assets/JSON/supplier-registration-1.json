@@ -7,9 +7,8 @@
                 "arabicName": "R Bala",
                 "englishName": "R Bala",
                 "companyInfo": "Company Info",
-                "activities": [
-                    {
-                        "activityID":"1sdfvd",
+                "activities": [{
+                        "activityID": "1sdfvd",
                         "activityName": "1",
                         "subActivity": "1",
                         "sagment": "",
@@ -20,7 +19,7 @@
                         "isMoci": true
                     },
                     {
-                        "activityID":"2Dcxzc3552",
+                        "activityID": "2Dcxzc3552",
                         "activityName": "2",
                         "subActivity": "2",
                         "sagment": "",
@@ -34,8 +33,7 @@
                 "detailsRemark": "Details Not Applicable"
             },
             "addressInfoTab": {
-                "address": [
-                    {
+                "address": [{
                         "addressID": "1zsdfc452",
                         "addressLine1": "10-N, Martingale road",
                         "addressLine2": "Suite 600",
@@ -58,8 +56,7 @@
             }
         },
         "personalDetailsStep": {
-            "personalDetails": [
-                {
+            "personalDetails": [{
                     "personId": "1fg57thg",
                     "personName": "R Bala",
                     "nationality": "Omani",
@@ -111,8 +108,7 @@
             "detailsRemark": "Details Not Applicable"
         },
         "communicationMethodStep": {
-            "communicationMethod": [
-                {
+            "communicationMethod": [{
                     "communicationID": "1s5s541d",
                     "method": "Telephone",
                     "value": "+919 515 6162",
@@ -152,36 +148,35 @@
         },
         "bankDetailStep": {
             "activityInfoTab": {
-                "activityInfo": [
-                    {
-                        "activityID":"czv525tgh1",
-                        "activityName": "Test1",
-                        "subActivity": "Test1",
-                        "establishmentDate": "-",
-                        "regDate": "-",
-                        "expDate": "-",
-                        "duration": "-",
-                        "companyGrade": "-",
-                        "location": "-",
-                        "isEdit": false,
-                        "documents": {"name": "document.pdf", "path":""},
-                        "isMoci": true
-                    }
-                ],
+                "activityInfo": [{
+                    "activityID": "czv525tgh1",
+                    "activityName": "Test1",
+                    "subActivity": "Test1",
+                    "establishmentDate": "-",
+                    "regDate": "-",
+                    "expDate": "-",
+                    "duration": "-",
+                    "companyGrade": "-",
+                    "location": "-",
+                    "isEdit": false,
+                    "documents": {
+                        "name": "document.pdf",
+                        "path": ""
+                    },
+                    "isMoci": true
+                }],
                 "detailsRemark": "Details Not Applicable"
             },
             "bankDetailsTab": {
-                "BankDetails": [
-                    {
-                        "bankingID": "BK01",
-                        "bankingIdname": "Muscat Bank of OMAN",
-                        "bankAcc": "1234567890",
-                        "bankName": "Bank Muscat",
-                        "bankBranch": "-",
-                        "holderName": "user",
-                        "isMoci": true
-                    }
-                ],
+                "BankDetails": [{
+                    "bankingID": "BK01",
+                    "bankingIdname": "Muscat Bank of OMAN",
+                    "bankAcc": "1234567890",
+                    "bankName": "Bank Muscat",
+                    "bankBranch": "-",
+                    "holderName": "user",
+                    "isMoci": true
+                }],
                 "detailsRemark": "Details Not Applicable"
             },
             "companyInfoTab": {
@@ -191,8 +186,7 @@
                     "noOfShares": "1",
                     "shareValue": "100"
                 },
-                "compBranchInfo": [
-                    {
+                "compBranchInfo": [{
                         "reqDate": "1-1-2020",
                         "branchId": "12387",
                         "branchActivity": "New Activity",
@@ -210,12 +204,14 @@
                 "detailsRemark": "Details Not Applicable"
             },
             "otherInfoTab": {
-                "otherDetails": [
-                    {
+                "otherDetails": [{
                         "otherID": "1dfgbf54254",
                         "name": "test 1",
                         "value": "-",
-                        "documents": {"name": "document.pdf", "path":""},
+                        "documents": {
+                            "name": "document.pdf",
+                            "path": ""
+                        },
                         "isEdit": false,
                         "isMoci": false,
                         "isUpdate": false
@@ -224,7 +220,10 @@
                         "otherID": "2dsvdfv525420",
                         "name": "test 2",
                         "value": "-",
-                        "documents": {"name": "document.pdf", "path":""},
+                        "documents": {
+                            "name": "document.pdf",
+                            "path": ""
+                        },
                         "isEdit": false,
                         "isMoci": false,
                         "isUpdate": false
@@ -233,7 +232,10 @@
                         "otherID": "3dvdfv453257fghn",
                         "name": "test 3",
                         "value": "-",
-                        "documents": {"name": "document.pdf", "path":""},
+                        "documents": {
+                            "name": "document.pdf",
+                            "path": ""
+                        },
                         "isEdit": false,
                         "isMoci": false,
                         "isUpdate": false
@@ -242,7 +244,10 @@
                         "otherID": "4sgdb7542ftygc",
                         "name": "test 4",
                         "value": "-",
-                        "documents": {"name": "document.pdf", "path":""},
+                        "documents": {
+                            "name": "document.pdf",
+                            "path": ""
+                        },
                         "isEdit": false,
                         "isMoci": false,
                         "isUpdate": false
@@ -255,8 +260,7 @@
             "crNo": "1567 6578",
             "civilNo": "1567 6578",
             "omanizationRatio": 82342,
-            "employeDetails": [
-                {
+            "employeDetails": [{
                     "employeeID": "dfgb456gfyj45",
                     "name": "R Bala",
                     "qualification": "Btech",
@@ -277,7 +281,10 @@
                     "crNo": "1567 6578",
                     "omaniratio": "8765",
                     "isEdit": false,
-                    "documents": {"name": "document.pdf", "path":""},
+                    "documents": {
+                        "name": "document.pdf",
+                        "path": ""
+                    },
                     "isMoci": true
                 },
                 {
@@ -301,7 +308,10 @@
                     "crNo": "1854 6789",
                     "omaniratio": "1234",
                     "isEdit": false,
-                    "documents": {"name": "document.pdf", "path":""},
+                    "documents": {
+                        "name": "document.pdf",
+                        "path": ""
+                    },
                     "isMoci": true
                 }
             ],
@@ -432,8 +442,7 @@
             "detailsRemark": "Details Not Applicable"
         },
         "projectDetailsStep": {
-            "projectDetails": [
-                {
+            "projectDetails": [{
                     "projectID": "fgh453fghn452",
                     "name": "Yibal Project for PDO",
                     "client": "QRB",
@@ -442,13 +451,16 @@
                     "value": "400,000",
                     "period": "2016 - 2018 ",
                     "completion": "2018",
-                    "documents": {"name": "document.pdf", "path":""},
+                    "documents": {
+                        "name": "document.pdf",
+                        "path": ""
+                    },
                     "isEdit": false,
                     "isMoci": false,
                     "isUpdate": false
                 },
                 {
-                    "projectID":"sdb53fghm453",
+                    "projectID": "sdb53fghm453",
                     "name": "Grand Mall-Carrefour",
                     "client": "Majid Al Futtaim",
                     "consultent": "ME Studio Engineering",
@@ -456,13 +468,16 @@
                     "value": "254,000",
                     "period": "2017 - 2018",
                     "completion": "2019",
-                    "documents": {"name": "document.pdf", "path":""},
+                    "documents": {
+                        "name": "document.pdf",
+                        "path": ""
+                    },
                     "isEdit": false,
                     "isMoci": false,
                     "isUpdate": false
                 },
                 {
-                    "projectID":"egyh6354656",
+                    "projectID": "egyh6354656",
                     "name": "OMAN Post Off. Ruwi",
                     "client": "QRB",
                     "consultent": "OMAN POST",
@@ -470,7 +485,10 @@
                     "value": "1,000,000",
                     "period": "2018 - 2021",
                     "completion": "",
-                    "documents": {"name": "document.pdf", "path":""},
+                    "documents": {
+                        "name": "document.pdf",
+                        "path": ""
+                    },
                     "isEdit": false,
                     "isMoci": false,
                     "isUpdate": false
@@ -479,8 +497,7 @@
             "detailsRemark": "Details Not Applicable"
         },
         "subContractorDetailsStep": {
-            "subContractorDetails": [
-                {
+            "subContractorDetails": [{
                     "contractorID": "srfg4153ghj452",
                     "nameOfWork": "Orion",
                     "subContractor": "-",
@@ -510,8 +527,7 @@
             "detailsRemark": "Details Not Applicable"
         },
         "equipmentDetailsStep": {
-            "equipmentDetails": [
-                {
+            "equipmentDetails": [{
                     "equipmentID": "fxh53fg45",
                     "type": "Pickup",
                     "quantity": "2",
@@ -571,36 +587,36 @@
                 "arabicName": "R Bala",
                 "englishName": "R Bala",
                 "companyInfo": "Company Info",
-                "address": [
-                    {   
-                        "addressID" : "df5dfs25",
-                        "addressLine1":"4907  August Lane",
-                        "addressLine2":"Young",
-                        "language":"English",
-                        "country":"United States",
-                        "isMoci": true
-                    }
-                ],
+                "address": [{
+                    "addressID": "df5dfs25",
+                    "addressLine1": "4907  August Lane",
+                    "addressLine2": "Young",
+                    "language": "English",
+                    "country": "United States",
+                    "isEdit": false,
+                    "isMoci": true
+                }],
                 "detailsRemark": "Details Not Applicable"
             }
         },
         "personalDetailsStep": {
-            "personalDetails": [
-                {
-                    "personalID": "akdioemm",
-                    "nationality": "Indian",
-                    "idtype": "Citizen Card",
-                    "designation": "Project Manager",
-                    "age": 48,
-                    "dob": "01/06/1972",
-                    "members": "4",
-                    "socialStatus": "Married",
-                    "familySecurity": "No",
-                    "documents": {"name": "document.pdf", "path":""},
-                    "isMoci": true,
-                    "isEdit": false
-                }
-            ],
+            "personalDetails": [{
+                "personalID": "akdio11emm",
+                "nationality": "Indian",
+                "idtype": "Citizen Card",
+                "designation": "Project Manager",
+                "age": 48,
+                "dob": "01/06/1972",
+                "members": "4",
+                "socialStatus": "Married",
+                "familySecurity": "No",
+                "documents": {
+                    "name": "document.pdf",
+                    "path": ""
+                },
+                "isMoci": true,
+                "isEdit": false
+            }],
             "detailsRemark": "Details Not Applicable"
         },
         "communicationDetailsStep": {
@@ -626,28 +642,28 @@
                 "detailsRemark": "Details Not Applicable"
             },
             "bankInfoTab": {
-                "bankDetails": [
-                    {
-                        "bankingID": "sds57457",
-                        "bankingIdname": "Muscat Bank of OMAN",
-                        "bankAcc": "1234567890",
-                        "bankName": "Bank Muscat",
-                        "bankBranch": "-",
-                        "holderName": "user",
-                        "isMoci": true
-                    }
-                ],
+                "bankDetails": [{
+                    "bankingID": "sds57457",
+                    "bankingIdname": "Muscat Bank of OMAN",
+                    "bankAcc": "1234567890",
+                    "bankName": "Bank Muscat",
+                    "bankBranch": "-",
+                    "holderName": "user",
+                    "isMoci": true,
+                    "isEdit": false
+                }],
                 "detailsRemark": "Details Not Applicable"
             },
             "otherInfoTab": {
-                "otherInfo": [
-                    {
+                "otherInfo": [{
                         "otherID": 1,
                         "name": "test 1",
                         "value": "-",
                         "nameOfWork": "Organization Structure",
                         "attachment": "PDF",
-                        "isEdit": false
+                        "isEdit": false,
+                        "isMoci": false,
+                        "isUpdate":false
                     },
                     {
                         "otherID": 2,
@@ -655,7 +671,9 @@
                         "value": "-",
                         "nameOfWork": "Tax Certificate",
                         "attachment": "PDF",
-                        "isEdit": false
+                        "isEdit": false,
+                        "isMoci": false,
+                        "isUpdate":false
                     },
                     {
                         "otherID": 3,
@@ -663,7 +681,9 @@
                         "value": "-",
                         "nameOfWork": "Certificates",
                         "attachment": "PDF",
-                        "isEdit": false
+                        "isEdit": false,
+                        "isMoci": false,
+                        "isUpdate":false
                     },
                     {
                         "otherID": 4,
@@ -671,7 +691,9 @@
                         "value": "-",
                         "nameOfWork": "-",
                         "attachment": "PDF",
-                        "isEdit": false
+                        "isEdit": false,
+                        "isMoci": false,
+                        "isUpdate":false
                     }
                 ],
                 "detailsRemark": "Details Not Applicable"
@@ -686,22 +708,19 @@
                 "arabicName": "R Bala",
                 "englishName": "R Bala",
                 "companyInfo": "Company Info",
-                "address": [
-                    {   
-                        "addressID" : "jas5asja4s",
-                        "addressLine1":"4907  August Lane",
-                        "addressLine2":"Young",
-                        "language":"English",
-                        "country":"United States",
-                        "isMoci": true
-                    }
-                ],
+                "address": [{
+                    "addressID": "jas5asja4s",
+                    "addressLine1": "4907  August Lane",
+                    "addressLine2": "Young",
+                    "language": "English",
+                    "country": "United States",
+                    "isMoci": true
+                }],
                 "detailsRemark": "Details Not Applicable"
             }
         },
         "personalDetailsStep": {
-            "personalDetails": [
-                {
+            "personalDetails": [{
                     "personalID": "jsd545ds4d5",
                     "personName": "R Bala",
                     "nationality": "Omani",
@@ -743,38 +762,33 @@
                 "expDate": "15-09-2011",
                 "establishmentDate": "15-09-2011",
                 "companyGrade": "Grade 1",
-                "activities": [
-                    {
-                        "activityID": "2Dcxzc3552",
-                        "activityName": "Activity1",
-                        "subActivity": "Activity1",
-                        "sagment": "Sagment",
-                        "family": "Family",
-                        "class": "Class",
-                        "commodity": "Commodity",
-                        "isEdit": false,
-                        "isMoci": true
-                    }
-                ],
+                "activities": [{
+                    "activityID": "2Dcxzc3552",
+                    "activityName": "Activity1",
+                    "subActivity": "Activity1",
+                    "sagment": "Sagment",
+                    "family": "Family",
+                    "class": "Class",
+                    "commodity": "Commodity",
+                    "isEdit": false,
+                    "isMoci": true
+                }],
                 "detailsRemark": "Details Not Applicable"
             },
             "bankInfoTab": {
-                "bankDetails": [
-                    {
-                        "bankingID": "BK01",
-                        "bankingIdname": "Muscat Bank of OMAN",
-                        "bankAcc": "1234567890",
-                        "bankName": "Bank Muscat",
-                        "bankBranch": "-",
-                        "holderName": "user",
-                        "isMoci": true
-                    }
-                ],
+                "bankDetails": [{
+                    "bankingID": "BK01",
+                    "bankingIdname": "Muscat Bank of OMAN",
+                    "bankAcc": "1234567890",
+                    "bankName": "Bank Muscat",
+                    "bankBranch": "-",
+                    "holderName": "user",
+                    "isMoci": true
+                }],
                 "detailsRemark": "Details Not Applicable"
             },
             "otherInfoTab": {
-                "otherInfo": [
-                    {
+                "otherInfo": [{
                         "otherID": 1,
                         "name": "test 1",
                         "value": "-",
@@ -803,8 +817,7 @@
             }
         },
         "employeeDetailsStep": {
-            "employeeDetails": [
-                {
+            "employeeDetails": [{
                     "employeeID": "f5f5c1c5dc5dc",
                     "name": "R Bala",
                     "qualification": "Btech",

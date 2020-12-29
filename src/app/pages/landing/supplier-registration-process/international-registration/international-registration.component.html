@@ -630,7 +630,7 @@
                     <ng-container *ngIf="bankDetails">
                         <div class="row ">
                             <div class="col-md-12 px-4 ">
-                                <button class="btn btn-secondary ml-2 " (click)="openbank(bankModel)"><i class="fa fa-plus"
+                                <button class="btn btn-secondary ml-2 " (click)="openbank(bankModel)"  [disabled]='!showBtn'><i class="fa fa-plus"
                                         aria-hidden="true"></i></button>
                             </div>
                         </div>
@@ -640,7 +640,7 @@
                                     <i class="fa fa-ban text-red fs-14" mat-raised-button
                                         matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
                                 </div>
-                                <div class="col-md-12 col-lg-12 col-xl-12 px-4 " *ngIf="!data.isMoci">
+                                <div class="col-md-12 col-lg-12 col-xl-12 px-4 " *ngIf="!data.isMoci && showBtn">
                                     <i class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit Data"
                                         (click)="openbank(bankModel,data)" aria-hidden="true"></i>
                                 </div>

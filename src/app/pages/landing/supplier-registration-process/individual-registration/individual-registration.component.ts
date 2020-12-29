@@ -142,18 +142,18 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
     if (!(this.setDraftTime === 'null')) {
       const diff = this.getTimeDiff();
       if (diff > 72) {
-        this.supplierService.deleteDraftData().subscribe(res => {
-          this.spinner.openSpinner();
-          const body = {
-            civil_number: localStorage.getItem('civilReg'),
-            cr_number: localStorage.getItem('commercialReg'),
-            register_status: localStorage.getItem('RegStatus'),
-            register_type: localStorage.getItem('regType')
-          };
-          this.userService.supplierRegistration(body);
-          this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
-          this.loadFormData();
-        })
+        // this.supplierService.deleteDraftData().subscribe(res => {
+        //   this.spinner.openSpinner();
+        //   const body = {
+        //     civil_number: localStorage.getItem('civilReg'),
+        //     cr_number: localStorage.getItem('commercialReg'),
+        //     register_status: localStorage.getItem('RegStatus'),
+        //     register_type: localStorage.getItem('regType')
+        //   };
+        //   this.userService.supplierRegistration(body);
+        //   this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
+        //   this.loadFormData();
+        // })
       } else {
         this.loadFormData();
       }
@@ -643,7 +643,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
         members: '',
         socialStatus: '',
         familySecurity: '',
-        documents: [],
+        documents: {},
         isMoci: false,
         isEdit: true,
         isUpdate: false
@@ -946,6 +946,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
       this.filesList = [];
       this.personalData.map((d, i) => {
         if (d.personalID == data.personalID) {
+          d.documents = file.data;
           this.filesList.push(d.documents);
         }
       });
@@ -990,7 +991,9 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
       this.filesList = [];
       this.personalData.map((d, i) => {
         if (d.personalID == data.personalID) {
-          this.filesList.push(d.documents);
+          if (Object.keys(d.documents).length != 0) {
+            this.filesList.push(d.documents);
+          }
         }
       });
     }

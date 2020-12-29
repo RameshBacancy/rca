@@ -282,7 +282,7 @@
                                             </td>
                                             <td *ngIf="!data.isMoci">
                                                 <i class="fa fa-pencil-square-o fs-14" mat-raised-button
-                                                    matTooltip="Edit Address" (click)="open(mymodal, data)"
+                                                    matTooltip="Edit Address" (click)="open(mymodal, data)"  *ngIf='showBtn'
                                                     aria-hidden="true"></i>
                                             </td>
                                             <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
@@ -974,7 +974,7 @@
                 <mat-tab label="Bank Details">
                     <div class="row ">
                         <div class="col-md-12 px-4 ">
-                            <button class="btn btn-secondary ml-2 " (click)="openbank(bankModel)"><i class="fa fa-plus"
+                            <button class="btn btn-secondary ml-2 " (click)="openbank(bankModel)"  [disabled]='!showBtn'><i class="fa fa-plus"
                                     aria-hidden="true"></i></button>
                         </div>
                     </div>
@@ -986,7 +986,7 @@
                             </div>
                             <div class="col-md-12 col-lg-12 col-xl-12 px-4 " *ngIf="!data.isMoci">
                                 <i class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit Data"
-                                    (click)="openbank(bankModel,data)" aria-hidden="true"></i>
+                                    (click)="openbank(bankModel,data)" aria-hidden="true"  *ngIf='showBtn'></i>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                                 <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id</h5>
@@ -1329,12 +1329,12 @@
                                                     (click)="enteredDetails( 'other',data)" aria-hidden="true"></i>
                                             </td>
                                             <td>{{index + 1}}</td>
-                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true;showBtn = false;">
+                                            <td *ngIf="!data.isEdit"  (dblclick)="dblclick(data);">
                                                 {{data.name}}
                                             </td>
                                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)"><input
                                                     [(ngModel)]="data.name"></td>
-                                            <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true;showBtn = false;">
+                                            <td *ngIf="!data.isEdit"  (dblclick)="dblclick(data);">
                                                 {{data.value}}
                                             </td>
                                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)"><input
