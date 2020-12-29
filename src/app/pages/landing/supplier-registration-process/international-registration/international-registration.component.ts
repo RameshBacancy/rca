@@ -2,7 +2,7 @@ import { SupplierInternationalRegisterService } from './../../../../services/sup
 import { takeUntil } from 'rxjs/operators';
 import { GeneralInfoStepInd, AddressInd, CommunicationDetailsStep } from './../../../../models/supplier.modal';
 import { OtherInfo } from './../../../../models/tender.model';
-import { Component, OnInit, ViewChild, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -24,7 +24,7 @@ import * as uuid from 'uuid/v4';
   templateUrl: './international-registration.component.html',
   styleUrls: ['./international-registration.component.scss']
 })
-export class InternationalRegistrationComponent implements OnInit, OnDestroy {
+export class InternationalRegistrationComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('stepper') private stepper: MatStepper;
   formData: any;
@@ -57,7 +57,8 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
     bankBranch: new FormControl('', [Validators.required]),
     holderName: new FormControl('', [Validators.required]),
     isMoci: new FormControl(false),
-    isUpdate: new FormControl(false)
+    isUpdate: new FormControl(false),
+    isEdit: new FormControl(false)
   });
 
   staffData: any[];
@@ -96,7 +97,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
   bankActivityDraft: any[] = [];
   bankDetailDraft: any[] = [];
   bankOtherDraft: any[] = [];
-  employeeDetailsDraft: any[] = [];
+  employeeDetailsDraft: any = [];
   internationalRegistrationDraft: any;
 
   setDraftTime: any;
@@ -112,7 +113,8 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
     private searchPipe: FilterPipe,
     private spinner: SpinnerService,
     private alertService: AlertService,
-    private internationalService: SupplierInternationalRegisterService
+    private internationalService: SupplierInternationalRegisterService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   loadData(data) {
@@ -148,6 +150,10 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  ngAfterViewInit() {
+    this.stepper.selectedIndex = localStorage.getItem('stepper') === 'null' ? 0 : +localStorage.getItem('stepper');
+  }
+
   loadFormData(): void {
     this.generalInfoStep$ = this.internationalService.getGeneralInfoStep();
     this.generalInfoStep$.pipe(takeUntil(this.destroy$))
@@ -167,11 +173,13 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         if (!this.personalData[0]) {
           this.personalData = this.formData.personalDetailsStep.personalDetails;
         }
+        this.cdr.detectChanges();
       });
 
     this.internationalService.getCommunicationInfoStep().pipe(takeUntil(this.destroy$)).
       subscribe(res => {
         this.communicationData = res;
+
       });
 
     this.internationalService.getEmployeeInfoStep().pipe(takeUntil(this.destroy$)).
@@ -181,6 +189,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         if (!this.staffData[0]) {
           this.staffData = this.formData.employeeDetailsStep.employeeDetails;
         }
+        this.cdr.detectChanges();
       });
 
     this.internationalService.getCommercialInfoStep().pipe(takeUntil(this.destroy$)).
@@ -200,6 +209,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         if (!this.otherData[0]) {
           this.otherData = this.formData.commercialInfoStep.otherInfoTab.otherInfo;
         }
+        this.cdr.detectChanges();
       });
   }
 
@@ -224,7 +234,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
       this.open(content);
     } else {
       this.bankform.reset();
-      this.bankform.patchValue({ bankingID: uuid(), isMoci: false, isUpdate: false });
+      this.bankform.patchValue({ bankingID: uuid(), isMoci: false, isEdit: false, isUpdate: false });
       this.editbankData = this.bankform.value;
       this.open(content);
     }
@@ -347,10 +357,21 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
   }
 
 
-  saveDraft() {
+  saveDraft(step: number = 0) {
 
-    this.internationalDraftData(0, false);
+    this.internationalDraftData(step, false);
 
+    this.internationalService.storeInternationalData(this.internationalRegistrationDraft)
+      .subscribe(res => {
+        this.callSupplierRegister();
+      },
+        (err) => console.log('err :>> ', err)
+      );
+
+
+  }
+
+  private callSupplierRegister(): void {
     localStorage.setItem('RegStatus', 'draft');
     this.spinner.openSpinner();
     // tslint:disable-next-line: max-line-length
@@ -464,7 +485,8 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         crNo: '',
         omaniratio: '',
         isEdit: true,
-        isUpdate: false
+        isUpdate: false,
+        isMoci: false
       };
       this.staffData.push(this.newData);
     }
@@ -532,7 +554,8 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy {
         name: '',
         value: '',
         isEdit: true,
-        isUpdate: false
+        isUpdate: false,
+        isMoci: false
       };
       this.otherData.push(this.newData);
     }

@@ -1,6 +1,6 @@
 import { GeneralInfoStepInd, PersonalDetailsInd, CommunicationDetailsStep } from './../../../../models/supplier.modal';
 import { SupplierIndividualRegisterService } from './../../../../services/supplier-individual-register.service';
-import { Component, OnInit, ViewChild, Input, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, ElementRef, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -23,7 +23,7 @@ import * as uuid from 'uuid/v4';
   templateUrl: './individual-registration.component.html',
   styleUrls: ['./individual-registration.component.scss']
 })
-export class IndividualRegistrationComponent implements OnInit, OnDestroy {
+export class IndividualRegistrationComponent implements OnInit, OnDestroy, AfterViewInit {
   isDataMoci: any;
   allAddresses: any;
   editBank: boolean;
@@ -40,7 +40,8 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
     private searchPipe: FilterPipe,
     private spinner: SpinnerService,
     private alertService: AlertService,
-    private individualService: SupplierIndividualRegisterService
+    private individualService: SupplierIndividualRegisterService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   get f() {
@@ -185,6 +186,10 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
     this.destroy$.complete();
   }
 
+  ngAfterViewInit() {
+    this.stepper.selectedIndex = localStorage.getItem('stepper') === 'null' ? 0 : +localStorage.getItem('stepper');
+  }
+
   getTimeDiff() {
     if (!(this.setDraftTime === 'null')) {
       const startTime: any = new Date(this.setDraftTime);
@@ -226,6 +231,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
         if (!this.personalData[0]) {
           this.personalData = this.formData.personalDetailsStep.personalDetails;
         }
+        this.cdr.detectChanges();
       });
 
     this.individualService.getCommunicationInfoStep().pipe(takeUntil(this.destroy$)).
@@ -235,6 +241,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
         if (!this.communicationData[0]) {
           this.communicationData = this.formData.communicationDetailsStep;
         }
+        this.cdr.detectChanges();
       });
 
     this.individualService.getCommercialInfoStep().pipe(takeUntil(this.destroy$)).
@@ -252,6 +259,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
         // if(!this.activityData) {
         //   this.activityData = this.formData.commercialInfoStep.activityInfoTab;
         // }
+        this.cdr.detectChanges();
       });
 
   }

@@ -930,6 +930,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       supplierType: localStorage.getItem('regType'),
       status: 'Draft',
       supplierId: localStorage.getItem('supplierId'),
+      email: localStorage.getItem('email'),
       setDraftTime: this.setDraftTime === 'null' ? new Date().toISOString() : null,
       removeDraftTime: removeFlag,
       stepper: String(step),

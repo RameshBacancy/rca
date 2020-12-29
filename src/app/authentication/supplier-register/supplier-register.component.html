@@ -205,6 +205,7 @@
 
 <!-- Second page -->
 <div *ngIf="showsNextReg">
+    <app-otp *ngIf="isOtpShow" (submitOtp)="onOtpVerify($event)"></app-otp>
     <ng-container *ngIf="!isOtpShow">
         <section class=" bg-white">
             <div class="container-fluid ">
@@ -247,5 +248,5 @@
             </div>
         </section>
     </ng-container>
-    <app-otp *ngIf="isOtpShow" (submitOtp)="onOtpVerify($event)"></app-otp>
+    
 </div>

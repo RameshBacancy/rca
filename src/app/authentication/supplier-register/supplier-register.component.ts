@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -45,7 +45,8 @@ export class SupplierRegisterComponent implements OnInit {
     private userService: UserService,
     private alertService: AlertService,
     private spinner: SpinnerService,
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    private cdr: ChangeDetectorRef) {
     this.translate.use('English');
   }
 
@@ -95,8 +96,9 @@ export class SupplierRegisterComponent implements OnInit {
     this.userService.registrationLogin(this.form.value.civilNo.toString(), 'civil', type);
     if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'false') {
       // this.CRNumber =this.form.value.registrationNo;
-      this.showsNextReg = true;
       this.isOtpShow = true;
+      this.showsNextReg = true;
+      this.cdr.detectChanges();
     }
   }
 

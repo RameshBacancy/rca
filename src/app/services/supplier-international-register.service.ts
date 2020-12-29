@@ -40,4 +40,8 @@ export class SupplierInternationalRegisterService {
     return this.reqHttp.httpGet('get-commercial-data')
     .pipe(map(res => res.data.commercialInfoStep), shareReplay());
   }
+
+  storeInternationalData(dataObj: any): Observable<any> {
+    return this.reqHttp.httpPost('international-register-draft', dataObj);
+  }
 }

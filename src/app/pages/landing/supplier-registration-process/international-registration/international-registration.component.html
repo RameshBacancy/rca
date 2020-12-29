@@ -249,7 +249,7 @@
                         <i class="fa fa-caret-right"></i></button>
                     <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
-                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft(0)">Save as
                         Draft</button>
                     <a href="/#/landing/supplier-registration/dashboard">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
@@ -265,12 +265,11 @@
             <div class="row">
                 <div class="col-md-12 px-4 mb-3 mt-3">
                     <div class="table-responsive">
-
                         <input class="fs-16 custom-height-35" [(ngModel)]="searchText" placeholder="Search text">
 
                         <button class="btn btn-secondary ml-2 float-right mb-2" [disabled]='!showBtn'
                             (click)="addNewRow('personal')"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                        <table class="table table-striped ">
+                        <table class="table table-striped">
                             <thead>
                                 <tr class="purple-bg text-white">
                                     <th scope="col"></th>
@@ -291,7 +290,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody *ngIf="personalData">
                                 <tr>
                                 <tr *ngFor="let data of personalData | filter : searchText; index as index">
                                     <!-- 
@@ -385,7 +384,7 @@
                     <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
                     <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                        (click)="saveDraft()">Save as
+                        (click)="saveDraft(1)">Save as
                         Draft</button>
                     <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -451,7 +450,7 @@
                         <i class="fa fa-caret-right"></i></button>
                     <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
-                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()">Save as
+                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft(2)">Save as
                         Draft</button>
                     <a href="/#/landing/supplier-registration/dashboard">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
@@ -616,7 +615,7 @@
                                     class="fa fa-caret-right"></i></button>
                             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                     (click)="move(6)">Finish</button> -->
-                            <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft()"
+                            <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft(3)"
                                 [disabled]='!showBtn'>Save as
                                 Draft</button>
                             <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
@@ -816,7 +815,7 @@
                             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                     (click)="move(6)">Finish</button> -->
                             <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="saveDraft()">Save as
+                                (click)="saveDraft(3)">Save as
                                 Draft</button>
                             <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -925,7 +924,7 @@
                             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                     (click)="move(6)">Finish</button> -->
                             <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="saveDraft()">Save as
+                                (click)="saveDraft(3)">Save as
                                 Draft</button>
                             <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
@@ -985,7 +984,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody *ngIf="staffData">
+                            <tbody *ngIf="staffData && staffData.length > 0">
                                 <tr *ngFor="let data of staffData | filter : searchText; index as index">
                                     <!-- 
                                     (clickOutside)="enteredDetails( 'staff',data)" -->
@@ -1040,12 +1039,12 @@
                                     </td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'staff',data)">
-                                        <input [(ngModel)]="data.designationDate"></td>
+                                        <input type="date" [(ngModel)]="data.designationDate"></td>
                                     <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.expDate}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'staff',data)">
-                                        <input [(ngModel)]="data.expDate"></td>
+                                        <input type="date" [(ngModel)]="data.expDate"></td>
                                     <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.experience}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
@@ -1056,7 +1055,7 @@
                                     </td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'staff',data)">
-                                        <input [(ngModel)]="data.appointmentDate"></td>
+                                        <input type="date" [(ngModel)]="data.appointmentDate"></td>
                                     <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.status}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
@@ -1066,7 +1065,7 @@
                                         {{data.statusDate}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'staff',data)">
-                                        <input [(ngModel)]="data.statusDate"></td>
+                                        <input type="date" [(ngModel)]="data.statusDate"></td>
                                     <td *ngIf="data.isMoci || !data.isEdit"></td>
                                     <td *ngIf="data.isEdit && !data.isMoci"><i class="fa fa-trash text-red dlt-btn-size"
                                             aria-hidden="true" (click)="deleteRow('staff',data)"></i></td>
@@ -1098,7 +1097,7 @@
                     <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
                     <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                        (click)="saveDraft()">Save as
+                        (click)="saveDraft(4)">Save as
                         Draft</button>
                     <a [attr.href]="showBtn ? '/#/landing/supplier-registration/dashboard' : null">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
