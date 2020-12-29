@@ -816,7 +816,7 @@
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <!-- Activity Info -->
                 <mat-tab label="Activity Info">
-                    <div class="row ">
+                    <div class="row "  *ngIf="activityInfoData && activityInfoData.length > 0">
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
                                 <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
@@ -972,7 +972,7 @@
                 </mat-tab>
                 <!-- Bank Details -->
                 <mat-tab label="Bank Details">
-                    <div class="row ">
+                    <div class="row " *ngIf="BankDetails && BankDetails.length > 0">
                         <div class="col-md-12 px-4 ">
                             <button class="btn btn-secondary ml-2 " (click)="openbank(bankModel)"  [disabled]='!showBtn'><i class="fa fa-plus"
                                     aria-hidden="true"></i></button>
@@ -1286,7 +1286,7 @@
                 </mat-tab>
                 <!-- Other Info -->
                 <mat-tab label="Other Info">
-                    <div class="row">
+                    <div class="row"  *ngIf="otherData && otherData.length > 0">
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
                                 <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
@@ -2568,7 +2568,7 @@
         <mat-step>
             <ng-template matStepLabel>Project Details</ng-template>
 
-            <div class="row">
+            <div class="row" *ngIf="projectData && projectData.length > 0">
                 <div class="col-md-12 px-4 mb-3 mt-3">
                     <div class="table-responsive">
                         <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
@@ -2708,7 +2708,7 @@
         <mat-step>
             <ng-template matStepLabel>Subcontractor Details</ng-template>
 
-            <div class="row">
+            <div class="row"  *ngIf="subContractorData && subContractorData.length > 0">
                 <div class="col-md-12 px-4 mb-3 mt-3">
                     <div class="table-responsive">
                         <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
@@ -2858,7 +2858,7 @@
         <mat-step>
             <ng-template matStepLabel>Equipment Details</ng-template>
 
-            <div class="row">
+            <div class="row" *ngIf="equipmentData && equipmentData.length > 0">
                 <div class="col-md-12 px-4 mb-3 mt-3">
                     <div class="table-responsive">
                         <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
@@ -3100,7 +3100,7 @@
         </mat-step> -->
     </mat-horizontal-stepper>
 </div>
-<div *ngIf="completed">
+<!-- <div *ngIf="completed">
     <section class=" bg-white">
         <div class="container-fluid ">
             <div class="row">
@@ -3117,4 +3117,4 @@
             </div>
         </div>
     </section>
-</div>
+</div> -->
