@@ -20,6 +20,7 @@ export class SupplierRegisterComponent implements OnInit {
   showsNextReg = false;
   viewSideBar = false;
   isDisable = true;
+  isOtpShow = false;
 
   myControl = new FormControl();
   options: string[] = [
@@ -95,7 +96,7 @@ export class SupplierRegisterComponent implements OnInit {
     if (localStorage.getItem('civilReg') && localStorage.getItem('foreign') === 'false') {
       // this.CRNumber =this.form.value.registrationNo;
       this.showsNextReg = true;
-
+      this.isOtpShow = true;
     }
   }
 
@@ -124,5 +125,9 @@ export class SupplierRegisterComponent implements OnInit {
 
   onViewSidebar(val) {
     this.viewSideBar = val;
+  }
+
+  onOtpVerify(verify: boolean) {
+    this.isOtpShow = !verify;
   }
 }

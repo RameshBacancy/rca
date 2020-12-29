@@ -15,6 +15,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatSelectModule } from '@angular/material/select';
+import { NgOtpInputModule } from 'ng-otp-input';
+import { OtpComponent } from './otp/otp.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -57,6 +59,7 @@ const routes: Routes = [
     SupplierRegisterComponent,
     RegisterationComponent,
     ForgetPasswordComponent,
+    OtpComponent,
   ],
   imports: [
     CommonModule,
@@ -67,6 +70,7 @@ const routes: Routes = [
     MatFormFieldModule,
     MatSelectModule,
     MatAutocompleteModule,
+    NgOtpInputModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
