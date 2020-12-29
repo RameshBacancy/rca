@@ -138,7 +138,30 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.setDraftTime = localStorage.getItem('setDraftTime');
-    this.loadFormData();
+    if (!(this.setDraftTime === 'null')) {
+      const diff = this.getTimeDiff();
+      if (diff > 72) {
+        this.supplierService.deleteDraftData().subscribe(res => {
+          this.spinner.openSpinner();
+          const body = {
+            civil_number: localStorage.getItem('civilReg'),
+            cr_number: localStorage.getItem('commercialReg'),
+            register_status: localStorage.getItem('RegStatus'),
+            register_type: localStorage.getItem('regType')
+          };
+          this.userService.supplierRegistration(body);
+          this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
+          this.loadFormData();
+        })
+      } else {
+        this.loadFormData();
+      }
+    } else {
+      this.loadFormData();
+    }
+    // this.setDraftTime = localStorage.getItem('setDraftTime');
+    // this.loadFormData();
+
 
     this.showBtn = true;
     this.formData = this.supplierService.getdata();
@@ -338,6 +361,49 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
 
   saveDraft(step: number = 0) {
 
+
+    // this.localRegisterDraft = {
+    //   supplierType: localStorage.getItem('regType'),
+    //   status: 'Draft',
+    //   supplierId: localStorage.getItem('supplierId'),
+    //   setDraftTime: this.setDraftTime === 'null' ? new Date().toISOString() : null,
+    //   removeDraftTime: false,
+    //   stepper: String(step),
+    //   data
+    // };
+
+    this.localDraftData(step, false);
+    this.individualService.storeIndividualData(this.individualRegisterDraft)
+      .subscribe(
+        () => {
+          this.callSupplierRegister();
+        },
+        (err) => {
+          console.log('err :>> ', err);
+        },
+      );
+    // console.log(this.localRegisterDraft)
+    // call api for save draft
+
+    // localStorage.setItem('RegStatus', 'draft');
+    // this.spinner.openSpinner();
+    // const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
+    // this.userService.supplierRegistration(body);
+    // this.alertService.pushWarning('Your data will be saved for 72 hours.');
+    // this.router.navigate(['/landing/supplier-registration/dashboard']);
+  }
+
+  callSupplierRegister() {
+    localStorage.setItem('RegStatus', 'draft');
+    this.spinner.openSpinner();
+    const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
+    this.userService.supplierRegistration(body);
+    this.alertService.pushWarning('Your data will be saved for 72 hours.');
+    this.router.navigate(['/landing/supplier-registration/dashboard']);
+  }
+
+  localDraftData(step: number = 0, removeFlag: boolean = false) {
+
     const data: any = {};
 
     if (this.generalAddressDraft.length > 0) {
@@ -356,25 +422,16 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy {
       data.bankDetailStep = { ...data.bankDetailStep, otherInfo: this.otherInfoDraft }
     }
 
+
     this.individualRegisterDraft = {
       supplierType: localStorage.getItem('regType'),
       status: 'Draft',
       supplierId: localStorage.getItem('supplierId'),
       setDraftTime: this.setDraftTime === 'null' ? new Date().toISOString() : null,
-      removeDraftTime: false,
+      removeDraftTime: removeFlag,
       stepper: String(step),
       data
     };
-
-
-    // call api for save draft
-
-    localStorage.setItem('RegStatus', 'draft');
-    this.spinner.openSpinner();
-    const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
-    this.userService.supplierRegistration(body);
-    this.alertService.pushWarning('Your data will be saved for 72 hours.');
-    this.router.navigate(['/landing/supplier-registration/dashboard']);
   }
 
   submitbank() {

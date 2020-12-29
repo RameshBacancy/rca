@@ -880,11 +880,11 @@
                                                     (click)="enteredDetails( 'other',data)" aria-hidden="true"></i>
                                                 </td>
                                                 <td>{{index + 1}}</td>
-                                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.name}}
+                                                <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true;showBtn = false;">{{data.name}}
                                                 </td>
                                                 <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)">
                                                     <input [(ngModel)]="data.name"></td>
-                                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true">{{data.value}}
+                                                    <td *ngIf="!data.isEdit" (dblclick)="data.isEdit = true;showBtn = false;">{{data.value}}
                                                     </td>
                                                     <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)">
                                                         <input [(ngModel)]="data.value"></td>

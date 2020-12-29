@@ -36,4 +36,8 @@ export class SupplierIndividualRegisterService {
     return this.reqHttp.httpGet('get-commercial-data')
     .pipe(map(res => res.data.commercialInfoStep), shareReplay());
   }
+
+  storeIndividualData(dataObj: any): Observable<any> {
+    return this.reqHttp.httpPost('individual-register-draft', dataObj);
+  }
 }
