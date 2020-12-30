@@ -1,14 +1,20 @@
-<div class="content">
-    <div class="o-c">
-        <div>
-            <div class="card">
-                <p class="a-o-i">Enter verification code</p>
-                <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" *ngIf="showOtpComponent"
-                    [config]="config"></ng-otp-input>
+<div class="otp-div">
+    <div *ngIf="loading" class="otp-loader">
+        <!-- start Spinner selector -->
+        <!-- End Spinner selector -->
+    </div>
+    <div class="content" *ngIf="!loading">
+        <div class="o-c">
+            <div>
+                <div class="card">
+                    <p class="a-o-i">Enter verification code</p>
+                    <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" *ngIf="showOtpComponent"
+                        [config]="config"></ng-otp-input>
                     <!-- {{ ngOtpInput. }} -->
-                <div class="row mt-5 mb-5">
-                    <button type="button" (click)="onVerify()" [disabled]="isVerifyBtnDisable" class="mr-3 ml-3 btn btn-lg btn-block btn-outline-primary"
-                     > Verify </button>
+                    <div class="row mt-5 mb-5">
+                        <button type="button" (click)="onVerify()" [disabled]="isVerifyBtnDisable"
+                            class="mr-3 ml-3 btn btn-lg btn-block btn-outline-primary"> Verify </button>
+                    </div>
                 </div>
             </div>
         </div>

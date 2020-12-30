@@ -1,3 +1,4 @@
+import { SpinnerService } from 'src/app/services/spinner.service';
 import { Component, OnInit, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,6 +11,7 @@ export class OtpComponent implements OnInit, AfterViewInit {
   @Output() submitOtp = new EventEmitter<boolean>();
   otp: string;
   showOtpComponent = true;
+  loading = false;
   @ViewChild('ngOtpInput') ngOtpInput: any;
   config = {
     allowNumbersOnly: true,
@@ -27,6 +29,7 @@ export class OtpComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.isVerifyBtnDisable = false;
   }
+  constructor(private spinnerService: SpinnerService) { }
   ngAfterViewInit() {
     this.setVal('12345');
   }
@@ -61,7 +64,11 @@ export class OtpComponent implements OnInit, AfterViewInit {
 
   onVerify() {
     if (this.otp.length === 5) {
-      this.submitOtp.emit(true);
+      this.loading = true;
+      setTimeout(() => {
+        this.submitOtp.emit(true);
+        this.loading = false;
+      }, 2000);
     }
   }
 

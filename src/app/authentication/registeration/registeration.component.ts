@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import { startWith, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -26,17 +29,42 @@ export class RegisterationComponent implements OnInit {
     contactPerson: new FormControl('bacancy-hr', [Validators.required]),
     telephone: new FormControl('+964872772112', [Validators.required, Validators.pattern('^[+]?[0-9]*\.?[0-9]+')]),
     email: new FormControl('bacancy@bacancy.com', [Validators.required, Validators.email]),
+    country: new FormControl('Oman - OM', [Validators.required])
   });
+  filteredOptions: Observable<any[]>;
+  options: any[];
+
 
   constructor(
     private router: Router,
     private modalService: NgbModal,
-    ) { }
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
     if (!localStorage.getItem('newReg')) {
       this.router.navigateByUrl('/auth/supplier-registration');
     }
+
+    this.userService.getCountryList().subscribe(res => {
+      this.options = this.setCountryString(res);
+      this.filteredOptions = this.form.get('country').valueChanges.pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+    });
+
+  }
+
+  setCountryString(res: any[]) {
+    return res.map(country => country.text + ' - ' + country.value);
+  }
+
+
+  private _filter(value: string): any[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().indexOf(filterValue) >= 0);
   }
 
   get f() {
@@ -44,15 +72,20 @@ export class RegisterationComponent implements OnInit {
   }
 
   submit() {
+    const countryString = this.form.value.country;
+    const index = this.options.findIndex(country => country === countryString);
+    index !== -1 ?
+      this.form.get('country').setValue(countryString.split(' - ')[1]) :
+      this.form.get('country').setValue('');
+
     if (this.form.status === 'VALID') {
-      // console.log(this.form.value);
       this.doneRegistered = true;
       localStorage.clear();
     }
   }
 
   back() {
-      this.router.navigateByUrl('/auth/supplier-registration');
+    this.router.navigateByUrl('/auth/supplier-registration');
 
   }
 
@@ -66,7 +99,7 @@ export class RegisterationComponent implements OnInit {
 
   open(content, address?) {
 
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
 
       this.closeResult = `Closed with: ${result}`;
 
@@ -82,7 +115,7 @@ export class RegisterationComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 

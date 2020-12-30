@@ -175,4 +175,8 @@ export class UserService {
         this.alertService.pushError(err);
         this.spinner.closeSpinner();
     }
+
+    getCountryList(): Observable<any> {
+        return this.http.get('/assets/JSON/iso-countries.json').pipe(map((res: any) => res.countries));
+    }
 }
