@@ -96,4 +96,8 @@ export class SupplierRegistrationService {
   deleteDraftData() {
     return this.reqHttp.httpDelete('delete-draft');
   }
+
+  singleDelete(step, id) {
+    return this.reqHttp.httpDelete('delete-single/' + step + '/' + id)
+  }
 }
