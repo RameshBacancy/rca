@@ -1,3 +1,4 @@
+import { SessionGuard } from './../../guard/session.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LandingComponent } from './landing.component';
@@ -25,18 +26,18 @@ const routes: Routes = [
           {
             path: 'dashboard',
             loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),
-            canActivate: [AuthGuard]
+            canActivate: [AuthGuard, SessionGuard]
           },
           {
             path: 'registration',
             loadChildren: () =>
               import('./supplier-registration-process/supplier-registration-process.module').then(m => m.SupplierRegistrationProcessModule),
-            canActivate: [AuthGuard]
+            canActivate: [AuthGuard, SessionGuard]
           },
           {
             path: 'transaction',
             loadChildren: () => import('./transaction/transaction.module').then(m => m.TransactionModule),
-            canActivate: [AuthGuard]
+            canActivate: [AuthGuard, SessionGuard]
           },
           {
             path: 'about-us',

@@ -1,3 +1,4 @@
+import { SessionGuard } from './../../guard/session.guard';
 import { MyInformationComponent } from './suppllier-dashboard/my-information/my-information.component';
 import { TenderGuard } from './../../guard/tender.guard';
 import { SubmitTenderBidsComponent } from './submit-tender-bids/submit-tender-bids.component';
@@ -15,7 +16,7 @@ const routes: Routes = [
   {
     path: '',
     component: TenderComponent,
-    canActivate: [ProtectGuard, TenderGuard],
+    canActivate: [ProtectGuard, TenderGuard, SessionGuard],
     children: [
       {
         path: 'tender-dashboard',
@@ -33,7 +34,9 @@ const routes: Routes = [
       },
       {
         path: 'general-tender-details',
-        loadChildren: () => import('./general-tender-detail/general-tender-detail.module').then(m => m.GeneralTenderDetailModule)
+        loadChildren: () => import('./general-tender-detail/general-tender-detail.module').then(m => m.GeneralTenderDetailModule),
+        canActivate: [SessionGuard]
+
       },
       {
         path: 'registration-of-queries',

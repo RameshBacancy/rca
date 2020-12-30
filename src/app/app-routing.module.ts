@@ -1,3 +1,4 @@
+import { SessionGuard } from './guard/session.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './guard/auth.guard';
@@ -12,11 +13,12 @@ const routes: Routes = [
   {
     path: 'landing',
     loadChildren: () => import('./pages/landing/landing.module').then(m => m.LandingModule),
-    // canActivate: [ProtectGuard],
+    canActivate: [SessionGuard],
   },
   {
     path: 'e-tendering',
-    loadChildren: () => import('./pages/tender/tender.module').then(m => m.TenderModule)
+    loadChildren: () => import('./pages/tender/tender.module').then(m => m.TenderModule),
+    canActivate: [SessionGuard]
   },
   {
     path: 'auth',
