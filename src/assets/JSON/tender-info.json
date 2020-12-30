@@ -1,0 +1,598 @@
+{
+    "tender-info": [
+        {
+            "regType": "local",
+            "civilReg": 11337788,
+            "tenders": [
+                {
+                    "tenderID": "1",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "30-12-2020",
+                    "endDate": "01-02-2021",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                },
+                {
+                    "tenderID": "2",
+                    "tenderNo": "21/2017/MT",
+                    "tenderTitle": "facilities management contract technical,cleaning,pest control & Landscaping",
+                    "startDate": "01-12-2020",
+                    "endDate": "15-01-2021",
+                    "tenderFee": 3000,
+                    "remarks": "-",
+                    "siteId": "2a",
+                    "siteDescription": "",
+                    "tenderStatus": "submitted"
+                },
+                {
+                    "tenderID": "3",
+                    "tenderNo": "75/2017/MT",
+                    "tenderTitle": "MSC for MEP Installation",
+                    "startDate": "09-09-2020",
+                    "endDate": "09-10-2020",
+                    "tenderFee": 300,
+                    "remarks": "-",
+                    "siteId": "3a",
+                    "siteDescription": "",
+                    "tenderStatus": "awarded"
+                },
+                {
+                    "tenderID": "4",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "01-01-2020",
+                    "endDate": "01-02-2020",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "rejected"
+                },
+                {
+                    "tenderID": "5",
+                    "tenderNo": "75/2017/MT",
+                    "tenderTitle": "MSC for MEP Installation",
+                    "startDate": "30-12-2020",
+                    "endDate": "01-02-2021",
+                    "tenderFee": 300,
+                    "remarks": "-",
+                    "siteId": "3a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                },
+                {
+                    "tenderID": "6",
+                    "tenderNo": "99/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of Equipment's",
+                    "startDate": "01-02-2020",
+                    "endDate": "01-03-2020",
+                    "tenderFee": 120,
+                    "remarks": "-",
+                    "siteId": "36a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                }
+            ]
+        },
+        {
+            "regType": "local",
+            "civilReg": 11337487,
+            "tenders": [
+                {
+                    "tenderID": "1",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "30-12-2020",
+                    "endDate": "01-02-2021",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                },
+                {
+                    "tenderID": "2",
+                    "tenderNo": "21/2017/MT",
+                    "tenderTitle": "facilities management contract technical,cleaning,pest control & Landscaping",
+                    "startDate": "01-12-2020",
+                    "endDate": "15-01-2021",
+                    "tenderFee": 3000,
+                    "remarks": "-",
+                    "siteId": "2a",
+                    "siteDescription": "",
+                    "tenderStatus": "submitted"
+                },
+                {
+                    "tenderID": "3",
+                    "tenderNo": "75/2017/MT",
+                    "tenderTitle": "MSC for MEP Installation",
+                    "startDate": "09-09-2020",
+                    "endDate": "09-10-2020",
+                    "tenderFee": 300,
+                    "remarks": "-",
+                    "siteId": "3a",
+                    "siteDescription": "",
+                    "tenderStatus": "awarded"
+                },
+                {
+                    "tenderID": "4",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "01-01-2020",
+                    "endDate": "01-02-2020",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "rejected"
+                },
+                {
+                    "tenderID": "5",
+                    "tenderNo": "75/2017/MT",
+                    "tenderTitle": "MSC for MEP Installation",
+                    "startDate": "30-12-2020",
+                    "endDate": "01-02-2021",
+                    "tenderFee": 300,
+                    "remarks": "-",
+                    "siteId": "3a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                }
+            ]
+        },
+        {
+            "regType": "local",
+            "civilReg": 12312312372,
+            "tenders": [
+                {
+                    "tenderID": "1",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "30-12-2020",
+                    "endDate": "01-02-2021",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                },
+                {
+                    "tenderID": "2",
+                    "tenderNo": "21/2017/MT",
+                    "tenderTitle": "facilities management contract technical,cleaning,pest control & Landscaping",
+                    "startDate": "01-12-2020",
+                    "endDate": "15-01-2021",
+                    "tenderFee": 3000,
+                    "remarks": "-",
+                    "siteId": "2a",
+                    "siteDescription": "",
+                    "tenderStatus": "submitted"
+                },
+                {
+                    "tenderID": "3",
+                    "tenderNo": "75/2017/MT",
+                    "tenderTitle": "MSC for MEP Installation",
+                    "startDate": "09-09-2020",
+                    "endDate": "09-10-2020",
+                    "tenderFee": 300,
+                    "remarks": "-",
+                    "siteId": "3a",
+                    "siteDescription": "",
+                    "tenderStatus": "awarded"
+                },
+                {
+                    "tenderID": "4",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "01-01-2020",
+                    "endDate": "01-02-2020",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "rejected"
+                }
+            ]
+        },
+        {
+            "regType": "individual",
+            "civilReg": 1122331321,
+            "tenders": [
+                {
+                    "tenderID": "1",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "30-12-2020",
+                    "endDate": "01-02-2021",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                },
+                {
+                    "tenderID": "2",
+                    "tenderNo": "21/2017/MT",
+                    "tenderTitle": "facilities management contract technical,cleaning,pest control & Landscaping",
+                    "startDate": "01-12-2020",
+                    "endDate": "15-01-2021",
+                    "tenderFee": 3000,
+                    "remarks": "-",
+                    "siteId": "2a",
+                    "siteDescription": "",
+                    "tenderStatus": "submitted"
+                },
+                {
+                    "tenderID": "3",
+                    "tenderNo": "75/2017/MT",
+                    "tenderTitle": "MSC for MEP Installation",
+                    "startDate": "09-09-2020",
+                    "endDate": "09-10-2020",
+                    "tenderFee": 300,
+                    "remarks": "-",
+                    "siteId": "3a",
+                    "siteDescription": "",
+                    "tenderStatus": "awarded"
+                },
+                {
+                    "tenderID": "4",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "01-01-2020",
+                    "endDate": "01-02-2020",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "rejected"
+                },
+                {
+                    "tenderID": "5",
+                    "tenderNo": "75/2017/MT",
+                    "tenderTitle": "MSC for MEP Installation",
+                    "startDate": "30-12-2020",
+                    "endDate": "01-02-2021",
+                    "tenderFee": 300,
+                    "remarks": "-",
+                    "siteId": "3a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                },
+                {
+                    "tenderID": "6",
+                    "tenderNo": "99/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of Equipment's",
+                    "startDate": "01-02-2020",
+                    "endDate": "01-03-2020",
+                    "tenderFee": 120,
+                    "remarks": "-",
+                    "siteId": "36a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                }
+            ]
+        },
+        {
+            "regType": "individual",
+            "civilReg": 4455664654,
+            "tenders": [
+                {
+                    "tenderID": "1",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "30-12-2020",
+                    "endDate": "01-02-2021",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                },
+                {
+                    "tenderID": "2",
+                    "tenderNo": "21/2017/MT",
+                    "tenderTitle": "facilities management contract technical,cleaning,pest control & Landscaping",
+                    "startDate": "01-12-2020",
+                    "endDate": "15-01-2021",
+                    "tenderFee": 3000,
+                    "remarks": "-",
+                    "siteId": "2a",
+                    "siteDescription": "",
+                    "tenderStatus": "submitted"
+                },
+                {
+                    "tenderID": "3",
+                    "tenderNo": "75/2017/MT",
+                    "tenderTitle": "MSC for MEP Installation",
+                    "startDate": "09-09-2020",
+                    "endDate": "09-10-2020",
+                    "tenderFee": 300,
+                    "remarks": "-",
+                    "siteId": "3a",
+                    "siteDescription": "",
+                    "tenderStatus": "awarded"
+                },
+                {
+                    "tenderID": "4",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "01-01-2020",
+                    "endDate": "01-02-2020",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "rejected"
+                },
+                {
+                    "tenderID": "5",
+                    "tenderNo": "75/2017/MT",
+                    "tenderTitle": "MSC for MEP Installation",
+                    "startDate": "30-12-2020",
+                    "endDate": "01-02-2021",
+                    "tenderFee": 300,
+                    "remarks": "-",
+                    "siteId": "3a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                }
+            ]
+        },
+        {
+            "regType": "individual",
+            "civilReg": 7799798987,
+            "tenders": [
+                {
+                    "tenderID": "1",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "30-12-2020",
+                    "endDate": "01-02-2021",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                },
+                {
+                    "tenderID": "2",
+                    "tenderNo": "21/2017/MT",
+                    "tenderTitle": "facilities management contract technical,cleaning,pest control & Landscaping",
+                    "startDate": "01-12-2020",
+                    "endDate": "15-01-2021",
+                    "tenderFee": 3000,
+                    "remarks": "-",
+                    "siteId": "2a",
+                    "siteDescription": "",
+                    "tenderStatus": "submitted"
+                },
+                {
+                    "tenderID": "3",
+                    "tenderNo": "75/2017/MT",
+                    "tenderTitle": "MSC for MEP Installation",
+                    "startDate": "09-09-2020",
+                    "endDate": "09-10-2020",
+                    "tenderFee": 300,
+                    "remarks": "-",
+                    "siteId": "3a",
+                    "siteDescription": "",
+                    "tenderStatus": "awarded"
+                },
+                {
+                    "tenderID": "4",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "01-01-2020",
+                    "endDate": "01-02-2020",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "rejected"
+                }
+            ]
+        },
+        {
+            "regType": "international",
+            "email": "saibal.khan@envecon.com",
+            "tenders": [
+                {
+                    "tenderID": "1",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "30-12-2020",
+                    "endDate": "01-02-2021",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                },
+                {
+                    "tenderID": "2",
+                    "tenderNo": "21/2017/MT",
+                    "tenderTitle": "facilities management contract technical,cleaning,pest control & Landscaping",
+                    "startDate": "01-12-2020",
+                    "endDate": "15-01-2021",
+                    "tenderFee": 3000,
+                    "remarks": "-",
+                    "siteId": "2a",
+                    "siteDescription": "",
+                    "tenderStatus": "submitted"
+                },
+                {
+                    "tenderID": "3",
+                    "tenderNo": "75/2017/MT",
+                    "tenderTitle": "MSC for MEP Installation",
+                    "startDate": "09-09-2020",
+                    "endDate": "09-10-2020",
+                    "tenderFee": 300,
+                    "remarks": "-",
+                    "siteId": "3a",
+                    "siteDescription": "",
+                    "tenderStatus": "awarded"
+                },
+                {
+                    "tenderID": "4",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "01-01-2020",
+                    "endDate": "01-02-2020",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "rejected"
+                },
+                {
+                    "tenderID": "5",
+                    "tenderNo": "75/2017/MT",
+                    "tenderTitle": "MSC for MEP Installation",
+                    "startDate": "30-12-2020",
+                    "endDate": "01-02-2021",
+                    "tenderFee": 300,
+                    "remarks": "-",
+                    "siteId": "3a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                },
+                {
+                    "tenderID": "6",
+                    "tenderNo": "99/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of Equipment's",
+                    "startDate": "01-02-2020",
+                    "endDate": "01-03-2020",
+                    "tenderFee": 120,
+                    "remarks": "-",
+                    "siteId": "36a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                }
+            ]
+        },
+        {
+            "regType": "international",
+            "email": "test.test@envecon.com",
+            "tenders": [
+                {
+                    "tenderID": "1",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "30-12-2020",
+                    "endDate": "01-02-2021",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                },
+                {
+                    "tenderID": "2",
+                    "tenderNo": "21/2017/MT",
+                    "tenderTitle": "facilities management contract technical,cleaning,pest control & Landscaping",
+                    "startDate": "01-12-2020",
+                    "endDate": "15-01-2021",
+                    "tenderFee": 3000,
+                    "remarks": "-",
+                    "siteId": "2a",
+                    "siteDescription": "",
+                    "tenderStatus": "submitted"
+                },
+                {
+                    "tenderID": "3",
+                    "tenderNo": "75/2017/MT",
+                    "tenderTitle": "MSC for MEP Installation",
+                    "startDate": "09-09-2020",
+                    "endDate": "09-10-2020",
+                    "tenderFee": 300,
+                    "remarks": "-",
+                    "siteId": "3a",
+                    "siteDescription": "",
+                    "tenderStatus": "awarded"
+                },
+                {
+                    "tenderID": "4",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "01-01-2020",
+                    "endDate": "01-02-2020",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "rejected"
+                },
+                {
+                    "tenderID": "5",
+                    "tenderNo": "75/2017/MT",
+                    "tenderTitle": "MSC for MEP Installation",
+                    "startDate": "30-12-2020",
+                    "endDate": "01-02-2021",
+                    "tenderFee": 300,
+                    "remarks": "-",
+                    "siteId": "3a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                }
+            ]
+        },
+        {
+            "regType": "international",
+            "email": "demo@demo.com",
+            "tenders": [
+                {
+                    "tenderID": "1",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "30-12-2020",
+                    "endDate": "01-02-2021",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "open"
+                },
+                {
+                    "tenderID": "2",
+                    "tenderNo": "21/2017/MT",
+                    "tenderTitle": "facilities management contract technical,cleaning,pest control & Landscaping",
+                    "startDate": "01-12-2020",
+                    "endDate": "15-01-2021",
+                    "tenderFee": 3000,
+                    "remarks": "-",
+                    "siteId": "2a",
+                    "siteDescription": "",
+                    "tenderStatus": "submitted"
+                },
+                {
+                    "tenderID": "3",
+                    "tenderNo": "75/2017/MT",
+                    "tenderTitle": "MSC for MEP Installation",
+                    "startDate": "09-09-2020",
+                    "endDate": "09-10-2020",
+                    "tenderFee": 300,
+                    "remarks": "-",
+                    "siteId": "3a",
+                    "siteDescription": "",
+                    "tenderStatus": "awarded"
+                },
+                {
+                    "tenderID": "4",
+                    "tenderNo": "09/2017/MT",
+                    "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+                    "startDate": "01-01-2020",
+                    "endDate": "01-02-2020",
+                    "tenderFee": 100,
+                    "remarks": "-",
+                    "siteId": "1a",
+                    "siteDescription": "",
+                    "tenderStatus": "rejected"
+                }
+            ]
+        }
+    ]
+}
