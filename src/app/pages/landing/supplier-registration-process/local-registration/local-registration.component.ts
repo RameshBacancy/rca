@@ -916,7 +916,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     }
 
     if (this.employeeDraft.length > 0) {
-      data.employeeDetailsStep = { employeDetails: this.employeeDraft }
+      data.employeeDetailsStep = { employeeDetails: this.employeeDraft }
     }
 
     if (this.projectDraft.length > 0) {
