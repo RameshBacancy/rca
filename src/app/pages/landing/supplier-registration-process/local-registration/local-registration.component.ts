@@ -801,6 +801,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
   //open bank model
   openbank(content, details?) {
     if (details) {
+      this.bankform.reset();
       this.bankform.patchValue(details);
       this.editBank = true;
       this.editbankData = details;
@@ -817,6 +818,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
   open(content, address?) {
     if (address) {
       if (!address.isMoci) {
+        this.form.reset();
         this.selectedAddress = address;
         this.form.patchValue(address);
         this.editAddress = true;
@@ -1704,80 +1706,75 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       this.employeeData.map((d, i) => {
         if (d.employeeID == data.employeeID) {
           this.employeeData.splice(i, 1);
+          if (!data.hasOwnProperty('isUpdate') || data.isUpdate === true) {
+            this.supplierService.singleDelete('employeedetails', data.employeeID).subscribe(res => { })
+          }
         }
       });
       let index = this.employeeDraft.findIndex(employee => employee.employeeID == data.employeeID);
-      index !== -1 ?
-        this.employeeDraft[index].isUpdate === false ?
-          this.employeeDraft.splice(index, 1) :
-          this.employeeDraft[index]['isDelete'] = true
-        : null;
+      index !== -1 ? this.employeeDraft.splice(index, 1) : null;
+
       this.getEmployeeCategories();
     }
     if (datatype === 'project') {
       this.projectData.map((d, i) => {
         if (d.projectID == data.projectID) {
           this.projectData.splice(i, 1);
+          if (!data.hasOwnProperty('isUpdate') || data.isUpdate === true) {
+            this.supplierService.singleDelete('projectdetails', data.projectID).subscribe(res => { })
+          }
         }
       });
       let index = this.projectDraft.findIndex(project => project.projectID == data.projectID);
-      index !== -1 ?
-        this.projectDraft[index].isUpdate === false ?
-          this.projectDraft.splice(index, 1) :
-          this.projectDraft[index]['isDelete'] = true
-        : null;
+      index !== -1 ? this.projectDraft.splice(index, 1) : null;
     }
     if (datatype === 'subContractor') {
       this.subContractorData.map((d, i) => {
         if (d.contractorID == data.contractorID) {
           this.subContractorData.splice(i, 1);
+          if (!data.hasOwnProperty('isUpdate') || data.isUpdate === true) {
+            this.supplierService.singleDelete('subcontrdetails', data.contractorID).subscribe(res => { })
+          }
         }
       });
       let index = this.subcontractorDraft.findIndex(contractor => contractor.contractorID == data.contractorID);
-      index !== -1 ?
-        this.subcontractorDraft[index].isUpdate === false ?
-          this.subcontractorDraft.splice(index, 1) :
-          this.subcontractorDraft[index]['isDelete'] = true
-        : null;
+      index !== -1 ? this.subcontractorDraft.splice(index, 1) : null;
     }
     if (datatype === 'equipment') {
       this.equipmentData.map((d, i) => {
         if (d.equipmentID == data.equipmentID) {
           this.equipmentData.splice(i, 1);
+          if (!data.hasOwnProperty('isUpdate') || data.isUpdate === true) {
+            this.supplierService.singleDelete('equipmentdetails', data.equipmentID).subscribe(res => { })
+          }
         }
       });
       let index = this.equipmentDraft.findIndex(equipment => equipment.equipmentID == data.equipmentID);
-      index !== -1 ?
-        this.equipmentDraft[index].isUpdate === false ?
-          this.equipmentDraft.splice(index, 1) :
-          this.equipmentDraft[index]['isDelete'] = true
-        : null;
+      index !== -1 ? this.equipmentDraft.splice(index, 1) : null;
     }
     if (datatype === 'other') {
       this.otherData.map((d, i) => {
         if (d.otherID == data.otherID) {
           this.otherData.splice(i, 1);
+          if (!data.hasOwnProperty('isUpdate') || data.isUpdate === true) {
+            this.supplierService.singleDelete('bankother', data.otherID).subscribe(res => { })
+          }
         }
       });
       let index = this.bankOtherInfoDraft.findIndex(other => other.otherID == data.otherID);
-      index !== -1 ?
-        this.bankOtherInfoDraft[index].isUpdate === false ?
-          this.bankOtherInfoDraft.splice(index, 1) :
-          this.bankOtherInfoDraft[index]['isDelete'] = true
-        : null;
+      index !== -1 ? this.bankOtherInfoDraft.splice(index, 1) : null;
     }
     if (datatype === 'activity') {
+      let index = this.generalActivityDraft.findIndex(activity => activity.activityID == data.activityID);
       this.activityData.map((d, i) => {
         if (d.activityID == data.activityID) {
           this.activityData.splice(i, 1);
+          if (!data.hasOwnProperty('isUpdate') || data.isUpdate === true) {
+            this.supplierService.singleDelete('generalactivity', data.activityID).subscribe(res => { })
+          }
         }
       });
-      let index = this.generalActivityDraft.findIndex(activity => activity.activityID == data.activityID);
-      index !== -1 ?
-        this.generalActivityDraft[index].isUpdate === false ?
-          this.generalActivityDraft.splice(index, 1) :
-          this.generalActivityDraft[index]['isDelete'] = true
-        : null;
+      index !== -1 ? this.generalActivityDraft.splice(index, 1) : null;
       // this.generalActivityDraft[index].isUpdate = null
     }
     // if (datatype === 'personal') {
@@ -1788,37 +1785,35 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     //   });
     // }
     if (datatype === 'activityInfo') {
+      let index = this.bankActivityInfoDraft.findIndex(activity => activity.activityID == data.activityID);
       this.activityInfoData.map((d, i) => {
         if (d.activityID == data.activityID) {
           this.activityInfoData.splice(i, 1);
+          if (!data.hasOwnProperty('isUpdate') || data.isUpdate === true) {
+            this.supplierService.singleDelete('bankactivity', data.activityID).subscribe(res => { })
+          }
         }
       });
-      let index = this.bankActivityInfoDraft.findIndex(activity => activity.activityID == data.activityID);
-      index !== -1 ?
-        this.bankActivityInfoDraft[index].isUpdate === false ?
-          this.bankActivityInfoDraft.splice(index, 1) :
-          this.bankActivityInfoDraft[index]['isDelete'] = true
-        : null;
+      index !== -1 ? this.bankActivityInfoDraft.splice(index, 1) : null;
     }
     if (datatype === 'communication') {
+      let index = this.communicationDraft.findIndex(communication => communication.communicationID == data.communicationID);
       this.communicationData.map((d, i) => {
         if (d.communicationID == data.communicationID) {
           this.communicationData.splice(i, 1);
+          if (!data.hasOwnProperty('isUpdate') || data.isUpdate === true) {
+            this.supplierService.singleDelete('communicationmethod', data.communicationID).subscribe(res => { })
+          }
         }
       });
-      let index = this.communicationDraft.findIndex(communication => communication.communicationID == data.communicationID);
-      index !== -1 ?
-        this.communicationDraft[index].isUpdate === false ?
-          this.communicationDraft.splice(index, 1) :
-          this.communicationDraft[index]['isDelete'] = true
-        : null;
+      index !== -1 ? this.communicationDraft.splice(index, 1) : null;
     }
     if (datatype === 'siteVisit') {
-      this.siteVisitData.map((d, i) => {
-        if (d.no == data.no) {
-          this.siteVisitData.splice(i, 1);
-        }
-      });
+      // this.siteVisitData.map((d, i) => {
+      //   if (d.no == data.no) {
+      //     this.siteVisitData.splice(i, 1);
+      //   }
+      // });
     }
   }
 

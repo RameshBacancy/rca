@@ -20,6 +20,11 @@ export class TenderService {
     return this.http.get('./assets/JSON/tender-details.json')
     .pipe(map((res: { generalTenderDetails: GeneralTenderDetails }) => res.generalTenderDetails));
   }
-
+  
+  getTender(): Observable<any> {
+    return this.http.get('/assets/JSON/tender-info.json').pipe(map(res => {
+      return res;
+    }));
+  }
 
 }

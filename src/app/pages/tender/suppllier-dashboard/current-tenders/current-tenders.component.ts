@@ -22,5 +22,12 @@ export class CurrentTendersComponent implements OnInit {
     this.tenderService.getCurrentTender().subscribe((data: TenderDetail[]) => {
       this.newTender = data;
     });
+    this.tenderService.getTender().subscribe(data => {
+      data.tenderInfo.map( tender => {
+        if(tender.regType == localStorage.getItem('regType') && tender.civilReg == localStorage.getItem('civilReg')){
+          this.newTender = tender.tenders;
+        }
+      });
+    });
   }
 }
