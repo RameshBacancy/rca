@@ -266,6 +266,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
 
   openbank(content, details?) {
     if (details) {
+      this.bankform.reset();
       this.bankform.patchValue(details);
       this.editBank = true;
       this.editbankData = details;
@@ -449,7 +450,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
           this.bankDetails.push(this.bankform.value);
         }
 
-        // check/set isUpdate 
+        // check/set isUpdate
         if (this.editbankData.isUpdate == null) {
           this.editbankData['isUpdate'] = true;
         }
@@ -839,6 +840,9 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
       this.staffData.map((d, i) => {
         if (d.employeeID == data.employeeID) {
           this.staffData.splice(i, 1);
+          if (!data.hasOwnProperty('isUpdate') || data.isUpdate === true) {
+            this.supplierService.singleDelete('employeedetails', data.employeeID).subscribe();
+          }
         }
       });
       const index = this.employeeDetailsDraft.findIndex(employee => employee.employeeID === data.employeeID);
@@ -873,6 +877,9 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
       this.otherData.map((d, i) => {
         if (d.otherID == data.otherID) {
           this.otherData.splice(i, 1);
+          if (!data.hasOwnProperty('isUpdate') || data.isUpdate === true) {
+            this.supplierService.singleDelete('comotherdetails', data.otherID).subscribe();
+          }
         }
       });
       const index = this.bankOtherDraft.findIndex(other => other.otherID === data.otherID);
@@ -886,6 +893,9 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
       this.activityData.map((d, i) => {
         if (d.activityID == data.activityID) {
           this.activityData.splice(i, 1);
+          if (!data.hasOwnProperty('isUpdate') || data.isUpdate === true) {
+            this.supplierService.singleDelete('comactivitydetails', data.activityID).subscribe();
+          }
         }
       });
       const index = this.bankActivityDraft.findIndex(activity => activity.activityID === data.activityID);
@@ -899,6 +909,9 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
       this.personalData.map((d, i) => {
         if (d.personalID == data.personalID) {
           this.personalData.splice(i, 1);
+          if (!data.hasOwnProperty('isUpdate') || data.isUpdate === true) {
+            this.supplierService.singleDelete('personaldetails', data.personalID).subscribe();
+          }
         }
       });
       let index = this.personalDetailsDraft.findIndex(personal => personal.personalID == data.personalID);

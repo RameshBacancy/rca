@@ -275,6 +275,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
 
   openbank(content, details?) {
     if (details) {
+      this.bankform.reset();
       this.bankform.patchValue(details);
       this.editBank = true;
       this.editbankData = details;
