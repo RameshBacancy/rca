@@ -114,7 +114,8 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
     private spinner: SpinnerService,
     private alertService: AlertService,
     private internationalService: SupplierInternationalRegisterService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private supplierService: SupplierRegistrationService
   ) { }
 
   loadData(data) {
@@ -126,9 +127,30 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
 
   ngOnInit(): void {
     this.setDraftTime = localStorage.getItem('setDraftTime');
-    this.loadFormData();
+    if (!(this.setDraftTime === 'null')) {
+      const diff = this.getTimeDiff();
+      if (diff > 72) {
+        this.supplierService.deleteDraftData().subscribe(res => {
+          this.spinner.openSpinner();
+          const body =
+          {
+            email: localStorage.getItem('internationalEmail'),
+            register_status: localStorage.getItem('RegStatus'),
+            register_type: localStorage.getItem('regType')
+          };
+          this.userService.supplierRegistrationForDraft(body).subscribe(res => {
+            this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
+            this.loadFormData();
+          });
+        });
+      } else {
+        this.loadFormData();
+      }
+    } else {
+      this.loadFormData();
+    }
     this.showBtn = true;
-    this.formData = this.supplierData.getdata();
+
     // this.selectedAddress = this.formData.generalInfoStep.generalInfo.address[0];
     // this.allAddresses = this.formData.generalInfoStep.generalInfo.address;
     // this.internationalAddress = this.formData.generalInfoStep.generalInfo.address[0];
@@ -154,7 +176,23 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
     this.stepper.selectedIndex = localStorage.getItem('stepper') === 'null' ? 0 : +localStorage.getItem('stepper');
   }
 
+  getTimeDiff() {
+    if (!(this.setDraftTime === 'null')) {
+      const startTime: any = new Date(this.setDraftTime);
+      const endTime: any = new Date();
+      const timeDiff = Math.floor((endTime - startTime) / 3600000);
+      return timeDiff;
+    } else {
+      return 0;
+    }
+
+  }
+
   loadFormData(): void {
+    this.supplierData.getdata('international').subscribe(data => {
+      this.formData = data;
+    });
+
     this.generalInfoStep$ = this.internationalService.getGeneralInfoStep();
     this.generalInfoStep$.pipe(takeUntil(this.destroy$))
       .subscribe(res => {

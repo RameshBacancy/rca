@@ -1,3 +1,4 @@
+import { map, tap, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EndPoint } from '../app.constants';
@@ -82,6 +83,24 @@ export class UserService {
             this.router.navigate(['/landing/supplier-registration/dashboard']);
         },
             (error) => this.handleError(error)
+        );
+    }
+
+    supplierRegistrationForDraft(body) {
+        return this.reqHttp.httpPost('supplier-register', body).pipe(
+            tap(d => {
+                localStorage.setItem('RegStatus', d.data.register_status);
+                localStorage.setItem('arStatus', d.data.status);
+                localStorage.setItem('setDraftTime', d.data.setDraftTime);
+                localStorage.setItem('stepper', d.data.stepper);
+                localStorage.setItem('supplierId', d.data.id);
+                this.setToken(d.data.authToken);
+                this.spinner.closeSpinner();
+            }),
+            catchError((error: any) => {
+                this.handleError(error);
+                return error;
+            })
         );
     }
 

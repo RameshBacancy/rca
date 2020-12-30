@@ -143,18 +143,19 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
     if (!(this.setDraftTime === 'null')) {
       const diff = this.getTimeDiff();
       if (diff > 72) {
-        // this.supplierService.deleteDraftData().subscribe(res => {
-        //   this.spinner.openSpinner();
-        //   const body = {
-        //     civil_number: localStorage.getItem('civilReg'),
-        //     cr_number: localStorage.getItem('commercialReg'),
-        //     register_status: localStorage.getItem('RegStatus'),
-        //     register_type: localStorage.getItem('regType')
-        //   };
-        //   this.userService.supplierRegistration(body);
-        //   this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
-        //   this.loadFormData();
-        // })
+        this.supplierService.deleteDraftData().subscribe(res => {
+          this.spinner.openSpinner();
+          const body = {
+            civil_number: localStorage.getItem('civilReg'),
+            cr_number: localStorage.getItem('commercialReg'),
+            register_status: localStorage.getItem('RegStatus'),
+            register_type: localStorage.getItem('regType')
+          };
+          this.userService.supplierRegistrationForDraft(body).subscribe(res => {
+            this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
+            this.loadFormData();
+          });
+        })
       } else {
         this.loadFormData();
       }
@@ -166,7 +167,6 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
 
 
     this.showBtn = true;
-    this.formData = this.supplierService.getdata();
     // this.selectedAddress = this.formData.generalInfoStep.generalInfo.address[0];
     // this.allAddresses = this.formData.generalInfoStep.generalInfo.address;
     // this.internationalAddress = this.formData.generalInfoStep.generalInfo.address;
@@ -203,13 +203,16 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
   }
 
   private loadFormData(): void {
+    this.supplierService.getdata('individual').subscribe(data => {
+      this.formData = data;
+    });
 
-    if (!(this.setDraftTime === 'null')) {
-      const diff = this.getTimeDiff();
-      if (diff > 72) {
-        this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
-      }
-    }
+    // if (!(this.setDraftTime === 'null')) {
+    //   const diff = this.getTimeDiff();
+    //   if (diff > 72) {
+    //     this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
+    //   }
+    // }
 
 
     this.generalInfoStep$ = this.individualService.getGeneralInfoStep();
@@ -865,7 +868,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
     }
     if (datatype === 'personal') {
       this.personalData.map((d, i) => {
-        if (d.no == data.no) {
+        if (d.personalID == data.personalID) {
           this.personalData.splice(i, 1);
         }
       });

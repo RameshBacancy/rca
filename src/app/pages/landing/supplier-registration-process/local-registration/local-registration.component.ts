@@ -222,10 +222,11 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
             register_status: localStorage.getItem('RegStatus'),
             register_type: localStorage.getItem('regType')
           };
-          this.userService.supplierRegistration(body);
-          this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
-          this.loadData();
-        })
+          this.userService.supplierRegistrationForDraft(body).subscribe(res => {
+            this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
+            this.loadData();
+          });
+        });
       } else {
         this.loadData();
       }
@@ -235,7 +236,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
 
     this.showBtn = true;
     this.showTable = false;
-    this.formData = this.supplierService.getdata();
+    // this.formData = this.supplierService.getdata();
     // this.generalInfo = this.formData.generalInfoStep.generalInfoTab;
     // this.generalInfo = this.formData.generalInfoStep.generalInfoTab;
     // this.activityData = this.formData.generalInfoStep.generalInfoTab.activities;
@@ -283,7 +284,9 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
   }
 
   loadData() {
-
+    this.supplierService.getdata('local').subscribe(data => {
+      this.formData = data;
+    });
 
 
     // general info step

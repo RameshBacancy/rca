@@ -15,14 +15,18 @@ export class SupplierRegistrationService {
     private reqHttp: RequestServiceBase
   ) { }
 
-  getdata() {
-    if (localStorage.getItem('regType') === 'local') {
-      return data.local;
-    } else if (localStorage.getItem('regType') === 'individual') {
-      return data.individual;
-    } else if (localStorage.getItem('regType') === 'international') {
-      return data.international;
-    }
+  getdata(type = 'local'): Observable<any> {
+    return this.http.get('/assets/JSON/supplier-registration-1.json').pipe(map(res => {
+      return res[type];
+    }));
+    // console.log('2 :>> ', 2);
+    // if (localStorage.getItem('regType') === 'local') {
+    //   return { ...data.local };
+    // } else if (localStorage.getItem('regType') === 'individual') {
+    //   return { ...data.individual };
+    // } else if (localStorage.getItem('regType') === 'international') {
+    //   return { ...data.international };
+    // }
   }
 
   getGeneralInfoStep(): Observable<GeneralInfoStep> {
