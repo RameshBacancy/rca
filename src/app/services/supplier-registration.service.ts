@@ -97,7 +97,7 @@ export class SupplierRegistrationService {
     return this.reqHttp.httpDelete('delete-draft');
   }
 
-  singleDelete(step, id) {
-    return this.reqHttp.httpDelete('delete-single/' + step + '/' + id)
+  singleDelete(step, id): Observable<any> {
+    return this.reqHttp.httpDelete('delete-single/' + step + '/' + id);
   }
 }

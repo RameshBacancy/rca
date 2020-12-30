@@ -42,17 +42,17 @@ const routes: Routes = [
           {
             path: 'about-us',
             component: AboutUsComponent,
-            canActivate: [AuthGuard]
+            canActivate: [AuthGuard, SessionGuard]
           },
           {
             path: 'how-to-register',
             component: HowToRegisterComponent,
-            canActivate: [AuthGuard]
+            canActivate: [AuthGuard, SessionGuard]
           },
           {
             path: 'payment',
             component: PaymentComponent,
-            canActivate: [AuthGuard]
+            canActivate: [AuthGuard, SessionGuard]
           },
           {
             path: 'login',

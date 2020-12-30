@@ -854,10 +854,22 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
     // }
     if (datatype === 'other') {
       this.otherData.map((d, i) => {
-        if (d.otherID == data.otherID) {
+        if (d.otherID === data.otherID) {
           this.otherData.splice(i, 1);
+          if (!data.hasOwnProperty('isUpdate') || data.isUpdate === true) {
+            this.supplierService.singleDelete('commercialdetails', data.otherID).subscribe();
+          }
         }
       });
+      const index = this.otherInfoDraft.findIndex(personal => personal.personalID == data.personalID);
+      index !== -1 ?
+        this.otherInfoDraft[index].isUpdate === false ?
+          this.otherInfoDraft.splice(index, 1) :
+          this.otherInfoDraft[index]['isDelete'] = true
+        : null;
+
+
+      // this.supplierService.singleDelete('other').subscribe();
     }
     if (datatype === 'activity') {
       this.activityData.map((d, i) => {
@@ -868,8 +880,11 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
     }
     if (datatype === 'personal') {
       this.personalData.map((d, i) => {
-        if (d.personalID == data.personalID) {
+        if (d.personalID === data.personalID) {
           this.personalData.splice(i, 1);
+          if (!data.hasOwnProperty('isUpdate') || data.isUpdate === true) {
+            this.supplierService.singleDelete('personaldetails', data.personalID).subscribe();
+          }
         }
       });
       let index = this.personalDetailsDraft.findIndex(personal => personal.personalID == data.personalID);
