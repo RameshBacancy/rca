@@ -1,1 +1,402 @@
-<p>individual-view works!</p>
+<div class="custom-tab-01" *ngIf="!completed">
+
+    <!-- Show files Pop up-->
+    <ng-template #shoeFiles let-modal>
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title"> Files</h4>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+        <div class="modal-body custom-modal-main">
+            <section class=" bg-white " style="min-height: 300px !important;">
+                <ng-container *ngIf="filesList.length != 0; else fileListTemplate">
+                    <div class="dark-text-1">
+                        Added File Names
+                    </div>
+                    <ul *ngFor="let item of filesList" style="background-color: white !important;">
+                        <li style="list-style-type: disc !important;">
+                            <span>{{item.name}}</span>
+                        </li>
+                        <hr>
+                    </ul>
+                </ng-container>
+                <ng-template #fileListTemplate>
+                    No Files Added
+                </ng-template>
+            </section>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="button"
+                (click)="modal.close('Save click')">Done</button>
+        </div>
+    </ng-template>
+
+    <mat-horizontal-stepper [@.disabled]="true" #stepper>
+        <!-- General Info -->
+        <mat-step>
+            <ng-template matStepLabel>General Info</ng-template>
+            <ng-container *ngIf="(generalInfoStep$ | async) as generalInfo">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
+                        <i class="fa fa-ban text-red fs-14" mat-raised-button
+                            matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
+                        <p class="fs-14">{{ generalInfo.generalInfo.companyInfo }}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Arabic Name</h5>
+                        <p class="fs-14 px-4">آر بالا</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">English Name</h5>
+                        <p class="fs-14">{{ generalInfo.generalInfo.englishName }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-xl-12">
+                        <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">
+                            <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i> Company
+                            Info
+                        </h4>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1">Company Name</h5>
+                        <p class="fs-14">{{ generalInfo.generalInfo.companyInfo }}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1">Company C R Number</h5>
+                        <p class="fs-14">{{ generalInfo.generalInfo.companyInfo }}</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 px-4 mb-3 mt-3">
+                        <div class="table-responsive">
+
+                            <input class="fs-16 custom-height-35 mb-2" [(ngModel)]="searchText"
+                                placeholder="Search text">
+                            <table class="table table-striped ">
+                                <thead>
+                                    <tr class="purple-bg text-white">
+                                        <!-- <th scope="col"></th> -->
+                                        <th scope="col">Address Id</th>
+                                        <th scope="col">Address Line 1</th>
+                                        <th scope="col">Address Line 2</th>
+                                        <th scope="col">Language</th>
+                                        <th scope="col">Country</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of allAddresses | filter : searchText; index as index">
+                                        <td>{{index + 1}}</td>
+                                        <td>{{data.addressLine1}}</td>
+                                        <td>{{data.addressLine2}}</td>
+                                        <td>{{data.language}}</td>
+                                        <td>{{data.country}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 px-4">
+                        <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                        <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 mb-5 px-4">
+                        <button type="button"
+                            class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            [disabled]='!showBtn' [disabled]="true"><i class="fa fa-caret-left"></i> Previous</button>
+                        <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            [disabled]='!showBtn' matStepperNext>Next
+                            <i class="fa fa-caret-right"></i></button>
+                    </div>
+                </div>
+            </ng-container>
+        </mat-step>
+        <!-- Personal Details -->
+        <mat-step>
+            <ng-template matStepLabel>Personal Details</ng-template>
+
+            <div class="row">
+                <div class="col-md-12 px-4 mb-3 mt-3">
+                    <div class="table-responsive">
+
+                        <input class="fs-16 custom-height-35 mb-2" [(ngModel)]="searchText" placeholder="Search text">
+                        <table class="table table-striped ">
+                            <thead>
+                                <tr class="purple-bg text-white">
+                                    <th scope="col"># </th>
+                                    <th scope="col" (click)="sorting('personal','nationality')">Nationality <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('personal','idtype')">I.D Type <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('personal','designation')">Designation <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('personal','age')">Age <i class="fa fa-sort"
+                                            aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('personal','dob')">DOB <i class="fa fa-sort"
+                                            aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('personal','members')">Number of Family Members <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('personal','socialStatus')">Social Status <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('personal','familySecurity')">Family of social
+                                        security <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col">Document Attachments </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of personalData | filter : searchText; index as index">
+
+                                    <td>{{index + 1}}</td>
+                                    <td>{{data.nationality}}</td>
+                                    <td>{{data.idtype}}</td>
+                                    <td>{{data.designation}}</td>
+                                    <td>{{data.age}} </td>
+                                    <td>{{data.dob}}</td>
+                                    <td>{{data.members}}</td>
+                                    <td>{{data.socialStatus}}</td>
+                                    <td>{{data.familySecurity}}</td>
+                                    <td>
+                                        <i class="fa fa-folder-open" aria-hidden="true"
+                                        (click)="openFile(shoeFiles,'personal',data,data.isMoci)"></i>
+                                        <input type="file" #fileInput id="fileUpload" name="fileUpload"
+                                            multiple="multiple" style="display: none;" />
+                                    </td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-12 px-4">
+                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                    <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 mb-5 px-4">
+                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
+                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                        [disabled]='!showBtn' matStepperNext>Next <i class="fa fa-caret-right"></i></button>
+                </div>
+            </div>
+
+        </mat-step>
+        <!-- Communication Methods -->
+        <mat-step>
+            <ng-template matStepLabel>Communication Methods</ng-template>
+            <ng-container *ngIf="communicationData">
+
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 col-xl-12 px-4 pb-2 ">
+                        <i class="fa fa-ban text-red fs-14" mat-raised-button
+                            matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Telephone</h5>
+                        <p class="fs-14">{{communicationData.telephone || '-'}}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">P.O. Box</h5>
+                        <p class="fs-14">{{communicationData.poBox || '-'}}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Fax</h5>
+                        <p class="fs-14">{{communicationData.fax || '-'}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">legal status</h5>
+                        <p class="fs-14">{{communicationData.legalStatus || '-'}}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">PC</h5>
+                        <p class="fs-14">{{communicationData.pc || '-'}}</p>
+                    </div>
+                    <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email</h5>
+                        <p class="fs-14">{{communicationData.email || '-'}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 px-4">
+                        <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                        <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                    </div>
+                </div>
+
+            </ng-container>
+
+            <div class="row">
+                <div class="col-md-12 mb-5 px-4">
+                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" matStepperPrevious
+                        [disabled]='!showBtn'><i class="fa fa-caret-left"></i> Previous</button>
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext
+                        [disabled]='!showBtn'>Next
+                        <i class="fa fa-caret-right"></i></button>
+                </div>
+            </div>
+        </mat-step>
+        <!-- Commercial Info -->
+        <mat-step>
+            <ng-template matStepLabel>Commercial Info</ng-template>
+
+            <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+                <mat-tab label="Activity Info">
+                    <ng-container *ngIf="activityData">
+                        <div class="row mt-3 mb-5">
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
+                                <p class="fs-14">{{activityData.regDate}}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date </h5>
+                                <p class="fs-14">{{activityData.expDate}}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-xl-2 px-4">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Work Location</h5>
+                                <p class="fs-14">{{ activityData.workLocation }}</p>
+                            </div>
+                            <div class="col-md-3 col-lg-3 px-4 ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Activities </h5>
+                                <div ngbDropdown class="d-inline-block">
+                                    <button class="btn btn-outline-secondary" id="dropdownBasic1"
+                                        ngbDropdownToggle>Activities</button>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                        <button ngbDropdownItem
+                                            *ngFor="let activity of activityData.activities">{{activity}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 px-4">
+                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                                <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                            </div>
+                        </div>
+                    </ng-container>
+
+
+
+                    <div class="row">
+                        <div class="col-md-12 mb-5 px-4">
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                [disabled]='!showBtn' matStepperPrevious><i class="fa fa-caret-left"></i>
+                                Previous</button>
+                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                [disabled]='!showBtn' (click)="changeTab()">Next <i
+                                    class="fa fa-caret-right"></i></button>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Bank Details">
+                    <ng-container *ngIf="BankDetails">
+                        <div class="shadow p-3 mb-5" *ngFor="let data of BankDetails;index as index;">
+                            <div class="row ">
+                                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id</h5>
+                                    <p class="fs-14">{{ index + 1}}</p>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id Name</h5>
+                                    <p class="fs-14">{{data.bankingIdname}}</p>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Account</h5>
+                                    <p class="fs-14">{{data.bankAcc}}</p>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Name</h5>
+                                    <p class="fs-14">{{data.bankName}}</p>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Branch</h5>
+                                    <p class="fs-14">{{data.bankBranch}}</p>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account Holder Name</h5>
+                                    <p class="fs-14">{{data.holderName}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 px-4">
+                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                                <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    <div class="row">
+                        <div class="col-md-12 mb-5 px-4">
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                [disabled]='!showBtn' (click)="previousTab()"><i class="fa fa-caret-left"></i>
+                                Previous</button>
+                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                [disabled]='!showBtn' (click)="changeTab()">Next <i
+                                    class="fa fa-caret-right"></i></button>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Other Info">
+                    <ng-container *ngIf="otherData">
+                        <div class="row">
+                            <div class="col-md-12 px-4 mb-3 mt-3">
+                                <div class="table-responsive">
+                                    <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
+
+                                    <table class="table table-striped mb-0 ">
+                                        <thead>
+                                            <tr class="purple-bg text-white">
+                                                <th scope="col">No. </th>
+                                                <th scope="col" (click)="sorting('other','name')">Label <i
+                                                        class="fa fa-sort" aria-hidden="true"></i></th>
+                                                <th scope="col">Value </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let data of otherData | filter : searchText; index as index">
+                                                <td>{{index + 1}}</td>
+                                                <td>{{data.name}}</td>
+                                                <td>{{data.value}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-md-12 px-4">
+                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                                <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
+                            </div>
+                        </div>
+                    </ng-container>
+                    <div class="row">
+                        <div class="col-md-12 mb-5 px-4">
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                [disabled]='!showBtn' (click)="previousTab()"><i class="fa fa-caret-left"></i>
+                                Previous</button>
+                            <button type="button"
+                                class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                [disabled]="true"> Next <i class="fa fa-caret-right"></i></button>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>

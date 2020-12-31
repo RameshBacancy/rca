@@ -1,3 +1,14 @@
+import { PipeModule } from './../../../pipe/pipe.module';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatStepperModule } from '@angular/material/stepper';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -23,6 +34,18 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    MatStepperModule,
+    MatTabsModule,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatTooltipModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    PipeModule,
+    MatProgressBarModule,
     RouterModule.forChild(routes)
   ]
 })

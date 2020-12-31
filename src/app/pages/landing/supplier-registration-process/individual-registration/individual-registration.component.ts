@@ -360,7 +360,24 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
       this.form.reset();
     }
   }
+
+  // finish step
   submitRegistration() {
+    this.individualDraftData(3, true);
+
+    this.individualService.storeIndividualData(this.individualRegisterDraft)
+      .subscribe(
+        () => {
+          this.finishStepper();
+        },
+        (err) => {
+          console.log('err :>> ', err);
+        },
+      );
+  }
+
+
+  private finishStepper() {
     this.completed = true;
     localStorage.setItem('1completeToken', 'true');
     localStorage.setItem('LocalRegComplete', 'true');
@@ -368,7 +385,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
     this.spinner.openSpinner();
     const body = { civil_number: localStorage.getItem('civilReg'), cr_number: localStorage.getItem('commercialReg'), register_status: localStorage.getItem('RegStatus'), register_type: localStorage.getItem('regType') };
     this.userService.supplierRegistration(body);
-    // this.router.navigateByUrl('/landing/supplier-registration/transaction');
+    // this.router.navigateByUrl('/landing/supplier-registration/transaction'); 
   }
 
 
