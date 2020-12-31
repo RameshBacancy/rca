@@ -187,6 +187,9 @@
                     <button type="button" class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2" [disabled]="isDisable"
                         (click)="submitNext()">{{'supplierRegPage.submitBtnLbl' | translate}}
                     </button>
+                    <button type="button" class="btn btn-secondary px-3 mx-1 py-2 w-120 fs-14 mb-2"
+                        (click)="submitCivil = false; readonlycivil = true" [disabled]='!submitCivil'>
+                        {{'supplierRegPage.backBtnLbl' | translate}} </button>
                 </div>
                 <div class="col-md-12 mb-5 px-4 mt-5"
                     *ngIf="!submitCivil && this.form.value.regType != 'international'">

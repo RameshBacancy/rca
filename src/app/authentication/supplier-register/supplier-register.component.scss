@@ -8,6 +8,10 @@ input[type=number] {
     -moz-appearance: textfield;
   }
 
+  input[readonly] {
+    background: #dddddd; 
+  }
+
 .btn-purple{
   background-color: #873e8d !important;
   color: white !important;

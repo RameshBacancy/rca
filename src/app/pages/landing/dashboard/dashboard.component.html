@@ -60,27 +60,19 @@
                             <ul class="pl-0 list-unstyled mb-0">
                                 <li class="mb-1 d-block d-sm-flex justify-content-between ">
                                     <a class="fs-14 text-white " 
-                                        [routerLink]="['/e-tendering/tender-dashboard/current-tenders']"
-                                        [queryParams]="{status: 'open'}"
-                                        >Open Tenders </a>
+                                        (click)='onTenderStatus("open")'>Open Tenders </a>
                                     <span class="fs-14 text-white ">{{tendering.open}}</span></li>
                                 <li class="mb-1  d-sm-flex justify-content-between"> <a
                                         class="fs-14 text-white "
-                                        [routerLink]="['/e-tendering/tender-dashboard/current-tenders']"
-                                        [queryParams]="{status: 'submitted'}"
-                                        >Submitted Tenders </a> <span
+                                        (click)='onTenderStatus("submitted")'>Submitted Tenders </a> <span
                                         class="fs-14 text-white ">{{tendering.submitted}}</span></li>
                                 <li class="mb-1  d-sm-flex justify-content-between"> <a
                                         class="fs-14 text-white "
-                                        [routerLink]="['/e-tendering/tender-dashboard/current-tenders']"
-                                        [queryParams]="{status: 'awarded'}"
-                                        >Awarded Tenders </a><span
+                                        (click)='onTenderStatus("awarded")'>Awarded Tenders </a><span
                                         class="fs-14 text-white ">{{tendering.awarded}}</span></li>
                                 <li class="mb-1  d-sm-flex justify-content-between"> <a
                                         class="fs-14 text-white "
-                                        [routerLink]="['/e-tendering/tender-dashboard/current-tenders']"
-                                        [queryParams]="{status: 'rejected'}"
-                                        >Rejected Tenders </a><span
+                                        (click)='onTenderStatus("rejected")'>Rejected Tenders </a><span
                                         class="fs-14 text-white ">{{tendering.rejected}}</span></li>
                                 <li class="mb-1"> <a class="fs-14 text-white ">Tender Queries </a></li>
                                 <li class="mb-1"> <a class="fs-14 text-white ">Search Tenders</a></li>
