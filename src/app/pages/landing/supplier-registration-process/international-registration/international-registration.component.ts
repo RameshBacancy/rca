@@ -61,32 +61,35 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
     isEdit: new FormControl(false)
   });
 
-  staffData: any[];
   staffSearch: string;
   newData: any;
-  communicationData: CommunicationDetailsStep;
   subContractorData: any[];
   equipmentData: any[];
-  otherData: any[];
-  activityData: any[];
-  activityDetail: any;
-
+  
   isLocal = false;
   isIndividual = false;
   isInternational = false;
-  personalData: any;
-  bankDetails: any;
-  internationalAddress: any[];
-  selectedAddress: any;
   activityMenu: boolean;
   editAddress = false;
-  allAddresses: AddressInd[];
   editBank: boolean;
   editbankData: any;
-
+  
   selected = new FormControl(0);
   showBtn: boolean;
-
+  
+  selectedAddress: any;
+  allAddresses: AddressInd[];
+  personalData: any;
+  communicationData: CommunicationDetailsStep;
+  staffData: any[];
+  activityData: any[];
+  activityDetail: any;
+  bankDetails: any;
+  otherData: any[];
+  internationalAddress: any[];
+  
+  
+  
   destroy$: Subject<boolean> = new Subject();
   generalInfoStep$: Observable<GeneralInfoStepInd>;
 
@@ -343,6 +346,21 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
     }
   }
   submitRegistration() {
+    
+    this.internationalDraftData(4, true);
+
+    this.internationalService.storeInternationalData(this.internationalRegistrationDraft)
+      .subscribe(
+        () => {
+          this.finishStepper();
+        },
+        (err) => {
+          console.log('err :>> ', err);
+        },
+      );
+  }
+
+  private finishStepper() {
     this.completed = true;
     localStorage.setItem('LocalRegComplete', 'true');
     localStorage.setItem('1completeToken', 'true');
