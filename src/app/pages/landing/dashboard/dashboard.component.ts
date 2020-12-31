@@ -40,24 +40,26 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
     this.modalService.dismissAll();
     this.gotopath = '/landing/supplier-registration/dashboard';
     this.tenderService.getTender().subscribe((data: any) => {
-      data[0].tenders.filter(tender => {
-        switch (tender.tenderStatus) {
-          case 'open':
-            this.tendering.open++;
-            break;
-          case 'submitted':
-            this.tendering.submitted++;
-            break;
-          case 'awarded':
-            this.tendering.awarded++;
-            break;
-          case 'rejected':
-            this.tendering.rejected++;
-            break;
-        }
-      });
+      if(data[0]){
+        data[0].tenders.filter(tender => {
+          switch (tender.tenderStatus) {
+            case 'open':
+              this.tendering.open++;
+              break;
+            case 'submitted':
+              this.tendering.submitted++;
+              break;
+            case 'awarded':
+              this.tendering.awarded++;
+              break;
+            case 'rejected':
+              this.tendering.rejected++;
+              break;
+          }
+        });
+      }
       this.cdr.detectChanges();
-    });
+        });
   }
 
   ngAfterViewChecked(): void {
@@ -131,6 +133,9 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
     }
   }
 
+  onTenderStatus() {
+
+  }
   goto(cancel?) {
     localStorage.setItem('ModelShowed', 'true');
     this.modalService.dismissAll();

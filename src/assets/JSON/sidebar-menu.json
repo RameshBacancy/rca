@@ -135,20 +135,6 @@
             "route": "",
             "disabled": false,
             "children": []
-        },
-        {
-            "name": "ORDER LINES TO CONFIRM",
-            "icon": "",
-            "route": "",
-            "disabled": false,
-            "children": []
-        },
-        {
-            "name": "REQUEST FOR ORDER QUOTATION",
-            "icon": "",
-            "route": "",
-            "disabled": false,
-            "children": []
         }
     ],
     "admin": [

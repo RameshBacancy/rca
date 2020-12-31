@@ -18,6 +18,7 @@
         "newRegLbl": "New Supplier Registration",
         "alreadyRegLbl": "Already Registered Supplier",
         "civilNoLbl": "Enter Civil Number",
+        "citizenNoLbl":"Enter Citizen Number",
         "compCRNo": "Company C.R.Number",
         "selectSupplierLbl": "Select Supplier",
         "CRNumberLbl": "Commercial Registration No",

@@ -39,6 +39,7 @@ export class SupplierRegisterComponent implements OnInit {
     registrationType: new FormControl('alreadyRegistered', [Validators.required]),
   });
   public languageArray = ['English', 'Arabic', 'Hindi'];
+  readonlycivil: boolean = true;
 
   constructor(
     private router: Router,
@@ -89,7 +90,7 @@ export class SupplierRegisterComponent implements OnInit {
     this.form.patchValue({ registrationNo: this.form.value.registrationNo });
     // localStorage.setItem('comName', this.companyName);
     // this.form.patchValue({registrationNo : this.myControl.value});
-    let type = 'international';
+      let type = 'international';
     if (this.form.value.regType == 'localcom') {
       type = this.form.value.localRegType;
     }

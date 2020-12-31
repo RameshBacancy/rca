@@ -107,10 +107,12 @@
                             </div> -->
                     </div>
                     <div class="col-md-12 px-4 d-block  d-lg-flex">
-                        <p class=" pt-2 mr-0 mr-lg-3  text-dark-grey font-weight-bold ">
+                        <p class=" pt-2 mr-0 mr-lg-3  text-dark-grey font-weight-bold " *ngIf="this.form.value.localRegType == 'local'">
                             {{'supplierRegPage.civilNoLbl' | translate}} :</p>
+                        <p class=" pt-2 mr-0 mr-lg-3  text-dark-grey font-weight-bold " *ngIf="this.form.value.localRegType == 'individual'">
+                            {{ 'supplierRegPage.citizenNoLbl'| translate}} : </p>
                         <input type="number" class=" border p-2 fs-14 mr-0 mr-lg-3 rounded text-center w-170 "
-                            value="11337788" formControlName="civilNo">
+                            value="11337788" formControlName="civilNo" [readOnly]=!readonlycivil>
                     </div>
                 </div>
                 <div class="row " *ngIf="this.form.value.regType == 'international'">
@@ -189,7 +191,7 @@
                 <div class="col-md-12 mb-5 px-4 mt-5"
                     *ngIf="!submitCivil && this.form.value.regType != 'international'">
                     <button type="button" class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2"
-                        (click)="submitCivil = true">{{'supplierRegPage.submitBtnLbl' | translate}} </button>
+                        (click)="submitCivil = true; readonlycivil = false">{{'supplierRegPage.submitBtnLbl' | translate}} </button>
                 </div>
 
                 <div class="col-md-12 mb-5 px-4" *ngIf="this.form.value.regType == 'international'">
