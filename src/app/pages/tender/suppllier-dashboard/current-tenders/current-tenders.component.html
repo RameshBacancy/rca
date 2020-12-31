@@ -22,22 +22,23 @@
 </section>
 <div class="row">
   <div class="col-md-12 px-4 mb-3 mt-3">
-    <div class="table-responsive">
-      <div class=" d-flex mb-2">
-        <input class="fs-16 p-1" [(ngModel)]="searchText" placeholder="Search text">
-  
-        <!-- <button class="btn btn-secondary ml-2 float-right mb-2" (click)="alertNoAdd()"  mat-raised-button
-                matTooltip="Not Allowed to add details for Local entities"><i
-                        class="fa fa-plus" aria-hidden="true"></i></button> -->
-        <div ngbDropdown class="d-inline-block ml-4">
-          <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Tender</button>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button ngbDropdownItem>Tender</button>
-          </div>
+    <div class=" d-flex mb-2">
+      <input class="fs-16 p-1" [(ngModel)]="searchText" placeholder="Search text">
+
+      <!-- <button class="btn btn-secondary ml-2 float-right mb-2" (click)="alertNoAdd()"  mat-raised-button
+              matTooltip="Not Allowed to add details for Local entities"><i
+                      class="fa fa-plus" aria-hidden="true"></i></button> -->
+      <div ngbDropdown class="d-inline-block ml-4">
+        <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{ status | titlecase }}</button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem *ngFor="let status of tenderStatus"
+            (click)="filterTender(status.value)">{{ status.text }}</button>
         </div>
-        <i class="fa fa-undo ml-4 refresh-btn color-purple align-self-center" aria-hidden="true"></i>
-        <!-- <span class="h5 ml-4 mb-0 font-weight-bold text-black-50 align-self-center"> Advanced Search <span class="font-weight-bold h5 color-purple"> &gt;</span></span> -->
       </div>
+      <i class="fa fa-undo ml-4 refresh-btn color-purple align-self-center" aria-hidden="true"></i>
+      <!-- <span class="h5 ml-4 mb-0 font-weight-bold text-black-50 align-self-center"> Advanced Search <span class="font-weight-bold h5 color-purple"> &gt;</span></span> -->
+    </div>
+    <div class="table-responsive">
       <table class="table table-striped ">
         <thead>
           <tr class="purple-bg text-white">
@@ -51,8 +52,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let tenderDetail of newTender| filter : searchText;">
-            <td>{{ tenderDetail.no }}</td>
+          <tr *ngFor="let tenderDetail of filterTenders | filter : searchText;index as index;">
+            <td>{{ index + 1 }}</td>
             <td><a routerLink="/e-tendering/general-tender-details">{{ tenderDetail.tenderNo }}</a></td>
             <td><a routerLink="/e-tendering/general-tender-details">{{ tenderDetail.tenderTitle }}</a></td>
             <td>{{ tenderDetail.startDate }}</td>
