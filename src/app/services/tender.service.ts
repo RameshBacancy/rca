@@ -18,13 +18,25 @@ export class TenderService {
 
   getGeneralTenderDetails(): Observable<GeneralTenderDetails> {
     return this.http.get('./assets/JSON/tender-details.json')
-    .pipe(map((res: { generalTenderDetails: GeneralTenderDetails }) => res.generalTenderDetails));
+      .pipe(map((res: { generalTenderDetails: GeneralTenderDetails }) => res.generalTenderDetails));
   }
-  
-  // getTender(): Observable<any> {
-  //   return this.http.get('/assets/JSON/tender-info.json').pipe(map(res => {
-  //     return res;
-  //   }));
-  // }
+
+  getTender(): Observable<any> {
+    return this.http.get('/assets/JSON/tender-info.json').pipe(map((res: any) => {
+      if (res.tenderInfo) {
+        const civilReg = localStorage.getItem('civilReg');
+        const regType = localStorage.getItem('regType');
+        const email = localStorage.getItem('email');
+        if (regType === 'local' || regType === 'individual') {
+          return res.tenderInfo.filter(tender => tender.civilReg === +civilReg && tender.regType === regType);
+        }
+        if (regType === 'international') {
+          return res.tenderInfo.filter(tender => tender.email === email && tender.regType === regType);
+        }
+      }
+    }));
+  }
+
+
 
 }

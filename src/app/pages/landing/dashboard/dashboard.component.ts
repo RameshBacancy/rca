@@ -1,3 +1,4 @@
+import { TenderService } from 'src/app/services/tender.service';
 import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -11,7 +12,7 @@ import { SafeHtmlPipe } from 'src/app/pipe/safeHtml.pipe';
 })
 export class DashboardComponent implements OnInit, AfterViewChecked {
 
-  @ViewChild('nodeInput' ) fileInput: ElementRef;
+  @ViewChild('nodeInput') fileInput: ElementRef;
   status: string;
   approveRejectStatus: string;
   gotopath: string;
@@ -19,26 +20,52 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
   showPopUp: boolean;
   alertData: any;
 
+  tendering = {
+    open: 0,
+    submitted: 0,
+    awarded: 0,
+    rejected: 0
+  };
+
   constructor(
     private modalService: NgbModal,
     private router: Router,
     private alertMessage: AlertMessageService,
-    private safeHtml: SafeHtmlPipe
+    private safeHtml: SafeHtmlPipe,
+    private tenderService: TenderService
   ) { }
 
   ngOnInit(): void {
     this.modalService.dismissAll();
     this.gotopath = '/landing/supplier-registration/dashboard';
+    this.tenderService.getTender().subscribe((data: any) => {
+      data[0].tenders.filter(tender => {
+        switch (tender.tenderStatus) {
+          case 'open':
+            this.tendering.open++;
+            break;
+          case 'submitted':
+            this.tendering.submitted++;
+            break;
+          case 'awarded':
+            this.tendering.awarded++;
+            break;
+          case 'rejected':
+            this.tendering.rejected++;
+            break;
+        }
+      });
+    });
   }
 
   ngAfterViewChecked(): void {
-      if (localStorage.getItem('ModelShowed') != 'true') {
-        if (localStorage.getItem('paymentStep') != 'true') {
-          if (localStorage.getItem('RegStatus') == 'finish') {
-            this.fileInput.nativeElement.click();
-          }
+    if (localStorage.getItem('ModelShowed') != 'true') {
+      if (localStorage.getItem('paymentStep') != 'true') {
+        if (localStorage.getItem('RegStatus') == 'finish') {
+          this.fileInput.nativeElement.click();
         }
       }
+    }
   }
 
   openModel() {
@@ -51,8 +78,8 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
   onRegistrationClick() {
     if (localStorage.getItem('RegStatus') === 'finish') {
       if (localStorage.getItem('arStatus') === 'pending') {
-        this.alertMessage.getMessages().subscribe( d => {
-          d.data.data.filter( a => {
+        this.alertMessage.getMessages().subscribe(d => {
+          d.data.data.filter(a => {
             if (a.status == 'pending') {
               this.alertData = a;
             }
@@ -67,8 +94,8 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
         });
         this.gotopath = '/landing/supplier-registration/dashboard';
       } else if (localStorage.getItem('arStatus') === 'approved') {
-        this.alertMessage.getMessages().subscribe( d => {
-          d.data.data.filter( a => {
+        this.alertMessage.getMessages().subscribe(d => {
+          d.data.data.filter(a => {
             if (a.status == 'approved') {
               this.alertData = a;
             }
@@ -83,8 +110,8 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
         });
         this.gotopath = '/landing/supplier-registration/transaction';
       } else if (localStorage.getItem('arStatus') === 'reject') {
-        this.alertMessage.getMessages().subscribe( d => {
-          d.data.data.filter( a => {
+        this.alertMessage.getMessages().subscribe(d => {
+          d.data.data.filter(a => {
             if (a.status == 'reject') {
               this.alertData = a;
             }
@@ -106,7 +133,7 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
     localStorage.setItem('ModelShowed', 'true');
     this.modalService.dismissAll();
     if (cancel) {
-        this.gotopath = '/landing/supplier-registration/dashboard';
+      this.gotopath = '/landing/supplier-registration/dashboard';
     }
     this.router.navigateByUrl(this.gotopath);
   }
@@ -114,7 +141,7 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
   open(content) {
 
     this.onRegistrationClick();
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
 
       this.closeResult = `Closed with: ${result}`;
 
@@ -130,7 +157,7 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 }
