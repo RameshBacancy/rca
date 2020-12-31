@@ -1,5 +1,5 @@
 import { TenderService } from 'src/app/services/tender.service';
-import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertMessageService } from 'src/app/services/alert-message.service';
@@ -32,7 +32,8 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
     private router: Router,
     private alertMessage: AlertMessageService,
     private safeHtml: SafeHtmlPipe,
-    private tenderService: TenderService
+    private tenderService: TenderService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -55,6 +56,7 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
             break;
         }
       });
+      this.cdr.detectChanges();
     });
   }
 
