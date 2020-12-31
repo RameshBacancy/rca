@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
     this.modalService.dismissAll();
     this.gotopath = '/landing/supplier-registration/dashboard';
     this.tenderService.getTender().subscribe((data: any) => {
-      if(data[0]){
+      if (data[0]) {
         data[0].tenders.filter(tender => {
           switch (tender.tenderStatus) {
             case 'open':
@@ -59,7 +59,7 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
         });
       }
       this.cdr.detectChanges();
-        });
+    });
   }
 
   ngAfterViewChecked(): void {

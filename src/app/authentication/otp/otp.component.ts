@@ -1,3 +1,4 @@
+import { AlertService } from './../../services/alert.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { Component, OnInit, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
 import { faLeaf } from '@fortawesome/free-solid-svg-icons';
@@ -27,11 +28,10 @@ export class OtpComponent implements OnInit, AfterViewInit {
   isVerifyBtnDisable = true;
 
   ngOnInit() {
-    this.isVerifyBtnDisable = false;
   }
-  constructor(private spinnerService: SpinnerService) { }
+  constructor(private alertService: AlertService) { }
   ngAfterViewInit() {
-    this.setVal('12345');
+    // this.setVal('12345');
   }
 
   onOtpChange(otp) {
@@ -66,7 +66,12 @@ export class OtpComponent implements OnInit, AfterViewInit {
     if (this.otp.length === 5) {
       this.loading = true;
       setTimeout(() => {
-        this.submitOtp.emit(true);
+        if (this.otp === '12345') {
+          this.submitOtp.emit(true);
+        } else {
+          this.alertService.pushError('Please enter valid opt.');
+          this.setVal('');
+        }
         this.loading = false;
       }, 2000);
     }

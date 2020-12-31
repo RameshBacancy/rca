@@ -1,11 +1,9 @@
 <div class="otp-div">
-    <div *ngIf="loading" class="otp-loader">
-        <!-- start Spinner selector -->
-        <!-- End Spinner selector -->
-    </div>
-    <div class="content" *ngIf="!loading">
+    <div class="content">
         <div class="o-c">
-            <div>
+            <div [hidden]="!loading" class="otp-loader">
+            </div>
+            <div [hidden]="loading">
                 <div class="card">
                     <p class="a-o-i">Enter verification code</p>
                     <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" *ngIf="showOtpComponent"
