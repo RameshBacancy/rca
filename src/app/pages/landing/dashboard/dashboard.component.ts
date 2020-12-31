@@ -154,10 +154,11 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
         });
         this.gotopath = '/landing/supplier-registration/dashboard';
       } else if (localStorage.getItem('arStatus') === 'approved') {
-        if(this.tendering[status]){
-          this.gotopath = '/e-tendering/tender-dashboard/current-tenders?status='+status;
+        if (this.tendering[status]) {
+          // this.gotopath = '/e-tendering/tender-dashboard/current-tenders?status='+status;
+          this.router.navigateByUrl('/e-tendering/tender-dashboard/current-tenders?status=' + status);
         } else {
-          this.alerts.pushError('No tender available.')
+          this.alerts.pushError('No tender available.');
         }
       } else if (localStorage.getItem('arStatus') === 'reject') {
         this.alertMessage.getMessages().subscribe(d => {
@@ -176,7 +177,7 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
         });
         this.gotopath = '/landing/supplier-registration/dashboard';
       }
-    }else {
+    } else {
       this.router.navigateByUrl('/landing/supplier-registration/registration');
     }
   }
