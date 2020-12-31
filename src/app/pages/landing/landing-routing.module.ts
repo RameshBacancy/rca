@@ -1,3 +1,4 @@
+import { TenderGuard } from './../../guard/tender.guard';
 import { SessionGuard } from './../../guard/session.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -61,13 +62,19 @@ const routes: Routes = [
         ]
       },
       {
+        path: 'view-supplier',
+        loadChildren: () => import('./view-registered-supplier/view-registered-supplier.module')
+          .then(m => m.ViewRegisteredSupplierModule),
+        canActivate: [TenderGuard]
+      },
+      {
         path: 'supplier-collaboration',
         loadChildren: () => import('./supplier-collaboration/supplier-collaboration.module').then(m => m.SupplierCollaborationModule)
       },
-      {
-        path: 'supplier-performance',
-        loadChildren: () => import('./supplier-performance/supplier-performance.module').then(m => m.SupplierPerformanceModule)
-      },
+      // {
+      //   path: 'supplier-performance',
+      //   loadChildren: () => import('./supplier-performance/supplier-performance.module').then(m => m.SupplierPerformanceModule)
+      // },
 
     ]
   },
