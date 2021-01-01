@@ -82,7 +82,7 @@
                             <table class="table table-striped ">
                                 <thead>
                                     <tr class="purple-bg text-white">
-                                        <!-- <th scope="col"></th> -->
+                                        <th scope="col"></th>
                                         <th scope="col">Address Id</th>
                                         <th scope="col">Address Line 1</th>
                                         <th scope="col">Address Line 2</th>
@@ -92,6 +92,12 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let data of allAddresses | filter : searchText; index as index">
+                                        <td *ngIf="data.isMoci">
+                                            <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                                matTooltip="Data fetched from interface - not editable"
+                                                aria-hidden="true"></i>
+                                        </td>
+                                        <td *ngIf="!data.isMoci"></td>
                                         <td>{{index + 1}}</td>
                                         <td>{{data.addressLine1}}</td>
                                         <td>{{data.addressLine2}}</td>
@@ -135,7 +141,7 @@
                         <table class="table table-striped ">
                             <thead>
                                 <tr class="purple-bg text-white">
-                                    <th scope="col"># </th>
+                                    <th scope="col"></th>
                                     <th scope="col" (click)="sorting('personal','nationality')">Nationality <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th scope="col" (click)="sorting('personal','idtype')">I.D Type <i
@@ -157,8 +163,12 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let data of personalData | filter : searchText; index as index">
-
-                                    <td>{{index + 1}}</td>
+                                    <td *ngIf="data.isMoci">
+                                        <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                            matTooltip="Data fetched from interface - not editable"
+                                            aria-hidden="true"></i>
+                                    </td>
+                                    <td *ngIf="!data.isMoci"></td>
                                     <td>{{data.nationality}}</td>
                                     <td>{{data.idtype}}</td>
                                     <td>{{data.designation}}</td>
@@ -169,7 +179,7 @@
                                     <td>{{data.familySecurity}}</td>
                                     <td>
                                         <i class="fa fa-folder-open" aria-hidden="true"
-                                        (click)="openFile(shoeFiles,'personal',data,data.isMoci)"></i>
+                                            (click)="openFile(shoeFiles,'personal',data,data.isMoci)"></i>
                                         <input type="file" #fileInput id="fileUpload" name="fileUpload"
                                             multiple="multiple" style="display: none;" />
                                     </td>
@@ -308,6 +318,10 @@
                     <ng-container *ngIf="BankDetails">
                         <div class="shadow p-3 mb-5" *ngFor="let data of BankDetails;index as index;">
                             <div class="row ">
+                                <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 " *ngIf="data.isMoci">
+                                    <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                        matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
+                                </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id</h5>
                                     <p class="fs-14">{{ index + 1}}</p>
@@ -363,6 +377,7 @@
                                     <table class="table table-striped mb-0 ">
                                         <thead>
                                             <tr class="purple-bg text-white">
+                                                <th></th>
                                                 <th scope="col">No. </th>
                                                 <th scope="col" (click)="sorting('other','name')">Label <i
                                                         class="fa fa-sort" aria-hidden="true"></i></th>
@@ -371,6 +386,12 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let data of otherData | filter : searchText; index as index">
+                                                <td *ngIf="data.isMoci">
+                                                    <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                                        matTooltip="Data fetched from interface - not editable"
+                                                        aria-hidden="true"></i>
+                                                </td>
+                                                <td *ngIf="!data.isMoci"></td>
                                                 <td>{{index + 1}}</td>
                                                 <td>{{data.name}}</td>
                                                 <td>{{data.value}}</td>
@@ -393,6 +414,9 @@
                             <button type="button"
                                 class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                 [disabled]="true"> Next <i class="fa fa-caret-right"></i></button>
+                            <a routerLink="/landing/supplier-registration/dashboard">
+                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Home</button>
+                            </a>
                         </div>
                     </div>
                 </mat-tab>

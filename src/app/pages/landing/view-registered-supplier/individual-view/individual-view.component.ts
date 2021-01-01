@@ -100,25 +100,27 @@ export class IndividualViewComponent implements OnInit, OnDestroy {
     this.supplierService.getdata('individual').subscribe(data => {
       this.formData = data;
     });
+
+
     this.generalInfoStep$ = this.individualService.getGeneralInfoStep();
     this.generalInfoStep$.pipe(takeUntil(this.destroy$)).
       subscribe(res => {
-        this.selectedAddress = res.generalInfo.address[0];
-        this.allAddresses = res.generalInfo.address;
+        this.allAddresses = [...this.formData.generalInfoStep.generalInfo.address, ...res.generalInfo.address];
+        this.selectedAddress = this.allAddresses[0];
 
-        if (!this.allAddresses[0]) {
-          this.selectedAddress = this.formData.generalInfoStep.generalInfo.address[0];
-          this.allAddresses = this.formData.generalInfoStep.generalInfo.address;
-        }
+        // if (!this.allAddresses[0]) {
+        //   this.selectedAddress = this.formData.generalInfoStep.generalInfo.address[0];
+        //   this.allAddresses = this.formData.generalInfoStep.generalInfo.address;
+        // }
       });
 
     this.individualService.getPersonalInfoStep().pipe(takeUntil(this.destroy$)).
       subscribe(res => {
-        this.personalData = res.personalDetails;
+        this.personalData = [...this.formData.personalDetailsStep.personalDetails, ...res.personalDetails];
 
-        if (!this.personalData[0]) {
-          this.personalData = this.formData.personalDetailsStep.personalDetails;
-        }
+        // if (!this.personalData[0]) {
+        //   this.personalData = this.formData.personalDetailsStep.personalDetails;
+        // }
         this.cdr.detectChanges();
       });
 
@@ -134,20 +136,24 @@ export class IndividualViewComponent implements OnInit, OnDestroy {
 
     this.individualService.getCommercialInfoStep().pipe(takeUntil(this.destroy$)).
       subscribe(res => {
-        this.BankDetails = res.bankInfoTab.bankDetails;
-        this.otherData = res.otherInfoTab.otherInfo;
+        this.BankDetails = [...this.formData.commercialInfoStep.bankInfoTab.bankDetails, ...res.bankInfoTab.bankDetails];
+        this.otherData = [...this.formData.commercialInfoStep.otherInfoTab.otherInfo, ...res.otherInfoTab.otherInfo];
         this.activityData = res.activityInfoTab;
 
-        if (!this.BankDetails[0]) {
-          this.BankDetails = this.formData.commercialInfoStep.bankInfoTab.bankDetails;
-        }
-        if (!this.otherData[0]) {
-          this.otherData = this.formData.commercialInfoStep.otherInfoTab.otherInfo;
-        }
+        // if (!this.BankDetails[0]) {
+        //   this.BankDetails = this.formData.commercialInfoStep.bankInfoTab.bankDetails;
+        // }
+        // if (!this.otherData[0]) {
+        //   this.otherData = this.formData.commercialInfoStep.otherInfoTab.otherInfo;
+        // }
+        // if (!this.activityData) {
+        this.activityData = this.formData.commercialInfoStep.activityInfoTab;
+        // }
         this.cdr.detectChanges();
       });
 
   }
+
 
   sorting(property, str) {
     this.order = !this.order;

@@ -47,6 +47,7 @@
                         <table class="table table-striped ">
                             <thead>
                                 <tr class="purple-bg text-white">
+                                    <th></th>
                                     <th scope="col">Address Id</th>
                                     <th scope="col">Address Line 1</th>
                                     <th scope="col">Address Line 2</th>
@@ -56,20 +57,25 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let data of allAddresses | filter : searchText; index as index">
-                                   
-                                    <td >
+                                    <td *ngIf="data.isMoci">
+                                        <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                            matTooltip="Data fetched from interface - not editable"
+                                            aria-hidden="true"></i>
+                                    </td>
+                                    <td *ngIf="!data.isMoci"></td>
+                                    <td>
                                         {{index + 1}}
                                     </td>
-                                    <td >
+                                    <td>
                                         {{data.addressLine1}}
                                     </td>
-                                    <td >
+                                    <td>
                                         {{data.addressLine2}}
                                     </td>
-                                    <td >
+                                    <td>
                                         {{data.language}}
                                     </td>
-                                    <td >
+                                    <td>
                                         {{data.country}}
                                     </td>
                                 </tr>
@@ -106,11 +112,11 @@
                     <div class="table-responsive">
                         <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
 
-                    
+
                         <table class="table table-striped">
                             <thead>
                                 <tr class="purple-bg text-white">
-                                    <th scope="col">#</th>
+                                    <th></th>
                                     <th scope="col" class="custom-width-60" (click)="sorting('personal','personName')">
                                         Person name <i class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th scope="col" (click)="sorting('personal','nationality')">Nationality <i
@@ -130,7 +136,12 @@
                             <tbody *ngIf="personalData">
                                 <tr>
                                 <tr *ngFor="let data of personalData | filter : searchText; index as index">
-                                    <td>{{index + 1}}</td>
+                                    <td *ngIf="data.isMoci">
+                                        <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                            matTooltip="Data fetched from interface - not editable"
+                                            aria-hidden="true"></i>
+                                    </td>
+                                    <td *ngIf="!data.isMoci"></td>
                                     <td>
                                         {{data.personName}}</td>
                                     <td>
@@ -161,10 +172,9 @@
             </div>
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
-                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                        matStepperNext>Next
+                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" matStepperPrevious><i
+                            class="fa fa-caret-left"></i> Previous</button>
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext>Next
                         <i class="fa fa-caret-right"></i></button>
                 </div>
             </div>
@@ -237,14 +247,13 @@
                         <div class="row">
                             <div class="col-md-12 px-4 mb-3 mt-3">
                                 <div class="table-responsive">
-    
-                                    <input class="fs-16 mb-2" [(ngModel)]="searchText"
-                                        placeholder="Search text">
-    
+
+                                    <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
+
                                     <table class="table table-striped ">
                                         <thead>
                                             <tr class="purple-bg text-white">
-                                                <th scope="col">#</th>
+                                                <th></th>
                                                 <th scope="col" class="custom-width-60"
                                                     (click)="sorting('activity','activityName')">Activity Name
                                                     <i class="fa fa-sort" aria-hidden="true"></i>
@@ -256,7 +265,12 @@
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let data of activityData | filter : searchText; index as index">
-                                                <td>{{index + 1}}</td>
+                                                <td *ngIf="data.isMoci">
+                                                    <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                                        matTooltip="Data fetched from interface - not editable"
+                                                        aria-hidden="true"></i>
+                                                </td>
+                                                <td *ngIf="!data.isMoci"></td>
                                                 <td>
                                                     {{data.activityName}}
                                                 </td>
@@ -265,7 +279,7 @@
                                                 </td>
                                             </tr>
                                         </tbody>
-    
+
                                     </table>
                                 </div>
                             </div>
@@ -287,7 +301,7 @@
                                 <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Company Grade</h5>
                                 <p class="fs-14">company grade</p>
                             </div>
-    
+
                         </div>
                         <div class="row">
                             <div class="col-md-12 px-4">
@@ -302,17 +316,19 @@
                                 matStepperPrevious><i class="fa fa-caret-left"></i>
                                 Previous</button>
                             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                (click)="changeTab()">Next <i
-                                    class="fa fa-caret-right"></i></button>
+                                (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
                         </div>
                     </div>
                 </mat-tab>
                 <mat-tab label="Bank Details">
                     <ng-container *ngIf="bankDetails">
-                        
+
                         <div class="shadow p-3 mb-5" *ngFor="let data of bankDetails; index as index">
                             <div class="row ">
-                                
+                                <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 " *ngIf="data.isMoci">
+                                    <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                        matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
+                                </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id</h5>
                                     <p class="fs-14">{{index + 1}}</p>
@@ -352,30 +368,36 @@
                                 (click)="previousTab()"><i class="fa fa-caret-left"></i>
                                 Previous</button>
                             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                (click)="changeTab()">Next <i
-                                    class="fa fa-caret-right"></i></button>
+                                (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
                         </div>
                     </div>
                 </mat-tab>
                 <mat-tab label="Other Info">
                     <ng-container *ngIf="otherData">
                         <div class="row">
-    
+
                             <div class="col-md-12 px-4 mb-3 mt-3">
                                 <div class="table-responsive">
                                     <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
                                     <table class="table table-striped mb-0 ">
                                         <thead>
                                             <tr class="purple-bg text-white">
+                                                <th></th>
                                                 <th scope="col">No. </th>
                                                 <th scope="col" (click)="sorting('other','name')">Label <i
                                                         class="fa fa-sort" aria-hidden="true"></i></th>
                                                 <th scope="col" (click)="sorting('other','value')">Value <i
-                                                    class="fa fa-sort" aria-hidden="true"></i></th>
+                                                        class="fa fa-sort" aria-hidden="true"></i></th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr *ngFor="let data of otherData | filter : searchText; index as index">
+                                                <td *ngIf="data.isMoci">
+                                                    <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                                        matTooltip="Data fetched from interface - not editable"
+                                                        aria-hidden="true"></i>
+                                                </td>
+                                                <td *ngIf="!data.isMoci"></td>
                                                 <td>{{index + 1}}</td>
                                                 <td>{{data.name}}
                                                 </td>
@@ -418,7 +440,7 @@
                         <table class="table table-striped ">
                             <thead>
                                 <tr class="purple-bg text-white">
-                                    <th scope="col">#</th>
+                                    <th></th>
                                     <th scope="col" (click)="sorting('staff','name')">Employee Name <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th scope="col" (click)="sorting('staff','qualification')">Employee Qualification <i
@@ -445,7 +467,13 @@
                             </thead>
                             <tbody *ngIf="staffData && staffData.length > 0">
                                 <tr *ngFor="let data of staffData | filter : searchText; index as index">
-                                    <td>{{index + 1}}</td>
+                                    <td *ngIf="data.isMoci">
+                                        <i class="fa fa-ban text-red fs-14" mat-raised-button
+                                            matTooltip="Data fetched from interface - not editable"
+                                            aria-hidden="true"></i>
+                                    </td>
+                                    <td *ngIf="!data.isMoci">
+                                    </td>
                                     <td>
                                         {{data.name}}</td>
                                     <td>
@@ -484,13 +512,12 @@
             </div>
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
-                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" matStepperPrevious><i
+                            class="fa fa-caret-left"></i> Previous</button>
                     <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         [disabled]="true">Next <i class="fa fa-caret-right"></i> </button>
                     <a routerLink="/landing/supplier-registration/dashboard">
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                           >Home</button>
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Home</button>
                     </a>
                 </div>
             </div>

@@ -282,8 +282,8 @@
                                             </td>
                                             <td *ngIf="!data.isMoci">
                                                 <i class="fa fa-pencil-square-o fs-14" mat-raised-button
-                                                    matTooltip="Edit Address" (click)="open(mymodal, data)"  *ngIf='showBtn'
-                                                    aria-hidden="true"></i>
+                                                    matTooltip="Edit Address" (click)="open(mymodal, data)"
+                                                    *ngIf='showBtn' aria-hidden="true"></i>
                                             </td>
                                             <td *ngIf="!data.isMoci" (dblclick)="open(mymodal, data)">
                                                 {{index + 1}}
@@ -543,7 +543,8 @@
                     <div class="col-md-12 px-4 mb-3 mt-3">
                         <div class="table-responsive">
 
-                            <input class="fs-16 custom-height-35 mb-2" [(ngModel)]="searchText" placeholder="Search text">
+                            <input class="fs-16 custom-height-35 mb-2" [(ngModel)]="searchText"
+                                placeholder="Search text">
 
                             <!-- <button class="btn btn-secondary ml-2 float-right mb-2" (click)="alertNoAdd()"
                                 mat-raised-button matTooltip="Not Allowed to add details for Local entities"><i
@@ -816,7 +817,7 @@
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <!-- Activity Info -->
                 <mat-tab label="Activity Info">
-                    <div class="row "  *ngIf="activityInfoData && activityInfoData.length > 0">
+                    <div class="row " *ngIf="activityInfoData && activityInfoData.length > 0">
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
                                 <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
@@ -919,8 +920,9 @@
                                                 (keyup.enter)="enteredDetails( 'activityInfo',data)">
                                                 <input [(ngModel)]="data.location"></td>
                                             <td>
-                                                <i class="fa fa-folder-open" aria-hidden="true" (click)="openFile(shoeFiles,'activityInfo',data, data.isMoci)"></i>
-                                               
+                                                <i class="fa fa-folder-open" aria-hidden="true"
+                                                    (click)="openFile(shoeFiles,'activityInfo',data, data.isMoci)"></i>
+
                                                 <input type="file" #fileInput id="fileUpload" name="fileUpload"
                                                     multiple="multiple" style="display: none;" />
                                             </td>
@@ -974,8 +976,8 @@
                 <mat-tab label="Bank Details">
                     <div class="row " *ngIf="BankDetails && BankDetails.length > 0">
                         <div class="col-md-12 px-4 ">
-                            <button class="btn btn-secondary ml-2 " (click)="openbank(bankModel)"  [disabled]='!showBtn'><i class="fa fa-plus"
-                                    aria-hidden="true"></i></button>
+                            <button class="btn btn-secondary ml-2 " (click)="openbank(bankModel)"
+                                [disabled]='!showBtn'><i class="fa fa-plus" aria-hidden="true"></i></button>
                         </div>
                     </div>
                     <div class="shadow p-3 mb-5" *ngFor="let data of BankDetails;index as index">
@@ -986,7 +988,7 @@
                             </div>
                             <div class="col-md-12 col-lg-12 col-xl-12 px-4 " *ngIf="!data.isMoci">
                                 <i class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit Data"
-                                    (click)="openbank(bankModel,data)" aria-hidden="true"  *ngIf='showBtn'></i>
+                                    (click)="openbank(bankModel,data)" aria-hidden="true" *ngIf='showBtn'></i>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                                 <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id</h5>
@@ -1286,7 +1288,7 @@
                 </mat-tab>
                 <!-- Other Info -->
                 <mat-tab label="Other Info">
-                    <div class="row"  *ngIf="otherData && otherData.length > 0">
+                    <div class="row" *ngIf="otherData && otherData.length > 0">
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
                                 <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
@@ -1344,24 +1346,27 @@
                                                     (click)="enteredDetails( 'other',data)" aria-hidden="true"></i>
                                             </td> -->
                                             <td>{{index + 1}}</td>
-                                            <td *ngIf="!data.isEdit"  (dblclick)="dblclick(data);">
+                                            <td *ngIf="!data.isEdit" (dblclick)="dblclick(data);">
                                                 {{data.name}}
                                             </td>
                                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)"><input
                                                     [(ngModel)]="data.name"></td>
-                                            <td *ngIf="!data.isEdit"  (dblclick)="dblclick(data);">
+                                            <td *ngIf="!data.isEdit" (dblclick)="dblclick(data);">
                                                 {{data.value}}
                                             </td>
                                             <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)"><input
                                                     [(ngModel)]="data.value"></td>
                                             <td>
-                                                <i class="fa fa-folder-open" aria-hidden="true" (click)="openFile(shoeFiles,'bankOther',data, data.isMoci)" ></i>
-                                                
+                                                <i class="fa fa-folder-open" aria-hidden="true"
+                                                    (click)="openFile(shoeFiles,'bankOther',data, data.isMoci)"></i>
+
                                                 <input type="file" #fileInput id="fileUpload" name="fileUpload"
                                                     multiple="multiple" style="display: none;" />
                                             </td>
-                                            <td  *ngIf="data.isMoci || !data.isEdit"></td>
-                                            <td  *ngIf="data.isEdit && !data.isMoci"><i class="fa fa-trash text-red dlt-btn-size" aria-hidden="true" (click)="deleteRow('other',data)"></i></td>
+                                            <td *ngIf="data.isMoci || !data.isEdit"></td>
+                                            <td *ngIf="data.isEdit && !data.isMoci"><i
+                                                    class="fa fa-trash text-red dlt-btn-size" aria-hidden="true"
+                                                    (click)="deleteRow('other',data)"></i></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -1649,7 +1654,7 @@
                                         <td>
                                             <i class="fa fa-folder-open" aria-hidden="true"
                                                 (click)="openFile(shoeFiles,'employee',data, data.isMoci)"></i>
-                                                
+
                                             <input type="file" #fileInput id="fileUpload" name="fileUpload"
                                                 multiple="multiple" style="display: none;" />
                                         </td>
@@ -2577,7 +2582,7 @@
                         <table class="table table-striped mb-0 ">
                             <thead>
                                 <tr class="purple-bg text-white">
-                                    <!-- <th scope="col"></th> -->
+                                    <th scope="col"></th>
                                     <!--  (click)="sorting('project','no')"  <i
                                             class="fa fa-sort" aria-hidden="true"></i>-->
                                     <th scope="col" class="custom-width-60">No </th>
@@ -2601,20 +2606,20 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let data of projectData | filter : searchText; index as index">
-                                    <!-- 
-                                    (clickOutside)="enteredDetails( 'project',data)" -->
-                                    <!-- <td *ngIf="data.isMoci">
+                                    <td *ngIf="data.isMoci">
                                         <i class="fa fa-ban text-red fs-14" mat-raised-button
                                             matTooltip="Data fetched from interface - not editable"
                                             aria-hidden="true"></i>
-                                    </td>-->
-                                    <td *ngIf="data.isEdit">
-                                        <i class="fa fa-save fs-20 background-purple text-white p-1" mat-raised-button
-                                            matTooltip="Save Data" (click)="enteredDetails( 'project',data)"
-                                            aria-hidden="true"></i>
-
                                     </td>
-                                    <td *ngIf="!data.isEdit"> {{index + 1}}</td>
+                                    <td *ngIf="!data.isMoci">
+                                        <i class="fa fa-pencil-square-o fs-14" *ngIf="!data.isEdit && showBtn"
+                                            mat-raised-button matTooltip="Edit Data"
+                                            (click)="data.isEdit = true; this.showBtn=false;" aria-hidden="true"></i>
+                                        <i class="fa fa-save fs-20 background-purple text-white p-1" *ngIf="data.isEdit"
+                                            mat-raised-button matTooltip="Save Data"
+                                            (click)="enteredDetails( 'project',data)" aria-hidden="true"></i>
+                                    </td>
+                                    <td> {{index + 1}}</td>
                                     <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data);">
                                         {{data.name}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
@@ -2655,8 +2660,9 @@
                                         (keyup.enter)="enteredDetails( 'project',data)">
                                         <input [(ngModel)]="data.completion"></td>
                                     <td>
-                                        <i class="fa fa-folder-open" aria-hidden="true" (click)="openFile(shoeFiles,'project',data, data.isMoci)"></i>
-                                        
+                                        <i class="fa fa-folder-open" aria-hidden="true"
+                                            (click)="openFile(shoeFiles,'project',data, data.isMoci)"></i>
+
                                         <input type="file" #fileInput id="fileUpload" name="fileUpload"
                                             multiple="multiple" style="display: none;" />
                                     </td>
@@ -2708,7 +2714,7 @@
         <mat-step>
             <ng-template matStepLabel>Subcontractor Details</ng-template>
 
-            <div class="row"  *ngIf="subContractorData && subContractorData.length > 0">
+            <div class="row" *ngIf="subContractorData && subContractorData.length > 0">
                 <div class="col-md-12 px-4 mb-3 mt-3">
                     <div class="table-responsive">
                         <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
@@ -2745,7 +2751,7 @@
                                 <tr *ngFor="let data of subContractorData | filter : searchText; index as index">
                                     <!-- 
                                     (clickOutside)="enteredDetails( 'subContractor',data)" -->
-                                    
+
                                     <td *ngIf="data.isMoci">
                                         <i class="fa fa-ban text-red fs-14" mat-raised-button
                                             matTooltip="Data fetched from interface - not editable"
@@ -2754,10 +2760,9 @@
                                     <td *ngIf="!data.isMoci">
                                         <i class="fa fa-pencil-square-o fs-14" *ngIf="!data.isEdit && showBtn"
                                             mat-raised-button matTooltip="Edit Data"
-                                            (click)="data.isEdit = true; this.showBtn=false;"
-                                            aria-hidden="true"></i>
-                                        <i class="fa fa-save fs-20 background-purple text-white p-1"
-                                            *ngIf="data.isEdit" mat-raised-button matTooltip="Save Data"
+                                            (click)="data.isEdit = true; this.showBtn=false;" aria-hidden="true"></i>
+                                        <i class="fa fa-save fs-20 background-purple text-white p-1" *ngIf="data.isEdit"
+                                            mat-raised-button matTooltip="Save Data"
                                             (click)="enteredDetails( 'subContractor',data)" aria-hidden="true"></i>
                                     </td>
 
@@ -2867,7 +2872,7 @@
                         <table class="table table-striped mb-0 ">
                             <thead>
                                 <tr class="purple-bg text-white">
-                                    <!-- <th scope="col"></th> -->
+                                    <th scope="col"></th>
                                     <!--  (click)="sorting('equipment','no')" <i class="fa fa-sort"
                                             aria-hidden="true"></i> -->
                                     <th scope="col">SL No. </th>
@@ -2888,19 +2893,20 @@
                             </thead>
                             <tbody>
                                 <tr *ngFor="let data of equipmentData | filter : searchText; index as index">
-                                    <!-- 
-                                    (clickOutside)="enteredDetails( 'equipment',data)" -->
-                                    <!-- <td *ngIf="data.isMoci">
+                                    <td *ngIf="data.isMoci">
                                         <i class="fa fa-ban text-red fs-14" mat-raised-button
                                             matTooltip="Data fetched from interface - not editable"
                                             aria-hidden="true"></i>
-                                    </td> -->
-                                    <td *ngIf="data.isEdit">
-                                        <i class="fa fa-save fs-20 background-purple text-white p-1" mat-raised-button
-                                            matTooltip="Save Data" (click)="enteredDetails( 'equipment',data)"
-                                            aria-hidden="true"></i>
                                     </td>
-                                    <td *ngIf="!data.isEdit">{{index + 1}}</td>
+                                    <td *ngIf="!data.isMoci">
+                                        <i class="fa fa-pencil-square-o fs-14" *ngIf="!data.isEdit && showBtn"
+                                            mat-raised-button matTooltip="Edit Data"
+                                            (click)="data.isEdit = true; this.showBtn=false;" aria-hidden="true"></i>
+                                        <i class="fa fa-save fs-20 background-purple text-white p-1" *ngIf="data.isEdit"
+                                            mat-raised-button matTooltip="Save Data"
+                                            (click)="enteredDetails( 'equipment',data)" aria-hidden="true"></i>
+                                    </td>
+                                    <td>{{index + 1}}</td>
                                     <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data);">
                                         {{data.type}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"

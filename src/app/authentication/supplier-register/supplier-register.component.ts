@@ -15,7 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class SupplierRegisterComponent implements OnInit {
 
-  submitCivil;
+  submitCivil = false;
   supplierSelection = false;
   showsNextReg = false;
   viewSideBar = false;
@@ -90,7 +90,7 @@ export class SupplierRegisterComponent implements OnInit {
     this.form.patchValue({ registrationNo: this.form.value.registrationNo });
     // localStorage.setItem('comName', this.companyName);
     // this.form.patchValue({registrationNo : this.myControl.value});
-      let type = 'international';
+    let type = 'international';
     if (this.form.value.regType == 'localcom') {
       type = this.form.value.localRegType;
     }
@@ -112,11 +112,20 @@ export class SupplierRegisterComponent implements OnInit {
     // if (this.form.status === 'VALID') {
     this.userService.localRegistration(this.form.value.registrationNo.toString());
     this.spinner.openSpinner();
-    const body = {
-      civil_number: localStorage.getItem('civilReg'),
-      cr_number: localStorage.getItem('commercialReg'),
-      register_type: localStorage.getItem('regType')
-    };
+    let body: any;
+    if (localStorage.getItem('regType') === 'individual') {
+      body = {
+        civil_number: localStorage.getItem('civilReg'),
+        cr_number: '',
+        register_type: localStorage.getItem('regType')
+      };
+    } else { 
+      body = {
+        civil_number: localStorage.getItem('civilReg'),
+        cr_number: localStorage.getItem('commercialReg'),
+        register_type: localStorage.getItem('regType')
+      };
+    }
     this.userService.supplierRegistration(body);
     //  }
   }

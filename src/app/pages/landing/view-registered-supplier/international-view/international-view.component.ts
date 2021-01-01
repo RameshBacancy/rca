@@ -15,7 +15,7 @@ import { SupplierRegistrationService } from 'src/app/services/supplier-registrat
   styleUrls: ['./international-view.component.scss']
 })
 export class InternationalViewComponent implements OnInit {
- 
+
   @ViewChild('stepper') private stepper: MatStepper;
 
   @Input('searchText') searchText: any;
@@ -30,7 +30,7 @@ export class InternationalViewComponent implements OnInit {
 
 
   generalInfoStep$: Observable<GeneralInfoStepInd>;
-    
+
   selectedAddress: any;
   allAddresses: AddressInd[];
   personalData: any;
@@ -41,9 +41,9 @@ export class InternationalViewComponent implements OnInit {
   bankDetails: any;
   otherData: any[];
   internationalAddress: any[];
-  
+
   destroy$: Subject<boolean> = new Subject();
-  
+
   constructor(
     private supplierData: SupplierRegistrationService,
     private sortByPipe: SortByPipe,
@@ -70,57 +70,60 @@ export class InternationalViewComponent implements OnInit {
     this.generalInfoStep$ = this.internationalService.getGeneralInfoStep();
     this.generalInfoStep$.pipe(takeUntil(this.destroy$))
       .subscribe(res => {
-        this.selectedAddress = res.generalInfo.address[0];
-        this.allAddresses = res.generalInfo.address;
+        this.allAddresses = [...this.formData.generalInfoStep.generalInfo.address, ...res.generalInfo.address];
+        this.selectedAddress = this.allAddresses[0];
 
-        if (!this.allAddresses[0]) {
-          this.selectedAddress = this.formData.generalInfoStep.generalInfo.address[0];
-          this.allAddresses = this.formData.generalInfoStep.generalInfo.address;
-        }
+        // if (!this.allAddresses[0]) {
+        //   this.selectedAddress = this.formData.generalInfoStep.generalInfo.address[0];
+        //   this.allAddresses = this.formData.generalInfoStep.generalInfo.address;
+        // }
       });
     this.internationalService.getPersonalInfoStep().pipe(takeUntil(this.destroy$)).
       subscribe(res => {
-        this.personalData = res.personalDetails;
+        this.personalData = [...this.formData.personalDetailsStep.personalDetails, ...res.personalDetails];
 
-        if (!this.personalData[0]) {
-          this.personalData = this.formData.personalDetailsStep.personalDetails;
-        }
+        // if (!this.personalData[0]) {
+        //   this.personalData = this.formData.personalDetailsStep.personalDetails;
+        // }
         this.cdr.detectChanges();
       });
 
     this.internationalService.getCommunicationInfoStep().pipe(takeUntil(this.destroy$)).
       subscribe(res => {
-        this.communicationData = res;
+        // this.communicationData = res;
+        this.communicationData = this.formData.communicationDetailsStep;
 
       });
 
     this.internationalService.getEmployeeInfoStep().pipe(takeUntil(this.destroy$)).
       subscribe(res => {
-        this.staffData = res;
+        this.staffData = [...this.formData.employeeDetailsStep.employeeDetails, ...res];
 
-        if (!this.staffData[0]) {
-          this.staffData = this.formData.employeeDetailsStep.employeeDetails;
-        }
+        // if (!this.staffData[0]) {
+        //   this.staffData = this.formData.employeeDetailsStep.employeeDetails;
+        // }
         this.cdr.detectChanges();
       });
 
     this.internationalService.getCommercialInfoStep().pipe(takeUntil(this.destroy$)).
       subscribe(res => {
-        this.activityDetail = res.activityInfoTab;
-        this.activityData = this.activityDetail.activities;
-        this.bankDetails = res.bankInfoTab.bankDetails;
-        this.otherData = res.otherInfoTab.otherInfo;
+        // this.activityDetail = res.activityInfoTab || this.formData.commercialInfoStep.activityInfoTab;
+        this.activityDetail = this.formData.commercialInfoStep.activityInfoTab;
+        this.activityData = [...this.formData.commercialInfoStep.activityInfoTab.activities, ...res.activityInfoTab.activities];
+        // this.activityData = [...this.formData.commercialInfoStep.activityInfoTab.activities, ...this.activityDetail.activities];
+        this.bankDetails = [...this.formData.commercialInfoStep.bankInfoTab.bankDetails, ...res.bankInfoTab.bankDetails];
+        this.otherData = [...this.formData.commercialInfoStep.otherInfoTab.otherInfo, ...res.otherInfoTab.otherInfo];
 
-        if (!this.activityData[0]) {
-          this.activityDetail = this.formData.commercialInfoStep.activityInfoTab;
-          this.activityData = this.formData.commercialInfoStep.activityInfoTab.activities;
-        }
-        if (!this.bankDetails[0]) {
-          this.bankDetails = this.formData.commercialInfoStep.bankInfoTab.bankDetails;
-        }
-        if (!this.otherData[0]) {
-          this.otherData = this.formData.commercialInfoStep.otherInfoTab.otherInfo;
-        }
+        // if (!this.activityData[0]) {
+        //   this.activityDetail = this.formData.commercialInfoStep.activityInfoTab;
+        //   this.activityData = this.formData.commercialInfoStep.activityInfoTab.activities;
+        // }
+        // if (!this.bankDetails[0]) {
+        //   this.bankDetails = this.formData.commercialInfoStep.bankInfoTab.bankDetails;
+        // }
+        // if (!this.otherData[0]) {
+        //   this.otherData = this.formData.commercialInfoStep.otherInfoTab.otherInfo;
+        // }
         this.cdr.detectChanges();
       });
   }
@@ -157,8 +160,8 @@ export class InternationalViewComponent implements OnInit {
     }
   }
 
-   //functions to change tabs internally
-   changeTab() {
+  //functions to change tabs internally
+  changeTab() {
     this.selected.setValue(this.selected.value + 1);
   }
   previousTab() {

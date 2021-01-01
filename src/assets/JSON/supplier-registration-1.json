@@ -213,7 +213,7 @@
                             "path": ""
                         },
                         "isEdit": false,
-                        "isMoci": false,
+                        "isMoci": true,
                         "isUpdate": false
                     },
                     {
@@ -225,7 +225,7 @@
                             "path": ""
                         },
                         "isEdit": false,
-                        "isMoci": false,
+                        "isMoci": true,
                         "isUpdate": false
                     },
                     {
@@ -237,7 +237,7 @@
                             "path": ""
                         },
                         "isEdit": false,
-                        "isMoci": false,
+                        "isMoci": true,
                         "isUpdate": false
                     },
                     {
@@ -249,7 +249,7 @@
                             "path": ""
                         },
                         "isEdit": false,
-                        "isMoci": false,
+                        "isMoci": true,
                         "isUpdate": false
                     }
                 ],
@@ -456,7 +456,7 @@
                         "path": ""
                     },
                     "isEdit": false,
-                    "isMoci": false,
+                    "isMoci": true,
                     "isUpdate": false
                 },
                 {
@@ -473,7 +473,7 @@
                         "path": ""
                     },
                     "isEdit": false,
-                    "isMoci": false,
+                    "isMoci": true,
                     "isUpdate": false
                 },
                 {
@@ -490,7 +490,7 @@
                         "path": ""
                     },
                     "isEdit": false,
-                    "isMoci": false,
+                    "isMoci": true,
                     "isUpdate": false
                 }
             ],
@@ -507,7 +507,7 @@
                     "email": "subi@orion.com",
                     "regWithRca": true,
                     "isEdit": false,
-                    "isMoci": false,
+                    "isMoci": true,
                     "isUpdate": false
                 },
                 {
@@ -520,7 +520,7 @@
                     "email": "subi@orion.com",
                     "regWithRca": false,
                     "isEdit": false,
-                    "isMoci": false,
+                    "isMoci": true,
                     "isUpdate": false
                 }
             ],
@@ -536,7 +536,7 @@
                     "regNo": "S 2020",
                     "approxValue": "5000 OMR",
                     "isEdit": false,
-                    "isMoci": false,
+                    "isMoci": true,
                     "isUpdate": false
                 },
                 {
@@ -548,7 +548,7 @@
                     "regNo": "R 1235",
                     "approxValue": "7500 OMR",
                     "isEdit": false,
-                    "isMoci": false,
+                    "isMoci": true,
                     "isUpdate": false
                 },
                 {
@@ -560,7 +560,7 @@
                     "regNo": "-",
                     "approxValue": "-",
                     "isEdit": false,
-                    "isMoci": false,
+                    "isMoci": true,
                     "isUpdate": false
                 },
                 {
@@ -572,7 +572,7 @@
                     "regNo": "-",
                     "approxValue": "-",
                     "isEdit": false,
-                    "isMoci": false,
+                    "isMoci": true,
                     "isUpdate": false
                 }
             ],
@@ -662,8 +662,8 @@
                         "nameOfWork": "Organization Structure",
                         "attachment": "PDF",
                         "isEdit": false,
-                        "isMoci": false,
-                        "isUpdate":false
+                        "isMoci": true,
+                        "isUpdate": false
                     },
                     {
                         "otherID": 2,
@@ -672,8 +672,8 @@
                         "nameOfWork": "Tax Certificate",
                         "attachment": "PDF",
                         "isEdit": false,
-                        "isMoci": false,
-                        "isUpdate":false
+                        "isMoci": true,
+                        "isUpdate": false
                     },
                     {
                         "otherID": 3,
@@ -682,8 +682,8 @@
                         "nameOfWork": "Certificates",
                         "attachment": "PDF",
                         "isEdit": false,
-                        "isMoci": false,
-                        "isUpdate":false
+                        "isMoci": true,
+                        "isUpdate": false
                     },
                     {
                         "otherID": 4,
@@ -692,8 +692,8 @@
                         "nameOfWork": "-",
                         "attachment": "PDF",
                         "isEdit": false,
-                        "isMoci": false,
-                        "isUpdate":false
+                        "isMoci": true,
+                        "isUpdate": false
                     }
                 ],
                 "detailsRemark": "Details Not Applicable"
@@ -792,24 +792,28 @@
                         "otherID": 1,
                         "name": "test 1",
                         "value": "-",
+                        "isMoci": true,
                         "isEdit": false
                     },
                     {
                         "otherID": 2,
                         "name": "test 2",
                         "value": "-",
+                        "isMoci": true,
                         "isEdit": false
                     },
                     {
                         "otherID": 3,
                         "name": "test 3",
                         "value": "-",
+                        "isMoci": true,
                         "isEdit": false
                     },
                     {
                         "otherID": 4,
                         "name": "test 4",
                         "value": "-",
+                        "isMoci": true,
                         "isEdit": false
                     }
                 ],

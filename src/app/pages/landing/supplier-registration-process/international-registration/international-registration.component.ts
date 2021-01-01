@@ -238,10 +238,9 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
       subscribe(res => {
         // this.activityDetail = res.activityInfoTab || this.formData.commercialInfoStep.activityInfoTab;
         this.activityDetail = this.formData.commercialInfoStep.activityInfoTab;
-        this.activityData = [...this.formData.commercialInfoStep.activityInfoTab.activities, ...this.activityDetail.activities];
+        this.activityData = [...this.formData.commercialInfoStep.activityInfoTab.activities, ...res.activityInfoTab.activities];
         this.bankDetails = [...this.formData.commercialInfoStep.bankInfoTab.bankDetails, ...res.bankInfoTab.bankDetails];
         this.otherData = [...this.formData.commercialInfoStep.otherInfoTab.otherInfo, ...res.otherInfoTab.otherInfo];
-
         // if (!this.activityData[0]) {
         //   this.activityDetail = this.formData.commercialInfoStep.activityInfoTab;
         //   this.activityData = this.formData.commercialInfoStep.activityInfoTab.activities;
