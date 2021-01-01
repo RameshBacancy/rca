@@ -78,7 +78,7 @@
                         <!-- international radio -->
                         <div class="form-check mr-3 mb-3">
                             <input class="form-check-input" type="radio" id="international" value="international"
-                                formControlName="regType"  >
+                                formControlName="regType">
                             <label class="form-check-label  ml-2"
                                 for="international">{{'supplierRegPage.suppRegTypeOp2' | translate}}</label>
                         </div>
@@ -93,14 +93,14 @@
                         <!-- localcompany radio -->
                         <div class="form-check mr-3 mb-3">
                             <input class="form-check-input" type="radio" id="localcomp" value="local"
-                                formControlName="localRegType" checked >
+                                formControlName="localRegType" checked>
                             <label class="form-check-label  ml-2"
                                 for="localcomp">{{'supplierRegPage.localRegTypeOp1' | translate}}</label>
                         </div>
                         <!-- citizen radio -->
                         <div class="form-check mr-3 mb-3">
                             <input class="form-check-input" type="radio" id="citizen" value="individual"
-                                formControlName="localRegType">
+                                formControlName="localRegType" (change)="submitCivil = false; readonlycivil = true">
                             <label class="form-check-label  ml-2"
                                 for="citizen">{{'supplierRegPage.localRegTypeOp2' | translate}}</label>
                         </div>
@@ -111,9 +111,11 @@
                             </div> -->
                     </div>
                     <div class="col-md-12 px-4 d-block  d-lg-flex">
-                        <p class=" pt-2 mr-0 mr-lg-3  text-dark-grey font-weight-bold " *ngIf="this.form.value.localRegType == 'local'">
+                        <p class=" pt-2 mr-0 mr-lg-3  text-dark-grey font-weight-bold "
+                            *ngIf="this.form.value.localRegType == 'local'">
                             {{'supplierRegPage.civilNoLbl' | translate}} :</p>
-                        <p class=" pt-2 mr-0 mr-lg-3  text-dark-grey font-weight-bold " *ngIf="this.form.value.localRegType == 'individual'">
+                        <p class=" pt-2 mr-0 mr-lg-3  text-dark-grey font-weight-bold "
+                            *ngIf="this.form.value.localRegType == 'individual'">
                             {{ 'supplierRegPage.citizenNoLbl'| translate}} : </p>
                         <input type="number" class=" border p-2 fs-14 mr-0 mr-lg-3 rounded text-center w-170 "
                             value="11337788" formControlName="civilNo" [readOnly]=!readonlycivil>
@@ -158,7 +160,8 @@
                 </div>
             </form>
             <!-- cr number input dropdown -->
-            <div *ngIf="submitCivil && this.form.value.localRegType == 'local'">
+            <div
+                *ngIf="submitCivil && this.form.value.localRegType == 'local' && this.form.value.regType != 'international'">
                 <span
                     class=" pt-2 ml-2 mr-0 mr-lg-3  text-dark-grey font-weight-bold ">{{'supplierRegPage.compCRNo' | translate}}
                     : </span>
@@ -172,7 +175,8 @@
             </div>
             <!-- submit back button -->
             <div class="row">
-                <div class="col-md-12 mb-5 px-4 mt-5" *ngIf="submitCivil && this.form.value.localRegType == 'local'">
+                <div class="col-md-12 mb-5 px-4 mt-5"
+                    *ngIf="submitCivil && this.form.value.localRegType == 'local' &&  this.form.value.regType != 'international' ">
                     <!-- after enter cr number -->
                     <button type="button" class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2" [disabled]="isDisable"
                         (click)="submitNext()">{{'supplierRegPage.submitBtnLbl' | translate}}
@@ -184,14 +188,15 @@
                 <div class="col-md-12 mb-5 px-4 mt-5"
                     *ngIf="!submitCivil && this.form.value.regType != 'international'">
                     <!-- first time civil enter -->
-                    <button type="button" class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2" 
-                    *ngIf="this.form.value.localRegType == 'local'"
-                        (click)="submitCivil = true; readonlycivil = false">{{'supplierRegPage.submitBtnLbl' | translate}} 
+                    <button type="button" class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2"
+                        *ngIf="this.form.value.localRegType == 'local'"
+                        (click)="submitCivil = true; readonlycivil = false"
+                        [disabled]="!form.value.civilNo">{{'supplierRegPage.submitBtnLbl' | translate}}
                     </button>
                     <!-- citizen submit -->
-                    <button type="button" class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2" 
-                        *ngIf="this.form.value.localRegType == 'individual'"
-                        (click)="submitNext()">{{'supplierRegPage.submitBtnLbl' | translate}} 
+                    <button type="button" class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2"
+                        *ngIf="this.form.value.localRegType == 'individual'" (click)="submitNext()"
+                        [disabled]="!form.value.civilNo">{{'supplierRegPage.submitBtnLbl' | translate}}
                     </button>
                 </div>
                 <!-- internatioanl submit -->
@@ -251,5 +256,5 @@
             </div>
         </section>
     </ng-container>
-    
+
 </div>
