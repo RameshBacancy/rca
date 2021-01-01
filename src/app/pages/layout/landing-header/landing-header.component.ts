@@ -25,6 +25,7 @@ export class LandingHeaderComponent implements OnInit {
   showtabs: boolean = true;
   public languageArray = ['English', 'Arabic', 'Hindi'];
   selectedLanguage = 'English';
+  arStatus: string;
 
   constructor(
     private router: Router,
@@ -38,6 +39,8 @@ export class LandingHeaderComponent implements OnInit {
     if (localStorage.getItem('supplierLogin') === 'true') {
       this.showtabs = false;
     }
+
+    this.arStatus = localStorage.getItem('arStatus');
   }
 
 

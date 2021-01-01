@@ -69,7 +69,7 @@ export class OtpComponent implements OnInit, AfterViewInit {
         if (this.otp === '12345') {
           this.submitOtp.emit(true);
         } else {
-          this.alertService.pushError('Please enter valid opt.');
+          this.alertService.pushError('Please enter valid OTP.');
           this.setVal('');
         }
         this.loading = false;

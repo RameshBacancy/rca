@@ -48,7 +48,7 @@
         <div class="landing-pic"></div>
         <div *ngIf="headerMenu" class="landing-dropdown">
           <ul>
-            <li><a routerLink="/landing/view-supplier" routerLinkActive="active">My Profile</a></li>
+            <li *ngIf="arStatus === 'approved'" ><a routerLink="/landing/view-supplier" routerLinkActive="active">My Profile</a></li>
             <li *ngIf="showtabs" (click)="onChangePassword()"><a routerLinkActive="active">Change Password</a></li>
             <li (click)="onLogOut()"><a routerLinkActive="active">Log out</a></li>
           </ul>

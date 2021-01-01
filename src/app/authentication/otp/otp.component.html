@@ -6,7 +6,7 @@
             <div [hidden]="loading">
                 <div class="card">
                     <p class="a-o-i">Enter verification code</p>
-                    <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" *ngIf="showOtpComponent"
+                    <ng-otp-input #ngOtpInput (keyup.enter)="onVerify()" (onInputChange)="onOtpChange($event)" *ngIf="showOtpComponent"
                         [config]="config"></ng-otp-input>
                     <!-- {{ ngOtpInput. }} -->
                     <div class="row mt-5 mb-5">
