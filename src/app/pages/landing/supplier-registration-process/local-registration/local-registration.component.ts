@@ -202,6 +202,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     private searchPipe: FilterPipe,
     private alertService: AlertService,
     private spinner: SpinnerService,
+    private cdr: ChangeDetectorRef
   ) {
     this.localRegisterDraft = {
       data: {}
@@ -295,38 +296,47 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       pipe(
         takeUntil(this.destroy$)
       ).subscribe((res: GeneralInfoStep) => {
-        this.activityData = res.generalInfoTab.generalInfoDetails;
-        this.allAddresses = res.addressInfoTab.address;
-        this.selectedAddress = res.addressInfoTab.address[0];
-        if (!this.activityData[0]) {
-          this.activityData = this.formData.generalInfoStep.generalInfoTab.activities;
-        }
-        if (!this.allAddresses[0]) {
-          this.allAddresses = this.formData.generalInfoStep.addressInfoTab.address;
-          this.selectedAddress = this.formData.generalInfoStep.addressInfoTab.address[0];
-        }
+
+        // for dummy
+        this.activityData = [...this.formData.generalInfoStep.generalInfoTab.activities, ...res.generalInfoTab.generalInfoDetails];
+        this.allAddresses = [...this.formData.generalInfoStep.addressInfoTab.address, ...res.addressInfoTab.address];
+        this.selectedAddress = this.allAddresses[0];
+
+        // for database
+        // this.activityData.push(...res.generalInfoTab.generalInfoDetails);
+        // this.allAddresses.push(...res.addressInfoTab.address);
+        // this.selectedAddress = res.addressInfoTab.address[0];
+
+
+        // if (!this.activityData[0]) {
+        //   this.activityData = this.formData.generalInfoStep.generalInfoTab.activities;
+        // }
+        // if (!this.allAddresses[0]) {
+        //   this.allAddresses = this.formData.generalInfoStep.addressInfoTab.address;
+        //   this.selectedAddress = this.formData.generalInfoStep.addressInfoTab.address[0];
+        // }
       });
 
-    //personal detail step
+    // personal detail step
     this.personalData$ = this.supplierService.getPersonalInfoStep();
     this.personalData$.pipe(
       takeUntil(this.destroy$)
     ).subscribe((res: PersonalDetailsStep) => {
-      this.personalData = res.personalDetails;
-      if (!this.personalData[0]) {
-        this.personalData = this.formData.personalDetailsStep.personalDetails;
-      }
+      this.personalData = [...this.formData.personalDetailsStep.personalDetails];
+      // if (!this.personalData[0]) {
+      //   this.personalData = this.formData.personalDetailsStep.personalDetails;
+      // }
     });
 
-    //communication method step
+    // communication method step
     this.communicationData$ = this.supplierService.getCommunticationInfoStep();
     this.communicationData$.pipe(
       takeUntil(this.destroy$)
     ).subscribe((res: CommunicationMethodStep) => {
-      this.communicationData = res.communicationMethod;
-      if (!this.communicationData[0]) {
-        this.communicationData = this.formData.communicationMethodStep.communicationMethod;
-      }
+      this.communicationData = [...this.formData.communicationMethodStep.communicationMethod, ...res.communicationMethod];
+      // this.communicationData = ;
+      // if (!this.communicationData[0]) {
+      // }
     });
 
     // bank details step
@@ -334,39 +344,39 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     this.bankDetailStep$.pipe(
       takeUntil(this.destroy$)
     ).subscribe((res: BankDetailStep) => {
-      this.activityInfoData = res.activityInfoTab.activityInfo;
-      this.BankDetails = res.bankDetailsTab.BankDetails;
+      this.activityInfoData = [...this.formData.bankDetailStep.activityInfoTab.activityInfo, ...res.activityInfoTab.activityInfo];
+      this.BankDetails = [...this.formData.bankDetailStep.bankDetailsTab.BankDetails, ...res.bankDetailsTab.BankDetails];
       this.compFinanceInfoData = res.companyInfoTab.compFinanceInfo;
-      this.compBranchInfoData = res.companyInfoTab.compBranchInfo;
-      this.otherData = res.otherInfoTab.otherDetails;
-      if (!this.activityInfoData[0]) {
-        this.activityInfoData = this.formData.bankDetailStep.activityInfoTab.activityInfo;
-        // this.compFinanceInfoData = this.formData.bankDetailStep.companyInfoTab.compFinanceInfo;
-      }
-      if (!this.compBranchInfoData[0]) {
-        this.compBranchInfoData = this.formData.bankDetailStep.companyInfoTab.compBranchInfo;
-      }
-      if (!this.BankDetails[0]) {
-        this.BankDetails = this.formData.bankDetailStep.bankDetailsTab.BankDetails;
-      }
-      if (!this.otherData[0]) {
-        this.otherData = this.formData.bankDetailStep.otherInfoTab.otherDetails;
-      }
+      this.compBranchInfoData = [...this.formData.bankDetailStep.companyInfoTab.compBranchInfo, ...res.companyInfoTab.compBranchInfo];
+      this.otherData = [...this.formData.bankDetailStep.otherInfoTab.otherDetails, ...res.otherInfoTab.otherDetails];
+      // if (!this.activityInfoData[0]) {
+      //   this.activityInfoData = this.formData.bankDetailStep.activityInfoTab.activityInfo;
+      //   // this.compFinanceInfoData = this.formData.bankDetailStep.companyInfoTab.compFinanceInfo;
+      // }
+      // if (!this.compBranchInfoData[0]) {
+      //   this.compBranchInfoData = this.formData.bankDetailStep.companyInfoTab.compBranchInfo;
+      // }
+      // if (!this.BankDetails[0]) {
+      //   this.BankDetails = this.formData.bankDetailStep.bankDetailsTab.BankDetails;
+      // }
+      // if (!this.otherData[0]) {
+      //   this.otherData = this.formData.bankDetailStep.otherInfoTab.otherDetails;
+      // }
     });
 
-    //employee detail step
+    // employee detail step
     this.employeeData$ = this.supplierService.getEmployeeInfoStep();
     this.employeeData$.pipe(
       takeUntil(this.destroy$)
     ).subscribe((res: EmployeeDetailsStep) => {
-      this.employeeData = res.employeDetails;
-      if (!this.employeeData[0]) {
-        this.employeeData = this.formData.employeeDetailsStep.employeDetails;
-      }
+      this.employeeData = [...this.formData.employeeDetailsStep.employeDetails, ...res.employeDetails];
+      // if (!this.employeeData[0]) {
+      //   this.employeeData = this.formData.employeeDetailsStep.employeDetails;
+      // }
       this.getEmployeeCategories();
     });
 
-    //ministries1 data step
+    // ministries1 data step
     this.ministriesData1$ = this.supplierService.getMinistriesData1Step();
     this.ministriesData1$.pipe(
       takeUntil(this.destroy$)
@@ -377,7 +387,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       }
     });
 
-    //ministries2 data step
+    // ministries2 data step
     this.ministriesData2$ = this.supplierService.getMinistriesData2Step();
     this.ministriesData2$.pipe(
       takeUntil(this.destroy$)
@@ -388,7 +398,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       }
     });
 
-    //ministries3 data step
+    // ministries3 data step
     this.ministriesData3$ = this.supplierService.getMinistriesData3Step();
     this.ministriesData3$.pipe(
       takeUntil(this.destroy$)
@@ -399,37 +409,39 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       }
     });
 
-    //project detail step
+    // project detail step
     this.projectData$ = this.supplierService.getProjectInfoStep();
     this.projectData$.pipe(
       takeUntil(this.destroy$)
     ).subscribe((res: ProjectDetailsStep) => {
-      this.projectData = res.projectDetails;
-      if (!this.projectData[0]) {
-        this.projectData = this.formData.projectDetailsStep.projectDetails;
-      }
+      this.projectData = [...this.formData.projectDetailsStep.projectDetails, ...res.projectDetails];
+      // if (!this.projectData[0]) {
+      //   this.projectData = this.formData.projectDetailsStep.projectDetails;
+      // }
     });
 
-    //subcontrator detail step
+    // subcontrator detail step
     this.subContractorData$ = this.supplierService.getSubContratorInfoStep();
     this.subContractorData$.pipe(
       takeUntil(this.destroy$)
     ).subscribe((res: SubContractorDetailsStep) => {
-      this.subContractorData = res.subContractorDetails;
-      if (!this.subContractorData[0]) {
-        this.subContractorData = this.formData.subContractorDetailsStep.subContractorDetails;
-      }
+      this.subContractorData = [...this.formData.subContractorDetailsStep.subContractorDetails, ...res.subContractorDetails];
+      this.cdr.detectChanges();
+      // if (!this.subContractorData[0]) {
+      //   this.subContractorData = this.formData.subContractorDetailsStep.subContractorDetails;
+      // }
     });
 
-    //equipment detail step
+    // equipment detail step
     this.equipmentData$ = this.supplierService.getEquipmentInfoStep();
     this.equipmentData$.pipe(
       takeUntil(this.destroy$)
     ).subscribe((res: EquipmentDetailsStep) => {
-      this.equipmentData = res.equipmentDetails;
-      if (!this.equipmentData[0]) {
-        this.equipmentData = this.formData.equipmentDetailsStep.equipmentDetails;
-      }
+      this.equipmentData = [...this.formData.equipmentDetailsStep.equipmentDetails, ...res.equipmentDetails];
+      this.cdr.detectChanges();
+      // if (!this.equipmentData[0]) {
+      //   this.equipmentData = this.formData.equipmentDetailsStep.equipmentDetails;
+      // }
     });
   }
 

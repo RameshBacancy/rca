@@ -20,7 +20,7 @@ export class SupplierInternationalRegisterService {
       .pipe(map(res => res.data.generalInfoStep), shareReplay());
   }
 
-  getPersonalInfoStep(): Observable<PersonalDetailsStepInter> {
+  getPersonalInfoStep(): Observable<any> {
     this.getCommunicationInfoStep();
     return this.reqHttp.httpGet('get-personal-data')
       .pipe(map(res => res.data.personalDetailsStep), shareReplay());
