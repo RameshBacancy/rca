@@ -23,7 +23,7 @@ export class TransactionComponent implements OnInit, AfterViewInit {
     }
   }
   ngAfterViewInit() {
-    if (localStorage.getItem('paymentStep')) {
+    if (localStorage.getItem('completePayment') === 'true') {
       this.move(2);
     }
   }

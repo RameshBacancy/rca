@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-payment',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 export class PaymentComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -19,7 +21,14 @@ export class PaymentComponent implements OnInit {
   }
 
   proceed() {
-    localStorage.setItem('paymentStep','Done');
-    this.router.navigate(['/landing/supplier-registration/transaction']);
+    this.userService.completeRegistrationPayment().subscribe(res => {
+      localStorage.setItem('completePayment', 'true');
+      this.router.navigate(['/landing/supplier-registration/transaction']);
+     }, (error) => {console.log(error)});
+  }
+
+  cancel() { 
+    localStorage.setItem('paymentStep', 'false');
+    this.router.navigateByUrl('/landing/supplier-registration/dashboard')
   }
 }

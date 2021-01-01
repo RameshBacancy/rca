@@ -66,7 +66,7 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
 
   ngAfterViewChecked(): void {
     if (localStorage.getItem('ModelShowed') != 'true') {
-      if (localStorage.getItem('paymentStep') != 'true') {
+      if (localStorage.getItem('completePayment') != 'true') {
         if (localStorage.getItem('RegStatus') == 'finish') {
           this.fileInput.nativeElement.click();
         }
@@ -100,21 +100,39 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
         });
         this.gotopath = '/landing/supplier-registration/dashboard';
       } else if (localStorage.getItem('arStatus') === 'approved') {
-        this.alertMessage.getMessages().subscribe(d => {
-          d.data.data.filter(a => {
-            if (a.status == 'approved') {
-              this.alertData = a;
+        if (localStorage.getItem('completePayment') != 'true') {
+          this.alertMessage.getMessages().subscribe(d => {
+            d.data.data.filter(a => {
+              if (a.status == 'approved') {
+                this.alertData = a;
+              }
+            });
+            if (this.alertData) {
+              this.status = this.alertData.title;
+              this.approveRejectStatus = this.safeHtml.transform(this.alertData.description, true);
+            } else {
+              this.status = 'Approved';
+              this.approveRejectStatus = 'Your Registration request is Approved by the Admin. <br/> For further procedure complete your payment. <br/>';
             }
           });
-          if (this.alertData) {
-            this.status = this.alertData.title;
-            this.approveRejectStatus = this.safeHtml.transform(this.alertData.description, true);
-          } else {
-            this.status = 'Approved';
-            this.approveRejectStatus = 'Your Registration request is Approved by the Admin. <br/> For further procedure complete your payment. <br/>';
-          }
-        });
-        this.gotopath = '/landing/supplier-registration/transaction';
+          this.gotopath = '/landing/supplier-registration/transaction';
+        } else {
+          // this.alertMessage.getMessages().subscribe(d => {
+          //   d.data.data.filter(a => {
+          //     if (a.status == 'approved') {
+          //       this.alertData = a;
+          //     }
+          // //   });
+          //   if (this.alertData) {
+          //     this.status = this.alertData.title;
+          //     this.approveRejectStatus = this.safeHtml.transform(this.alertData.description, true);
+          //   } else {
+              this.status = 'Approved';
+              this.approveRejectStatus = 'Your Registration request is Approved by the Admin. <br/> Your payment is already completed. <br/>';
+            // }
+          // });
+          this.gotopath = '/landing/supplier-registration/dashboard';
+        }
       } else if (localStorage.getItem('arStatus') === 'reject') {
         this.alertMessage.getMessages().subscribe(d => {
           d.data.data.filter(a => {

@@ -78,6 +78,7 @@ export class UserService {
             localStorage.setItem('setDraftTime', d.data.setDraftTime);
             localStorage.setItem('stepper', d.data.stepper);
             localStorage.setItem('supplierId', d.data.id);
+            localStorage.setItem('completePayment', d.data.payment_status)
             this.setToken(d.data.authToken);
             this.spinner.closeSpinner();
             this.router.navigate(['/landing/supplier-registration/dashboard']);
@@ -178,5 +179,10 @@ export class UserService {
 
     getCountryList(): Observable<any> {
         return this.http.get('/assets/JSON/iso-countries.json').pipe(map((res: any) => res.countries));
+    }
+
+
+    completeRegistrationPayment(): Observable<any> {
+        return this.reqHttp.httpPost('payment-status',{"payment_status": true})
     }
 }
