@@ -12,6 +12,11 @@ input[type=number] {
     background: #dddddd; 
   }
 
+  input.disabled-radio {
+    pointer-events:none;
+    opacity:0.9;
+  }
+
 .btn-purple{
   background-color: #873e8d !important;
   color: white !important;

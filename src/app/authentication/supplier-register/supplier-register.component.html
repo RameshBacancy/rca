@@ -71,16 +71,16 @@
                         <div class="form-check mr-3 mb-3">
                             <input class="form-check-input" type="radio" id="local" value="localcom"
                                 formControlName="regType" *ngIf="!submitCivil">
-                            <input class="form-check-input" type="radio" id="local" value="localcom"
-                                formControlName="regType" *ngIf="submitCivil" disabled>
+                            <input class="form-check-input disabled-radio" type="radio" id="local" value="localcom"
+                                formControlName="regType" *ngIf="submitCivil" >
                             <label class="form-check-label  ml-2"
                                 for="local">{{'supplierRegPage.suppRegTypeOp1' | translate}} </label>
                         </div>
                         <div class="form-check mr-3 mb-3">
                             <input class="form-check-input" type="radio" id="international" value="international"
                                 formControlName="regType" *ngIf="!submitCivil">
-                            <input class="form-check-input" type="radio" id="international" value="international"
-                                formControlName="regType" *ngIf="submitCivil" disabled>
+                            <input class="form-check-input disabled-radio" type="radio" id="international" value="international"
+                                formControlName="regType" *ngIf="submitCivil" >
                             <label class="form-check-label  ml-2"
                                 for="international">{{'supplierRegPage.suppRegTypeOp2' | translate}}</label>
                         </div>
@@ -95,16 +95,16 @@
                         <div class="form-check mr-3 mb-3">
                             <input class="form-check-input" type="radio" id="localcomp" value="local"
                                 formControlName="localRegType" checked *ngIf="!submitCivil">
-                            <input class="form-check-input" type="radio" id="localcomp" value="local"
-                                formControlName="localRegType" checked *ngIf="submitCivil" disabled>
+                            <input class="form-check-input disabled-radio" type="radio" id="localcomp" value="local"
+                                formControlName="localRegType" checked *ngIf="submitCivil" >
                             <label class="form-check-label  ml-2"
                                 for="localcomp">{{'supplierRegPage.localRegTypeOp1' | translate}}</label>
                         </div>
                         <div class="form-check mr-3 mb-3">
                             <input class="form-check-input" type="radio" id="citizen" value="individual"
                                 formControlName="localRegType" *ngIf="!submitCivil">
-                            <input class="form-check-input" type="radio" id="citizen" value="individual"
-                                formControlName="localRegType" *ngIf="submitCivil" disabled>
+                            <input class="form-check-input disabled-radio" type="radio" id="citizen" value="individual"
+                                formControlName="localRegType" *ngIf="submitCivil" >
                             <label class="form-check-label  ml-2"
                                 for="citizen">{{'supplierRegPage.localRegTypeOp2' | translate}}</label>
                         </div>
