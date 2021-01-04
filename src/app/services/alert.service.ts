@@ -28,40 +28,40 @@ export class AlertService {
   /**
    * set the Success Message
    */
-  public pushSuccess(message: string) {
+  public pushSuccess(message: string, time?: number) {
     this.stopTimer();
     this.alertMessageSubj.next(message);
     this.alertTypeSubj.next('success');
-    this.startTimer();
+    this.startTimer(time);
   }
 
   /**
    * set the Warning Message
    */
-  public pushWarning(message: string) {
+  public pushWarning(message: string, time?: number) {
     this.stopTimer();
     this.alertMessageSubj.next(message);
     this.alertTypeSubj.next('warning');
-    this.startTimer();
+    this.startTimer(time);
   }
 
   /**
    * set the Error Message
    */
-  public pushError(message: string) {
+  public pushError(message: string, time?: number) {
     this.stopTimer();
     this.alertMessageSubj.next(message);
     this.alertTypeSubj.next('danger');
-    this.startTimer();
+    this.startTimer(time);
   }
 
   /**
    * start the timer after alert will display
    */
-  private startTimer() {
-    this.timeoutOption = window.setTimeout(() => {
-      this.stopTimer();
-    }, 6000);
+  private startTimer(time = 6000) {
+      this.timeoutOption = window.setTimeout(() => {
+        this.stopTimer();
+      }, time);
   }
 
   /**

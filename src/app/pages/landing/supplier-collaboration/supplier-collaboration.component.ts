@@ -2,6 +2,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { Component, OnInit, TemplateRef, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-supplier-collaboration',
@@ -36,7 +37,8 @@ export class SupplierCollaborationComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
-    private router: Router
+    private router: Router,
+    private alertMessage: AlertService
   ) { }
 
   ngOnInit(): void {
@@ -63,12 +65,12 @@ export class SupplierCollaborationComponent implements OnInit {
       currentGrade: ['a'],
       newGradeRequest: [''],
       newActivityRequest: [''],
-      requestDate: ['-'],
+      requestDate: [''],
       spEmployeeMailId: ['-']
     });
 
     this.renewalUpgradeRequestFrom = this.formBuilder.group({
-      renewalRequest: ['-'],
+      renewalRequest: [''],
       currentActivity: ['Activity 1'],
       currentGrade: ['a'],
       email: ['r.bala@gmail.com']
@@ -91,12 +93,25 @@ export class SupplierCollaborationComponent implements OnInit {
     this.isProfileUpdate = false;
   }
   public activityUpdateSubmit(): void {
-    this.open(this.requestModal);
-    this.isActivityUpdate = false;
+    if (this.activityUpgradeRequestForm.value.newGradeRequest) {
+      if (this.activityUpgradeRequestForm.value.newActivityRequest) {
+        this.activityUpgradeRequestForm.get('requestDate').setValue(new Date().toDateString());
+        this.open();
+        this.isActivityUpdate = false;
+      } else {
+        this.alertMessage.pushError('Enter valid Activity.', 2000);
+      }
+    } else {
+      this.alertMessage.pushError('Enter valid Grade.', 2000);
+    }
   }
   public renewalUpdateSubmit(): void {
-    this.open(this.requestModal);
-    this.isRenewalUpdate = false;
+    if (this.renewalUpgradeRequestFrom.value.renewalRequest) {
+      this.open();
+      this.isRenewalUpdate = false;
+    } else {
+      this.alertMessage.pushError('Enter valid Renewal Request.', 2000);
+    }
   }
 
   changeTab() {
@@ -125,31 +140,11 @@ export class SupplierCollaborationComponent implements OnInit {
     }
   }
 
-
   // for modal pop up
-  open(content) {
-
+  open() {
     this.modalService.open(this.requestModal, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {
       this.router.navigateByUrl('/landing/supplier-registration/dashboard');
     });
-    // this.modalService.open(, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-
-    //   this.closeResult = `Closed with: ${result}`;
-
-    // }, (reason) => {
-
-    //   this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-
-    // });
-  }
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
   }
 
 }
