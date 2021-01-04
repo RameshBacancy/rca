@@ -8,10 +8,11 @@ import { CommonModule } from '@angular/common';
 import { SupplierCollaborationRoutingModule } from './supplier-collaboration-routing.module';
 import { SupplierCollaborationComponent } from './supplier-collaboration.component';
 import { MatSelectModule } from '@angular/material/select';
+import { UpgradePaymentComponent } from './upgrade-payment/upgrade-payment.component';
 
 
 @NgModule({
-  declarations: [SupplierCollaborationComponent],
+  declarations: [SupplierCollaborationComponent, UpgradePaymentComponent],
   imports: [
     CommonModule,
     LayoutModule,

@@ -1,6 +1,48 @@
 {
-    "supplierGradeDetails": {},
-    "profileUpdate": {},
-    "activityUpgradeRequest": {},
-    "renewalUpgradeRequest": {}
+    "data": {
+        "supplierGradeDetails": {
+            "supplierName": "R. bala",
+            "segment": "-",
+            "family": "-",
+            "activity": "-",
+            "subActivity": "-",
+            "validForm": "-",
+            "validTo": "",
+            "grade": "",
+            "status": "-",
+            "valueOfWork": "",
+            "registrationFee": "",
+            "workingArea": "",
+            "dateOrUpdate": ""
+        },
+        "profileUpdate": {
+            "bankAccount1": "ac123456654",
+            "bankAccount2": "ac456987413",
+            "project": "Cms",
+            "address1": "lorem 1",
+            "address2": "lorem 2",
+            "address3": "lorem 3",
+            "email": "bala.r@gmail.com",
+            "phone": "9874563210",
+            "mobile": "9632587410",
+            "fax": "",
+            "keyContactPerson": "R.B."
+        },
+        "activityUpgradeRequest": {
+            "currentActivity": "Activity 1",
+            "currentGrade": "B",
+            "newGradeRequest": "",
+            "newActivityRequest": "",
+            "spEmployeeMailId": "",
+            "requestDate": "",
+            "status": ""
+        },
+        "renewalUpgradeRequest": {
+            "renewalRequest": "",
+            "currentActivity": "",
+            "currentGrade": "",
+            "emailId": "",
+            "status": ""
+        }
+    }
 }

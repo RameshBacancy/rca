@@ -1,3 +1,4 @@
+import { CollaborationService } from './../../../services/collaboration.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
 import { Component, OnInit, TemplateRef, ViewChild, ElementRef } from '@angular/core';
@@ -30,18 +31,23 @@ export class SupplierCollaborationComponent implements OnInit {
     { value: '2', viewValue: 'Activity 2' },
     { value: '3', viewValue: 'Activity 3' }
   ];
+  activityUpgradeStatus: string;
+  renewalUpgradeStatus: string;
+
 
   @ViewChild('requestModal') requestModal: ElementRef;
-  private modalRef: TemplateRef<any>;
 
   constructor(
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
     private router: Router,
-    private alertMessage: AlertService
+    private alertMessage: AlertService,
+    private collaborationService: CollaborationService
   ) { }
 
   ngOnInit(): void {
+    this.activityUpgradeStatus = localStorage.getItem('activityStatus') || '';
+    this.renewalUpgradeStatus = localStorage.getItem('renewalStatus') || '';
     this.loadForm();
   }
 
@@ -60,11 +66,13 @@ export class SupplierCollaborationComponent implements OnInit {
       keyContactPerson: ['R.B.']
     });
 
+
+
     this.activityUpgradeRequestForm = this.formBuilder.group({
-      currentActivity: ['test 1'],
-      currentGrade: ['a'],
-      newGradeRequest: [''],
-      newActivityRequest: [''],
+      currentActivity: ['Activity 1'],
+      currentGrade: ['B'],
+      newGradeRequest: ['A'],
+      newActivityRequest: ['Activity 2'],
       requestDate: [''],
       spEmployeeMailId: ['-']
     });
@@ -98,6 +106,7 @@ export class SupplierCollaborationComponent implements OnInit {
         this.activityUpgradeRequestForm.get('requestDate').setValue(new Date().toDateString());
         this.open();
         this.isActivityUpdate = false;
+        localStorage.setItem('activityStatus', 'pending');
       } else {
         this.alertMessage.pushError('Enter valid Activity.', 2000);
       }
@@ -109,6 +118,8 @@ export class SupplierCollaborationComponent implements OnInit {
     if (this.renewalUpgradeRequestFrom.value.renewalRequest) {
       this.open();
       this.isRenewalUpdate = false;
+      localStorage.setItem('renewalStatus', 'pending');
+
     } else {
       this.alertMessage.pushError('Enter valid Renewal Request.', 2000);
     }
@@ -145,6 +156,10 @@ export class SupplierCollaborationComponent implements OnInit {
     this.modalService.open(this.requestModal, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {
       this.router.navigateByUrl('/landing/supplier-registration/dashboard');
     });
+  }
+
+  callPayment(type: string = 'activity') {
+    this.router.navigateByUrl('/landing/supplier-collaboration/payment/' + type);
   }
 
 }

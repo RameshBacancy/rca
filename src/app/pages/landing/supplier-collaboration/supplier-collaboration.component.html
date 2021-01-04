@@ -24,6 +24,7 @@
 <section class="container-fluid  mt-3">
     <div class="bg-white px-4">
         <mat-horizontal-stepper [@.disabled]="true" #stepper>
+            <!-- Step start: 1 Supplier Grade Details -->
             <mat-step>
                 <ng-template matStepLabel>Supplier Grade Details </ng-template>
 
@@ -114,7 +115,9 @@
                     </div>
                 </div>
             </mat-step>
+            <!-- Step end: 1 Supplier Grade Details -->
 
+            <!-- Step start: 2 Profile Update -->
             <mat-step>
                 <ng-template matStepLabel>Profile Update</ng-template>
                 <section class="bg-white">
@@ -219,147 +222,444 @@
                     </div>
                 </section>
             </mat-step>
+            <!-- Step end: 2 Profile Update -->
 
+            <!-- Step start: 3 Activity Upgrade Request -->
             <mat-step>
                 <ng-template matStepLabel>Activity Upgrade Request</ng-template>
-                <section class="bg-white">
-                    <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="!isActivityUpdate">
-                        <button type="button" (click)="updateClick('activity')" class="btn btn-primary">Update</button>
-                    </div>
+                <ng-container *ngIf="activityUpgradeStatus == 'approved'; else elseTemplate">
+                    <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+                        <!-- Activity Upgrade Request -->
+                        <mat-tab label="Activity Upgrade Request">
+                            <div class="row mt-4 ml-2">
+                                <div class="col-md-4  mb-2">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Activity</h5>
+                                    <p class="fs-14">
+                                        {{ activityFormControl.currentActivity.value }}</p>
+                                </div>
+                                <div class="col-md-4  mb-2">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Grade</h5>
+                                    <p class="fs-14 ">
+                                        {{ activityFormControl.currentGrade.value }}</p>
+                                </div>
+                            </div>
+                            <div class="row mt-4 ml-2">
+                                <div class="col-md-4  mb-2">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">New Grade Request</h5>
+                                    <p class="fs-14">
+                                        {{ activityFormControl.newGradeRequest.value }}</p>
+                                </div>
+                                <div class="col-md-4  mb-2">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">New Activity Request</h5>
+                                    <p class="fs-14">
+                                        {{ activityFormControl.newActivityRequest.value }}</p>
+                                </div>
+                            </div>
+                            <div class="row mt-4 ml-2">
+                                <div class="col-md-4  mb-2">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Request Date</h5>
+                                    <p class="fs-14 ">
+                                        {{ activityFormControl.requestDate.value }}</p>
+                                    <!-- <input type="test" *ngIf="isActivityUpdate" formControlName="requestDate"> -->
+                                </div>
+                                <div class="col-md-4  mb-2">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Sp. Employee Mail Id</h5>
+                                    <p class="fs-14">
+                                        {{ activityFormControl.spEmployeeMailId.value }}</p>
+                                </div>
+                            </div>
+                            <div class="row mt-4 ml-2">
+                                <div class="col-md-4  mb-2">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Status</h5>
+                                    <p class="fs-14 ">
+                                        Approved</p>
+                                </div>
+                            </div>
 
-                    <form [formGroup]="activityUpgradeRequestForm" (ngSubmit)="activityUpdateSubmit()">
-                        <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="isActivityUpdate">
-                            <button type="submit" class="btn btn-primary">Send</button>
+
+                            <div class="row mt-5">
+                                <div class="col-md-12 mb-5 px-4">
+                                    <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                                    <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                        (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
+
+                                    <a routerLink="/landing/supplier-registration/dashboard">
+                                        <button type="button"
+                                            class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </mat-tab>
+                        <mat-tab label="Payment">
+                            <section class=" bg-white">
+                                <div class="container-fluid ">
+                                    <div class="row pt-4">
+                                        <div class="col-md-4 px-3">
+                                            <div class="row pt-3">
+                                                <div class="col-md-4 px-3">
+                                                    <span class=" fs-16 font-weight-bold text-black dark-text-1 ">Reg.
+                                                        Payment
+                                                        Fee</span>
+                                                </div>
+                                                <div class="col-md-4 px-3">
+                                                    <span class=" fs-16 font-weight-bold text-black dark-text-1 ">900
+                                                        OMR</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-4">
+                                        <div class="col-md-4 px-3">
+                                            <div class="row pt-3">
+                                                <div class="col-md-4 px-3">
+                                                    <span
+                                                        class=" fs-16 font-weight-bold text-black dark-text-1 ">Renewal
+                                                        Fees</span>
+                                                </div>
+                                                <div class="col-md-4 px-3">
+                                                    <span class=" fs-16 font-weight-bold text-black dark-text-1 ">900
+                                                        OMR</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2 mt-5 md-5">
+                                        <div class="col-md-12 d-block d-md-flex">
+                                            <div class="mr-5 mb-3">
+                                                <p class=" text-dark-grey font-weight-bold ">Payment Mode</p>
+                                            </div>
+                                            <div class="form-check mr-3 ml-4 mb-3">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                    id="flexRadioDefault1" [checked]="true">
+                                                <label class="form-check-label text-dark-grey font-weight-bold ml-2"
+                                                    for="flexRadioDefault1">Debit </label>
+                                            </div>
+                                            <div class="form-check mr-3 mb-3">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                                    id="flexRadioDefault2">
+                                                <label class="form-check-label text-dark-grey font-weight-bold ml-2"
+                                                    for="flexRadioDefault2">Credit </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2 mt-5 md-5">
+                                        <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 col-xl-4  px-4">
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="row mt-5">
+                                <div class="col-md-12 mb-5 px-4">
+                                    <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                                    <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                        (click)="callPayment('activity')">Payment <i
+                                            class="fa fa-caret-right"></i></button>
+
+                                    <a routerLink="/landing/supplier-registration/dashboard">
+                                        <button type="button"
+                                            class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </mat-tab>
+                    </mat-tab-group>
+                </ng-container>
+                <ng-template #elseTemplate>
+                    <section class="bg-white">
+                        <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="!isActivityUpdate && activityUpgradeStatus !== 'pending' ">
+                            <button type="button" (click)="updateClick('activity')"
+                                class="btn btn-primary">Update</button>
                         </div>
-                        <div class="row mt-4 ml-2">
-                            <div class="col-md-4  mb-2">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Activity</h5>
-                                <p class="fs-14">
-                                    {{ activityFormControl.currentActivity.value }}</p>
+
+                        <form [formGroup]="activityUpgradeRequestForm" (ngSubmit)="activityUpdateSubmit()">
+                            <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="isActivityUpdate && activityUpgradeStatus !== 'pending'">
+                                <button type="submit" class="btn btn-primary">Send</button>
                             </div>
-                            <div class="col-md-4  mb-2">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Grade</h5>
-                                <p class="fs-14 ">
-                                    {{ activityFormControl.currentGrade.value }}</p>
+                            <div class="row mt-4 ml-2">
+                                <div class="col-md-4  mb-2">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Activity</h5>
+                                    <p class="fs-14">
+                                        {{ activityFormControl.currentActivity.value }}</p>
+                                </div>
+                                <div class="col-md-4  mb-2">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Grade</h5>
+                                    <p class="fs-14 ">
+                                        {{ activityFormControl.currentGrade.value }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row mt-4 ml-2">
-                            <div class="col-md-4  mb-2">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">New Grade Request</h5>
-                                <p class="fs-14" *ngIf="!isActivityUpdate">
-                                    {{ activityFormControl.newGradeRequest.value }}</p>
-                                <mat-form-field appearance="fill" *ngIf="isActivityUpdate">
-                                    <mat-select formControlName="newGradeRequest" formControlName="newGradeRequest">
-                                        <mat-option *ngFor="let grade of gradeSelectOption" [value]="grade.value">
-                                            {{grade.viewValue}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-4  mb-2">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">New Activity Request</h5>
-                                <p class="fs-14" *ngIf="!isActivityUpdate">
-                                    {{ activityFormControl.newActivityRequest.value }}</p>
-                                <mat-form-field appearance="fill" *ngIf="isActivityUpdate">
-                                    <mat-select formControlName="newActivityRequest">
-                                        <mat-option *ngFor="let activity of activitySelectOption"
-                                            [value]="activity.value">
-                                            {{activity.viewValue}}
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
+                            <div class="row mt-4 ml-2">
+                                <div class="col-md-4  mb-2">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">New Grade Request</h5>
+                                    <p class="fs-14" *ngIf="!isActivityUpdate">
+                                        {{ activityFormControl.newGradeRequest.value }}</p>
+                                    <mat-form-field appearance="fill" *ngIf="isActivityUpdate">
+                                        <mat-select formControlName="newGradeRequest" formControlName="newGradeRequest">
+                                            <mat-option *ngFor="let grade of gradeSelectOption" [value]="grade.value">
+                                                {{grade.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4  mb-2">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">New Activity Request</h5>
+                                    <p class="fs-14" *ngIf="!isActivityUpdate">
+                                        {{ activityFormControl.newActivityRequest.value }}</p>
+                                    <mat-form-field appearance="fill" *ngIf="isActivityUpdate">
+                                        <mat-select formControlName="newActivityRequest">
+                                            <mat-option *ngFor="let activity of activitySelectOption"
+                                                [value]="activity.value">
+                                                {{activity.viewValue}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
 
 
-                        </div>
-                        <div class="row mt-4 ml-2">
-                            <div class="col-md-4  mb-2">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Request Date</h5>
-                                <p class="fs-14 ">
-                                    {{ activityFormControl.requestDate.value }}</p>
-                                <!-- <input type="test" *ngIf="isActivityUpdate" formControlName="requestDate"> -->
                             </div>
-                            <div class="col-md-4  mb-2">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Sp. Employee Mail Id</h5>
-                                <p class="fs-14" *ngIf="!isActivityUpdate">
-                                    {{ activityFormControl.spEmployeeMailId.value }}</p>
-                                <input type="text" *ngIf="isActivityUpdate" formControlName="spEmployeeMailId">
+                            <div class="row mt-4 ml-2">
+                                <div class="col-md-4  mb-2">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Request Date</h5>
+                                    <p class="fs-14 ">
+                                        {{ activityFormControl.requestDate.value }}</p>
+                                    <!-- <input type="test" *ngIf="isActivityUpdate" formControlName="requestDate"> -->
+                                </div>
+                                <div class="col-md-4  mb-2">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Sp. Employee Mail Id</h5>
+                                    <p class="fs-14" *ngIf="!isActivityUpdate">
+                                        {{ activityFormControl.spEmployeeMailId.value }}</p>
+                                    <input type="text" *ngIf="isActivityUpdate" formControlName="spEmployeeMailId">
+                                </div>
+                            </div>
+                            <div class="rwo mt-4 ml-2" *ngIf="activityUpgradeStatus !== ''">
+                                <div class="col-md-4  mb-2">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Status</h5>
+                                    <p class="fs-14 ">
+                                        {{ activityUpgradeStatus }}</p>
+                                    <!-- <input type="test" *ngIf="isActivityUpdate" formControlName="requestDate"> -->
+                                </div>
+                            </div>
+
+                        </form>
+                        <div class="row mt-5">
+                            <div class="col-md-12 mb-5 px-4">
+                                <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                    matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                                <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                    matStepperNext>Next <i class="fa fa-caret-right"></i></button>
+
+                                <a routerLink="/landing/supplier-registration/dashboard">
+                                    <button type="button"
+                                        class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                </a>
                             </div>
                         </div>
+                    </section>
+                </ng-template>
 
-                    </form>
-                    <div class="row mt-5">
-                        <div class="col-md-12 mb-5 px-4">
-                            <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                                matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
-                            <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                matStepperNext>Next <i class="fa fa-caret-right"></i></button>
-
-                            <a routerLink="/landing/supplier-registration/dashboard">
-                                <button type="button"
-                                    class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                            </a>
-                        </div>
-                    </div>
-                </section>
             </mat-step>
+            <!-- Step end: 3 Activity Upgrade Request -->
 
-
-
+            <!-- Step start: 4 Renewal Upgrade Request  -->
             <mat-step>
                 <ng-template matStepLabel>Renewal Upgrade Request</ng-template>
-                <section class="bg-white">
+                <ng-container *ngIf="renewalUpgradeStatus == 'approved'; else elseTemplate">
+                    <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+                        <mat-tab label="Renewal Upgrade Request">
+                            <section class="bg-white">
+                                <div class="row mt-4 ml-2">
+                                    <div class="col-md-4 mb-2 px-4 ">
+                                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Renewal Request
+                                        </h5>
+                                        <p class="fs-14">
+                                            {{ renewalFormControl.renewalRequest.value }}
+                                        </p>
 
-                    <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="!isRenewalUpdate">
-                        <button type="button" (click)="updateClick('renewal')" class="btn btn-primary">Update</button>
-                    </div>
+                                    </div>
+                                    <div class="col-md-4 mb-2   px-4 ">
+                                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Activity
+                                        </h5>
+                                        <p class="fs-14 ">-</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-4 ml-2">
+                                    <div class="col-md-4 mb-2 px-4 ">
+                                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Grade
+                                        </h5>
+                                        <p class="fs-14">-</p>
+                                    </div>
+                                    <div class="col-md-4 mb-2  px-4 ">
+                                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">E-mail ID</h5>
+                                        <p class="fs-14 ">-</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-4 ml-2">
+                                    <div class="col-md-4 mb-2 px-4 ">
+                                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Status
+                                        </h5>
+                                        <p class="fs-14">Approved</p>
+                                    </div>
+                                </div>
 
-                    <form [formGroup]="renewalUpgradeRequestFrom" (ngSubmit)="renewalUpdateSubmit()">
-                        <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="isRenewalUpdate">
-                            <button type="submit" (click)="updateClick('activity')"
-                                class="btn btn-primary">Send</button>
+
+                                <div class="row mt-5">
+                                    <div class="col-md-12 mb-5 px-4">
+                                        <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                            matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                                            <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                            (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
+
+                                        <a routerLink="/landing/supplier-registration/dashboard">
+                                            <button type="button"
+                                                class="btn border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                        </a>
+                                    </div>
+                                </div>
+                            </section>
+                        </mat-tab>
+                        <mat-tab label="Payment">
+                            <section class=" bg-white">
+                                <div class="container-fluid ">
+                                    <div class="row pt-4">
+                                        <div class="col-md-4 px-3">
+                                            <div class="row pt-3">
+                                                <div class="col-md-4 px-3">
+                                                    <span class=" fs-16 font-weight-bold text-black dark-text-1 ">Reg.
+                                                        Payment
+                                                        Fee</span>
+                                                </div>
+                                                <div class="col-md-4 px-3">
+                                                    <span class=" fs-16 font-weight-bold text-black dark-text-1 ">900
+                                                        OMR</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-4">
+                                        <div class="col-md-4 px-3">
+                                            <div class="row pt-3">
+                                                <div class="col-md-4 px-3">
+                                                    <span
+                                                        class=" fs-16 font-weight-bold text-black dark-text-1 ">Renewal
+                                                        Fees</span>
+                                                </div>
+                                                <div class="col-md-4 px-3">
+                                                    <span class=" fs-16 font-weight-bold text-black dark-text-1 ">900
+                                                        OMR</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2 mt-5 md-5">
+                                        <div class="col-md-12 d-block d-md-flex">
+                                            <div class="mr-5 mb-3">
+                                                <p class=" text-dark-grey font-weight-bold ">Payment Mode</p>
+                                            </div>
+                                            <div class="form-check mr-3 ml-4 mb-3">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault1"
+                                                    id="flexRadioDefault1" [checked]="true">
+                                                <label class="form-check-label text-dark-grey font-weight-bold ml-2"
+                                                    for="flexRadioDefault1">Debit </label>
+                                            </div>
+                                            <div class="form-check mr-3 mb-3">
+                                                <input class="form-check-input" type="radio" name="flexRadioDefault1"
+                                                    id="flexRadioDefault2">
+                                                <label class="form-check-label text-dark-grey font-weight-bold ml-2"
+                                                    for="flexRadioDefault2">Credit </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2 mt-5 md-5">
+                                        <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 col-xl-4  px-4">
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <div class="row mt-5">
+                                <div class="col-md-12 mb-5 px-4">
+                                    <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                                    <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                        (click)="callPayment('renewal')">Payment <i
+                                            class="fa fa-caret-right"></i></button>
+
+                                    <a routerLink="/landing/supplier-registration/dashboard">
+                                        <button type="button"
+                                            class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </mat-tab>
+                    </mat-tab-group>
+                </ng-container>
+                <ng-template #elseTemplate>
+                    <section class="bg-white">
+
+                        <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="!isRenewalUpdate">
+                            <button type="button" (click)="updateClick('renewal')"
+                                class="btn btn-primary">Update</button>
                         </div>
 
-                        <div class="row mt-4 ml-2">
-                            <div class="col-md-4 mb-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Renewal Request</h5>
-                                <p class="fs-14" *ngIf="!isRenewalUpdate">{{ renewalFormControl.renewalRequest.value }}
-                                </p>
-                                <input type="text" formControlName="renewalRequest" *ngIf="isRenewalUpdate">
+                        <form [formGroup]="renewalUpgradeRequestFrom" (ngSubmit)="renewalUpdateSubmit()">
+                            <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="isRenewalUpdate">
+                                <button type="submit" (click)="updateClick('activity')"
+                                    class="btn btn-primary">Send</button>
                             </div>
-                            <div class="col-md-4 mb-2   px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Activity</h5>
-                                <p class="fs-14 ">-</p>
-                            </div>
-                        </div>
-                        <div class="row mt-4 ml-2">
-                            <div class="col-md-4 mb-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Grade</h5>
-                                <p class="fs-14">-</p>
-                            </div>
-                            <div class="col-md-4 mb-2  px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">E-mail ID</h5>
-                                <p class="fs-14 ">-</p>
-                            </div>
-                        </div>
-                    </form>
 
-                    <div class="row mt-5">
-                        <div class="col-md-12 mb-5 px-4">
-                            <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                                matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
-                            <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                matStepperNext disabled>Next <i class="fa fa-caret-right"></i></button>
+                            <div class="row mt-4 ml-2">
+                                <div class="col-md-4 mb-2 px-4 ">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Renewal Request</h5>
+                                    <p class="fs-14" *ngIf="!isRenewalUpdate">
+                                        {{ renewalFormControl.renewalRequest.value }}
+                                    </p>
+                                    <input type="text" formControlName="renewalRequest" *ngIf="isRenewalUpdate">
+                                </div>
+                                <div class="col-md-4 mb-2   px-4 ">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Activity</h5>
+                                    <p class="fs-14 ">-</p>
+                                </div>
+                            </div>
+                            <div class="row mt-4 ml-2">
+                                <div class="col-md-4 mb-2 px-4 ">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Grade</h5>
+                                    <p class="fs-14">-</p>
+                                </div>
+                                <div class="col-md-4 mb-2  px-4 ">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">E-mail ID</h5>
+                                    <p class="fs-14 ">-</p>
+                                </div>
+                            </div>
+                        </form>
 
-                            <a routerLink="/landing/supplier-registration/dashboard">
-                                <button type="button"
-                                    class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                            </a>
+                        <div class="row mt-5">
+                            <div class="col-md-12 mb-5 px-4">
+                                <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                    matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                                <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                    matStepperNext disabled>Next <i class="fa fa-caret-right"></i></button>
+
+                                <a routerLink="/landing/supplier-registration/dashboard">
+                                    <button type="button"
+                                        class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </ng-template>
+
             </mat-step>
-<!-- 
+            <!-- Step end: 4 Renewal Upgrade Request  -->
+
+            <!-- 
             <mat-step>
                 <ng-template matStepLabel>Supplier Payment</ng-template>
 
@@ -456,7 +756,8 @@
             <div class="container-fluid ">
                 <div class="row">
                     <div class="px-3 mt-5  mx-auto text-center ">
-                        <div class="fs-22  text-black ">Your request has been send to ifs interface. <br> Please wait for approval.</div>
+                        <div class="fs-22  text-black ">Your request has been send to ifs interface. <br> Please wait
+                            for approval.</div>
                         <br />
                         <!-- <span class="font-weight-bold mt-3 d-block">Thank You</span>  -->
                     </div>
