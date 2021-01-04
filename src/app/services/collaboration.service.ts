@@ -1,3 +1,5 @@
+import { map } from 'rxjs/operators';
+import { RequestServiceBase } from './request-service-base';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -10,7 +12,8 @@ import * as data from '../../assets/JSON/supplier-collaboration.json';
 export class CollaborationService {
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private reqHttp: RequestServiceBase
   ) { }
 
   // profile update request
@@ -28,9 +31,11 @@ export class CollaborationService {
 
   }
 
-  getCollaborationData(): any {
-
+  getCollaborationData(): Observable<any> {
+    return this.reqHttp.httpGet('collaborations-status').pipe(map(res => res.data.collaborationData));
   }
+
+
 
 
 }

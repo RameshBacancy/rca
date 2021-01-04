@@ -1,7 +1,7 @@
 import { CollaborationService } from './../../../services/collaboration.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
-import { Component, OnInit, TemplateRef, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alert.service';
 
@@ -33,7 +33,8 @@ export class SupplierCollaborationComponent implements OnInit {
   ];
   activityUpgradeStatus: string;
   renewalUpgradeStatus: string;
-
+  activityPaymentStatus: string;
+  renewalPaymentStatus: string;
 
   @ViewChild('requestModal') requestModal: ElementRef;
 
@@ -42,13 +43,31 @@ export class SupplierCollaborationComponent implements OnInit {
     private modalService: NgbModal,
     private router: Router,
     private alertMessage: AlertService,
-    private collaborationService: CollaborationService
+    private collaborationService: CollaborationService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
-    this.activityUpgradeStatus = localStorage.getItem('activityStatus') || '';
-    this.renewalUpgradeStatus = localStorage.getItem('renewalStatus') || '';
-    this.loadForm();
+    this.activityPaymentStatus = localStorage.getItem('activityPaymentStatus') || '';
+    this.renewalPaymentStatus = localStorage.getItem('renewalPaymentStatus') || '';
+    this.loadData();
+  }
+
+  private loadData() {
+    this.collaborationService.getCollaborationData()
+      .subscribe(res => {
+        this.activityUpgradeStatus = res.activityUpgradeRequest.status || '';
+        this.renewalUpgradeStatus = res.renewalUpgradeRequest.status || '';
+
+        this.activityUpgradeStatus = this.activityPaymentStatus === 'success' ? '' : this.activityUpgradeStatus;
+        this.renewalUpgradeStatus = this.renewalPaymentStatus === 'success' ? '' : this.renewalUpgradeStatus;
+
+        this.loadForm();
+        this.cdr.detectChanges();
+      },
+        (err) => {
+          console.log('err :>> ', err);
+        });
   }
 
   private loadForm(): void {

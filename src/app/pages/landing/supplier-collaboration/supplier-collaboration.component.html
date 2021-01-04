@@ -120,7 +120,7 @@
             <!-- Step start: 2 Profile Update -->
             <mat-step>
                 <ng-template matStepLabel>Profile Update</ng-template>
-                <section class="bg-white">
+                <section class="bg-white" *ngIf="profileUpdateForm">
                     <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="!isProfileUpdate">
                         <button type="button" (click)="updateClick('profile')" class="btn btn-primary">Update</button>
                     </div>
@@ -371,7 +371,7 @@
                     </mat-tab-group>
                 </ng-container>
                 <ng-template #elseTemplate>
-                    <section class="bg-white">
+                    <section class="bg-white" *ngIf="activityUpgradeRequestForm">
                         <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="!isActivityUpdate && activityUpgradeStatus !== 'pending' ">
                             <button type="button" (click)="updateClick('activity')"
                                 class="btn btn-primary">Update</button>
@@ -468,7 +468,7 @@
             <!-- Step start: 4 Renewal Upgrade Request  -->
             <mat-step>
                 <ng-template matStepLabel>Renewal Upgrade Request</ng-template>
-                <ng-container *ngIf="renewalUpgradeStatus == 'approved'; else elseTemplate">
+                <ng-container *ngIf="renewalUpgradeStatus == 'approved'; else elseRenewalTemplate">
                     <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                         <mat-tab label="Renewal Upgrade Request">
                             <section class="bg-white">
@@ -601,16 +601,16 @@
                         </mat-tab>
                     </mat-tab-group>
                 </ng-container>
-                <ng-template #elseTemplate>
-                    <section class="bg-white">
+                <ng-template #elseRenewalTemplate>
+                    <section class="bg-white" *ngIf="renewalUpgradeRequestFrom">
 
-                        <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="!isRenewalUpdate">
+                        <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="!isRenewalUpdate && renewalUpgradeStatus !== 'pending'">
                             <button type="button" (click)="updateClick('renewal')"
                                 class="btn btn-primary">Update</button>
                         </div>
 
                         <form [formGroup]="renewalUpgradeRequestFrom" (ngSubmit)="renewalUpdateSubmit()">
-                            <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="isRenewalUpdate">
+                            <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="isRenewalUpdate && renewalUpgradeStatus !== 'pending'">
                                 <button type="submit" (click)="updateClick('activity')"
                                     class="btn btn-primary">Send</button>
                             </div>
@@ -636,6 +636,13 @@
                                 <div class="col-md-4 mb-2  px-4 ">
                                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">E-mail ID</h5>
                                     <p class="fs-14 ">-</p>
+                                </div>
+                            </div>
+                            <div class="row mt-4 ml-2" *ngIf="renewalUpgradeStatus !== ''">
+                                <div class="col-md-4 mb-2 px-4 ">
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Status
+                                    </h5>
+                                    <p class="fs-14">{{ renewalUpgradeStatus }}</p>
                                 </div>
                             </div>
                         </form>
