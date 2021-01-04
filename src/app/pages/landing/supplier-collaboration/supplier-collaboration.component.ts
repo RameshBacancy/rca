@@ -56,12 +56,11 @@ export class SupplierCollaborationComponent implements OnInit {
   private loadData() {
     this.collaborationService.getCollaborationData()
       .subscribe(res => {
-        this.activityUpgradeStatus = res.activityUpgradeRequest.status || '';
-        this.renewalUpgradeStatus = res.renewalUpgradeRequest.status || '';
+        this.activityUpgradeStatus = res.activityUpgradeRequest.status || localStorage.getItem('activityStatus') || '';
+        this.renewalUpgradeStatus = res.renewalUpgradeRequest.status || localStorage.getItem('renewalStatus') || '';
 
         this.activityUpgradeStatus = this.activityPaymentStatus === 'success' ? '' : this.activityUpgradeStatus;
         this.renewalUpgradeStatus = this.renewalPaymentStatus === 'success' ? '' : this.renewalUpgradeStatus;
-
         this.loadForm();
         this.cdr.detectChanges();
       },
