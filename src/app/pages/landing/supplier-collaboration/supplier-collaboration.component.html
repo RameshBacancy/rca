@@ -114,251 +114,252 @@
                     </div>
                 </div>
             </mat-step>
-            
+
             <mat-step>
-                <ng-template matStepLabel>Supplier Update</ng-template>
-                <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
-                    <mat-tab label="Profile Update">
-                       
-                        <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="!isProfileUpdate">
-                            <button type="button" (click)="updateClick('profile')"
-                                class="btn btn-primary">Update</button>
+                <ng-template matStepLabel>Profile Update</ng-template>
+                <section class="bg-white">
+                    <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="!isProfileUpdate">
+                        <button type="button" (click)="updateClick('profile')" class="btn btn-primary">Update</button>
+                    </div>
+
+                    <form [formGroup]="profileUpdateForm" (ngSubmit)="profileUpdateSubmit()">
+                        <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="isProfileUpdate">
+                            <button type="submit" class="btn btn-primary">Save</button>
                         </div>
-
-                        <form [formGroup]="profileUpdateForm" (ngSubmit)="profileUpdateSubmit()">
-                            <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="isProfileUpdate">
-                                <button type="submit" class="btn btn-primary">Save</button>
+                        <div class="row mt-4 ml-2">
+                            <div class="col-md-4 mb-2">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Account 1</h5>
+                                <p class="fs-14" *ngIf="!isProfileUpdate">
+                                    {{ profileFormControl.bankAccount1.value }}</p>
+                                <input type="text" *ngIf="isProfileUpdate" formControlName="bankAccount1">
                             </div>
-                            <div class="row mt-4 ml-2">
-                                <div class="col-md-4 mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Account 1</h5>
-                                    <p class="fs-14" *ngIf="!isProfileUpdate">
-                                        {{ profileFormControl.bankAccount1.value }}</p>
-                                    <input type="text" *ngIf="isProfileUpdate" formControlName="bankAccount1">
-                                </div>
-                                <div class="col-md-4 mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Account 2</h5>
-                                    <p class="fs-14 " *ngIf="!isProfileUpdate">
-                                        {{ profileFormControl.bankAccount2.value }}</p>
-                                    <input type="text" *ngIf="isProfileUpdate" formControlName="bankAccount2">
-
-                                </div>
-                                <div class="col-md-4 mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Projects</h5>
-                                    <p class="fs-14" *ngIf="!isProfileUpdate">{{ profileFormControl.projects.value }}
-                                    </p>
-                                    <input type="text" *ngIf="isProfileUpdate" formControlName="projects">
-                                </div>
-                            </div>
-                            <div class="row mt-4 ml-2">
-                                <div class="col-md-4 mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address 1</h5>
-                                    <p class="fs-14 " *ngIf="!isProfileUpdate">{{ profileFormControl.address1.value }}
-                                    </p>
-                                    <textarea type="text" *ngIf="isProfileUpdate" rows="5"
-                                        formControlName="address1"></textarea>
-                                </div>
-                                <div class="col-md-4 mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address 2</h5>
-                                    <p class="fs-14" *ngIf="!isProfileUpdate">{{ profileFormControl.address2.value }}
-                                    </p>
-                                    <textarea type="text" *ngIf="isProfileUpdate" rows="5"
-                                        formControlName="address2"></textarea>
-                                </div>
-                                <div class="col-md-4 mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address 3</h5>
-                                    <p class="fs-14 " *ngIf="!isProfileUpdate">{{ profileFormControl.address3.value }}
-                                    </p>
-                                    <textarea type="text" *ngIf="isProfileUpdate" rows="5"
-                                        formControlName="address3"></textarea>
-                                </div>
-                            </div>
-                            <div class="row mt-4 ml-2">
-                                <div class="col-md-4 mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">E-mail</h5>
-                                    <p class="fs-14" *ngIf="!isProfileUpdate">{{ profileFormControl.email.value }}</p>
-                                    <input type="text" *ngIf="isProfileUpdate" formControlName="email">
-                                </div>
-                                <div class="col-md-4 mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Phone</h5>
-                                    <p class="fs-14 " *ngIf="!isProfileUpdate">{{ profileFormControl.phone.value }}</p>
-                                    <input type="text" *ngIf="isProfileUpdate" formControlName="phone">
-
-                                </div>
-                                <div class="col-md-4 mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Mobile</h5>
-                                    <p class="fs-14" *ngIf="!isProfileUpdate">{{ profileFormControl.mobile.value }}</p>
-                                    <input type="text" *ngIf="isProfileUpdate" formControlName="mobile">
-                                </div>
-                            </div>
-                            <div class="row mt-4 ml-2">
-                                <div class="col-md-4 mb-2 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">FAX</h5>
-                                    <p class="fs-14 " *ngIf="!isProfileUpdate">{{ profileFormControl.fax.value }}</p>
-                                    <input type="text" *ngIf="isProfileUpdate" formControlName="fax">
-                                </div>
-                                <div class="col-md-4 mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Key Contact Person</h5>
-                                    <p class="fs-14" *ngIf="!isProfileUpdate">
-                                        {{ profileFormControl.keyContactPerson.value }}
-                                    </p>
-                                    <input type="text" *ngIf="isProfileUpdate" formControlName="keyContactPerson">
-                                </div>
+                            <div class="col-md-4 mb-2">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Account 2</h5>
+                                <p class="fs-14 " *ngIf="!isProfileUpdate">
+                                    {{ profileFormControl.bankAccount2.value }}</p>
+                                <input type="text" *ngIf="isProfileUpdate" formControlName="bankAccount2">
 
                             </div>
-
-                        </form>
-                        <div class="row mt-5">
-                            <div class="col-md-12 mb-5 px-4">
-                                <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                                    matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
-                                <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                    (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
-                                <a routerLink="/landing/supplier-registration/dashboard">
-                                    <button type="button"
-                                        class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                                </a>
+                            <div class="col-md-4 mb-2">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Projects</h5>
+                                <p class="fs-14" *ngIf="!isProfileUpdate">{{ profileFormControl.projects.value }}
+                                </p>
+                                <input type="text" *ngIf="isProfileUpdate" formControlName="projects">
                             </div>
                         </div>
-                    </mat-tab>
-                    <mat-tab label="Activity Upgrade Request">
-                       
-                        <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="!isActivityUpdate">
-                            <button type="button" (click)="updateClick('activity')"
-                                class="btn btn-primary">Update</button>
-                        </div>
-
-                        <form [formGroup]="activityUpgradeRequestForm" (ngSubmit)="activityUpdateSubmit()">
-                            <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="isActivityUpdate">
-                                <button type="submit" class="btn btn-primary">Send</button>
+                        <div class="row mt-4 ml-2">
+                            <div class="col-md-4 mb-2">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address 1</h5>
+                                <p class="fs-14 " *ngIf="!isProfileUpdate">{{ profileFormControl.address1.value }}
+                                </p>
+                                <textarea type="text" *ngIf="isProfileUpdate" rows="5"
+                                    formControlName="address1"></textarea>
                             </div>
-                            <div class="row mt-4 ml-2">
-                                <div class="col-md-4  mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Activity</h5>
-                                    <p class="fs-14">
-                                        {{ activityFormControl.currentActivity.value }}</p>
-                                </div>
-                                <div class="col-md-4  mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Grade</h5>
-                                    <p class="fs-14 ">
-                                        {{ activityFormControl.currentGrade.value }}</p>
-                                </div>
+                            <div class="col-md-4 mb-2">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address 2</h5>
+                                <p class="fs-14" *ngIf="!isProfileUpdate">{{ profileFormControl.address2.value }}
+                                </p>
+                                <textarea type="text" *ngIf="isProfileUpdate" rows="5"
+                                    formControlName="address2"></textarea>
                             </div>
-                            <div class="row mt-4 ml-2">
-                                <div class="col-md-4  mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">New Grade Request</h5>
-                                    <p class="fs-14" *ngIf="!isActivityUpdate">
-                                        {{ activityFormControl.newGradeRequest.value }}</p>
-                                    <mat-form-field appearance="fill" *ngIf="isActivityUpdate">
-                                        <mat-select formControlName="newGradeRequest" formControlName="newGradeRequest">
-                                            <mat-option *ngFor="let grade of gradeSelectOption" [value]="grade.value">
-                                                {{grade.viewValue}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-4  mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">New Activity Request</h5>
-                                    <p class="fs-14" *ngIf="!isActivityUpdate">
-                                        {{ activityFormControl.newActivityRequest.value }}</p>
-                                    <mat-form-field appearance="fill" *ngIf="isActivityUpdate">
-                                        <mat-select formControlName="newActivityRequest">
-                                            <mat-option *ngFor="let activity of activitySelectOption"
-                                                [value]="activity.value">
-                                                {{activity.viewValue}}
-                                            </mat-option>
-                                        </mat-select>
-                                    </mat-form-field>
-                                </div>
-
-
-                            </div>
-                            <div class="row mt-4 ml-2">
-                                <div class="col-md-4  mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Request Date</h5>
-                                    <p class="fs-14 " *ngIf="!isActivityUpdate">
-                                        {{ activityFormControl.requestDate.value }}</p>
-                                    <input type="date" *ngIf="isActivityUpdate" formControlName="requestDate">
-                                </div>
-                                <div class="col-md-4  mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Sp. Employee Mail Id</h5>
-                                    <p class="fs-14" *ngIf="!isActivityUpdate">
-                                        {{ activityFormControl.spEmployeeMailId.value }}</p>
-                                    <input type="text" *ngIf="isActivityUpdate" formControlName="spEmployeeMailId">
-                                </div>
-                            </div>
-
-                        </form>
-                        <div class="row mt-5">
-                            <div class="col-md-12 mb-5 px-4">
-                                <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                                    (click)="previousTab()"><i class="fa fa-caret-left"></i> Previous</button>
-                                <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                    (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
-
-                                <a routerLink="/landing/supplier-registration/dashboard">
-                                    <button type="button"
-                                        class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                                </a>
+                            <div class="col-md-4 mb-2">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Address 3</h5>
+                                <p class="fs-14 " *ngIf="!isProfileUpdate">{{ profileFormControl.address3.value }}
+                                </p>
+                                <textarea type="text" *ngIf="isProfileUpdate" rows="5"
+                                    formControlName="address3"></textarea>
                             </div>
                         </div>
-                    </mat-tab>
-                    <mat-tab label="Renewal Upgrade Request">
-
-                
-                        <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="!isRenewalUpdate">
-                            <button type="button" (click)="updateClick('renewal')"
-                                class="btn btn-primary">Update</button>
-                        </div>
-
-                        <form [formGroup]="renewalUpgradeRequestFrom" (ngSubmit)="renewalUpdateSubmit()">
-                            <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="isRenewalUpdate">
-                                <button type="submit" (click)="updateClick('activity')"
-                                    class="btn btn-primary">Save</button>
+                        <div class="row mt-4 ml-2">
+                            <div class="col-md-4 mb-2">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">E-mail</h5>
+                                <p class="fs-14" *ngIf="!isProfileUpdate">{{ profileFormControl.email.value }}</p>
+                                <input type="text" *ngIf="isProfileUpdate" formControlName="email">
                             </div>
+                            <div class="col-md-4 mb-2">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Phone</h5>
+                                <p class="fs-14 " *ngIf="!isProfileUpdate">{{ profileFormControl.phone.value }}</p>
+                                <input type="text" *ngIf="isProfileUpdate" formControlName="phone">
 
-                            <div class="row mt-4 ml-2">
-                                <div class="col-md-4 mb-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Renewal Request</h5>
-                                    <p class="fs-14" *ngIf="!isRenewalUpdate">{{ renewalFormControl.renewalRequest.value }}</p>
-                                    <input type="text" formControlName="renewalRequest" *ngIf="isRenewalUpdate">
-                                </div>
-                                <div class="col-md-4 mb-2   px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Activity</h5>
-                                    <p class="fs-14 ">-</p>
-                                </div>
                             </div>
-                            <div class="row mt-4 ml-2">
-                                <div class="col-md-4 mb-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Grade</h5>
-                                    <p class="fs-14">-</p>
-                                </div>
-                                <div class="col-md-4 mb-2  px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">E-mail ID</h5>
-                                    <p class="fs-14 ">-</p>
-                                </div>
-                            </div>
-                        </form>
-
-                        <div class="row mt-5">
-                            <div class="col-md-12 mb-5 px-4">
-                                <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                                    (click)="previousTab()"><i class="fa fa-caret-left"></i> Previous</button>
-                                <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                    matStepperNext>Next <i class="fa fa-caret-right"></i></button>
-                                
-                                <a routerLink="/landing/supplier-registration/dashboard">
-                                    <button type="button"
-                                        class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
-                                </a>
+                            <div class="col-md-4 mb-2">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Mobile</h5>
+                                <p class="fs-14" *ngIf="!isProfileUpdate">{{ profileFormControl.mobile.value }}</p>
+                                <input type="text" *ngIf="isProfileUpdate" formControlName="mobile">
                             </div>
                         </div>
-                    </mat-tab>
+                        <div class="row mt-4 ml-2">
+                            <div class="col-md-4 mb-2 ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">FAX</h5>
+                                <p class="fs-14 " *ngIf="!isProfileUpdate">{{ profileFormControl.fax.value }}</p>
+                                <input type="text" *ngIf="isProfileUpdate" formControlName="fax">
+                            </div>
+                            <div class="col-md-4 mb-2">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Key Contact Person</h5>
+                                <p class="fs-14" *ngIf="!isProfileUpdate">
+                                    {{ profileFormControl.keyContactPerson.value }}
+                                </p>
+                                <input type="text" *ngIf="isProfileUpdate" formControlName="keyContactPerson">
+                            </div>
 
-                </mat-tab-group>
+                        </div>
 
+                    </form>
+                    <div class="row mt-5">
+                        <div class="col-md-12 mb-5 px-4">
+                            <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                            <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                matStepperNext>Next <i class="fa fa-caret-right"></i></button>
+                            <a routerLink="/landing/supplier-registration/dashboard">
+                                <button type="button"
+                                    class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                            </a>
+                        </div>
+                    </div>
+                </section>
             </mat-step>
 
+            <mat-step>
+                <ng-template matStepLabel>Activity Upgrade Request</ng-template>
+                <section class="bg-white">
+                    <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="!isActivityUpdate">
+                        <button type="button" (click)="updateClick('activity')" class="btn btn-primary">Update</button>
+                    </div>
+
+                    <form [formGroup]="activityUpgradeRequestForm" (ngSubmit)="activityUpdateSubmit()">
+                        <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="isActivityUpdate">
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </div>
+                        <div class="row mt-4 ml-2">
+                            <div class="col-md-4  mb-2">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Activity</h5>
+                                <p class="fs-14">
+                                    {{ activityFormControl.currentActivity.value }}</p>
+                            </div>
+                            <div class="col-md-4  mb-2">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Grade</h5>
+                                <p class="fs-14 ">
+                                    {{ activityFormControl.currentGrade.value }}</p>
+                            </div>
+                        </div>
+                        <div class="row mt-4 ml-2">
+                            <div class="col-md-4  mb-2">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">New Grade Request</h5>
+                                <p class="fs-14" *ngIf="!isActivityUpdate">
+                                    {{ activityFormControl.newGradeRequest.value }}</p>
+                                <mat-form-field appearance="fill" *ngIf="isActivityUpdate">
+                                    <mat-select formControlName="newGradeRequest" formControlName="newGradeRequest">
+                                        <mat-option *ngFor="let grade of gradeSelectOption" [value]="grade.value">
+                                            {{grade.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4  mb-2">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">New Activity Request</h5>
+                                <p class="fs-14" *ngIf="!isActivityUpdate">
+                                    {{ activityFormControl.newActivityRequest.value }}</p>
+                                <mat-form-field appearance="fill" *ngIf="isActivityUpdate">
+                                    <mat-select formControlName="newActivityRequest">
+                                        <mat-option *ngFor="let activity of activitySelectOption"
+                                            [value]="activity.value">
+                                            {{activity.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+
+                        </div>
+                        <div class="row mt-4 ml-2">
+                            <div class="col-md-4  mb-2">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Request Date</h5>
+                                <p class="fs-14 " *ngIf="!isActivityUpdate">
+                                    {{ activityFormControl.requestDate.value }}</p>
+                                <input type="date" *ngIf="isActivityUpdate" formControlName="requestDate">
+                            </div>
+                            <div class="col-md-4  mb-2">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Sp. Employee Mail Id</h5>
+                                <p class="fs-14" *ngIf="!isActivityUpdate">
+                                    {{ activityFormControl.spEmployeeMailId.value }}</p>
+                                <input type="text" *ngIf="isActivityUpdate" formControlName="spEmployeeMailId">
+                            </div>
+                        </div>
+
+                    </form>
+                    <div class="row mt-5">
+                        <div class="col-md-12 mb-5 px-4">
+                            <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                            <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                matStepperNext>Next <i class="fa fa-caret-right"></i></button>
+
+                            <a routerLink="/landing/supplier-registration/dashboard">
+                                <button type="button"
+                                    class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </mat-step>
+
+
+
+            <mat-step>
+                <ng-template matStepLabel>Renewal Upgrade Request</ng-template>
+                <section class="bg-white">
+
+                    <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="!isRenewalUpdate">
+                        <button type="button" (click)="updateClick('renewal')" class="btn btn-primary">Update</button>
+                    </div>
+
+                    <form [formGroup]="renewalUpgradeRequestFrom" (ngSubmit)="renewalUpdateSubmit()">
+                        <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="isRenewalUpdate">
+                            <button type="submit" (click)="updateClick('activity')"
+                                class="btn btn-primary">Send</button>
+                        </div>
+
+                        <div class="row mt-4 ml-2">
+                            <div class="col-md-4 mb-2 px-4 ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Renewal Request</h5>
+                                <p class="fs-14" *ngIf="!isRenewalUpdate">{{ renewalFormControl.renewalRequest.value }}
+                                </p>
+                                <input type="text" formControlName="renewalRequest" *ngIf="isRenewalUpdate">
+                            </div>
+                            <div class="col-md-4 mb-2   px-4 ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Activity</h5>
+                                <p class="fs-14 ">-</p>
+                            </div>
+                        </div>
+                        <div class="row mt-4 ml-2">
+                            <div class="col-md-4 mb-2 px-4 ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Grade</h5>
+                                <p class="fs-14">-</p>
+                            </div>
+                            <div class="col-md-4 mb-2  px-4 ">
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">E-mail ID</h5>
+                                <p class="fs-14 ">-</p>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="row mt-5">
+                        <div class="col-md-12 mb-5 px-4">
+                            <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                            <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                matStepperNext disabled>Next <i class="fa fa-caret-right"></i></button>
+
+                            <a routerLink="/landing/supplier-registration/dashboard">
+                                <button type="button"
+                                    class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                            </a>
+                        </div>
+                    </div>
+                </section>
+            </mat-step>
+<!-- 
             <mat-step>
                 <ng-template matStepLabel>Supplier Payment</ng-template>
 
@@ -424,20 +425,47 @@
                     <div class="col-md-12 mb-5 px-4">
                         <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2" matStepperPrevious><i
                                 class="fa fa-caret-left"></i> Previous</button>
-                        <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            disabled>Next <i class="fa fa-caret-right"></i></button>
-                            <a routerLink="/landing/supplier-registration/dashboard">
-                                <button type="button"
-                                    class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Done</button>
-                            </a>
+                        <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" disabled>Next
+                            <i class="fa fa-caret-right"></i></button>
+                        <a routerLink="/landing/supplier-registration/dashboard">
+                            <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Done</button>
+                        </a>
 
                         <a routerLink="/landing/supplier-registration/dashboard">
                             <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                         </a>
                     </div>
                 </div>
-            </mat-step>
+            </mat-step> -->
         </mat-horizontal-stepper>
     </div>
 
 </section>
+
+
+
+<ng-template #requestModal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Pending</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.close('Save click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body custom-modal-main">
+        <section class=" bg-white">
+            <div class="container-fluid ">
+                <div class="row">
+                    <div class="px-3 mt-5  mx-auto text-center ">
+                        <div class="fs-22  text-black ">Your request has been send to ifs interface. <br> Please wait for approval.</div>
+                        <br />
+                        <!-- <span class="font-weight-bold mt-3 d-block">Thank You</span>  -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="submit"
+            (click)="modal.close('Save click')">OK</button>
+    </div>
+</ng-template>

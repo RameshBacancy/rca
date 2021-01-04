@@ -1,5 +1,7 @@
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-supplier-collaboration',
@@ -11,6 +13,7 @@ export class SupplierCollaborationComponent implements OnInit {
   isProfileUpdate = false;
   isActivityUpdate = false;
   isRenewalUpdate = false;
+  closeResult: any;
 
   isSave = true;
   profileUpdateForm: FormGroup;
@@ -27,8 +30,13 @@ export class SupplierCollaborationComponent implements OnInit {
     { value: '3', viewValue: 'Activity 3' }
   ];
 
+  @ViewChild('requestModal') requestModal: ElementRef;
+  private modalRef: TemplateRef<any>;
+
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private modalService: NgbModal,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -83,9 +91,11 @@ export class SupplierCollaborationComponent implements OnInit {
     this.isProfileUpdate = false;
   }
   public activityUpdateSubmit(): void {
+    this.open(this.requestModal);
     this.isActivityUpdate = false;
   }
   public renewalUpdateSubmit(): void {
+    this.open(this.requestModal);
     this.isRenewalUpdate = false;
   }
 
@@ -112,6 +122,33 @@ export class SupplierCollaborationComponent implements OnInit {
         break;
       default:
         break;
+    }
+  }
+
+
+  // for modal pop up
+  open(content) {
+
+    this.modalService.open(this.requestModal, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {
+      this.router.navigateByUrl('/landing/supplier-registration/dashboard');
+    });
+    // this.modalService.open(, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+
+    //   this.closeResult = `Closed with: ${result}`;
+
+    // }, (reason) => {
+
+    //   this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+
+    // });
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
     }
   }
 
