@@ -270,9 +270,9 @@
                             </div>
                             <div class="row mt-4 ml-2">
                                 <div class="col-md-4  mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Status</h5>
-                                    <p class="fs-14 ">
-                                        Approved</p>
+                                    <span class="fs-16 font-weight-bold text-black dark-text-1 ">Status :</span>
+                                    <span class="status-highlighter ">
+                                        Approved</span>
                                 </div>
                             </div>
 
@@ -438,9 +438,8 @@
                             </div>
                             <div class="rwo mt-4 ml-2" *ngIf="activityUpgradeStatus !== ''">
                                 <div class="col-md-4  mb-2">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Status</h5>
-                                    <p class="fs-14 ">
-                                        {{ activityUpgradeStatus }}</p>
+                                    <span class="fs-16 font-weight-bold text-black dark-text-1 ">Status : </span>
+                                    <span class="status-highlighter">{{ activityUpgradeStatus | titlecase}}</span>
                                     <!-- <input type="test" *ngIf="isActivityUpdate" formControlName="requestDate"> -->
                                 </div>
                             </div>
@@ -500,9 +499,9 @@
                                 </div>
                                 <div class="row mt-4 ml-2">
                                     <div class="col-md-4 mb-2 px-4 ">
-                                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Status
-                                        </h5>
-                                        <p class="fs-14">Approved</p>
+                                        <span class="fs-16 font-weight-bold text-black dark-text-1 ">Status :
+                                        </span>
+                                        <span class="status-highlighter">Approved</span>
                                     </div>
                                 </div>
 
@@ -640,9 +639,9 @@
                             </div>
                             <div class="row mt-4 ml-2" *ngIf="renewalUpgradeStatus !== ''">
                                 <div class="col-md-4 mb-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Status
-                                    </h5>
-                                    <p class="fs-14">{{ renewalUpgradeStatus }}</p>
+                                    <span class="fs-16 font-weight-bold text-black dark-text-1 ">Status :
+                                    </span>
+                                    <span class="status-highlighter">{{ renewalUpgradeStatus | titlecase}}</span>
                                 </div>
                             </div>
                         </form>
