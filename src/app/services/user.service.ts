@@ -1,6 +1,6 @@
 import { map, tap, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { EndPoint } from '../app.constants';
 import { RequestServiceBase } from './request-service-base';
 import { Router } from '@angular/router';
@@ -20,6 +20,8 @@ export class UserService {
     authToken: string = null;
     currentUser: any;
     httpClient: any;
+    paymentStatus$: Subject<boolean> = new Subject();
+    paymentObs: Observable<boolean> = this.paymentStatus$.asObservable();
 
     constructor(
         private router: Router,
@@ -181,8 +183,8 @@ export class UserService {
         return this.http.get('/assets/JSON/iso-countries.json').pipe(map((res: any) => res.countries));
     }
 
-
+    // supplier register payment status api call
     completeRegistrationPayment(): Observable<any> {
-        return this.reqHttp.httpPost('payment-status',{"payment_status": true})
+        return this.reqHttp.httpPost('payment-status', { "payment_status": true })
     }
 }

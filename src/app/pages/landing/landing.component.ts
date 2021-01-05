@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SidebarService } from 'src/app/services/sidebar-menu.service';
@@ -18,12 +19,15 @@ export class LandingComponent implements OnInit, AfterViewInit {
   public title: string;
   public currentUrl: string;
   url: string[];
-  menu;
+  menu: any[] = [];
+  filteredMenu: any[] = [];
+  paymentStatus: string;
 
   constructor(
     private router: Router,
     private sidebarData: SidebarService,
-    private ref: ChangeDetectorRef
+    private ref: ChangeDetectorRef,
+    private userService: UserService
   ) {
     router.events.subscribe(e => {
       this.currentUrl = this.router.url;
@@ -55,14 +59,26 @@ export class LandingComponent implements OnInit, AfterViewInit {
       this.title = 'Registration';
     }
     this.menu = this.sidebarData.getdata();
-   
+    this.paymentStatus = localStorage.getItem('completePayment');
+    this.userService.paymentObs.subscribe(res => {
+      this.paymentStatus = String(res);
+      this.paymentStatus = localStorage.getItem('completePayment');
+      this.filterMenu();
+    });
   }
 
   ngAfterViewInit() {
-    if (localStorage.getItem('arStatus') !== 'approved') { 
-      this.menu.splice(3, 1);
+    this.filterMenu();
+  }
+
+  private filterMenu(): void {
+    if (this.paymentStatus !== 'true') {
+      this.filteredMenu = this.menu.filter(m => m.name !== 'SUPPLIER COLLABORATION');
+    } else {
+      this.filteredMenu = [...this.menu];
     }
   }
+
 
   onViewSidebar(val) {
     this.viewSideBar = val;
