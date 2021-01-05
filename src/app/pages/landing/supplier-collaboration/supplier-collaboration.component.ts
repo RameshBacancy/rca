@@ -62,6 +62,10 @@ export class SupplierCollaborationComponent implements OnInit {
         this.activityUpgradeStatus = this.activityPaymentStatus === 'success' ? '' : this.activityUpgradeStatus;
         this.renewalUpgradeStatus = this.renewalPaymentStatus === 'success' ? '' : this.renewalUpgradeStatus;
         this.loadForm();
+        if (localStorage.getItem('civilReg') === '11337789') { 
+          this.activityUpgradeStatus = 'pending';
+          this.renewalUpgradeStatus = 'pending';
+        }
         this.cdr.detectChanges();
       },
         (err) => {
@@ -124,8 +128,8 @@ export class SupplierCollaborationComponent implements OnInit {
         this.activityUpgradeRequestForm.get('requestDate').setValue(new Date().toDateString());
         this.open();
         this.isActivityUpdate = false;
-        if (localStorage.getItem('civilReg') === '11337799') { 
-          const  body = {
+        if (localStorage.getItem('civilReg') === '11337799') {
+          const body = {
             activity: {
               status: 'approved'
             }
@@ -146,8 +150,8 @@ export class SupplierCollaborationComponent implements OnInit {
     if (this.renewalUpgradeRequestFrom.value.renewalRequest) {
       this.open();
       this.isRenewalUpdate = false;
-      if (localStorage.getItem('civilReg') === '11337799') { 
-        const  body = {
+      if (localStorage.getItem('civilReg') === '11337799') {
+        const body = {
           renewal: {
             status: 'approved'
           }
