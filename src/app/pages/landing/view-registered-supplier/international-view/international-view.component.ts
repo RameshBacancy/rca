@@ -4,8 +4,8 @@ import { MatStepper } from '@angular/material/stepper';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { AddressInd, CommunicationDetailsStep, GeneralInfoStepInd } from 'src/app/models/supplier.modal';
-import { FilterPipe } from 'src/app/pipe/searchEmployee.pipe';
-import { SortByPipe } from 'src/app/pipe/sortBy.pipe';
+import { SortByPipe } from '../../../../shared/pipe/sortBy.pipe';
+import { FilterPipe } from 'src/app/shared/pipe/searchEmployee.pipe';
 import { SupplierInternationalRegisterService } from 'src/app/services/supplier-international-register.service';
 import { SupplierRegistrationService } from 'src/app/services/supplier-registration.service';
 

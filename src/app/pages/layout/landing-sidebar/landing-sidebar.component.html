@@ -1,7 +1,7 @@
 <div id="landing-sidebar" class="animated">
   <ul *ngFor="let item of sidebarItems">
     <li [ngClass]="item.disabled ? 'sub-menu-active' : ''">
-      <a *ngIf="item.children.length==0" routerLinkActive="active" href={{item.route}} (click)="item.disabled = !item.disabled">
+      <a *ngIf="item.children.length==0" routerLinkActive="active" routerLink={{item.route}} (click)="item.disabled = !item.disabled">
         <!-- <div class="iconblock">
           <img src="/assets/icons/content-paste-white.svg" alt="">
         </div> -->
@@ -25,7 +25,7 @@
     <div *ngIf="item.children.length>0 && item.disabled">
       <ul class="sub-menu" *ngFor="let child of item.children">
           <li>
-            <a routerLinkActive="active" href={{child.route}}>
+            <a routerLinkActive="active" routerLink={{child.route}}>
               {{child.name}}
             </a>
               <div class="arrow-img" *ngIf="child.children.length>0">

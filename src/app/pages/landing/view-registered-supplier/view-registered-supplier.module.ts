@@ -1,4 +1,4 @@
-import { PipeModule } from './../../../pipe/pipe.module';
+import { SharedModule } from '../../../shared/shared.module';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -44,7 +44,7 @@ const routes: Routes = [
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    PipeModule,
+    SharedModule,
     MatProgressBarModule,
     RouterModule.forChild(routes)
   ]

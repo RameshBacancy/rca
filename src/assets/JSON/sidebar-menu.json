@@ -3,7 +3,7 @@
         {
             "name": "Dashboard",
             "icon": "",
-            "route": "/#/landing/supplier-registration/dashboard",
+            "route": "/landing/supplier-registration/dashboard",
             "disabled": false,
             "children": []
         },
@@ -16,42 +16,35 @@
                 {
                     "name": "About Us",
                     "icon": "",
-                    "route": "/#/landing/supplier-registration/about-us",
+                    "route": "/landing/supplier-registration/about-us",
                     "disabled": false,
                     "children": []
                 },
                 {
                     "name": "Supplier Registration",
                     "icon": "",
-                    "route": "/#/landing/supplier-registration/registration",
+                    "route": "/landing/supplier-registration/registration",
                     "disabled": false,
                     "children": []
                 },
                 {
                     "name": "Tendering Information",
                     "icon": "",
-                    "route": "",
-                    "disabled": false,
-                    "children": []
-                },
-                {
-                    "name": "Auction",
-                    "icon": "",
-                    "route": "",
+                    "route": "/landing/no-route",
                     "disabled": false,
                     "children": []
                 },
                 {
                     "name": "Help Desk",
                     "icon": "",
-                    "route": "",
+                    "route": "/landing/no-route",
                     "disabled": false,
                     "children": []
                 },
                 {
                     "name": "Support",
                     "icon": "",
-                    "route": "",
+                    "route": "/landing/no-route",
                     "disabled": false,
                     "children": []
                 }
@@ -66,14 +59,14 @@
                 {
                     "name": "How to Register",
                     "icon": "",
-                    "route": "/#/landing/supplier-registration/how-to-register",
+                    "route": "/landing/supplier-registration/how-to-register",
                     "disabled": false,
                     "children": []
                 },
                 {
                     "name": "Forgot Password",
                     "icon": "",
-                    "route": "/#/landing/",
+                    "route": "/landing/no-route",
                     "disabled": false,
                     "children": []
                 }
@@ -82,7 +75,7 @@
         {
             "name": "SUPPLIER COLLABORATION",
             "icon": "",
-            "route": "/#/landing/supplier-collaboration",
+            "route": "/landing/supplier-collaboration",
             "disabled": false,
             "children": []
         },
@@ -95,21 +88,21 @@
                 {
                     "name": "Current Tenders",
                     "icon": "",
-                    "route": "/#/e-tendering/tender-dashboard/current-tenders",
+                    "route": "/e-tendering/tender-dashboard/current-tenders",
                     "disabled": false,
                     "children": []
                 },
                 {
                     "name": "Tender Queries",
                     "icon": "",
-                    "route": "",
+                    "route": "/landing/no-route",
                     "disabled": false,
                     "children": []
                 },
                 {
                     "name": "Search Tenders",
                     "icon": "",
-                    "route": "",
+                    "route": "/landing/no-route",
                     "disabled": false,
                     "children": []
                 }
@@ -118,14 +111,14 @@
         {
             "name": "ORDERS",
             "icon": "",
-            "route": "",
+            "route": "/landing/no-route",
             "disabled": false,
             "children": []
         },
         {
             "name": "LATE ORDERS",
             "icon": "",
-            "route": "",
+            "route": "/landing/no-route",
             "disabled": false,
             "children": []
         }
@@ -134,28 +127,28 @@
         {
             "name": "Home",
             "icon": "",
-            "route": "/#/admin/dashboard",
+            "route": "/admin/dashboard",
             "disabled": false,
             "children": []
         },
         {
             "name": "CMS",
             "icon": "",
-            "route": "/#/admin/cms",
+            "route": "/admin/cms",
             "disabled": false,
             "children": []
         },
         {
             "name": "Supplier",
             "icon": "",
-            "route": "/#/admin/suppler-register-request-info",
+            "route": "/admin/suppler-register-request-info",
             "disabled": false,
             "children": []
         },
         {
             "name": "Alert Messages",
             "icon": "",
-            "route": "/#/admin/alert-messages",
+            "route": "/admin/alert-messages",
             "disabled": false,
             "children": []
         }

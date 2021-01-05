@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { SafeHtmlPipe } from 'src/app/pipe/safeHtml.pipe';
+import { SafeHtmlPipe } from '../../../shared/pipe/safeHtml.pipe';
 import { AlertMessageService } from 'src/app/services/alert-message.service';
 import { CmsService } from 'src/app/services/cms.service';
 import { SpinnerService } from 'src/app/services/spinner.service';

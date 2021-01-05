@@ -14,7 +14,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { PipeModule } from 'src/app/pipe/pipe.module';
+import { SharedModule } from '../../../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -47,7 +47,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    PipeModule,
+    SharedModule,
     RouterModule.forChild(routes),
     FormsModule,
     MatFormFieldModule,

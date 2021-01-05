@@ -2,7 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 import { TenderService } from './../../../../services/tender.service';
 import { TenderDetail } from './../../../../models/tender.model';
 import { Component, Input, OnInit } from '@angular/core';
-import { FilterPipe } from 'src/app/pipe/searchEmployee.pipe';
+import { FilterPipe } from '../../../../shared/pipe/searchEmployee.pipe';
 
 @Component({
   selector: 'app-current-tenders',

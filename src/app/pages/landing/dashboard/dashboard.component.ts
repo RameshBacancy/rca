@@ -3,7 +3,7 @@ import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild, ChangeDetec
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertMessageService } from 'src/app/services/alert-message.service';
-import { SafeHtmlPipe } from 'src/app/pipe/safeHtml.pipe';
+import { SafeHtmlPipe } from '../../../shared/pipe/safeHtml.pipe';
 import { AlertService } from 'src/app/services/alert.service';
 
 @Component({

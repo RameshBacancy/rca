@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { SafeHtmlPipe } from 'src/app/pipe/safeHtml.pipe';
+import { SafeHtmlPipe } from '../../../shared/pipe/safeHtml.pipe';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { CmsService } from '../../../services/cms.service';
 

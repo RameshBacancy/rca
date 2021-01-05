@@ -16,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { PipeModule } from 'src/app/pipe/pipe.module';
+import { SharedModule } from '../../shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSelectModule } from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
@@ -33,7 +33,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
   ],
   imports: [
     CommonModule,
-    PipeModule,
+    SharedModule,
     NgbModule,
     TenderRoutingModule,
     LayoutModule,

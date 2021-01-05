@@ -4,7 +4,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 import { AlertService } from '../../../services/alert.service';
 import { SpinnerService } from '../../../services/spinner.service';
-import { SafeHtmlPipe } from 'src/app/pipe/safeHtml.pipe';
+import { SafeHtmlPipe } from '../../../shared/pipe/safeHtml.pipe';
 
 
 

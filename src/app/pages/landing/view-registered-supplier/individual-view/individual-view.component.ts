@@ -5,7 +5,8 @@ import { Observable, Subject } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { SupplierIndividualRegisterService } from './../../../../services/supplier-individual-register.service';
-import { SortByPipe } from './../../../../pipe/sortBy.pipe';
+import { SortByPipe } from '../../../../shared/pipe/sortBy.pipe';
+import { FilterPipe } from 'src/app/shared/pipe/searchEmployee.pipe';
 import { SupplierRegistrationService } from './../../../../services/supplier-registration.service';
 import { Component, OnInit, ChangeDetectorRef, ViewChild, Input, ElementRef, OnDestroy } from '@angular/core';
 

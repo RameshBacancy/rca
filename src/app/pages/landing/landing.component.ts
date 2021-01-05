@@ -1,5 +1,4 @@
-import { FormControl, Validators, FormGroup } from '@angular/forms';
-import { Component, OnInit, OnDestroy, OnChanges, SimpleChanges, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SidebarService } from 'src/app/services/sidebar-menu.service';
 
@@ -14,7 +13,7 @@ export interface Option {
   styleUrls: ['./landing.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent implements OnInit, AfterViewInit {
   viewSideBar: boolean = false;
   public title: string;
   public currentUrl: string;
@@ -43,12 +42,12 @@ export class LandingComponent implements OnInit {
       }
       ref.detectChanges();
     });
-   }
+  }
 
-  ngOnInit( ) {
+  ngOnInit() {
     this.currentUrl = this.router.url;
     this.url = this.currentUrl.split('/');
-    this.title = this.url[this.url.length - 1 ];
+    this.title = this.url[this.url.length - 1];
     if (this.title === 'dashboard') {
       this.title = 'Supplier Portal';
     }
@@ -56,8 +55,14 @@ export class LandingComponent implements OnInit {
       this.title = 'Registration';
     }
     this.menu = this.sidebarData.getdata();
+   
   }
 
+  ngAfterViewInit() {
+    if (localStorage.getItem('arStatus') !== 'approved') { 
+      this.menu.splice(3, 1);
+    }
+  }
 
   onViewSidebar(val) {
     this.viewSideBar = val;
