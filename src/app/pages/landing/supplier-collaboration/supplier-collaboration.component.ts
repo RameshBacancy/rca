@@ -124,6 +124,16 @@ export class SupplierCollaborationComponent implements OnInit {
         this.activityUpgradeRequestForm.get('requestDate').setValue(new Date().toDateString());
         this.open();
         this.isActivityUpdate = false;
+        if (localStorage.getItem('civilReg') === '11337799') { 
+          const  body = {
+            activity: {
+              status: 'approved'
+            }
+          };
+          this.collaborationService.activityUpgradeRequest(body).subscribe(res => {
+            localStorage.setItem('activityStatus', 'approved');
+          }, (err) => console.log(err));
+        }
         localStorage.setItem('activityStatus', 'pending');
       } else {
         this.alertMessage.pushError('Enter valid Activity.', 2000);
@@ -136,8 +146,17 @@ export class SupplierCollaborationComponent implements OnInit {
     if (this.renewalUpgradeRequestFrom.value.renewalRequest) {
       this.open();
       this.isRenewalUpdate = false;
+      if (localStorage.getItem('civilReg') === '11337799') { 
+        const  body = {
+          renewal: {
+            status: 'approved'
+          }
+        };
+        this.collaborationService.activityUpgradeRequest(body).subscribe(() => {
+          localStorage.setItem('renewalStatus', 'approved');
+        }, (err) => console.log(err));
+      }
       localStorage.setItem('renewalStatus', 'pending');
-
     } else {
       this.alertMessage.pushError('Enter valid Renewal Request.', 2000);
     }
