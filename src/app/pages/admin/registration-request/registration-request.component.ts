@@ -11,9 +11,13 @@ import { UserService } from 'src/app/services/user.service';
 export class RegistrationRequestComponent implements OnInit {
 
   data: any[] = [];
+  filterData: any[] = [];
   isdata = false;
   closeResult: string;
   viewData: any;
+  status: { text: string, value: string }[];
+  page = 1;
+  statusString: string;
 
   constructor(
     private userService: UserService,
@@ -23,6 +27,12 @@ export class RegistrationRequestComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.status = [
+      { text: 'Approved', value: 'approved' },
+      { text: 'Pending', value: 'pending' },
+      { text: 'Rejected', value: 'reject' }
+    ];
+
     this.userData();
   }
 
@@ -38,12 +48,13 @@ export class RegistrationRequestComponent implements OnInit {
 
   userData() {
     this.userService.getrequests().subscribe(d => {
-      this.data = d.data.filter( m => {
+      this.data = d.data.filter(m => {
         if (m.register_status === 'finish') {
-        return m;
+          return m;
         }
       });
       if (this.data.length > 0) {
+        this.filterSupplier('approved');
         this.isdata = true;
         this.ref.detectChanges();
       }
@@ -52,7 +63,7 @@ export class RegistrationRequestComponent implements OnInit {
   open(content, d) {
 
     this.viewData = d;
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
 
       this.closeResult = `Closed with: ${result}`;
 
@@ -68,8 +79,14 @@ export class RegistrationRequestComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
+  }
+
+  public filterSupplier(statusType: string): void {
+    this.statusString = statusType;
+    this.filterData = this.data.filter(res => res.status === statusType);
+    this.page = 1;
   }
 
 }

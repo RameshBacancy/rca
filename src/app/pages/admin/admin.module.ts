@@ -1,3 +1,4 @@
+import { MatSelectModule } from '@angular/material/select';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminComponent } from './admin.component';
@@ -11,6 +12,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { CmsPagesComponent } from './cms-pages/cms-pages.component';
 import { RegistrationRequestComponent } from './registration-request/registration-request.component';
 import { AlertMessagesComponent } from './alert-messages/alert-messages.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   {
@@ -25,11 +27,11 @@ const routes: Routes = [
       },
       {
         path: 'dashboard',
-        component : AdminDashboardComponent,
+        component: AdminDashboardComponent,
       },
       {
         path: 'cms',
-        component : CmsPagesComponent,
+        component: CmsPagesComponent,
       },
       {
         path: 'suppler-register-request-info',
@@ -47,7 +49,7 @@ const routes: Routes = [
   },
   {
     path: 'changepassword',
-    component : ChangePasswordComponent,
+    component: ChangePasswordComponent,
   },
   { path: '**', redirectTo: '/admin/user/login', pathMatch: 'full' }
 ];
@@ -63,10 +65,12 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    NgbModule,
     LayoutModule,
     FormsModule,
     AngularEditorModule,
     ReactiveFormsModule,
+    MatSelectModule,
     RouterModule.forChild(routes)
   ]
 })

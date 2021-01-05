@@ -1,5 +1,11 @@
 <div class="row">
     <div class="col-md-12 px-4 mb-3 mt-3">
+        <div ngbDropdown class="d-inline-block float-right mb-2" *ngIf="isdata">
+            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{ statusString | titlecase  }}</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem *ngFor="let s of status" (click)="filterSupplier(s.value)">{{ s.text }}</button>
+            </div>
+        </div>
         <div class="table-responsive">
             <table class="table table-striped ">
                 <thead>
@@ -15,10 +21,10 @@
                 </thead>
                 <tbody>
                     <ng-container *ngIf="isdata; else newDeb">
-                        <tr *ngFor="let d of data, let i = index">
-                            <td>{{i+1}}</td>
+                        <tr *ngFor="let d of filterData | slice: (page-1)*10: page*10, let i = index">
+                            <td>{{ (page - 1)*10 + i + 1 }}</td>
                             <td *ngIf="d.civil_number">{{d.civil_number}}</td>
-                            <td  *ngIf="!d.civil_number">-</td>
+                            <td *ngIf="!d.civil_number">-</td>
                             <td *ngIf="d.cr_number">{{d.cr_number}}</td>
                             <td *ngIf="!d.cr_number">-</td>
                             <td *ngIf="d.email">{{d.email}}</td>
@@ -26,20 +32,30 @@
                             <td>{{ d.register_type | titlecase}}</td>
                             <td>{{ d.status | titlecase }}</td>
                             <td>
-                                <i class="fa fa-eye btn btn-warning mr-2" aria-hidden="true" (click)="open(mymodal, d)"></i>
-                                <i class="fa fa-check btn btn-primary mr-2" aria-hidden="true" (click)="approve(d.id)"></i>
-                                <i class="fa fa-times btn btn-secondary mr-2 red-bg" aria-hidden="true" (click)="reject(d.id)"></i>
+                                <i class="fa fa-eye btn btn-warning mr-2" aria-hidden="true"
+                                    (click)="open(mymodal, d)"></i>
+                                <i class="fa fa-check btn btn-primary mr-2" aria-hidden="true"
+                                    (click)="approve(d.id)"></i>
+                                <i class="fa fa-times btn btn-secondary mr-2 red-bg" aria-hidden="true"
+                                    (click)="reject(d.id)"></i>
                             </td>
                         </tr>
                     </ng-container>
                     <ng-template #newDeb>
-                        
+
                         <tr>
-                            <td colspan="6" class="text-align-center"><div class="spinner-border text-muted"></div></td>
+                            <td colspan="6" class="text-align-center">
+                                <div class="spinner-border text-muted"></div>
+                            </td>
                         </tr>
                     </ng-template>
                 </tbody>
             </table>
+            <div class="float-right" *ngIf="isdata">
+                <ngb-pagination [collectionSize]="filterData.length" [(page)]="page" [maxSize]="5" [rotate]="true"
+                    [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+            </div>
+
         </div>
     </div>
 </div>
@@ -65,8 +81,8 @@
                             </div>
                             <div class="col-md-8 pt-1">
                                 <h4 *ngIf="viewData.civil_number" class="fs-16">{{viewData.civil_number}}</h4>
-                                <h4  *ngIf="!viewData.civil_number" class="fs-16">-</h4>
-                             </div>
+                                <h4 *ngIf="!viewData.civil_number" class="fs-16">-</h4>
+                            </div>
                         </div>
                         <div class="row  mx-1 my-1 d-flex">
                             <div class="col-md-4 pt-1">
@@ -75,7 +91,7 @@
                             <div class="col-md-8 pt-1">
                                 <h4 *ngIf="viewData.cr_number" class="fs-16">{{viewData.cr_number}}</h4>
                                 <h4 *ngIf="!viewData.cr_number" class="fs-16">-</h4>
-                             </div>
+                            </div>
                         </div>
                         <div class="row  mx-1 my-1 d-flex">
                             <div class="col-md-4 pt-1">
@@ -84,7 +100,7 @@
                             <div class="col-md-8 pt-1">
                                 <h4 *ngIf="viewData.email" class="fs-16">{{viewData.email}}</h4>
                                 <h4 *ngIf="!viewData.email" class="fs-16">-</h4>
-                             </div>
+                            </div>
                         </div>
                         <div class="row  mx-1 my-1 d-flex">
                             <div class="col-md-4 pt-1">
@@ -94,7 +110,7 @@
                                 <h4 class="fs-16" *ngIf="viewData.register_type == 'local'">Local</h4>
                                 <h4 class="fs-16" *ngIf="viewData.register_type == 'international'">International</h4>
                                 <h4 class="fs-16" *ngIf="viewData.register_type == 'individual'">Individual</h4>
-                             </div>
+                            </div>
                         </div>
                         <div class="row  mx-1 my-1 d-flex">
                             <div class="col-md-4 pt-1">
@@ -104,7 +120,7 @@
                                 <h4 class="fs-16" *ngIf="viewData.status == 'approved'">Approved</h4>
                                 <h4 class="fs-16" *ngIf="viewData.status == 'reject'">Reject</h4>
                                 <h4 class="fs-16" *ngIf="viewData.status == 'pending'">Pending</h4>
-                             </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -112,10 +128,11 @@
         </section>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-16 mb-2 mb-2" type="submit" (click)="approve(viewData.id);modal.close('Save click');">Approve</button>
+        <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-16 mb-2 mb-2" type="submit"
+            (click)="approve(viewData.id);modal.close('Save click');">Approve</button>
         <button class="red-bg btn btn-secondary px-3 py-2 mx-1 w-120 fs-16 mb-2" type="cancel"
             (click)="reject(viewData.id); modal.close('Save click')">Reject</button>
-            <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-16 mb-2" type="cancel"
+        <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-16 mb-2" type="cancel"
             (click)="modal.close('Save click')">Cancel</button>
 
     </div>
