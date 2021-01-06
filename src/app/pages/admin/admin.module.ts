@@ -1,3 +1,4 @@
+import { SharedModule } from './../../shared/shared.module';
 import { MatSelectModule } from '@angular/material/select';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -68,6 +69,7 @@ const routes: Routes = [
     NgbModule,
     LayoutModule,
     FormsModule,
+    SharedModule,
     AngularEditorModule,
     ReactiveFormsModule,
     MatSelectModule,

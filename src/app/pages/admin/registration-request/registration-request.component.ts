@@ -1,3 +1,4 @@
+import { SortByPipe } from './../../../shared/pipe/sortBy.pipe';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SpinnerService } from 'src/app/services/spinner.service';
@@ -10,20 +11,21 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class RegistrationRequestComponent implements OnInit {
 
-  data: any[] = [];
-  filterData: any[] = [];
-  isdata = false;
+  data: any[] = []; // list of supplier
+  filterData: any[] = []; // filter list of supplier
+  isdata = false; // for hide show loader and content
   closeResult: string;
   viewData: any;
   status: { text: string, value: string }[];
-  page = 1;
+  page = 1; // pagination
   statusString: string;
 
   constructor(
     private userService: UserService,
     private modalService: NgbModal,
     private ref: ChangeDetectorRef,
-    private spinner: SpinnerService
+    private spinner: SpinnerService,
+    private sortByPipe: SortByPipe
   ) { }
 
   ngOnInit(): void {
@@ -37,16 +39,19 @@ export class RegistrationRequestComponent implements OnInit {
     this.userData();
   }
 
+  // for status approve
   approve(id) {
     this.spinner.openSpinner();
     this.userService.approveReject(id, 'approved');
   }
 
+  // for status reject
   reject(id) {
     this.spinner.openSpinner();
     this.userService.approveReject(id, 'reject');
   }
 
+  // call for supplier list spi
   userData() {
     this.userService.getrequests().subscribe(d => {
       this.data = d.data.filter(m => {
@@ -54,6 +59,7 @@ export class RegistrationRequestComponent implements OnInit {
           return m;
         }
       });
+      this.data = this.sortByPipe.transform(this.data, 'desc', 'sort_index');
       if (this.data.length > 0) {
         this.filterSupplier('all');
         this.isdata = true;
@@ -61,19 +67,18 @@ export class RegistrationRequestComponent implements OnInit {
       }
     });
   }
-  open(content, d) {
 
+  // modal popup open function
+  open(content, d) {
     this.viewData = d;
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
-
       this.closeResult = `Closed with: ${result}`;
-
     }, (reason) => {
-
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-
     });
   }
+
+  // close (cross) button in model popup
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';
