@@ -62,7 +62,7 @@ export class SupplierCollaborationComponent implements OnInit {
         this.activityUpgradeStatus = this.activityPaymentStatus === 'success' ? '' : this.activityUpgradeStatus;
         this.renewalUpgradeStatus = this.renewalPaymentStatus === 'success' ? '' : this.renewalUpgradeStatus;
         this.loadForm();
-        if (localStorage.getItem('civilReg') === '11337789') { 
+        if (localStorage.getItem('civilReg') === '11347789') { 
           this.activityUpgradeStatus = 'pending';
           this.renewalUpgradeStatus = 'pending';
         }
