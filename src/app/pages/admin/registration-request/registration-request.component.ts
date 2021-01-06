@@ -28,6 +28,7 @@ export class RegistrationRequestComponent implements OnInit {
 
   ngOnInit(): void {
     this.status = [
+      { text: 'All', value: 'all' },
       { text: 'Approved', value: 'approved' },
       { text: 'Pending', value: 'pending' },
       { text: 'Rejected', value: 'reject' }
@@ -54,7 +55,7 @@ export class RegistrationRequestComponent implements OnInit {
         }
       });
       if (this.data.length > 0) {
-        this.filterSupplier('approved');
+        this.filterSupplier('all');
         this.isdata = true;
         this.ref.detectChanges();
       }
@@ -83,9 +84,14 @@ export class RegistrationRequestComponent implements OnInit {
     }
   }
 
+  // Filter supplier like approved, pending etc
   public filterSupplier(statusType: string): void {
     this.statusString = statusType;
-    this.filterData = this.data.filter(res => res.status === statusType);
+    if (statusType === 'all') {
+      this.filterData = [...this.data];
+    } else {
+      this.filterData = this.data.filter(res => res.status === statusType);
+    }
     this.page = 1;
   }
 
