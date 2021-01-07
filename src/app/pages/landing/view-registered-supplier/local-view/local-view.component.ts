@@ -409,7 +409,7 @@ export class LocalViewComponent implements OnInit {
       this.filesList = [];
       this.projectData.map((d, i) => {
         if (d.projectID == data.projectID) {
-          if (Object.keys(d.documents).length != 0) {
+          if (d.documents['name']) {
             this.filesList.push(d.documents);
           }
         }
@@ -419,7 +419,7 @@ export class LocalViewComponent implements OnInit {
       this.filesList = [];
       this.employeeData.map((d, i) => {
         if (d.employeeID == data.employeeID) {
-          if (Object.keys(d.documents).length != 0) {
+          if (d.documents['name']) {
             this.filesList.push(d.documents);
           }
         }
@@ -429,7 +429,7 @@ export class LocalViewComponent implements OnInit {
       this.filesList = [];
       this.activityInfoData.map((d, i) => {
         if (d.activityID == data.activityID) {
-          if (Object.keys(d.documents).length != 0) {
+          if (d.documents['name']) {
             this.filesList.push(d.documents);
           }
         }
@@ -469,7 +469,7 @@ export class LocalViewComponent implements OnInit {
       this.filesList = [];
       this.otherData.map((d, i) => {
         if (d.otherID == data.otherID) {
-          if (Object.keys(d.documents).length != 0) {
+          if (d.documents['name']) {
             this.filesList.push(d.documents);
           }
         }

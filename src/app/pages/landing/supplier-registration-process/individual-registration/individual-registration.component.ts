@@ -1035,7 +1035,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
       this.filesList = [];
       this.personalData.map((d, i) => {
         if (d.personalID == data.personalID) {
-          if (Object.keys(d.documents).length != 0) {
+          if (d.documents['name']) {
             this.filesList.push(d.documents);
           }
         }
