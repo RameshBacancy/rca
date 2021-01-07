@@ -1,11 +1,27 @@
-.card-custom{
+.card-custom {
     height: 300px;
-    width:350px;
+    width: 350px;
     position: relative;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
-    h2{
+    transform: translate(-50%, -50%);
+    h2 {
         cursor: pointer;
+        text-align: center;
+    }
+}
+
+/* For ipad: */
+@media screen and (max-width: 991px) {
+    .card-custom {
+        height: 250px;
+        width: 250px;
+    }
+}
+
+/* For ipad: */
+@media screen and (max-width: 768px) {
+    .card-div{
+        margin-top: 80px;
     }
 }
