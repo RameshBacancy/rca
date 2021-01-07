@@ -23,7 +23,8 @@ export class PaymentComponent implements OnInit {
   proceed() {
     this.userService.completeRegistrationPayment().subscribe(res => {
       localStorage.setItem('completePayment', 'true');
-      this.router.navigate(['/landing/supplier-registration/transaction']);
+      // this.router.navigate(['/landing/supplier-registration/transaction']);
+      this.router.navigateByUrl('/landing/supplier-registration/dashboard');
       this.userService.paymentStatus$.next(true);
     }, (error) => { console.log(error) });
   }

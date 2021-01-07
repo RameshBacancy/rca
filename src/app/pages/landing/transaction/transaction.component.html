@@ -1,28 +1,28 @@
 <section>
     <div class="container-fluid ">
-      <div class="row">
-        <div class="col-md-12">
-            <ol class="breadcrumb bg-white mb-0">
-                <li class="breadcrumb-item"><a >Home</a></li>
-                <li class="breadcrumb-item"><a >Supplier Registration </a></li>
-                <li class="breadcrumb-item active" aria-current="page">Transaction </li>
-            </ol>
+        <div class="row">
+            <div class="col-md-12">
+                <ol class="breadcrumb bg-white mb-0">
+                    <li class="breadcrumb-item"><a>Home</a></li>
+                    <li class="breadcrumb-item"><a>Supplier Registration </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Transaction </li>
+                </ol>
+            </div>
         </div>
-      </div>
     </div>
-  </section>
-  <section class="dark-grey-bg ">
+</section>
+<section class="dark-grey-bg ">
     <div class="container-fluid ">
-      <div class="row">
-        <div class="col-md-12 ">
-          <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">Transaction</h2>
+        <div class="row">
+            <div class="col-md-12 ">
+                <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">Transaction</h2>
+            </div>
         </div>
-      </div>
     </div>
 </section>
 <section class="container-fluid  mt-3">
     <div class="bg-white px-4">
-        <mat-horizontal-stepper [@.disabled]="true"  #stepper>
+        <mat-horizontal-stepper [@.disabled]="true" #stepper>
             <mat-step>
                 <ng-template matStepLabel>Supplier Grade</ng-template>
 
@@ -65,8 +65,8 @@
 
                 <div class="row">
                     <div class="col-md-12 mb-5 px-4">
-                        <button type="button"
-                            class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" disabled>Previous</button>
+                        <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            disabled>Previous</button>
                         <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                             matStepperNext>Next</button>
                         <a routerLink="/landing/supplier-registration/dashboard">
@@ -85,15 +85,16 @@
                             <div class="col-md-4 px-3">
                                 <div class="row pt-3">
                                     <div class="col-md-4 px-3">
-                                        <span class=" fs-16 font-weight-bold text-black dark-text-1 ">Payment Fees</span>
+                                        <span class=" fs-16 font-weight-bold text-black dark-text-1 ">Payment
+                                            Fees</span>
                                     </div>
                                     <div class="col-md-4 px-3">
-                                        <span class=" fs-16 font-weight-bold text-black dark-text-1 ">900 OMR</span>
+                                        <span class=" fs-16 font-weight-bold text-black dark-text-1 ">100 OMR</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row mt-2 mt-md-5">
+                        <!-- <div class="row mt-2 mt-md-5">
                                 <div class="col-md-12 px-4 d-block d-md-flex">
                                     <div class="mr-3 mb-3">
                                         <p class=" text-dark-grey font-weight-bold ">Payment Mode</p>
@@ -107,7 +108,7 @@
                                         <label class="form-check-label text-dark-grey font-weight-bold ml-2" for="flexRadioDefault2">Credit </label>
                                     </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="row mt-2 mt-md-5">
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
                             </div>
@@ -123,8 +124,10 @@
                     <div class="col-md-12 mb-5 px-4">
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             matStepperPrevious>Previous</button>
+                        <!-- <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            (click)="payment()">Next</button> -->
                         <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            (click)="payment()">Next</button>
+                            (click)="internationalPayment()">Payment</button>
                         <a routerLink="/landing/supplier-registration/dashboard">
                             <button type="button"
                                 class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
@@ -132,7 +135,7 @@
                     </div>
                 </div>
             </mat-step>
-            <mat-step>
+            <!-- <mat-step>
                 <ng-template matStepLabel>Payment Gateway</ng-template>
 
                 <section class=" bg-white">
@@ -157,7 +160,7 @@
                     </div>
                 </section>
 
-            </mat-step>
+            </mat-step> -->
         </mat-horizontal-stepper>
     </div>
 
