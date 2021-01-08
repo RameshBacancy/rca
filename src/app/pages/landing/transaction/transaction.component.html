@@ -124,10 +124,18 @@
                     <div class="col-md-12 mb-5 px-4">
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             matStepperPrevious>Previous</button>
-                        <!-- <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            (click)="payment()">Next</button> -->
-                        <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            (click)="internationalPayment()">Payment</button>
+                        <!-- For local and citizen -->
+                        <button type="button" *ngIf="supplierType !== 'international'"
+                            class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            (click)="payment()">Next</button>
+                        <!-- For international -->
+                        <form #paymentForm *ngIf="supplierType == 'international'" class="d-inline" action="http://ec2-3-16-154-54.us-east-2.compute.amazonaws.com/backend/public/payment-form" method="POST">
+                            <input type="hidden" name="amount" [value]="amount">
+                            <input type="hidden" name="currency" [value]="currency">
+                            <input type="hidden" name="Authorization" [value]="authToken">
+
+                            <input type="submit" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" (click)="paymentForm.submit()" value="Payment">
+                        </form>
                         <a routerLink="/landing/supplier-registration/dashboard">
                             <button type="button"
                                 class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>

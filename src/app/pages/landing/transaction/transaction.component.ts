@@ -16,12 +16,17 @@ export class TransactionComponent implements OnInit, AfterViewInit {
   paymentComplete: boolean;
   amount = 100;
   currency = 'USD';
+  supplierType: string;
+  authToken: string;
 
   constructor(private router: Router, private modelService: NgbModal, private paymentService: PaymentService) { }
 
   ngOnInit(): void {
     this.modelService.dismissAll();
-    if (localStorage.getItem('RegStatus') != 'finish') {
+    this.supplierType = localStorage.getItem('regType');
+    this.authToken = 'Bearer ' + sessionStorage.getItem('authToken');
+
+    if (localStorage.getItem('RegStatus') !== 'finish') {
       this.router.navigate(['/landing/supplier-registration/dashboard']);
     }
   }
