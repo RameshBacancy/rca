@@ -41,9 +41,7 @@ export class TransactionComponent implements OnInit, AfterViewInit {
   internationalPayment() {
     const supplierType = localStorage.getItem('regType');
     if (supplierType === 'international') {
-      const url =
-      `http://ec2-3-16-154-54.us-east-2.compute.amazonaws.com/backend/public/payment-form?amount=${this.amount}&currency=${this.currency}`;
-      location.assign(url);
+      this.paymentService.internationalPayment(this.amount, this.currency);
     } else {
       this.payment();
     }

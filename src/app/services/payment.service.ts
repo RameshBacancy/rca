@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,6 +6,15 @@ import { Injectable } from '@angular/core';
 })
 export class PaymentService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  internationalPayment(amount: number, currency: string) {
+    const token = 'Bearer ' + sessionStorage.getItem('authToken');
+    const url =
+      `http://ec2-3-16-154-54.us-east-2.compute.amazonaws.com/backend/public/payment-form?amount=${amount}&currency=${currency}&Authorization=${token}`;
+    location.assign(url);
+  }
 
 }
