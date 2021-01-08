@@ -294,7 +294,7 @@
                         <mat-tab label="Payment">
                             <section class=" bg-white">
                                 <div class="container-fluid ">
-                                    <div class="row pt-4">
+                                    <!-- <div class="row pt-4">
                                         <div class="col-md-4 px-3">
                                             <div class="row pt-3">
                                                 <div class="col-md-4 px-3">
@@ -303,28 +303,28 @@
                                                         Fee</span>
                                                 </div>
                                                 <div class="col-md-4 px-3">
-                                                    <span class=" fs-16 font-weight-bold text-black dark-text-1 ">900
+                                                    <span class=" fs-16 font-weight-bold text-black dark-text-1 ">100
                                                         OMR</span>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="row pt-4">
                                         <div class="col-md-4 px-3">
                                             <div class="row pt-3">
                                                 <div class="col-md-4 px-3">
                                                     <span
-                                                        class=" fs-16 font-weight-bold text-black dark-text-1 ">Renewal
+                                                        class=" fs-16 font-weight-bold text-black dark-text-1 ">Activity Upgrade
                                                         Fees</span>
                                                 </div>
                                                 <div class="col-md-4 px-3">
-                                                    <span class=" fs-16 font-weight-bold text-black dark-text-1 ">900
+                                                    <span class=" fs-16 font-weight-bold text-black dark-text-1 ">100
                                                         OMR</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mt-2 mt-5 md-5">
+                                    <!-- <div class="row mt-2 mt-5 md-5">
                                         <div class="col-md-12 d-block d-md-flex">
                                             <div class="mr-5 mb-3">
                                                 <p class=" text-dark-grey font-weight-bold ">Payment Mode</p>
@@ -342,7 +342,7 @@
                                                     for="flexRadioDefault2">Credit </label>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="row mt-2 mt-5 md-5">
                                         <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
                                         </div>
@@ -357,9 +357,26 @@
                                 <div class="col-md-12 mb-5 px-4">
                                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                         matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
-                                    <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                        (click)="callPayment('activity')">Payment <i
-                                            class="fa fa-caret-right"></i></button>
+
+                                    <ng-container *ngIf="supplierType == 'international'; else elseTemplate">
+                                        <form #activityPaymentForm *ngIf="supplierType == 'international'" class="d-inline"
+                                            action="http://ec2-3-16-154-54.us-east-2.compute.amazonaws.com/backend/public/payment-form"
+                                            method="POST">
+                                            <input type="hidden" name="amount" [value]="paymentData.amount">
+                                            <input type="hidden" name="currency" [value]="paymentData.currency">
+                                            <input type="hidden" name="Authorization" [value]="paymentData.token">
+
+                                            <input type="submit"
+                                                class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                                (click)="activityPaymentForm.submit()" value="Payment">
+                                        </form>
+                                    </ng-container>
+                                    <ng-template #elseTemplate>
+                                        <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                            (click)="callPayment('activity')">Payment <i
+                                                class="fa fa-caret-right"></i></button>
+                                    </ng-template>
+
 
                                     <a routerLink="/landing/supplier-registration/dashboard">
                                         <button type="button"
@@ -372,13 +389,15 @@
                 </ng-container>
                 <ng-template #elseTemplate>
                     <section class="bg-white" *ngIf="activityUpgradeRequestForm">
-                        <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="!isActivityUpdate && activityUpgradeStatus !== 'pending' ">
+                        <div class="row mt-2 mb-2 ml-2 mb-2"
+                            *ngIf="!isActivityUpdate && activityUpgradeStatus !== 'pending' ">
                             <button type="button" (click)="updateClick('activity')"
                                 class="btn btn-primary">Update</button>
                         </div>
 
                         <form [formGroup]="activityUpgradeRequestForm" (ngSubmit)="activityUpdateSubmit()">
-                            <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="isActivityUpdate && activityUpgradeStatus !== 'pending'">
+                            <div class="row mt-2 mb-2 ml-2 mb-2"
+                                *ngIf="isActivityUpdate && activityUpgradeStatus !== 'pending'">
                                 <button type="submit" class="btn btn-primary">Send</button>
                             </div>
                             <div class="row mt-4 ml-2">
@@ -510,7 +529,7 @@
                                     <div class="col-md-12 mb-5 px-4">
                                         <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                             matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
-                                            <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                        <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                                             (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
 
                                         <a routerLink="/landing/supplier-registration/dashboard">
@@ -524,7 +543,7 @@
                         <mat-tab label="Payment">
                             <section class=" bg-white">
                                 <div class="container-fluid ">
-                                    <div class="row pt-4">
+                                    <!-- <div class="row pt-4">
                                         <div class="col-md-4 px-3">
                                             <div class="row pt-3">
                                                 <div class="col-md-4 px-3">
@@ -533,12 +552,12 @@
                                                         Fee</span>
                                                 </div>
                                                 <div class="col-md-4 px-3">
-                                                    <span class=" fs-16 font-weight-bold text-black dark-text-1 ">900
+                                                    <span class=" fs-16 font-weight-bold text-black dark-text-1 ">100
                                                         OMR</span>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="row pt-4">
                                         <div class="col-md-4 px-3">
                                             <div class="row pt-3">
@@ -548,13 +567,13 @@
                                                         Fees</span>
                                                 </div>
                                                 <div class="col-md-4 px-3">
-                                                    <span class=" fs-16 font-weight-bold text-black dark-text-1 ">900
+                                                    <span class=" fs-16 font-weight-bold text-black dark-text-1 ">100
                                                         OMR</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mt-2 mt-5 md-5">
+                                    <!-- <div class="row mt-2 mt-5 md-5">
                                         <div class="col-md-12 d-block d-md-flex">
                                             <div class="mr-5 mb-3">
                                                 <p class=" text-dark-grey font-weight-bold ">Payment Mode</p>
@@ -572,7 +591,7 @@
                                                     for="flexRadioDefault2">Credit </label>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="row mt-2 mt-5 md-5">
                                         <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
                                         </div>
@@ -587,9 +606,24 @@
                                 <div class="col-md-12 mb-5 px-4">
                                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                         matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
-                                    <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                        (click)="callPayment('renewal')">Payment <i
-                                            class="fa fa-caret-right"></i></button>
+                                        <ng-container *ngIf="supplierType == 'international'; else elseTemplate">
+                                            <form #renewalPaymentForm *ngIf="supplierType == 'international'" class="d-inline"
+                                                action="http://ec2-3-16-154-54.us-east-2.compute.amazonaws.com/backend/public/payment-form"
+                                                method="POST">
+                                                <input type="hidden" name="amount" [value]="paymentData.amount">
+                                                <input type="hidden" name="currency" [value]="paymentData.currency">
+                                                <input type="hidden" name="Authorization" [value]="paymentData.token">
+    
+                                                <input type="submit"
+                                                    class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                                    (click)="renewalPaymentForm.submit()" value="Payment">
+                                            </form>
+                                        </ng-container>
+                                        <ng-template #elseTemplate>
+                                            <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                                (click)="callPayment('activity')">Payment <i
+                                                    class="fa fa-caret-right"></i></button>
+                                        </ng-template>
 
                                     <a routerLink="/landing/supplier-registration/dashboard">
                                         <button type="button"
@@ -603,13 +637,15 @@
                 <ng-template #elseRenewalTemplate>
                     <section class="bg-white" *ngIf="renewalUpgradeRequestFrom">
 
-                        <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="!isRenewalUpdate && renewalUpgradeStatus !== 'pending'">
+                        <div class="row mt-2 mb-2 ml-2 mb-2"
+                            *ngIf="!isRenewalUpdate && renewalUpgradeStatus !== 'pending'">
                             <button type="button" (click)="updateClick('renewal')"
                                 class="btn btn-primary">Update</button>
                         </div>
 
                         <form [formGroup]="renewalUpgradeRequestFrom" (ngSubmit)="renewalUpdateSubmit()">
-                            <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="isRenewalUpdate && renewalUpgradeStatus !== 'pending'">
+                            <div class="row mt-2 mb-2 ml-2 mb-2"
+                                *ngIf="isRenewalUpdate && renewalUpgradeStatus !== 'pending'">
                                 <button type="submit" (click)="updateClick('activity')"
                                     class="btn btn-primary">Send</button>
                             </div>

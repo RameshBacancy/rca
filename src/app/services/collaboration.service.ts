@@ -22,8 +22,8 @@ export class CollaborationService {
   }
 
   // Activity Upgrade Request
-  activityUpgradeRequest(statusObj):Observable<any> {
-    return this.reqHttp.httpPost('collaboratuon-status-update',statusObj);
+  activityUpgradeRequest(statusObj): Observable<any> {
+    return this.reqHttp.httpPost('collaboratuon-status-update', statusObj);
   }
 
   // 
