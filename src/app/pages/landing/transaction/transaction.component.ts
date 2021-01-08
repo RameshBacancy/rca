@@ -24,7 +24,7 @@ export class TransactionComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.modelService.dismissAll();
     this.supplierType = localStorage.getItem('regType');
-    this.authToken = 'Bearer ' + sessionStorage.getItem('authToken');
+    this.authToken = 'Bearer ' + localStorage.getItem('authToken');
 
     if (localStorage.getItem('RegStatus') !== 'finish') {
       this.router.navigate(['/landing/supplier-registration/dashboard']);

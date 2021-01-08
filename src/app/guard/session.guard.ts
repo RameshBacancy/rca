@@ -10,7 +10,7 @@ export class SessionGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (!sessionStorage.getItem('authToken')) {
+    if (!localStorage.getItem('authToken')) {
       this.router.navigateByUrl('/auth/supplier-registration');
       return false;
     } else {

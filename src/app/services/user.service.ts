@@ -37,7 +37,7 @@ export class UserService {
     }
     setToken(token) {
         this.currentUser = token;
-        sessionStorage.setItem('authToken', token);
+        localStorage.setItem('authToken', token);
     }
 
     registrationLogin(num, str, type) {

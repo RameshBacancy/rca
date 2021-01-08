@@ -57,7 +57,7 @@ export class SupplierCollaborationComponent implements OnInit {
 
   ngOnInit(): void {
 
-    const authToken = 'Bearer ' + sessionStorage.getItem('authToken');
+    const authToken = 'Bearer ' + localStorage.getItem('authToken');
     this.paymentData = {
       amount: 100,
       currency: 'USD',

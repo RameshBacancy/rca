@@ -14,7 +14,7 @@ export class BasicAuthInterceptor implements HttpInterceptor {
         // add authorization header with basic auth credentials if available
         // this.spinner.openSpinner();
         this.userService.createAcceptHeader();
-        const currentUser = sessionStorage.getItem('authToken');
+        const currentUser = localStorage.getItem('authToken');
         if (currentUser) {
             request = request.clone({
                 setHeaders: {
