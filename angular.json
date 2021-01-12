@@ -29,7 +29,8 @@
             "allowedCommonJsDependencies": [
               "rxjs-compat",
               "rxjs",
-              "uuid"
+              "uuid",
+              "lodash"
             ],
             "styles": [
               "src/styles.scss",
