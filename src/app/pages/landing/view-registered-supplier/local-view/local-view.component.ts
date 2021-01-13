@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -31,7 +31,7 @@ import {
   EquipmentDetailsStep, EquipmentDetails
 } from 'src/app/models/supplier.modal';
 import { SortByPipe } from '../../../../shared/pipe/sortBy.pipe';
-import { FilterPipe } from 'src/app/shared/pipe/searchEmployee.pipe';;
+import { FilterPipe } from 'src/app/shared/pipe/searchEmployee.pipe';
 import { AlertService } from 'src/app/services/alert.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { SupplierRegistrationService } from 'src/app/services/supplier-registration.service';
@@ -42,7 +42,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './local-view.component.html',
   styleUrls: ['./local-view.component.scss']
 })
-export class LocalViewComponent implements OnInit {
+export class LocalViewComponent implements OnInit, OnDestroy {
 
   @ViewChild('stepper') private stepper: MatStepper;
 
@@ -67,7 +67,7 @@ export class LocalViewComponent implements OnInit {
   personalData$: Observable<PersonalDetailsStep>;
   personalData: PersonalDetails[];
 
-  //communication method step
+  // communication method step
   communicationData$: Observable<CommunicationMethodStep>;
   communicationData: CommunicationMethod[]
 
@@ -81,34 +81,34 @@ export class LocalViewComponent implements OnInit {
   editBank = false;
   editbankData: any;
 
-  //employee detail step
+  // employee detail step
   employeeData$: Observable<EmployeeDetailsStep>;
   employeeData: EmployeDetails[];
   arrayOfCatagory = [];
   staffCategory: any[];
   showTable: boolean;
 
-  //ministries1 data step
+  // ministries1 data step
   ministriesData1$: Observable<MinistriesData1Step>;
   ministriesData1: MinistriesData1Step;
 
-  //ministries2 data step
+  // ministries2 data step
   ministriesData2$: Observable<MinistriesData2Step>;
   ministriesData2: MinistriesData2Step;
 
-  //ministries3 data step
+  // ministries3 data step
   ministriesData3$: Observable<MinistriesData3Step>;
   ministriesData3: MinistriesData3Step;
 
-  //project detial step
+  // project detial step
   projectData$: Observable<ProjectDetailsStep>;
   projectData: ProjectDetails[];
 
-  //subContrator info step
+  // subContrator info step
   subContractorData$: Observable<SubContractorDetailsStep>;
   subContractorData: SubContractorDetails[];
 
-  //equipment info stop
+  // equipment info stop
   equipmentData$: Observable<EquipmentDetailsStep>;
   equipmentData: EquipmentDetails[];
 
@@ -123,10 +123,10 @@ export class LocalViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadData()
+    this.loadData();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.complete();
   }
@@ -294,7 +294,7 @@ export class LocalViewComponent implements OnInit {
   }
 
 
-  //functions to change tabs internally
+  // functions to change tabs internally
   changeTab() {
     this.selected.setValue(this.selected.value + 1);
   }
@@ -323,7 +323,7 @@ export class LocalViewComponent implements OnInit {
       this.employeeData.map((d) => {
         if (d.staffCategory == a) {
           index = index + 1;
-          if (d.country.toLowerCase() == 'omani') {
+          if (d.country.toLowerCase() === 'omani') {
             omaniIndex = omaniIndex + 1;
           } else {
             nonOmaniIndex = nonOmaniIndex + 1;
@@ -478,7 +478,7 @@ export class LocalViewComponent implements OnInit {
     this.open(content);
   }
 
-  //open address model
+  // open address model
   open(content, address?) {
 
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
