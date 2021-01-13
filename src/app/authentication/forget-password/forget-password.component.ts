@@ -49,7 +49,7 @@ export class ForgetPasswordComponent implements OnInit {
     }
   }
 
-  cancel(){
+  cancel() {
     this.router.navigateByUrl('/admin/user/login');
   }
 

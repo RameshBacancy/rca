@@ -1,7 +1,5 @@
 import { AlertService } from './../../services/alert.service';
-import { SpinnerService } from 'src/app/services/spinner.service';
 import { Component, OnInit, ViewChild, AfterViewInit, Output, EventEmitter } from '@angular/core';
-import { faLeaf } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-otp',
@@ -21,8 +19,8 @@ export class OtpComponent implements OnInit, AfterViewInit {
     disableAutoFocus: false,
     placeholder: '',
     inputStyles: {
-      'width': '50px',
-      'height': '50px'
+      width: '50px',
+      height: '50px'
     }
   };
   isVerifyBtnDisable = true;

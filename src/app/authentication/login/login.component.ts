@@ -14,8 +14,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
 
-  public user = {email: '', password: ''};
-  public fuser = {email: ''};
+  public user = { email: '', password: '' };
+  public fuser = { email: '' };
   message: any;
   closeResult: string;
   errmessage: string;
@@ -34,13 +34,13 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     // this.spinner.openSpinner();
     localStorage.clear();
-    this.spinner.closeSpinner(); 
+    this.spinner.closeSpinner();
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }
-  
+
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
 
@@ -72,7 +72,7 @@ export class LoginComponent implements OnInit {
       this.validForm = true;
     }
 
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
 
       this.closeResult = `Closed with: ${result}`;
 
@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 }
