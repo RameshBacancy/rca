@@ -9,10 +9,20 @@ import { SupplierCollaborationRoutingModule } from './supplier-collaboration-rou
 import { SupplierCollaborationComponent } from './supplier-collaboration.component';
 import { MatSelectModule } from '@angular/material/select';
 import { UpgradePaymentComponent } from './upgrade-payment/upgrade-payment.component';
+import { GradeDetailComponent } from './components/grade-detail/grade-detail.component';
+import { ProfileUpdateComponent } from './components/profile-update/profile-update.component';
+import { ActivityUpdateComponent } from './components/activity-update/activity-update.component';
+import { RenewalUpdateComponent } from './components/renewal-update/renewal-update.component';
 
 
 @NgModule({
-  declarations: [SupplierCollaborationComponent, UpgradePaymentComponent],
+  declarations: [
+    SupplierCollaborationComponent,
+    UpgradePaymentComponent,
+    GradeDetailComponent,
+    ProfileUpdateComponent,
+    ActivityUpdateComponent,
+    RenewalUpdateComponent],
   imports: [
     CommonModule,
     LayoutModule,

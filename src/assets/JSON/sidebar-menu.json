@@ -75,9 +75,38 @@
         {
             "name": "SUPPLIER COLLABORATION",
             "icon": "",
-            "route": "/landing/supplier-collaboration",
+            "route": "",
             "disabled": false,
-            "children": []
+            "children": [
+                {
+                    "name": "Supplier Grade Details",
+                    "icon": "",
+                    "route": "/landing/supplier-collaboration/grade-details",
+                    "disabled": false,
+                    "children": []
+                    },
+                    {
+                    "name": "Profile Update",
+                    "icon": "",
+                    "route": "/landing/supplier-collaboration/profile-update",
+                    "disabled": false,
+                    "children": []
+                    },
+                    {
+                    "name": "Activity Upgrade Request",
+                    "icon": "",
+                    "route": "/landing/supplier-collaboration/activity-upgrade",
+                    "disabled": false,
+                    "children": []
+                    },
+                    {
+                    "name": "Renewal Upgrade Request",
+                    "icon": "",
+                    "route": "/landing/supplier-collaboration/renewal-upgrade",
+                    "disabled": false,
+                    "children": []
+                    }
+            ]
         },
         {
             "name": "TENDERING",
