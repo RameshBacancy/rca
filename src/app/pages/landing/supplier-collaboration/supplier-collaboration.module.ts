@@ -1,3 +1,4 @@
+import { SharedModule } from './../../../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatStepperModule } from '@angular/material/stepper';
@@ -25,6 +26,7 @@ import { RenewalUpdateComponent } from './components/renewal-update/renewal-upda
     RenewalUpdateComponent],
   imports: [
     CommonModule,
+    SharedModule,
     LayoutModule,
     MatStepperModule,
     MatTabsModule,

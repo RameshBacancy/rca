@@ -12,6 +12,7 @@ import { CollaborationService } from 'src/app/services/collaboration.service';
 })
 export class ActivityUpdateComponent implements OnInit {
 
+  isLoading: boolean;
   isActivityUpdate = false;
   activityUpgradeRequestForm: FormGroup;
   activityPaymentStatus: string;
@@ -36,17 +37,17 @@ export class ActivityUpdateComponent implements OnInit {
   @ViewChild('requestModal') requestModal: ElementRef;
   selected = new FormControl(0);
 
-constructor(
-  private formBuilder: FormBuilder,
-  private modalService: NgbModal,
-  private router: Router,
-  private alertMessage: AlertService,
-  private collaborationService: CollaborationService,
-  private cdr: ChangeDetectorRef
-) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private modalService: NgbModal,
+    private router: Router,
+    private alertMessage: AlertService,
+    private collaborationService: CollaborationService,
+    private cdr: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
-
+    this.isLoading = false;
     const authToken = 'Bearer ' + localStorage.getItem('authToken');
     this.paymentData = {
       amount: 100,
@@ -63,8 +64,10 @@ constructor(
   }
 
   private loadData() {
+    this.isLoading = true;
     this.collaborationService.getCollaborationData()
       .subscribe(res => {
+
         this.activityUpgradeStatus = res.activityUpgradeRequest.status || localStorage.getItem('activityStatus') || '';
 
         this.activityUpgradeStatus = this.activityPaymentStatus === 'success' ? '' : this.activityUpgradeStatus;
@@ -72,9 +75,11 @@ constructor(
         if (localStorage.getItem('civilReg') === '11347789') {
           this.activityUpgradeStatus = 'pending';
         }
+        this.isLoading = false;
         this.cdr.detectChanges();
       },
         (err) => {
+          this.isLoading = false;
           console.log('err :>> ', err);
         });
   }
@@ -120,7 +125,7 @@ constructor(
   }
 
   updateClick(tab: string) {
-     this.isActivityUpdate = true;
+    this.isActivityUpdate = true;
   }
 
   // for modal pop up

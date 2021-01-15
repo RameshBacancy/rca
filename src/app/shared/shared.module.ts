@@ -4,6 +4,7 @@ import { FilterPipe } from './pipe/searchEmployee.pipe';
 import { SortByPipe } from './pipe/sortBy.pipe';
 import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { SafeHtmlPipe } from './pipe/safeHtml.pipe';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { SafeHtmlPipe } from './pipe/safeHtml.pipe';
     SortByPipe,
     ClickOutsideDirective,
     FilterPipe,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    SpinnerComponent
   ],
   imports: [
     CommonModule
@@ -20,7 +22,8 @@ import { SafeHtmlPipe } from './pipe/safeHtml.pipe';
     SortByPipe,
     ClickOutsideDirective,
     FilterPipe,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    SpinnerComponent
   ],
   providers: [
     SafeHtmlPipe

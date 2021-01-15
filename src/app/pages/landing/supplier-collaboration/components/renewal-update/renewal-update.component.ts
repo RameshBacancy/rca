@@ -14,6 +14,7 @@ export class RenewalUpdateComponent implements OnInit {
   selected = new FormControl(0);
   isRenewalUpdate = false;
   supplierType: string;
+  isLoading: boolean;
   paymentData = {
     amount: null,
     currency: '',
@@ -45,7 +46,7 @@ export class RenewalUpdateComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-  
+    this.isLoading = false;
     const authToken = 'Bearer ' + localStorage.getItem('authToken');
     this.paymentData = {
       amount: 100,
@@ -62,6 +63,7 @@ export class RenewalUpdateComponent implements OnInit {
   }
 
   private loadData() {
+    this.isLoading = true;
     this.collaborationService.getCollaborationData()
       .subscribe(res => {
         this.renewalUpgradeStatus = res.renewalUpgradeRequest.status || localStorage.getItem('renewalStatus') || '';
@@ -71,9 +73,11 @@ export class RenewalUpdateComponent implements OnInit {
         if (localStorage.getItem('civilReg') === '11347789') {
           this.renewalUpgradeStatus = 'pending';
         }
+        this.isLoading = false;
         this.cdr.detectChanges();
       },
         (err) => {
+          this.isLoading = false;
           console.log('err :>> ', err);
         });
   }
