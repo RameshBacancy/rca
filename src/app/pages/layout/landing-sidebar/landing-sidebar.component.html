@@ -8,7 +8,7 @@
         {{item.name}}
         <div class="arrow-img" *ngIf="item.children.length>0">
           <img src="/assets/icons/arrow-right-white.svg" alt="" *ngIf="!item.disabled">
-          <img src="/assets/icons/arrow-down-white.svg" alt="" *ngIf="item.disabled">
+          <img src="/assets/icons/arrow-down-white.svg" class="arrow-down-icon" alt="" *ngIf="item.disabled">
         </div>
       </a>
       <a *ngIf="item.children.length>0" (click)="item.disabled = !item.disabled">
@@ -18,7 +18,7 @@
         {{item.name}}
         <div class="arrow-img" *ngIf="item.children.length>0">
           <img src="/assets/icons/arrow-right-white.svg" alt="" *ngIf="!item.disabled">
-          <img src="/assets/icons/arrow-down-white.svg" alt="" *ngIf="item.disabled">
+          <img src="/assets/icons/arrow-down-white.svg"  class="arrow-down-icon" alt="" *ngIf="item.disabled">
         </div>
       </a>
     </li>
@@ -30,7 +30,7 @@
             </a>
               <div class="arrow-img" *ngIf="child.children.length>0">
                 <img src="/assets/icons/arrow-right-white.svg" alt="" *ngIf="!child.disabled">
-                <img src="/assets/icons/arrow-down-white.svg" alt="" *ngIf="child.disabled">
+                <img src="/assets/icons/arrow-down-white.svg"  class="arrow-down-icon" alt="" *ngIf="child.disabled">
               </div>
           </li>
         </ul>
