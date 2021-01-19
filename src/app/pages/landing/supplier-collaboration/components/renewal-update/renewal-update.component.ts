@@ -19,7 +19,7 @@ export class RenewalUpdateComponent implements OnInit {
     amount: null,
     currency: '',
     token: ''
-  }
+  };
   renewalUpgradeRequestFrom: FormGroup;
   gradeSelectOption = [
     { value: 'a', viewValue: 'A' },
@@ -33,7 +33,7 @@ export class RenewalUpdateComponent implements OnInit {
   ];
   renewalUpgradeStatus: string;
   renewalPaymentStatus: string;
-  
+
   @ViewChild('requestModal') requestModal: ElementRef;
 
   constructor(
@@ -56,7 +56,7 @@ export class RenewalUpdateComponent implements OnInit {
 
     this.supplierType = localStorage.getItem('regType');
     if (localStorage.getItem('completePayment') !== 'true') {
-      this.router.navigate(['/landing', 'supplier-registration', 'dashboard'])
+      this.router.navigate(['/landing', 'supplier-registration', 'dashboard']);
     }
     this.renewalPaymentStatus = localStorage.getItem('renewalPaymentStatus') || '';
     this.loadData();
@@ -83,7 +83,7 @@ export class RenewalUpdateComponent implements OnInit {
   }
 
   private loadForm(): void {
-  
+
     this.renewalUpgradeRequestFrom = this.formBuilder.group({
       renewalRequest: [''],
       currentActivity: ['Activity 1'],

@@ -1,8 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-import { from } from 'rxjs';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
-import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { TranslateService } from '@ngx-translate/core';
 

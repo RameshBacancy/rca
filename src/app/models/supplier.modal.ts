@@ -154,7 +154,7 @@ export interface EmployeeDetailsStep {
     crNo: string;
     civilNo: string;
     omanizationRatio: string;
-    employeDetails: EmployeDetails[]
+    employeDetails: EmployeDetails[];
 }
 export interface EmployeDetails {
     employeeID: string;
@@ -210,7 +210,7 @@ export interface MunicipalityDataTab {
     crNo: number;
     regDate: string;
     expDate: string;
-    activities: string[]
+    activities: string[];
 }
 
 
@@ -274,7 +274,7 @@ export interface CapitalMarketData {
 }
 export interface CreditBureauData {
     crNo: number;
-    listOfFinanciallyTroubledCompanies: Documents
+    listOfFinanciallyTroubledCompanies: Documents;
 }
 export interface DistRulesReviewBoardData {
     crNo: number;

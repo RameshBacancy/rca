@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
 export class SubmitTenderBidsComponent implements OnInit {
 
   selected = new FormControl(0);
-  
+
   constructor() { }
 
   ngOnInit(): void {

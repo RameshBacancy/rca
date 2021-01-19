@@ -32,7 +32,7 @@ export class ActivityUpdateComponent implements OnInit {
     amount: null,
     currency: '',
     token: ''
-  }
+  };
   supplierType: string;
   @ViewChild('requestModal') requestModal: ElementRef;
   selected = new FormControl(0);
@@ -57,7 +57,7 @@ export class ActivityUpdateComponent implements OnInit {
 
     this.supplierType = localStorage.getItem('regType');
     if (localStorage.getItem('completePayment') !== 'true') {
-      this.router.navigate(['/landing', 'supplier-registration', 'dashboard'])
+      this.router.navigate(['/landing', 'supplier-registration', 'dashboard']);
     }
     this.activityPaymentStatus = localStorage.getItem('activityPaymentStatus') || '';
     this.loadData();

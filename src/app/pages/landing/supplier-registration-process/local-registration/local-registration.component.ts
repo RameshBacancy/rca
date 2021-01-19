@@ -87,7 +87,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
 
   // employeeSearch: string;
 
-  //to add new blank data 
+  // to add new blank data
   newData: any;
 
 
@@ -95,7 +95,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
 
   // addressMenu: boolean;
 
-  //personal detail tab
+  // personal detail tab
   personalData$: Observable<PersonalDetailsStep>;
   personalData: PersonalDetails[];
 
@@ -109,7 +109,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
   editBank = false;
   editbankData: any;
 
-  //communication method step
+  // communication method step
   communicationData$: Observable<CommunicationMethodStep>;
   communicationData: CommunicationMethod[]
 
@@ -120,34 +120,34 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
   selectedAddress: Address;
   editAddress = false;
 
-  //employee detail step
+  // employee detail step
   employeeData$: Observable<EmployeeDetailsStep>;
   employeeData: EmployeDetails[];
   arrayOfCatagory = [];
   staffCategory: any[];
   showTable: boolean;
 
-  //ministries1 data step
+  // ministries1 data step
   ministriesData1$: Observable<MinistriesData1Step>;
   ministriesData1: MinistriesData1Step;
 
-  //ministries2 data step
+  // ministries2 data step
   ministriesData2$: Observable<MinistriesData2Step>;
   ministriesData2: MinistriesData2Step;
 
-  //ministries3 data step
+  // ministries3 data step
   ministriesData3$: Observable<MinistriesData3Step>;
   ministriesData3: MinistriesData3Step;
 
-  //project detial step
+  // project detial step
   projectData$: Observable<ProjectDetailsStep>;
   projectData: ProjectDetails[];
 
-  //subContrator info step
+  // subContrator info step
   subContractorData$: Observable<SubContractorDetailsStep>;
   subContractorData: SubContractorDetails[];
 
-  //equipment info stop
+  // equipment info stop
   equipmentData$: Observable<EquipmentDetailsStep>;
   equipmentData: EquipmentDetails[];
 
@@ -169,7 +169,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
   siteVisitData: any;
   isSiteVisit: any = 'no';
 
-  //show-hide buttons
+  // show-hide buttons
   showBtn: boolean;
 
   destroy$: Subject<boolean> = new Subject();
@@ -482,7 +482,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     });
   }
 
-  //functions to change tabs internally
+  // functions to change tabs internally
   changeTab() {
     this.selected.setValue(this.selected.value + 1);
   }

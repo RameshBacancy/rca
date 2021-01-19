@@ -24,18 +24,18 @@ export class UpgradePaymentComponent implements OnInit {
     // localStorage.setItem(this.type + 'PaymentStatus', 'success');
     this.alertService.pushSuccess('Payment successfully completed.', 2000);
     let body = {};
-    if (this.type === 'activity') { 
+    if (this.type === 'activity') {
       body = {
         activity: {
           status: 'paid'
         }
-      }
-    } else if(this.type === 'renewal'){
+      };
+    } else if (this.type === 'renewal') {
       body = {
         renewal: {
           status: 'paid'
         }
-      }
+      };
     }
     this.collaborationService.activityUpgradeRequest(body).subscribe(res => {
       localStorage.setItem('activityStatus', 'paid');

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SidebarService } from '../../../services/sidebar-menu.service';
 
 @Component({
   selector: 'app-landing-sidebar',
