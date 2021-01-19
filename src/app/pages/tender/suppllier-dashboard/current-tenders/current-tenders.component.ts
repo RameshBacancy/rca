@@ -31,7 +31,7 @@ export class CurrentTendersComponent implements OnInit {
       { text: 'Rejected', value: 'rejected' }
     ];
 
-    this.status = this.aRoute.snapshot.queryParams.status;
+    this.status = this.aRoute.snapshot.queryParams.status || 'open';
 
     this.tenderService.getTender().subscribe((data: any) => {
       if (data && data[0].tenders) {
