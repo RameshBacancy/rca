@@ -38,7 +38,7 @@ export class SupplierRegisterComponent implements OnInit {
     registrationNo: new FormControl('', [Validators.required]),
     registrationType: new FormControl('alreadyRegistered', [Validators.required]),
   });
-  public languageArray = ['English', 'Arabic', 'Hindi'];
+  public languageArray = ['English', 'Arabic'];
   readonlycivil: boolean = true;
 
   constructor(

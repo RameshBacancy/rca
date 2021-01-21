@@ -4,9 +4,9 @@
         <div class="row">
             <div class="col-md-12">
                 <ol class="breadcrumb bg-white mb-0">
-                    <li class="breadcrumb-item"><a>{{'supplierRegPage.url1' | translate}}</a></li>
-                    <li class="breadcrumb-item"><a>{{'supplierRegPage.url2' | translate}} </a></li>
-                    <li class="breadcrumb-item active" aria-current="page">{{'supplierRegPage.url3' | translate}} </li>
+                    <li class="breadcrumb-item"><a>{{'supplierRegistrationPage.home' | translate}}</a></li>
+                    <li class="breadcrumb-item"><a>{{'supplierRegistrationPage.supplierRegistration' | translate}} </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{'supplierRegistrationPage.register' | translate}} </li>
                 </ol>
             </div>
         </div>
@@ -16,7 +16,7 @@
     <div class="container-fluid ">
         <div class="row d-flex">
             <div class="col-md-9">
-                <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">{{'supplierRegPage.title' | translate}}
+                <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">{{'supplierRegistrationPage.registration' | translate}}
                 </h2>
             </div>
             <!-- <div> -->
@@ -57,7 +57,7 @@
         <div class="container-fluid ">
             <div class="row">
                 <div class="col-md-12 px-3">
-                    <h3 class="  p-2 fs-22 text-black font-weight-bold ">{{'supplierRegPage.login' | translate}}
+                    <h3 class="  p-2 fs-22 text-black font-weight-bold ">{{'supplierRegistrationPage.login' | translate}}
                     </h3>
                 </div>
             </div>
@@ -66,21 +66,21 @@
                     <div class="col-md-12 px-4 d-block d-md-flex">
                         <div class="mr-3 mb-3">
                             <p class=" text-dark-grey font-weight-bold ">
-                                {{'supplierRegPage.suppRegTypeLbl' | translate}} :</p>
+                                {{'supplierRegistrationPage.supplierRegType' | translate}} :</p>
                         </div>
                         <!-- local radio -->
                         <div class="form-check mr-3 mb-3">
                             <input class="form-check-input" type="radio" id="local" value="localcom"
                                 formControlName="regType">
                             <label class="form-check-label  ml-2"
-                                for="local">{{'supplierRegPage.suppRegTypeOp1' | translate}} </label>
+                                for="local">{{'supplierRegistrationPage.local' | translate}} </label>
                         </div>
                         <!-- international radio -->
                         <div class="form-check mr-3 mb-3">
                             <input class="form-check-input" type="radio" id="international" value="international"
                                 formControlName="regType">
                             <label class="form-check-label  ml-2"
-                                for="international">{{'supplierRegPage.suppRegTypeOp2' | translate}}</label>
+                                for="international">{{'supplierRegistrationPage.international' | translate}}</label>
                         </div>
                     </div>
                 </div>
@@ -88,35 +88,35 @@
                     <div class="col-md-12 px-4 d-block d-md-flex">
                         <div class="mr-3 mb-3">
                             <p class=" text-dark-grey font-weight-bold ">
-                                {{'supplierRegPage.localRegTypeLbl' | translate}} :</p>
+                                {{'supplierRegistrationPage.localRegType' | translate}} :</p>
                         </div>
                         <!-- localcompany radio -->
                         <div class="form-check mr-3 mb-3">
                             <input class="form-check-input" type="radio" id="localcomp" value="local"
                                 formControlName="localRegType" checked>
                             <label class="form-check-label  ml-2"
-                                for="localcomp">{{'supplierRegPage.localRegTypeOp1' | translate}}</label>
+                                for="localcomp">{{'supplierRegistrationPage.localCompany' | translate}}</label>
                         </div>
                         <!-- citizen radio -->
                         <div class="form-check mr-3 mb-3">
                             <input class="form-check-input" type="radio" id="citizen" value="individual"
                                 formControlName="localRegType" (change)="submitCivil = false; readonlycivil = true">
                             <label class="form-check-label  ml-2"
-                                for="citizen">{{'supplierRegPage.localRegTypeOp2' | translate}}</label>
+                                for="citizen">{{'supplierRegistrationPage.citizen' | translate}}</label>
                         </div>
                         <!-- <div class="form-check mr-3 mb-3">
                                 <input class="form-check-input" type="radio" id="govt" name="local">
                                 <label class="form-check-label  ml-2"
-                                    for="govt">{{'supplierRegPage.localRegTypeOp3' | translate}}</label>
+                                    for="govt">{{'supplierRegistrationPage.localRegTypeOp3' | translate}}</label>
                             </div> -->
                     </div>
                     <div class="col-md-12 px-4 d-block  d-lg-flex">
                         <p class=" pt-2 mr-0 mr-lg-3  text-dark-grey font-weight-bold "
                             *ngIf="this.form.value.localRegType == 'local'">
-                            {{'supplierRegPage.civilNoLbl' | translate}} :</p>
+                            {{'supplierRegistrationPage.enterCivilNumber' | translate}} :</p>
                         <p class=" pt-2 mr-0 mr-lg-3  text-dark-grey font-weight-bold "
                             *ngIf="this.form.value.localRegType == 'individual'">
-                            {{ 'supplierRegPage.civilNoLbl'| translate}} : </p>
+                            {{ 'supplierRegistrationPage.enterCivilNumber'| translate}} : </p>
                         <input type="number" class=" border p-2 fs-14 mr-0 mr-lg-3 rounded text-center w-170 "
                             value="11337788" formControlName="civilNo" [readOnly]=!readonlycivil>
                     </div>
@@ -126,17 +126,17 @@
                     <div class="col-md-12 px-4 d-block d-md-flex">
                         <div class="mr-3 mb-3">
                             <p class=" text-dark-grey font-weight-bold ">
-                                {{'supplierRegPage.inernationalRegTypeLbl' | translate}} :</p>
+                                {{'supplierRegistrationPage.internationalRegType' | translate}} :</p>
                         </div>
                         <div class="form-check mr-3 mb-3">
                             <input class="form-check-input" type="radio" id="individual" name="international" checked>
                             <label class="form-check-label  ml-2"
-                                for="individual">{{'supplierRegPage.inernationalRegTypeOp1' | translate}}</label>
+                                for="individual">{{'supplierRegistrationPage.individual' | translate}}</label>
                         </div>
                         <div class="form-check mr-3 mb-3">
                             <input class="form-check-input" type="radio" id="company" name="international">
                             <label class="form-check-label  ml-2"
-                                for="company">{{'supplierRegPage.inernationalRegTypeOp2' | translate}}</label>
+                                for="company">{{'supplierRegistrationPage.company' | translate}}</label>
                         </div>
                     </div>
                     <div class="col-md-12 px-4 d-block d-lg-flex">
@@ -144,7 +144,7 @@
                             <input class="form-check-input" id="newSupplier" value="newSupplier" type="radio"
                                 formControlName="registrationType">
                             <label class="form-check-label ml-2" for="newSupplier">
-                                {{'supplierRegPage.newRegLbl' | translate}} </label>
+                                {{'supplierRegistrationPage.newSupplierRegistration' | translate}} </label>
                         </div>
                     </div>
 
@@ -153,7 +153,7 @@
                             <input class="form-check-input" type="radio" id="alreadyRegistered"
                                 value="alreadyRegistered" formControlName="registrationType" checked>
                             <label class="form-check-label  ml-2" for="alreadyRegistered">
-                                {{'supplierRegPage.alreadyRegLbl' | translate}}
+                                {{'supplierRegistrationPage.alreadyRegisteredSupplier' | translate}}
                             </label>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
             <div
                 *ngIf="submitCivil && this.form.value.localRegType == 'local' && this.form.value.regType != 'international'">
                 <span
-                    class=" pt-2 ml-2 mr-0 mr-lg-3  text-dark-grey font-weight-bold ">{{'supplierRegPage.compCRNo' | translate}}
+                    class=" pt-2 ml-2 mr-0 mr-lg-3  text-dark-grey font-weight-bold ">{{'supplierRegistrationPage.companyCRNumber' | translate}}
                     : </span>
                 <mat-form-field appearance="fill">
                     <mat-select required matNativeControl [(ngModel)]="CRNumber" (selectionChange)='getCR(CRNumber)'>
@@ -179,11 +179,11 @@
                     *ngIf="submitCivil && this.form.value.localRegType == 'local' &&  this.form.value.regType != 'international' ">
                     <!-- after enter cr number -->
                     <button type="button" class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2" [disabled]="isDisable"
-                        (click)="submitNext()">{{'supplierRegPage.submitBtnLbl' | translate}}
+                        (click)="submitNext()">{{'supplierRegistrationPage.submitBtnLbl' | translate}}
                     </button>
                     <button type="button" class="btn btn-secondary px-3 mx-1 py-2 w-120 fs-14 mb-2"
                         (click)="submitCivil = false; readonlycivil = true" [disabled]='!submitCivil'>
-                        {{'supplierRegPage.backBtnLbl' | translate}} </button>
+                        {{'supplierRegistrationPage.backBtnLbl' | translate}} </button>
                 </div>
                 <div class="col-md-12 mb-5 px-4 mt-5"
                     *ngIf="!submitCivil && this.form.value.regType != 'international'">
@@ -191,18 +191,18 @@
                     <button type="button" class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2"
                         *ngIf="this.form.value.localRegType == 'local'"
                         (click)="submitCivil = true; readonlycivil = false"
-                        [disabled]="!form.value.civilNo">{{'supplierRegPage.submitBtnLbl' | translate}}
+                        [disabled]="!form.value.civilNo">{{'supplierRegistrationPage.submitBtnLbl' | translate}}
                     </button>
                     <!-- citizen submit -->
                     <button type="button" class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2"
                         *ngIf="this.form.value.localRegType == 'individual'" (click)="submitNext()"
-                        [disabled]="!form.value.civilNo">{{'supplierRegPage.submitBtnLbl' | translate}}
+                        [disabled]="!form.value.civilNo">{{'supplierRegistrationPage.submitBtnLbl' | translate}}
                     </button>
                 </div>
                 <!-- internatioanl submit -->
                 <div class="col-md-12 mb-5 px-4" *ngIf="this.form.value.regType == 'international'">
                     <button type="button" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                        (click)="submitType()">{{'supplierRegPage.submitBtnLbl' | translate}}
+                        (click)="submitType()">{{'supplierRegistrationPage.submitBtnLbl' | translate}}
                     </button>
                 </div>
 
@@ -219,37 +219,37 @@
             <div class="container-fluid ">
                 <div class="row">
                     <div class="col-md-12 px-3">
-                        <h3 class="  p-2 fs-22 text-black">{{'supplierRegPage.selectSupplierLbl' | translate}}</h3>
+                        <h3 class="  p-2 fs-22 text-black">{{'supplierRegistrationPage.selectSupplier' | translate}}</h3>
                     </div>
                 </div>
                 <form [formGroup]="form" (ngSubmit)="submitReg()">
                     <div class="row mt-2 mt-md-5">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
-                                {{'supplierRegPage.CRNumberLbl' | translate}}</h5>
+                                {{'supplierRegistrationPage.commercialRegistrationNo' | translate}}</h5>
                             <!-- <p class="fs-14 text-center w-140">{{CRNumber}}</p> -->
                             <p class="fs-14 text-center w-140">{{this.form.value.registrationNo}}</p>
                             <!-- <input class="fs-14 border p-2 text-center w-140" value="1086391"  type="number" formControlName="registrationNo" readonly> -->
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4  ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
-                                {{'supplierRegPage.suppNameLbl' | translate}}</h5>
+                                {{'supplierRegistrationPage.supplierName' | translate}}</h5>
                             <p class="fs-14">{{companyName}}</p>
-                            <!-- <p class="fs-14">{{'supplierRegPage.suppName' | translate}}</p> -->
+                            <!-- <p class="fs-14">{{'supplierRegistrationPage.suppName' | translate}}</p> -->
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-4  px-4">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
-                                {{'supplierRegPage.CRGradeLbl' | translate}}</h5>
-                            <p class="fs-14">{{'supplierRegPage.CRGrade' | translate}} </p>
+                                {{'supplierRegistrationPage.commercialRegistrationGrade' | translate}}</h5>
+                            <p class="fs-14">First Grade</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4 mt-5">
                             <button type="submit"
-                                class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2">{{'supplierRegPage.submitBtnLbl' | translate}}
+                                class="btn btn-primary px-3 mx-1 py-2 w-120 fs-14 mb-2">{{'supplierRegistrationPage.submitBtnLbl' | translate}}
                             </button>
                             <button type="button" class="btn btn-secondary px-3 mx-1 py-2 w-120 fs-14 mb-2"
-                                (click)="back()">{{'supplierRegPage.backBtnLbl' | translate}} </button>
+                                (click)="back()">{{'supplierRegistrationPage.backBtnLbl' | translate}} </button>
                         </div>
                     </div>
                 </form>
