@@ -35,14 +35,14 @@
     </nav> -->
   </div>
   <div class="right-side">
-    <!-- <span class="fs-18 color-white  font-weight-bold pr-3">{{'header.language' | translate}}  : </span>
+    <!-- <span class="fs-18 color-white  font-weight-bold pr-3">{{'header.language' | translate}}  : </span> -->
     <form class="pr-4">
       <mat-form-field class="color-white">
         <select matNativeControl class="color-white" required [(ngModel)]="selectedLanguage" name="language" (change)="changeLang(selectedLanguage)">
           <option *ngFor="let lang of languageArray" class="color-black" [value]=lang>{{lang}}</option>
         </select>
       </mat-form-field>
-    </form> -->
+    </form>
     <div class="right-side"  *ngIf="showsidebar">
       <div class="landing-menu" (click)="openMenu()" (clickOutside)="handleClickOutside()">
         <div class="landing-pic"></div>

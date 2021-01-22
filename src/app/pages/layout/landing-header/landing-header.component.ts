@@ -21,7 +21,7 @@ export class LandingHeaderComponent implements OnInit {
   public showUnreadMessage: boolean = true;
   public sidebarItems;
   showtabs: boolean = true;
-  public languageArray = ['English', 'Arabic', 'Hindi'];
+  public languageArray = ['English', 'Arabic'];
   selectedLanguage = 'English';
   arStatus: string;
 
