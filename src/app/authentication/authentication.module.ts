@@ -18,10 +18,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { OtpComponent } from './otp/otp.component';
 
-
-export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
 const routes: Routes = [
   // { path: '', redirectTo: 'auth/login' },
   // { path: 'auth/login', component: LoginComponent },
@@ -72,13 +68,7 @@ const routes: Routes = [
     MatAutocompleteModule,
     NgOtpInputModule,
     HttpClientModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: createTranslateLoader,
-        deps: [HttpClient]
-      }
-    }),
+    TranslateModule,
     MatInputModule,
     RouterModule.forChild(routes),
   ]
