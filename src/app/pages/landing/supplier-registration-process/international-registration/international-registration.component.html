@@ -2,22 +2,22 @@
     <mat-horizontal-stepper [@.disabled]="true" #stepper>
         <!-- General Info -->
         <mat-step>
-            <ng-template matStepLabel>General Info</ng-template>
+            <ng-template matStepLabel>{{ 'registarationStepperNames.generalInfo' | translate }}</ng-template>
             <div class="row">
                 <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
                     <i class="fa fa-ban text-red fs-14" mat-raised-button
                         matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">C R Number</h5>
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.generalInfo.cRNumber' | translate }}</h5>
                     <p class="fs-14">1567 6578</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Arabic Name</h5>
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.generalInfo.arabicName' | translate }}</h5>
                     <p class="fs-14 px-4">آر بالا</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">English Name</h5>
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.generalInfo.englishName' | translate }}</h5>
                     <p class="fs-14">R Bala</p>
                 </div>
                 <!-- <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
@@ -29,15 +29,15 @@
                 <div class="col-md-12 col-lg-12 col-xl-12 px-4 ">
                     <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">
                         <i class="fa fa-ban text-red fs-14" mat-raised-button
-                            matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i> Company Info
+                            matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i> {{ 'internationalRegistration.generalInfo.companyInfo' | translate }}
                     </h4>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Company Name</h5>
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">{{ 'internationalRegistration.generalInfo.companyName' | translate }}</h5>
                     <p class="fs-14 px-4">Company Name</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">Company C R Number</h5>
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">{{ 'internationalRegistration.generalInfo.companyCRNumber' | translate }}</h5>
                     <p class="fs-14 px-4">1567 6578</p>
                 </div>
             </div>
@@ -54,11 +54,11 @@
                             <thead>
                                 <tr class="purple-bg text-white">
                                     <th scope="col"></th>
-                                    <th scope="col">Address Id</th>
-                                    <th scope="col">Address Line 1</th>
-                                    <th scope="col">Address Line 2</th>
-                                    <th scope="col">Language</th>
-                                    <th scope="col">Country</th>
+                                    <th scope="col">{{ 'internationalRegistration.generalInfo.addressID' | translate }}</th>
+                                    <th scope="col">{{ 'internationalRegistration.generalInfo.addressLine1' | translate }}</th>
+                                    <th scope="col">{{ 'internationalRegistration.generalInfo.addressLine2' | translate }}</th>
+                                    <th scope="col">{{ 'internationalRegistration.generalInfo.language' | translate }}</th>
+                                    <th scope="col">{{ 'internationalRegistration.generalInfo.country' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -130,7 +130,7 @@
             <!-- Address pop-up model -->
             <ng-template #mymodal let-modal>
                 <div class="modal-header">
-                    <h4 class="modal-title" id="modal-basic-title">Add Address</h4>
+                    <h4 class="modal-title" id="modal-basic-title">{{ 'buttonsLabel.addAddress' | translate }}</h4>
                     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -142,8 +142,8 @@
                                 <div class="row ">
                                     <div class="col-md-12 ">
                                         <div class="form-group row mb-3">
-                                            <label for="addressID" class="col-sm-5 col-form-label"> Address
-                                                ID<span class="text-red">*</span></label>
+                                            <label for="addressID" class="col-sm-5 col-form-label"> 
+                                                {{ 'internationalRegistration.generalInfo.addressID' | translate }}<span class="text-red">*</span></label>
                                             <div class="col-sm-7">
                                                 <input formControlName="addressID" id="addressID" type="text"
                                                     class="form-control" readonly>
@@ -151,14 +151,13 @@
                                             <div *ngIf="f.addressID.touched && f.addressID.invalid"
                                                 class="alert alert-danger">
                                                 <div *ngIf="f.addressID.errors.required" class="col-sm-7">
-                                                    *required
+                                                    *{{ 'buttonsLabel.required' | translate }}
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group row mb-3">
-                                            <label for="addressLine1" class="col-sm-5 col-form-label">Address
-                                                Line
-                                                1<span class="text-red">*</span></label>
+                                            <label for="addressLine1" class="col-sm-5 col-form-label">
+                                                {{ 'internationalRegistration.generalInfo.addressLine1' | translate }}<span class="text-red">*</span></label>
                                             <div class="col-sm-7">
                                                 <input formControlName="addressLine1" id="addressLine1" type="text"
                                                     class="form-control">
@@ -166,14 +165,14 @@
                                             <div *ngIf="f.addressLine1.touched && f.addressLine1.invalid"
                                                 class="alert alert-danger">
                                                 <div *ngIf="f.addressLine1.errors.required" class="col-sm-7">
-                                                    *required
+                                                    *{{ 'buttonsLabel.required' | translate }}
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group row mb-3">
-                                            <label for="addressLine2" class="col-sm-5 col-form-label">Address
-                                                Line
-                                                2<span class="text-red">*</span></label>
+                                            <label for="addressLine2" class="col-sm-5 col-form-label">
+                                                {{ 'internationalRegistration.generalInfo.addressLine2' | translate }}
+                                                <span class="text-red">*</span></label>
                                             <div class="col-sm-7">
                                                 <input formControlName="addressLine2" id="addressLine2" type="text"
                                                     class="form-control">
@@ -181,7 +180,7 @@
                                             <div *ngIf="f.addressLine2.touched && f.addressLine2.invalid"
                                                 class="alert alert-danger">
                                                 <div *ngIf="f.addressLine2.errors.required" class="col-sm-7">
-                                                    *required</div>
+                                                    *{{ 'buttonsLabel.required' | translate }}</div>
                                             </div>
                                         </div>
                                         <!-- <div class="form-group row mb-3">
@@ -194,12 +193,13 @@
                                     <div *ngIf="f.language.touched && f.language.invalid"
                                         class="alert alert-danger">
                                         <div *ngIf="f.language.errors.required" class="col-sm-7">
-                                            *required</div>
+                                            *{{ 'buttonsLabel.required' | translate }}</div>
                                     </div>
                                 </div> -->
                                         <div class="form-group row mb-3">
-                                            <label for="country" class="col-sm-5 col-form-label">Country<span
-                                                    class="text-red">*</span>
+                                            <label for="country" class="col-sm-5 col-form-label">
+                                                {{ 'internationalRegistration.generalInfo.country' | translate }}
+                                                <span class="text-red">*</span>
                                             </label>
                                             <div class="col-sm-7">
                                                 <input formControlName="country" id="country" type="text"
@@ -208,7 +208,7 @@
                                             <div *ngIf="f.country.touched && f.country.invalid"
                                                 class="alert alert-danger">
                                                 <div *ngIf="f.country.errors.required" class="col-sm-7">
-                                                    *required
+                                                    *{{ 'buttonsLabel.required' | translate }}
                                                 </div>
                                             </div>
                                         </div>
@@ -223,9 +223,9 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" type="submit"
-                            [disabled]="this.form.status !== 'VALID'">Submit</button>
+                            [disabled]="this.form.status !== 'VALID'">{{ 'buttonsLabel.submit' | translate }}</button>
                         <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
-                            (click)="form.reset(); modal.close('Save click')">Cancel</button>
+                            (click)="form.reset(); modal.close('Save click')">{{ 'buttonsLabel.cancel' | translate }}</button>
 
                     </div>
                 </form>
@@ -235,7 +235,7 @@
 
             <div class="row">
                 <div class="col-md-12 px-4">
-                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">{{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
                     <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                 </div>
             </div>
@@ -244,15 +244,16 @@
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        [disabled]="true"><i class="fa fa-caret-left"></i> Previous</button>
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext>Next
+                        [disabled]="true"><i class="fa fa-caret-left"></i> {{ 'buttonsLabel.previous' | translate }}</button>
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext>{{ 'buttonsLabel.next' | translate }}
                         <i class="fa fa-caret-right"></i></button>
                     <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
-                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft(0)">Save as
-                        Draft</button>
+                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft(0)">
+                        {{ 'buttonsLabel.saveasDraft' | translate }}
+                    </button>
                     <a routerLink="/landing/supplier-registration/dashboard">
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">{{ 'buttonsLabel.cancel' | translate }}</button>
                     </a>
                 </div>
             </div>
@@ -260,7 +261,7 @@
         </mat-step>
         <!-- Personal Details -->
         <mat-step>
-            <ng-template matStepLabel>Personal Details</ng-template>
+            <ng-template matStepLabel>{{ 'registarationStepperNames.personalDetails' | translate }}</ng-template>
 
             <div class="row">
                 <div class="col-md-12 px-4 mb-3 mt-3">
@@ -274,18 +275,18 @@
                                 <tr class="purple-bg text-white">
                                     <th scope="col"></th>
                                     <th scope="col" class="custom-width-60" (click)="sorting('personal','personName')">
-                                        Person name <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','nationality')">Nationality <i
+                                        {{'internationalRegistration.personalDetails.personname' | translate }}<i class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('personal','nationality')">{{'internationalRegistration.personalDetails.nationality' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','idType')">I.D Type <i
+                                    <th scope="col" (click)="sorting('personal','idType')">{{'internationalRegistration.personalDetails.i.DType' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','idNo')">I.D No. <i class="fa fa-sort"
+                                    <th scope="col" (click)="sorting('personal','idNo')">{{'internationalRegistration.personalDetails.i.DNo.' | translate }} <i class="fa fa-sort"
                                             aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','designation')">Designation <i
+                                    <th scope="col" (click)="sorting('personal','designation')">{{'internationalRegistration.personalDetails.designation' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','residentNo')">Resident card Number <i
+                                    <th scope="col" (click)="sorting('personal','residentNo')">{{'internationalRegistration.personalDetails.residentCardNumber' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','passport')">Passport <i
+                                    <th scope="col" (click)="sorting('personal','passport')">{{'internationalRegistration.personalDetails.passport' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th></th>
                                 </tr>
@@ -312,7 +313,7 @@
                                         {{data.personName}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'personal',data)"><input
-                                            [(ngModel)]="data.personName"><span class="text-red">*required</span></td>
+                                            [(ngModel)]="data.personName"><span class="text-red">*{{'buttonsLabel.required' | translate }}</span></td>
                                     <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.nationality}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
@@ -357,7 +358,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 px-4">
-                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">{{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
                     <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                 </div>
             </div>
@@ -377,18 +378,17 @@
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
-                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                        matStepperPrevious><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate  }}</button>
                     <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                        [disabled]='!showBtn' matStepperNext>Next
+                        [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate  }}
                         <i class="fa fa-caret-right"></i></button>
                     <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
                     <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                        (click)="saveDraft(1)">Save as
-                        Draft</button>
+                        (click)="saveDraft(1)">{{'buttonsLabel.saveasDraft' | translate  }}</button>
                     <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            [disabled]='!showBtn'>Cancel</button>
+                            [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate  }}</button>
                     </a>
                 </div>
             </div>
@@ -396,7 +396,7 @@
         </mat-step>
         <!-- Communication Methods -->
         <mat-step>
-            <ng-template matStepLabel>Communication Methods</ng-template>
+            <ng-template matStepLabel>{{ 'registarationStepperNames.communicationMethod' | translate }}</ng-template>
 
             <ng-container *ngIf="communicationData">
 
@@ -406,36 +406,36 @@
                             matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Telephone</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.communicationMethod.telephone' | translate }}</h5>
                         <p class="fs-14">{{communicationData.telephone || '-' }}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">P.O. Box</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.communicationMethod.p.O.Box' | translate }}</h5>
                         <p class="fs-14">{{communicationData.poBox || '-' }}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Fax</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.communicationMethod.fax' | translate }}</h5>
                         <p class="fs-14">{{communicationData.fax || '-' }}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">legal status</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.communicationMethod.legalStatus' | translate }}</h5>
                         <p class="fs-14">{{communicationData.legalStatus || '-'}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">PC</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.communicationMethod.pC' | translate }}</h5>
                         <p class="fs-14">{{communicationData.pc || '-'}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Email</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.communicationMethod.email' | translate }}</h5>
                         <p class="fs-14">{{communicationData.email || '-'}}</p>
                         <!-- <input type="email" class="fs-14" [(ngModel)]=comunicationData.email> -->
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 px-4">
-                        <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                        <p class="dark-text-1 fs-14 font-weight-bold mb-0">{{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
                         <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                     </div>
                 </div>
@@ -445,22 +445,21 @@
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" matStepperPrevious><i
-                            class="fa fa-caret-left"></i> Previous</button>
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext>Next
+                            class="fa fa-caret-left"></i> {{ 'buttonsLabel.previous' | translate }}</button>
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext>{{ 'buttonsLabel.next' | translate }}
                         <i class="fa fa-caret-right"></i></button>
                     <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
-                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft(2)">Save as
-                        Draft</button>
+                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft(2)">{{ 'buttonsLabel.saveasDraft' | translate }}</button>
                     <a routerLink="/landing/supplier-registration/dashboard">
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">{{ 'buttonsLabel.cancel' | translate }}</button>
                     </a>
                 </div>
             </div>
         </mat-step>
         <!-- Commercial Info -->
         <mat-step>
-            <ng-template matStepLabel>Commercial Info</ng-template>
+            <ng-template matStepLabel>{{ 'registarationStepperNames.commercialInfo' | translate }}</ng-template>
 
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <mat-tab label="Activity Info">
@@ -480,10 +479,10 @@
                                             <tr class="purple-bg text-white">
                                                 <th scope="col"></th>
                                                 <th scope="col" class="custom-width-60"
-                                                    (click)="sorting('activity','activityName')">Activity Name
+                                                    (click)="sorting('activity','activityName')"> {{ 'internationalRegistration.commercialInfo.activityName' | translate }}
                                                     <i class="fa fa-sort" aria-hidden="true"></i>
                                                 </th>
-                                                <th scope="col" (click)="sorting('activity','subActivity')">Sub Activity
+                                                <th scope="col" (click)="sorting('activity','subActivity')">{{ 'internationalRegistration.commercialInfo.subActivity' | translate }}
                                                     <i class="fa fa-sort" aria-hidden="true"></i>
                                                 </th>
                                                 <th></th>
@@ -566,19 +565,19 @@
                         </div>
                         <div class="row mt-3 mb-5">
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Establishment date</h5>
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.commercialInfo.establishmentdate' | translate }}</h5>
                                 <p class="fs-14">{{activityDetail.establishmentDate}}</p>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Date</h5>
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.commercialInfo.registrationDate' | translate }}</h5>
                                 <p class="fs-14">{{activityDetail.regDate}}</p>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Expiry Date </h5>
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.commercialInfo.expiryDate' | translate }} </h5>
                                 <p class="fs-14">{{activityDetail.expDate}}</p>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Company Grade</h5>
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.commercialInfo.companyGrade' | translate }}</h5>
                                 <p class="fs-14">company grade</p>
                             </div>
     
@@ -592,7 +591,7 @@
                 </div> -->
                         <div class="row">
                             <div class="col-md-12 px-4">
-                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">{{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
                                 <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                             </div>
                         </div>
@@ -609,18 +608,17 @@
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                 [disabled]='!showBtn' matStepperPrevious><i class="fa fa-caret-left"></i>
-                                Previous</button>
+                                {{ 'buttonsLabel.previous' | translate }}</button>
                             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                [disabled]='!showBtn' (click)="changeTab()">Next <i
+                                [disabled]='!showBtn' (click)="changeTab()">{{ 'buttonsLabel.next' | translate }} <i
                                     class="fa fa-caret-right"></i></button>
                             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                     (click)="move(6)">Finish</button> -->
                             <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft(3)"
-                                [disabled]='!showBtn'>Save as
-                                Draft</button>
+                                [disabled]='!showBtn'>{{ 'buttonsLabel.saveasDraft' | translate }}</button>
                             <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                                    [disabled]='!showBtn'>Cancel</button>
+                                    [disabled]='!showBtn'>{{ 'buttonsLabel.cancel' | translate }}</button>
                             </a>
                         </div>
                     </div>
@@ -644,27 +642,27 @@
                                         (click)="openbank(bankModel,data)" aria-hidden="true"></i>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'localRegistration.bankDetails.bankingId' | translate }}</h5>
                                     <p class="fs-14">{{index + 1}}</p>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Banking Id Name</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'localRegistration.bankDetails.bankingIdName' | translate }}</h5>
                                     <p class="fs-14">{{data.bankingIdname}}</p>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Account</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.commercialInfo.bankAccount' | translate }}</h5>
                                     <p class="fs-14">{{data.bankAcc}}</p>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Name</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'localRegistration.bankDetails.bankName' | translate }}</h5>
                                     <p class="fs-14">{{data.bankName}}</p>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Bank Branch</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'localRegistration.bankDetails.bankBranch' | translate }}</h5>
                                     <p class="fs-14">{{data.bankBranch}}</p>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Account Holder Name</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'localRegistration.bankDetails.accountholdername' | translate }}</h5>
                                     <p class="fs-14">{{data.holderName}}</p>
                                 </div>
                             </div>
@@ -672,7 +670,7 @@
                         <!-- banck form pop-up -->
                         <ng-template #bankModel let-modal>
                             <div class="modal-header">
-                                <h4 class="modal-title" id="modal-basic-title">Add Bank Detail</h4>
+                                <h4 class="modal-title" id="modal-basic-title">{{ 'buttonsLabel.addBankDetail' | translate }}</h4>
                                 <button type="button" class="close" aria-label="Close"
                                     (click)="modal.dismiss('Cross click')">
                                     <span aria-hidden="true">×</span>
@@ -685,8 +683,9 @@
                                             <div class="row ">
                                                 <div class="col-md-12 ">
                                                     <div class="form-group row mb-3">
-                                                        <label for="bankingID" class="col-sm-5 col-form-label">Banking
-                                                            Id<span class="text-red">*</span></label>
+                                                        <label for="bankingID" class="col-sm-5 col-form-label">
+                                                            {{ 'localRegistration.bankDetails.bankingId' | translate }}
+                                                            <span class="text-red">*</span></label>
                                                         <div class="col-sm-7">
                                                             <input formControlName="bankingID" id="bankingID" type="text"
                                                                 class="form-control" readonly>
@@ -694,13 +693,14 @@
                                                         <div *ngIf="bf.bankingID.touched && bf.bankingID.invalid"
                                                             class="alert alert-danger">
                                                             <div *ngIf="bf.bankingID.errors.required" class="col-sm-7">
-                                                                *required
+                                                                *{{ 'buttonsLabel.required' | translate }}
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row mb-3">
-                                                        <label for="bankingIdname" class="col-sm-5 col-form-label">Banking
-                                                            Id Name<span class="text-red">*</span></label>
+                                                        <label for="bankingIdname" class="col-sm-5 col-form-label">
+                                                            {{ 'localRegistration.bankDetails.bankingIdName' | translate }}
+                                                            <span class="text-red">*</span></label>
                                                         <div class="col-sm-7">
                                                             <input formControlName="bankingIdname" id="bankingIdname"
                                                                 type="text" class="form-control">
@@ -708,13 +708,13 @@
                                                         <div *ngIf="bf.bankingIdname.touched && bf.bankingIdname.invalid"
                                                             class="alert alert-danger">
                                                             <div *ngIf="bf.bankingIdname.errors.required" class="col-sm-7">
-                                                                *required
+                                                                *{{ 'buttonsLabel.required' | translate }}
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row mb-3">
-                                                        <label for="bankAcc" class="col-sm-5 col-form-label">Bank
-                                                            Account<span class="text-red">*</span></label>
+                                                        <label for="bankAcc" class="col-sm-5 col-form-label">
+                                                            {{ 'internationalRegistration.commercialInfo.bankAccount' | translate }}<span class="text-red">*</span></label>
                                                         <div class="col-sm-7">
                                                             <input formControlName="bankAcc" id="bankAcc" type="text"
                                                                 class="form-control">
@@ -722,16 +722,16 @@
                                                         <div *ngIf="bf.bankAcc.touched && bf.bankAcc.invalid"
                                                             class="alert alert-danger">
                                                             <div *ngIf="bf.bankAcc.errors.required" class="col-sm-7">
-                                                                *required
+                                                                *{{ 'buttonsLabel.required' | translate }}
                                                             </div>
                                                             <div *ngIf="bf.bankAcc.errors.pattern" class="col-sm-7">
-                                                                *numbers only
+                                                                *{{ 'buttonsLabel.onlynumbers' | translate }}
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row mb-3">
-                                                        <label for="bankName" class="col-sm-5 col-form-label">Bank
-                                                            Name<span class="text-red">*</span></label>
+                                                        <label for="bankName" class="col-sm-5 col-form-label">
+                                                            {{ 'localRegistration.bankDetails.bankName' | translate }}<span class="text-red">*</span></label>
                                                         <div class="col-sm-7">
                                                             <input formControlName="bankName" id="bankName" type="text"
                                                                 class="form-control">
@@ -739,12 +739,12 @@
                                                         <div *ngIf="bf.bankName.touched && bf.bankName.invalid"
                                                             class="alert alert-danger">
                                                             <div *ngIf="bf.bankName.errors.required" class="col-sm-7">
-                                                                *required</div>
+                                                                *{{ 'buttonsLabel.required' | translate }}</div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row mb-3">
-                                                        <label for="bankBranch" class="col-sm-5 col-form-label">Bank
-                                                            Branch<span class="text-red">*</span>
+                                                        <label for="bankBranch" class="col-sm-5 col-form-label">
+                                                            {{ 'localRegistration.bankDetails.bankBranch' | translate }}<span class="text-red">*</span>
                                                         </label>
                                                         <div class="col-sm-7">
                                                             <input formControlName="bankBranch" id="bankBranch" type="text"
@@ -753,13 +753,12 @@
                                                         <div *ngIf="bf.bankBranch.touched && bf.bankBranch.invalid"
                                                             class="alert alert-danger">
                                                             <div *ngIf="bf.bankBranch.errors.required" class="col-sm-7">
-                                                                *required</div>
+                                                                *{{ 'buttonsLabel.required' | translate }}</div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row mb-3">
-                                                        <label for="holderName" class="col-sm-5 col-form-label">Account
-                                                            holder
-                                                            name<span class="text-red">*</span>
+                                                        <label for="holderName" class="col-sm-5 col-form-label">
+                                                            {{ 'localRegistration.bankDetails.accountholdername' | translate }}<span class="text-red">*</span>
                                                         </label>
                                                         <div class="col-sm-7">
                                                             <input formControlName="holderName" id="holderName" type="text"
@@ -768,7 +767,7 @@
                                                         <div *ngIf="bf.holderName.touched && bf.holderName.invalid"
                                                             class="alert alert-danger">
                                                             <div *ngIf="bf.holderName.errors.required" class="col-sm-7">
-                                                                *required</div>
+                                                                *{{ 'buttonsLabel.required' | translate }}</div>
                                                         </div>
                                                     </div>
     
@@ -782,9 +781,9 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" type="submit"
-                                        [disabled]='!bankform.valid'>Submit</button>
+                                        [disabled]='!bankform.valid'>{{ 'buttonsLabel.submit' | translate }}</button>
                                     <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
-                                        (click)="form.reset(); modal.close('Save click')">Cancel</button>
+                                        (click)="form.reset(); modal.close('Save click')">{{ 'buttonsLabel.cancel' | translate }}</button>
     
                                 </div>
                             </form>
@@ -792,7 +791,7 @@
     
                         <div class="row">
                             <div class="col-md-12 px-4">
-                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">{{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
                                 <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                             </div>
                         </div>
@@ -808,18 +807,17 @@
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                 [disabled]='!showBtn' (click)="previousTab()"><i class="fa fa-caret-left"></i>
-                                Previous</button>
+                                {{ 'buttonsLabel.previous' | translate }}</button>
                             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                [disabled]='!showBtn' (click)="changeTab()">Next <i
+                                [disabled]='!showBtn' (click)="changeTab()">{{ 'buttonsLabel.next' | translate }} <i
                                     class="fa fa-caret-right"></i></button>
                             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                     (click)="move(6)">Finish</button> -->
                             <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="saveDraft(3)">Save as
-                                Draft</button>
+                                (click)="saveDraft(3)">{{ 'buttonsLabel.saveasDraft' | translate }}</button>
                             <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                                    [disabled]='!showBtn'>Cancel</button>
+                                    [disabled]='!showBtn'>{{ 'buttonsLabel.cancel' | translate }}</button>
                             </a>
                         </div>
                     </div>
@@ -843,11 +841,11 @@
                                                                     class="fa fa-ellipsis-v "></i>
                                                             </a> </span> </div> -->
                                                 </th>
-                                                <th scope="col" (click)="sorting('other','no')">No. <i class="fa fa-sort"
+                                                <th scope="col" (click)="sorting('other','no')">{{'internationalRegistration.commercialInfo.no.' | translate }}<i class="fa fa-sort"
                                                         aria-hidden="true"></i></th>
-                                                <th scope="col" (click)="sorting('other','name')">Label <i
+                                                <th scope="col" (click)="sorting('other','name')">{{'internationalRegistration.commercialInfo.label' | translate }}<i
                                                         class="fa fa-sort" aria-hidden="true"></i></th>
-                                                <th scope="col">Value </th>
+                                                <th scope="col">{{'internationalRegistration.commercialInfo.value' | translate }} </th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -902,7 +900,7 @@
                                 </div>
                             </div>
                             <div class="col-md-12 px-4">
-                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">{{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
                                 <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                             </div>
                         </div>
@@ -918,17 +916,16 @@
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                 [disabled]='!showBtn' (click)="previousTab()"><i class="fa fa-caret-left"></i>
-                                Previous</button>
+                                {{ 'buttonsLabel.previous' | translate }}</button>
                             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                [disabled]='!showBtn' matStepperNext>Next <i class="fa fa-caret-right"></i></button>
+                                [disabled]='!showBtn' matStepperNext>{{ 'buttonsLabel.next' | translate }} <i class="fa fa-caret-right"></i></button>
                             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                     (click)="move(6)">Finish</button> -->
                             <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="saveDraft(3)">Save as
-                                Draft</button>
+                                (click)="saveDraft(3)">{{ 'buttonsLabel.saveasDraft' | translate }}</button>
                             <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                                    [disabled]='!showBtn'>Cancel</button>
+                                    [disabled]='!showBtn'>{{ 'buttonsLabel.cancel' | translate }}</button>
                             </a>
                         </div>
                     </div>
@@ -938,7 +935,7 @@
         </mat-step>
         <!-- Staff Details -->
         <mat-step>
-            <ng-template matStepLabel>Employee Details</ng-template>
+            <ng-template matStepLabel>{{ 'registarationStepperNames.employeeDetails' | translate }}</ng-template>
 
             <div class="row">
                 <div class="col-md-12 px-4 mb-3 mt-3">
@@ -959,27 +956,38 @@
                                             <span class="ml-2"> <a class=" text-blaack fs-14"><i
                                                         class="fa fa-ellipsis-v  "></i> </a></span> </div>
                                     </th> -->
-                                    <th scope="col" (click)="sorting('staff','name')">Employee Name <i
-                                            class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','qualification')">Employee Qualification <i
-                                            class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','specialization')">Employee Specialization
+                                    <th scope="col" (click)="sorting('staff','name')">
+                                        {{ 'internationalRegistration.employeeDetails.employeeName' | translate }}
                                         <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','jobTitle')">Job title <i
+                                    <th scope="col" (click)="sorting('staff','qualification')">
+                                        {{ 'internationalRegistration.employeeDetails.employeeQualification' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','designation')">Designation Type <i
+                                    <th scope="col" (click)="sorting('staff','specialization')">
+                                        {{ 'internationalRegistration.employeeDetails.employeeSpecialization' | translate }}
+                                        <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('staff','jobTitle')">
+                                        {{ 'internationalRegistration.employeeDetails.jobtitle' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','designationDate')">Designation date <i
+                                    <th scope="col" (click)="sorting('staff','designation')">
+                                        {{ 'internationalRegistration.employeeDetails.designationType' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','expDate')">Expired date <i
+                                    <th scope="col" (click)="sorting('staff','designationDate')">
+                                        {{ 'internationalRegistration.employeeDetails.designationdate' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','experiance')">Experience <i
+                                    <th scope="col" (click)="sorting('staff','expDate')">
+                                        {{ 'internationalRegistration.employeeDetails.expireddate' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','appointmentDate')">Appointment Date <i
+                                    <th scope="col" (click)="sorting('staff','experiance')">
+                                        {{ 'internationalRegistration.employeeDetails.experience' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','status')">Status <i class="fa fa-sort"
+                                    <th scope="col" (click)="sorting('staff','appointmentDate')">
+                                        {{ 'internationalRegistration.employeeDetails.appointmentDate' | translate }} <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('staff','status')">
+                                        {{ 'internationalRegistration.employeeDetails.status' | translate }} <i class="fa fa-sort"
                                             aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','statusDate')">Status date <i
+                                    <th scope="col" (click)="sorting('staff','statusDate')">
+                                        {{ 'internationalRegistration.employeeDetails.statusdate' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th></th>
                                 </tr>
@@ -1012,7 +1020,7 @@
                                         {{data.name}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'staff',data)">
-                                        <input [(ngModel)]="data.name"><span class="text-red">*required</span></td>
+                                        <input [(ngModel)]="data.name"><span class="text-red">*{{ 'buttonsLabel.required' | translate }}</span></td>
                                     <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.qualification}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
@@ -1076,7 +1084,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 px-4">
-                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">Remarks / Notes</p>
+                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">{{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
                     <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                 </div>
             </div>
@@ -1089,19 +1097,18 @@
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
-                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous</button>
+                        matStepperPrevious><i class="fa fa-caret-left"></i> {{ 'buttonsLabel.previous' | translate }}</button>
                     <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        [disabled]="true" [disabled]='!showBtn'>Next <i class="fa fa-caret-right"></i> </button>
+                        [disabled]="true" [disabled]='!showBtn'>{{ 'buttonsLabel.next' | translate }} <i class="fa fa-caret-right"></i> </button>
                     <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        (click)="submitRegistration()" [disabled]='!showBtn'>Finish</button>
+                        (click)="submitRegistration()" [disabled]='!showBtn'>{{ 'buttonsLabel.finish' | translate }}</button>
                     <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
                     <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                        (click)="saveDraft(4)">Save as
-                        Draft</button>
+                        (click)="saveDraft(4)">{{ 'buttonsLabel.saveasDraft' | translate }}</button>
                     <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            [disabled]='!showBtn'>Cancel</button>
+                            [disabled]='!showBtn'>{{ 'buttonsLabel.cancel' | translate }}</button>
                     </a>
                 </div>
             </div>

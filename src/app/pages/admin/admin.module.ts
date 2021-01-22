@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from './../../shared/shared.module';
 import { MatSelectModule } from '@angular/material/select';
 import { NgModule } from '@angular/core';
@@ -73,6 +74,7 @@ const routes: Routes = [
     AngularEditorModule,
     ReactiveFormsModule,
     MatSelectModule,
+    TranslateModule,
     RouterModule.forChild(routes)
   ]
 })

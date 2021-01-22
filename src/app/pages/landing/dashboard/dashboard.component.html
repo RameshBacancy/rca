@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col-md-12">
                 <ol class="breadcrumb bg-white mb-0">
-                    <li class="breadcrumb-item"><a>Home</a></li>
-                    <li class="breadcrumb-item"><a>Supplier Registration </a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Dashboard </li>
+                    <li class="breadcrumb-item"><a>{{ 'supplierRegPage.url1' | translate }}</a></li>
+                    <li class="breadcrumb-item"><a>{{ 'supplierRegPage.url2' | translate }} </a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ 'admin.login.dashboard' | translate }} </li>
                 </ol>
             </div>
         </div>
@@ -15,7 +15,7 @@
     <div class="container-fluid ">
         <div class="row">
             <div class="col-md-12 ">
-                <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">Supplier Portal</h2>
+                <h2 class=" p-2 fs-30 text-black font-weight-bold mb-0 px-3">{{ 'dashboardPage.supplierPortal' | translate}}</h2>
             </div>
         </div>
     </div>
@@ -27,77 +27,77 @@
                 <div class="row">
                     <div class=" col-md-6 col-lg-6 col-xl-4 mb-3 min-height-300">
                         <div class="p-3 bg-white h-100">
-                            <h2 class="fs-18 text-black mb-3">GENERAL INFO & LINKS</h2>
+                            <h2 class="fs-18 text-black mb-3">{{ 'dashboardPage.rCAGENERALINFO&LINKS' | translate }}</h2>
                             <ul class="pl-0 list-unstyled mb-0">
                                 <li class="mb-1"> <a routerLink="/landing/supplier-registration/about-us"
-                                        class="fs-14">About Us</a></li>
-                                <li class="mb-1"> <a class="fs-14" (click)="openModel()">Supplier Registration</a></li>
-                                <li class="mb-1"> <a class="fs-14" routerLink="/e-tendering/my-information">Tendering
-                                        Information </a></li>
+                                        class="fs-14">{{ 'dashboardPage.aboutUs' | translate}}</a></li>
+                                <li class="mb-1"> <a class="fs-14" (click)="openModel()">{{ 'dashboardPage.supplierRegistration' | translate }}</a></li>
+                                <li class="mb-1"> <a class="fs-14" routerLink="/e-tendering/my-information">
+                                    {{ 'dashboardPage.tenderingInformation' | translate }} </a></li>
                                 <!-- <li class="mb-1"> <a class="fs-14">Auction</a></li> -->
-                                <li class="mb-1"> <a class="fs-14">Help Desk </a></li>
-                                <li class="mb-1"> <a class="fs-14">Support</a></li>
+                                <li class="mb-1"> <a class="fs-14">{{ 'dashboardPage.helpDesk' | translate }}</a></li>
+                                <li class="mb-1"> <a class="fs-14">{{ 'dashboardPage.support' | translate }}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-4  mb-3 min-height-300">
                         <div class="p-3 bg-white h-100 ">
-                            <h2 class="fs-18 text-black mb-3">SUPPLIER REGISTRATION</h2>
+                            <h2 class="fs-18 text-black mb-3">{{ 'dashboardPage.sUPPLIERREGISTRATION' | translate }}</h2>
                             <ul class="pl-0 list-unstyled mb-0">
                                 <!-- <li class="mb-1"> <a href="/auth/register" class="fs-14">Login </a></li> -->
                                 <li class="mb-1"> <a class="fs-14"
-                                        routerLink="/landing/supplier-registration/how-to-register">How to Register </a>
+                                        routerLink="/landing/supplier-registration/how-to-register">{{ 'dashboardPage.howtoRegister' | translate }} </a>
                                 </li>
                                 <!-- <li class="mb-1"> <a href="/#/landing/supplier-registration/registration" class="fs-14">Register</a></li> -->
-                                <li class="mb-1"> <a class="fs-14">Forgot Password</a></li>
+                                <li class="mb-1"> <a class="fs-14"> {{ 'dashboardPage.forgotPassword' | translate }}</a></li>
                                 <!-- <li class="mb-1"> <a href="/#/landing/supplier-registration/transaction" class="fs-14">Registration details</a></li> -->
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-4 mb-3  min-height-300">
                         <div class="p-3 purple-bg h-100 tendering-secrtion">
-                            <h2 class="fs-18 text-white mb-3 ">TENDERING</h2>
+                            <h2 class="fs-18 text-white mb-3 ">{{ 'dashboardPage.tENDERING' | translate }}</h2>
                             <ul class="pl-0 list-unstyled mb-0">
                                 <li class="mb-1 d-block d-sm-flex justify-content-between ">
                                     <a class="fs-14 text-white " 
-                                        (click)='onTenderStatus("open")'>Open Tenders </a>
+                                        (click)='onTenderStatus("open")'>{{ 'dashboardPage.openTenders' | translate }} </a>
                                     <span class="fs-14 text-white ">{{tendering.open}}</span></li>
                                 <li class="mb-1  d-sm-flex justify-content-between"> <a
                                         class="fs-14 text-white "
-                                        (click)='onTenderStatus("submitted")'>Submitted Tenders </a> <span
+                                        (click)='onTenderStatus("submitted")'>{{ 'dashboardPage.submittedTenders' | translate }} </a> <span
                                         class="fs-14 text-white ">{{tendering.submitted}}</span></li>
                                 <li class="mb-1  d-sm-flex justify-content-between"> <a
                                         class="fs-14 text-white "
-                                        (click)='onTenderStatus("awarded")'>Awarded Tenders </a><span
+                                        (click)='onTenderStatus("awarded")'>{{ 'dashboardPage.awardedTenders' | translate }} </a><span
                                         class="fs-14 text-white ">{{tendering.awarded}}</span></li>
                                 <li class="mb-1  d-sm-flex justify-content-between"> <a
                                         class="fs-14 text-white "
-                                        (click)='onTenderStatus("rejected")'>Rejected Tenders </a><span
+                                        (click)='onTenderStatus("rejected")'>{{ 'dashboardPage.rejectedTenders' | translate }} </a><span
                                         class="fs-14 text-white ">{{tendering.rejected}}</span></li>
-                                <li class="mb-1"> <a class="fs-14 text-white ">Tender Queries </a></li>
-                                <li class="mb-1"> <a class="fs-14 text-white ">Search Tenders</a></li>
+                                <li class="mb-1"> <a class="fs-14 text-white ">{{ 'dashboardPage.tenderQueries' | translate }} </a></li>
+                                <li class="mb-1"> <a class="fs-14 text-white ">{{ 'dashboardPage.searchTenders' | translate }}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-4 mb-3 min-height-300">
                         <div class="p-3 purple-bg h-100 dark-grey-bg-2 tendering-secrtion">
-                            <h2 class="fs-18 text-white mb-3 ">ORDERS</h2>
+                            <h2 class="fs-18 text-white mb-3 "> {{ 'dashboardPage.oRDERS' | translate }}</h2>
                             <ul class="pl-0 list-unstyled mb-0">
                                 <li class="mb-1 d-block d-sm-flex justify-content-between "> <a
-                                        class="fs-14 text-white ">Open </a> <span class="fs-14 text-white ">1</span>
+                                        class="fs-14 text-white ">{{ 'dashboardPage.open' | translate }} </a> <span class="fs-14 text-white ">1</span>
                                 </li>
-                                <li class="mb-1  d-sm-flex justify-content-between"> <a class="fs-14 text-white ">Open
-                                        Lines </a> <span class="fs-14 text-white ">3</span></li>
-                                <li class="mb-1  d-sm-flex justify-content-between"> <a class="fs-14 text-white ">Orders
-                                        with Pending Changes</a><span class="fs-14 text-white ">4</span></li>
-                                <li class="mb-1  d-sm-flex justify-content-between"> <a class="fs-14 text-white ">Fully
-                                        Received</a></li>
+                                <li class="mb-1  d-sm-flex justify-content-between"> <a class="fs-14 text-white ">
+                                    {{ 'dashboardPage.openLines' | translate }} </a> <span class="fs-14 text-white ">3</span></li>
+                                <li class="mb-1  d-sm-flex justify-content-between"> <a class="fs-14 text-white ">
+                                    {{ 'dashboardPage.orderswithPendingChanges' | translate }}</a><span class="fs-14 text-white ">4</span></li>
+                                <li class="mb-1  d-sm-flex justify-content-between"> <a class="fs-14 text-white ">
+                                    {{ 'dashboardPage.fullyReceived' | translate }}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-6 col-xl-4 mb-3 min-height-300">
                         <div class="p-3 purple-bg h-100 light-green-bg tendering-secrtion">
-                            <h2 class="fs-18 text-black mb-3 ">LATE ORDERS</h2>
+                            <h2 class="fs-18 text-black mb-3 ">{{ 'dashboardPage.lATEORDERS' | translate }}</h2>
                             <ul class="pl-0 list-unstyled mb-0 text-center ">
                                 <li class="mb-1 mt-4"> <a class="fs-18  font-weight-bold  text-danger">0 </a>
                                 </li>
@@ -110,17 +110,17 @@
                             <div class="mb-3"> <img src="assets/images/prograss-bar.png" alt="" /></div>
                             <ul class="pl-0 list-unstyled mb-0 mx-3">
                                 <li class="mb-2 d-block d-sm-flex align-items-center "> <span
-                                        class=" mr-3 p-1 light-green-bg box1"></span> <a class="fs-14 text-white ">Open
+                                        class=" mr-3 p-1 light-green-bg box1"></span> <a class="fs-14 text-white ">{{ 'dashboardPage.open' | translate}}
                                     </a> </li>
                                 <li class="mb-2 d-block d-sm-flex align-items-center "> <span
-                                        class=" mr-3 p-1 purple-bg box1"></span> <a class="fs-14 text-white ">Submitted
+                                        class=" mr-3 p-1 purple-bg box1"></span> <a class="fs-14 text-white ">{{ 'dashboardPage.submitted' | translate }}
                                     </a> </li>
                                 <li class="mb-2 d-block d-sm-flex align-items-center "> <span
                                         class=" mr-3 p-1 dark-grey-bg-3 box1"></span> <a
-                                        class="fs-14 text-white ">Awarded </a> </li>
+                                        class="fs-14 text-white ">{{ 'dashboardPage.awarded' | translate }} </a> </li>
                                 <li class="mb-2 d-block d-sm-flex align-items-center "> <span
                                         class=" mr-3 p-1 dark-green-bg box1"></span> <a
-                                        class="fs-14 text-white ">Rejected </a> </li>
+                                        class="fs-14 text-white ">{{ 'dashboardPage.rejected' | translate }} </a> </li>
                             </ul>
                         </div>
                     </div>

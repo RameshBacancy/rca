@@ -1,15 +1,16 @@
 <div class="row">
     <div class="col-md-12 px-4 mb-3 mt-3">
         <div class="table-responsive">
-            <button class=" color-white-text background-purple-custom btn ml-2 float-right mb-2" (click)="open(mymodal)">Add
-                New Alert</button>
+            <button class=" color-white-text background-purple-custom btn ml-2 float-right mb-2" (click)="open(mymodal)">
+                {{ 'admin.alertMessages.addNewAlert' | translate}}
+            </button>
             <table class="table table-striped ">
                 <thead>
                     <tr class="purple-bg text-white">
                         <th>#</th>
-                        <th>Alert Title</th>
-                        <th>On Status</th>
-                        <th>Actions</th>
+                        <th>{{ 'admin.alertMessages.alertTitle' | translate}}</th>
+                        <th>{{ 'admin.alertMessages.onStatus' | translate}}</th>
+                        <th>{{ 'admin.alertMessages.actions' | translate}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -71,9 +72,9 @@
         </section>
     </div>
     <div class="modal-footer">
-        <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" type="submit" (click)="save();modal.close('Save click');">Save</button>
+        <button class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" type="submit" (click)="save();modal.close('Save click');">{{ 'buttonsLabel.save' | translate }}</button>
         <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
-            (click)=" modal.close('Save click')">Cancel</button>
+            (click)=" modal.close('Save click')">{{ 'buttonsLabel.cancel' | translate }}</button>
 
     </div>
 </ng-template>

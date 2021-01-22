@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SupplierRegistrationProcessComponent } from './supplier-registration-process.component';
@@ -44,6 +45,7 @@ const routes: Routes = [
     MatButtonModule,
     MatCardModule,
     MatProgressBarModule,
+    TranslateModule,
     RouterModule.forChild(routes)
   ]
 })
