@@ -1,3 +1,4 @@
+import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '../../../shared/shared.module';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
@@ -45,6 +46,7 @@ const routes: Routes = [
     MatButtonModule,
     MatCardModule,
     SharedModule,
+    TranslateModule,
     MatProgressBarModule,
     RouterModule.forChild(routes)
   ]
