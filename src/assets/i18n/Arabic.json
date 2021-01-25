@@ -203,7 +203,7 @@
             "designationdate": "تاريخ التعيين",
             "expireddate": "تاريخ الانتهاء ",
             "experience": "الخبرة",
-            "appointmentDate": "",
+            "appointmentDate": "تاريخ الموعد",
             "status": "الحالة",
             "statusdate": "تاريخ الحالة"
         }

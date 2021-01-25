@@ -462,7 +462,7 @@
             <ng-template matStepLabel>{{ 'registarationStepperNames.commercialInfo' | translate }}</ng-template>
 
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
-                <mat-tab label="Activity Info">
+                <mat-tab label="{{'registarationStepperNames.activityInfo' | translate }}">
                     <ng-container *ngIf="activityDetail">
                         <div class="row">
                             <div class="col-md-12 px-4 mb-3 mt-3">
@@ -623,7 +623,7 @@
                         </div>
                     </div>
                 </mat-tab>
-                <mat-tab label="Bank Details">
+                <mat-tab label="{{'registarationStepperNames.bankDetails' | translate }}">
                     <ng-container *ngIf="bankDetails">
                         <div class="row ">
                             <div class="col-md-12 px-4 ">
@@ -822,7 +822,7 @@
                         </div>
                     </div>
                 </mat-tab>
-                <mat-tab label="Other Info">
+                <mat-tab label="{{'registarationStepperNames.otherInfo' | translate }}">
                     <ng-container *ngIf="otherData">
                         <div class="row">
     
