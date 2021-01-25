@@ -2069,7 +2069,7 @@
                                 [disabled]='!showBtn' (click)="previousTab()"><i class="fa fa-caret-left"></i>
                                 {{'buttonsLabel.previous' | translate }}</button>
                             <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                (click)="newStep()" [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }} <i
+                                (click)="newStep();ifsRequestCall('Ministry1')" [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }} <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(5)">{{'buttonsLabel.saveasDraft' | translate }}

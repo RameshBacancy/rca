@@ -1911,4 +1911,41 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
   changeSite() {
     console.log(this.isSiteVisit);
   }
+
+
+  // wsdl request call
+  public ifsRequestCall(tab: string) {
+    switch (tab) {
+      case 'Ministry1':
+        const min1Data = {
+          occis: {
+            memberNumber: 1,
+            regDate: '25-01-2021',
+            companyGrade: 'B',
+            expiryDate: '',
+            civilNumber: 11337788,
+            crNumber: 1086391
+          },
+          municipalities: {
+            location: 'Oman',
+            civilNumber: 11337788,
+            regNumber: 1,
+            regDate: '10-01-2021',
+            expiryDate: '30-01-2021'
+          },
+          tenderBoards: {
+            civilNumber: 11337788,
+            crNumber: 1086391,
+            companyGrade: 'B',
+            regDate: '02-01-2021',
+            expiryDate: '30-01-2021'
+          }
+        };
+        this.supplierService.ifsPostRequestCall(tab, min1Data);
+        break;
+
+      default:
+        break;
+    }
+  }
 }

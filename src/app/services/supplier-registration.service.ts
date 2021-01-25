@@ -1,10 +1,26 @@
-import { BankDetailStep, CommunicationMethodStep, EmployeeDetailsStep, EquipmentDetailsStep, GeneralInfoStep, MinistriesData1Step, MinistriesData2Step, MinistriesData3Step, PersonalDetailsStep, ProjectDetailsStep, SubContractorDetailsStep } from './../models/supplier.modal';
+import {
+  BankDetailStep,
+  CommunicationMethodStep,
+  EmployeeDetailsStep,
+  EquipmentDetailsStep,
+  GeneralInfoStep,
+  MinistriesData1Step,
+  MinistriesData2Step,
+  MinistriesData3Step,
+  PersonalDetailsStep,
+  ProjectDetailsStep,
+  SubContractorDetailsStep
+} from './../models/supplier.modal';
 import { RequestServiceBase } from './request-service-base';
 import { map, shareReplay } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as data from '../../assets/JSON/supplier-registration-1.json';
 import { Observable } from 'rxjs';
+// import * as converter from 'xml-js';
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,14 +35,6 @@ export class SupplierRegistrationService {
     return this.http.get('/assets/JSON/supplier-registration-1.json').pipe(map(res => {
       return res[type];
     }));
-    // console.log('2 :>> ', 2);
-    // if (localStorage.getItem('regType') === 'local') {
-    //   return { ...data.local };
-    // } else if (localStorage.getItem('regType') === 'individual') {
-    //   return { ...data.individual };
-    // } else if (localStorage.getItem('regType') === 'international') {
-    //   return { ...data.international };
-    // }
   }
 
   getGeneralInfoStep(): Observable<GeneralInfoStep> {
@@ -100,4 +108,18 @@ export class SupplierRegistrationService {
   singleDelete(step, id): Observable<any> {
     return this.reqHttp.httpDelete('delete-single/' + step + '/' + id);
   }
+
+  ifsPostRequestCall(tab: string, registerData: any) {
+    switch (tab) {
+      case 'Ministry1':
+        // console.log(registerData);
+        // const min1Data =  converter.json2xml(registerData, { compact: false, spaces: 4 });
+        // console.log(min1Data);
+        break;
+
+      default:
+        break;
+    }
+  }
+
 }
