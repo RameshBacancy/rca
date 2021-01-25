@@ -457,6 +457,7 @@
         "onlynumbers": "أرقام فقط",
         "datafetchedfrominterface-noteditable": "جلب البيانات من واجهة - وليس للتحرير",
         "editdata": "تعديل البيانات",
-        "save" : "حفظ"
+        "save" : "حفظ",
+        "home": "الصفحة الرئيسية"
     }
 }

@@ -458,6 +458,7 @@
         "onlynumbers": "Only numbers",
         "dataFetchedFromInterface": "Data fetched from interface - not editable",
         "editData": "Edit data",
-        "save": "Save"
+        "save": "Save",
+        "home": "Home"
     }
 }
