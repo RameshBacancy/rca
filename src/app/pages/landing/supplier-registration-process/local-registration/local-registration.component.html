@@ -436,7 +436,7 @@
                     <!-- Address Model Pop-Up Form -->
                     <ng-template #mymodal let-modal>
                         <div class="modal-header">
-                            <h4 class="modal-title" id="modal-basic-title">Add Address</h4>
+                            <h4 class="modal-title" id="modal-basic-title">{{'buttonsLabel.addAddress' | translate }}</h4>
                             <button type="button" class="close" aria-label="Close"
                                 (click)="modal.dismiss('Cross click'); editAddress = false;">
                                 <span aria-hidden="true">×</span>
@@ -1073,7 +1073,7 @@
                     <!-- bank form pop-up -->
                     <ng-template #bankModel let-modal>
                         <div class="modal-header">
-                            <h4 class="modal-title" id="modal-basic-title">Add Bank Detail</h4>
+                            <h4 class="modal-title" id="modal-basic-title">{{'buttonsLabel.addBankDetail' | translate }}</h4>
                             <button type="button" class="close" aria-label="Close"
                                 (click)="modal.dismiss('Cross click'); editBank = false;">
                                 <span aria-hidden="true">×</span>
