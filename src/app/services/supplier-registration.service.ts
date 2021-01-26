@@ -18,6 +18,7 @@ import { Injectable } from '@angular/core';
 import * as data from '../../assets/JSON/supplier-registration-1.json';
 import { Observable } from 'rxjs';
 // import * as converter from 'xml-js';
+import * as JsonToXML from 'js2xmlparser';
 
 
 
@@ -115,6 +116,8 @@ export class SupplierRegistrationService {
         // console.log(registerData);
         // const min1Data =  converter.json2xml(registerData, { compact: false, spaces: 4 });
         // console.log(min1Data);
+        console.log(JsonToXML.parse('supplierMinistry1Head', registerData));
+
         break;
 
       default:

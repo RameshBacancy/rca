@@ -1918,6 +1918,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     switch (tab) {
       case 'Ministry1':
         const min1Data = {
+          supplierId: localStorage.getItem('supplierId'),
           occis: {
             memberNumber: 1,
             regDate: '25-01-2021',

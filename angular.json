@@ -30,7 +30,8 @@
               "rxjs-compat",
               "rxjs",
               "uuid",
-              "lodash"
+              "lodash",
+              "js2xmlparser"
             ],
             "styles": [
               "src/styles.scss",
