@@ -217,10 +217,3 @@ export class SupplierRegistrationService {
   }
 
 }
-
-
-// callWsdl() {
-
-// }
-
-// }
