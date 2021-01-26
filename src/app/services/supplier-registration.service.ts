@@ -1,3 +1,4 @@
+import { AlertService } from './alert.service';
 import {
   BankDetailStep,
   CommunicationMethodStep,
@@ -29,7 +30,8 @@ export class SupplierRegistrationService {
 
   constructor(
     private http: HttpClient,
-    private reqHttp: RequestServiceBase
+    private reqHttp: RequestServiceBase,
+    private alertService: AlertService
   ) { }
 
   getdata(type = 'local'): Observable<any> {
@@ -113,16 +115,112 @@ export class SupplierRegistrationService {
   ifsPostRequestCall(tab: string, registerData: any) {
     switch (tab) {
       case 'Ministry1':
-        // console.log(registerData);
-        // const min1Data =  converter.json2xml(registerData, { compact: false, spaces: 4 });
-        // console.log(min1Data);
-        console.log(JsonToXML.parse('supplierMinistry1Head', registerData));
+        const min1Data = JsonToXML.parse('supplierMinistry1Head', registerData, { declaration: { include: false } });
+        const xmlhttp1 = new XMLHttpRequest();
+        xmlhttp1.open('POST', 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppMin1Management?wsdl', true);
 
+        const sr1 =
+          `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+              xmlns:crec="http://creceivesuppmin1management.managetotcintegration.webservices.ifsworld.com/">
+              <soapenv:Header/>
+              <soapenv:Body>
+                <crec:cReceiveSuppMin1>
+                  ${min1Data}
+                </crec:cReceiveSuppMin1>
+               </soapenv:Body>
+            </soapenv:Envelope>`;
+
+        xmlhttp1.onreadystatechange = () => {
+          if (xmlhttp1.readyState === 4) {
+            this.alertService.pushSuccess('status code: ' + xmlhttp1.status + ' - ' + xmlhttp1.statusText);
+            if (xmlhttp1.status === 200) {
+              const xml = xmlhttp1.responseXML;
+            }
+            console.log('xmlhttp1', xmlhttp1);
+          }
+        };
+        console.log(sr1);
+        // Send the POST request.
+        xmlhttp1.setRequestHeader('Content-Type', 'text/xml');
+        xmlhttp1.responseType = 'text';
+        xmlhttp1.send(sr1);
         break;
 
-      default:
+      case 'Ministry2':
+        const min2Data = JsonToXML.parse('supplierMinistry2Head', registerData, { declaration: { include: false } });
+        const xmlhttp2 = new XMLHttpRequest();
+        xmlhttp2.open('POST', 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppMin2Management?wsdl', true);
+
+        const sr2 =
+          `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+              xmlns:crec="http://creceivesuppmin2management.managetotcintegration.webservices.ifsworld.com/">
+            <soapenv:Header/>
+             <soapenv:Body>
+                <crec:cReceiveSuppMin2>
+                  ${min2Data}
+                </crec:cReceiveSuppMin2>
+             </soapenv:Body>
+            </soapenv:Envelope>`;
+
+        xmlhttp2.onreadystatechange = () => {
+          if (xmlhttp2.readyState === 4) {
+            this.alertService.pushSuccess('status code: ' + xmlhttp2.status + ' - ' + xmlhttp2.statusText);
+            if (xmlhttp2.status === 200) {
+              const xml = xmlhttp2.responseXML;
+            }
+            console.log('xmlhttp2', xmlhttp2);
+          }
+        };
+        console.log(sr2);
+        // Send the POST r2equest.
+        xmlhttp2.setRequestHeader('Content-Type', 'text/xml');
+        xmlhttp2.responseType = 'text';
+        xmlhttp2.send(sr2);
         break;
+
+      case 'Ministry3':
+        const min3Data = JsonToXML.parse('supplierMinistry2Head', registerData, { declaration: { include: false } });
+        const xmlhttp3 = new XMLHttpRequest();
+        xmlhttp3.open('POST', 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppMin3Management?wsdl', true);
+
+        const sr3 =
+          `<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" 
+              xmlns:crec="http://creceivesuppmin3management.managetotcintegration.webservices.ifsworld.com/">
+            <soapenv:Header/>
+            <soapenv:Body>
+              <crec:cReceiveSuppMin3>
+                  ${min3Data}
+              </crec:cReceiveSuppMin3>
+             </soapenv:Body>
+            </soapenv:Envelope>`;
+
+        xmlhttp3.onreadystatechange = () => {
+          if (xmlhttp3.readyState === 4) {
+            this.alertService.pushSuccess('status code: ' + xmlhttp3.status + ' - ' + xmlhttp3.statusText);
+            if (xmlhttp3.status === 200) {
+              const xml = xmlhttp3.responseXML;
+            }
+            console.log('xmlhttp3', xmlhttp3);
+          }
+        };
+        // Send the POST request.
+        xmlhttp3.setRequestHeader('Content-Type', 'text/xml');
+        xmlhttp3.responseType = 'text';
+        xmlhttp3.send(sr3);
+        break;
+
     }
+
+
+
+
   }
 
 }
+
+
+// callWsdl() {
+
+// }
+
+// }

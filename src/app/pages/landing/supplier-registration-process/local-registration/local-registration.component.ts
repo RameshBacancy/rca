@@ -1920,29 +1920,93 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         const min1Data = {
           supplierId: localStorage.getItem('supplierId'),
           occis: {
-            memberNumber: 1,
-            regDate: '25-01-2021',
-            companyGrade: 'B',
-            expiryDate: '',
-            civilNumber: 11337788,
-            crNumber: 1086391
+            memberNumber: this.ministriesData1.occiDataTab.membershipNumber,
+            regDate: this.ministriesData1.occiDataTab.regDate,
+            companyGrade: this.ministriesData1.occiDataTab.companyGrade,
+            expiryDate: this.ministriesData1.occiDataTab.expDate,
+            civilNumber: localStorage.getItem('civilNumber'),
+            crNumber: localStorage.getItem('crNumber')
           },
           municipalities: {
-            location: 'Oman',
+            location: this.ministriesData1.municipalityDataTab.location,
             civilNumber: 11337788,
-            regNumber: 1,
-            regDate: '10-01-2021',
-            expiryDate: '30-01-2021'
+            regNumber: this.ministriesData1.municipalityDataTab.crNo,
+            regDate: this.ministriesData1.municipalityDataTab.regDate,
+            expiryDate: this.ministriesData1.municipalityDataTab.expDate
           },
           tenderBoards: {
-            civilNumber: 11337788,
-            crNumber: 1086391,
-            companyGrade: 'B',
-            regDate: '02-01-2021',
-            expiryDate: '30-01-2021'
+            civilNumber: localStorage.getItem('civilNumber'),
+            crNumber: this.ministriesData1.tenderBoardDataTab.crNo,
+            companyGrade: this.ministriesData1.tenderBoardDataTab.companyGrade,
+            regDate: this.ministriesData1.tenderBoardDataTab.regDate,
+            expiryDate: this.ministriesData1.tenderBoardDataTab.expDate
           }
         };
         this.supplierService.ifsPostRequestCall(tab, min1Data);
+        break;
+
+      case 'Ministry2':
+        const min2Data = {
+          supplierId: localStorage.getItem('supplierId'),
+          mofs: {
+            taxCertNumber: this.ministriesData2.mofDataTab.taxCertificateNumber,
+            regDate: this.ministriesData2.mofDataTab.regDate,
+            expiryDate: this.ministriesData2.mofDataTab.expDate,
+            activities: this.ministriesData2.mofDataTab.activities,
+          },
+          mohs: {
+            crNumber: this.ministriesData2.mohDataTab.crNo,
+            healPharmLic: this.ministriesData2.mohDataTab.healthAndPharmacyLicenses,
+            regStartDate: this.ministriesData2.mohDataTab.regDate,
+            endDate: this.ministriesData2.mohDataTab.expDate,
+            typeOfActivity: this.ministriesData2.mohDataTab.typeOfActivity
+          },
+          mocis: {
+            conCompLic: this.ministriesData2.mociDataTab.perAndLiceOfConsCom,
+            trainQualLic: '',
+            agenTrademarks: this.ministriesData2.mociDataTab.ageAndTread,
+            foreignInvestment: this.ministriesData2.mociDataTab.foreignInvestment,
+            perGovtOwnership: this.ministriesData2.mociDataTab.perOfGovOwn,
+            accreditedAgencies: this.ministriesData2.mociDataTab.accrAgencies
+          },
+          smallMedEnts: {
+            regNumber: this.ministriesData2.smallMediumEntDataTab.crNo,
+            regDate: this.ministriesData2.smallMediumEntDataTab.regDate,
+            expiryDate: this.ministriesData2.smallMediumEntDataTab.expDate,
+            activities: this.ministriesData2.smallMediumEntDataTab.activities,
+            compRegAuth: ''
+          }
+        };
+        this.supplierService.ifsPostRequestCall(tab, min2Data);
+        break;
+
+      case 'Ministry3':
+        const min3Data = {
+          supplierId: localStorage.getItem('supplierId'),
+          civilDefs: {
+            fireResisLic: this.ministriesData3.authorityOfCivilDefenseData.licensesForFireResistant,
+            regNumber: this.ministriesData3.authorityOfCivilDefenseData.crNo,
+            regDate: this.ministriesData3.authorityOfCivilDefenseData.regDate,
+            expiryDate: this.ministriesData3.authorityOfCivilDefenseData.expDate,
+            activities: this.ministriesData3.authorityOfCivilDefenseData.activities
+          },
+          capitalMarkets: {
+            regNumber: this.ministriesData3.capitalMarketData.crNo,
+            regDate: this.ministriesData3.capitalMarketData.regDate,
+            expiryDate: this.ministriesData3.capitalMarketData.expDate,
+            activities: this.ministriesData3.capitalMarketData.activities,
+            insCompInqList: ''
+          },
+          creditBues: {
+            crNumber: this.ministriesData3.creditBureauData.crNo,
+            finTroubleCompList: this.ministriesData3.creditBureauData.listOfFinanciallyTroubledCompanies
+          },
+          distRules: {
+            crNumber: this.ministriesData3.distRulesReviewBoardData.crNo,
+            elecWorkRegCert: ''
+          }
+        };
+        this.supplierService.ifsPostRequestCall(tab, min3Data);
         break;
 
       default:
