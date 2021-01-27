@@ -3152,7 +3152,7 @@
                         class="btn border   btn-disabled-color-gray px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         [disabled]="true">{{'buttonsLabel.next' | translate }} <i class="fa fa-caret-right"></i></button>
                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        (click)="submitRegistration()">Finish</button>
+                        (click)="submitRegistration()">{{'buttonsLabel.finish' | translate }}</button>
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                         (click)="saveDraft(10)">{{'buttonsLabel.saveasDraft' | translate }} </button>
                     <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">

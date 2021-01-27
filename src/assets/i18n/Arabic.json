@@ -208,6 +208,57 @@
             "statusdate": "تاريخ الحالة"
         }
     },
+    "individualRegistration": {
+        "generalInfo": {
+            "cRNumber": "رقم السجل التجاري",
+            "arabicName": "الاسم باللغة العربية",
+            "englishName": "الاسم باللغة الإنجليزية",
+            "companyInfo": "معلومات عن المورد",
+            "companyName": "اسم المورد",
+            "companyCRNumber": "رقم السجل التجاري",
+            "addressID": "رمز العنوان",
+            "addressLine1": "العنوان 1",
+            "addressLine2": "العنوان 2",
+            "language": "اللغة",
+            "country": "البلد",
+            "remarks/Notes": "الملاحظات"
+        },
+        "personalDetails": {
+            "nationality": "الجنسية",
+            "iDType": "I.D نوع",
+            "iDNo": "رقم بطاقة الهوية.",
+            "designation": "تعيين",
+            "age": "Age",
+            "dob": "DOB",
+            "numberOfFamilyMembers": "Number of Family Members",
+            "socialStatus": "Social Status",
+            "familyOfSocialSecurity": "Family of social security",
+            "documentAttachment": "Document Attachment"
+        },
+        "communicationMethod": {
+            "telephone": "هاتف",
+            "pOBox": "صندوق بريد",
+            "fax": "الفاكس",
+            "legalStatus": "الوضع القانوني",
+            "pC": "الرمز البريدي",
+            "email": "البريد الإلكتروني"
+        },
+        "commercialInfo": {
+            "registrationDate": "تاريخ التسجيل",
+            "expiryDate": "تاريخ الانتهاء ",
+            "workLocation": "Work Location",
+            "activities":"الأنشطة",
+            "bankingId":"رقم المصرفية",
+            "bankingIdName":"المصرفية اسم معرف",
+            "bankAccount":"رقم الحساب",
+            "bankName":"اسم البنك",
+            "bankBranch":"فرع البنك",
+            "accountholdername":"اسم صاحب الحساب",
+            "no": "الرقم",
+            "label": "ضع الكلمة المناسبة",
+            "value": "القيمة"
+        }
+    },
     "localRegistration": {
         "generalInfo": {
             "userId":"معرف المستخدم",

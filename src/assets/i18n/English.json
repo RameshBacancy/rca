@@ -208,6 +208,57 @@
             "statusdate": "Status date"
         }
     },
+    "individualRegistration": {
+        "generalInfo": {
+            "cRNumber": "C R Number",
+            "arabicName": "Arabic Name",
+            "englishName": "English Name",
+            "companyInfo": "Company Info",
+            "companyName": "Company Name",
+            "companyCRNumber": "Company C R Number",
+            "addressID": "Address ID",
+            "addressLine1": "Address Line 1",
+            "addressLine2": "Address Line 2",
+            "language": "Language",
+            "country": "Country",
+            "remarks/Notes": "Remarks / Notes"
+        },
+        "personalDetails": {
+            "nationality": "Nationality",
+            "iDType": "I.D Type",
+            "iDNo": "I.D No.",
+            "designation": "Designation",
+            "age": "Age",
+            "dob": "DOB",
+            "numberOfFamilyMembers": "Number of Family Members",
+            "socialStatus": "Social Status",
+            "familyOfSocialSecurity": "Family of social security",
+            "documentAttachment": "Document Attachment"
+        },
+        "communicationMethod": {
+            "telephone": "Telephone",
+            "pOBox": "P. O. Box",
+            "fax": "Fax",
+            "legalStatus": "Legal Status",
+            "pC": "PC",
+            "email": "Email"
+        },
+        "commercialInfo": {
+            "registrationDate": "Registration Date",
+            "expiryDate": "Expiry Date",
+            "workLocation": "Work Location",
+            "activities":"Activities",
+            "bankingId":"Banking Id",
+            "bankingIdName":"Banking Id Name",
+            "bankAccount":"Bank Account",
+            "bankName":"Bank Name",
+            "bankBranch":"Bank Branch",
+            "accountholdername":"Account holder name",
+            "no": "No.",
+            "label": "Label",
+            "value": "Value"
+        }
+    },
     "localRegistration": {
         "generalInfo": {
             "userId":"User Id",
