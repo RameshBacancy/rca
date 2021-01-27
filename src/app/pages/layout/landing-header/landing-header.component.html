@@ -36,7 +36,7 @@
   </div>
   <div class="right-side">
     <!-- <span class="fs-18 color-white  font-weight-bold pr-3">{{'header.language' | translate}}  : </span> -->
-    <form class="pr-4">
+    <form class="pr-4 language-dropdown">
       <mat-form-field class="color-white">
         <select matNativeControl class="color-white" required [(ngModel)]="selectedLanguage" name="language" (change)="changeLang(selectedLanguage)">
           <option *ngFor="let lang of languageArray" class="color-black" [value]=lang>{{lang}}</option>
