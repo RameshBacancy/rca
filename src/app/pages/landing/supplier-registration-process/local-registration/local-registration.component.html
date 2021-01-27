@@ -705,7 +705,7 @@
                         <button type="button" class="btn border px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="preStep(1)"
                             [disabled]='!showBtn' matStepperPrevious><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
                         <button type="button" class="btn border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }}
+                            [disabled]='!showBtn' matStepperNext  (click)="ifsRequestCall('PersonalDetails')">{{'buttonsLabel.next' | translate }}
                             <i class="fa fa-caret-right"></i></button>
                         <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                             (click)="saveDraft(1)">{{'buttonsLabel.saveasDraft' | translate }}
@@ -1444,7 +1444,7 @@
                                 [disabled]='!showBtn' (click)="previousTab()"><i class="fa fa-caret-left"></i>
                                 {{'buttonsLabel.previous' | translate }}</button>
                             <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                (click)="newStep()" [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }} <i
+                                (click)="newStep();ifsRequestCall('BankDetails')" [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }} <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(3)">{{'buttonsLabel.saveasDraft' | translate }}
@@ -1769,7 +1769,7 @@
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="preStep(3)"
                         [disabled]='!showBtn' matStepperPrevious><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
-                    <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                    <button type="button" (click)="ifsRequestCall('EmployeeDetails')" class="btn border   px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }}
                         <i class="fa fa-caret-right"></i></button>
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
@@ -2877,7 +2877,7 @@
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
                         matStepperPrevious><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
-                    <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                    <button type="button" (click)="ifsRequestCall('ProjectDetails')" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }}
                         <i class="fa fa-caret-right"></i></button>
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
@@ -3025,7 +3025,7 @@
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
                         matStepperPrevious><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
-                    <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                    <button type="button" (click)="ifsRequestCall('SubContractDetails')" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }}
                         <i class="fa fa-caret-right"></i></button>
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
@@ -3148,13 +3148,13 @@
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
                         matStepperPrevious><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
-                    <button type="button"
+                    <button type="button" (click)="ifsRequestCall('EquipmentDetails')"
                         class="btn border   btn-disabled-color-gray px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         [disabled]="true">{{'buttonsLabel.next' | translate }} <i class="fa fa-caret-right"></i></button>
                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        (click)="submitRegistration()">{{'buttonsLabel.finish' | translate }}</button>
+                        (click)="ifsRequestCall('EquipmentDetails');submitRegistration()">{{'buttonsLabel.finish' | translate }}</button>
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                        (click)="saveDraft(10)">{{'buttonsLabel.saveasDraft' | translate }} </button>
+                        (click)="ifsRequestCall('EquipmentDetails');saveDraft(10)">{{'buttonsLabel.saveasDraft' | translate }} </button>
                     <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                         <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>

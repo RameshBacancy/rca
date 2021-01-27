@@ -2009,6 +2009,183 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         this.supplierService.ifsPostRequestCall(tab, min3Data);
         break;
 
+      case 'PersonalDetails':
+        const personals = [];
+        this.personalData.filter(personal => {
+          personals.push({
+            personName: personal.personName,
+            nationality: personal.nationality,
+            idType: personal.idType || '-',
+            idNo: personal.idNo || '-',
+            designation: personal.designation,
+            noOfShares: personal.noOfShares,
+            percentageShares: personal.perShares,
+            authorizationType: personal.authorizationType,
+            authorizationLimit: personal.authorizationLimit,
+            note: personal.note,
+            regDate: personal.regDate
+          });
+        });
+        const personalDetailData = {
+          supplierId: localStorage.getItem('supplierId'),
+          personals
+        };
+        this.supplierService.ifsPostRequestCall(tab, personalDetailData);
+        break;
+
+      case 'BankDetails':
+        const commercialActs = [];
+        this.activityInfoData.filter(activity => {
+          commercialActs.push({
+            activitiesName: activity.activityName,
+            subActivitiesNo: activity.subActivity,
+            establishmentDate: activity.establishmentDate,
+            registrationDate: activity.regDate,
+            expiryDate: activity.expDate,
+            duration: activity.duration,
+            companyGrade: activity.companyGrade,
+            location: activity.location,
+            regDate: activity.regDate,
+            authorizedSignatureSheet: activity.documents.name,
+          });
+        });
+        const commercialBankDets = [];
+        this.BankDetails.filter(bank => {
+          commercialBankDets.push({
+            bankAccount: bank.bankAcc,
+            bankName: bank.bankName,
+            bankBranch: bank.bankBranch
+          });
+        });
+
+        const commercialCompanyFins = {
+          cashCapital: this.compFinanceInfoData.cashCapital,
+          kindCapital: this.compFinanceInfoData.kindCapital,
+          noOfShares: this.compFinanceInfoData.noOfShares,
+          shareValue: this.compFinanceInfoData.shareValue,
+        }
+
+        const companyBranches = [];
+        this.compBranchInfoData.filter(branch => {
+          companyBranches.push({
+            branchReqDate: branch.reqDate,
+            branchId: branch.branchId,
+            branchActivitiesName: branch.branchActivity,
+            branchActivitiesNo: branch.branchActivityNo,
+          });
+        });
+
+        const otherInfos = [];
+        this.otherData.filter(other => {
+          otherInfos.push({
+            otherField1: other.name,
+            otherField2: other.value,
+            otherField3: other.documents
+          });
+        });
+
+        const commercialData = {
+          supplierId: localStorage.getItem('supplierId'),
+          supplierName: '-',
+          suppLanguageCode: '-',
+          suppCurrencyCode: '-',
+          commercialActs,
+          commercialBankDets,
+          commercialCompanyFins,
+          companyBranches,
+          otherInfos
+        };
+        this.supplierService.ifsPostRequestCall(tab, commercialData);
+        break;
+
+      case 'EmployeeDetails':
+        const staff = [];
+        this.employeeData.filter(employee => {
+          staff.push({
+            employeeName: employee.name,
+            employeeSpec: employee.specialization,
+            jobTitle: employee.jobTitle,
+            desigType: employee.designation,
+            desingDate: employee.designationDate,
+            expiredDate: employee.expDate,
+            totYrsExp: employee.experience,
+            appointmentDate: employee.appointmentDate,
+            status: employee.status,
+            statusDate: employee.statusDate,
+            staffCategory: employee.staffCategory,
+            passportNumber: employee.passportNum,
+            resCardNo: employee.recidentCard,
+            civilNumber: employee.civilNo,
+            cRNumber: employee.crNo,
+            omanizationRatio: employee.omaniratio
+          });
+        });
+        const employeeDetailData = {
+          supplierId: localStorage.getItem('supplierId'),
+          staff
+        };
+        this.supplierService.ifsPostRequestCall(tab, employeeDetailData);
+        break;
+
+      case 'ProjectDetails':
+        const projects = [];
+        this.projectData.filter(project => {
+          projects.push({
+            projectName: project.name,
+            client: project.client,
+            consultant: project.consultent,
+            costComsultant: project.costConsultent,
+            valueOmr: project.value,
+            periodStart: project.period,
+            periodEnd: project.period,
+            compDate: project.completion,
+            documents: project.documents.name
+          });
+        });
+        const projectDetailData = {
+          supplierId: localStorage.getItem('supplierId'),
+          projects
+        };
+        this.supplierService.ifsPostRequestCall(tab, projectDetailData);
+        break;
+
+      case 'EquipmentDetails':
+        const equipments = [];
+        this.equipmentData.filter(equipment => {
+          equipments.push({
+            typeEquipment: equipment.type,
+            quantity: equipment.quantity,
+            capacity: equipment.capacity,
+            yearOfManufacture: equipment.year,
+            regNo: equipment.regNo,
+            approxValueOmr: equipment.approxValue
+          });
+        });
+        const equipmentDetailsData = {
+          supplierId: localStorage.getItem('supplierId'),
+          equips: equipments
+        };
+        this.supplierService.ifsPostRequestCall(tab, equipmentDetailsData);
+        break;
+
+      case 'SubContractDetails':
+        const subcontractors = []
+        this.subContractorData.filter(subcontractor => {
+          subcontractors.push({
+            subConRegNo: subcontractor.crNo,
+            subConName: subcontractor.nameOfWork,
+            subConPhone: subcontractor.telephone,
+            subConMail: subcontractor.email,
+            subConFax: subcontractor.fax,
+            regWithRca: subcontractor.regWithRca
+          });
+        });
+        const subContractorDetailsData = {
+          supplierId: localStorage.getItem('supplierId'),
+          subcons: subcontractors
+        };
+        this.supplierService.ifsPostRequestCall(tab, subContractorDetailsData);
+        break;
       default:
         break;
     }
