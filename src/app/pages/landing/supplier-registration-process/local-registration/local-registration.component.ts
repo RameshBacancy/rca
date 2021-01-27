@@ -2186,6 +2186,77 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         };
         this.supplierService.ifsPostRequestCall(tab, subContractorDetailsData);
         break;
+      
+      case 'GeneralInfoActivity':
+       
+        const activities = [];
+        this.activityData.filter(activity => {
+          activities.push({
+            idCivil: localStorage.getItem('supplierId'),
+            cRNumber: localStorage.getItem('commercialReg'),
+            activitiesName: activity.activityName,
+            subActivity: activity.subActivity,
+            segment: '-',
+            family: '-',
+            cClass: '-',
+            cCommodity:'-'
+          });
+        });
+        const generalInfoActivity = {
+          supplierId: localStorage.getItem('supplierId'),
+          regRequests: activities
+        }
+        this.supplierService.ifsPostRequestCall(tab, generalInfoActivity);
+        break;
+
+
+      case 'GeneralInfoAddress':
+        const addresses = [];
+        this.allAddresses.filter(address => {
+          addresses.push({
+            addressId: address.addressID,
+            address1: address.addressLine1,
+            address2: address.addressLine2,
+            zipCode: '-',
+            city: '-',
+            state: '-',
+            countryCode: '-',
+            country:address.country
+          });
+        });
+        const generalInfo = {
+          supplierId: localStorage.getItem('supplierId'),
+          supplierName: '-',
+          suppLanguageCode: '-',
+          suppCurrencyCode: '-',
+          addresses: addresses,
+          contacts: []
+        };
+        this.supplierService.ifsPostRequestCall(tab, generalInfo);
+        break;
+      
+
+      case 'communication':
+        const commData = [];
+        this.communicationData.filter(communication => {
+          commData.push({
+            methodNo: communication.communicationID,
+            commMethod: communication.method,
+            commValue:communication.value
+          });
+        });
+        const communicationData = {
+          supplierId: localStorage.getItem('supplierId'),
+          supplierName: '-',
+          suppLanguageCode: '-',
+          suppCurrencyCode: '-',
+          addresses: [],
+          contacts: commData
+        };
+        this.supplierService.ifsPostRequestCall(tab, communicationData);
+        break;
+
+
       default:
         break;
     }

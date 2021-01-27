@@ -3,7 +3,7 @@
     <!-- Show files Pop up-->
     <ng-template #shoeFiles let-modal>
         <div class="modal-header">
-            <h4 class="modal-title" id="modal-basic-title"> Files
+            <h4 class="modal-title" id="modal-basic-title"> {{'buttonsLabel.files' | translate }}
                 <i class="fa fa-ban text-red fs-14" type="button" placement="right"
                     ngbTooltip="Data fetched from interface - not editable" *ngIf="isDataMoci"></i>
             </h4>
@@ -30,13 +30,13 @@
                     </ul>
                 </ng-container>
                 <ng-template #fileListTemplate>
-                    No Files Added
+                    {{'buttonsLabel.noFilesAdded' | translate }}
                 </ng-template>
 
             </section>
             <hr>
             <section class="bg-white" *ngIf="filesList.length == 0 && !isDataMoci">
-                <div>Add New File</div>
+                <div>{{'buttonsLabel.addNewFile' | translate }}</div>
                 <mat-card>
                     <mat-card-content>
                         <ul>
@@ -51,7 +51,7 @@
                     <mat-card-actions>
                         <button mat-button color="warn" (click)="onClick()">
                             <mat-icon>file_upload</mat-icon>
-                            Upload
+                            {{'buttonsLabel.upload' | translate }}
                         </button>
                     </mat-card-actions>
                 </mat-card>
@@ -65,7 +65,7 @@
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="button"
-                (click)="modal.close('Save click')">Done</button>
+                (click)="modal.close('Save click')">{{'buttonsLabel.done' | translate }}</button>
         </div>
     </ng-template>
 

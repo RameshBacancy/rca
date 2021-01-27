@@ -283,6 +283,27 @@ export class SupplierRegistrationService {
         xmlUrl = 'http://creceivesuppsubconmanagement.managetotcintegration.webservices.ifsworld.com/';
         crecText = 'cReceiveSuppSubcon';
         break;
+      
+      case 'GeneralInfoAddress':
+        jsonHead = 'supplierInfoHead';
+        wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSupplierInfoManagement?wsdl';
+        xmlUrl = 'http://creceivesupplierinfomanagement.managetotcintegration.webservices.ifsworld.com/';
+        crecText = 'cReceiveSupplierInfo';
+        break;
+
+      case 'GeneralInfoActivity':
+        jsonHead = 'cReceiveSupplierReg';
+        wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSupplierRegManagement?wsdl';
+        xmlUrl = 'http://creceivesupplierregmanagement.managetotcintegration.webservices.ifsworld.com/';
+        crecText = 'cReceiveSuppSubcon';
+        break;
+
+      case 'communication':
+        jsonHead = 'supplierInfoHead';
+        wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSupplierInfoManagement?wsdl';
+        xmlUrl = 'http://creceivesupplierinfomanagement.managetotcintegration.webservices.ifsworld.com/';
+        crecText = 'cReceiveSupplierInfo';
+        break;
     }
     this.callXmlRequest(jsonHead, dataObj, wsdlUrl, xmlUrl, crecText);
   }
