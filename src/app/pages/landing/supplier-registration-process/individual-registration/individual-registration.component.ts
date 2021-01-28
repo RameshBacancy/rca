@@ -3,18 +3,16 @@ import { SupplierIndividualRegisterService } from './../../../../services/suppli
 import { Component, OnInit, ViewChild, Input, ElementRef, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { SupplierRegistrationService } from 'src/app/services/supplier-registration.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SortByPipe } from '../../../../shared/pipe/sortBy.pipe';
 import { FilterPipe } from 'src/app/shared/pipe/searchEmployee.pipe';
 import { AlertService } from 'src/app/services/alert.service';
-import { MatTabsModule } from '@angular/material/tabs';
 import { UserService } from 'src/app/services/user.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { takeUntil } from 'rxjs/operators';
 import { Observable, Subject, pipe } from 'rxjs';
-import { GeneralInfoInd } from 'src/app/models/supplier.modal';
 import * as uuid from 'uuid/v4';
 
 
@@ -35,7 +33,6 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
     private supplierService: SupplierRegistrationService,
     private modalService: NgbModal,
     private userService: UserService,
-    // private ActivatedRoute: ActivatedRoute,
     private sortByPipe: SortByPipe,
     private searchPipe: FilterPipe,
     private spinner: SpinnerService,
