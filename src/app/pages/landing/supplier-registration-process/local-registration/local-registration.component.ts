@@ -1,3 +1,4 @@
+import { LocalRegisterStep } from './../../../../register-step.enum';
 import {
   GeneralInfoStep,
   GeneralInfoTab,
@@ -191,6 +192,9 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
 
   setDraftTime: any;
 
+
+  // local register step enum
+  localRegisterStep = LocalRegisterStep;
 
   constructor(
     private router: Router,
@@ -1916,7 +1920,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
   // wsdl request call
   public ifsRequestCall(tab: string) {
     switch (tab) {
-      case 'Ministry1':
+      case this.localRegisterStep.MINISTRY_DATA_1:
         const min1Data = {
           supplierId: localStorage.getItem('supplierId'),
           occis: {
@@ -1945,7 +1949,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         this.supplierService.ifsPostRequestCall(tab, min1Data);
         break;
 
-      case 'Ministry2':
+      case this.localRegisterStep.MINISTRY_DATA_2:
         const min2Data = {
           supplierId: localStorage.getItem('supplierId'),
           mofs: {
@@ -1980,7 +1984,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         this.supplierService.ifsPostRequestCall(tab, min2Data);
         break;
 
-      case 'Ministry3':
+      case this.localRegisterStep.MINISTRY_DATA_3:
         const min3Data = {
           supplierId: localStorage.getItem('supplierId'),
           civilDefs: {
@@ -2009,7 +2013,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         this.supplierService.ifsPostRequestCall(tab, min3Data);
         break;
 
-      case 'PersonalDetails':
+      case this.localRegisterStep.PERSONAL_DETAILS:
         const personals = [];
         this.personalData.filter(personal => {
           personals.push({
@@ -2033,7 +2037,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         this.supplierService.ifsPostRequestCall(tab, personalDetailData);
         break;
 
-      case 'BankDetails':
+      case this.localRegisterStep.BANK_DETAILS:
         const commercialActs = [];
         this.activityInfoData.filter(activity => {
           commercialActs.push({
@@ -2098,7 +2102,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         this.supplierService.ifsPostRequestCall(tab, commercialData);
         break;
 
-      case 'EmployeeDetails':
+      case this.localRegisterStep.EMPLOYEE_DETAILS:
         const staff = [];
         this.employeeData.filter(employee => {
           staff.push({
@@ -2127,7 +2131,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         this.supplierService.ifsPostRequestCall(tab, employeeDetailData);
         break;
 
-      case 'ProjectDetails':
+      case this.localRegisterStep.PROJECT_DETAILS:
         const projects = [];
         this.projectData.filter(project => {
           projects.push({
@@ -2149,7 +2153,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         this.supplierService.ifsPostRequestCall(tab, projectDetailData);
         break;
 
-      case 'EquipmentDetails':
+      case this.localRegisterStep.EQUIPMENT_DETAILS:
         const equipments = [];
         this.equipmentData.filter(equipment => {
           equipments.push({
@@ -2168,7 +2172,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         this.supplierService.ifsPostRequestCall(tab, equipmentDetailsData);
         break;
 
-      case 'SubContractDetails':
+      case this.localRegisterStep.SUBCONTRACTOR_DETAILS:
         const subcontractors = []
         this.subContractorData.filter(subcontractor => {
           subcontractors.push({
@@ -2187,7 +2191,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         this.supplierService.ifsPostRequestCall(tab, subContractorDetailsData);
         break;
 
-      case 'GeneralInfoActivity':
+      case this.localRegisterStep.GENERAL_INFO_TAB:
 
         const activities = [];
         this.activityData.filter(activity => {
@@ -2210,7 +2214,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         break;
 
 
-      case 'GeneralInfoAddress':
+      case this.localRegisterStep.GENERAL_INFO_ADDRESS_TAB:
         const addresses = [];
         this.allAddresses.filter(address => {
           addresses.push({
@@ -2236,7 +2240,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         break;
 
 
-      case 'communication':
+      case this.localRegisterStep.COMMUNICATION_METHOD:
         const commData = [];
         this.communicationData.filter(communication => {
           commData.push({

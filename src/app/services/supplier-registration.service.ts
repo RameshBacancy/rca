@@ -1,3 +1,4 @@
+import { LocalRegisterWsdlData, LocalRegisterStep } from './../register-step.enum';
 import { AlertService } from './alert.service';
 import {
   BankDetailStep,
@@ -27,7 +28,8 @@ import * as JsonToXML from 'js2xmlparser';
   providedIn: 'root'
 })
 export class SupplierRegistrationService {
-
+  localRegisterWsdlData = LocalRegisterWsdlData;
+  localRegisterStep = LocalRegisterStep;
   constructor(
     private http: HttpClient,
     private reqHttp: RequestServiceBase,
@@ -214,98 +216,108 @@ export class SupplierRegistrationService {
 
 
   ifsPostRequestCall(tab: string, registerData: any) {
-    let jsonHead: string;
-    const dataObj = registerData;
-    let wsdlUrl: string;
-    let xmlUrl: string;
-    let crecText: string;
-    switch (tab) {
-      case 'Ministry1':
-        jsonHead = 'supplierMinistry1Head';
-        wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppMin1Management?wsdl';
-        xmlUrl = 'http://creceivesuppmin1management.managetotcintegration.webservices.ifsworld.com/';
-        crecText = 'cReceiveSuppMin1';
-        break;
+    // let jsonHead: string;
+    // const dataObj = registerData;
+    // let wsdlUrl: string;
+    // let xmlUrl: string;
+    // let crecText: string;
+    // switch (tab) {
+    //   case 'Ministry1':
+    //     jsonHead = 'supplierMinistry1Head';
+    //     wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppMin1Management?wsdl';
+    //     xmlUrl = 'http://creceivesuppmin1management.managetotcintegration.webservices.ifsworld.com/';
+    //     crecText = 'cReceiveSuppMin1';
+    //     break;
 
-      case 'Ministry2':
-        jsonHead = 'supplierMinistry2Head';
-        wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppMin2Management?wsdl';
-        xmlUrl = 'http://creceivesuppmin2management.managetotcintegration.webservices.ifsworld.com/';
-        crecText = 'cReceiveSuppMin2';
-        break;
+    //   case 'Ministry2':
+    //     jsonHead = 'supplierMinistry2Head';
+    //     wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppMin2Management?wsdl';
+    //     xmlUrl = 'http://creceivesuppmin2management.managetotcintegration.webservices.ifsworld.com/';
+    //     crecText = 'cReceiveSuppMin2';
+    //     break;
 
-      case 'Ministry3':
+    //   case 'Ministry3':
 
-        jsonHead = 'supplierMinistry3Head';
-        wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppMin3Management?wsdl';
-        xmlUrl = 'http://creceivesuppmin3management.managetotcintegration.webservices.ifsworld.com/';
-        crecText = 'cReceiveSuppMin3';
-        break;
+    //     jsonHead = 'supplierMinistry3Head';
+    //     wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppMin3Management?wsdl';
+    //     xmlUrl = 'http://creceivesuppmin3management.managetotcintegration.webservices.ifsworld.com/';
+    //     crecText = 'cReceiveSuppMin3';
+    //     break;
 
-      case 'PersonalDetails':
-        jsonHead = 'supplierPersonalHead';
-        wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppPersonalManagement?wsdl';
-        xmlUrl = 'http://creceivesupppersonalmanagement.managetotcintegration.webservices.ifsworld.com/';
-        crecText = 'cReceiveSuppPersonal';
-        break;
+    //   case 'PersonalDetails':
+    //     jsonHead = 'supplierPersonalHead';
+    //     wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppPersonalManagement?wsdl';
+    //     xmlUrl = 'http://creceivesupppersonalmanagement.managetotcintegration.webservices.ifsworld.com/';
+    //     crecText = 'cReceiveSuppPersonal';
+    //     break;
 
-      case 'EmployeeDetails':
-        jsonHead = 'supplierStaffHead';
-        wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppStaffManagement?wsdl';
-        xmlUrl = 'http://creceivesuppstaffmanagement.managetotcintegration.webservices.ifsworld.com/';
-        crecText = 'cReceiveSuppStaff';
-        break;
+    //   case 'EmployeeDetails':
+    //     jsonHead = 'supplierStaffHead';
+    //     wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppStaffManagement?wsdl';
+    //     xmlUrl = 'http://creceivesuppstaffmanagement.managetotcintegration.webservices.ifsworld.com/';
+    //     crecText = 'cReceiveSuppStaff';
+    //     break;
 
-      case 'ProjectDetails':
-        jsonHead = 'supplierProjectHead';
-        wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppProjManagement?wsdl';
-        xmlUrl = 'http://creceivesuppprojmanagement.managetotcintegration.webservices.ifsworld.com/';
-        crecText = 'cReceiveSuppProj';
-        break;
+    //   case 'ProjectDetails':
+    //     jsonHead = 'supplierProjectHead';
+    //     wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppProjManagement?wsdl';
+    //     xmlUrl = 'http://creceivesuppprojmanagement.managetotcintegration.webservices.ifsworld.com/';
+    //     crecText = 'cReceiveSuppProj';
+    //     break;
 
-      case 'EquipmentDetails':
-        jsonHead = 'supplierEquipHead';
-        wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppEquipManagement?wsdl';
-        xmlUrl = 'http://creceivesuppequipmanagement.managetotcintegration.webservices.ifsworld.com/';
-        crecText = 'cReceiveSuppEquip';
-        break;
+    //   case 'EquipmentDetails':
+    //     jsonHead = 'supplierEquipHead';
+    //     wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppEquipManagement?wsdl';
+    //     xmlUrl = 'http://creceivesuppequipmanagement.managetotcintegration.webservices.ifsworld.com/';
+    //     crecText = 'cReceiveSuppEquip';
+    //     break;
 
-      case 'BankDetails':
-        jsonHead = 'supplierCommercialHead';
-        wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppCommManagement?wsdl';
-        xmlUrl = 'http://creceivesuppcommmanagement.managetotcintegration.webservices.ifsworld.com/';
-        crecText = 'cReceiveSuppComm';
-        break;
+    //   case 'BankDetails':
+    //     jsonHead = 'supplierCommercialHead';
+    //     wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppCommManagement?wsdl';
+    //     xmlUrl = 'http://creceivesuppcommmanagement.managetotcintegration.webservices.ifsworld.com/';
+    //     crecText = 'cReceiveSuppComm';
+    //     break;
 
-      case 'SubContractDetails':
-        jsonHead = 'supplierSubconHead';
-        wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppSubconManagement?wsdl';
-        xmlUrl = 'http://creceivesuppsubconmanagement.managetotcintegration.webservices.ifsworld.com/';
-        crecText = 'cReceiveSuppSubcon';
-        break;
+    //   case 'SubContractDetails':
+    //     jsonHead = 'supplierSubconHead';
+    //     wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSuppSubconManagement?wsdl';
+    //     xmlUrl = 'http://creceivesuppsubconmanagement.managetotcintegration.webservices.ifsworld.com/';
+    //     crecText = 'cReceiveSuppSubcon';
+    //     break;
 
-      case 'GeneralInfoAddress':
-        jsonHead = 'supplierInfoHead';
-        wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSupplierInfoManagement?wsdl';
-        xmlUrl = 'http://creceivesupplierinfomanagement.managetotcintegration.webservices.ifsworld.com/';
-        crecText = 'cReceiveSupplierInfo';
-        break;
+    //   case 'GeneralInfoAddress':
+    //     jsonHead = 'supplierInfoHead';
+    //     wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSupplierInfoManagement?wsdl';
+    //     xmlUrl = 'http://creceivesupplierinfomanagement.managetotcintegration.webservices.ifsworld.com/';
+    //     crecText = 'cReceiveSupplierInfo';
+    //     break;
 
-      case 'GeneralInfoActivity':
-        jsonHead = 'cReceiveSupplierReg';
-        wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSupplierRegManagement?wsdl';
-        xmlUrl = 'http://creceivesupplierregmanagement.managetotcintegration.webservices.ifsworld.com/';
-        crecText = 'cReceiveSuppSubcon';
-        break;
+    //   case 'GeneralInfoActivity':
+    //     jsonHead = 'supplierRegHead';
+    //     wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSupplierRegManagement?wsdl';
+    //     xmlUrl = 'http://creceivesupplierregmanagement.managetotcintegration.webservices.ifsworld.com/';
+    //     crecText = 'cReceiveSupplierReg';
+    //     break;
 
-      case 'communication':
-        jsonHead = 'supplierInfoHead';
-        wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSupplierInfoManagement?wsdl';
-        xmlUrl = 'http://creceivesupplierinfomanagement.managetotcintegration.webservices.ifsworld.com/';
-        crecText = 'cReceiveSupplierInfo';
-        break;
-    }
-    this.callXmlRequest(jsonHead, dataObj, wsdlUrl, xmlUrl, crecText);
+    //   case 'communication':
+    //     jsonHead = 'supplierInfoHead';
+    //     wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSupplierInfoManagement?wsdl';
+    //     xmlUrl = 'http://creceivesupplierinfomanagement.managetotcintegration.webservices.ifsworld.com/';
+    //     crecText = 'cReceiveSupplierInfo';
+    //     break;
+    // }
+    // this.callXmlRequest(jsonHead, dataObj, wsdlUrl, xmlUrl, crecText);
+    // const key = this.localRegisterStep[tab];
+    // console.log(key);
+    const xmlData = {
+      jsonHead: this.localRegisterWsdlData[tab].jsonHead,
+      wsdlUrl: this.localRegisterWsdlData[tab].wsdlUrl,
+      xmlUrl: this.localRegisterWsdlData[tab].xmlUrl,
+      crecText: this.localRegisterWsdlData[tab].crecText
+    };
+    this.callXmlRequest(xmlData.jsonHead, registerData, xmlData.wsdlUrl, xmlData.xmlUrl, xmlData.crecText);
+
   }
 
 
