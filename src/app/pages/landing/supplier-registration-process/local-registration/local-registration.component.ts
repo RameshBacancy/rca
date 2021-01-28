@@ -2186,9 +2186,9 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
         };
         this.supplierService.ifsPostRequestCall(tab, subContractorDetailsData);
         break;
-      
+
       case 'GeneralInfoActivity':
-       
+
         const activities = [];
         this.activityData.filter(activity => {
           activities.push({
@@ -2199,13 +2199,13 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
             segment: '-',
             family: '-',
             cClass: '-',
-            cCommodity:'-'
+            cCommodity: '-'
           });
         });
         const generalInfoActivity = {
           supplierId: localStorage.getItem('supplierId'),
           regRequests: activities
-        }
+        };
         this.supplierService.ifsPostRequestCall(tab, generalInfoActivity);
         break;
 
@@ -2221,7 +2221,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
             city: '-',
             state: '-',
             countryCode: '-',
-            country:address.country
+            country: address.country
           });
         });
         const generalInfo = {
@@ -2229,12 +2229,12 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
           supplierName: '-',
           suppLanguageCode: '-',
           suppCurrencyCode: '-',
-          addresses: addresses,
+          addresses,
           contacts: []
         };
         this.supplierService.ifsPostRequestCall(tab, generalInfo);
         break;
-      
+
 
       case 'communication':
         const commData = [];
@@ -2242,7 +2242,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
           commData.push({
             methodNo: communication.communicationID,
             commMethod: communication.method,
-            commValue:communication.value
+            commValue: communication.value
           });
         });
         const communicationData = {

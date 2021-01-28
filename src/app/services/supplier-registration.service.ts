@@ -283,7 +283,7 @@ export class SupplierRegistrationService {
         xmlUrl = 'http://creceivesuppsubconmanagement.managetotcintegration.webservices.ifsworld.com/';
         crecText = 'cReceiveSuppSubcon';
         break;
-      
+
       case 'GeneralInfoAddress':
         jsonHead = 'supplierInfoHead';
         wsdlUrl = 'https://rcaifsprotos01.rca.gov.om:48080/webservices/CReceiveSupplierInfoManagement?wsdl';
