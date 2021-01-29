@@ -61,7 +61,8 @@ export class AlertMessagesComponent implements OnInit {
   }
 
   getMessageData() {
-    this.alertMessageService.getMessages().subscribe(d => {
+    this.alertMessageService.getMessages().subscribe(
+      d => {
       this.data = d.data.data;
       if (this.data) {
         if (this.data.length > 0) {
@@ -69,6 +70,10 @@ export class AlertMessagesComponent implements OnInit {
         }
       }
       this.ref.detectChanges();
+    }, () => {
+      this.isdata = true;
+      this.ref.detectChanges();
+
     });
   }
 

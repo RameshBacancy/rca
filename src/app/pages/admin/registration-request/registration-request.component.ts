@@ -58,6 +58,11 @@ export class RegistrationRequestComponent implements OnInit {
         if (m.register_status === 'finish') {
           return m;
         }
+      }, () => {
+        this.filterSupplier('all');
+        this.isdata = true;
+        this.ref.detectChanges();
+  
       });
       this.data = this.sortByPipe.transform(this.data, 'desc', 'sort_index');
       if (this.data.length > 0) {
