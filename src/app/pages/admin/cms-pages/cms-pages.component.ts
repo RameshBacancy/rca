@@ -15,7 +15,7 @@ import { SafeHtmlPipe } from '../../../shared/pipe/safeHtml.pipe';
 })
 export class CmsPagesComponent implements OnInit {
 
-  @ViewChild('mymodal', {static: false}) mymodal: ElementRef;
+  @ViewChild('mymodal', { static: false }) mymodal: ElementRef;
   data;
   isdata: boolean = false;
   closeResult: string;
@@ -54,7 +54,7 @@ export class CmsPagesComponent implements OnInit {
     private alertService: AlertService,
     private spinner: SpinnerService,
     private safeHtml: SafeHtmlPipe
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.getCMSData();
@@ -72,15 +72,19 @@ export class CmsPagesComponent implements OnInit {
         }
       }
       this.ref.detectChanges();
+    }, () => {
+      this.isdata = true;
+      this.ref.detectChanges();
+
     });
   }
 
   save() {
     if (this.title !== '' && this.description !== '' && this.page !== '') {
       this.spinner.openSpinner();
-      if (!this.isnewData)  {
-          this.cmsService.addCMS(this.page, this.title, this.description).subscribe(d => {
-            this.spinner.closeSpinner();
+      if (!this.isnewData) {
+        this.cmsService.addCMS(this.page, this.title, this.description).subscribe(d => {
+          this.spinner.closeSpinner();
         });
       } else {
         this.cmsService.updateCMS(this.page, this.title, this.description, this.id).subscribe(d => {
@@ -89,7 +93,7 @@ export class CmsPagesComponent implements OnInit {
       }
       this.getCMSData();
       this.title = '',
-      this.description = '';
+        this.description = '';
     } else {
       if (this.page !== '') {
         this.open(this.mymodal);
@@ -107,7 +111,7 @@ export class CmsPagesComponent implements OnInit {
   cancel() {
     this.page = '';
     this.title = '',
-    this.description = '';
+      this.description = '';
   }
 
   delete(id, name) {
@@ -136,7 +140,7 @@ export class CmsPagesComponent implements OnInit {
       this.title = '';
       this.description = '';
     }
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -148,7 +152,7 @@ export class CmsPagesComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 }
