@@ -2,7 +2,7 @@ import {
   GeneralInfoStepInd,
   PersonalDetailsStepInd,
   CommunicationDetailsStep
-} from './../models/supplier.modal';
+} from './../models/supplier.model';
 import { map, shareReplay } from 'rxjs/operators';
 import { RequestServiceBase } from './request-service-base';
 import { Injectable } from '@angular/core';

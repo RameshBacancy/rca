@@ -12,7 +12,7 @@ import {
   PersonalDetailsStep,
   ProjectDetailsStep,
   SubContractorDetailsStep
-} from './../models/supplier.modal';
+} from './../models/supplier.model';
 import { RequestServiceBase } from './request-service-base';
 import { map, shareReplay } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';

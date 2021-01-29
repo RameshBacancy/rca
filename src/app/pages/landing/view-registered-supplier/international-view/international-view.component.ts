@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { AddressInd, CommunicationDetailsStep, GeneralInfoStepInd } from 'src/app/models/supplier.modal';
+import { AddressInd, CommunicationDetailsStep, GeneralInfoStepInd } from 'src/app/models/supplier.model';
 import { SortByPipe } from '../../../../shared/pipe/sortBy.pipe';
 import { FilterPipe } from 'src/app/shared/pipe/searchEmployee.pipe';
 import { SupplierInternationalRegisterService } from 'src/app/services/supplier-international-register.service';

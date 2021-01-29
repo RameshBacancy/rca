@@ -1,6 +1,6 @@
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { takeUntil } from 'rxjs/operators';
-import { GeneralInfoStepInd, PersonalDetailsInd, CommunicationDetailsStep } from './../../../../models/supplier.modal';
+import { GeneralInfoStepInd, PersonalDetailsInd, CommunicationDetailsStep } from './../../../../models/supplier.model';
 import { Observable, Subject } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';

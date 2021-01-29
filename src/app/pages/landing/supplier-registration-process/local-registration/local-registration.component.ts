@@ -23,7 +23,7 @@ import {
   SubContractorDetailsStep,
   SubContractorDetails,
   EquipmentDetailsStep, EquipmentDetails
-} from './../../../../models/supplier.modal';
+} from './../../../../models/supplier.model';
 import { map, takeUntil, tap } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 import { Component, OnInit, ViewChild, Input, ElementRef, ChangeDetectorRef, OnDestroy, AfterViewInit } from '@angular/core';

@@ -1,6 +1,6 @@
 import { SupplierInternationalRegisterService } from './../../../../services/supplier-international-register.service';
 import { takeUntil } from 'rxjs/operators';
-import { GeneralInfoStepInd, AddressInd, CommunicationDetailsStep } from './../../../../models/supplier.modal';
+import { GeneralInfoStepInd, AddressInd, CommunicationDetailsStep } from './../../../../models/supplier.model';
 import { OtherInfo } from './../../../../models/tender.model';
 import { Component, OnInit, ViewChild, Input, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';

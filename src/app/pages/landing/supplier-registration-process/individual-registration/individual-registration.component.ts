@@ -1,4 +1,4 @@
-import { GeneralInfoStepInd, PersonalDetailsInd, CommunicationDetailsStep } from './../../../../models/supplier.modal';
+import { GeneralInfoStepInd, PersonalDetailsInd, CommunicationDetailsStep } from './../../../../models/supplier.model';
 import { SupplierIndividualRegisterService } from './../../../../services/supplier-individual-register.service';
 import { Component, OnInit, ViewChild, Input, ElementRef, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';

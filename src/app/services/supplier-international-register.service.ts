@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { GeneralInfoStepInd, PersonalDetailsStepInter, CommunicationDetailsStep, EmployeDetails } from './../models/supplier.modal';
+import { GeneralInfoStepInd, PersonalDetailsStepInter, CommunicationDetailsStep, EmployeDetails } from './../models/supplier.model';
 import { RequestServiceBase } from './request-service-base';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

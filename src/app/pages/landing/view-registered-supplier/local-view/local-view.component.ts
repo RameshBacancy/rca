@@ -29,7 +29,7 @@ import {
   SubContractorDetailsStep,
   SubContractorDetails,
   EquipmentDetailsStep, EquipmentDetails
-} from 'src/app/models/supplier.modal';
+} from 'src/app/models/supplier.model';
 import { SortByPipe } from '../../../../shared/pipe/sortBy.pipe';
 import { FilterPipe } from 'src/app/shared/pipe/searchEmployee.pipe';
 import { AlertService } from 'src/app/services/alert.service';
