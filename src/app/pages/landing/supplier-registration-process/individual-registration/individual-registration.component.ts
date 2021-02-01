@@ -1,4 +1,4 @@
-import { GeneralInfoStepInd, PersonalDetailsInd, CommunicationDetailsStep } from './../../../../models/supplier.model';
+import { PersonalDetailsInd, CommunicationDetailsStep } from './../../../../models/supplier.model';
 import { SupplierIndividualRegisterService } from './../../../../services/supplier-individual-register.service';
 import { Component, OnInit, ViewChild, Input, ElementRef, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
@@ -11,8 +11,7 @@ import { FilterPipe } from 'src/app/shared/pipe/searchEmployee.pipe';
 import { AlertService } from 'src/app/services/alert.service';
 import { UserService } from 'src/app/services/user.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
-import { takeUntil } from 'rxjs/operators';
-import { Observable, Subject, pipe } from 'rxjs';
+import { Subscription } from 'rxjs';
 import * as uuid from 'uuid/v4';
 
 
@@ -24,30 +23,10 @@ import * as uuid from 'uuid/v4';
 export class IndividualRegistrationComponent implements OnInit, OnDestroy, AfterViewInit {
   isDataMoci: any;
   allAddresses: any;
+  generalInfo: any;
   editBank: boolean;
   editbankData: any;
   showBtn: boolean;
-
-  constructor(
-    private router: Router,
-    private supplierService: SupplierRegistrationService,
-    private modalService: NgbModal,
-    private userService: UserService,
-    private sortByPipe: SortByPipe,
-    private searchPipe: FilterPipe,
-    private spinner: SpinnerService,
-    private alertService: AlertService,
-    private individualService: SupplierIndividualRegisterService,
-    private cdr: ChangeDetectorRef
-  ) { }
-
-  get f() {
-    return this.form.controls;
-  }
-  get bf() {
-    return this.bankform.controls;
-
-  }
 
   @ViewChild('stepper') private stepper: MatStepper;
   formData: any;
@@ -104,9 +83,6 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
   editAddress = false;
   selected = new FormControl(0);
 
-  destroy$: Subject<boolean> = new Subject();
-  generalInfoStep$: Observable<GeneralInfoStepInd>;
-
 
   @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
   files = [];
@@ -123,10 +99,30 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
   bankDetailsDraft: any[] = [];
   otherInfoDraft: any[] = [];
 
-
-
   setDraftTime: any;
 
+  private subscriptions: Subscription[] = [];
+
+  constructor(
+    private router: Router,
+    private supplierService: SupplierRegistrationService,
+    private modalService: NgbModal,
+    private userService: UserService,
+    private sortByPipe: SortByPipe,
+    private searchPipe: FilterPipe,
+    private spinner: SpinnerService,
+    private alertService: AlertService,
+    private individualService: SupplierIndividualRegisterService,
+    private cdr: ChangeDetectorRef
+  ) { }
+
+  get f() {
+    return this.form.controls;
+  }
+  get bf() {
+    return this.bankform.controls;
+
+  }
 
   loadData(data) {
     var d = [];
@@ -178,11 +174,6 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
     // this.loadData(this.formData.generalInfoStep.generalInfo.address[0]);
   }
 
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
-  }
-
   ngAfterViewInit() {
     this.stepper.selectedIndex = localStorage.getItem('stepper') === 'null' ? 0 : +localStorage.getItem('stepper');
   }
@@ -200,68 +191,56 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
   }
 
   private loadFormData(): void {
-    this.supplierService.getdata('individual').subscribe(data => {
-      this.formData = data;
-    });
+    this.subscriptions.push(
+      this.supplierService.getdata('individual').subscribe(data => {
+        this.formData = data;
+      }),
+      this.individualService.getGeneralInfoStep().
+        subscribe(res => {
+          console.log('res', res);
+          this.allAddresses = [...this.formData.generalInfoStep.generalInfo.address, ...res.generalInfo.address];
+          this.selectedAddress = this.allAddresses[0];
+          this.generalInfo = res.generalInfo;
+          this.cdr.detectChanges();
+          // if (!this.allAddresses[0]) {
+          //   this.selectedAddress = this.formData.generalInfoStep.generalInfo.address[0];
+          //   this.allAddresses = this.formData.generalInfoStep.generalInfo.address;
+          // }
+        }),
+      this.individualService.getPersonalInfoStep().
+        subscribe(res => {
+          this.personalData = [...this.formData.personalDetailsStep.personalDetails, ...res.personalDetails];
+          // if (!this.personalData[0]) {
+          //   this.personalData = this.formData.personalDetailsStep.personalDetails;
+          // }
+          this.cdr.detectChanges();
+        }),
+      this.individualService.getCommunicationInfoStep().
+        subscribe(res => {
+          this.communicationData = res;
 
-    // if (!(this.setDraftTime === 'null')) {
-    //   const diff = this.getTimeDiff();
-    //   if (diff > 72) {
-    //     this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
-    //   }
-    // }
-
-
-    this.generalInfoStep$ = this.individualService.getGeneralInfoStep();
-    this.generalInfoStep$.pipe(takeUntil(this.destroy$)).
-      subscribe(res => {
-        this.allAddresses = [...this.formData.generalInfoStep.generalInfo.address, ...res.generalInfo.address];
-        this.selectedAddress = this.allAddresses[0];
-
-        // if (!this.allAddresses[0]) {
-        //   this.selectedAddress = this.formData.generalInfoStep.generalInfo.address[0];
-        //   this.allAddresses = this.formData.generalInfoStep.generalInfo.address;
-        // }
-      });
-
-    this.individualService.getPersonalInfoStep().pipe(takeUntil(this.destroy$)).
-      subscribe(res => {
-        this.personalData = [...this.formData.personalDetailsStep.personalDetails, ...res.personalDetails];
-
-        // if (!this.personalData[0]) {
-        //   this.personalData = this.formData.personalDetailsStep.personalDetails;
-        // }
-        this.cdr.detectChanges();
-      });
-
-    this.individualService.getCommunicationInfoStep().pipe(takeUntil(this.destroy$)).
-      subscribe(res => {
-        this.communicationData = res;
-
-        if (!this.communicationData[0]) {
-          this.communicationData = this.formData.communicationDetailsStep;
-        }
-        this.cdr.detectChanges();
-      });
-
-    this.individualService.getCommercialInfoStep().pipe(takeUntil(this.destroy$)).
-      subscribe(res => {
-        this.BankDetails = [...this.formData.commercialInfoStep.bankInfoTab.bankDetails, ...res.bankInfoTab.bankDetails];
-        this.otherData = [...this.formData.commercialInfoStep.otherInfoTab.otherInfo, ...res.otherInfoTab.otherInfo];
-        this.activityData = res.activityInfoTab;
-
-        // if (!this.BankDetails[0]) {
-        //   this.BankDetails = this.formData.commercialInfoStep.bankInfoTab.bankDetails;
-        // }
-        // if (!this.otherData[0]) {
-        //   this.otherData = this.formData.commercialInfoStep.otherInfoTab.otherInfo;
-        // }
-        // if (!this.activityData) {
-        this.activityData = this.formData.commercialInfoStep.activityInfoTab;
-        // }
-        this.cdr.detectChanges();
-      });
-
+          if (!this.communicationData[0]) {
+            this.communicationData = this.formData.communicationDetailsStep;
+          }
+          this.cdr.detectChanges();
+        }),
+      this.individualService.getCommercialInfoStep().
+        subscribe(res => {
+          this.BankDetails = [...this.formData.commercialInfoStep.bankInfoTab.bankDetails, ...res.bankInfoTab.bankDetails];
+          this.otherData = [...this.formData.commercialInfoStep.otherInfoTab.otherInfo, ...res.otherInfoTab.otherInfo];
+          this.activityData = res.activityInfoTab;
+          // if (!this.BankDetails[0]) {
+          //   this.BankDetails = this.formData.commercialInfoStep.bankInfoTab.bankDetails;
+          // }
+          // if (!this.otherData[0]) {
+          //   this.otherData = this.formData.commercialInfoStep.otherInfoTab.otherInfo;
+          // }
+          // if (!this.activityData) {
+          this.activityData = this.formData.commercialInfoStep.activityInfoTab;
+          // }
+          this.cdr.detectChanges();
+        })
+    );
   }
 
   public openMenu() {
@@ -1052,6 +1031,10 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
         });
       }
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
 }
