@@ -1,13 +1,10 @@
 import { ChangeDetectorRef, Component, Input, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Observable, Subject, Subscription } from 'rxjs';
 import {
   GeneralInfoStep,
-  GeneralInfoTab,
   Address, Activities,
   PersonalDetailsStep,
   PersonalDetails,
@@ -32,10 +29,7 @@ import {
 } from 'src/app/models/supplier.model';
 import { SortByPipe } from '../../../../shared/pipe/sortBy.pipe';
 import { FilterPipe } from 'src/app/shared/pipe/searchEmployee.pipe';
-import { AlertService } from 'src/app/services/alert.service';
-import { SpinnerService } from 'src/app/services/spinner.service';
 import { SupplierRegistrationService } from 'src/app/services/supplier-registration.service';
-import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-local-view',
@@ -59,20 +53,16 @@ export class LocalViewComponent implements OnInit, OnDestroy {
   // general info step
   activityData: Activities[];
   allAddresses: Address[];
-  generalInfo$: Observable<any>;
   selectedAddress: Address;
   editAddress = false;
 
   // personal step data
-  personalData$: Observable<PersonalDetailsStep>;
   personalData: PersonalDetails[];
 
   // communication method step
-  communicationData$: Observable<CommunicationMethodStep>;
   communicationData: CommunicationMethod[]
 
   // bank detail step
-  bankDetailStep$: Observable<BankDetailStep>;
   activityInfoData: ActivityInfo[];
   BankDetails: BankDetails[];
   compFinanceInfoData: CompFinanceInfo;
@@ -82,37 +72,32 @@ export class LocalViewComponent implements OnInit, OnDestroy {
   editbankData: any;
 
   // employee detail step
-  employeeData$: Observable<EmployeeDetailsStep>;
   employeeData: EmployeDetails[];
   arrayOfCatagory = [];
   staffCategory: any[];
   showTable: boolean;
 
   // ministries1 data step
-  ministriesData1$: Observable<MinistriesData1Step>;
   ministriesData1: MinistriesData1Step;
 
   // ministries2 data step
-  ministriesData2$: Observable<MinistriesData2Step>;
   ministriesData2: MinistriesData2Step;
 
   // ministries3 data step
-  ministriesData3$: Observable<MinistriesData3Step>;
   ministriesData3: MinistriesData3Step;
 
   // project detial step
-  projectData$: Observable<ProjectDetailsStep>;
   projectData: ProjectDetails[];
 
   // subContrator info step
-  subContractorData$: Observable<SubContractorDetailsStep>;
   subContractorData: SubContractorDetails[];
 
   // equipment info stop
-  equipmentData$: Observable<EquipmentDetailsStep>;
   equipmentData: EquipmentDetails[];
 
-  destroy$: Subject<boolean> = new Subject();
+  generalInfo: any;
+  employee: any;
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private supplierService: SupplierRegistrationService,
@@ -126,171 +111,78 @@ export class LocalViewComponent implements OnInit, OnDestroy {
     this.loadData();
   }
 
-  ngOnDestroy(): void {
-    this.destroy$.next(true);
-    this.destroy$.complete();
-  }
-
-
   loadData() {
-    this.supplierService.getdata('local').subscribe(data => {
-      this.formData = data;
-    });
-
-
-    // general info step
-    this.generalInfo$ = this.supplierService.getGeneralInfoStep();
-    this.generalInfo$.
-      pipe(
-        takeUntil(this.destroy$)
-      ).subscribe((res: GeneralInfoStep) => {
-
+    this.subscriptions.push(
+      this.supplierService.getdata('local').subscribe(data => {
+        this.formData = data;
+      }),
+      this.supplierService.getGeneralInfoStep().subscribe((res: GeneralInfoStep) => {
         // for dummy
         this.activityData = [...this.formData.generalInfoStep.generalInfoTab.activities, ...res.generalInfoTab.generalInfoDetails];
         this.allAddresses = [...this.formData.generalInfoStep.addressInfoTab.address, ...res.addressInfoTab.address];
         this.selectedAddress = this.allAddresses[0];
+        this.generalInfo = res.generalInfoTab;
+      }),
+      // personal detail step
+      this.supplierService.getPersonalInfoStep().subscribe((res: PersonalDetailsStep) => {
+        this.personalData = [...this.formData.personalDetailsStep.personalDetails];
+      }),
+      // communication method step
+      this.supplierService.getCommunticationInfoStep().subscribe((res: CommunicationMethodStep) => {
+        this.communicationData = [...this.formData.communicationMethodStep.communicationMethod, ...res.communicationMethod];
+      }),
+      // bank details step
+      this.supplierService.getBankInfoStep().subscribe((res: BankDetailStep) => {
+        this.activityInfoData = [...this.formData.bankDetailStep.activityInfoTab.activityInfo, ...res.activityInfoTab.activityInfo];
+        this.BankDetails = [...this.formData.bankDetailStep.bankDetailsTab.BankDetails, ...res.bankDetailsTab.BankDetails];
+        this.compFinanceInfoData = res.companyInfoTab.compFinanceInfo;
+        this.compBranchInfoData = [...this.formData.bankDetailStep.companyInfoTab.compBranchInfo, ...res.companyInfoTab.compBranchInfo];
+        this.otherData = [...this.formData.bankDetailStep.otherInfoTab.otherDetails, ...res.otherInfoTab.otherDetails];
+      }),
+      // employee detail step
+      this.supplierService.getEmployeeInfoStep().subscribe((res: EmployeeDetailsStep) => {
+        this.employeeData = [...this.formData.employeeDetailsStep.employeDetails, ...res.employeDetails];
+        this.employee = res;
+        this.getEmployeeCategories();
+      }),
+      // ministries1 data step
+      this.supplierService.getMinistriesData1Step().subscribe((res: MinistriesData1Step) => {
+        this.ministriesData1 = res;
+        if (!this.ministriesData1.occiDataTab[0]) {
+          this.ministriesData1 = this.formData.ministriesData1Step;
+        }
+      }),
 
-        // for database
-        // this.activityData.push(...res.generalInfoTab.generalInfoDetails);
-        // this.allAddresses.push(...res.addressInfoTab.address);
-        // this.selectedAddress = res.addressInfoTab.address[0];
+      // ministries2 data step
+      this.supplierService.getMinistriesData2Step().subscribe((res: MinistriesData2Step) => {
+        this.ministriesData2 = res;
+        if (!this.ministriesData2.mofDataTab[0]) {
+          this.ministriesData2 = this.formData.ministriesData2Step;
+        }
+      }),
 
-
-        // if (!this.activityData[0]) {
-        //   this.activityData = this.formData.generalInfoStep.generalInfoTab.activities;
-        // }
-        // if (!this.allAddresses[0]) {
-        //   this.allAddresses = this.formData.generalInfoStep.addressInfoTab.address;
-        //   this.selectedAddress = this.formData.generalInfoStep.addressInfoTab.address[0];
-        // }
-      });
-
-    // personal detail step
-    this.personalData$ = this.supplierService.getPersonalInfoStep();
-    this.personalData$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: PersonalDetailsStep) => {
-      this.personalData = [...this.formData.personalDetailsStep.personalDetails];
-      // if (!this.personalData[0]) {
-      //   this.personalData = this.formData.personalDetailsStep.personalDetails;
-      // }
-    });
-
-    // communication method step
-    this.communicationData$ = this.supplierService.getCommunticationInfoStep();
-    this.communicationData$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: CommunicationMethodStep) => {
-      this.communicationData = [...this.formData.communicationMethodStep.communicationMethod, ...res.communicationMethod];
-      // this.communicationData = ;
-      // if (!this.communicationData[0]) {
-      // }
-    });
-
-    // bank details step
-    this.bankDetailStep$ = this.supplierService.getBankInfoStep();
-    this.bankDetailStep$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: BankDetailStep) => {
-      this.activityInfoData = [...this.formData.bankDetailStep.activityInfoTab.activityInfo, ...res.activityInfoTab.activityInfo];
-      this.BankDetails = [...this.formData.bankDetailStep.bankDetailsTab.BankDetails, ...res.bankDetailsTab.BankDetails];
-      this.compFinanceInfoData = res.companyInfoTab.compFinanceInfo;
-      this.compBranchInfoData = [...this.formData.bankDetailStep.companyInfoTab.compBranchInfo, ...res.companyInfoTab.compBranchInfo];
-      this.otherData = [...this.formData.bankDetailStep.otherInfoTab.otherDetails, ...res.otherInfoTab.otherDetails];
-      // if (!this.activityInfoData[0]) {
-      //   this.activityInfoData = this.formData.bankDetailStep.activityInfoTab.activityInfo;
-      //   // this.compFinanceInfoData = this.formData.bankDetailStep.companyInfoTab.compFinanceInfo;
-      // }
-      // if (!this.compBranchInfoData[0]) {
-      //   this.compBranchInfoData = this.formData.bankDetailStep.companyInfoTab.compBranchInfo;
-      // }
-      // if (!this.BankDetails[0]) {
-      //   this.BankDetails = this.formData.bankDetailStep.bankDetailsTab.BankDetails;
-      // }
-      // if (!this.otherData[0]) {
-      //   this.otherData = this.formData.bankDetailStep.otherInfoTab.otherDetails;
-      // }
-    });
-
-    // employee detail step
-    this.employeeData$ = this.supplierService.getEmployeeInfoStep();
-    this.employeeData$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: EmployeeDetailsStep) => {
-      this.employeeData = [...this.formData.employeeDetailsStep.employeDetails, ...res.employeDetails];
-      // if (!this.employeeData[0]) {
-      //   this.employeeData = this.formData.employeeDetailsStep.employeDetails;
-      // }
-      this.getEmployeeCategories();
-    });
-
-    // ministries1 data step
-    this.ministriesData1$ = this.supplierService.getMinistriesData1Step();
-    this.ministriesData1$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: MinistriesData1Step) => {
-      this.ministriesData1 = res;
-      if (!this.ministriesData1.occiDataTab[0]) {
-        this.ministriesData1 = this.formData.ministriesData1Step;
-      }
-    });
-
-    // ministries2 data step
-    this.ministriesData2$ = this.supplierService.getMinistriesData2Step();
-    this.ministriesData2$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: MinistriesData2Step) => {
-      this.ministriesData2 = res;
-      if (!this.ministriesData2.mofDataTab[0]) {
-        this.ministriesData2 = this.formData.ministriesData2Step;
-      }
-    });
-
-    // ministries3 data step
-    this.ministriesData3$ = this.supplierService.getMinistriesData3Step();
-    this.ministriesData3$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: MinistriesData3Step) => {
-      this.ministriesData3 = res;
-      if (!this.ministriesData3.authorityOfCivilDefenseData[0]) {
-        this.ministriesData3 = this.formData.ministriesData3Step;
-      }
-    });
-
-    // project detail step
-    this.projectData$ = this.supplierService.getProjectInfoStep();
-    this.projectData$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: ProjectDetailsStep) => {
-      this.projectData = [...this.formData.projectDetailsStep.projectDetails, ...res.projectDetails];
-      // if (!this.projectData[0]) {
-      //   this.projectData = this.formData.projectDetailsStep.projectDetails;
-      // }
-    });
-
-    // subcontrator detail step
-    this.subContractorData$ = this.supplierService.getSubContratorInfoStep();
-    this.subContractorData$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: SubContractorDetailsStep) => {
-      this.subContractorData = [...this.formData.subContractorDetailsStep.subContractorDetails, ...res.subContractorDetails];
-      this.cdr.detectChanges();
-      // if (!this.subContractorData[0]) {
-      //   this.subContractorData = this.formData.subContractorDetailsStep.subContractorDetails;
-      // }
-    });
-
-    // equipment detail step
-    this.equipmentData$ = this.supplierService.getEquipmentInfoStep();
-    this.equipmentData$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: EquipmentDetailsStep) => {
-      this.equipmentData = [...this.formData.equipmentDetailsStep.equipmentDetails, ...res.equipmentDetails];
-      this.cdr.detectChanges();
-      // if (!this.equipmentData[0]) {
-      //   this.equipmentData = this.formData.equipmentDetailsStep.equipmentDetails;
-      // }
-    });
+      // ministries3 data step
+      this.supplierService.getMinistriesData3Step().subscribe((res: MinistriesData3Step) => {
+        this.ministriesData3 = res;
+        if (!this.ministriesData3.authorityOfCivilDefenseData[0]) {
+          this.ministriesData3 = this.formData.ministriesData3Step;
+        }
+      }),
+      // project detail step
+      this.supplierService.getProjectInfoStep().subscribe((res: ProjectDetailsStep) => {
+        this.projectData = [...this.formData.projectDetailsStep.projectDetails, ...res.projectDetails];
+      }),
+      // subcontrator detail step
+      this.supplierService.getSubContratorInfoStep().subscribe((res: SubContractorDetailsStep) => {
+        this.subContractorData = [...this.formData.subContractorDetailsStep.subContractorDetails, ...res.subContractorDetails];
+        this.cdr.detectChanges();
+      }),
+      // equipment detail step
+      this.supplierService.getEquipmentInfoStep().subscribe((res: EquipmentDetailsStep) => {
+        this.equipmentData = [...this.formData.equipmentDetailsStep.equipmentDetails, ...res.equipmentDetails];
+        this.cdr.detectChanges();
+      })
+    );
   }
 
 
@@ -500,5 +392,9 @@ export class LocalViewComponent implements OnInit, OnDestroy {
     } else {
       return `with: ${reason}`;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 }

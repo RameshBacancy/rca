@@ -40,7 +40,7 @@
         <mat-step>
             <ng-template matStepLabel>{{'registarationStepperNames.generalInfo' | translate }}</ng-template>
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)"
-                *ngIf="(generalInfo$ | async)?.generalInfoTab as generalInfo">
+                *ngIf="generalInfo">
                 <mat-tab label="{{'registarationStepperNames.generalInfo' | translate }}">
                     <div class="row pl-2">
                         <div class="col-xl-12 px-4 pb-2 ">
@@ -218,7 +218,7 @@
         <mat-step>
             <ng-template matStepLabel>{{'registarationStepperNames.personalDetails' | translate }}</ng-template>
 
-            <div *ngIf="(personalData$ | async)?.personalDetails">
+            <div *ngIf="personalData">
                 <div class="row">
                     <div class="col-md-12 px-4 mb-3 mt-3">
                         <div class="table-responsive">
@@ -328,7 +328,7 @@
         <!-- Communication Method -->
         <mat-step>
             <ng-template matStepLabel>{{'registarationStepperNames.communicationMethod' | translate }}</ng-template>
-            <div *ngIf="(communicationData$ | async)?.communicationMethod">
+            <div *ngIf="communicationData">
                 <div class="row">
                     <div class="col-md-12 px-4 mb-3 mt-3">
                         <div class="table-responsive">
@@ -711,7 +711,7 @@
         <mat-step>
             <ng-template matStepLabel>{{'registarationStepperNames.employeeDetails' | translate }}</ng-template>
 
-            <div *ngIf="(employeeData$ | async) as employee">
+            <div *ngIf="employee">
                 <div class="row">
                     <div class="col-md-6 col-lg-3  px-4 ">
                         <span class="fs-16 font-weight-bold text-black dark-text-1 ">
@@ -931,7 +931,7 @@
 
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <!-- OCCI Data -->
-                <mat-tab label="{{'registarationStepperNames.oCCIData' | translate }}" *ngIf="(ministriesData1$ | async)?.occiDataTab">
+                <mat-tab label="{{'registarationStepperNames.oCCIData' | translate }}" *ngIf="ministriesData1">
                     <div class="row" *ngIf="ministriesData1.occiDataTab">
                         <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
                             <i class="fa fa-ban text-red fs-14" mat-raised-button
@@ -986,7 +986,7 @@
                 </mat-tab>
 
                 <!-- Tender Board Data -->
-                <mat-tab label="{{'registarationStepperNames.tenderBoardData' | translate }}" *ngIf="(ministriesData1$ | async)?.tenderBoardDataTab">
+                <mat-tab label="{{'registarationStepperNames.tenderBoardData' | translate }}" *ngIf="ministriesData1">
 
                     <div class="row pb-3" *ngIf="ministriesData1.tenderBoardDataTab">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
@@ -1060,7 +1060,7 @@
                 </mat-tab>
 
                 <!-- Municipality Data -->
-                <mat-tab label="{{'registarationStepperNames.municipalityData' | translate }}" *ngIf="(ministriesData1$ | async)?.municipalityDataTab">
+                <mat-tab label="{{'registarationStepperNames.municipalityData' | translate }}" *ngIf="ministriesData1">
 
                     <div class="row" *ngIf="ministriesData1.municipalityDataTab">
                         <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
@@ -1141,7 +1141,7 @@
 
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <!-- MOF Data -->
-                <mat-tab label="{{'registarationStepperNames.mOFData' | translate }}" *ngIf="(ministriesData2$ | async)?.mofDataTab">
+                <mat-tab label="{{'registarationStepperNames.mOFData' | translate }}" *ngIf="ministriesData2">
                     <div *ngIf="ministriesData2.mofDataTab">
                         <div class="row">
                             <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
@@ -1210,7 +1210,7 @@
                 </mat-tab>
 
                 <!-- MOH Data -->
-                <mat-tab label="{{'registarationStepperNames.mOHData' | translate }}" *ngIf="(ministriesData2$ | async)?.mohDataTab">
+                <mat-tab label="{{'registarationStepperNames.mOHData' | translate }}" *ngIf="ministriesData2">
                     <div *ngIf="ministriesData2.mohDataTab">
                         <div class="row pt-2">
                             <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
@@ -1274,7 +1274,7 @@
                 </mat-tab>
 
                 <!-- MOCI Data -->
-                <mat-tab label="{{'registarationStepperNames.mOCIData' | translate }}" *ngIf="(ministriesData2$ | async)?.mociDataTab">
+                <mat-tab label="{{'registarationStepperNames.mOCIData' | translate }}" *ngIf="ministriesData2">
                     <div *ngIf="ministriesData2.mociDataTab">
                         <div class="row pt-2">
                             <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
@@ -1351,7 +1351,7 @@
                 </mat-tab>
 
                 <!-- Small & Medium Ent. Data -->
-                <mat-tab label="{{'registarationStepperNames.smallMediumEntData' | translate }}" *ngIf="(ministriesData2$ | async)?.smallMediumEntDataTab">
+                <mat-tab label="{{'registarationStepperNames.smallMediumEntData' | translate }}" *ngIf="ministriesData2">
                     <div *ngIf="ministriesData2.smallMediumEntDataTab">
                         <div class="row">
                             <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
@@ -1429,7 +1429,7 @@
                     </h4>
                 </div>
             </div>
-            <div class="row pb-2" *ngIf="(ministriesData3$ | async)?.authorityOfCivilDefenseData">
+            <div class="row pb-2" *ngIf="ministriesData3">
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
                         {{'localRegistration.ministriesData3.licensesforfireresistant' | translate }}
@@ -1484,7 +1484,7 @@
                     </h4>
                 </div>
             </div>
-            <div class="row pb-2" *ngIf="(ministriesData3$ | async)?.capitalMarketData">
+            <div class="row pb-2" *ngIf="ministriesData3">
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
                         {{'localRegistration.ministriesData3.registrationNumber' | translate }}
@@ -1530,7 +1530,7 @@
                     </h4>
                 </div>
             </div>
-            <div class="row pb-2" *ngIf="(ministriesData3$ | async)?.creditBureauData">
+            <div class="row pb-2" *ngIf="ministriesData3">
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
                         {{'localRegistration.ministriesData3.cRNumber' | translate }}
@@ -1561,7 +1561,7 @@
                     </h4>
                 </div>
             </div>
-            <div class="row pb-2" *ngIf="(ministriesData3$ | async)?.distRulesReviewBoardData">
+            <div class="row pb-2" *ngIf="ministriesData3">
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
                         {{'localRegistration.ministriesData3.cRNumber' | translate }}
