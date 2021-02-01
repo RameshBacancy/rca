@@ -177,12 +177,10 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
   }
 
   loadFormData(): void {
-    this.supplierData.getdata('international').subscribe(data => {
-      this.formData = data;
-    });
-
-
     this.subscriptions.push(
+      this.supplierData.getdata('international').subscribe(data => {
+        this.formData = data;
+      }),
       this.internationalService.getGeneralInfoStep().subscribe(res => {
         this.allAddresses = [...this.formData.generalInfoStep.generalInfo.address, ...res.generalInfo.address];
         this.selectedAddress = this.allAddresses[0];
