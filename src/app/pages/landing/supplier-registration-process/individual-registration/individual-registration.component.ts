@@ -137,7 +137,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
       const diff = this.getTimeDiff();
       if (diff > 72) {
         this.supplierService.deleteDraftData().subscribe(res => {
-          this.spinner.openSpinner();
+          // this.spinner.openSpinner();
           const body = {
             civil_number: localStorage.getItem('civilReg'),
             cr_number: localStorage.getItem('commercialReg'),
