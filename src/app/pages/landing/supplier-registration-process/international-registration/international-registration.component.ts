@@ -124,7 +124,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
       const diff = this.getTimeDiff();
       if (diff > 72) {
         this.supplierService.deleteDraftData().subscribe(res => {
-          this.spinner.openSpinner();
+          // this.spinner.openSpinner();
           const body =
           {
             email: localStorage.getItem('internationalEmail'),

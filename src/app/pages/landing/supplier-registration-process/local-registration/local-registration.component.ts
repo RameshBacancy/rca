@@ -221,7 +221,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       const diff = this.getTimeDiff();
       if (diff > 72) {
         this.supplierService.deleteDraftData().subscribe(res => {
-          this.spinner.openSpinner();
+          // this.spinner.openSpinner();
           const body = {
             civil_number: localStorage.getItem('civilReg'),
             cr_number: localStorage.getItem('commercialReg'),
