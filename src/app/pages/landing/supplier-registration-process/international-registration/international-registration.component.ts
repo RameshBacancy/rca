@@ -83,13 +83,6 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
   otherData: any[];
   internationalAddress: any[];
 
-
-
-  destroy$: Subject<boolean> = new Subject();
-  generalInfoStep$: Observable<GeneralInfoStepInd>;
-  private subscriptions: Subscription[] = [];
-
-
   // draft variable
   generalAddressDraft: any[] = [];
   personalDetailsDraft: any[] = [];
@@ -100,6 +93,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
   internationalRegistrationDraft: any;
 
   setDraftTime: any;
+  private subscriptions: Subscription[] = [];
 
 
   constructor(

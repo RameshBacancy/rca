@@ -1,8 +1,7 @@
-import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
-import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { AddressInd, CommunicationDetailsStep, GeneralInfoStepInd } from 'src/app/models/supplier.model';
 import { SortByPipe } from '../../../../shared/pipe/sortBy.pipe';
 import { FilterPipe } from 'src/app/shared/pipe/searchEmployee.pipe';
@@ -14,7 +13,7 @@ import { SupplierRegistrationService } from 'src/app/services/supplier-registrat
   templateUrl: './international-view.component.html',
   styleUrls: ['./international-view.component.scss']
 })
-export class InternationalViewComponent implements OnInit {
+export class InternationalViewComponent implements OnInit, OnDestroy {
 
   @ViewChild('stepper') private stepper: MatStepper;
 
@@ -28,9 +27,6 @@ export class InternationalViewComponent implements OnInit {
   filesList: any[];
   closeResult: string;
 
-
-  generalInfoStep$: Observable<GeneralInfoStepInd>;
-
   selectedAddress: any;
   allAddresses: AddressInd[];
   personalData: any;
@@ -42,7 +38,8 @@ export class InternationalViewComponent implements OnInit {
   otherData: any[];
   internationalAddress: any[];
 
-  destroy$: Subject<boolean> = new Subject();
+  private subscriptions: Subscription[] = [];
+
 
   constructor(
     private supplierData: SupplierRegistrationService,
@@ -53,79 +50,69 @@ export class InternationalViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadFormData()
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
+    this.loadFormData();
   }
 
 
   loadFormData(): void {
-    this.supplierData.getdata('international').subscribe(data => {
-      this.formData = data;
-    });
 
-    this.generalInfoStep$ = this.internationalService.getGeneralInfoStep();
-    this.generalInfoStep$.pipe(takeUntil(this.destroy$))
-      .subscribe(res => {
-        this.allAddresses = [...this.formData.generalInfoStep.generalInfo.address, ...res.generalInfo.address];
-        this.selectedAddress = this.allAddresses[0];
 
-        // if (!this.allAddresses[0]) {
-        //   this.selectedAddress = this.formData.generalInfoStep.generalInfo.address[0];
-        //   this.allAddresses = this.formData.generalInfoStep.generalInfo.address;
-        // }
-      });
-    this.internationalService.getPersonalInfoStep().pipe(takeUntil(this.destroy$)).
-      subscribe(res => {
-        this.personalData = [...this.formData.personalDetailsStep.personalDetails, ...res.personalDetails];
+    this.subscriptions.push(
+      this.supplierData.getdata('international').subscribe(data => {
+        this.formData = data;
+      }),
+      this.internationalService.getGeneralInfoStep()
+        .subscribe(res => {
+          this.allAddresses = [...this.formData.generalInfoStep.generalInfo.address, ...res.generalInfo.address];
+          this.selectedAddress = this.allAddresses[0];
+          // if (!this.allAddresses[0]) {
+          //   this.selectedAddress = this.formData.generalInfoStep.generalInfo.address[0];
+          //   this.allAddresses = this.formData.generalInfoStep.generalInfo.address;
+          // }
+        }),
+      this.internationalService.getPersonalInfoStep().
+        subscribe(res => {
+          this.personalData = [...this.formData.personalDetailsStep.personalDetails, ...res.personalDetails];
+          // if (!this.personalData[0]) {
+          //   this.personalData = this.formData.personalDetailsStep.personalDetails;
+          // }
+          this.cdr.detectChanges();
+        }),
+      this.internationalService.getCommunicationInfoStep().
+        subscribe(res => {
+          // this.communicationData = res;
+          this.communicationData = this.formData.communicationDetailsStep;
 
-        // if (!this.personalData[0]) {
-        //   this.personalData = this.formData.personalDetailsStep.personalDetails;
-        // }
-        this.cdr.detectChanges();
-      });
-
-    this.internationalService.getCommunicationInfoStep().pipe(takeUntil(this.destroy$)).
-      subscribe(res => {
-        // this.communicationData = res;
-        this.communicationData = this.formData.communicationDetailsStep;
-
-      });
-
-    this.internationalService.getEmployeeInfoStep().pipe(takeUntil(this.destroy$)).
-      subscribe(res => {
-        this.staffData = [...this.formData.employeeDetailsStep.employeeDetails, ...res];
-
-        // if (!this.staffData[0]) {
-        //   this.staffData = this.formData.employeeDetailsStep.employeeDetails;
-        // }
-        this.cdr.detectChanges();
-      });
-
-    this.internationalService.getCommercialInfoStep().pipe(takeUntil(this.destroy$)).
-      subscribe(res => {
-        // this.activityDetail = res.activityInfoTab || this.formData.commercialInfoStep.activityInfoTab;
-        this.activityDetail = this.formData.commercialInfoStep.activityInfoTab;
-        this.activityData = [...this.formData.commercialInfoStep.activityInfoTab.activities, ...res.activityInfoTab.activities];
-        // this.activityData = [...this.formData.commercialInfoStep.activityInfoTab.activities, ...this.activityDetail.activities];
-        this.bankDetails = [...this.formData.commercialInfoStep.bankInfoTab.bankDetails, ...res.bankInfoTab.bankDetails];
-        this.otherData = [...this.formData.commercialInfoStep.otherInfoTab.otherInfo, ...res.otherInfoTab.otherInfo];
-
-        // if (!this.activityData[0]) {
-        //   this.activityDetail = this.formData.commercialInfoStep.activityInfoTab;
-        //   this.activityData = this.formData.commercialInfoStep.activityInfoTab.activities;
-        // }
-        // if (!this.bankDetails[0]) {
-        //   this.bankDetails = this.formData.commercialInfoStep.bankInfoTab.bankDetails;
-        // }
-        // if (!this.otherData[0]) {
-        //   this.otherData = this.formData.commercialInfoStep.otherInfoTab.otherInfo;
-        // }
-        this.cdr.detectChanges();
-      });
+        }),
+      this.internationalService.getEmployeeInfoStep().
+        subscribe(res => {
+          this.staffData = [...this.formData.employeeDetailsStep.employeeDetails, ...res];
+          // if (!this.staffData[0]) {
+          //   this.staffData = this.formData.employeeDetailsStep.employeeDetails;
+          // }
+          this.cdr.detectChanges();
+        }),
+      this.internationalService.getCommercialInfoStep().
+        subscribe(res => {
+          // this.activityDetail = res.activityInfoTab || this.formData.commercialInfoStep.activityInfoTab;
+          this.activityDetail = this.formData.commercialInfoStep.activityInfoTab;
+          this.activityData = [...this.formData.commercialInfoStep.activityInfoTab.activities, ...res.activityInfoTab.activities];
+          // this.activityData = [...this.formData.commercialInfoStep.activityInfoTab.activities, ...this.activityDetail.activities];
+          this.bankDetails = [...this.formData.commercialInfoStep.bankInfoTab.bankDetails, ...res.bankInfoTab.bankDetails];
+          this.otherData = [...this.formData.commercialInfoStep.otherInfoTab.otherInfo, ...res.otherInfoTab.otherInfo];
+          // if (!this.activityData[0]) {
+          //   this.activityDetail = this.formData.commercialInfoStep.activityInfoTab;
+          //   this.activityData = this.formData.commercialInfoStep.activityInfoTab.activities;
+          // }
+          // if (!this.bankDetails[0]) {
+          //   this.bankDetails = this.formData.commercialInfoStep.bankInfoTab.bankDetails;
+          // }
+          // if (!this.otherData[0]) {
+          //   this.otherData = this.formData.commercialInfoStep.otherInfoTab.otherInfo;
+          // }
+          this.cdr.detectChanges();
+        })
+    );
   }
 
 
@@ -160,7 +147,7 @@ export class InternationalViewComponent implements OnInit {
     }
   }
 
-  //functions to change tabs internally
+  // functions to change tabs internally
   changeTab() {
     this.selected.setValue(this.selected.value + 1);
   }
@@ -174,4 +161,7 @@ export class InternationalViewComponent implements OnInit {
     this.selected.setValue(number);
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
+  }
 }
