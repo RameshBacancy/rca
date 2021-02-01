@@ -1,11 +1,9 @@
 import { SupplierInternationalRegisterService } from './../../../../services/supplier-international-register.service';
-import { takeUntil } from 'rxjs/operators';
 import { GeneralInfoStepInd, AddressInd, CommunicationDetailsStep } from './../../../../models/supplier.model';
-import { OtherInfo } from './../../../../models/tender.model';
 import { Component, OnInit, ViewChild, Input, OnDestroy, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { SupplierRegistrationService } from 'src/app/services/supplier-registration.service';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SortByPipe } from '../../../../shared/pipe/sortBy.pipe';
@@ -13,11 +11,8 @@ import { FilterPipe } from 'src/app/shared/pipe/searchEmployee.pipe';
 import { AlertService } from 'src/app/services/alert.service';
 import { UserService } from 'src/app/services/user.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
-import { SupplierIndividualRegisterService } from 'src/app/services/supplier-individual-register.service';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import * as uuid from 'uuid/v4';
-
-
 
 @Component({
   selector: 'app-international-registration',
@@ -92,6 +87,7 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
 
   destroy$: Subject<boolean> = new Subject();
   generalInfoStep$: Observable<GeneralInfoStepInd>;
+  private subscriptions: Subscription[] = [];
 
 
   // draft variable
@@ -170,11 +166,6 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
     // this.loadData(this.formData.individualAddress[0]); 
   }
 
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
-  }
-
   ngAfterViewInit() {
     this.stepper.selectedIndex = localStorage.getItem('stepper') === 'null' ? 0 : +localStorage.getItem('stepper');
   }
@@ -196,46 +187,37 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
       this.formData = data;
     });
 
-    this.generalInfoStep$ = this.internationalService.getGeneralInfoStep();
-    this.generalInfoStep$.pipe(takeUntil(this.destroy$))
-      .subscribe(res => {
+
+    this.subscriptions.push(
+      this.internationalService.getGeneralInfoStep().subscribe(res => {
         this.allAddresses = [...this.formData.generalInfoStep.generalInfo.address, ...res.generalInfo.address];
         this.selectedAddress = this.allAddresses[0];
-
         // if (!this.allAddresses[0]) {
         //   this.selectedAddress = this.formData.generalInfoStep.generalInfo.address[0];
         //   this.allAddresses = this.formData.generalInfoStep.generalInfo.address;
         // }
-      });
-    this.internationalService.getPersonalInfoStep().pipe(takeUntil(this.destroy$)).
-      subscribe(res => {
+      }),
+      this.internationalService.getPersonalInfoStep().subscribe(res => {
         this.personalData = [...this.formData.personalDetailsStep.personalDetails, ...res.personalDetails];
-
         // if (!this.personalData[0]) {
         //   this.personalData = this.formData.personalDetailsStep.personalDetails;
         // }
         this.cdr.detectChanges();
-      });
+      }),
 
-    this.internationalService.getCommunicationInfoStep().pipe(takeUntil(this.destroy$)).
-      subscribe(res => {
+      this.internationalService.getCommunicationInfoStep().subscribe(res => {
         // this.communicationData = res;
         this.communicationData = this.formData.communicationDetailsStep;
 
-      });
-
-    this.internationalService.getEmployeeInfoStep().pipe(takeUntil(this.destroy$)).
-      subscribe(res => {
+      }),
+      this.internationalService.getEmployeeInfoStep().subscribe(res => {
         this.staffData = [...this.formData.employeeDetailsStep.employeeDetails, ...res];
-
         // if (!this.staffData[0]) {
         //   this.staffData = this.formData.employeeDetailsStep.employeeDetails;
         // }
         this.cdr.detectChanges();
-      });
-
-    this.internationalService.getCommercialInfoStep().pipe(takeUntil(this.destroy$)).
-      subscribe(res => {
+      }),
+      this.internationalService.getCommercialInfoStep().subscribe(res => {
         // this.activityDetail = res.activityInfoTab || this.formData.commercialInfoStep.activityInfoTab;
         this.activityDetail = this.formData.commercialInfoStep.activityInfoTab;
         this.activityData = [...this.formData.commercialInfoStep.activityInfoTab.activities, ...res.activityInfoTab.activities];
@@ -252,7 +234,8 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
         //   this.otherData = this.formData.commercialInfoStep.otherInfoTab.otherInfo;
         // }
         this.cdr.detectChanges();
-      });
+      })
+    );
   }
 
 
@@ -1009,6 +992,10 @@ export class InternationalRegistrationComponent implements OnInit, OnDestroy, Af
   }
   previousTab() {
     this.selected.setValue(this.selected.value - 1);
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 
 }
