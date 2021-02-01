@@ -4,7 +4,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LandingHeaderComponent } from './pages/layout/landing-header/landing-header.component';
 import { LandingModule } from './pages/landing/landing.module';
 import { LayoutModule } from './pages/layout/layout.module';
@@ -22,7 +21,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    FontAwesomeModule,
     LandingModule,
     LayoutModule,
     MatFormFieldModule

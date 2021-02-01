@@ -65,15 +65,12 @@ export class AlertMessagesComponent implements OnInit {
       d => {
       this.data = d.data.data;
       if (this.data) {
-        if (this.data.length > 0) {
-          this.isdata = true;
-        }
+        this.isdata = true;
       }
       this.ref.detectChanges();
     }, () => {
       this.isdata = true;
       this.ref.detectChanges();
-
     });
   }
 

@@ -67,9 +67,7 @@ export class CmsPagesComponent implements OnInit {
     this.cmsService.getCMS().subscribe(d => {
       this.data = d.data.data;
       if (this.data) {
-        if (this.data.length > 0) {
-          this.isdata = true;
-        }
+        this.isdata = true;
       }
       this.ref.detectChanges();
     }, () => {
