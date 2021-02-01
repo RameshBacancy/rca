@@ -77,7 +77,7 @@
         <mat-step>
             <ng-template matStepLabel>{{'registarationStepperNames.generalInfo' | translate }}</ng-template>
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)"
-                *ngIf="(generalInfo$ | async)?.generalInfoTab as generalInfo">
+                *ngIf="generalInfo">
                 <mat-tab label="{{'registarationStepperNames.generalInfo' | translate }}">
                     <div class="row pl-2">
                         <div class="col-xl-12 px-4 pb-2 ">
@@ -85,21 +85,25 @@
                                 matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">{{'localRegistration.generalInfo.userId' | translate }}</h5>
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">
+                                {{'localRegistration.generalInfo.userId' | translate }}</h5>
                             <p class="fs-14 px-4">{{generalInfo.civilNo}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'localRegistration.generalInfo.cRNumber' | translate }}</h5>
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                {{'localRegistration.generalInfo.cRNumber' | translate }}</h5>
                             <p class="fs-14">{{generalInfo.crNo}}</p>
                         </div>
                     </div>
                     <div class="row pl-2">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">{{'localRegistration.generalInfo.arabicName' | translate }}</h5>
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">
+                                {{'localRegistration.generalInfo.arabicName' | translate }}</h5>
                             <p class="fs-14 px-4">{{generalInfo.arabicName}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'localRegistration.generalInfo.englishName' | translate }}</h5>
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                {{'localRegistration.generalInfo.englishName' | translate }}</h5>
                             <p class="fs-14">{{generalInfo.englishName}}</p>
                         </div>
                     </div>
@@ -246,10 +250,12 @@
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button"
                                 class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                                [disabled]="true"><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
+                                [disabled]="true"><i class="fa fa-caret-left"></i>
+                                {{'buttonsLabel.previous' | translate }}</button>
                             <button type="button" class="btn border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                [disabled]='!showBtn' (click)="ifsRequestCall(localRegisterStep.GENERAL_INFO_TAB); changeTab()">{{'buttonsLabel.next' | translate }} <i
-                                    class="fa fa-caret-right"></i></button>
+                                [disabled]='!showBtn'
+                                (click)="ifsRequestCall(localRegisterStep.GENERAL_INFO_TAB); changeTab()">{{'buttonsLabel.next' | translate }}
+                                <i class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(0)">{{'buttonsLabel.saveasDraft' | translate }}</button>
                             <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
@@ -275,11 +281,16 @@
                                     <thead>
                                         <tr class="purple-bg text-white">
                                             <th scope="col"></th>
-                                            <th scope="col">{{'localRegistration.generalInfo.addressID' | translate }}</th>
-                                            <th scope="col">{{'localRegistration.generalInfo.addressLine1' | translate }}</th>
-                                            <th scope="col">{{'localRegistration.generalInfo.addressLine2' | translate }}</th>
-                                            <th scope="col">{{'localRegistration.generalInfo.language' | translate }}</th>
-                                            <th scope="col">{{'localRegistration.generalInfo.country' | translate }}</th>
+                                            <th scope="col">{{'localRegistration.generalInfo.addressID' | translate }}
+                                            </th>
+                                            <th scope="col">
+                                                {{'localRegistration.generalInfo.addressLine1' | translate }}</th>
+                                            <th scope="col">
+                                                {{'localRegistration.generalInfo.addressLine2' | translate }}</th>
+                                            <th scope="col">{{'localRegistration.generalInfo.language' | translate }}
+                                            </th>
+                                            <th scope="col">{{'localRegistration.generalInfo.country' | translate }}
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -421,11 +432,12 @@
                                 [disabled]='!showBtn' (click)="previousTab()"><i class="fa fa-caret-left"></i>
                                 {{'buttonsLabel.previous' | translate }}</button>
                             <button type="button" class="btn border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                (click)="ifsRequestCall(localRegisterStep.GENERAL_INFO_ADDRESS_TAB); newStep()" [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }} <i
+                                (click)="ifsRequestCall(localRegisterStep.GENERAL_INFO_ADDRESS_TAB); newStep()"
+                                [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }} <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(0)">{{'buttonsLabel.saveasDraft' | translate }}
-                                </button>
+                            </button>
                             <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                     [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
@@ -436,7 +448,8 @@
                     <!-- Address Model Pop-Up Form -->
                     <ng-template #mymodal let-modal>
                         <div class="modal-header">
-                            <h4 class="modal-title" id="modal-basic-title">{{'buttonsLabel.addAddress' | translate }}</h4>
+                            <h4 class="modal-title" id="modal-basic-title">{{'buttonsLabel.addAddress' | translate }}
+                            </h4>
                             <button type="button" class="close" aria-label="Close"
                                 (click)="modal.dismiss('Cross click'); editAddress = false;">
                                 <span aria-hidden="true">×</span>
@@ -508,8 +521,7 @@
                                                 <div class="form-group row mb-3">
                                                     <label for="country" class="col-sm-5 col-form-label">
                                                         {{'localRegistration.generalInfo.country' | translate }}
-                                                        <span
-                                                            class="text-red">*</span>
+                                                        <span class="text-red">*</span>
                                                     </label>
                                                     <div class="col-sm-7">
                                                         <input formControlName="country" id="country" type="text"
@@ -550,7 +562,7 @@
         <mat-step>
             <ng-template matStepLabel>{{'registarationStepperNames.personalDetails' | translate }}</ng-template>
 
-            <div *ngIf="(personalData$ | async)?.personalDetails">
+            <div *ngIf="personalData">
                 <div class="row">
                     <div class="col-md-12 px-4 mb-3 mt-3">
                         <div class="table-responsive">
@@ -568,27 +580,37 @@
                                         </th>
                                         <th scope="col" class="custom-width-60"
                                             (click)="sorting('personal','personName')">
-                                            {{'localRegistration.personalDetails.personname' | translate }} <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','nationality')">{{'localRegistration.personalDetails.nationality' | translate }} <i
+                                            {{'localRegistration.personalDetails.personname' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','idType')">{{'localRegistration.personalDetails.idType' | translate }} <i
+                                        <th scope="col" (click)="sorting('personal','nationality')">
+                                            {{'localRegistration.personalDetails.nationality' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','idNo')">{{'localRegistration.personalDetails.idNo' | translate }} <i
+                                        <th scope="col" (click)="sorting('personal','idType')">
+                                            {{'localRegistration.personalDetails.idType' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','designation')">{{'localRegistration.personalDetails.designation' | translate }} <i
+                                        <th scope="col" (click)="sorting('personal','idNo')">
+                                            {{'localRegistration.personalDetails.idNo' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','noOfShares')">{{'localRegistration.personalDetails.noOfshares' | translate }} <i
+                                        <th scope="col" (click)="sorting('personal','designation')">
+                                            {{'localRegistration.personalDetails.designation' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','perShares')">{{'localRegistration.personalDetails.percentageshares' | translate }} <i
+                                        <th scope="col" (click)="sorting('personal','noOfShares')">
+                                            {{'localRegistration.personalDetails.noOfshares' | translate }} <i
+                                                class="fa fa-sort" aria-hidden="true"></i></th>
+                                        <th scope="col" (click)="sorting('personal','perShares')">
+                                            {{'localRegistration.personalDetails.percentageshares' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('personal','authorizationType')">
                                             {{'localRegistration.personalDetails.authorizationType' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('personal','authorizationLimit')">
-                                            {{'localRegistration.personalDetails.authorizationLimit' | translate }} <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','note')">{{'localRegistration.personalDetails.note' | translate }} <i class="fa fa-sort"
-                                                aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','regDate')">{{'localRegistration.personalDetails.regDate' | translate }} <i
+                                            {{'localRegistration.personalDetails.authorizationLimit' | translate }} <i
+                                                class="fa fa-sort" aria-hidden="true"></i></th>
+                                        <th scope="col" (click)="sorting('personal','note')">
+                                            {{'localRegistration.personalDetails.note' | translate }} <i
+                                                class="fa fa-sort" aria-hidden="true"></i></th>
+                                        <th scope="col" (click)="sorting('personal','regDate')">
+                                            {{'localRegistration.personalDetails.regDate' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th></th>
                                     </tr>
@@ -703,13 +725,15 @@
                 <div class="row">
                     <div class="col-md-12 mb-5 px-4">
                         <button type="button" class="btn border px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="preStep(1)"
-                            [disabled]='!showBtn' matStepperPrevious><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
+                            [disabled]='!showBtn' matStepperPrevious><i class="fa fa-caret-left"></i>
+                            {{'buttonsLabel.previous' | translate }}</button>
                         <button type="button" class="btn border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            [disabled]='!showBtn' matStepperNext  (click)="ifsRequestCall(localRegisterStep.PERSONAL_DETAILS)">{{'buttonsLabel.next' | translate }}
+                            [disabled]='!showBtn' matStepperNext
+                            (click)="ifsRequestCall(localRegisterStep.PERSONAL_DETAILS)">{{'buttonsLabel.next' | translate }}
                             <i class="fa fa-caret-right"></i></button>
                         <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                             (click)="saveDraft(1)">{{'buttonsLabel.saveasDraft' | translate }}
-                            </button>
+                        </button>
                         <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                             <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                 [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
@@ -724,7 +748,7 @@
         <!-- Communication Method -->
         <mat-step>
             <ng-template matStepLabel>{{'registarationStepperNames.communicationMethod' | translate }}</ng-template>
-            <div *ngIf="(communicationData$ | async)?.communicationMethod">
+            <div *ngIf="communicationData">
                 <div class="row">
                     <div class="col-md-12 px-4 mb-3 mt-3">
                         <div class="table-responsive">
@@ -736,9 +760,11 @@
                                 <thead>
                                     <tr class="purple-bg text-white">
                                         <th scope="col"></th>
-                                        <th scope="col" (click)="sorting('communication','method')">{{'localRegistration.communicationMethod.label' | translate }} <i
+                                        <th scope="col" (click)="sorting('communication','method')">
+                                            {{'localRegistration.communicationMethod.label' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i> </th>
-                                        <th scope="col" (click)="sorting('communication','value')">{{'localRegistration.communicationMethod.value' | translate }} <i
+                                        <th scope="col" (click)="sorting('communication','value')">
+                                            {{'localRegistration.communicationMethod.value' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th></th>
                                     </tr>
@@ -804,9 +830,11 @@
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
-                        matStepperPrevious><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
+                        matStepperPrevious><i class="fa fa-caret-left"></i>
+                        {{'buttonsLabel.previous' | translate }}</button>
                     <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                        (click)="ifsRequestCall(localRegisterStep.COMMUNICATION_METHOD)" [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }}
+                        (click)="ifsRequestCall(localRegisterStep.COMMUNICATION_METHOD)" [disabled]='!showBtn'
+                        matStepperNext>{{'buttonsLabel.next' | translate }}
                         <i class="fa fa-caret-right"></i></button>
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                         (click)="saveDraft(2)">
@@ -839,23 +867,31 @@
                                         <tr class="purple-bg text-white">
                                             <th scope="col"></th>
                                             <th scope="col" class="custom-width-90"
-                                                (click)="sorting('activityInfo','activityName')">{{'localRegistration.bankDetails.activitiesName' | translate }} <i
+                                                (click)="sorting('activityInfo','activityName')">
+                                                {{'localRegistration.bankDetails.activitiesName' | translate }} <i
                                                     class="fa fa-sort" aria-hidden="true"></i>
                                             </th>
                                             <th scope="col" class="custom-width-250"
-                                                (click)="sorting('activityInfo','subActivity')">{{'localRegistration.bankDetails.subActivitiesNo' | translate }} <i
+                                                (click)="sorting('activityInfo','subActivity')">
+                                                {{'localRegistration.bankDetails.subActivitiesNo' | translate }} <i
                                                     class="fa fa-sort" aria-hidden="true"></i></th>
                                             <th scope="col" (click)="sorting('activityInfo','establishmentDate')">
-                                                {{'localRegistration.bankDetails.establishmentdate' | translate }} <i class="fa fa-sort" aria-hidden="true"></i> </th>
+                                                {{'localRegistration.bankDetails.establishmentdate' | translate }} <i
+                                                    class="fa fa-sort" aria-hidden="true"></i> </th>
                                             <th scope="col" (click)="sorting('activityInfo','regDate')">
-                                                {{'localRegistration.bankDetails.registrationdate' | translate }} <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                            <th scope="col" (click)="sorting('activityInfo','expDate')">{{'localRegistration.bankDetails.expirydate' | translate }} <i
+                                                {{'localRegistration.bankDetails.registrationdate' | translate }} <i
                                                     class="fa fa-sort" aria-hidden="true"></i></th>
-                                            <th scope="col" (click)="sorting('activityInfo','duration')">{{'localRegistration.bankDetails.duration' | translate }} <i
+                                            <th scope="col" (click)="sorting('activityInfo','expDate')">
+                                                {{'localRegistration.bankDetails.expirydate' | translate }} <i
+                                                    class="fa fa-sort" aria-hidden="true"></i></th>
+                                            <th scope="col" (click)="sorting('activityInfo','duration')">
+                                                {{'localRegistration.bankDetails.duration' | translate }} <i
                                                     class="fa fa-sort" aria-hidden="true"></i></th>
                                             <th scope="col" (click)="sorting('activityInfo','companyGrade')">
-                                                {{'localRegistration.bankDetails.companygrade' | translate }} <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                            <th scope="col" (click)="sorting('activityInfo','location')">{{'localRegistration.bankDetails.location' | translate }} <i
+                                                {{'localRegistration.bankDetails.companygrade' | translate }} <i
+                                                    class="fa fa-sort" aria-hidden="true"></i></th>
+                                            <th scope="col" (click)="sorting('activityInfo','location')">
+                                                {{'localRegistration.bankDetails.location' | translate }} <i
                                                     class="fa fa-sort" aria-hidden="true"></i></th>
                                             <th scope="col">{{'localRegistration.bankDetails.attachment' | translate }}
                                             </th>
@@ -973,7 +1009,7 @@
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(3)">{{'buttonsLabel.saveasDraft' | translate }}
-                                </button>
+                            </button>
                             <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                     [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
@@ -1063,7 +1099,7 @@
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(3)">{{'buttonsLabel.saveasDraft' | translate }}
-                                </button>
+                            </button>
                             <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                     [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
@@ -1073,7 +1109,8 @@
                     <!-- bank form pop-up -->
                     <ng-template #bankModel let-modal>
                         <div class="modal-header">
-                            <h4 class="modal-title" id="modal-basic-title">{{'buttonsLabel.addBankDetail' | translate }}</h4>
+                            <h4 class="modal-title" id="modal-basic-title">{{'buttonsLabel.addBankDetail' | translate }}
+                            </h4>
                             <button type="button" class="close" aria-label="Close"
                                 (click)="modal.dismiss('Cross click'); editBank = false;">
                                 <span aria-hidden="true">×</span>
@@ -1258,13 +1295,12 @@
                                             <th scope="col" class="custom-width-90"
                                                 (click)="sorting('branchInfo','reqDate')">
                                                 {{'localRegistration.bankDetails.branchreqdate' | translate }}
-                                                 <i
-                                                    class="fa fa-sort" aria-hidden="true"></i></th>
+                                                <i class="fa fa-sort" aria-hidden="true"></i></th>
                                             <th scope="col" class="custom-width-250"
-                                                (click)="sorting('branchInfo','branchId')">                                {{'localRegistration.bankDetails.shareValue' | translate }}
+                                                (click)="sorting('branchInfo','branchId')">
+                                                {{'localRegistration.bankDetails.shareValue' | translate }}
                                                 {{'localRegistration.bankDetails.branchID' | translate }}
-                                                <i
-                                                    class="fa fa-sort" aria-hidden="true"></i>
+                                                <i class="fa fa-sort" aria-hidden="true"></i>
                                             </th>
                                             <th scope="col" (click)="sorting('branchInfo','branchActivity')">
                                                 {{'localRegistration.bankDetails.branchActivitiesname' | translate }}
@@ -1318,7 +1354,7 @@
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(3)">{{'buttonsLabel.saveasDraft' | translate }}
-                                </button>
+                            </button>
                             <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                     [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
@@ -1347,16 +1383,14 @@
                                             </th> -->
                                             <!-- (click)="sorting('other','no')" <i class="fa fa-sort" aria-hidden="true"></i> -->
                                             <th scope="col">
-                                               {{'localRegistration.bankDetails.no' | translate }}
+                                                {{'localRegistration.bankDetails.no' | translate }}
                                             </th>
                                             <th scope="col" (click)="sorting('other','name')">
                                                 {{'localRegistration.bankDetails.label' | translate }}
-                                                 <i
-                                                    class="fa fa-sort" aria-hidden="true"></i></th>
+                                                <i class="fa fa-sort" aria-hidden="true"></i></th>
                                             <th scope="col" (click)="sorting('other','value')">
                                                 {{'localRegistration.bankDetails.value' | translate }}
-                                                 <i
-                                                    class="fa fa-sort" aria-hidden="true"></i></th>
+                                                <i class="fa fa-sort" aria-hidden="true"></i></th>
                                             <th scope="col">
                                                 {{'localRegistration.bankDetails.attachment' | translate }}
                                             </th>
@@ -1444,11 +1478,12 @@
                                 [disabled]='!showBtn' (click)="previousTab()"><i class="fa fa-caret-left"></i>
                                 {{'buttonsLabel.previous' | translate }}</button>
                             <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                (click)="newStep();ifsRequestCall(localRegisterStep.BANK_DETAILS)" [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }} <i
+                                (click)="newStep();ifsRequestCall(localRegisterStep.BANK_DETAILS)" [disabled]='!showBtn'
+                                matStepperNext>{{'buttonsLabel.next' | translate }} <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(3)">{{'buttonsLabel.saveasDraft' | translate }}
-                                </button>
+                            </button>
                             <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                     [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
@@ -1464,10 +1499,11 @@
         <mat-step>
             <ng-template matStepLabel>{{'registarationStepperNames.employeeDetails' | translate }}</ng-template>
 
-            <div *ngIf="(employeeData$ | async) as employee">
+            <div *ngIf="employee">
                 <div class="row">
                     <div class="col-md-6 col-lg-3  px-4 ">
-                        <span class="fs-16 font-weight-bold text-black dark-text-1 ">                                                {{'localRegistration.bankDetails.attachment' | translate }}
+                        <span class="fs-16 font-weight-bold text-black dark-text-1 ">
+                            {{'localRegistration.bankDetails.attachment' | translate }}
                             {{'localRegistration.employeeDetails.workforceSummary' | translate }}
                         </span>
                     </div>
@@ -1493,10 +1529,14 @@
                             <table class="table table-bordered ">
                                 <thead>
                                     <tr class="purple-bg text-white">
-                                        <th scope="col" class="custom-width-60">{{'localRegistration.employeeDetails.employeeCategory' | translate }}</th>
-                                        <th scope="col">{{'localRegistration.employeeDetails.noOfEmployees' | translate }}</th>
-                                        <th scope="col">{{'localRegistration.employeeDetails.omaniEmployees' | translate }}</th>
-                                        <th scope="col">{{'localRegistration.employeeDetails.nonOmaniEmployees' | translate }}</th>
+                                        <th scope="col" class="custom-width-60">
+                                            {{'localRegistration.employeeDetails.employeeCategory' | translate }}</th>
+                                        <th scope="col">
+                                            {{'localRegistration.employeeDetails.noOfEmployees' | translate }}</th>
+                                        <th scope="col">
+                                            {{'localRegistration.employeeDetails.omaniEmployees' | translate }}</th>
+                                        <th scope="col">
+                                            {{'localRegistration.employeeDetails.nonOmaniEmployees' | translate }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -1516,7 +1556,8 @@
                     <div class="col-md-12 px-4 mb-3 mt-3">
                         <button class="btn btn-primary background-purple-custom border-purple mb-2"
                             (click)="showTable =! showTable" *ngIf="!showTable">
-                            <i class="fa fa-expand" aria-hidden="true"> </i><span> {{'localRegistration.employeeDetails.showTableData' | translate }}</span>
+                            <i class="fa fa-expand" aria-hidden="true"> </i><span>
+                                {{'localRegistration.employeeDetails.showTableData' | translate }}</span>
                         </button>
                         <div class="table-responsive">
                             <input class="fs-16 custom-height-35" [(ngModel)]="searchText" placeholder="Search text"
@@ -1542,66 +1583,63 @@
                                                 <span class="ml-2"> <a class=" text-black fs-14"><i
                                                             class="fa fa-ellipsis-v  "></i> </a></span> </div>
                                         </th> -->
-                                        <th scope="col" (click)="sorting('employee','name')">{{'localRegistration.employeeDetails.employeeName' | translate }} <i
+                                        <th scope="col" (click)="sorting('employee','name')">
+                                            {{'localRegistration.employeeDetails.employeeName' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('employee','qualification')">
                                             {{'localRegistration.employeeDetails.employeeQualification' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('employee','specialization')">
                                             {{'localRegistration.employeeDetails.employeeSpecialization' | translate }}
-                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                            <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('employee','jobTitle')">
                                             {{'localRegistration.employeeDetails.jobtitle' | translate }}
-                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                            <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('employee','designation')">
-                                            {{'localRegistration.employeeDetails.designationType' | translate }} 
-                                            <i  class="fa fa-sort" aria-hidden="true"></i></th>
+                                            {{'localRegistration.employeeDetails.designationType' | translate }}
+                                            <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('employee','designationDate')">
-                                            {{'localRegistration.employeeDetails.designationdate' | translate }} 
+                                            {{'localRegistration.employeeDetails.designationdate' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('employee','expDate')">
-                                            {{'localRegistration.employeeDetails.expireddate' | translate }} 
-                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                            {{'localRegistration.employeeDetails.expireddate' | translate }}
+                                            <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('employee','experiance')">
-                                            {{'localRegistration.employeeDetails.experience' | translate }} 
-                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                            {{'localRegistration.employeeDetails.experience' | translate }}
+                                            <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('employee','appointmentDate')">
-                                            {{'localRegistration.employeeDetails.appointmentDate' | translate }} 
+                                            {{'localRegistration.employeeDetails.appointmentDate' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('employee','status')">
-                                            {{'localRegistration.employeeDetails.status' | translate }} 
-                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                            {{'localRegistration.employeeDetails.status' | translate }}
+                                            <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('employee','statusDate')">
-                                            {{'localRegistration.employeeDetails.statusdate' | translate }} 
-                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                            {{'localRegistration.employeeDetails.statusdate' | translate }}
+                                            <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('employee','staffCategory')">
-                                            {{'localRegistration.employeeDetails.employeeCategory' | translate }} 
+                                            {{'localRegistration.employeeDetails.employeeCategory' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('employee','country')">
-                                            {{'localRegistration.employeeDetails.country' | translate }} 
-                                             <i
-                                                class="fa fa-sort" aria-hidden="true"></i></th>
+                                            {{'localRegistration.employeeDetails.country' | translate }}
+                                            <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('employee','passportNum')">
-                                            {{'localRegistration.employeeDetails.passportNumber' | translate }} 
-                                             <i
-                                                class="fa fa-sort" aria-hidden="true"></i></th>
+                                            {{'localRegistration.employeeDetails.passportNumber' | translate }}
+                                            <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('employee','recidentCard')">
-                                            {{'localRegistration.employeeDetails.residentcardNumber' | translate }} 
+                                            {{'localRegistration.employeeDetails.residentcardNumber' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('employee','civilNo')">
-                                            {{'localRegistration.employeeDetails.civilNumber' | translate }} 
-                                             <i
-                                                class="fa fa-sort" aria-hidden="true"></i></th>
+                                            {{'localRegistration.employeeDetails.civilNumber' | translate }}
+                                            <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col" (click)="sorting('employee','crNo')">
-                                            {{'localRegistration.employeeDetails.cRNumber' | translate }} 
-                                             <i
-                                                class="fa fa-sort" aria-hidden="true"></i></th>
+                                            {{'localRegistration.employeeDetails.cRNumber' | translate }}
+                                            <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col">
-                                            {{'localRegistration.employeeDetails.omanizationRatio' | translate }} 
+                                            {{'localRegistration.employeeDetails.omanizationRatio' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"
                                                 (click)="sorting('employee','omaniratio')"></i></th>
                                         <th scope="col">
-                                            {{'localRegistration.employeeDetails.cVDocument' | translate }} 
+                                            {{'localRegistration.employeeDetails.cVDocument' | translate }}
                                         </th>
                                         <th></th>
                                     </tr>
@@ -1768,13 +1806,15 @@
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="preStep(3)"
-                        [disabled]='!showBtn' matStepperPrevious><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
-                    <button type="button" (click)="ifsRequestCall(localRegisterStep.EMPLOYEE_DETAILS)" class="btn border   px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                        [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }}
+                        [disabled]='!showBtn' matStepperPrevious><i class="fa fa-caret-left"></i>
+                        {{'buttonsLabel.previous' | translate }}</button>
+                    <button type="button" (click)="ifsRequestCall(localRegisterStep.EMPLOYEE_DETAILS)"
+                        class="btn border   px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" [disabled]='!showBtn'
+                        matStepperNext>{{'buttonsLabel.next' | translate }}
                         <i class="fa fa-caret-right"></i></button>
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                         (click)="saveDraft(4)">{{'buttonsLabel.saveasDraft' | translate }}
-                        </button>
+                    </button>
                     <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                         <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
@@ -1789,7 +1829,7 @@
 
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <!-- OCCI Data -->
-                <mat-tab label="{{'registarationStepperNames.oCCIData' | translate }}" *ngIf="(ministriesData1$ | async)?.occiDataTab">
+                <mat-tab label="{{'registarationStepperNames.oCCIData' | translate }}" *ngIf="ministriesData1">
                     <div class="row" *ngIf="ministriesData1.occiDataTab">
                         <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
                             <i class="fa fa-ban text-red fs-14" mat-raised-button
@@ -1855,7 +1895,7 @@
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(5)">{{'buttonsLabel.saveasDraft' | translate }}
-                                </button>
+                            </button>
                             <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                     [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
@@ -1865,7 +1905,7 @@
                 </mat-tab>
 
                 <!-- Tender Board Data -->
-                <mat-tab label="{{'registarationStepperNames.tenderBoardData' | translate }}" *ngIf="(ministriesData1$ | async)?.tenderBoardDataTab">
+                <mat-tab label="{{'registarationStepperNames.tenderBoardData' | translate }}" *ngIf="ministriesData1">
 
                     <div class="row pb-3" *ngIf="ministriesData1.tenderBoardDataTab">
                         <!-- <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
@@ -1925,7 +1965,7 @@
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
                                 {{'localRegistration.ministriesData1.expiryDate' | translate }}
-                                
+
                             </h5>
                             <p class="fs-14">{{ministriesData1.tenderBoardDataTab.expDate}}</p>
                         </div>
@@ -1968,7 +2008,7 @@
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(5)">{{'buttonsLabel.saveasDraft' | translate }}
-                                </button>
+                            </button>
                             <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                     [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
@@ -1978,7 +2018,7 @@
                 </mat-tab>
 
                 <!-- Municipality Data -->
-                <mat-tab label="{{'registarationStepperNames.municipalityData' | translate }}" *ngIf="(ministriesData1$ | async)?.municipalityDataTab">
+                <mat-tab label="{{'registarationStepperNames.municipalityData' | translate }}" *ngIf="ministriesData1">
 
                     <div class="row" *ngIf="ministriesData1.municipalityDataTab">
                         <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
@@ -2020,7 +2060,7 @@
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
                                 {{'localRegistration.ministriesData1.activities' | translate }}
-                                 </h5>
+                            </h5>
                             <!-- <div class="landing-menu" (click)="activityMenu3 = !activityMenu3"
                                 (clickOutside)="activityMenu3 = false">
                                 <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
@@ -2033,8 +2073,7 @@
                                 </ul>
                             </div> -->
                             <div ngbDropdown class="d-inline-block">
-                                <button class="btn btn-outline-secondary" id="dropdownBasic1"
-                                    ngbDropdownToggle>
+                                <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle>
                                     {{'localRegistration.ministriesData1.activities' | translate }}
                                 </button>
                                 <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -2069,11 +2108,12 @@
                                 [disabled]='!showBtn' (click)="previousTab()"><i class="fa fa-caret-left"></i>
                                 {{'buttonsLabel.previous' | translate }}</button>
                             <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                (click)="newStep();ifsRequestCall(localRegisterStep.MINISTRY_DATA_1)" [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }} <i
+                                (click)="newStep();ifsRequestCall(localRegisterStep.MINISTRY_DATA_1)"
+                                [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }} <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(5)">{{'buttonsLabel.saveasDraft' | translate }}
-                                </button>
+                            </button>
                             <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                     [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
@@ -2091,7 +2131,7 @@
 
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <!-- MOF Data -->
-                <mat-tab label="{{'registarationStepperNames.mOFData' | translate }}" *ngIf="(ministriesData2$ | async)?.mofDataTab">
+                <mat-tab label="{{'registarationStepperNames.mOFData' | translate }}" *ngIf="ministriesData2">
                     <div *ngIf="ministriesData2.mofDataTab">
                         <div class="row">
                             <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
@@ -2127,7 +2167,7 @@
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                                 <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
                                     {{'localRegistration.ministriesData2.activities' | translate }}
-                                     </h5>
+                                </h5>
                                 <!-- <div class="landing-menu" (click)="activityMenu4 = !activityMenu4"
                                     (clickOutside)="activityMenu4 = false">
                                     <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
@@ -2140,8 +2180,7 @@
                                     </ul>
                                 </div> -->
                                 <div ngbDropdown class="d-inline-block">
-                                    <button class="btn btn-outline-secondary" id="dropdownBasic1"
-                                        ngbDropdownToggle>
+                                    <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle>
                                         {{'localRegistration.ministriesData2.activities' | translate }}
                                     </button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -2182,7 +2221,7 @@
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(6)">{{'buttonsLabel.saveasDraft' | translate }}
-                                </button>
+                            </button>
                             <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                     [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
@@ -2192,7 +2231,7 @@
                 </mat-tab>
 
                 <!-- MOH Data -->
-                <mat-tab label="{{'registarationStepperNames.mOHData' | translate }}" *ngIf="(ministriesData2$ | async)?.mohDataTab">
+                <mat-tab label="{{'registarationStepperNames.mOHData' | translate }}" *ngIf="ministriesData2">
                     <div *ngIf="ministriesData2.mohDataTab">
                         <div class="row pt-2">
                             <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
@@ -2217,7 +2256,8 @@
                                 </h5>
                                 <!-- <p class="fs-14">{{ministriesData2.mohDataTab.healthAndPharmacyLicenses}}</p> -->
                                 <i class="fa fa-folder-open" aria-hidden="true"
-                                    (click)="openFile(shoeFiles,'hplicenses','')"> {{'buttonsLabel.addDocument' | translate }}</i>
+                                    (click)="openFile(shoeFiles,'hplicenses','')">
+                                    {{'buttonsLabel.addDocument' | translate }}</i>
 
                                 <input type="file" #fileInput id="fileUpload" name="fileUpload" multiple="multiple"
                                     style="display: none;" />
@@ -2225,7 +2265,8 @@
                         </div>
                         <div class="row pt-2">
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">                                    {{'localRegistration.ministriesData2.healthandpharmacylicenses' | translate }}
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                    {{'localRegistration.ministriesData2.healthandpharmacylicenses' | translate }}
                                     {{'localRegistration.ministriesData2.endDate' | translate }}
                                 </h5>
                                 <p class="fs-14">{{ministriesData2.mohDataTab.expDate}}</p>
@@ -2264,7 +2305,7 @@
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(6)">{{'buttonsLabel.saveasDraft' | translate }}
-                                </button>
+                            </button>
                             <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                     [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
@@ -2274,7 +2315,7 @@
                 </mat-tab>
 
                 <!-- MOCI Data -->
-                <mat-tab label="{{'registarationStepperNames.mOCIData' | translate }}" *ngIf="(ministriesData2$ | async)?.mociDataTab">
+                <mat-tab label="{{'registarationStepperNames.mOCIData' | translate }}" *ngIf="ministriesData2">
                     <div *ngIf="ministriesData2.mociDataTab">
                         <div class="row pt-2">
                             <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
@@ -2363,7 +2404,7 @@
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(6)">{{'buttonsLabel.saveasDraft' | translate }}
-                                </button>
+                            </button>
                             <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                     [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
@@ -2373,7 +2414,8 @@
                 </mat-tab>
 
                 <!-- Small & Medium Ent. Data -->
-                <mat-tab label="{{'registarationStepperNames.smallMediumEntData' | translate }}" *ngIf="(ministriesData2$ | async)?.smallMediumEntDataTab">
+                <mat-tab label="{{'registarationStepperNames.smallMediumEntData' | translate }}"
+                    *ngIf="ministriesData2">
                     <div *ngIf="ministriesData2.smallMediumEntDataTab">
                         <div class="row">
                             <div class="col-md-12 col-lg-12 col-xl-12 px-4 pb-2 ">
@@ -2401,7 +2443,8 @@
                         </div>
                         <div class="row">
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">                                    {{'localRegistration.ministriesData2.endDate' | translate }}
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                    {{'localRegistration.ministriesData2.endDate' | translate }}
                                     {{'localRegistration.ministriesData2.activities' | translate }}
                                 </h5>
                                 <!-- <div class="landing-menu" (click)="activityMenu5 = !activityMenu5"
@@ -2416,8 +2459,7 @@
                                     </ul>
                                 </div> -->
                                 <div ngbDropdown class="d-inline-block">
-                                    <button class="btn btn-outline-secondary" id="dropdownBasic1"
-                                        ngbDropdownToggle>
+                                    <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle>
                                         {{'localRegistration.ministriesData2.activities' | translate }}
                                     </button>
                                     <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
@@ -2460,11 +2502,12 @@
                                 [disabled]='!showBtn' (click)="previousTab()"><i class="fa fa-caret-left"></i>
                                 {{'buttonsLabel.previous' | translate }}</button>
                             <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                (click)="newStep();ifsRequestCall(localRegisterStep.MINISTRY_DATA_2)" [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }} <i
+                                (click)="newStep();ifsRequestCall(localRegisterStep.MINISTRY_DATA_2)"
+                                [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }} <i
                                     class="fa fa-caret-right"></i></button>
                             <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(6)">{{'buttonsLabel.saveasDraft' | translate }}
-                                </button>
+                            </button>
                             <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                                     [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
@@ -2486,11 +2529,11 @@
                     <h4 class="dark-grey-bg px-1 py-2 fs-16 font-weight-bold mb-3 dark-text-1  "><i
                             class="fa fa-ban text-red fs-14 pr-2" mat-raised-button
                             matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
-                            {{'localRegistration.ministriesData3.authorityofCivilDefenseData' | translate }}
-                        </h4>
+                        {{'localRegistration.ministriesData3.authorityofCivilDefenseData' | translate }}
+                    </h4>
                 </div>
             </div>
-            <div class="row pb-2" *ngIf="(ministriesData3$ | async)?.authorityOfCivilDefenseData">
+            <div class="row pb-2" *ngIf="ministriesData3">
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
                         {{'localRegistration.ministriesData3.licensesforfireresistant' | translate }}
@@ -2551,12 +2594,12 @@
 
                     <h4 class="dark-grey-bg px-1 py-2 fs-16 font-weight-bold mb-3 dark-text-1  "><i
                             class="fa fa-ban text-red fs-14 pr-2" mat-raised-button
-                            matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i> 
-                            {{'localRegistration.ministriesData3.capitalMarketData' | translate }}
+                            matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
+                        {{'localRegistration.ministriesData3.capitalMarketData' | translate }}
                     </h4>
                 </div>
             </div>
-            <div class="row pb-2" *ngIf="(ministriesData3$ | async)?.capitalMarketData">
+            <div class="row pb-2" *ngIf="ministriesData3">
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
                         {{'localRegistration.ministriesData3.registrationNumber' | translate }}
@@ -2578,7 +2621,7 @@
                 <div class="col-md-6 col-lg-6 col-xl-4  px-4 pb-2">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
                         {{'localRegistration.ministriesData3.activities' | translate }}
-                     </h5>
+                    </h5>
                     <!-- <div class="landing-menu" (click)="activityMenu7 = !activityMenu7"
                         (clickOutside)="activityMenu7 = false">
                         <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
@@ -2618,12 +2661,12 @@
 
                     <h4 class="dark-grey-bg px-1 py-2 fs-16 font-weight-bold mb-3 dark-text-1  "><i
                             class="fa fa-ban text-red fs-14 pr-2" mat-raised-button
-                            matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i> 
-                            {{'localRegistration.ministriesData3.creditBureauData' | translate }}
-                        </h4>
+                            matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
+                        {{'localRegistration.ministriesData3.creditBureauData' | translate }}
+                    </h4>
                 </div>
             </div>
-            <div class="row pb-2" *ngIf="(ministriesData3$ | async)?.creditBureauData">
+            <div class="row pb-2" *ngIf="ministriesData3">
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
                         {{'localRegistration.ministriesData3.cRNumber' | translate }}
@@ -2650,12 +2693,12 @@
 
                     <h4 class="dark-grey-bg px-1 py-2 fs-16 font-weight-bold mb-3 dark-text-1  "><i
                             class="fa fa-ban text-red fs-14 pr-2" mat-raised-button
-                            matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i> 
-                            {{'localRegistration.ministriesData3.distRulesReviewBoardData' | translate }}
+                            matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
+                        {{'localRegistration.ministriesData3.distRulesReviewBoardData' | translate }}
                     </h4>
                 </div>
             </div>
-            <div class="row pb-2" *ngIf="(ministriesData3$ | async)?.distRulesReviewBoardData">
+            <div class="row pb-2" *ngIf="ministriesData3">
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
                         {{'localRegistration.ministriesData3.cRNumber' | translate }}
@@ -2684,7 +2727,7 @@
                 <div class="col-md-6 col-lg-6 col-xl-4 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
                         {{'localRegistration.ministriesData3.activities' | translate }}
-                         </h5>
+                    </h5>
                     <!-- <div class="landing-menu" (click)="activityMenu8 = !activityMenu8"
                         (clickOutside)="activityMenu8 = false">
                         <div class="bg-light border rounded p-2 mb-0 fs-14 text-center  w-170">
@@ -2735,14 +2778,16 @@
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="preStep(3)"
-                        [disabled]='!showBtn' matStepperPrevious><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
+                        [disabled]='!showBtn' matStepperPrevious><i class="fa fa-caret-left"></i>
+                        {{'buttonsLabel.previous' | translate }}</button>
                     <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                        [disabled]='!showBtn' (click)="ifsRequestCall(localRegisterStep.MINISTRY_DATA_3)" matStepperNext>{{'buttonsLabel.next' | translate }}
+                        [disabled]='!showBtn' (click)="ifsRequestCall(localRegisterStep.MINISTRY_DATA_3)"
+                        matStepperNext>{{'buttonsLabel.next' | translate }}
                         <i class="fa fa-caret-right"></i></button>
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                         (click)="saveDraft(7)">
                         {{'buttonsLabel.saveasDraft' | translate }}
-                        </button>
+                    </button>
                     <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                         <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
@@ -2767,20 +2812,28 @@
                                     <th scope="col"></th>
                                     <!--  (click)="sorting('project','no')"  <i
                                             class="fa fa-sort" aria-hidden="true"></i>-->
-                                    <th scope="col" class="custom-width-60">{{'localRegistration.projectDetails.no' | translate }}</th>
-                                    <th scope="col" (click)="sorting('project','name')">{{'localRegistration.projectDetails.nameofProject' | translate }} <i
+                                    <th scope="col" class="custom-width-60">
+                                        {{'localRegistration.projectDetails.no' | translate }}</th>
+                                    <th scope="col" (click)="sorting('project','name')">
+                                        {{'localRegistration.projectDetails.nameofProject' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i> </th>
-                                    <th scope="col" (click)="sorting('project','client')">{{'localRegistration.projectDetails.client' | translate }} <i class="fa fa-sort"
+                                    <th scope="col" (click)="sorting('project','client')">
+                                        {{'localRegistration.projectDetails.client' | translate }} <i class="fa fa-sort"
                                             aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('project','consultent')">{{'localRegistration.projectDetails.consultant' | translate }} <i
+                                    <th scope="col" (click)="sorting('project','consultent')">
+                                        {{'localRegistration.projectDetails.consultant' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('project','costConsultent')">{{'localRegistration.projectDetails.costConsultant' | translate }} <i
+                                    <th scope="col" (click)="sorting('project','costConsultent')">
+                                        {{'localRegistration.projectDetails.costConsultant' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('project','value')">{{'localRegistration.projectDetails.value' | translate }} <i
-                                            class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('project','period')">{{'localRegistration.projectDetails.period' | translate }} <i
-                                            class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('project','completion')">{{'localRegistration.projectDetails.completion' | translate }} <i
+                                    <th scope="col" (click)="sorting('project','value')">
+                                        {{'localRegistration.projectDetails.value' | translate }} <i class="fa fa-sort"
+                                            aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('project','period')">
+                                        {{'localRegistration.projectDetails.period' | translate }} <i class="fa fa-sort"
+                                            aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('project','completion')">
+                                        {{'localRegistration.projectDetails.completion' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th scope="col">{{'localRegistration.projectDetails.document' | translate }}</th>
                                     <th></th>
@@ -2876,13 +2929,15 @@
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
-                        matStepperPrevious><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
-                    <button type="button" (click)="ifsRequestCall(localRegisterStep.PROJECT_DETAILS)" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                        [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }}
+                        matStepperPrevious><i class="fa fa-caret-left"></i>
+                        {{'buttonsLabel.previous' | translate }}</button>
+                    <button type="button" (click)="ifsRequestCall(localRegisterStep.PROJECT_DETAILS)"
+                        class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" [disabled]='!showBtn'
+                        matStepperNext>{{'buttonsLabel.next' | translate }}
                         <i class="fa fa-caret-right"></i></button>
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                         (click)="saveDraft(8)">{{'buttonsLabel.saveasDraft' | translate }}
-                        </button>
+                    </button>
                     <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                         <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
@@ -2913,17 +2968,23 @@
                                     </th> -->
                                     <!--  (click)="sorting('subcontractor','no')"  <i class="fa fa-sort" aria-hidden="true"></i>-->
                                     <th scope="col" class="custom-width-90">
-                                        {{'localRegistration.subcontractorDetails.commercialRegNumber' | translate }}</th>
+                                        {{'localRegistration.subcontractorDetails.commercialRegNumber' | translate }}
+                                    </th>
                                     <th scope="col" class="custom-width-250"
-                                        (click)="sorting('subcontractor','nameOfWork')">{{'localRegistration.subcontractorDetails.name' | translate }} <i class="fa fa-sort"
-                                            aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('subcontractor','telephone')">{{'localRegistration.subcontractorDetails.telephone' | translate }} <i
+                                        (click)="sorting('subcontractor','nameOfWork')">
+                                        {{'localRegistration.subcontractorDetails.name' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('subcontractor','fax')">{{'localRegistration.subcontractorDetails.fAX' | translate }} <i class="fa fa-sort"
-                                            aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('subcontractor','email')">{{'localRegistration.subcontractorDetails.eMailID' | translate }} <i
+                                    <th scope="col" (click)="sorting('subcontractor','telephone')">
+                                        {{'localRegistration.subcontractorDetails.telephone' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('subcontractor','regWithRca')">{{'localRegistration.subcontractorDetails.regwithRCA' | translate }} <i
+                                    <th scope="col" (click)="sorting('subcontractor','fax')">
+                                        {{'localRegistration.subcontractorDetails.fAX' | translate }} <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('subcontractor','email')">
+                                        {{'localRegistration.subcontractorDetails.eMailID' | translate }} <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" (click)="sorting('subcontractor','regWithRca')">
+                                        {{'localRegistration.subcontractorDetails.regwithRCA' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th></th>
                                 </tr>
@@ -3024,13 +3085,15 @@
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
-                        matStepperPrevious><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
-                    <button type="button" (click)="ifsRequestCall(localRegisterStep.SUBCONTRACTOR_DETAILS)" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                        [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }}
+                        matStepperPrevious><i class="fa fa-caret-left"></i>
+                        {{'buttonsLabel.previous' | translate }}</button>
+                    <button type="button" (click)="ifsRequestCall(localRegisterStep.SUBCONTRACTOR_DETAILS)"
+                        class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" [disabled]='!showBtn'
+                        matStepperNext>{{'buttonsLabel.next' | translate }}
                         <i class="fa fa-caret-right"></i></button>
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                         (click)="saveDraft(9)">{{'buttonsLabel.saveasDraft' | translate }}
-                        </button>
+                    </button>
                     <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                         <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
@@ -3056,17 +3119,23 @@
                                     <!--  (click)="sorting('equipment','no')" <i class="fa fa-sort"
                                             aria-hidden="true"></i> -->
                                     <th scope="col">{{'localRegistration.equipmentDetails.sLNo' | translate }} </th>
-                                    <th scope="col" (click)="sorting('equipment','type')">{{'localRegistration.equipmentDetails.typeofEquipment' | translate }} <i
+                                    <th scope="col" (click)="sorting('equipment','type')">
+                                        {{'localRegistration.equipmentDetails.typeofEquipment' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('equipment','quantity')">{{'localRegistration.equipmentDetails.quantity' | translate }} <i
+                                    <th scope="col" (click)="sorting('equipment','quantity')">
+                                        {{'localRegistration.equipmentDetails.quantity' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('equipment','capacity')">{{'localRegistration.equipmentDetails.capacity' | translate }} <i
+                                    <th scope="col" (click)="sorting('equipment','capacity')">
+                                        {{'localRegistration.equipmentDetails.capacity' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('equipment','year')">{{'localRegistration.equipmentDetails.yearofManufacture' | translate }} <i
+                                    <th scope="col" (click)="sorting('equipment','year')">
+                                        {{'localRegistration.equipmentDetails.yearofManufacture' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('equipment','regNo')">{{'localRegistration.equipmentDetails.registrationNo' | translate }} <i
+                                    <th scope="col" (click)="sorting('equipment','regNo')">
+                                        {{'localRegistration.equipmentDetails.registrationNo' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('equipment','approxValue')">{{'localRegistration.equipmentDetails.approximateValue' | translate }} <i
+                                    <th scope="col" (click)="sorting('equipment','approxValue')">
+                                        {{'localRegistration.equipmentDetails.approximateValue' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th></th>
                                 </tr>
@@ -3147,14 +3216,17 @@
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
-                        matStepperPrevious><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
+                        matStepperPrevious><i class="fa fa-caret-left"></i>
+                        {{'buttonsLabel.previous' | translate }}</button>
                     <button type="button" (click)="ifsRequestCall(localRegisterStep.EQUIPMENT_DETAILS)"
                         class="btn border   btn-disabled-color-gray px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                        [disabled]="true">{{'buttonsLabel.next' | translate }} <i class="fa fa-caret-right"></i></button>
+                        [disabled]="true">{{'buttonsLabel.next' | translate }} <i
+                            class="fa fa-caret-right"></i></button>
                     <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         (click)="ifsRequestCall(localRegisterStep.EQUIPMENT_DETAILS);submitRegistration()">{{'buttonsLabel.finish' | translate }}</button>
                     <button type="button" class="btn border   px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
-                        (click)="ifsRequestCall(localRegisterStep.EQUIPMENT_DETAILS);saveDraft(10)">{{'buttonsLabel.saveasDraft' | translate }} </button>
+                        (click)="ifsRequestCall(localRegisterStep.EQUIPMENT_DETAILS);saveDraft(10)">{{'buttonsLabel.saveasDraft' | translate }}
+                    </button>
                     <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                         <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>

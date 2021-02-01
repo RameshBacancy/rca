@@ -25,7 +25,7 @@ import {
   EquipmentDetailsStep, EquipmentDetails
 } from './../../../../models/supplier.model';
 import { map, takeUntil, tap } from 'rxjs/operators';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
 import { Component, OnInit, ViewChild, Input, ElementRef, ChangeDetectorRef, OnDestroy, AfterViewInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -91,17 +91,18 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
   // to add new blank data
   newData: any;
 
-
-
+  generalInfo: any;
+  employee: any;
+  private subscriptions: Subscription[] = [];
 
   // addressMenu: boolean;
 
   // personal detail tab
-  personalData$: Observable<PersonalDetailsStep>;
+  // personalData$: Observable<PersonalDetailsStep>;
   personalData: PersonalDetails[];
 
   // bank detail step
-  bankDetailStep$: Observable<BankDetailStep>;
+  // bankDetailStep$: Observable<BankDetailStep>;
   activityInfoData: ActivityInfo[];
   BankDetails: BankDetails[];
   compFinanceInfoData: CompFinanceInfo;
@@ -111,45 +112,45 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
   editbankData: any;
 
   // communication method step
-  communicationData$: Observable<CommunicationMethodStep>;
+  // communicationData$: Observable<CommunicationMethodStep>;
   communicationData: CommunicationMethod[]
 
   // general info step
   activityData: Activities[];
   allAddresses: Address[];
-  generalInfo$: Observable<any>;
+  // generalInfo$: Observable<any>;
   selectedAddress: Address;
   editAddress = false;
 
   // employee detail step
-  employeeData$: Observable<EmployeeDetailsStep>;
+  // employeeData$: Observable<EmployeeDetailsStep>;
   employeeData: EmployeDetails[];
   arrayOfCatagory = [];
   staffCategory: any[];
   showTable: boolean;
 
   // ministries1 data step
-  ministriesData1$: Observable<MinistriesData1Step>;
+  // ministriesData1$: Observable<MinistriesData1Step>;
   ministriesData1: MinistriesData1Step;
 
   // ministries2 data step
-  ministriesData2$: Observable<MinistriesData2Step>;
+  // ministriesData2$: Observable<MinistriesData2Step>;
   ministriesData2: MinistriesData2Step;
 
   // ministries3 data step
-  ministriesData3$: Observable<MinistriesData3Step>;
+  // ministriesData3$: Observable<MinistriesData3Step>;
   ministriesData3: MinistriesData3Step;
 
   // project detial step
-  projectData$: Observable<ProjectDetailsStep>;
+  // projectData$: Observable<ProjectDetailsStep>;
   projectData: ProjectDetails[];
 
   // subContrator info step
-  subContractorData$: Observable<SubContractorDetailsStep>;
+  // subContractorData$: Observable<SubContractorDetailsStep>;
   subContractorData: SubContractorDetails[];
 
   // equipment info stop
-  equipmentData$: Observable<EquipmentDetailsStep>;
+  // equipmentData$: Observable<EquipmentDetailsStep>;
   equipmentData: EquipmentDetails[];
 
   activityMenu = false;
@@ -173,7 +174,7 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
   // show-hide buttons
   showBtn: boolean;
 
-  destroy$: Subject<boolean> = new Subject();
+  // destroy$: Subject<boolean> = new Subject();
 
   // for send draft data
   localRegisterDraft: any;
@@ -267,11 +268,6 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     this.civilNo = localStorage.getItem('civilReg');
   }
 
-  ngOnDestroy() {
-    this.destroy$.next(true);
-    this.destroy$.complete();
-  }
-
   ngAfterViewInit() {
     this.stepper.selectedIndex = localStorage.getItem('stepper') === 'null' ? 0 : +localStorage.getItem('stepper');
   }
@@ -294,159 +290,77 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
     });
 
 
-    // general info step
-    this.generalInfo$ = this.supplierService.getGeneralInfoStep();
-    this.generalInfo$.
-      pipe(
-        takeUntil(this.destroy$)
-      ).subscribe((res: GeneralInfoStep) => {
+    this.subscriptions.push(
+      this.supplierService.getdata('local').subscribe(data => {
+        this.formData = data;
+      }),
 
+      // general info step
+      this.supplierService.getGeneralInfoStep().subscribe((res: GeneralInfoStep) => {
         // for dummy
         this.activityData = [...this.formData.generalInfoStep.generalInfoTab.activities, ...res.generalInfoTab.generalInfoDetails];
         this.allAddresses = [...this.formData.generalInfoStep.addressInfoTab.address, ...res.addressInfoTab.address];
         this.selectedAddress = this.allAddresses[0];
-
-        // for database
-        // this.activityData.push(...res.generalInfoTab.generalInfoDetails);
-        // this.allAddresses.push(...res.addressInfoTab.address);
-        // this.selectedAddress = res.addressInfoTab.address[0];
-
-
-        // if (!this.activityData[0]) {
-        //   this.activityData = this.formData.generalInfoStep.generalInfoTab.activities;
-        // }
-        // if (!this.allAddresses[0]) {
-        //   this.allAddresses = this.formData.generalInfoStep.addressInfoTab.address;
-        //   this.selectedAddress = this.formData.generalInfoStep.addressInfoTab.address[0];
-        // }
-      });
-
-    // personal detail step
-    this.personalData$ = this.supplierService.getPersonalInfoStep();
-    this.personalData$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: PersonalDetailsStep) => {
-      this.personalData = [...this.formData.personalDetailsStep.personalDetails];
-      // if (!this.personalData[0]) {
-      //   this.personalData = this.formData.personalDetailsStep.personalDetails;
-      // }
-    });
-
-    // communication method step
-    this.communicationData$ = this.supplierService.getCommunticationInfoStep();
-    this.communicationData$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: CommunicationMethodStep) => {
-      this.communicationData = [...this.formData.communicationMethodStep.communicationMethod, ...res.communicationMethod];
-      // this.communicationData = ;
-      // if (!this.communicationData[0]) {
-      // }
-    });
-
-    // bank details step
-    this.bankDetailStep$ = this.supplierService.getBankInfoStep();
-    this.bankDetailStep$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: BankDetailStep) => {
-      this.activityInfoData = [...this.formData.bankDetailStep.activityInfoTab.activityInfo, ...res.activityInfoTab.activityInfo];
-      this.BankDetails = [...this.formData.bankDetailStep.bankDetailsTab.BankDetails, ...res.bankDetailsTab.BankDetails];
-      this.compFinanceInfoData = res.companyInfoTab.compFinanceInfo;
-      this.compBranchInfoData = [...this.formData.bankDetailStep.companyInfoTab.compBranchInfo, ...res.companyInfoTab.compBranchInfo];
-      this.otherData = [...this.formData.bankDetailStep.otherInfoTab.otherDetails, ...res.otherInfoTab.otherDetails];
-      // if (!this.activityInfoData[0]) {
-      //   this.activityInfoData = this.formData.bankDetailStep.activityInfoTab.activityInfo;
-      //   // this.compFinanceInfoData = this.formData.bankDetailStep.companyInfoTab.compFinanceInfo;
-      // }
-      // if (!this.compBranchInfoData[0]) {
-      //   this.compBranchInfoData = this.formData.bankDetailStep.companyInfoTab.compBranchInfo;
-      // }
-      // if (!this.BankDetails[0]) {
-      //   this.BankDetails = this.formData.bankDetailStep.bankDetailsTab.BankDetails;
-      // }
-      // if (!this.otherData[0]) {
-      //   this.otherData = this.formData.bankDetailStep.otherInfoTab.otherDetails;
-      // }
-    });
-
-    // employee detail step
-    this.employeeData$ = this.supplierService.getEmployeeInfoStep();
-    this.employeeData$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: EmployeeDetailsStep) => {
-      this.employeeData = [...this.formData.employeeDetailsStep.employeDetails, ...res.employeDetails];
-      // if (!this.employeeData[0]) {
-      //   this.employeeData = this.formData.employeeDetailsStep.employeDetails;
-      // }
-      this.getEmployeeCategories();
-    });
-
-    // ministries1 data step
-    this.ministriesData1$ = this.supplierService.getMinistriesData1Step();
-    this.ministriesData1$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: MinistriesData1Step) => {
-      this.ministriesData1 = res;
-      if (!this.ministriesData1.occiDataTab[0]) {
-        this.ministriesData1 = this.formData.ministriesData1Step;
-      }
-    });
-
-    // ministries2 data step
-    this.ministriesData2$ = this.supplierService.getMinistriesData2Step();
-    this.ministriesData2$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: MinistriesData2Step) => {
-      this.ministriesData2 = res;
-      if (!this.ministriesData2.mofDataTab[0]) {
-        this.ministriesData2 = this.formData.ministriesData2Step;
-      }
-    });
-
-    // ministries3 data step
-    this.ministriesData3$ = this.supplierService.getMinistriesData3Step();
-    this.ministriesData3$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: MinistriesData3Step) => {
-      this.ministriesData3 = res;
-      if (!this.ministriesData3.authorityOfCivilDefenseData[0]) {
-        this.ministriesData3 = this.formData.ministriesData3Step;
-      }
-    });
-
-    // project detail step
-    this.projectData$ = this.supplierService.getProjectInfoStep();
-    this.projectData$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: ProjectDetailsStep) => {
-      this.projectData = [...this.formData.projectDetailsStep.projectDetails, ...res.projectDetails];
-      // if (!this.projectData[0]) {
-      //   this.projectData = this.formData.projectDetailsStep.projectDetails;
-      // }
-    });
-
-    // subcontrator detail step
-    this.subContractorData$ = this.supplierService.getSubContratorInfoStep();
-    this.subContractorData$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: SubContractorDetailsStep) => {
-      this.subContractorData = [...this.formData.subContractorDetailsStep.subContractorDetails, ...res.subContractorDetails];
-      this.cdr.detectChanges();
-      // if (!this.subContractorData[0]) {
-      //   this.subContractorData = this.formData.subContractorDetailsStep.subContractorDetails;
-      // }
-    });
-
-    // equipment detail step
-    this.equipmentData$ = this.supplierService.getEquipmentInfoStep();
-    this.equipmentData$.pipe(
-      takeUntil(this.destroy$)
-    ).subscribe((res: EquipmentDetailsStep) => {
-      this.equipmentData = [...this.formData.equipmentDetailsStep.equipmentDetails, ...res.equipmentDetails];
-      this.cdr.detectChanges();
-      // if (!this.equipmentData[0]) {
-      //   this.equipmentData = this.formData.equipmentDetailsStep.equipmentDetails;
-      // }
-    });
+        this.generalInfo = res.generalInfoTab;
+      }),
+      // personal detail step
+      this.supplierService.getPersonalInfoStep().subscribe((res: PersonalDetailsStep) => {
+        this.personalData = [...this.formData.personalDetailsStep.personalDetails];
+      }),
+      // communication method step
+      this.supplierService.getCommunticationInfoStep().subscribe((res: CommunicationMethodStep) => {
+        this.communicationData = [...this.formData.communicationMethodStep.communicationMethod, ...res.communicationMethod];
+      }),
+      // bank details step
+      this.supplierService.getBankInfoStep().subscribe((res: BankDetailStep) => {
+        this.activityInfoData = [...this.formData.bankDetailStep.activityInfoTab.activityInfo, ...res.activityInfoTab.activityInfo];
+        this.BankDetails = [...this.formData.bankDetailStep.bankDetailsTab.BankDetails, ...res.bankDetailsTab.BankDetails];
+        this.compFinanceInfoData = res.companyInfoTab.compFinanceInfo;
+        this.compBranchInfoData = [...this.formData.bankDetailStep.companyInfoTab.compBranchInfo, ...res.companyInfoTab.compBranchInfo];
+        this.otherData = [...this.formData.bankDetailStep.otherInfoTab.otherDetails, ...res.otherInfoTab.otherDetails];
+      }),
+      // employee detail step
+      this.supplierService.getEmployeeInfoStep().subscribe((res: EmployeeDetailsStep) => {
+        this.employeeData = [...this.formData.employeeDetailsStep.employeDetails, ...res.employeDetails];
+        this.employee = res;
+        this.getEmployeeCategories();
+      }),
+      // ministries1 data step
+      this.supplierService.getMinistriesData1Step().subscribe((res: MinistriesData1Step) => {
+        this.ministriesData1 = res;
+        if (!this.ministriesData1.occiDataTab[0]) {
+          this.ministriesData1 = this.formData.ministriesData1Step;
+        }
+      }),
+      // ministries2 data step
+      this.supplierService.getMinistriesData2Step().subscribe((res: MinistriesData2Step) => {
+        this.ministriesData2 = res;
+        if (!this.ministriesData2.mofDataTab[0]) {
+          this.ministriesData2 = this.formData.ministriesData2Step;
+        }
+      }),
+      // ministries3 data step
+      this.supplierService.getMinistriesData3Step().subscribe((res: MinistriesData3Step) => {
+        this.ministriesData3 = res;
+        if (!this.ministriesData3.authorityOfCivilDefenseData[0]) {
+          this.ministriesData3 = this.formData.ministriesData3Step;
+        }
+      }),
+      // project detail step
+      this.supplierService.getProjectInfoStep().subscribe((res: ProjectDetailsStep) => {
+        this.projectData = [...this.formData.projectDetailsStep.projectDetails, ...res.projectDetails];
+      }),
+      // subcontrator detail step
+      this.supplierService.getSubContratorInfoStep().subscribe((res: SubContractorDetailsStep) => {
+        this.subContractorData = [...this.formData.subContractorDetailsStep.subContractorDetails, ...res.subContractorDetails];
+        this.cdr.detectChanges();
+      }),
+      // equipment detail step
+      this.supplierService.getEquipmentInfoStep().subscribe((res: EquipmentDetailsStep) => {
+        this.equipmentData = [...this.formData.equipmentDetailsStep.equipmentDetails, ...res.equipmentDetails];
+        this.cdr.detectChanges();
+      })
+    );
   }
 
   // get address form
@@ -2264,5 +2178,10 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
       default:
         break;
     }
+  }
+
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(subscription => subscription.unsubscribe());
   }
 }
