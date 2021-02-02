@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GeneralTenderDetails } from 'src/app/models/tender.model';
 import { TenderService } from 'src/app/services/tender.service';
+import { idText } from 'typescript';
 
 @Component({
   selector: 'app-general-tender-documents',
@@ -28,6 +29,7 @@ export class GeneralTenderDocumentsComponent implements OnInit {
   filterItemData: any[];
   contractData: any[];
   selectedContract: any;
+  selectedContractIndex: number;
 
   constructor(
     private router: Router,
@@ -173,11 +175,13 @@ export class GeneralTenderDocumentsComponent implements OnInit {
     this.filterItemData = this.itemData.filter(item => item.revisionNo === this.revisionNo);
   }
 
-  contractExpand(contractData: any, mode: string) {
-    if(mode === 'CLOSE') {
+  contractExpand(contractData: any, index: number) {
+    if (this.selectedContractIndex === index) {
+      this.selectedContractIndex = null;
       this.selectedContract = null;
     } else {
       this.selectedContract = contractData.items;
+      this.selectedContractIndex = index;
     }
   }
 }

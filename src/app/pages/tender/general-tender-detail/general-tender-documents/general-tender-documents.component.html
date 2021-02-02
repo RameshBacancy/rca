@@ -618,8 +618,7 @@
                                             <td>{{ line.lineDescription }}</td>
                                             <td> {{ line.contractCurrency }}</td>
                                             <td>{{ line.companyCurrency }}</td>
-                                            <!-- <td><i (click)="contractExpand(line, 'OPEN')" class="fa fa-plus"></i></td> -->
-                                            <td></td>
+                                            <td><i (click)="contractExpand(line, i)" class="fa" [ngClass]="{'fa-chevron-circle-up': selectedContractIndex !== i, 'fa-chevron-circle-down': selectedContractIndex === i }"></i></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -629,7 +628,7 @@
                     <div class="row mt-3" *ngIf="selectedContract">
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
-                                <h2>Items</h2>
+                                <h3>Items</h3>
                                 <table class="table table-striped mb-0">
                                     <thead>
                                         <tr class="purple-bg text-white">
@@ -644,15 +643,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td><i class="fa fa-folder"></i></td>
+                                        <tr *ngFor="let item of selectedContract;let i = index;">
+                                            <td>{{ i + 1 }}</td>
+                                            <td>{{ item.itemName  }}</td>
+                                            <td>{{ item.itemDescription  }}</td>
+                                            <td>{{ item.itemType  }}</td>
+                                            <td>{{ item.uom }}</td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td>{{ item.itemRate }}</td>
+                                            <td>{{ item.value }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
