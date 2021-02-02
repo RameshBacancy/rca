@@ -52,9 +52,7 @@ export class GeneralTenderDocumentsComponent implements OnInit {
   }
 
   proceed() {
-    this.modalService.open(this.selectionModel, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {
-
-    });
+    this.modalService.open(this.selectionModel, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {});
     // localStorage.removeItem('documentFees');
     // this.router.navigateByUrl('/e-tendering/registration-of-queries');
     // this.router.navigate([]);

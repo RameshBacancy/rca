@@ -1,3 +1,29 @@
+@import 'src/assets/scss/index.scss';
+
 ::ng-deep .mat-horizontal-stepper-header {
     pointer-events: none !important;
+}
+
+.modal-center{
+    margin-top: 40%;
+}
+
+.modal-btn{
+    ::ng-deep{
+        .btn-primary{
+            color:$color-white ;
+            border-color: $primary-purple ;
+            background: $primary-purple ;
+        
+        }
+        .btn-primary:hover{
+            color: $primary-purple ;
+            background-color:$color-white ;
+        }
+    
+        .btn-primary:focus,
+        .btn-primary.focus {
+            box-shadow: 0 0 0 .2rem $primary-purple-hover;
+        }
+    }
 }
