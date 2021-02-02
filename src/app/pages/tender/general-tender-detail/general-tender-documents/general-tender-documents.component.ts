@@ -12,6 +12,8 @@ import { TenderService } from 'src/app/services/tender.service';
 })
 export class GeneralTenderDocumentsComponent implements OnInit {
   @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
+  @ViewChild('selectionModel', {static: false}) selectionModel: ElementRef;
+
   generalTenderDetail: GeneralTenderDetails;
   searchText: string;
   selected = new FormControl(0);
@@ -39,8 +41,11 @@ export class GeneralTenderDocumentsComponent implements OnInit {
   }
 
   proceed() {
-    localStorage.removeItem('documentFees');
-    this.router.navigateByUrl('/e-tendering/registration-of-queries');
+    this.modalService.open(this.selectionModel, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {
+
+    });
+    // localStorage.removeItem('documentFees');
+    // this.router.navigateByUrl('/e-tendering/registration-of-queries');
     // this.router.navigate([]);
   }
 
@@ -145,5 +150,13 @@ export class GeneralTenderDocumentsComponent implements OnInit {
     this.files.forEach(file => {
       this.callUploadService(file, data, flag);
     });
+  }
+
+  submitTenderBids() {
+    this.router.navigateByUrl('/e-tendering/submit-tender-bids');
+  }
+
+  tenderQueries() {
+    this.router.navigateByUrl('/e-tendering/registration-of-queries');
   }
 }

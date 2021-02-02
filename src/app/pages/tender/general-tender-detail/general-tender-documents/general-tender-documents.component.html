@@ -665,3 +665,10 @@
         </mat-step>
     </mat-horizontal-stepper>
 </div>
+
+<ng-template #selectionModel let-modal >
+    <div class="modal-btn modal-body custom-modal-main bg-white d-flex align-self-center">
+        <button class="btn btn-primary m-4 p-4" (click)="submitTenderBids(); modal.close('Save click')">Submit Tender Bids</button>
+        <button class="btn btn-primary m-4 p-4" (click)="tenderQueries(); modal.close('Save click')">Tender Queries</button>
+    </div>
+</ng-template>
