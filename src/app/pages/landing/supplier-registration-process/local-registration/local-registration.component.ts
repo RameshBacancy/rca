@@ -285,11 +285,6 @@ export class LocalRegistrationComponent implements OnInit, OnDestroy, AfterViewI
   }
 
   loadData() {
-    this.supplierService.getdata('local').subscribe(data => {
-      this.formData = data;
-    });
-
-
     this.subscriptions.push(
       this.supplierService.getdata('local').subscribe(data => {
         this.formData = data;
