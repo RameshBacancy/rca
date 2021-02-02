@@ -12,7 +12,7 @@ import { TenderService } from 'src/app/services/tender.service';
 })
 export class GeneralTenderDocumentsComponent implements OnInit {
   @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
-  @ViewChild('selectionModel', {static: false}) selectionModel: ElementRef;
+  @ViewChild('selectionModel', { static: false }) selectionModel: ElementRef;
 
   generalTenderDetail: GeneralTenderDetails;
   searchText: string;
@@ -22,18 +22,20 @@ export class GeneralTenderDocumentsComponent implements OnInit {
   tenderDocuments: any[];
   closeResult: string;
   files: any[];
+  revisionNoArray = [1, 2, 3, 4];
+  revisionNo = 2;
 
   constructor(
     private router: Router,
     private tenderService: TenderService,
     private modalService: NgbModal
-     ) { }
+  ) { }
 
   ngOnInit(): void {
     if (!localStorage.getItem('documentFees')) {
       this.router.navigateByUrl('/e-tendering/general-tender-details');
     }
-    this.tenderService.getGeneralTenderDetails().subscribe( data => {
+    this.tenderService.getGeneralTenderDetails().subscribe(data => {
       this.generalTenderDetail = data;
     });
     this.tenderDocuments = [];
@@ -97,7 +99,7 @@ export class GeneralTenderDocumentsComponent implements OnInit {
 
   open(content, address?) {
 
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
 
       this.closeResult = `Closed with: ${result}`;
 
@@ -114,7 +116,7 @@ export class GeneralTenderDocumentsComponent implements OnInit {
     } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
       return 'by clicking on a backdrop';
     } else {
-      return  `with: ${reason}`;
+      return `with: ${reason}`;
     }
   }
 
@@ -123,11 +125,11 @@ export class GeneralTenderDocumentsComponent implements OnInit {
       if (this.selectedPage === 'tenderDocuments') {
         this.filesList = [];
         this.tenderDocuments.filter((f, i) => {
-              if (f.name === file.name) {
-                this.tenderDocuments.splice(i, 1);
-                this.filesList = this.tenderDocuments;
-              }
-            });
+          if (f.name === file.name) {
+            this.tenderDocuments.splice(i, 1);
+            this.filesList = this.tenderDocuments;
+          }
+        });
       }
     }
   }
