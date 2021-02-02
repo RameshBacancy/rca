@@ -31,7 +31,8 @@
               "rxjs",
               "uuid",
               "lodash",
-              "js2xmlparser"
+              "js2xmlparser",
+              "file-saver"
             ],
             "styles": [
               "src/styles.scss",

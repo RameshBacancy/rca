@@ -5,6 +5,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { GeneralTenderDetails } from 'src/app/models/tender.model';
 import { TenderService } from 'src/app/services/tender.service';
 import { idText } from 'typescript';
+import * as fileSave from 'file-saver';
 
 @Component({
   selector: 'app-general-tender-documents',
@@ -181,5 +182,9 @@ export class GeneralTenderDocumentsComponent implements OnInit {
       this.selectedContract = contractData.items;
       this.selectedContractIndex = index;
     }
+  }
+  
+  downloadFile(){
+    fileSave.saveAs("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", "temp.text");
   }
 }
