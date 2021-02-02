@@ -37,6 +37,113 @@ export class TenderService {
     }));
   }
 
+  getItemData() {
+    const data = [
+      {
+        revisionNo: 1,
+        partCode: 'Lorem 1',
+        partCodeDescription: 'Lorem ipsum 1',
+        uom: '',
+        quantity: '',
+        totalPrice: '',
+        document: '',
+        queries: '',
+        response: ''
+      },
+      {
+        revisionNo: 2,
+        partCode: 'Lorem 2',
+        partCodeDescription: 'Lorem ipsum 2',
+        uom: '',
+        quantity: '',
+        totalPrice: '',
+        document: '',
+        queries: '',
+        response: ''
+      },
+      {
+        revisionNo: 3,
+        partCode: 'Lorem 2',
+        partCodeDescription: 'Lorem ipsum 3',
+        uom: '',
+        quantity: '',
+        totalPrice: '',
+        document: '',
+        queries: '',
+        response: ''
+      },
+      {
+        revisionNo: 2,
+        partCode: 'Lorem 2 b',
+        partCodeDescription: 'Lorem ipsum 2 b',
+        uom: '',
+        quantity: '',
+        totalPrice: '',
+        document: '',
+        queries: '',
+        response: ''
+      },
+    ];
+    return data;
+  }
+
+  getContractData() {
+    const data = [
+      {
+        revisionNo: 2,
+        lineName: 'Survey',
+        lineDescription: 'Survey',
+        contractCurrency: '',
+        companyCurrency: '',
+        items: [
+          {
+            itemName: 'Floors',
+            itemDescription: 'Flooring',
+            itemType: 'Material',
+            uom: 'NOS',
+            quantity: 6,
+            itemRate: '',
+            value: '',
+          }
+        ]
+      },
+      {
+        revisionNo: 2,
+        lineName: 'Cons',
+        lineDescription: 'Construction',
+        items: [
+          {
+            itemName: 'Floors',
+            itemDescription: 'Flooring',
+            itemType: 'Material',
+            uom: 'NOS',
+            quantity: 6,
+            itemRate: '',
+            value: '',
+          },
+          {
+            itemName: 'Shift',
+            itemDescription: 'Shifting',
+            itemType: '',
+            uom: '',
+            quantity: '',
+            itemRate: '',
+            value: '',
+          },
+          {
+            itemName: 'Build',
+            itemDescription: 'Building',
+            itemType: '',
+            uom: '',
+            quantity: '',
+            itemRate: '',
+            value: '',
+          }
+        ]
+      }
+    ];
+    return data;
+  }
 
 
 }

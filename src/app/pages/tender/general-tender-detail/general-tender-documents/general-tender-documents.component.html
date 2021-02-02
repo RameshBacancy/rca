@@ -260,7 +260,7 @@
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Revision No</h5>
                             <!-- <p class="fs-14">1</p> -->
                             <mat-form-field appearance="fill" *ngIf="revisionNoArray">
-                                <mat-select [(ngModel)]="revisionNo">
+                                <mat-select [(ngModel)]="revisionNo" (selectionChange)="revisionNoChange()">
                                     <mat-option *ngFor="let option of revisionNoArray" [value]="option">
                                         {{option}}
                                     </mat-option>
@@ -314,8 +314,20 @@
                                             <th scope="col">Responses</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
+                                    <tbody *ngIf="filterItemData">
+                                        <tr *ngFor="let item of filterItemData; let i =  index;">
+                                            <td>{{ i + 1 }}</td>
+                                            <td>{{ item.partCode  }}</td>
+                                            <td>{{ item.partCodeDescription  }}</td>
+                                            <td>{{ item.uom  }}</td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td><input type="text"></td>
+                                            <td>{{ item.totalPrice }}</td>
+                                            <td><i class="fa fa-folder"></i></td>
+                                            <td><input type="text"></td>
+                                            <td>{{ item.response }}</td>
+                                        </tr>
+                                        <!-- <tr>
                                             <td>1</td>
                                             <td>-</td>
                                             <td>-</td>
@@ -350,7 +362,7 @@
                                             <td><i class="fa fa-folder"></i></td>
                                             <td><input type="text"></td>
                                             <td>-</td>
-                                        </tr>
+                                        </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -394,7 +406,7 @@
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Revision No</h5>
                             <!-- <p class="fs-14">1</p> -->
                             <mat-form-field appearance="fill" *ngIf="revisionNoArray">
-                                <mat-select [(ngModel)]="revisionNo">
+                                <mat-select [(ngModel)]="revisionNo" (selectionChange)="revisionNoChange()">
                                     <mat-option *ngFor="let option of revisionNoArray" [value]="option">
                                         {{option}}
                                     </mat-option>
@@ -442,8 +454,17 @@
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
+                                    <tbody *ngIf="itemData">
+                                        <tr *ngFor="let item of filterItemData; let i =  index;">
+                                            <td>{{ i + 1 }}</td>
+                                            <td>{{ item.partCodeDescription  }}</td>
+                                            <td>{{ item.uom  }}</td>
+                                            <td>{{ item.quantity }}</td>
+                                            <td><input type="text"></td>
+                                            <td>{{ item.totalPrice }}</td>
+                                            <td><i class="fa fa-folder"></i></td>
+                                        </tr>
+                                        <!-- <tr>
                                             <td>1</td>
                                             <td>-</td>
                                             <td>-</td>
@@ -459,8 +480,8 @@
                                             <td>-</td>
                                             <td><input type="text"></td>
                                             <td>-</td>
-                                            <td><i class="fa fa-folder"></i></td>
-                                        </tr>
+                                            <td><i class="fa fa-folder"></i></td> -->
+                                        <!-- </tr> -->
                                     </tbody>
                                 </table>
                             </div>
@@ -505,7 +526,7 @@
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Revision No</h5>
                             <!-- <p class="fs-14">1</p> -->
                             <mat-form-field appearance="fill" *ngIf="revisionNoArray">
-                                <mat-select [(ngModel)]="revisionNo">
+                                <mat-select [(ngModel)]="revisionNo" (selectionChange)="revisionNoChange()">
                                     <mat-option *ngFor="let option of revisionNoArray" [value]="option">
                                         {{option}}
                                     </mat-option>
@@ -531,7 +552,7 @@
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
                                 <button class="btn btn-secondary float-right mb-2"> Export </button>
-                                <table class="table table-striped mb-0 ">
+                                <!-- <table class="table table-striped mb-0 ">
                                     <thead>
                                         <tr class="purple-bg text-white">
 
@@ -568,6 +589,63 @@
                                             <td>-</td>
                                             <td>-</td>
                                             <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td><i class="fa fa-folder"></i></td>
+                                        </tr>
+                                    </tbody>
+                                </table> -->
+                                <table class="table table-striped mb-0">
+                                    <thead>
+                                        <tr class="purple-bg text-white">
+
+                                            <th scope="col">Line No</th>
+                                            <th scope="col">Line Name</th>
+                                            <th scope="col">Line Description</th>
+                                            <th scope="col">Value Contract Currency</th>
+                                            <th scope="col">Value Company Currency</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody *ngIf="contractData">
+                                        <tr *ngFor="let line of contractData;let i = index;">
+                                            <td>{{ i + 1 }}</td>
+                                            <td>{{ line.lineName }}</td>
+                                            <td>{{ line.lineDescription }}</td>
+                                            <td> {{ line.contractCurrency }}</td>
+                                            <td>{{ line.companyCurrency }}</td>
+                                            <!-- <td><i (click)="contractExpand(line, 'OPEN')" class="fa fa-plus"></i></td> -->
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-3" *ngIf="selectedContract">
+                        <div class="col-md-12 px-4 mb-3 mt-3">
+                            <div class="table-responsive">
+                                <h2>Items</h2>
+                                <table class="table table-striped mb-0">
+                                    <thead>
+                                        <tr class="purple-bg text-white">
+                                            <th scope="col">Item No</th>
+                                            <th scope="col">Item Name</th>
+                                            <th scope="col">Item Description</th>
+                                            <th scope="col">Item Type</th>
+                                            <th scope="col">UoM</th>
+                                            <th scope="col">Quantity</th>
+                                            <th scope="col">Item Rate</th>
+                                            <th scope="col">Value</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
                                             <td>-</td>
                                             <td>-</td>
                                             <td>-</td>

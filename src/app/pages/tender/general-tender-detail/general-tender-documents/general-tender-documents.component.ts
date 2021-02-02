@@ -22,8 +22,12 @@ export class GeneralTenderDocumentsComponent implements OnInit {
   tenderDocuments: any[];
   closeResult: string;
   files: any[];
-  revisionNoArray = [1, 2, 3, 4];
+  revisionNoArray = [1, 2, 3];
   revisionNo = 2;
+  itemData: any[];
+  filterItemData: any[];
+  contractData: any[];
+  selectedContract: any;
 
   constructor(
     private router: Router,
@@ -40,6 +44,9 @@ export class GeneralTenderDocumentsComponent implements OnInit {
     });
     this.tenderDocuments = [];
     this.selected.setValue(0);
+    this.itemData = this.tenderService.getItemData();
+    this.revisionNoChange();
+    this.contractData = this.tenderService.getContractData();
   }
 
   proceed() {
@@ -160,5 +167,17 @@ export class GeneralTenderDocumentsComponent implements OnInit {
 
   tenderQueries() {
     this.router.navigateByUrl('/e-tendering/registration-of-queries');
+  }
+
+  revisionNoChange() {
+    this.filterItemData = this.itemData.filter(item => item.revisionNo === this.revisionNo);
+  }
+
+  contractExpand(contractData: any, mode: string) {
+    if(mode === 'CLOSE') {
+      this.selectedContract = null;
+    } else {
+      this.selectedContract = contractData.items;
+    }
   }
 }
