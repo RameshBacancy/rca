@@ -48,11 +48,11 @@
                             <thead>
                                 <tr class="purple-bg text-white">
                                     <th></th>
-                                    <th scope="col">{{ 'internationalRegistration.generalInfo.addressID' | translate }}</th>
-                                    <th scope="col">{{ 'internationalRegistration.generalInfo.addressLine1' | translate }}</th>
-                                    <th scope="col">{{ 'internationalRegistration.generalInfo.addressLine2' | translate }}</th>
-                                    <th scope="col">{{ 'internationalRegistration.generalInfo.language' | translate }}</th>
-                                    <th scope="col">{{ 'internationalRegistration.generalInfo.country' | translate }}</th>
+                                    <th scope="col" [appSort]="allAddresses" data-order="desc" data-name="">{{ 'internationalRegistration.generalInfo.addressID' | translate }}</th>
+                                    <th scope="col" [appSort]="allAddresses" data-order="desc" data-name="addressLine1">{{ 'internationalRegistration.generalInfo.addressLine1' | translate }}</th>
+                                    <th scope="col" [appSort]="allAddresses" data-order="desc" data-name="addressLine2">{{ 'internationalRegistration.generalInfo.addressLine2' | translate }}</th>
+                                    <th scope="col" [appSort]="allAddresses" data-order="desc" data-name="language">{{ 'internationalRegistration.generalInfo.language' | translate }}</th>
+                                    <th scope="col" [appSort]="allAddresses" data-order="desc" data-name="country">{{ 'internationalRegistration.generalInfo.country' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -117,19 +117,24 @@
                             <thead>
                                 <tr class="purple-bg text-white">
                                     <th></th>
-                                    <th scope="col" class="custom-width-60" (click)="sorting('personal','personName')">
+                                    <th scope="col" class="custom-width-60" 
+                                    [appSort]="personalData" data-order="desc" data-name="personName"    
+                                    >
                                         {{'internationalRegistration.personalDetails.personname' | translate }}<i class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','nationality')">{{'internationalRegistration.personalDetails.nationality' | translate }}  <i
+                                    <th scope="col" 
+                                    [appSort]="personalData" data-order="desc" data-name="nationality"
+                                    >{{'internationalRegistration.personalDetails.nationality' | translate }}  <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','idType')">{{'internationalRegistration.personalDetails.i.DType' | translate }} <i
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="idType">
+                                        {{'internationalRegistration.personalDetails.i.DType' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','idNo')">{{'internationalRegistration.personalDetails.i.DNo.' | translate }} <i class="fa fa-sort"
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="idNo">{{'internationalRegistration.personalDetails.i.DNo.' | translate }} <i class="fa fa-sort"
                                             aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','designation')">{{'internationalRegistration.personalDetails.designation' | translate }} <i
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="designation">{{'internationalRegistration.personalDetails.designation' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','residentNo')">{{'internationalRegistration.personalDetails.residentCardNumber' | translate }} <i
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="residentNo">{{'internationalRegistration.personalDetails.residentCardNumber' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','passport')">{{'internationalRegistration.personalDetails.passport' | translate }} <i
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="passport">{{'internationalRegistration.personalDetails.passport' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                 </tr>
                             </thead>
@@ -255,10 +260,10 @@
                                             <tr class="purple-bg text-white">
                                                 <th></th>
                                                 <th scope="col" class="custom-width-60"
-                                                    (click)="sorting('activity','activityName')">{{ 'internationalRegistration.commercialInfo.activityName' | translate }}
+                                                [appSort]="activityData" data-order="desc" data-name="activityName">{{ 'internationalRegistration.commercialInfo.activityName' | translate }}
                                                     <i class="fa fa-sort" aria-hidden="true"></i>
                                                 </th>
-                                                <th scope="col" (click)="sorting('activity','subActivity')">{{ 'internationalRegistration.commercialInfo.subActivity' | translate }}
+                                                <th scope="col" [appSort]="activityData" data-order="desc" data-name="subActivity">{{ 'internationalRegistration.commercialInfo.subActivity' | translate }}
                                                     <i class="fa fa-sort" aria-hidden="true"></i>
                                                 </th>
                                             </tr>
@@ -384,9 +389,9 @@
                                             <tr class="purple-bg text-white">
                                                 <th></th>
                                                 <th scope="col">{{'internationalRegistration.commercialInfo.no.' | translate }} </th>
-                                                <th scope="col" (click)="sorting('other','name')">{{'internationalRegistration.commercialInfo.label' | translate }} <i
+                                                <th scope="col" [appSort]="otherData" data-order="desc" data-name="name">{{'internationalRegistration.commercialInfo.label' | translate }} <i
                                                         class="fa fa-sort" aria-hidden="true"></i></th>
-                                                <th scope="col" (click)="sorting('other','value')">{{'internationalRegistration.commercialInfo.value' | translate }} <i
+                                                <th scope="col" [appSort]="otherData" data-order="desc" data-name="value">{{'internationalRegistration.commercialInfo.value' | translate }} <i
                                                         class="fa fa-sort" aria-hidden="true"></i></th>
                                             </tr>
                                         </thead>
@@ -441,27 +446,27 @@
                             <thead>
                                 <tr class="purple-bg text-white">
                                     <th></th>
-                                    <th scope="col" (click)="sorting('staff','name')">{{ 'internationalRegistration.employeeDetails.employeeName' | translate }} <i
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="name" >{{ 'internationalRegistration.employeeDetails.employeeName' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','qualification')">{{ 'internationalRegistration.employeeDetails.employeeQualification' | translate }} <i
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="qualification" >{{ 'internationalRegistration.employeeDetails.employeeQualification' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','specialization')">{{ 'internationalRegistration.employeeDetails.employeeSpecialization' | translate }}
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="specialization" >{{ 'internationalRegistration.employeeDetails.employeeSpecialization' | translate }}
                                         <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','jobTitle')">{{ 'internationalRegistration.employeeDetails.jobtitle' | translate }}  <i
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="jobTitle" >{{ 'internationalRegistration.employeeDetails.jobtitle' | translate }}  <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','designation')">{{ 'internationalRegistration.employeeDetails.designationType' | translate }} <i
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="designation" >{{ 'internationalRegistration.employeeDetails.designationType' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','designationDate')">{{ 'internationalRegistration.employeeDetails.designationdate' | translate }}  <i
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="designationDate" >{{ 'internationalRegistration.employeeDetails.designationdate' | translate }}  <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','expDate')">{{ 'internationalRegistration.employeeDetails.expireddate' | translate }}  <i
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="expDate" >{{ 'internationalRegistration.employeeDetails.expireddate' | translate }}  <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','experiance')">{{ 'internationalRegistration.employeeDetails.experience' | translate }} <i
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="experience" >{{ 'internationalRegistration.employeeDetails.experience' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','appointmentDate')">{{ 'internationalRegistration.employeeDetails.appointmentDate' | translate }} <i
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="appointmentDate" >{{ 'internationalRegistration.employeeDetails.appointmentDate' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','status')">{{ 'internationalRegistration.employeeDetails.status' | translate }} <i class="fa fa-sort"
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="status" >{{ 'internationalRegistration.employeeDetails.status' | translate }} <i class="fa fa-sort"
                                             aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','statusDate')">{{ 'internationalRegistration.employeeDetails.statusdate' | translate }} <i
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="statusDate" >{{ 'internationalRegistration.employeeDetails.statusdate' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                 </tr>
                             </thead>
