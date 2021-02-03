@@ -1,9 +1,5 @@
-import { CollaborationService } from './../../../services/collaboration.service';
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-import { FormControl, FormGroup, FormBuilder, AbstractControl } from '@angular/forms';
-import { Component, OnInit, TemplateRef, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
-import { AlertService } from 'src/app/services/alert.service';
+import { Component, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-supplier-collaboration',

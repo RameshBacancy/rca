@@ -6,7 +6,6 @@
                     <li class="breadcrumb-item"><a routerLink="/landing/supplier-registration/dashboard">E-Tendering</a>
                     </li>
                     <li class="breadcrumb-item active">My Information</li>
-
                 </ol>
             </div>
         </div>
@@ -23,58 +22,61 @@
 </section>
 
 <div class="row m-4">
-    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+    <div class="col-md-4 px-4 ">
         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Supplier Name</h5>
-        <p class="fs-14">R Bala</p>
+        <p class="fs-14">{{ infoData.supplierName }}</p>
     </div>
-    <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
-        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">RCA Reg. Number</h5>
-        <p class="fs-14 ">113377880</p>
+    <div class="col-md-4   px-4 ">
+        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">RCA Registration Number</h5>
+        <p class="fs-14 ">{{ infoData.rcaRegisterNumber }}</p>
     </div>
-    <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
-        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Username
-        </h5>
-        <p class="fs-14 ">rbala1234</p>
+    <div class="col-md-4  px-4 ">
+        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Username</h5>
+        <p class="fs-14 " *ngIf="!isEdit">{{ infoData.userName }}</p>
+        <input type="text" [(ngModel)]="infoData.userName" *ngIf="isEdit">
     </div>
-    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+</div>
+
+<div class="row m-4">
+    <div class="col-md-4 px-4 ">
         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Mobile Number</h5>
-        <p class="fs-14 px-2">9999999999</p>
+        <p class="fs-14 px-2" *ngIf="!isEdit">{{ infoData.mobileNumber }}</p>
+        <input type="text" [(ngModel)]="infoData.mobileNumber" *ngIf="isEdit">
     </div>
-</div>
-
-<div class="row m-4">
-    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+    <div class="col-md-4 px-4 ">
         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">E-mail Id</h5>
-        <p class="fs-14">rbala@gmail.com</p>
+        <p class="fs-14" *ngIf="!isEdit">{{ infoData.email }}</p>
+        <input type="text" [(ngModel)]="infoData.email" *ngIf="isEdit">
     </div>
-    <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
+    <div class="col-md-4   px-4 ">
         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Registration Validity</h5>
-        <p class="fs-14 ">89696</p>
-    </div>
-    <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
-        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Last Log In Date & Time Stamp
-        </h5>
-        <p class="fs-14 ">10-11-2020 05:00:00</p>
-    </div>
-    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Grade</h5>
-        <p class="fs-14 px-2">A</p>
+        <p class="fs-14 ">{{ infoData.registrationValidity }}</p>
     </div>
 </div>
 
 <div class="row m-4">
-    <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+    <div class="col-md-4  px-4 ">
+        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Last Log In Date & Time Stamp</h5>
+        <p class="fs-14 ">{{ infoData.lastLoginDate }}</p>
+    </div>
+    <div class="col-md-4 px-4 ">
+        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Grade</h5>
+        <p class="fs-14 px-2">{{ infoData.grade }}</p>
+    </div>
+    <div class="col-md-4 px-4 ">
         <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Status</h5>
-        <p class="fs-14">-</p>
+        <p class="fs-14">{{ infoData.status }}</p>
     </div>
 </div>
+
 
 <div class="row mt-5 ml-2">
     <div class="col-md-12 mb-5 px-4">
         <a routerLink="/landing/supplier-registration/dashboard">
-            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Back</button>
+            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Home</button>
         </a>
-        <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Edit
+        <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" (click)="isEditClick()">
+            {{ isEdit ? 'Save' : 'Edit' }}
         </button>
     </div>
 </div>
