@@ -885,7 +885,7 @@
                                                 <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)"><input
                                                         [(ngModel)]="data.name"><span class="text-red">*</span></td>
                                                 <td *ngIf="!data.isEdit" (dblclick)="dblclick(data)">{{data.value}}</td>
-                                                <td *ngIf="data.isEdit">
+                                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)">
                                                     <input type="text" id="input" name="input" [(ngModel)]="data.value">
                                                     <span class="text-red">*</span>
                                                 </td>
