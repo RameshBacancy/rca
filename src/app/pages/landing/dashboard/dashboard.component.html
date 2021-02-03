@@ -32,8 +32,8 @@
                                 <li class="mb-1"> <a routerLink="/landing/supplier-registration/about-us"
                                         class="fs-14">{{ 'dashboardPage.aboutUs' | translate}}</a></li>
                                 <li class="mb-1"> <a class="fs-14" (click)="openModel()">{{ 'dashboardPage.supplierRegistration' | translate }}</a></li>
-                                <li class="mb-1"> <a class="fs-14" routerLink="/e-tendering/my-information">
-                                    {{ 'dashboardPage.tenderingInformation' | translate }} </a></li>
+                                <!-- <li class="mb-1"> <a class="fs-14" routerLink="/e-tendering/my-information">
+                                    {{ 'dashboardPage.tenderingInformation' | translate }} </a></li> -->
                                 <!-- <li class="mb-1"> <a class="fs-14">Auction</a></li> -->
                                 <li class="mb-1"> <a class="fs-14">{{ 'dashboardPage.helpDesk' | translate }}</a></li>
                                 <li class="mb-1"> <a class="fs-14">{{ 'dashboardPage.support' | translate }}</a></li>
@@ -58,6 +58,10 @@
                         <div class="p-3 purple-bg h-100 tendering-secrtion">
                             <h2 class="fs-18 text-white mb-3 ">{{ 'dashboardPage.tENDERING' | translate }}</h2>
                             <ul class="pl-0 list-unstyled mb-0">
+                                <li class="mb-1 d-block d-sm-flex justify-content-between">
+                                    <a class="fs-14 text-white " routerLink="/e-tendering/my-information">
+                                    {{ 'dashboardPage.tenderingInformation' | translate }} </a>
+                                </li>
                                 <li class="mb-1 d-block d-sm-flex justify-content-between ">
                                     <a class="fs-14 text-white " 
                                         (click)='onTenderStatus("open")'>{{ 'dashboardPage.openTenders' | translate }} </a>
