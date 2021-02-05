@@ -48,7 +48,7 @@ export class SupplierRegisterComponent implements OnInit {
     private spinner: SpinnerService,
     private translate: TranslateService,
     private cdr: ChangeDetectorRef) {
-    this.translate.use('English');
+    // this.translate.use('English');
   }
 
   ngOnInit(): void {
@@ -69,9 +69,9 @@ export class SupplierRegisterComponent implements OnInit {
   }
 
 
-  changeLang(lang) {
-    this.translate.use(lang);
-  }
+  // changeLang(lang) {
+  //   this.translate.use(lang);
+  // }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
