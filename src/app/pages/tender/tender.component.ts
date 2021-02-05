@@ -1,3 +1,5 @@
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from './../../services/language.service';
 import { Component, OnInit } from '@angular/core';
 import { SidebarService } from 'src/app/services/sidebar-menu.service';
 
@@ -12,7 +14,8 @@ export class TenderComponent implements OnInit {
 
   constructor(
     private sidebarData: SidebarService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.menu = this.sidebarData.getdata();

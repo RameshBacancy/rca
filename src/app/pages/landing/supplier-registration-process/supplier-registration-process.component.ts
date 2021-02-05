@@ -1,3 +1,5 @@
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from './../../../services/language.service';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,7 +20,7 @@ import { AlertService } from 'src/app/services/alert.service';
 export class SupplierRegistrationProcessComponent implements OnInit {
 
   // @ViewChild('mymodal') private hiddenBtn: ElementRef;
-  @ViewChild('nodeInput' ) fileInput: ElementRef;
+  @ViewChild('nodeInput') fileInput: ElementRef;
   isLocal: boolean = false;
   isIndividual: boolean = false;
   isInternational: boolean = false;
@@ -31,8 +33,13 @@ export class SupplierRegistrationProcessComponent implements OnInit {
   constructor(
     private alertService: AlertService,
     private router: Router,
-    private modalService: NgbModal
-    ) { }
+    private modalService: NgbModal,
+    private languageService: LanguageService,
+    private translateService: TranslateService
+  ) {
+    const language = this.languageService.getLanguage();
+    this.translateService.use(language);
+  }
 
 
   ngOnInit(): void {
@@ -49,7 +56,7 @@ export class SupplierRegistrationProcessComponent implements OnInit {
         this.isInternational = true;
       }
     } else {
-        this.router.navigateByUrl('/landing/supplier-registration/dashboard');
-      }
+      this.router.navigateByUrl('/landing/supplier-registration/dashboard');
+    }
   }
 }

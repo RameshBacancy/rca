@@ -1,3 +1,5 @@
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from './../../../services/language.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewRegisteredSupplierComponent implements OnInit {
   supplierType: string;
-  constructor() { }
+  constructor(
+    private languageService: LanguageService,
+    private translateService: TranslateService
+  ) {
+    const language = this.languageService.getLanguage();
+    this.translateService.use(language);
+  }
 
   ngOnInit(): void {
     this.supplierType = localStorage.getItem('regType');

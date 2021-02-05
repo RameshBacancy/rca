@@ -1,7 +1,9 @@
+import { LanguageService } from './../../services/language.service';
 import { Component, OnInit, OnChanges, SimpleChange, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { SidebarService } from 'src/app/services/sidebar-menu.service';
 import { Router } from '@angular/router';
 import { title } from 'process';
+import { TranslateStore, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-admin',
@@ -17,7 +19,12 @@ export class AdminComponent implements OnInit {
   url: any = this.currentUrl.split('/');
   public title: any = this.url[this.url.length - 1];
 
-  constructor(private sidebarData: SidebarService, private router: Router, private ref: ChangeDetectorRef) {
+  constructor(
+    private sidebarData: SidebarService,
+    private router: Router,
+    private ref: ChangeDetectorRef,
+    private languageService: LanguageService,
+    private translateService: TranslateService) {
     router.events.subscribe(e => {
       this.currentUrl = this.router.url;
       this.url = this.currentUrl.split('/');
@@ -26,6 +33,8 @@ export class AdminComponent implements OnInit {
       this.setTitle(this.title);
     });
     this.menus = this.sidebarData.getadmindata();
+    const language = this.languageService.getLanguage();
+    this.translateService.use(language);
   }
 
   ngOnInit(): void {

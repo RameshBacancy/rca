@@ -1,3 +1,4 @@
+import { LanguageService } from './../../services/language.service';
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
@@ -46,9 +47,12 @@ export class SupplierRegisterComponent implements OnInit {
     private userService: UserService,
     private alertService: AlertService,
     private spinner: SpinnerService,
-    private translate: TranslateService,
+    private languageService: LanguageService,
+    private translateService: TranslateService,
     private cdr: ChangeDetectorRef) {
-    // this.translate.use('English');
+
+    const language = this.languageService.getLanguage();
+    this.translateService.use(language);
   }
 
   ngOnInit(): void {
@@ -119,7 +123,7 @@ export class SupplierRegisterComponent implements OnInit {
         cr_number: '',
         register_type: localStorage.getItem('regType')
       };
-    } else { 
+    } else {
       body = {
         civil_number: localStorage.getItem('civilReg'),
         cr_number: localStorage.getItem('commercialReg'),

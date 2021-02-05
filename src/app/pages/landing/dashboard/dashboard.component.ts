@@ -1,3 +1,5 @@
+import { TranslateService } from '@ngx-translate/core';
+import { LanguageService } from './../../../services/language.service';
 import { TenderService } from 'src/app/services/tender.service';
 import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
@@ -35,8 +37,13 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
     private safeHtml: SafeHtmlPipe,
     private tenderService: TenderService,
     private alerts: AlertService,
-    private cdr: ChangeDetectorRef
-  ) { }
+    private cdr: ChangeDetectorRef,
+    private languageService: LanguageService,
+    private translateService: TranslateService
+  ) {
+    const language = this.languageService.getLanguage();
+    this.translateService.use(language);
+   }
 
   ngOnInit(): void {
     this.modalService.dismissAll();

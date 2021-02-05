@@ -1,3 +1,4 @@
+import { LanguageService } from './../../../services/language.service';
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
@@ -22,14 +23,16 @@ export class LandingHeaderComponent implements OnInit {
   public sidebarItems;
   showtabs: boolean = true;
   public languageArray = ['English', 'Arabic'];
-  selectedLanguage = 'English';
+  selectedLanguage =  'English';
   arStatus: string;
 
   constructor(
     private router: Router,
     private userService: UserService,
     private spinner: SpinnerService,
-    private translate: TranslateService) {
+    private translate: TranslateService,
+    private languageService: LanguageService
+    ) {
     this.translate.use('English');
   }
 
@@ -37,12 +40,14 @@ export class LandingHeaderComponent implements OnInit {
     if (localStorage.getItem('supplierLogin') === 'true') {
       this.showtabs = false;
     }
-
+    this.selectedLanguage = this.languageService.getLanguage() || 'English';
+    this.translate.use(this.selectedLanguage);
     this.arStatus = localStorage.getItem('arStatus');
   }
 
 
   changeLang(lang) {
+    this.languageService.setLanguage(lang);
     this.translate.use(lang);
   }
   /**
