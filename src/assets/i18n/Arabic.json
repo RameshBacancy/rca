@@ -38,7 +38,7 @@
         "supplierRegType": "نوع المورد",
         "local": "محلي",
         "international": "دولي",
-        "localReg.Type": "نوع تسجيل المورد المحلي",
+        "localRegType": "نوع تسجيل المورد المحلي",
         "localCompany": "مورد محلي",
         "citizen": "مواطن",
         "government": "الجهات الحكومية",
