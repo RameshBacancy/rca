@@ -41,7 +41,9 @@ export class LandingHeaderComponent implements OnInit {
       this.showtabs = false;
     }
     this.selectedLanguage = this.languageService.getLanguage() || 'English';
-    this.translate.use(this.selectedLanguage);
+    this.changeLang(this.selectedLanguage);
+    // this.translate.use(this.selectedLanguage);
+    // this.languageService.setLanguage(this.selectedLanguage);
     this.arStatus = localStorage.getItem('arStatus');
   }
 
