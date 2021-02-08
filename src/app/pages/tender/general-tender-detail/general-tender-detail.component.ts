@@ -1,4 +1,3 @@
-import { TenderService } from 'src/app/services/tender.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,8 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class GeneralTenderDetailComponent implements OnInit {
 
 
-  constructor(private tenderService: TenderService) {
-    this.tenderService.getTenderData();
+  constructor() {
   }
 
   ngOnInit(): void {

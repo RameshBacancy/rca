@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { map } from 'rxjs/operators';
 import { TenderService } from 'src/app/services/tender.service';
 
 @Component({
@@ -17,15 +18,22 @@ export class SubmitTenderBidsComponent implements OnInit {
   contractData: any[];
   selectedContract: any;
   selectedContractIndex: number;
+  tenderBidsDetails: any;
 
   constructor(private tenderService: TenderService) { }
 
   ngOnInit(): void {
+    this.loadTenderAddendum();
     this.itemData = this.tenderService.getItemData();
     this.revisionNoChange();
     this.contractData = this.tenderService.getContractData();
   }
 
+  private loadTenderAddendum(): void {
+    this.tenderService.getTenderDataObs().pipe(map(res => res.submitTenderBids)).subscribe(res => {
+     this.tenderBidsDetails = res;
+    });
+  }
 
   changeTab() {
     this.selected.setValue(this.selected.value + 1);

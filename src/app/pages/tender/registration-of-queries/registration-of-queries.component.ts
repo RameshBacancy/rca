@@ -42,7 +42,6 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
     this.itemData = this.tenderService.getItemData();
     this.revisionNoChange();
     this.contractData = this.tenderService.getContractData();
-    this.tenderService.getTenderData();
     this.loadTenderData();
   }
 

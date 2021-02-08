@@ -22,7 +22,7 @@
 </section>
 
 <div class="custom-tab-01">
-    <mat-horizontal-stepper [@.disabled]="true" #stepper>
+    <mat-horizontal-stepper [@.disabled]="true" #stepper *ngIf="tenderAddendum">
         <!-- Request SIte visit -->
         <mat-step>
             <ng-template matStepLabel>Site Visit</ng-template>
@@ -30,62 +30,62 @@
             <div class="row mt-4 ml-2">
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender No</h5>
-                    <p class="fs-14">09/2017/MT</p>
+                    <p class="fs-14">{{tenderAddendum.tenderNo}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Title</h5>
-                    <p class="fs-14 ">About Tender - Brief</p>
+                    <p class="fs-14 ">{{tenderAddendum.tenderTitle}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Revision No</h5>
-                    <p class="fs-14 ">-</p>
+                    <p class="fs-14 ">{{tenderAddendum.revisionNo}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
-                    <p class="fs-14 ">1a</p>
+                    <p class="fs-14 ">{{tenderAddendum.siteID}}</p>
                 </div>
             </div>
             <div class="row mt-4 ml-2">
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
-                    <p class="fs-14">-</p>
+                    <p class="fs-14">{{tenderAddendum.siteDescription}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Addendum Id</h5>
-                    <p class="fs-14">-</p>
+                    <p class="fs-14">{{tenderAddendum.addendumId}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Addendum Date</h5>
-                    <p class="fs-14">-</p>
+                    <p class="fs-14">{{tenderAddendum.addendumDate}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Query No</h5>
-                    <p class="fs-14">-</p>
+                    <p class="fs-14">{{tenderAddendum.queryNo}}</p>
                 </div>
             </div>
             <div class="row mt-4 ml-2">
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Query Type</h5>
-                    <p class="fs-14">-</p>
+                    <p class="fs-14">{{tenderAddendum.queryType}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Visit Date and Time</h5>
-                    <p class="fs-14">14-10-2017 11:00:00 </p>
+                    <p class="fs-14">{{tenderAddendum.siteVisit.visitDateAndTime}} </p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Location</h5>
-                    <p class="fs-14">SEEB</p>
+                    <p class="fs-14">{{tenderAddendum.siteVisit.location}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Visit Remarks
                     </h5>
-                    <p class="fs-14">Notes / Comments</p>
+                    <p class="fs-14">{{tenderAddendum.siteVisit.visitRemarks}}</p>
                 </div>
             </div>
             <div class="row mt-4 ml-2">
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Special Instruction</h5>
-                    <p class="fs-14">If any</p>
+                    <p class="fs-14">{{tenderAddendum.siteVisit.specialInstruction}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Gate Pass</h5>
@@ -103,18 +103,18 @@
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Project Engg. Name</h5>
-                    <p class="fs-14">Eng. Ahmed Al wahaibi</p>
+                    <p class="fs-14">{{tenderAddendum.siteVisit.projectEngName}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Contact Number</h5>
-                    <p class="fs-14">960020000</p>
+                    <p class="fs-14">{{tenderAddendum.siteVisit.contactNumber}}</p>
                 </div>
             </div>
             <div class="row mt-4 ml-2">
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status
                     </h5>
-                    <p class="fs-14">Published</p>
+                    <p class="fs-14">{{tenderAddendum.tenderStatus}}</p>
                 </div>
             </div>
 
@@ -147,56 +147,56 @@
             <div class="row mt-4 ml-2">
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender No</h5>
-                    <p class="fs-14">09/2017/MT</p>
+                    <p class="fs-14">{{tenderAddendum.tenderNo}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Title</h5>
-                    <p class="fs-14 ">About Tender - Brief</p>
+                    <p class="fs-14 ">{{tenderAddendum.tenderTitle}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Revision No</h5>
-                    <p class="fs-14 ">-</p>
+                    <p class="fs-14 ">{{tenderAddendum.revisionNo}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
-                    <p class="fs-14 ">1a</p>
+                    <p class="fs-14 ">{{tenderAddendum.siteID}}</p>
                 </div>
             </div>
             <div class="row mt-4 ml-2">
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
-                    <p class="fs-14">-</p>
+                    <p class="fs-14">{{tenderAddendum.siteDescription}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Addendum Id</h5>
-                    <p class="fs-14">-</p>
+                    <p class="fs-14">{{tenderAddendum.addendumId}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Addendum Date</h5>
-                    <p class="fs-14">-</p>
+                    <p class="fs-14">{{tenderAddendum.addendumDate}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Query No</h5>
-                    <p class="fs-14">-</p>
+                    <p class="fs-14">{{tenderAddendum.queryNo}}</p>
                 </div>
             </div>
             <div class="row mt-4 ml-2">
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Query Type</h5>
-                    <p class="fs-14">-</p>
+                    <p class="fs-14">{{tenderAddendum.queryType}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Extension Time</h5>
-                    <p class="fs-14">10-11-2017</p>
+                    <p class="fs-14">{{tenderAddendum.extensions.extensionDate}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Extension Time</h5>
-                    <p class="fs-14"> 14:00:00</p>
+                    <p class="fs-14">{{tenderAddendum.extensions.extensionTime}}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status
                     </h5>
-                    <p class="fs-14">Published</p>
+                    <p class="fs-14">{{tenderAddendum.tenderStatus}}</p>
                 </div>
             </div>
 
@@ -206,7 +206,7 @@
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Extension Remarks</h5>
                 </div>
                 <div class="col-md-6  px-4 pb-2">
-                    <textarea name="" class="form-control" id="" rows="5"></textarea>
+                    <textarea name="" class="form-control" id="" rows="5">{{tenderAddendum.extensions.extensionRemarks}}</textarea>
                 </div>
             </div>
 
@@ -242,25 +242,26 @@
                     <div class="row mt-4 ml-2">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender No</h5>
-                            <p class="fs-14">09/2017/MT</p>
+                            <p class="fs-14">{{tenderAddendum.tenderNo}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Title</h5>
-                            <p class="fs-14 ">Supply & Commissioning of A/C Equipment's</p>
+                            <p class="fs-14 ">{{tenderAddendum.tenderTitle}}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
-                            <p class="fs-14 ">1a</p>
+                            <p class="fs-14 ">{{tenderAddendum.siteID}}</p>
                         </div>
                     </div>
                     <div class="row mt-2 ml-2">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
-                            <p class="fs-14 px-2">-</p>
+                            <p class="fs-14">{{tenderAddendum.siteDescription}}</p>
                         </div>
-                        <div class="col-md-3 col-lg-3 col-xl-2 px-4">
-                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
-                            <p class="fs-14 px-2">Published</p>
+                        <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
+                            <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status
+                            </h5>
+                            <p class="fs-14">{{tenderAddendum.tenderStatus}}</p>
                         </div>
 
                     </div>

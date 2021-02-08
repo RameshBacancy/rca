@@ -1,6 +1,7 @@
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { TenderService } from 'src/app/services/tender.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tender-addendums',
@@ -16,15 +17,23 @@ export class TenderAddendumsComponent implements OnInit {
   contractData: any[];
   selectedContract: any;
   selectedContractIndex: number;
+  tenderAddendum: any;
 
   constructor(
     private tenderService: TenderService
   ) { }
 
   ngOnInit(): void {
+    this.loadTenderAddendum()
     this.itemData = this.tenderService.getItemData();
     this.revisionNoChange();
     this.contractData = this.tenderService.getContractData();
+  }
+
+  private loadTenderAddendum(): void {
+    this.tenderService.getTenderDataObs().pipe(map(res => res.tenderAddendum)).subscribe(res => {
+     this.tenderAddendum = res;
+    });
   }
 
   changeTab() {
