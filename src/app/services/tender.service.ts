@@ -1,6 +1,6 @@
 import { map } from 'rxjs/operators';
 import { TenderDetail, GeneralTenderDetails } from './../models/tender.model';
-import { Observable, pipe } from 'rxjs';
+import { Observable, pipe, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -8,6 +8,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TenderService {
+
+  private tenderData: Observable<any>;
 
   constructor(private http: HttpClient) { }
 
@@ -21,8 +23,9 @@ export class TenderService {
       .pipe(map((res: { generalTenderDetails: GeneralTenderDetails }) => res.generalTenderDetails));
   }
 
+  // For current tender list show 
   getTender(): Observable<any> {
-    return this.http.get('/assets/JSON/tender-info.json').pipe(map((res: any) => {
+    return this.http.get('./assets/JSON/tender-info.json').pipe(map((res: any) => {
       if (res.tenderInfo) {
         const civilReg = localStorage.getItem('civilReg');
         const regType = localStorage.getItem('regType');
@@ -37,6 +40,16 @@ export class TenderService {
     }));
   }
 
+  // for tender data call
+  getTenderData(): void {
+    this.tenderData = this.http.get('./assets/JSON/tender-details.json');
+  }
+
+  getTenderDataObs(): Observable<any> {
+    return this.tenderData;
+  }
+
+  // For supply and service line tab
   getItemData() {
     const data = [
       {
@@ -87,6 +100,7 @@ export class TenderService {
     return data;
   }
 
+  // For contract boq
   getContractData() {
     const data = [
       {

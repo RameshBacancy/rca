@@ -47,6 +47,8 @@
             <th scope="col">Tender Title</th>
             <th scope="col">Start Date</th>
             <th scope="col">End Date</th>
+            <th scope="col">Site Id</th>
+            <th scope="col">Site Desc</th>
             <th scope="col">Tender Fee(OMR)</th>
             <th scope="col">Remark</th>
           </tr>
@@ -58,6 +60,8 @@
             <td><a routerLink="/e-tendering/general-tender-details">{{ tenderDetail.tenderTitle }}</a></td>
             <td>{{ tenderDetail.startDate }}</td>
             <td>{{ tenderDetail.endDate }}</td>
+            <td>{{ tenderDetail.siteId }}</td>
+            <td>{{ tenderDetail.siteDescription }}</td>
             <td>{{ tenderDetail.tenderFee }}</td>
             <td>{{ tenderDetail.remarks }}</td>
           </tr>

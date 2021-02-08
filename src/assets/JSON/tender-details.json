@@ -8,7 +8,7 @@
             "tenderFee": 2000,
             "remarks": "-",
             "siteId": "1a",
-            "siteDescription": "",
+            "siteDescription": "Lorem ipsum",
             "tenderStatus": ""
         },
         {
@@ -20,7 +20,7 @@
             "tenderFee": 3000,
             "remarks": "-",
             "siteId": "2a",
-            "siteDescription": "",
+            "siteDescription": "Lorem ipsum",
             "tenderStatus": ""
         },
         {
@@ -32,7 +32,7 @@
             "tenderFee": 300,
             "remarks": "-",
             "siteId": "3a",
-            "siteDescription": "",
+            "siteDescription": "Lorem ipsum",
             "tenderStatus": ""
         }
     ],
