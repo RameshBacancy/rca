@@ -40,8 +40,9 @@
         "tenderNo": "09/2017/MT",
         "tenderTitle": "Supply & Commissioning of A/C Equipment's",
         "siteID": "1a",
-        "siteDescription": "-",
-        "tenderStatus": "-",
+        "siteDescription": "Lorem ipsum is placeholder text commonly used in the graphic, print.",
+        "tenderStatus": "Published",
+        "revisionNo": "2",
         "tenderProgram": {
             "tenderStartDate": "10-10-17",
             "tenderSubmissionDate": "10-11-17",
@@ -53,12 +54,12 @@
         },
         "tenderParticipate": {
             "participate": "yes",
-            "regretReason": "yes",
-            "siteVisitRequired": "does not fit my work schedule.",
-            "tenderDocumentFee": "100OMR"
+            "regretReason": "does not fit my work schedule.",
+            "siteVisitRequired": "yes",
+            "tenderDocumentFee": "100 OMR"
         },
         "tenderFees": {
-            "tenderDocumentFee": "1000OMR",
+            "tenderDocumentFee": "100 OMR",
             "paymentMode": "debit"
         },
         "tenderDocuments": [{
@@ -192,17 +193,28 @@
                 }
             ]
         },
-        "otherInfo": {
-            "freeField1": "-",
-            "freeField2": "-",
-            "freeField3": "-",
-            "freeField4": "-",
-            "freeField5": "-"
-        }
+        "otherInfo":[
+            {
+                "no": "1",
+                "label": "field 1",
+                "value":""
+            },
+            {
+                "no": "2",
+                "label": "field 2",
+                "value":""
+            }
+        ]
     },
     "registrationOfQueries": {
+        "tenderNo": "09/2017/MT",
+        "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+        "siteID": "1a",
+        "siteDescription": "Lorem ipsum is placeholder text commonly used in the graphic, print.",
+        "tenderStatus": "Published",
+        "revisionNo": "2",
         "tenderSiteVisit": {
-            "requestForSiteVisit": ""
+            "requestForSiteVisit": true
         },
         "tenderExtension": {
             "extensionRequestDate": "",

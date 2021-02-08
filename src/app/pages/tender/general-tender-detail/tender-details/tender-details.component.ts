@@ -1,15 +1,19 @@
+import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { TenderService } from 'src/app/services/tender.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-tender-details',
   templateUrl: './tender-details.component.html',
   styleUrls: ['./tender-details.component.scss']
 })
-export class TenderDetailsComponent implements OnInit {
+export class TenderDetailsComponent implements OnInit, OnDestroy {
 
   participated: boolean;
   regretReasons: string[];
+  tenderData: any;
+  private subscription: Subscription;
 
   constructor(
     private tenderService: TenderService
@@ -23,14 +27,20 @@ export class TenderDetailsComponent implements OnInit {
   }
 
   private loadTenderData(): void {
-  
-    this.tenderService.getTenderDataObs().subscribe(res => {
-      console.log('res :>> ', res);
-    })
+    this.subscription = this.tenderService.getTenderDataObs().
+      pipe(map(res => res.generalTenderDetails)).
+      subscribe(res => {
+        this.tenderData = res;
+      });
   }
 
   changeParticipationStatus(status): void {
     this.participated = status;
+    this.tenderData.tenderParticipate.participate = status ? 'yes' : 'no';
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

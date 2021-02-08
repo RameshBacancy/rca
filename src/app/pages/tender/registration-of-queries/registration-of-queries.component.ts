@@ -1,5 +1,7 @@
+import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { TenderService } from 'src/app/services/tender.service';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -9,8 +11,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './registration-of-queries.component.html',
   styleUrls: ['./registration-of-queries.component.scss']
 })
-export class RegistrationOfQueriesComponent implements OnInit {
-  
+export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
+
   @ViewChild('selectionModel', { static: false }) selectionModel: ElementRef;
   selected = new FormControl(0);
   weekList: string[];
@@ -21,6 +23,8 @@ export class RegistrationOfQueriesComponent implements OnInit {
   contractData: any[];
   selectedContract: any;
   selectedContractIndex: number;
+  tenderData: any;
+  subscription: Subscription;
 
   constructor(
     private tenderService: TenderService,
@@ -38,6 +42,15 @@ export class RegistrationOfQueriesComponent implements OnInit {
     this.itemData = this.tenderService.getItemData();
     this.revisionNoChange();
     this.contractData = this.tenderService.getContractData();
+    this.tenderService.getTenderData();
+    this.loadTenderData();
+  }
+
+  private loadTenderData(): void {
+    this.subscription = this.tenderService.getTenderDataObs().pipe(map(res => res.registrationOfQueries))
+      .subscribe(res => {
+        this.tenderData = res;
+      });
   }
 
   changeTab() {
@@ -51,7 +64,7 @@ export class RegistrationOfQueriesComponent implements OnInit {
   revisionNoChange() {
     this.filterItemData = this.itemData.filter(item => item.revisionNo === this.revisionNo);
   }
-  
+
   contractExpand(contractData: any, index: number) {
     if (this.selectedContractIndex === index) {
       this.selectedContractIndex = null;
@@ -61,8 +74,8 @@ export class RegistrationOfQueriesComponent implements OnInit {
       this.selectedContractIndex = index;
     }
   }
-  open(){
-    this.modalService.open(this.selectionModel, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {});
+  open() {
+    this.modalService.open(this.selectionModel, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => { });
   }
 
   submitTenderBids() {
@@ -73,4 +86,7 @@ export class RegistrationOfQueriesComponent implements OnInit {
     this.router.navigateByUrl('/e-tendering/tender-addendums');
   }
 
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
+  }
 }

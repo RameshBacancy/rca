@@ -1,4 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -12,7 +14,7 @@ import * as fileSave from 'file-saver';
   templateUrl: './general-tender-documents.component.html',
   styleUrls: ['./general-tender-documents.component.scss']
 })
-export class GeneralTenderDocumentsComponent implements OnInit {
+export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
   @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
   @ViewChild('selectionModel', { static: false }) selectionModel: ElementRef;
 
@@ -31,6 +33,8 @@ export class GeneralTenderDocumentsComponent implements OnInit {
   contractData: any[];
   selectedContract: any;
   selectedContractIndex: number;
+  tenderData: any;
+  private subscription: Subscription;
 
   constructor(
     private router: Router,
@@ -50,10 +54,19 @@ export class GeneralTenderDocumentsComponent implements OnInit {
     this.itemData = this.tenderService.getItemData();
     this.revisionNoChange();
     this.contractData = this.tenderService.getContractData();
+    this.loadTenderData();
+  }
+
+  private loadTenderData(): void {
+    this.subscription = this.tenderService.getTenderDataObs().
+      pipe(map(res => res.generalTenderDetails)).
+      subscribe(res => {
+        this.tenderData = res;
+      });
   }
 
   proceed() {
-    this.modalService.open(this.selectionModel, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => {});
+    this.modalService.open(this.selectionModel, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => { });
     // localStorage.removeItem('documentFees');
     // this.router.navigateByUrl('/e-tendering/registration-of-queries');
     // this.router.navigate([]);
@@ -183,8 +196,12 @@ export class GeneralTenderDocumentsComponent implements OnInit {
       this.selectedContractIndex = index;
     }
   }
-  
-  downloadFile(){
+
+  downloadFile() {
     fileSave.saveAs("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", "temp.text");
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

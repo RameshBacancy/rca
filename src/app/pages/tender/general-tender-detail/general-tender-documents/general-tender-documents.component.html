@@ -130,34 +130,34 @@
 
         </mat-step>
         <!-- Tender Documents -->
-        <mat-step>
+        <mat-step *ngIf="tenderData">
             <ng-template matStepLabel>Tender Documents</ng-template>
             <div class="row mt-4 ml-2">
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender No</h5>
-                    <p class="fs-14">09/2017/MT</p>
+                    <p class="fs-14">{{ tenderData.tenderNo }}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Title</h5>
-                    <p class="fs-14 ">Supply & Commissioning of A/C Equipment's</p>
+                    <p class="fs-14 ">{{ tenderData.tenderTitle }}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
-                    <p class="fs-14 ">1a</p>
+                    <p class="fs-14 ">{{ tenderData.siteID }}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
-                    <p class="fs-14 px-2">-</p>
+                    <p class="fs-14 px-2">{{ tenderData.siteDescription }}</p>
                 </div>
             </div>
             <div class="row mt-3 ml-2">
                 <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
-                    <p class="fs-14 px-2">Published</p>
+                    <p class="fs-14 px-2">{{ tenderData.tenderStatus }}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
-                    <p class="fs-14 px-2">-</p>
+                    <p class="fs-14 px-2">{{ tenderData.siteDescription }}</p>
                 </div>
             </div>
             <!-- <div class="row mt-4 ml-5">
@@ -171,7 +171,30 @@
                 </div>
             </div> -->
             <div class="row mt-3 ml-2">
-                <div class="col-md-3">
+                <ng-container *ngFor="let document of tenderData.tenderDocuments">
+                    <div class="col-md-3">
+                        <div class="card bg-light  ">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3 fs-18">{{ document.name }}</h5>
+                                <h6 class="mb-2 fs-14 text-muted text-light">Document No. : <span
+                                        class="dark-text-1 fs-12">{{ document.documentNO }}</span></h6>
+                                <h6 class="mb-2 fs-14 text-muted text-light">Revision No. : <span
+                                        class="dark-text-1 fs-12">{{ document.revisionNo }}</span></h6>
+                                <p class="card-text dark-text-1 fs-12">{{ document.word }}</p>
+                                <a class="card-link text-purple" [href]="document.documentUrl" >PDF</a>
+                                <div class="mt-2 text-right"> 
+                                    <a  [href]="document.documentUrl">
+                                        <i class="fa fa-download text-purple mr-2 fs-14 "></i> 
+                                    </a>
+                                    <a  [href]="document.documentUrl">
+                                        <i class="fa fa-file text-purple fs-14"></i> 
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+                <!-- <div class="col-md-3">
                     <div class="card bg-light  ">
                         <div class="card-body">
                             <h5 class="card-title mb-3 fs-18">General Specification </h5>
@@ -227,7 +250,7 @@
                                     class="fa fa-file text-purple fs-14"(click)="downloadFile()"></i> </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
 
             <div class="row mt-5 ml-2">
@@ -252,7 +275,7 @@
 
         </mat-step>
         <!-- Tender Bids Display -->
-        <mat-step>
+        <mat-step *ngIf="tenderData">
             <ng-template matStepLabel>Tender Bids Display</ng-template>
 
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
@@ -262,11 +285,11 @@
                     <div class="row mt-4 ml-2">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender No</h5>
-                            <p class="fs-14">09/2017/MT</p>
+                            <p class="fs-14">{{ tenderData.tenderNo }}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Title</h5>
-                            <p class="fs-14 ">Supply & Commissioning of A/C Equipment's</p>
+                            <p class="fs-14 ">{{ tenderData.tenderTitle }}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Revision No</h5>
@@ -281,17 +304,17 @@
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
-                            <p class="fs-14 ">1a</p>
+                            <p class="fs-14 ">{{ tenderData.siteID }}</p>
                         </div>
                     </div>
                     <div class="row mt-2 ml-2">
                         <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
-                            <p class="fs-14 px-2">Published</p>
+                            <p class="fs-14 px-2">{{ tenderData.tenderStatus }}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
-                            <p class="fs-14 px-2">-</p>
+                            <p class="fs-14 px-2">{{ tenderData.siteDescription }}</p>
                         </div>
                     </div>
 
@@ -408,11 +431,11 @@
                     <div class="row mt-4 ml-2">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender No</h5>
-                            <p class="fs-14">09/2017/MT</p>
+                            <p class="fs-14">{{ tenderData.tenderNo }}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Title</h5>
-                            <p class="fs-14 ">Supply & Commissioning of A/C Equipment's</p>
+                            <p class="fs-14 ">{{ tenderData.tenderTitle }}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Revision No</h5>
@@ -427,17 +450,17 @@
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
-                            <p class="fs-14 ">1a</p>
+                            <p class="fs-14 ">{{ tenderData.siteID }}</p>
                         </div>
                     </div>
                     <div class="row mt-2 ml-2">
                         <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
-                            <p class="fs-14 px-2">Published</p>
+                            <p class="fs-14 px-2">{{ tenderData.tenderStatus }}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
-                            <p class="fs-14 px-2">-</p>
+                            <p class="fs-14 px-2">{{ tenderData.siteDescription }}</p>
                         </div>
                     </div>
                     <div class="row mt-3 ml-2">
@@ -528,11 +551,11 @@
                     <div class="row mt-4 ml-2">
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender No</h5>
-                            <p class="fs-14">09/2017/MT</p>
+                            <p class="fs-14">{{ tenderData.tenderNo }}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Title</h5>
-                            <p class="fs-14 ">Supply & Commissioning of A/C Equipment's</p>
+                            <p class="fs-14 ">{{ tenderData.tenderTitle }}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Revision No</h5>
@@ -547,17 +570,17 @@
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
-                            <p class="fs-14 ">1a</p>
+                            <p class="fs-14 ">{{ tenderData.siteID }}</p>
                         </div>
                     </div>
                     <div class="row mt-2 ml-2">
                         <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
-                            <p class="fs-14 px-2">Published</p>
+                            <p class="fs-14 px-2">{{ tenderData.tenderStatus }}</p>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
-                            <p class="fs-14 px-2">-</p>
+                            <p class="fs-14 px-2">{{ tenderData.siteDescription }}</p>
                         </div>
                     </div>
                     <div class="row mt-3">
@@ -698,30 +721,30 @@
 
 
         <!-- Other Info -->
-        <mat-step>
+        <mat-step *ngIf="tenderData">
             <ng-template matStepLabel>Other Info</ng-template>
             <div class="row mt-4 ml-2">
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender No</h5>
-                    <p class="fs-14">09/2017/MT</p>
+                    <p class="fs-14">{{ tenderData.tenderNo }}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Title</h5>
-                    <p class="fs-14 ">Supply & Commissioning of A/C Equipment's</p>
+                    <p class="fs-14 ">{{ tenderData.tenderTitle }}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
-                    <p class="fs-14 ">1a</p>
+                    <p class="fs-14 ">{{ tenderData.siteID }}</p>
                 </div>
             </div>
             <div class="row mt-3 ml-2">
                 <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Status</h5>
-                    <p class="fs-14 px-2">Published</p>
+                    <p class="fs-14 px-2">{{ tenderData.tenderStatus }}</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Description</h5>
-                    <p class="fs-14 px-2">-</p>
+                    <p class="fs-14 px-2">{{ tenderData.siteDescription }}</p>
                 </div>
             </div>
             <div class="row mt-2">
@@ -737,12 +760,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>field 1</td>
-                                    <td><input type="text"></td>
+                                <tr *ngFor="let other of tenderData.otherInfo">
+                                    <td>{{ other.no }}</td>
+                                    <td>{{ other.label }}</td>
+                                    <td><input type="text"  [(ngModel)]="other.value"></td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     <td>1</td>
                                     <td>field 2</td>
                                     <td><input type="text"></td>
@@ -761,7 +784,7 @@
                                     <td>1</td>
                                     <td>field 5</td>
                                     <td><input type="text"></td>
-                                </tr>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>

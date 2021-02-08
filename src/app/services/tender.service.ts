@@ -1,6 +1,6 @@
 import { map } from 'rxjs/operators';
 import { TenderDetail, GeneralTenderDetails } from './../models/tender.model';
-import { Observable, pipe, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
