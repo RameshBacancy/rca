@@ -63,103 +63,592 @@
             "paymentMode": "debit"
         },
         "tenderDocuments": {
-            "tenderDocuments": []
+            "tenderDocuments": [
+                {
+                    "no":1,
+                    "name": "General Specification",
+                    "documentNO": "1200232",
+                    "revisionNo": "$1",
+                    "word": "WORD07",
+                    "documentType": "PDF",
+                    "documentUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                },
+                {
+                    "no":2,
+                    "name": "Special Instructions",
+                    "documentNO": "1200232",
+                    "revisionNo": "$1",
+                    "word": "WORD07",
+                    "documentType": "PDF",
+                    "documentUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                },
+                {
+                    "no":3,
+                    "name": "Design Documents",
+                    "documentNO": "1200232",
+                    "revisionNo": "$1",
+                    "word": "WORD07",
+                    "documentType": "PDF",
+                    "documentUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                }
+            ]
         },
         "tenderBidsDisplay": {
             "revisionNo": "",
-            "lineNo": "",
-            "itemPartCode": "",
-            "itemPartCodeDescription": "",
-            "uom": "",
-            "quantity": "",
-            "unitPrice": "",
-            "totalPrice": "",
-            "documentAttachment": []
+            "supplyLines":[
+                {
+                    "lineNo": 1, 
+                    "partCode": "Part 1",
+                    "partCodeDescription": "Item/Part 1",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "-",	
+                    "documentAttachment": [],	
+                    "queries": "",
+                    "Responses": "-"
+                },
+                {
+                    "lineNo": 2, 
+                    "partCode": "Part 2",
+                    "partCodeDescription": "Item/Part 2",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "-",	
+                    "documentAttachment": [],	
+                    "queries": "",
+                    "Responses": "-"
+                },
+                {
+                    "lineNo": 3, 
+                    "partCode": "Part 3",
+                    "partCodeDescription": "Item/Part 3",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "",	
+                    "documentAttachment": [],	
+                    "queries": "",
+                    "Responses": "-"
+                }
+            ],
+            "serviceLines":[
+                {
+                    "lineNo": 1, 
+                    "partCodeDescription": "Item/Part 1",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "-",	
+                    "documentAttachment": []	
+                },
+                {
+                    "lineNo": 2, 
+                    "partCodeDescription": "Item/Part 2",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "-",	
+                    "documentAttachment": []	
+                },
+                {
+                    "lineNo": 3, 
+                    "partCodeDescription": "Item/Part 3",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "",	
+                    "documentAttachment": []
+                }
+            ],
+            "contractBoq":[
+                {
+                    "lineNo": 1,
+                    "lineName": "Survey",
+                    "lineDescription": "Survey",
+                    "valueContractCurrency": "-",
+                    "valueCompanyCurrency": "-",
+                    "items": [
+                        {
+                            "lineNo": 1,
+                            "itemName": "Floors",
+                            "itemDescription": "Flooring",
+                            "itemType": "Material",
+                            "uom": "NOS",
+                            "quantity": "6",
+                            "itemRate": "-",
+                            "value": "-"
+                        }
+                    ]
+                },
+                {
+                    "lineNo": 2,
+                    "lineName": "Cons",
+                    "lineDescription": "Construction",
+                    "valueContractCurrency": "",
+                    "valueCompanyCurrency": "",
+                    "items": [
+                        {
+                            "lineNo": "",
+                            "itemName": "Shift",
+                            "itemDescription": "Shifting",
+                            "itemType": "",
+                            "uom": "",
+                            "quantity": "",
+                            "itemRate": "",
+                            "value": ""
+                        }
+                    ]
+                }
+            ]
         },
         "otherInfo": {
-            "freeField1": "",
-            "freeField2": "",
-            "freeField3": "",
-            "freeField4": "",
-            "freeField5": ""
+            "freeField1": "-",
+            "freeField2": "-",
+            "freeField3": "-",
+            "freeField4": "-",
+            "freeField5": "-"
         }
     },
     "registrationOfQueries": {
+        "tenderSiteVisit": {
+            "requestForSiteVisit": ""
+        },
         "tenderExtension": {
-            "extensionRequestTime": "",
+            "extensionRequestDate": "",
             "reasonForExtension": "" 
         },
         "technicalQueries": {
             "revisionNo": "",
-            "lineNo": "",
-            "itemPartCode": "",
-            "itemPartCodeDescription": "",
-            "uom": "",
-            "quantity": "",
-            "unitPrice": "",
-            "totalPrice": "",
-            "documentAttachment": [],
-            "Queries": "",
-            "Responses": ""
+            "supplyLines":[
+                {
+                    "lineNo": 1, 
+                    "partCode": "Part 1",
+                    "partCodeDescription": "Item/Part 1",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "-",	
+                    "documentAttachment": [],	
+                    "queries": "",
+                    "Responses": "-"
+                },
+                {
+                    "lineNo": 2, 
+                    "partCode": "Part 2",
+                    "partCodeDescription": "Item/Part 2",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "-",	
+                    "documentAttachment": [],	
+                    "queries": "",
+                    "Responses": "-"
+                },
+                {
+                    "lineNo": 3, 
+                    "partCode": "Part 3",
+                    "partCodeDescription": "Item/Part 3",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "",	
+                    "documentAttachment": [],	
+                    "queries": "",
+                    "Responses": "-"
+                }
+            ],
+            "serviceLines":[
+                {
+                    "lineNo": 1, 
+                    "partCodeDescription": "Item/Part 1",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "-",	
+                    "documentAttachment": []	
+                },
+                {
+                    "lineNo": 2, 
+                    "partCodeDescription": "Item/Part 2",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "-",	
+                    "documentAttachment": []	
+                },
+                {
+                    "lineNo": 3, 
+                    "partCodeDescription": "Item/Part 3",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "",	
+                    "documentAttachment": []
+                }
+            ],
+            "contractBoq":[
+                {
+                    "lineNo": 1,
+                    "lineName": "Survey",
+                    "lineDescription": "Survey",
+                    "valueContractCurrency": "-",
+                    "valueCompanyCurrency": "-",
+                    "items": [
+                        {
+                            "lineNo": 1,
+                            "itemName": "Floors",
+                            "itemDescription": "Flooring",
+                            "itemType": "Material",
+                            "uom": "NOS",
+                            "quantity": "6",
+                            "itemRate": "-",
+                            "value": "-"
+                        }
+                    ]
+                },
+                {
+                    "lineNo": 2,
+                    "lineName": "Cons",
+                    "lineDescription": "Construction",
+                    "valueContractCurrency": "",
+                    "valueCompanyCurrency": "",
+                    "items": [
+                        {
+                            "lineNo": "",
+                            "itemName": "Shift",
+                            "itemDescription": "Shifting",
+                            "itemType": "",
+                            "uom": "",
+                            "quantity": "",
+                            "itemRate": "",
+                            "value": ""
+                        }
+                    ]
+                }
+            ]
         }
     },
-    "tenderAddendums": {
+    "tenderAddendum": {
+        "tenderNo": "09/2017/MT",
+        "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+        "siteID": "1a",
+        "siteDescription": "-",
+        "tenderStatus": "-",
         "revisionNo": "",
         "addendumId": "",
         "addendumDate": "",
         "queryNo": "",
         "queryType": "",
         "siteVisit": {
-            "visitDateAndTime": "",
-            "location": "",
-            "visitRemarks": "",
-            "specialInstruction ": "",
-            "gatePass": "",
-            "projectEnggName": "",
-            "contactNumber": ""
+            "visitDateAndTime": "14-10-2017 11:00:00",
+            "location": "SEEB",
+            "visitRemarks": "Notes / Comments",
+            "specialInstruction ": "If any",
+            "gatePass": "yes",
+            "projectEngName": "Eng. Ahmed Al wahhabi",
+            "contactNumber": "960020000"
         },
         "extensions": {
-            "extensionDate": "",
-            "extensionTime": "",
-            "extensionRemarks": ""
+            "extensionDate": "10-11-2017",
+            "extensionTime": "14:00:00",
+            "extensionRemarks": "-"
         },
         "technicalResponses": {
-            "supplyBidsDetail": {
-                "lineNo": "",
-                "itemPartCode": "",
-                "itemPartCodeDescription": "",
-                "uom": "",
-                "quantity": "",
-                "unitPrice": "",
-                "totalPrice": "",
-                "documentAttachment": "",
-                "queries": "",
-                "responses": ""
-            },
-            "serviceBidsDetail": {
-                "lineNo": "",
-                "itemPartCode": "",
-                "itemPartCodeDescription": "",
-                "uom": "",
-                "quantity": "",
-                "unitPrice": "",
-                "totalPrice": "",
-                "documentAttachment": "",
-                "queries": "",
-                "responses": ""
-            },
-            "contractBidsDetail": {
-                "lineNo": "",
-                "itemPartCode": "",
-                "itemPartCodeDescription": "",
-                "uom": "",
-                "quantity": "",
-                "unitPrice": "",
-                "totalPrice": "",
-                "documentAttachment": "",
-                "queries": "",
-                "responses": ""
-            }
+            "supplyLines":[
+                {
+                    "lineNo": 1, 
+                    "partCode": "Part 1",
+                    "partCodeDescription": "Item/Part 1",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "-",	
+                    "documentAttachment": [],	
+                    "queries": "",
+                    "Responses": "-",
+                    "queryNo": "",
+                    "queryType": ""
+                },
+                {
+                    "lineNo": 2, 
+                    "partCode": "Part 2",
+                    "partCodeDescription": "Item/Part 2",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "-",	
+                    "documentAttachment": [],	
+                    "queries": "",
+                    "Responses": "-",
+                    "queryNo": "",
+                    "queryType": ""
+                },
+                {
+                    "lineNo": 3, 
+                    "partCode": "Part 3",
+                    "partCodeDescription": "Item/Part 3",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "",	
+                    "documentAttachment": [],	
+                    "queries": "",
+                    "Responses": "-",
+                    "queryNo": "",
+                    "queryType": ""
+                }
+            ],
+            "serviceLines":[
+                {
+                    "lineNo": 1, 
+                    "partCodeDescription": "Item/Part 1",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "-",	
+                    "documentAttachment": [],
+                    "Responses": "-",
+                    "queryNo": "",
+                    "queryType": ""	
+                },
+                {
+                    "lineNo": 2, 
+                    "partCodeDescription": "Item/Part 2",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "-",	
+                    "documentAttachment": [],
+                    "Responses": "-",
+                    "queryNo": "",
+                    "queryType": ""	
+                },
+                {
+                    "lineNo": 3, 
+                    "partCodeDescription": "Item/Part 3",	
+                    "uoM": "",
+                    "Quantity": "-",	
+                    "unitPrice": "-",	
+                    "totalPrice": "",	
+                    "documentAttachment": [],
+                    "Responses": "-",
+                    "queryNo": "",
+                    "queryType": ""
+                }
+            ],
+            "contractBoq":[
+                {
+                    "lineNo": 1,
+                    "lineName": "Survey",
+                    "lineDescription": "Survey",
+                    "valueContractCurrency": "-",
+                    "valueCompanyCurrency": "-",
+                    "items": [
+                        {
+                            "lineNo": 1,
+                            "itemName": "Floors",
+                            "itemDescription": "Flooring",
+                            "itemType": "Material",
+                            "uom": "NOS",
+                            "quantity": "6",
+                            "itemRate": "-",
+                            "value": "-"
+                        }
+                    ]
+                },
+                {
+                    "lineNo": 2,
+                    "lineName": "Cons",
+                    "lineDescription": "Construction",
+                    "valueContractCurrency": "",
+                    "valueCompanyCurrency": "",
+                    "items": [
+                        {
+                            "lineNo": "",
+                            "itemName": "Shift",
+                            "itemDescription": "Shifting",
+                            "itemType": "",
+                            "uom": "",
+                            "quantity": "",
+                            "itemRate": "",
+                            "value": ""
+                        }
+                    ]
+                }
+            ]
         }
+       
+    },
+    "submitTenderBids": {
+        "tenderNo": "09/2017/MT",
+        "tenderTitle": "Supply & Commissioning of A/C Equipment's",
+        "revisionNo": "2",
+        "siteId": "1a",
+        "siteDescription": "lorem ipsum",
+        "tenderStatus": "Published",
+        "commercialOffers": {
+            "supplyLines": [
+                {
+                    "lineNo": "1",
+                    "itemCode": "Lorem 2",
+                    "itemDescription": "Lorem ipsum 2",
+                    "uom": "",
+                    "unitPrice": "",
+                    "totalPrice": "",
+                    "documentAttachment": "",
+                    "queries": "",
+                    "responses": "",
+                    "queryNo": "",
+                    "queryType": ""
+                },
+                {
+                    "lineNo": "2",
+                    "itemCode": "Lorem 2 b",
+                    "itemDescription": "Lorem ipsum 2b",
+                    "uom": "",
+                    "unitPrice": "",
+                    "totalPrice": "",
+                    "documentAttachment": "",
+                    "queries": "",
+                    "responses": "",
+                    "queryNo": "",
+                    "queryType": ""
+                }
+            ],
+            "serviceLines": [
+                {
+                    "lineNo": "1",
+                    "itemDescription": "Lorem ipsum",
+                    "uom": "",
+                    "unitPrice": "",
+                    "totalPrice": "",
+                    "documentAttachment": "",
+                    "queries": "",
+                    "responses": "",
+                    "queryNo": "",
+                    "queryType": ""
+                },
+                {
+                    "lineNo": "2",
+                    "itemDescription": "Lorem ipsum 2",
+                    "uom": "",
+                    "unitPrice": "",
+                    "totalPrice": "",
+                    "documentAttachment": "",
+                    "queries": "",
+                    "responses": "",
+                    "queryNo": "",
+                    "queryType": ""
+                }
+            ],
+            "contractBoqs": [
+                {
+                    "lineNo": "1",
+                    "lineName": "Survey",
+                    "lineDescription": "Survey",
+                    "valueContractCurrency": "",
+                    "valueCompanyCurrency": "",
+                    "items": [
+                        {
+                            "lineNo": "1",
+                            "itemName": "Floors",
+                            "itemDescription": "Flooring",
+                            "itemType": "Material",
+                            "uom": "NOS",
+                            "quantity": "6",
+                            "itemRate": "",
+                            "value": ""
+                        }
+                    ]
+                },
+                {
+                    "lineNo": "2",
+                    "lineName": "Cons",
+                    "lineDescription": "Construction",
+                    "valueContractCurrency": "",
+                    "valueCompanyCurrency": "",
+                    "items": [
+                        {
+                            "lineNo": "1",
+                            "itemName": "Floors",
+                            "itemDescription": "Flooring",
+                            "itemType": "Material",
+                            "uom": "NOS",
+                            "quantity": "6",
+                            "itemRate": "",
+                            "value": ""
+                        },
+                        {
+                            "lineNo": "2",
+                            "itemName": "Shift",
+                            "itemDescription": "Shifting",
+                            "itemType": "",
+                            "uom": "",
+                            "quantity": "",
+                            "itemRate": "",
+                            "value": ""
+                        },
+                        {
+                            "lineNo": "3",
+                            "itemName": "Build",
+                            "itemDescription": "Building",
+                            "itemType": "Material",
+                            "uom": "",
+                            "quantity": "",
+                            "itemRate": "",
+                            "value": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        "technicalDocumentSubmissions": [],
+        "submitBondInfo": {
+            "bondNumber": "0/2017/MT",
+            "bondValueInOmr": "2000 OMR",
+            "bankName": "Muscat",
+            "bankDate": "-",
+            "bondExpiryDate": "-",
+            "bondDocuments": []
+        },
+        "finalTenderSubmissions": [
+            {
+                "no": "1",
+                "documents": "BOQ",
+                "checkBox": true,
+                "qualifications": ""
+            },
+            {
+                "no": "2",
+                "documents": "Specifications",
+                "checkBox": true,
+                "qualifications": ""
+            },
+            {
+                "no": "3",
+                "documents": "Bond Document",
+                "checkBox": true,
+                "qualifications": ""
+            }
+        ],
+        "otherInfo": [
+            {
+                "no": "1",
+                "label": "field 1",
+                "value": ""
+            },
+            {
+                "no": "2",
+                "label": "field 2",
+                "value": ""
+            },
+            {
+                "no": "3",
+                "label": "field 3",
+                "value": ""
+            }
+        ]
     }
 }
