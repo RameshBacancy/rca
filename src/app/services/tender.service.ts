@@ -8,9 +8,6 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TenderService {
-
-  private tenderData: Observable<any>;
-
   constructor(private http: HttpClient) { }
 
   getCurrentTender(): Observable<TenderDetail[]> {
@@ -41,12 +38,8 @@ export class TenderService {
   }
 
   // for tender data call
-  getTenderData(): void {
-    this.tenderData = this.http.get('./assets/JSON/tender-details.json');
-  }
-
-  getTenderDataObs(): Observable<any> {
-    return this.tenderData;
+  getTenderData(): Observable<any> {
+    return this.http.get('./assets/JSON/tender-details.json');
   }
 
   // For supply and service line tab

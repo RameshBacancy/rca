@@ -46,7 +46,7 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
   }
 
   private loadTenderData(): void {
-    this.subscription = this.tenderService.getTenderDataObs().pipe(map(res => res.registrationOfQueries))
+    this.subscription = this.tenderService.getTenderData().pipe(map(res => res.registrationOfQueries))
       .subscribe(res => {
         this.tenderData = res;
       });

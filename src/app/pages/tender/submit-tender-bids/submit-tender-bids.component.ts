@@ -30,7 +30,7 @@ export class SubmitTenderBidsComponent implements OnInit {
   }
 
   private loadTenderAddendum(): void {
-    this.tenderService.getTenderDataObs().pipe(map(res => res.submitTenderBids)).subscribe(res => {
+    this.tenderService.getTenderData().pipe(map(res => res.submitTenderBids)).subscribe(res => {
      this.tenderBidsDetails = res;
     });
   }

@@ -58,7 +58,7 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
   }
 
   private loadTenderData(): void {
-    this.subscription = this.tenderService.getTenderDataObs().
+    this.subscription = this.tenderService.getTenderData().
       pipe(map(res => res.generalTenderDetails)).
       subscribe(res => {
         this.tenderData = res;
@@ -202,6 +202,7 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    console.log('call')
     this.subscription.unsubscribe();
   }
 }
