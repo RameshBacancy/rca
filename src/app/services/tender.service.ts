@@ -26,7 +26,7 @@ export class TenderService {
       if (res.tenderInfo) {
         const civilReg = localStorage.getItem('civilReg');
         const regType = localStorage.getItem('regType');
-        const email = localStorage.getItem('email');
+        const email = localStorage.getItem('internationalEmail');
         if (regType === 'local' || regType === 'individual') {
           return res.tenderInfo.filter(tender => tender.civilReg === +civilReg && tender.regType === regType);
         }
