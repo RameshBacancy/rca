@@ -344,9 +344,9 @@
                                             </th>
                                             <th scope="col">Document Attachment
                                             </th>
-                                            <th scope="col">Queries
+                                            <!-- <th scope="col">Queries
                                             </th>
-                                            <th scope="col">Responses</th>
+                                            <th scope="col">Responses</th> -->
                                         </tr>
                                     </thead>
                                     <tbody *ngIf="filterItemData">
@@ -359,8 +359,8 @@
                                             <td><input type="text"></td>
                                             <td>{{ item.totalPrice }}</td>
                                             <td><i class="fa fa-folder"></i></td>
-                                            <td><input type="text"></td>
-                                            <td>{{ item.response }}</td>
+                                            <!-- <td><input type="text"></td>
+                                            <td>{{ item.response }}</td> -->
                                         </tr>
                                         <!-- <tr>
                                             <td>1</td>
@@ -762,8 +762,9 @@
                             <tbody>
                                 <tr *ngFor="let other of tenderData.otherInfo">
                                     <td>{{ other.no }}</td>
-                                    <td>{{ other.label }}</td>
-                                    <td><input type="text"  [(ngModel)]="other.value"></td>
+                                    <td>{{ other.label || '-' }}</td>
+                                    <td>{{ other.value || '-' }}</td>
+                                    <!-- <td><input type="text"  [(ngModel)]="other.value"></td> -->
                                 </tr>
                                 <!-- <tr>
                                     <td>1</td>

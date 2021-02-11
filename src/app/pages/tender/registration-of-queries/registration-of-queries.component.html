@@ -254,7 +254,7 @@
                                             <td>{{ item.totalPrice }}</td>
                                             <td><i class="fa fa-folder"></i></td>
                                             <td><input type="text"></td>
-                                            <td>{{ item.response }}</td>
+                                            <td>-</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -351,6 +351,9 @@
                                             <th scope="col">
                                                 Document Attachment
                                             </th>
+                                            <th scope="col">Queries
+                                            </th>
+                                            <th scope="col">Responses</th>
                                         </tr>
                                     </thead>
                                     <tbody  *ngIf="filterItemData">
@@ -362,6 +365,8 @@
                                             <td>-</td>
                                             <td>{{ item.totalPrice }}</td>
                                             <td><i class="fa fa-folder"></i></td>
+                                            <td><input type="text"></td>
+                                            <td>-</td>
                                         </tr>
                                     </tbody>
                                 </table>
