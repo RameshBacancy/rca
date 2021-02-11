@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { map } from 'rxjs/operators';
 import { TenderService } from 'src/app/services/tender.service';
 
@@ -10,6 +11,8 @@ import { TenderService } from 'src/app/services/tender.service';
 })
 export class SubmitTenderBidsComponent implements OnInit {
 
+  @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
+
   selected = new FormControl(0);
   revisionNoArray = [1, 2, 3];
   revisionNo = 2;
@@ -19,8 +22,15 @@ export class SubmitTenderBidsComponent implements OnInit {
   selectedContract: any;
   selectedContractIndex: number;
   tenderBidsDetails: any;
+  files: any[];
+  uploadData: any;
+  filesList: any = [];
+  closeResult: string;
 
-  constructor(private tenderService: TenderService) { }
+  constructor(
+    private tenderService: TenderService,
+    private modalService: NgbModal
+    ) { }
 
   ngOnInit(): void {
     this.loadTenderAddendum();
@@ -59,6 +69,56 @@ export class SubmitTenderBidsComponent implements OnInit {
     } else {
       this.selectedContract = contractData.items;
       this.selectedContractIndex = index;
+    }
+  }
+
+  private upload(flag) {
+    this.fileInput.nativeElement.value = '';
+    this.files.forEach(file => {
+    const formData = new FormData();
+    formData.append('file', file.data);
+    file.inProgress = true;
+    if( flag == false){
+      this.filesList.push(file.data);
+    }
+    });
+  }
+
+  onClick() {
+
+    const fileInput = this.fileInput.nativeElement;
+    var flag = false;
+    fileInput.onchange = () => {
+      for (let index = 0; index < fileInput.files.length; index++) {
+        const file = fileInput.files[index];
+        this.filesList.filter(f => {
+          if (f.name.toString() == file.name.toString()) {
+            alert('already have similar name file.');
+            flag = true;
+          }
+        });
+        if (flag == false) {
+        this.files = [];
+        this.files.push({ data: file, inProgress: false, progress: 0 });
+        }
+      }
+      this.upload(flag);
+    };
+    fileInput.click();
+  }
+
+  openFile(content, data) {
+    this.uploadData = data;
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {});
+  }
+
+  deleteFile(file) {
+    if (confirm('Do you want to delete ' + file.name + '?')) {
+      this.filesList.map((d, i) => {
+        if (d.lastModified == file.lastModified) {
+          this.filesList.splice(i, 1);
+        }
+      });
     }
   }
 }

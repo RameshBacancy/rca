@@ -21,18 +21,17 @@
 </section>
 <div class="mt-2">
     <!-- Show files Pop up-->
-    <!-- <ng-template #shoeFiles let-modal>
+    <ng-template #shoeFiles let-modal>
         <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title"> Files
-                <i class="fa fa-ban text-red fs-14" type="button" placement="right" ngbTooltip="Data fetched from interface - not editable" *ngIf="isDataMoci"></i>
             </h4>
-            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <button type="button" class="close" aria-label="Close" (click)="modal.close('Save click')">
                 <span aria-hidden="true">×</span>
             </button>
         </div>
         <div class="modal-body custom-modal-main">
             <section class=" bg-white " style="min-height: 300px !important;">
-                <ng-container *ngIf="filesList.length != 0; else fileListTemplate">
+                <ng-container *ngIf=" filesList && filesList.length != 0; else fileListTemplate">
                     <div class="dark-text-1">
                         Added File Names
                     </div>
@@ -57,16 +56,6 @@
             <section class="bg-white">
                 <div>Add New File</div>
                 <mat-card>
-                    <mat-card-content>
-                        <ul>
-                            <li *ngFor="let file of files">
-                                <mat-progress-bar [value]="file.inProgress">
-                                        </mat-progress-bar>
-                                <span id="file-label">
-                                </span>
-                            </li>
-                        </ul>
-                    </mat-card-content>
                     <mat-card-actions>
                         <button mat-button color="warn" (click)="onClick()">
                             <mat-icon>file_upload</mat-icon>
@@ -77,10 +66,10 @@
             </section>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="button"
+            <button class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="submit"
                 (click)="modal.close('Save click')">Done</button>
         </div>
-    </ng-template> -->
+    </ng-template>
 
 
     <mat-horizontal-stepper [@.disabled]="true" #stepper *ngIf="tenderBidsDetails">
@@ -182,10 +171,10 @@
                                             <td>-</td>
                                             <td>{{ item.totalPrice }}</td>
                                             <td><i class="fa fa-folder"></i></td>
-                                            <td><input type="text"></td>
+                                            <td>{{ item.queries }}</td>
                                             <td>{{ item.response }}</td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ item.queryNo }}</td>
+                                            <td>{{ item.queryType }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -280,6 +269,7 @@
                                             <th scope="col">
                                                 Document Attachment
                                             </th>
+                                            <th>Queries</th>
                                             <th scope="col">Responses</th>
                                             <th scope="col">Query No
                                             </th>
@@ -296,9 +286,10 @@
                                             <td>-</td>
                                             <td>{{ item.totalPrice }}</td>
                                             <td><i class="fa fa-folder"></i></td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ item.queries }}</td>
+                                            <td>{{ item.response }}</td>
+                                            <td>{{ item.queryNo }}</td>
+                                            <td>{{ item.queryType }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -550,7 +541,7 @@
             <div class="row mt-4 ml-5">
                 <div class="col">
                     <span class="fs-18 font-weight-bold text-black dark-text-1 mr-5">Tender Documents :</span>
-                    <span class=" btn btn-info ">
+                    <span class=" btn btn-info " (click)="openFile(shoeFiles,'tenderDocuments')">
                         <!-- (click)="openFile(shoeFiles,'tenderDocuments')" -->
                         Documents <i class="fa fa-folder-open" aria-hidden="true"></i>
                         <input type="file" #fileInput id="fileUpload" name="fileUpload" multiple="multiple"
@@ -794,30 +785,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>field 1</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>field 2</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>field 3</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>field 4</td>
-                                    <td>-</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>field 5</td>
-                                    <td>-</td>
+                                <tr *ngFor="let other of tenderBidsDetails.otherInfo">
+                                    <td>{{ other.no }}</td>
+                                    <td>{{ other.label || '-' }}</td>
+                                    <td>{{ other.value || '-' }}</td>
+                                    <!-- <td><input type="text"  [(ngModel)]="other.value"></td> -->
                                 </tr>
                             </tbody>
                         </table>
