@@ -112,6 +112,10 @@ export class SubmitTenderBidsComponent implements OnInit {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {});
   }
 
+  closeFileModel() {
+    this.modalService.dismissAll();
+  }
+  
   deleteFile(file) {
     if (confirm('Do you want to delete ' + file.name + '?')) {
       this.filesList.map((d, i) => {
