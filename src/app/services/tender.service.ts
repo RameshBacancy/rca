@@ -44,52 +44,108 @@ export class TenderService {
 
   // For supply and service line tab
   getItemData() {
-    const data = [
-      {
-        revisionNo: 1,
-        partCode: 'Lorem 1',
-        partCodeDescription: 'Lorem ipsum 1',
-        uom: '',
-        quantity: '',
-        totalPrice: '',
-        document: '',
-        queries: '',
-        response: ''
-      },
-      {
-        revisionNo: 2,
-        partCode: 'Lorem 2',
-        partCodeDescription: 'Lorem ipsum 2',
-        uom: '',
-        quantity: '',
-        totalPrice: '',
-        document: '',
-        queries: '',
-        response: ''
-      },
-      {
-        revisionNo: 3,
-        partCode: 'Lorem 2',
-        partCodeDescription: 'Lorem ipsum 3',
-        uom: '',
-        quantity: '',
-        totalPrice: '',
-        document: '',
-        queries: '',
-        response: ''
-      },
-      {
-        revisionNo: 2,
-        partCode: 'Lorem 2 b',
-        partCodeDescription: 'Lorem ipsum 2 b',
-        uom: '',
-        quantity: '',
-        totalPrice: '',
-        document: '',
-        queries: '',
-        response: ''
-      },
-    ];
+    const data = {
+      supplyLine:  [
+        {
+          revisionNo: 1,
+          partCode: 'Lorem 1',
+          partCodeDescription: 'Lorem ipsum 1',
+          uom: '',
+          quantity: '',
+          totalPrice: '',
+          document: '',
+          queries: '',
+          response: '',
+          lineNo: '1'
+        },
+        {
+          revisionNo: 2,
+          partCode: 'Lorem 2',
+          partCodeDescription: 'Lorem ipsum 2',
+          uom: '',
+          quantity: '',
+          totalPrice: '',
+          document: '',
+          queries: '',
+          response: '',
+          lineNo: '2'
+        },
+        {
+          revisionNo: 3,
+          partCode: 'Lorem 2',
+          partCodeDescription: 'Lorem ipsum 3',
+          uom: '',
+          quantity: '',
+          totalPrice: '',
+          document: '',
+          queries: '',
+          response: '',
+          lineNo: '3'
+        },
+        {
+          revisionNo: 2,
+          partCode: 'Lorem 2 b',
+          partCodeDescription: 'Lorem ipsum 2 b',
+          uom: '',
+          quantity: '',
+          totalPrice: '',
+          document: '',
+          queries: '',
+          response: '',
+          lineNo: '4'
+        },
+      ],
+      serviceLine:  [
+        {
+          revisionNo: 1,
+          partCode: 'Lorem 1',
+          partCodeDescription: 'Lorem ipsum 1',
+          uom: '',
+          quantity: '',
+          totalPrice: '',
+          document: '',
+          queries: '',
+          response: '',
+          lineNo: '1'
+        },
+        {
+          revisionNo: 2,
+          partCode: 'Lorem 2',
+          partCodeDescription: 'Lorem ipsum 2',
+          uom: '',
+          quantity: '',
+          totalPrice: '',
+          document: '',
+          queries: '',
+          response: '',
+          lineNo: '2'
+        },
+        {
+          revisionNo: 3,
+          partCode: 'Lorem 2',
+          partCodeDescription: 'Lorem ipsum 3',
+          uom: '',
+          quantity: '',
+          totalPrice: '',
+          document: '',
+          queries: '',
+          response: '',
+          lineNo: '3'
+        },
+        {
+          revisionNo: 2,
+          partCode: 'Lorem 2 b',
+          partCodeDescription: 'Lorem ipsum 2 b',
+          uom: '',
+          quantity: '',
+          totalPrice: '',
+          document: '',
+          queries: '',
+          response: '',
+          lineNo: '4'
+        },
+      ],
+    };
     return data;
   }
 

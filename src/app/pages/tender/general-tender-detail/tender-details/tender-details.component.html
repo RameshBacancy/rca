@@ -221,9 +221,9 @@
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 mt-4 mb-4"  *ngIf="tenderData.tenderParticipate.participate == 'yes'">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Visit Required</h5>
-                    <input class="form-check-input ml-2" id="siteYes" type="radio" name='siteVisit' checked>
+                    <input class="form-check-input ml-2" [(ngModel)]="tenderData.tenderParticipate.siteVisitRequired" id="siteYes"  type="radio" value="yes" name='siteVisit' checked>
                     <label class="form-check-label ml-5 mr-5" for="siteYes">Yes </label>
-                    <input class="form-check-input" id="siteNo" name='siteVisit' type="radio">
+                    <input class="form-check-input" [(ngModel)]="tenderData.tenderParticipate.siteVisitRequired" id="siteNo" value="no" name='siteVisit' type="radio">
                     <label class="form-check-label ml-2" for="siteNo">No </label>
                 </div>
             </div>
@@ -304,7 +304,8 @@
                         disabled>Next <i class="fa fa-caret-right"></i></button>
                     <a routerLink="/e-tendering/general-tender-details/tender-fees">
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            >Submit
+                            (click)="submitOrSaveDraft()"    
+                        >Submit
                         </button>
                     </a>
                     <a routerLink="/landing/supplier-registration/dashboard">

@@ -79,4 +79,8 @@ export class CurrentTendersComponent implements OnInit {
         break;
     }
   }
+
+  selectTender(tenderNo: string): void {
+    localStorage.setItem('tenderNo', tenderNo);
+  }
 }

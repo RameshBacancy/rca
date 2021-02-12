@@ -350,13 +350,13 @@
                                         </tr>
                                     </thead>
                                     <tbody *ngIf="filterItemData">
-                                        <tr *ngFor="let item of filterItemData; let i =  index;">
+                                        <tr *ngFor="let item of filterItemData.supplyLine; let i =  index;">
                                             <td>{{ i + 1 }}</td>
                                             <td>{{ item.partCode  }}</td>
                                             <td>{{ item.partCodeDescription  }}</td>
                                             <td>{{ item.uom  }}</td>
                                             <td>{{ item.quantity }}</td>
-                                            <td><input type="text"></td>
+                                            <td><input type="text" [(ngModel)]="item.unitPrice"></td>
                                             <td>{{ item.totalPrice }}</td>
                                             <td><i class="fa fa-folder"></i></td>
                                             <!-- <td><input type="text"></td>
@@ -490,12 +490,12 @@
                                         </tr>
                                     </thead>
                                     <tbody *ngIf="itemData">
-                                        <tr *ngFor="let item of filterItemData; let i =  index;">
+                                        <tr *ngFor="let item of filterItemData.serviceLine; let i =  index;">
                                             <td>{{ i + 1 }}</td>
                                             <td>{{ item.partCodeDescription  }}</td>
                                             <td>{{ item.uom  }}</td>
                                             <td>{{ item.quantity }}</td>
-                                            <td><input type="text"></td>
+                                            <td><input type="text" [(ngModel)]="item.unitPrice"></td>
                                             <td>{{ item.totalPrice }}</td>
                                             <td><i class="fa fa-folder"></i></td>
                                         </tr>
@@ -800,7 +800,7 @@
                         disabled>Next <i class="fa fa-caret-right"></i></button>
 
                     <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                        (click)="proceed()">Submit
+                        (click)="submitOrSaveDraft();proceed()">Submit
                     </button>
 
                     <a routerLink="/landing/supplier-registration/dashboard">

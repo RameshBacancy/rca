@@ -56,8 +56,8 @@
         <tbody>
           <tr *ngFor="let tenderDetail of filterTenders | filter : searchText;index as index;">
             <td>{{ index + 1 }}</td>
-            <td><a routerLink="/e-tendering/general-tender-details">{{ tenderDetail.tenderNo }}</a></td>
-            <td><a routerLink="/e-tendering/general-tender-details">{{ tenderDetail.tenderTitle }}</a></td>
+            <td><a (click)="selectTender(tenderDetail.tenderNo)" routerLink="/e-tendering/general-tender-details">{{ tenderDetail.tenderNo }}</a></td>
+            <td><a (click)="selectTender(tenderDetail.tenderNo)" routerLink="/e-tendering/general-tender-details">{{ tenderDetail.tenderTitle }}</a></td>
             <td>{{ tenderDetail.startDate }}</td>
             <td>{{ tenderDetail.endDate }}</td>
             <td>{{ tenderDetail.siteId }}</td>

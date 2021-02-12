@@ -39,6 +39,23 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
     this.tenderData.tenderParticipate.participate = status ? 'yes' : 'no';
   }
 
+  submitOrSaveDraft(): void {
+    const data: any = {
+      generalTenderDetail: {
+        participate: this.tenderData.tenderParticipate.participate,
+        tenderDocumentFee: this.tenderData.tenderFees.tenderDocumentFee,
+        paymentMode: this.tenderData.tenderFees.paymentMode,
+        tenderNo: localStorage.getItem('tenderNo')
+      }
+    };
+
+    if (this.tenderData.tenderParticipate.participate === 'yes') {
+      data.generalTenderDetail.siteVisit = this.tenderData.tenderParticipate.siteVisitRequired;
+    } else {
+      data.generalTenderDetail.regretReason = this.tenderData.tenderParticipate.regretReason;
+    }
+  }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

@@ -28,8 +28,11 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
   files: any[];
   revisionNoArray = [1, 2, 3];
   revisionNo = 2;
-  itemData: any[];
-  filterItemData: any[];
+  itemData: any;
+  filterItemData = {
+    supplyLine: [],
+    serviceLine: []
+  };
   contractData: any[];
   selectedContract: any;
   selectedContractIndex: number;
@@ -184,7 +187,8 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
   }
 
   revisionNoChange() {
-    this.filterItemData = this.itemData.filter(item => item.revisionNo === this.revisionNo);
+      this.filterItemData.supplyLine = this.itemData.supplyLine.filter(item => item.revisionNo === this.revisionNo);;
+      this.filterItemData.serviceLine = this.itemData.serviceLine.filter(item => item.revisionNo === this.revisionNo);;
   }
 
   contractExpand(contractData: any, index: number) {
@@ -200,6 +204,34 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
   downloadFile() {
     fileSave.saveAs("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", "temp.text");
   }
+
+  submitOrSaveDraft(): void {
+    const supplyLines: any[] = [];
+    const serviceLines: any[] = [];
+    this.filterItemData.supplyLine.forEach(element => {
+      supplyLines.push({
+        unitPrice: element.unitPrice,
+        lineNo: element.lineNo
+      });
+    });
+    this.filterItemData.serviceLine.forEach(element => {
+      serviceLines.push({
+        unitPrice: element.unitPrice,
+        lineNo: element.lineNo
+      });
+    });
+    const data: any = {
+      generalTenderDocument: {
+        tenderNo: localStorage.getItem('tenderNo'),
+        revisionNo: this.tenderData.revisionNo,
+        bidDisplay: {
+          supplyLine: supplyLines,
+          serviceLine: serviceLines
+        }
+      }
+    };
+  }
+
 
   ngOnDestroy(): void {
     console.log('call')
