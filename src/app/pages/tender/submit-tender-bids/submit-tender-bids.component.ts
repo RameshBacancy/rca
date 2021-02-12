@@ -16,8 +16,11 @@ export class SubmitTenderBidsComponent implements OnInit {
   selected = new FormControl(0);
   revisionNoArray = [1, 2, 3];
   revisionNo = 2;
-  itemData: any[];
-  filterItemData: any[];
+  itemData: any;
+  filterItemData = {
+    supplyLine: [],
+    serviceLine: []
+  };;
   contractData: any[];
   selectedContract: any;
   selectedContractIndex: number;
@@ -59,7 +62,8 @@ export class SubmitTenderBidsComponent implements OnInit {
   }
 
   revisionNoChange() {
-    this.filterItemData = this.itemData.filter(item => item.revisionNo === this.revisionNo);
+    this.filterItemData.supplyLine = this.itemData.supplyLine.filter(item => item.revisionNo === this.revisionNo);
+    this.filterItemData.serviceLine = this.itemData.serviceLine.filter(item => item.revisionNo === this.revisionNo);
   }
   
   contractExpand(contractData: any, index: number) {
@@ -107,13 +111,27 @@ export class SubmitTenderBidsComponent implements OnInit {
     fileInput.click();
   }
 
-  openFile(content, data) {
-    this.uploadData = data;
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {});
+  openFile(content) {
+    this.modalService.dismissAll();
+    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+
+      this.closeResult = `Closed with: ${result}`;
+
+    }, (reason) => {
+
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+
+    });
   }
 
-  closeFileModel() {
-    this.modalService.dismissAll();
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
   
   deleteFile(file) {
@@ -124,5 +142,16 @@ export class SubmitTenderBidsComponent implements OnInit {
         }
       });
     }
+  }
+
+  submitOrSaveDraft(): void {
+    const data = {
+      submitTenderBid: {
+        tenderNo: localStorage.getItem('tenderNo'),
+        tenderDocument: this.filesList,
+        finalTenderSubmission: this.tenderBidsDetails.finalTenderSubmissions
+      }
+    };
+      
   }
 }

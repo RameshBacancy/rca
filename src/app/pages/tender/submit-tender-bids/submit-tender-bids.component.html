@@ -67,7 +67,7 @@
         </div>
         <div class="modal-footer">
             <button class="btn btn-primary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="submit"
-                (click)="closeFileModel()">Done</button>
+                (click)="modal.close('Save click')">Done</button>
         </div>
     </ng-template>
 
@@ -162,7 +162,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  *ngIf="filterItemData">
-                                        <tr *ngFor="let item of filterItemData; let i =  index;">
+                                        <tr *ngFor="let item of filterItemData.supplyLine; let i =  index;">
                                             <td>{{ i + 1 }}</td>
                                             <td>{{ item.partCode  }}</td>
                                             <td>{{ item.partCodeDescription  }}</td>
@@ -193,7 +193,7 @@
                             <a routerLink="/landing/supplier-registration/dashboard">
                                 <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                             </a>
-                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft()">Save
                                 as draft
                             </button>
                             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -278,7 +278,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  *ngIf="filterItemData">
-                                        <tr *ngFor="let item of filterItemData; let i =  index;">
+                                        <tr *ngFor="let item of filterItemData.serviceLine; let i =  index;">
                                             <td>{{ i + 1 }}</td>
                                             <td>{{ item.partCodeDescription  }}</td>
                                             <td>{{ item.uom  }}</td>
@@ -312,7 +312,7 @@
                             <a routerLink="/landing/supplier-registration/dashboard">
                                 <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                             </a>
-                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft()">Save
                                 as draft
                             </button>
                             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -499,7 +499,7 @@
                             <a routerLink="/landing/supplier-registration/dashboard">
                                 <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                             </a>
-                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft()">Save
                                 as draft
                             </button>
                             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -541,8 +541,7 @@
             <div class="row mt-4 ml-5">
                 <div class="col">
                     <span class="fs-18 font-weight-bold text-black dark-text-1 mr-5">Tender Documents :</span>
-                    <span class=" btn btn-info " (click)="openFile(shoeFiles,'tenderDocuments')">
-                        <!-- (click)="openFile(shoeFiles,'tenderDocuments')" -->
+                    <span class=" btn btn-info " (click)="openFile(shoeFiles)">
                         Documents <i class="fa fa-folder-open" aria-hidden="true"></i>
                         <input type="file" #fileInput id="fileUpload" name="fileUpload" multiple="multiple"
                             style="display: none;" />
@@ -562,7 +561,7 @@
                     <a routerLink="/landing/supplier-registration/dashboard">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                     </a>
-                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft()">Save
                         as draft
                     </button>
                     <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -627,7 +626,6 @@
             <div class="row mt-4 ml-5">
                 <div class="col">
                     <span class="fs-18 font-weight-bold text-black dark-text-1 mr-5">Bond Documents :</span>
-                        <!--  (click)="openFile(shoeFiles,'tenderDocuments')" -->
                         <!-- Documents <i class="fa fa-folder-open" aria-hidden="true"></i>
                         <input type="file" #fileInput id="fileUpload" name="fileUpload" multiple="multiple"
                             style="display: none;" /> -->
@@ -671,7 +669,7 @@
                     <a routerLink="/landing/supplier-registration/dashboard">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                     </a>
-                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft()">Save
                         as draft
                     </button>
                     <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -722,23 +720,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>BOQ</td>
-                                    <td><input type="checkbox" checked></td>
-                                    <td><input type="input"></td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Specifications</td>
-                                    <td><input type="checkbox" checked></td>
-                                    <td><input type="input"></td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Bond Document</td>
-                                    <td><input type="checkbox" checked></td>
-                                    <td><input type="input"></td>
+                                <tr *ngFor="let item of tenderBidsDetails.finalTenderSubmissions">
+                                    <td>{{item.no}}</td>
+                                    <td>{{item.documents}}</td>
+                                    <td><input type="checkbox" [checked]="item.checkBox" 
+                                        (change)="item.checkBox = !item.checkBox"></td>
+                                    <td><input type="input" [(ngModel)]="item.qualifications"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -758,7 +745,7 @@
                     <a routerLink="/landing/supplier-registration/dashboard">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                     </a>
-                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft()">Save
                         as draft
                     </button>
                     <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -828,13 +815,13 @@
                         disabled>Next <i class="fa fa-caret-right"></i></button>
 
                         <a routerLink="/landing/supplier-registration/dashboard">
-                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Complete</button>
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"  (click)="submitOrSaveDraft()">Complete</button>
                         </a>
 
                     <a routerLink="/landing/supplier-registration/dashboard">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                     </a>
-                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft()">Save
                         as draft
                     </button>
                     <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home

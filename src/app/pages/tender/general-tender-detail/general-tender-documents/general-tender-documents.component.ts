@@ -187,8 +187,8 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
   }
 
   revisionNoChange() {
-      this.filterItemData.supplyLine = this.itemData.supplyLine.filter(item => item.revisionNo === this.revisionNo);;
-      this.filterItemData.serviceLine = this.itemData.serviceLine.filter(item => item.revisionNo === this.revisionNo);;
+      this.filterItemData.supplyLine = this.itemData.supplyLine.filter(item => item.revisionNo === this.revisionNo);
+      this.filterItemData.serviceLine = this.itemData.serviceLine.filter(item => item.revisionNo === this.revisionNo);
   }
 
   contractExpand(contractData: any, index: number) {
@@ -234,7 +234,7 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-    console.log('call')
+    // console.log('call')
     this.subscription.unsubscribe();
   }
 }

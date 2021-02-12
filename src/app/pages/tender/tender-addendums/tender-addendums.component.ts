@@ -12,8 +12,11 @@ export class TenderAddendumsComponent implements OnInit {
   selected = new FormControl(0);
   revisionNoArray = [1, 2, 3];
   revisionNo = 2;
-  itemData: any[];
-  filterItemData: any[];
+  itemData: any;
+  filterItemData = {
+    supplyLine: [],
+    serviceLine: []
+  };
   contractData: any[];
   selectedContract: any;
   selectedContractIndex: number;
@@ -44,8 +47,9 @@ export class TenderAddendumsComponent implements OnInit {
   }
 
   revisionNoChange() {
-    this.filterItemData = this.itemData.filter(item => item.revisionNo === this.revisionNo);
-  }
+    this.filterItemData.supplyLine = this.itemData.supplyLine.filter(item => item.revisionNo === this.revisionNo);
+    this.filterItemData.serviceLine = this.itemData.serviceLine.filter(item => item.revisionNo === this.revisionNo);
+}
   
   contractExpand(contractData: any, index: number) {
     if (this.selectedContractIndex === index) {
@@ -55,5 +59,16 @@ export class TenderAddendumsComponent implements OnInit {
       this.selectedContract = contractData.items;
       this.selectedContractIndex = index;
     }
+  }
+
+  submitOrSaveDraft(): void {
+    const data = {
+      tenderAddendum: {
+        tenderNo: localStorage.getItem('tenderNo'),
+        gatePass: this.tenderAddendum.siteVisit.gatePass,
+        extensionRemark: this.tenderAddendum.extensions.extensionRemarks,
+        revisionNo: ''
+      }
+    };
   }
 }

@@ -18,8 +18,11 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
   weekList: string[];
   revisionNoArray = [1, 2, 3];
   revisionNo = 2;
-  itemData: any[];
-  filterItemData: any[];
+  itemData: any;
+  filterItemData = {
+    supplyLine: [],
+    serviceLine: []
+  };
   contractData: any[];
   selectedContract: any;
   selectedContractIndex: number;
@@ -61,7 +64,8 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
 
 
   revisionNoChange() {
-    this.filterItemData = this.itemData.filter(item => item.revisionNo === this.revisionNo);
+      this.filterItemData.supplyLine = this.itemData.supplyLine.filter(item => item.revisionNo === this.revisionNo);
+      this.filterItemData.serviceLine = this.itemData.serviceLine.filter(item => item.revisionNo === this.revisionNo);
   }
 
   contractExpand(contractData: any, index: number) {
@@ -87,5 +91,35 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
+  }
+
+  submitOrSaveDraft(): void {
+    const supplyLines: any[] = [];
+    const serviceLines: any[] = [];
+    this.filterItemData.supplyLine.forEach(element => {
+      supplyLines.push({
+        queries: element.queries,
+        lineNo: element.lineNo
+      });
+    });
+    this.filterItemData.serviceLine.forEach(element => {
+      serviceLines.push({
+        queries: element.queries,
+        lineNo: element.lineNo
+      });
+    });
+    let data =  {
+      tenderQueries: {
+        tenderNo: localStorage.getItem('tenderNo'),
+        siteVisit: this.tenderData.tenderSiteVisit.requestForSiteVisit,
+        reqSubmissionDate: this.tenderData.tenderExtension.extensionRequestDate,
+        reasonOfExtension: this.tenderData.tenderExtension.reasonForExtension,
+        revisionNo: '',
+        technicalInquiry: {
+          supplyLine: supplyLines,
+          serviceLine: serviceLines
+        }
+      }
+    };
   }
 }

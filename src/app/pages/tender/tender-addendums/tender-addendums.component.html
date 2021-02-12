@@ -91,7 +91,7 @@
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Gate Pass</h5>
                     <!-- <p class="fs-14">Yes / No</p> -->
                     <mat-form-field appearance="fill" class="mt-0">
-                        <mat-select>
+                        <mat-select (selectionChange)="tenderAddendum.siteVisit.gatePass = $event.value">
                             <mat-option [value]="'yes'">
                                 Yes
                             </mat-option>
@@ -129,7 +129,7 @@
                     <a routerLink="/landing/supplier-registration/dashboard">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                     </a>
-                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft()">Save
                         as draft
                     </button>
                     <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -206,7 +206,7 @@
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Extension Remarks</h5>
                 </div>
                 <div class="col-md-6  px-4 pb-2">
-                    <textarea name="" class="form-control" id="" rows="5">{{tenderAddendum.extensions.extensionRemarks}}</textarea>
+                    <textarea name="" [(ngModel)]="tenderAddendum.extensions.extensionRemarks" class="form-control" id="" rows="5"></textarea>
                 </div>
             </div>
 
@@ -221,7 +221,7 @@
                     <a routerLink="/landing/supplier-registration/dashboard">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                     </a>
-                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft()">Save
                         as draft
                     </button>
                     <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -321,7 +321,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  *ngIf="filterItemData">
-                                        <tr *ngFor="let item of filterItemData; let i =  index;">
+                                        <tr *ngFor="let item of filterItemData.supplyLine; let i =  index;">
                                             <td>{{ i + 1 }}</td>
                                             <td>{{ item.partCode  }}</td>
                                             <td>{{ item.partCodeDescription  }}</td>
@@ -356,7 +356,7 @@
                             <a routerLink="/landing/supplier-registration/dashboard">
                                 <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                             </a>
-                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft()">Save
                                 as draft
                             </button>
                             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -437,7 +437,7 @@
                                         </tr>
                                     </thead>
                                     <tbody  *ngIf="filterItemData">
-                                        <tr *ngFor="let item of filterItemData; let i =  index;">
+                                        <tr *ngFor="let item of filterItemData.serviceLine; let i =  index;">
                                             <td>{{ i + 1 }}</td>
                                             <td>{{ item.partCodeDescription  }}</td>
                                             <td>{{ item.uom  }}</td>
@@ -471,7 +471,7 @@
                             <a routerLink="/landing/supplier-registration/dashboard">
                                 <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                             </a>
-                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft()">Save
                                 as draft
                             </button>
                             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -645,13 +645,13 @@
 
                             <a routerLink="/e-tendering/submit-tender-bids">
                                 <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                    matStepperNext>Done
+                                      (click)="submitOrSaveDraft()">Done
                                 </button>
                             </a>
                             <a routerLink="/landing/supplier-registration/dashboard">
                                 <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                             </a>
-                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2"  (click)="submitOrSaveDraft()">Save
                                 as draft
                             </button>
                             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
