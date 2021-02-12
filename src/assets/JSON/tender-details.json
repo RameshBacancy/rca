@@ -589,7 +589,34 @@
                 }
             ]
         },
-        "technicalDocumentSubmissions": [],
+        "bondDocuments": [{
+            "no": 1,
+            "name": "General Specification",
+            "documentNO": "1200232",
+            "revisionNo": "$1",
+            "word": "WORD07",
+            "documentType": "PDF",
+            "documentUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+        },
+        {
+            "no": 2,
+            "name": "Special Instructions",
+            "documentNO": "1200232",
+            "revisionNo": "$1",
+            "word": "WORD07",
+            "documentType": "PDF",
+            "documentUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+        },
+        {
+            "no": 3,
+            "name": "Design Documents",
+            "documentNO": "1200232",
+            "revisionNo": "$1",
+            "word": "WORD07",
+            "documentType": "PDF",
+            "documentUrl": "https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+        }
+    ],
         "submitBondInfo": {
             "bondNumber": "0/2017/MT",
             "bondValueInOmr": "2000 OMR",

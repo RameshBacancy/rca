@@ -627,15 +627,38 @@
             <div class="row mt-4 ml-5">
                 <div class="col">
                     <span class="fs-18 font-weight-bold text-black dark-text-1 mr-5">Bond Documents :</span>
-                    <span class=" btn btn-info ">
                         <!--  (click)="openFile(shoeFiles,'tenderDocuments')" -->
-                        Documents <i class="fa fa-folder-open" aria-hidden="true"></i>
+                        <!-- Documents <i class="fa fa-folder-open" aria-hidden="true"></i>
                         <input type="file" #fileInput id="fileUpload" name="fileUpload" multiple="multiple"
-                            style="display: none;" />
-                    </span>
-                </div>
-            </div>
+                            style="display: none;" /> -->
+                        </div>
+                    </div>
 
+            <div class="row mt-3 ml-2">
+                <ng-container *ngFor="let document of tenderBidsDetails.bondDocuments">
+                    <div class="col-md-3">
+                        <div class="card bg-light  ">
+                            <div class="card-body">
+                                <h5 class="card-title mb-3 fs-18">{{ document.name }}</h5>
+                                <h6 class="mb-2 fs-14 text-muted text-light">Document No. : <span
+                                        class="dark-text-1 fs-12">{{ document.documentNO }}</span></h6>
+                                <h6 class="mb-2 fs-14 text-muted text-light">Revision No. : <span
+                                        class="dark-text-1 fs-12">{{ document.revisionNo }}</span></h6>
+                                <p class="card-text dark-text-1 fs-12">{{ document.word }}</p>
+                                <a class="card-link text-purple" [href]="document.documentUrl" >PDF</a>
+                                <div class="mt-2 text-right"> 
+                                    <a  [href]="document.documentUrl">
+                                        <i class="fa fa-download text-purple mr-2 fs-14 "></i> 
+                                    </a>
+                                    <a  [href]="document.documentUrl">
+                                        <i class="fa fa-file text-purple fs-14"></i> 
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
             <div class="row mt-5 ml-2">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
