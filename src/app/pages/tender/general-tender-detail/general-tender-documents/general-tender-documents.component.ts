@@ -69,7 +69,11 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
   }
 
   proceed() {
-    this.modalService.open(this.selectionModel, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => { });
+    this.modalService.open(this.selectionModel, {
+      backdrop: 'static',
+      keyboard: false,
+      ariaLabelledBy: 'modal-basis-title'
+    }).result.then(() => { });
     // localStorage.removeItem('documentFees');
     // this.router.navigateByUrl('/e-tendering/registration-of-queries');
     // this.router.navigate([]);
@@ -187,8 +191,8 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
   }
 
   revisionNoChange() {
-      this.filterItemData.supplyLine = this.itemData.supplyLine.filter(item => item.revisionNo === this.revisionNo);
-      this.filterItemData.serviceLine = this.itemData.serviceLine.filter(item => item.revisionNo === this.revisionNo);
+    this.filterItemData.supplyLine = this.itemData.supplyLine.filter(item => item.revisionNo === this.revisionNo);
+    this.filterItemData.serviceLine = this.itemData.serviceLine.filter(item => item.revisionNo === this.revisionNo);
   }
 
   contractExpand(contractData: any, index: number) {
@@ -230,6 +234,9 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
         }
       }
     };
+    this.tenderService.tenderSubmit(data).subscribe(res => {
+      this.proceed();
+    });
   }
 
 

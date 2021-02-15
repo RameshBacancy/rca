@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { TenderService } from 'src/app/services/tender.service';
@@ -16,7 +17,8 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   constructor(
-    private tenderService: TenderService
+    private tenderService: TenderService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -54,6 +56,10 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
     } else {
       data.generalTenderDetail.regretReason = this.tenderData.tenderParticipate.regretReason;
     }
+
+    this.tenderService.tenderSubmit(data).subscribe(res => {
+      this.router.navigateByUrl('/e-tendering/general-tender-details/tender-fees');
+    });
   }
 
   ngOnDestroy(): void {

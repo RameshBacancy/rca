@@ -35,7 +35,7 @@ export class TenderAddendumsComponent implements OnInit {
 
   private loadTenderAddendum(): void {
     this.tenderService.getTenderData().pipe(map(res => res.tenderAddendum)).subscribe(res => {
-     this.tenderAddendum = res;
+      this.tenderAddendum = res;
     });
   }
 
@@ -49,8 +49,8 @@ export class TenderAddendumsComponent implements OnInit {
   revisionNoChange() {
     this.filterItemData.supplyLine = this.itemData.supplyLine.filter(item => item.revisionNo === this.revisionNo);
     this.filterItemData.serviceLine = this.itemData.serviceLine.filter(item => item.revisionNo === this.revisionNo);
-}
-  
+  }
+
   contractExpand(contractData: any, index: number) {
     if (this.selectedContractIndex === index) {
       this.selectedContractIndex = null;
@@ -67,7 +67,7 @@ export class TenderAddendumsComponent implements OnInit {
         tenderNo: localStorage.getItem('tenderNo'),
         gatePass: this.tenderAddendum.siteVisit.gatePass,
         extensionRemark: this.tenderAddendum.extensions.extensionRemarks,
-        revisionNo: ''
+        revisionNo: this.revisionNo
       }
     };
   }

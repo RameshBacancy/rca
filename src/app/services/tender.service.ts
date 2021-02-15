@@ -1,14 +1,20 @@
-import { map } from 'rxjs/operators';
+import { AlertService } from './alert.service';
+import { RequestServiceBase } from './request-service-base';
+import { map, catchError } from 'rxjs/operators';
 import { TenderDetail, GeneralTenderDetails } from './../models/tender.model';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Observable, pipe, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TenderService {
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private reqHttp: RequestServiceBase,
+    private alertService: AlertService
+  ) { }
 
   getCurrentTender(): Observable<TenderDetail[]> {
     return this.http.get('./assets/JSON/tender-details.json')
@@ -45,7 +51,7 @@ export class TenderService {
   // For supply and service line tab
   getItemData() {
     const data = {
-      supplyLine:  [
+      supplyLine: [
         {
           revisionNo: 1,
           partCode: 'Lorem 1',
@@ -99,7 +105,7 @@ export class TenderService {
           lineNo: '4'
         },
       ],
-      serviceLine:  [
+      serviceLine: [
         {
           revisionNo: 1,
           partCode: 'Lorem 1',
@@ -216,5 +222,14 @@ export class TenderService {
     return data;
   }
 
+
+  // tender post request
+  tenderSubmit(data: any): Observable<any> {
+    return this.reqHttp.httpPost('general-tender-details', data)
+      .pipe(catchError((err: HttpErrorResponse) => {
+        this.alertService.pushError(err.message);
+        return throwError(err);
+      }));
+  }
 
 }

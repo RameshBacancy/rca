@@ -64,8 +64,8 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
 
 
   revisionNoChange() {
-      this.filterItemData.supplyLine = this.itemData.supplyLine.filter(item => item.revisionNo === this.revisionNo);
-      this.filterItemData.serviceLine = this.itemData.serviceLine.filter(item => item.revisionNo === this.revisionNo);
+    this.filterItemData.supplyLine = this.itemData.supplyLine.filter(item => item.revisionNo === this.revisionNo);
+    this.filterItemData.serviceLine = this.itemData.serviceLine.filter(item => item.revisionNo === this.revisionNo);
   }
 
   contractExpand(contractData: any, index: number) {
@@ -78,7 +78,11 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
     }
   }
   open() {
-    this.modalService.open(this.selectionModel, { ariaLabelledBy: 'modal-basic-title' }).result.then(() => { });
+    this.modalService.open(this.selectionModel, {
+      backdrop: 'static',
+      keyboard: false,
+      ariaLabelledBy: 'modal-basis-title'
+    }).result.then(() => { });
   }
 
   submitTenderBids() {
@@ -108,18 +112,21 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
         lineNo: element.lineNo
       });
     });
-    let data =  {
+    const data = {
       tenderQueries: {
         tenderNo: localStorage.getItem('tenderNo'),
         siteVisit: this.tenderData.tenderSiteVisit.requestForSiteVisit,
         reqSubmissionDate: this.tenderData.tenderExtension.extensionRequestDate,
         reasonOfExtension: this.tenderData.tenderExtension.reasonForExtension,
-        revisionNo: '',
+        revisionNo: this.revisionNo,
         technicalInquiry: {
           supplyLine: supplyLines,
           serviceLine: serviceLines
         }
       }
     };
+    this.tenderService.tenderSubmit(data).subscribe(res => {
+      this.open();
+    });
   }
 }
