@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -32,8 +33,9 @@ export class SubmitTenderBidsComponent implements OnInit {
 
   constructor(
     private tenderService: TenderService,
-    private modalService: NgbModal
-    ) { }
+    private modalService: NgbModal,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.loadTenderAddendum();
@@ -44,7 +46,7 @@ export class SubmitTenderBidsComponent implements OnInit {
 
   private loadTenderAddendum(): void {
     this.tenderService.getTenderData().pipe(map(res => res.submitTenderBids)).subscribe(res => {
-     this.tenderBidsDetails = res;
+      this.tenderBidsDetails = res;
     });
   }
 
@@ -65,7 +67,7 @@ export class SubmitTenderBidsComponent implements OnInit {
     this.filterItemData.supplyLine = this.itemData.supplyLine.filter(item => item.revisionNo === this.revisionNo);
     this.filterItemData.serviceLine = this.itemData.serviceLine.filter(item => item.revisionNo === this.revisionNo);
   }
-  
+
   contractExpand(contractData: any, index: number) {
     if (this.selectedContractIndex === index) {
       this.selectedContractIndex = null;
@@ -79,12 +81,12 @@ export class SubmitTenderBidsComponent implements OnInit {
   private upload(flag) {
     this.fileInput.nativeElement.value = '';
     this.files.forEach(file => {
-    const formData = new FormData();
-    formData.append('file', file.data);
-    file.inProgress = true;
-    if( flag == false){
-      this.filesList.push(file.data);
-    }
+      const formData = new FormData();
+      formData.append('file', file.data);
+      file.inProgress = true;
+      if (flag == false) {
+        this.filesList.push(file.data);
+      }
     });
   }
 
@@ -102,8 +104,8 @@ export class SubmitTenderBidsComponent implements OnInit {
           }
         });
         if (flag == false) {
-        this.files = [];
-        this.files.push({ data: file, inProgress: false, progress: 0 });
+          this.files = [];
+          this.files.push({ data: file, inProgress: false, progress: 0 });
         }
       }
       this.upload(flag);
@@ -133,7 +135,7 @@ export class SubmitTenderBidsComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
-  
+
   deleteFile(file) {
     if (confirm('Do you want to delete ' + file.name + '?')) {
       this.filesList.map((d, i) => {
@@ -144,7 +146,7 @@ export class SubmitTenderBidsComponent implements OnInit {
     }
   }
 
-  submitOrSaveDraft(): void {
+  submitOrSaveDraft(type: string): void {
     const data = {
       submitTenderBid: {
         tenderNo: localStorage.getItem('tenderNo'),
@@ -152,6 +154,12 @@ export class SubmitTenderBidsComponent implements OnInit {
         finalTenderSubmission: this.tenderBidsDetails.finalTenderSubmissions
       }
     };
-      
+    this.tenderService.tenderSubmit(data).subscribe(res => {
+      if (type === 'saveAsDraft') {
+        this.router.navigateByUrl('e-tendering/tender-dashboard/current-tenders');
+      } else {
+        this.router.navigateByUrl('/landing/supplier-registration/dashboard');
+      }
+    });
   }
 }

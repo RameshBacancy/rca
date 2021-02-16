@@ -129,11 +129,15 @@
                     <a routerLink="/landing/supplier-registration/dashboard">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                     </a>
+                    <a routerLink="/e-tendering/tender-dashboard/current-tenders">
+                        <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                        </button>
+                    </a>
                     <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft()">Save
                         as draft
                     </button>
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
-                    </button>
+                    <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                    </button> -->
 
                 </div>
             </div>
@@ -221,11 +225,15 @@
                     <a routerLink="/landing/supplier-registration/dashboard">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                     </a>
-                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft()">Save
+                    <a routerLink="/e-tendering/tender-dashboard/current-tenders">
+                        <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                        </button>
+                    </a>
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft('saveAsDraft')">Save
                         as draft
                     </button>
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
-                    </button>
+                    <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                    </button> -->
 
                 </div>
             </div>
@@ -351,16 +359,18 @@
                                 (click)="changeTab()" [disabled]="selected.value == 2">Next <i
                                     class="fa fa-caret-right"></i></button>
 
-
-
                             <a routerLink="/landing/supplier-registration/dashboard">
                                 <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                             </a>
-                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft()">Save
+                            <a routerLink="/e-tendering/tender-dashboard/current-tenders">
+                                <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                                </button>
+                            </a>
+                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft('saveAsDraft')">Save
                                 as draft
                             </button>
-                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
-                            </button>
+                            <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                            </button> -->
                         </div>
                     </div>
                 </mat-tab>
@@ -471,11 +481,15 @@
                             <a routerLink="/landing/supplier-registration/dashboard">
                                 <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                             </a>
-                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft()">Save
+                            <a routerLink="/e-tendering/tender-dashboard/current-tenders">
+                                <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                                </button>
+                            </a>
+                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft('saveAsDraft')">Save
                                 as draft
                             </button>
-                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
-                            </button>
+                            <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                            </button> -->
                         </div>
                     </div>
                 </mat-tab>
@@ -641,21 +655,25 @@
                                 (click)="previousTab()"><i class="fa fa-caret-left"></i> Previous </button>
 
                             <button type="button" class="btn border  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                                [disabled]="true">Next <i class="fa fa-caret-right"></i></button>
+                                (click)="submitOrSaveDraft('next')">Next <i class="fa fa-caret-right"></i></button>
 
-                            <a routerLink="/e-tendering/submit-tender-bids">
+                            <!-- <a>
                                 <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                                       (click)="submitOrSaveDraft()">Done
                                 </button>
-                            </a>
+                            </a> -->
                             <a routerLink="/landing/supplier-registration/dashboard">
                                 <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                             </a>
-                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2"  (click)="submitOrSaveDraft()">Save
+                            <a routerLink="/e-tendering/tender-dashboard/current-tenders">
+                                <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                                </button>
+                            </a>
+                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2"  (click)="submitOrSaveDraft('saveAsDraft')">Save
                                 as draft
                             </button>
-                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
-                            </button>
+                            <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                            </button> -->
                         </div>
                     </div>
                 </mat-tab>

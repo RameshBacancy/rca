@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { TenderService } from 'src/app/services/tender.service';
@@ -23,7 +24,8 @@ export class TenderAddendumsComponent implements OnInit {
   tenderAddendum: any;
 
   constructor(
-    private tenderService: TenderService
+    private tenderService: TenderService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -61,7 +63,7 @@ export class TenderAddendumsComponent implements OnInit {
     }
   }
 
-  submitOrSaveDraft(): void {
+  submitOrSaveDraft(step: string): void {
     const data = {
       tenderAddendum: {
         tenderNo: localStorage.getItem('tenderNo'),
@@ -70,5 +72,12 @@ export class TenderAddendumsComponent implements OnInit {
         revisionNo: this.revisionNo
       }
     };
+    this.tenderService.tenderSubmit(data).subscribe(res => {
+      if (step === 'saveAsDraft') {
+        this.router.navigateByUrl('e-tendering/tender-dashboard/current-tenders');
+      } else {
+        this.router.navigateByUrl('/e-tendering/submit-tender-bids');
+      }
+    });
   }
 }
