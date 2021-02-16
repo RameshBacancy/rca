@@ -19,19 +19,19 @@ export class AlertMessageService {
 
 
   addMessages(status, title, data): Observable<any> {
-    return this.reqHttp.httpPost(this.url + 'alert-message', {status: status, title: title, description: data});
+    return this.reqHttp.httpPost('alert-message', {status: status, title: title, description: data});
   }
 
   getMessages(): Observable<any> {
-      return this.reqHttp.httpGet(this.url + 'alert-message');
+      return this.reqHttp.httpGet('alert-message');
 
   }
 
   updateMessages(status, title, data, id): Observable<any> {
-    return this.reqHttp.httpPost(this.url + 'alert-message/' + id, { status: status, title: title, description: data, _method: 'PATCH'});
+    return this.reqHttp.httpPost('alert-message/' + id, { status: status, title: title, description: data, _method: 'PATCH'});
   }
 
   deleteMessages(id): Observable<any> {
-    return this.reqHttp.httpDelete(this.url + 'alert-message/' + id);
+    return this.reqHttp.httpDelete('alert-message/' + id);
   }
 }
