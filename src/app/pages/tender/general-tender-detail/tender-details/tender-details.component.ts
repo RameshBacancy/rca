@@ -15,6 +15,10 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
   regretReasons: string[];
   tenderData: any;
   private subscription: Subscription;
+  amount = 100;
+  currency = 'USD';
+  supplierType: string;
+  authToken: string;
 
   constructor(
     private tenderService: TenderService,
@@ -22,6 +26,8 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.supplierType = localStorage.getItem('regType');
+    this.authToken = 'Bearer ' + localStorage.getItem('authToken');
     localStorage.removeItem('documentFees');
     this.participated = true;
     this.regretReasons = ['Lack Of Resources', 'Not Interested'];

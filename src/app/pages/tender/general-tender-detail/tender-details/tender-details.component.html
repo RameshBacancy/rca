@@ -163,7 +163,8 @@
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                         </button>
                     </a>
-                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft('saveAsDraft')">Save
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2"
+                        (click)="submitOrSaveDraft('saveAsDraft')">Save
                         as draft
                     </button>
                 </div>
@@ -257,7 +258,8 @@
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                         </button>
                     </a>
-                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft('saveAsDraft')">Save
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2"
+                        (click)="submitOrSaveDraft('saveAsDraft')">Save
                         as draft
                     </button>
                     <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -299,7 +301,7 @@
                     <span class="fs-14 text-black">{{ tenderData.tenderFees.tenderDocumentFee }}</span>
                 </div>
             </div>
-            <div class="row  ml-2 mt-4">
+            <div class="row  ml-2 mt-4" *ngIf="supplierType !== 'international'">
                 <div class="col">
                     <span class="fs-16 font-weight-bold text-black dark-text-1 mr-5 ">Payment Mode : </span>
 
@@ -314,24 +316,40 @@
             <div class="row mt-5 ml-2">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous </button>
+                        matStepperPrevious> Previous </button>
 
-                    <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        (click)="submitOrSaveDraft('next')">Next <i class="fa fa-caret-right"></i></button>
+                    <!-- <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        (click)="submitOrSaveDraft('next')">Next <i class="fa fa-caret-right"></i></button> -->
+                    <!-- For local and citizen -->
+                    <button type="button" *ngIf="supplierType !== 'international'"
+                        class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        (click)="submitOrSaveDraft('next')">Next</button>
+                    <!-- For international -->
+                    <form #paymentForm *ngIf="supplierType == 'international'" class="d-inline"
+                        action="http://ec2-3-16-154-54.us-east-2.compute.amazonaws.com/backend/public/payment-form"
+                        method="POST">
+                        <input type="hidden" name="amount" [value]="amount">
+                        <input type="hidden" name="currency" [value]="currency">
+                        <input type="hidden" name="Authorization" [value]="authToken">
+
+                        <input type="submit" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            (click)="paymentForm.submit()" value="Next">
+                    </form>
                     <!-- <a>
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                             (click)="submitOrSaveDraft()"    
                         >Submit
                         </button>
-                    </a>
-                    <a routerLink="/landing/supplier-registration/dashboard">
+                    </a> -->
+                    <!-- <a routerLink="/landing/supplier-registration/dashboard">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
                     </a> -->
                     <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                         </button>
                     </a>
-                    <button type="button" (click)="submitOrSaveDraft('saveAsDraft')" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                    <button type="button" (click)="submitOrSaveDraft('saveAsDraft')"
+                        class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
                         as draft
                     </button>
                     <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
