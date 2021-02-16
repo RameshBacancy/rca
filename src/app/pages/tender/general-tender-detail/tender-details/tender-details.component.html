@@ -3,8 +3,9 @@
         <div class="row">
             <div class="col-md-12">
                 <ol class="breadcrumb bg-white mb-0">
-                    <li class="breadcrumb-item"><a routerLink="/landing/supplier-registration/dashboard">E-Tendring</a></li>
-                    
+                    <li class="breadcrumb-item"><a routerLink="/landing/supplier-registration/dashboard">E-Tendring</a>
+                    </li>
+
                     <li class="breadcrumb-item active" aria-current="page">General Tender Detail</li>
                 </ol>
             </div>
@@ -80,7 +81,7 @@
                 (click)="modal.close('Save click')">Done</button>
         </div>
     </ng-template> -->
-    
+
 
     <mat-horizontal-stepper [@.disabled]="true" #stepper>
         <!-- Tender Program -->
@@ -98,7 +99,8 @@
                 <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Id</h5>
                     <p class="fs-14 ">{{  tenderData.siteID }}</p>
-                </div> <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
+                </div>
+                <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Hours Left</h5>
                     <p class="fs-14 ">04:55:34</p>
                 </div>
@@ -147,20 +149,22 @@
             <div class="row mt-5 ml-2">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                       disabled ><i class="fa fa-caret-left"></i> Previous </button>
+                        disabled><i class="fa fa-caret-left"></i> Previous </button>
                     <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         matStepperNext>Next <i class="fa fa-caret-right"></i></button>
 
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                    <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         disabled>Submit
-                    </button>
-                    <a routerLink="/landing/supplier-registration/dashboard">
+                    </button> -->
+                    <!-- <a routerLink="/landing/supplier-registration/dashboard">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
+                    </a> -->
+                    <a routerLink="/e-tendering/tender-dashboard/current-tenders">
+                        <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                        </button>
                     </a>
-                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft('saveAsDraft')">Save
                         as draft
-                    </button>
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                     </button>
                 </div>
             </div>
@@ -197,9 +201,13 @@
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 mb-4">Participate</h5>
 
-                    <input class="form-check-input ml-2" type="radio" id="yes"  name='participate' [checked]="tenderData.tenderParticipate.participate == 'yes'" (change)="changeParticipationStatus(true)">
+                    <input class="form-check-input ml-2" type="radio" id="yes" name='participate'
+                        [checked]="tenderData.tenderParticipate.participate == 'yes'"
+                        (change)="changeParticipationStatus(true)">
                     <label class="form-check-label ml-5 mr-5" for="yes">Yes </label>
-                    <input class="form-check-input" id="no" name='participate' type="radio"  [checked]="tenderData.tenderParticipate.participate == 'no'" (change)="changeParticipationStatus(false)">
+                    <input class="form-check-input" id="no" name='participate' type="radio"
+                        [checked]="tenderData.tenderParticipate.participate == 'no'"
+                        (change)="changeParticipationStatus(false)">
                     <label class="form-check-label ml-2" for="no">No </label>
 
                 </div>
@@ -214,16 +222,19 @@
                     <mat-form-field appearance="fill" class="mt-0">
                         <mat-select [(ngModel)]="tenderData.tenderParticipate.regretReason">
                             <mat-option *ngFor="let reason of regretReasons" [value]="reason">
-                            {{reason}}
+                                {{reason}}
                             </mat-option>
                         </mat-select>
                     </mat-form-field>
                 </div>
-                <div class="col-md-3 col-lg-3 col-xl-2 px-4 mt-4 mb-4"  *ngIf="tenderData.tenderParticipate.participate == 'yes'">
+                <div class="col-md-3 col-lg-3 col-xl-2 px-4 mt-4 mb-4"
+                    *ngIf="tenderData.tenderParticipate.participate == 'yes'">
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Site Visit Required</h5>
-                    <input class="form-check-input ml-2" [(ngModel)]="tenderData.tenderParticipate.siteVisitRequired" id="siteYes"  type="radio" value="yes" name='siteVisit' checked>
+                    <input class="form-check-input ml-2" [(ngModel)]="tenderData.tenderParticipate.siteVisitRequired"
+                        id="siteYes" type="radio" value="yes" name='siteVisit' checked>
                     <label class="form-check-label ml-5 mr-5" for="siteYes">Yes </label>
-                    <input class="form-check-input" [(ngModel)]="tenderData.tenderParticipate.siteVisitRequired" id="siteNo" value="no" name='siteVisit' type="radio">
+                    <input class="form-check-input" [(ngModel)]="tenderData.tenderParticipate.siteVisitRequired"
+                        id="siteNo" value="no" name='siteVisit' type="radio">
                     <label class="form-check-label ml-2" for="siteNo">No </label>
                 </div>
             </div>
@@ -236,17 +247,21 @@
                     <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         matStepperNext>Next <i class="fa fa-caret-right"></i></button>
 
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                    <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         disabled>Submit
                     </button>
                     <a routerLink="/landing/supplier-registration/dashboard">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
+                    </a> -->
+                    <a routerLink="/e-tendering/tender-dashboard/current-tenders">
+                        <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                        </button>
                     </a>
-                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft('saveAsDraft')">Save
                         as draft
                     </button>
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
-                    </button>
+                    <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                    </button> -->
                 </div>
             </div>
 
@@ -299,10 +314,11 @@
             <div class="row mt-5 ml-2">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                         matStepperPrevious><i class="fa fa-caret-left"></i> Previous </button>
+                        matStepperPrevious><i class="fa fa-caret-left"></i> Previous </button>
+
                     <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        disabled>Next <i class="fa fa-caret-right"></i></button>
-                    <a>
+                        (click)="submitOrSaveDraft('next')">Next <i class="fa fa-caret-right"></i></button>
+                    <!-- <a>
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                             (click)="submitOrSaveDraft()"    
                         >Submit
@@ -310,12 +326,16 @@
                     </a>
                     <a routerLink="/landing/supplier-registration/dashboard">
                         <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
+                    </a> -->
+                    <a routerLink="/e-tendering/tender-dashboard/current-tenders">
+                        <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                        </button>
                     </a>
-                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                    <button type="button" (click)="submitOrSaveDraft('saveAsDraft')" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
                         as draft
                     </button>
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
-                    </button>
+                    <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
+                    </button> -->
                 </div>
             </div>
 

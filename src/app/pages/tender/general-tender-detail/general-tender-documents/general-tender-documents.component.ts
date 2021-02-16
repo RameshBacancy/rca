@@ -209,7 +209,7 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
     fileSave.saveAs("https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf", "temp.text");
   }
 
-  submitOrSaveDraft(): void {
+  submitOrSaveDraft(type: string): void {
     const supplyLines: any[] = [];
     const serviceLines: any[] = [];
     this.filterItemData.supplyLine.forEach(element => {
@@ -235,7 +235,11 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
       }
     };
     this.tenderService.tenderSubmit(data).subscribe(res => {
-      this.proceed();
+      if (type === 'saveAsDraft') {
+        this.router.navigateByUrl('e-tendering/tender-dashboard/current-tenders');
+      } else {
+        this.proceed();
+      }
     });
   }
 

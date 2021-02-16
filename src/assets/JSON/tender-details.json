@@ -627,19 +627,19 @@
         },
         "finalTenderSubmissions": [{
                 "no": "1",
-                "documents": "BOQ",
+                "document": "BOQ",
                 "checkBox": true,
                 "qualifications": ""
             },
             {
                 "no": "2",
-                "documents": "Specifications",
+                "document": "Specifications",
                 "checkBox": true,
                 "qualifications": ""
             },
             {
                 "no": "3",
-                "documents": "Bond Document",
+                "document": "Bond Document",
                 "checkBox": true,
                 "qualifications": ""
             }

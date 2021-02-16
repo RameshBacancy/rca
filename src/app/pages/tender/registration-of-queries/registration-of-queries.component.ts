@@ -97,7 +97,7 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
     this.subscription?.unsubscribe();
   }
 
-  submitOrSaveDraft(): void {
+  submitOrSaveDraft(type: string): void {
     const supplyLines: any[] = [];
     const serviceLines: any[] = [];
     this.filterItemData.supplyLine.forEach(element => {
@@ -126,7 +126,11 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
       }
     };
     this.tenderService.tenderSubmit(data).subscribe(res => {
-      this.open();
+      if (type === 'saveAsDraft') {
+        this.router.navigateByUrl('e-tendering/tender-dashboard/current-tenders');
+      } else {
+        this.open();
+      }
     });
   }
 }

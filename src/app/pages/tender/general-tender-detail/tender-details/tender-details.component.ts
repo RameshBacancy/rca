@@ -41,7 +41,7 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
     this.tenderData.tenderParticipate.participate = status ? 'yes' : 'no';
   }
 
-  submitOrSaveDraft(): void {
+  submitOrSaveDraft(type: string): void {
     const data: any = {
       generalTenderDetail: {
         participate: this.tenderData.tenderParticipate.participate,
@@ -58,7 +58,13 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
     }
 
     this.tenderService.tenderSubmit(data).subscribe(res => {
-      this.router.navigateByUrl('/e-tendering/general-tender-details/tender-fees');
+      if (type === 'saveAsDraft') {
+        this.router.navigateByUrl('e-tendering/tender-dashboard/current-tenders');
+      }
+
+      if (type === 'next') {
+        this.router.navigateByUrl('/e-tendering/general-tender-details/tender-fees');
+      }
     });
   }
 
