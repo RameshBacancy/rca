@@ -21,7 +21,7 @@ export class SubmitTenderBidsComponent implements OnInit {
   filterItemData = {
     supplyLine: [],
     serviceLine: []
-  };;
+  };
   contractData: any[];
   selectedContract: any;
   selectedContractIndex: number;
