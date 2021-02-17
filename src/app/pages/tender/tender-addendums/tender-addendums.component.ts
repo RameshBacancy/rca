@@ -80,4 +80,21 @@ export class TenderAddendumsComponent implements OnInit {
       }
     });
   }
+
+  public clear(step: string): void {
+    switch (step) {
+      case 'siteVisit':
+        this.tenderAddendum.siteVisit.gatePass = true;
+        break;
+      case 'extension':
+        this.tenderAddendum.extensions.extensionRemarks= '';
+        break;
+      case 'supplyLines':
+        break;
+      case 'serviceLines':
+        break; 
+      case 'contractBOQ':
+        break;  
+    }
+  }
 }

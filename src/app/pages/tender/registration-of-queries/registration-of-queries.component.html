@@ -56,6 +56,7 @@
                         class="ml-5"
                         [color]="'primary'"
                         [checked]="tenderData.tenderSiteVisit.requestForSiteVisit"
+                        [(ngModel)]="tenderData.tenderSiteVisit.requestForSiteVisit"
                         [disabled]="'false'"></mat-slide-toggle>
                     </h5>
 
@@ -73,9 +74,9 @@
                     <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         [disabled]='true'>Submit
                     </button> -->
-                    <a routerLink="/landing/supplier-registration/dashboard">
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
-                    </a>    
+                    <!-- <a routerLink="/landing/supplier-registration/dashboard"> -->
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="clear('siteVisit')">Clear</button>
+                    <!-- </a> -->
                     <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                         </button>
@@ -125,7 +126,7 @@
                 <div class="col-md-12  px-4 pb-2 mt-2">
                     <label class="fs-16 font-weight-bold text-black dark-text-1 mr-3">Submission Ext. Req. Dt</label>
                     <mat-form-field appearance="fill" class="mt-0">
-                        <mat-select (selectionChange)="tenderData.tenderExtension.extensionRequestDate = $event.value">
+                        <mat-select [(ngModel)]="tenderData.tenderExtension.extensionRequestDate" name="week">
                             <mat-option *ngFor="let week of weekList" [value]="week">
                                 {{week}}
                             </mat-option>
@@ -153,9 +154,9 @@
                     <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         [disabled]='true'>Submit
                     </button> -->
-                    <a routerLink="/landing/supplier-registration/dashboard">
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
-                    </a>
+                    <!-- <a routerLink="/landing/supplier-registration/dashboard"> -->
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="clear('extension')">Clear</button>
+                    <!-- </a> -->
                     <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                         </button>
@@ -284,9 +285,9 @@
                             <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                                 [disabled]='true'>Submit
                             </button> -->
-                            <a routerLink="/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
-                            </a>
+                            <!-- <a routerLink="/landing/supplier-registration/dashboard"> -->
+                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="clear('supplyLines')">Clear</button>
+                            <!-- </a> -->
                             <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                                 <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                                 </button>
@@ -400,9 +401,9 @@
                             <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                                 [disabled]='true'>Submit
                             </button> -->
-                            <a routerLink="/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
-                            </a>
+                            <!-- <a routerLink="/landing/supplier-registration/dashboard"> -->
+                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="clear('serviceLines')">Clear</button>
+                            <!-- </a> -->
                             <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                                 <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                                 </button>
@@ -577,9 +578,9 @@
                                 <!-- <button type="button"
                                     class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" (click)="submitOrSaveDraft()">Submit</button> -->
                             <!-- </a> -->
-                            <a routerLink="/landing/supplier-registration/dashboard">
+                            <!-- <a routerLink="/landing/supplier-registration/dashboard"> -->
                                 <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
-                            </a>
+                            <!-- </a> -->
                             <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                                 <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                                 </button>

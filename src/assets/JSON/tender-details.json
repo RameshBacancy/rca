@@ -341,14 +341,14 @@
             "location": "SEEB",
             "visitRemarks": "Notes / Comments",
             "specialInstruction": "If any",
-            "gatePass": "yes",
+            "gatePass": "",
             "projectEngName": "Eng. Ahmed Al wahhabi",
             "contactNumber": "960020000"
         },
         "extensions": {
             "extensionDate": "10-11-2017",
             "extensionTime": "14:00:00",
-            "extensionRemarks": "_ _ _ _ _ _ _ _ _ _"
+            "extensionRemarks": ""
         },
         "technicalResponses": {
             "supplyLines": [

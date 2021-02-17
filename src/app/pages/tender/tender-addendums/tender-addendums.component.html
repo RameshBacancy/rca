@@ -91,7 +91,7 @@
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Gate Pass</h5>
                     <!-- <p class="fs-14">Yes / No</p> -->
                     <mat-form-field appearance="fill" class="mt-0">
-                        <mat-select (selectionChange)="tenderAddendum.siteVisit.gatePass = $event.value">
+                        <mat-select (selectionChange)="tenderAddendum.siteVisit.gatePass = $event.value" [(ngModel)]=" this.tenderAddendum.siteVisit.gatePass">
                             <mat-option [value]="'yes'">
                                 Yes
                             </mat-option>
@@ -126,9 +126,9 @@
                     <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         matStepperNext>Next <i class="fa fa-caret-right"></i></button>
 
-                    <a routerLink="/landing/supplier-registration/dashboard">
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
-                    </a>
+                    <!-- <a routerLink="/landing/supplier-registration/dashboard"> -->
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"  (click)="clear('siteVisit')">Clear</button>
+                    <!-- </a> -->
                     <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                         </button>
@@ -222,9 +222,9 @@
                     <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         matStepperNext>Next <i class="fa fa-caret-right"></i></button>
 
-                    <a routerLink="/landing/supplier-registration/dashboard">
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
-                    </a>
+                    <!-- <a routerLink="/landing/supplier-registration/dashboard"> -->
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"  (click)="clear('extension')">Clear</button>
+                    <!-- </a> -->
                     <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                         </button>
@@ -359,9 +359,9 @@
                                 (click)="changeTab()" [disabled]="selected.value == 2">Next <i
                                     class="fa fa-caret-right"></i></button>
 
-                            <a routerLink="/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
-                            </a>
+                            <!-- <a routerLink="/landing/supplier-registration/dashboard"> -->
+                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"  (click)="clear('supplyLines')">Clear</button>
+                            <!-- </a> -->
                             <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                                 <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                                 </button>
@@ -478,9 +478,9 @@
 
 
 
-                            <a routerLink="/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
-                            </a>
+                            <!-- <a routerLink="/landing/supplier-registration/dashboard"> -->
+                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"  (click)="clear('serviceLines')">Clear</button>
+                            <!-- </a> -->
                             <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                                 <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                                 </button>
@@ -662,9 +662,9 @@
                                       (click)="submitOrSaveDraft()">Done
                                 </button>
                             </a> -->
-                            <a routerLink="/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
-                            </a>
+                            <!-- <a routerLink="/landing/supplier-registration/dashboard"> -->
+                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="clear('contractBOQ')">Clear</button>
+                            <!-- </a> -->
                             <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                                 <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                                 </button>

@@ -58,6 +58,7 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
   changeTab() {
     this.selected.setValue(this.selected.value + 1);
   }
+
   previousTab() {
     this.selected.setValue(this.selected.value - 1);
   }
@@ -77,6 +78,7 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
       this.selectedContractIndex = index;
     }
   }
+
   open() {
     this.modalService.open(this.selectionModel, {
       backdrop: 'static',
@@ -132,5 +134,31 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
         this.open();
       }
     });
+  }
+
+  public clear(step: string): void {
+    switch (step) {
+      case 'siteVisit':
+        this.tenderData.tenderSiteVisit.requestForSiteVisit = true;
+        break;
+      case 'extension':
+        this.tenderData.tenderExtension.extensionRequestDate = '';
+        this.tenderData.tenderExtension.reasonForExtension = '';
+        break;
+      case 'supplyLines':
+        this.filterItemData.supplyLine = this.filterItemData.supplyLine.map(item => {
+          item.queries = '';
+          return item;
+        });
+        break;
+      case 'serviceLines':
+        this.filterItemData.serviceLine = this.filterItemData.serviceLine.map(item => {
+          item.queries = '';
+          return item;
+        });
+        break; 
+      case 'contractBOQ':
+        break;  
+    }
   }
 }
