@@ -6,6 +6,7 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
 import { SafeHtmlPipe } from './pipe/safeHtml.pipe';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SortDirective } from './directives/sort.directive';
+import { NumberOnlyDirective } from './directives/number-only.directive';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { SortDirective } from './directives/sort.directive';
     FilterPipe,
     SafeHtmlPipe,
     SpinnerComponent,
-    SortDirective
+    SortDirective,
+    NumberOnlyDirective
   ],
   imports: [
     CommonModule
@@ -26,7 +28,8 @@ import { SortDirective } from './directives/sort.directive';
     FilterPipe,
     SafeHtmlPipe,
     SpinnerComponent,
-    SortDirective
+    SortDirective,
+    NumberOnlyDirective
   ],
   providers: [
     SafeHtmlPipe

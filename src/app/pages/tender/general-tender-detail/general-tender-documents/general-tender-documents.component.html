@@ -181,13 +181,13 @@
                                 <h6 class="mb-2 fs-14 text-muted text-light">Revision No. : <span
                                         class="dark-text-1 fs-12">{{ document.revisionNo }}</span></h6>
                                 <p class="card-text dark-text-1 fs-12">{{ document.word }}</p>
-                                <a class="card-link text-purple" [href]="document.documentUrl" >PDF</a>
-                                <div class="mt-2 text-right"> 
-                                    <a  [href]="document.documentUrl">
-                                        <i class="fa fa-download text-purple mr-2 fs-14 "></i> 
+                                <a class="card-link text-purple" [href]="document.documentUrl">PDF</a>
+                                <div class="mt-2 text-right">
+                                    <a [href]="document.documentUrl">
+                                        <i class="fa fa-download text-purple mr-2 fs-14 "></i>
                                     </a>
-                                    <a  [href]="document.documentUrl">
-                                        <i class="fa fa-file text-purple fs-14"></i> 
+                                    <a [href]="document.documentUrl">
+                                        <i class="fa fa-file text-purple fs-14"></i>
                                     </a>
                                 </div>
                             </div>
@@ -269,12 +269,13 @@
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                         </button>
                     </a>
-                    <button type="button" (click)="submitOrSaveDraft('saveAsDraft')" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                    <button type="button" (click)="submitOrSaveDraft('saveAsDraft')"
+                        class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
                         as draft
                     </button>
                     <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                     </button> -->
-                    
+
                 </div>
             </div>
 
@@ -361,7 +362,7 @@
                                             <td>{{ item.partCodeDescription  }}</td>
                                             <td>{{ item.uom  }}</td>
                                             <td>{{ item.quantity }}</td>
-                                            <td><input type="text" [(ngModel)]="item.unitPrice"></td>
+                                            <td><input type="text" appNumberOnly [(ngModel)]="item.unitPrice"></td>
                                             <td>{{ item.totalPrice }}</td>
                                             <td><i class="fa fa-folder"></i></td>
                                             <!-- <td><input type="text"></td>
@@ -418,15 +419,15 @@
                                 (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
                             <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                                 disabled>Submit
-                            </button>
-                            <a routerLink="/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
-                            </a> -->
+                            </button>  -->
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                (click)="clear('supplyLine')">Clear</button>
                             <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                                 <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                                 </button>
                             </a>
-                            <button type="button" (click)="submitOrSaveDraft('saveAsDraft')" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                            <button type="button" (click)="submitOrSaveDraft('saveAsDraft')"
+                                class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
                                 as draft
                             </button>
                             <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -504,7 +505,7 @@
                                             <td>{{ item.partCodeDescription  }}</td>
                                             <td>{{ item.uom  }}</td>
                                             <td>{{ item.quantity }}</td>
-                                            <td><input type="text" [(ngModel)]="item.unitPrice"></td>
+                                            <td><input type="text" appNumberOnly [(ngModel)]="item.unitPrice"></td>
                                             <td>{{ item.totalPrice }}</td>
                                             <td><i class="fa fa-folder"></i></td>
                                         </tr>
@@ -542,10 +543,9 @@
                                 (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
                             <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                                 disabled>Submit
-                            </button>
-                            <a routerLink="/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
-                            </a> -->
+                            </button> -->
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                (click)="clear('serviceLine')">Clear</button>
                             <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                                 <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                                 </button>
@@ -666,7 +666,9 @@
                                             <td>{{ line.lineDescription }}</td>
                                             <td> {{ line.contractCurrency }}</td>
                                             <td>{{ line.companyCurrency }}</td>
-                                            <td><i (click)="contractExpand(line, i)" class="fa" [ngClass]="{'fa-chevron-circle-up': selectedContractIndex !== i, 'fa-chevron-circle-down': selectedContractIndex === i }"></i></td>
+                                            <td><i (click)="contractExpand(line, i)" class="fa"
+                                                    [ngClass]="{'fa-chevron-circle-up': selectedContractIndex !== i, 'fa-chevron-circle-down': selectedContractIndex === i }"></i>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -716,15 +718,17 @@
                                 matStepperNext>Next <i class="fa fa-caret-right"></i></button>
                             <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                                 disabled>Submit
-                            </button>
-                            <a routerLink="/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
-                            </a> -->
+                            </button> -->
+
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                (click)="clear('contractBoq')">Clear</button>
+
                             <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                                 <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                                 </button>
                             </a>
-                            <button type="button" (click)="submitOrSaveDraft('saveAsDraft')" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                            <button type="button" (click)="submitOrSaveDraft('saveAsDraft')"
+                                class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
                                 as draft
                             </button>
                             <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -820,14 +824,13 @@
                         (click)="submitOrSaveDraft()">Submit
                     </button> -->
 
-                    <!-- <a routerLink="/landing/supplier-registration/dashboard">
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">Clear</button>
-                    </a> -->
+                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="clear('otherInfo')">Clear</button>
                     <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                         </button>
                     </a>
-                    <button type="button" (click)="submitOrSaveDraft('saveAsDraft')" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
+                    <button type="button" (click)="submitOrSaveDraft('saveAsDraft')"
+                        class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2">Save
                         as draft
                     </button>
                     <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
