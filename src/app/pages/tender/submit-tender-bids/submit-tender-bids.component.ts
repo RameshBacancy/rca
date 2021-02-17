@@ -165,6 +165,9 @@ export class SubmitTenderBidsComponent implements OnInit {
 
   public clear(step: string): void {
     switch (step) {
+      case 'tenderDocumentSubmission':
+        this.filesList = []
+        break;
       case 'finalTenderSubmission':
         this.tenderBidsDetails.finalTenderSubmissions = this.tenderBidsDetails.finalTenderSubmissions.map(item => {
           item.checkBox = true;
