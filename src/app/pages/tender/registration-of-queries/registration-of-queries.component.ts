@@ -146,15 +146,13 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
         this.tenderData.tenderExtension.reasonForExtension = '';
         break;
       case 'supplyLines':
-        this.filterItemData.supplyLine = this.filterItemData.supplyLine.map(item => {
+        this.filterItemData.supplyLine.map(item => {
           item.queries = '';
-          return item;
         });
         break;
       case 'serviceLines':
-        this.filterItemData.serviceLine = this.filterItemData.serviceLine.map(item => {
+        this.filterItemData.serviceLine.map(item => {
           item.queries = '';
-          return item;
         });
         break; 
       case 'contractBOQ':

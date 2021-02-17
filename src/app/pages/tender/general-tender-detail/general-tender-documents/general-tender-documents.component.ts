@@ -246,15 +246,13 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
   public clear(step: string): void {
     switch (step) {
       case 'supplyLine':
-        this.filterItemData.supplyLine = this.filterItemData.supplyLine.map(item => {
+        this.filterItemData.supplyLine.map(item => {
           item.unitPrice = '';
-          return item;
         });
         break;
       case 'serviceLine':
-        this.filterItemData.serviceLine = this.filterItemData.serviceLine.map(item => {
+        this.filterItemData.serviceLine.map(item => {
           item.unitPrice = '';
-          return item;
         });
         break;
       case 'contractBoq':
