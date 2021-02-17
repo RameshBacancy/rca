@@ -162,4 +162,18 @@ export class SubmitTenderBidsComponent implements OnInit {
       }
     });
   }
+
+  public clear(step: string): void {
+    switch (step) {
+      case 'finalTenderSubmission':
+        this.tenderBidsDetails.finalTenderSubmissions = this.tenderBidsDetails.finalTenderSubmissions.map(item => {
+          item.checkBox = true;
+          item.qualifications = '';
+          return item;
+        });
+        break;
+      default:
+        break;
+    }
+  }
 }
