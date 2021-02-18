@@ -1,3 +1,5 @@
+import { SpinnerService } from './../../../../services/spinner.service';
+import { AlertService } from './../../../../services/alert.service';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { Component, ElementRef, OnInit, ViewChild, OnDestroy } from '@angular/core';
@@ -42,10 +44,23 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private tenderService: TenderService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private alertService: AlertService,
+    private spinnerService: SpinnerService
   ) { }
 
   ngOnInit(): void {
+    // for tender draft time
+    if (this.tenderService.isTenderDraftTimeComplete()) {
+      this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
+      // call draft time eared api
+      this.spinnerService.openSpinner();
+      setTimeout(() => {
+        localStorage.setItem('tenderDraftTime', '');
+        this.spinnerService.closeSpinner();
+      }, 1000);
+    }
+
     if (!localStorage.getItem('documentFees')) {
       this.router.navigateByUrl('/e-tendering/general-tender-details');
     }
@@ -231,8 +246,9 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
         bidDisplay: {
           supplyLine: supplyLines,
           serviceLine: serviceLines
-        }
-      }
+        },
+      },
+      tenderDraftTime: localStorage.getItem('tenderDraftTime') || new Date()
     };
     this.tenderService.tenderSubmit(data).subscribe(res => {
       if (type === 'saveAsDraft') {

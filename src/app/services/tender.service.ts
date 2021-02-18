@@ -232,4 +232,32 @@ export class TenderService {
       }));
   }
 
+
+  // get save draft time diff
+  public isTenderDraftTimeComplete(): boolean {
+    const tenderDraftTime = localStorage.getItem('tenderDraftTime') || '';
+
+    // for below two line is for testing purpose
+    // var tenderDraftTime = new Date();
+    // tenderDraftTime.setDate(tenderDraftTime.getDate() - 4);
+
+    if (!tenderDraftTime) {
+      return false;
+    }
+    const diff = this.getTimeDiff(tenderDraftTime);
+    return diff > 72 ? true : false;
+  }
+
+  private getTimeDiff(tenderDraftTime): number {
+    if (!(tenderDraftTime === 'null')) {
+      const startTime: any = new Date(tenderDraftTime);
+      const endTime: any = new Date();
+      const timeDiff = Math.floor((endTime - startTime) / 3600000);
+      return timeDiff;
+    } else {
+      return 0;
+    }
+
+  }
+
 }

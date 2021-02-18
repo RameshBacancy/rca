@@ -1,3 +1,5 @@
+import { SpinnerService } from './../../../services/spinner.service';
+import { AlertService } from './../../../services/alert.service';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { FormControl } from '@angular/forms';
@@ -32,10 +34,23 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
   constructor(
     private tenderService: TenderService,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private alertService: AlertService,
+    private spinnerService: SpinnerService
   ) { }
 
   ngOnInit(): void {
+    // for tender draft time
+    if (this.tenderService.isTenderDraftTimeComplete()) {
+      this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
+      // call draft time eared api
+      this.spinnerService.openSpinner();
+      setTimeout(() => {
+        localStorage.setItem('tenderDraftTime', '');
+        this.spinnerService.closeSpinner();
+      }, 1000);
+    }
+
     this.weekList = [
       'Week 1',
       'Week 2',
@@ -125,7 +140,8 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
           supplyLine: supplyLines,
           serviceLine: serviceLines
         }
-      }
+      },
+      tenderDraftTime: localStorage.getItem('tenderDraftTime') || new Date()
     };
     this.tenderService.tenderSubmit(data).subscribe(res => {
       if (type === 'saveAsDraft') {
@@ -154,9 +170,9 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
         this.filterItemData.serviceLine.map(item => {
           item.queries = '';
         });
-        break; 
+        break;
       case 'contractBOQ':
-        break;  
+        break;
     }
   }
 }

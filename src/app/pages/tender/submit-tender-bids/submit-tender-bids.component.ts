@@ -1,3 +1,5 @@
+import { SpinnerService } from './../../../services/spinner.service';
+import { AlertService } from './../../../services/alert.service';
 import { Router } from '@angular/router';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
@@ -34,10 +36,23 @@ export class SubmitTenderBidsComponent implements OnInit {
   constructor(
     private tenderService: TenderService,
     private modalService: NgbModal,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService,
+    private spinnerService: SpinnerService
   ) { }
 
   ngOnInit(): void {
+    // for tender draft time
+    if (this.tenderService.isTenderDraftTimeComplete()) {
+      this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
+      // call draft time eared api
+      this.spinnerService.openSpinner();
+      setTimeout(() => {
+        localStorage.setItem('tenderDraftTime', '');
+        this.spinnerService.closeSpinner();
+      }, 1000);
+    }
+
     this.loadTenderAddendum();
     this.itemData = this.tenderService.getItemData();
     this.revisionNoChange();
@@ -152,7 +167,8 @@ export class SubmitTenderBidsComponent implements OnInit {
         tenderNo: localStorage.getItem('tenderNo'),
         tenderDocument: this.filesList,
         finalTenderSubmission: this.tenderBidsDetails.finalTenderSubmissions
-      }
+      },
+      tenderDraftTime: localStorage.getItem('tenderDraftTime') || new Date()
     };
     this.tenderService.tenderSubmit(data).subscribe(res => {
       if (type === 'saveAsDraft') {
