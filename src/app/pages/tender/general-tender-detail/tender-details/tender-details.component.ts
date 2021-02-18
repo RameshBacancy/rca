@@ -1,3 +1,6 @@
+import { LocalRegisterStep } from './../../../../register-step.enum';
+import { SpinnerService } from './../../../../services/spinner.service';
+import { AlertService } from './../../../../services/alert.service';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
@@ -22,10 +25,23 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private tenderService: TenderService,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService,
+    private spinnerService: SpinnerService
   ) { }
 
   ngOnInit(): void {
+    // for tender draft time
+    if (this.tenderService.isTenderDraftTimeComplete()) {
+      this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
+      // call draft time eared api
+      this.spinnerService.openSpinner();
+      setTimeout(() => {
+        localStorage.setItem('tenderDraftTime', '');
+        this.spinnerService.closeSpinner();
+      }, 1000);
+    }
+
     this.supplierType = localStorage.getItem('regType');
     this.authToken = 'Bearer ' + localStorage.getItem('authToken');
     localStorage.removeItem('documentFees');
@@ -53,8 +69,9 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
         participate: this.tenderData.tenderParticipate.participate,
         tenderDocumentFee: this.tenderData.tenderFees.tenderDocumentFee,
         paymentMode: this.tenderData.tenderFees.paymentMode,
-        tenderNo: localStorage.getItem('tenderNo')
-      }
+        tenderNo: localStorage.getItem('tenderNo'),
+      },
+      tenderDraftTime: localStorage.getItem('tenderDraftTime') || new Date()
     };
 
     if (this.tenderData.tenderParticipate.participate === 'yes') {
@@ -63,6 +80,7 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
       data.generalTenderDetail.regretReason = this.tenderData.tenderParticipate.regretReason;
     }
 
+    // setTenderDraftTime pass if it value is null
     this.tenderService.tenderSubmit(data).subscribe(res => {
       if (type === 'saveAsDraft') {
         this.router.navigateByUrl('e-tendering/tender-dashboard/current-tenders');

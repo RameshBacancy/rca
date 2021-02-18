@@ -1,3 +1,5 @@
+import { SpinnerService } from './../../../services/spinner.service';
+import { AlertService } from './../../../services/alert.service';
 import { Router } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -25,11 +27,24 @@ export class TenderAddendumsComponent implements OnInit {
 
   constructor(
     private tenderService: TenderService,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService,
+    private spinnerService: SpinnerService
   ) { }
 
   ngOnInit(): void {
-    this.loadTenderAddendum()
+    // for tender draft time
+    if (this.tenderService.isTenderDraftTimeComplete()) {
+      this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
+      // call draft time eared api
+      this.spinnerService.openSpinner();
+      setTimeout(() => {
+        localStorage.setItem('tenderDraftTime', '');
+        this.spinnerService.closeSpinner();
+      }, 1000);
+    }
+
+    this.loadTenderAddendum();
     this.itemData = this.tenderService.getItemData();
     this.revisionNoChange();
     this.contractData = this.tenderService.getContractData();
@@ -70,7 +85,8 @@ export class TenderAddendumsComponent implements OnInit {
         gatePass: this.tenderAddendum.siteVisit.gatePass,
         extensionRemark: this.tenderAddendum.extensions.extensionRemarks,
         revisionNo: this.revisionNo
-      }
+      },
+      tenderDraftTime: localStorage.getItem('tenderDraftTime') || new Date()
     };
     this.tenderService.tenderSubmit(data).subscribe(res => {
       if (step === 'saveAsDraft') {
@@ -87,14 +103,14 @@ export class TenderAddendumsComponent implements OnInit {
         this.tenderAddendum.siteVisit.gatePass = true;
         break;
       case 'extension':
-        this.tenderAddendum.extensions.extensionRemarks= '';
+        this.tenderAddendum.extensions.extensionRemarks = '';
         break;
       case 'supplyLines':
         break;
       case 'serviceLines':
-        break; 
+        break;
       case 'contractBOQ':
-        break;  
+        break;
     }
   }
 }
