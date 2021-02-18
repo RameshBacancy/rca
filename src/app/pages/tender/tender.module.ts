@@ -20,6 +20,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatSelectModule } from '@angular/material/select';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { TenderAddendumsListComponent } from './tender-addendums-list/tender-addendums-list.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     CurrentTendersComponent,
     RegistrationOfQueriesComponent,
     TenderAddendumsComponent,
-    SubmitTenderBidsComponent
+    SubmitTenderBidsComponent,
+    TenderAddendumsListComponent
   ],
   imports: [
     CommonModule,

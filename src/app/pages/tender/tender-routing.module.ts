@@ -11,6 +11,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from 'src/app/guard/auth.guard';
 import { TenderComponent } from './tender.component';
 import { ProtectGuard } from 'src/app/guard/protect.guard';
+import { TenderAddendumsListComponent } from './tender-addendums-list/tender-addendums-list.component';
 
 const routes: Routes = [
   {
@@ -45,6 +46,10 @@ const routes: Routes = [
       {
         path: 'tender-addendums',
         component: TenderAddendumsComponent
+      },
+      {
+        path: 'tender-addendums-list',
+        component: TenderAddendumsListComponent
       },
       {
         path: 'submit-tender-bids',

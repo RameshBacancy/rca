@@ -92,7 +92,7 @@ export class RegistrationOfQueriesComponent implements OnInit, OnDestroy {
   }
 
   waitAddendums() {
-    this.router.navigateByUrl('/e-tendering/tender-addendums');
+    this.router.navigateByUrl('/e-tendering/tender-addendums-list');
   }
 
   ngOnDestroy(): void {

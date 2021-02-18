@@ -6,6 +6,11 @@ export interface TenderDetail {
     endDate: Date;
     tenderFee: number;
     remarks: string;
+    revisionNo?: string,
+    queryNo?: string,
+    queryType?: string,
+    addendumId?: string,
+    addendumDate?: string,
     siteId: string;
     siteDescription: string;
     tenderStatus: string;
