@@ -9,15 +9,18 @@
                         matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.generalInfo.cRNumber' | translate }}</h5>
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                        {{ 'internationalRegistration.generalInfo.cRNumber' | translate }}</h5>
                     <p class="fs-14">1567 6578</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.generalInfo.arabicName' | translate }}</h5>
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                        {{ 'internationalRegistration.generalInfo.arabicName' | translate }}</h5>
                     <p class="fs-14 px-4">آر بالا</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.generalInfo.englishName' | translate }}</h5>
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                        {{ 'internationalRegistration.generalInfo.englishName' | translate }}</h5>
                     <p class="fs-14">R Bala</p>
                 </div>
                 <!-- <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
@@ -29,15 +32,18 @@
                 <div class="col-md-12 col-lg-12 col-xl-12 px-4 ">
                     <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">
                         <i class="fa fa-ban text-red fs-14" mat-raised-button
-                            matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i> {{ 'internationalRegistration.generalInfo.companyInfo' | translate }}
+                            matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
+                        {{ 'internationalRegistration.generalInfo.companyInfo' | translate }}
                     </h4>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">{{ 'internationalRegistration.generalInfo.companyName' | translate }}</h5>
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">
+                        {{ 'internationalRegistration.generalInfo.companyName' | translate }}</h5>
                     <p class="fs-14 px-4">Company Name</p>
                 </div>
                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">{{ 'internationalRegistration.generalInfo.companyCRNumber' | translate }}</h5>
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 px-4">
+                        {{ 'internationalRegistration.generalInfo.companyCRNumber' | translate }}</h5>
                     <p class="fs-14 px-4">1567 6578</p>
                 </div>
             </div>
@@ -54,11 +60,16 @@
                             <thead>
                                 <tr class="purple-bg text-white">
                                     <th scope="col"></th>
-                                    <th scope="col">{{ 'internationalRegistration.generalInfo.addressID' | translate }}</th>
-                                    <th scope="col">{{ 'internationalRegistration.generalInfo.addressLine1' | translate }}</th>
-                                    <th scope="col">{{ 'internationalRegistration.generalInfo.addressLine2' | translate }}</th>
-                                    <th scope="col">{{ 'internationalRegistration.generalInfo.language' | translate }}</th>
-                                    <th scope="col">{{ 'internationalRegistration.generalInfo.country' | translate }}</th>
+                                    <th scope="col" [appSort]="allAddresses" data-order="desc" data-name="">
+                                        {{ 'internationalRegistration.generalInfo.addressID' | translate }}</th>
+                                    <th scope="col" [appSort]="allAddresses" data-order="desc" data-name="addressLine1">
+                                        {{ 'internationalRegistration.generalInfo.addressLine1' | translate }}</th>
+                                    <th scope="col" [appSort]="allAddresses" data-order="desc" data-name="addressLine2">
+                                        {{ 'internationalRegistration.generalInfo.addressLine2' | translate }}</th>
+                                    <th scope="col" [appSort]="allAddresses" data-order="desc" data-name="language">
+                                        {{ 'internationalRegistration.generalInfo.language' | translate }}</th>
+                                    <th scope="col" [appSort]="allAddresses" data-order="desc" data-name="country">
+                                        {{ 'internationalRegistration.generalInfo.country' | translate }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -142,8 +153,9 @@
                                 <div class="row ">
                                     <div class="col-md-12 ">
                                         <div class="form-group row mb-3">
-                                            <label for="addressID" class="col-sm-5 col-form-label"> 
-                                                {{ 'internationalRegistration.generalInfo.addressID' | translate }}<span class="text-red">*</span></label>
+                                            <label for="addressID" class="col-sm-5 col-form-label">
+                                                {{ 'internationalRegistration.generalInfo.addressID' | translate }}<span
+                                                    class="text-red">*</span></label>
                                             <div class="col-sm-7">
                                                 <input formControlName="addressID" id="addressID" type="text"
                                                     class="form-control" readonly>
@@ -157,7 +169,8 @@
                                         </div>
                                         <div class="form-group row mb-3">
                                             <label for="addressLine1" class="col-sm-5 col-form-label">
-                                                {{ 'internationalRegistration.generalInfo.addressLine1' | translate }}<span class="text-red">*</span></label>
+                                                {{ 'internationalRegistration.generalInfo.addressLine1' | translate }}<span
+                                                    class="text-red">*</span></label>
                                             <div class="col-sm-7">
                                                 <input formControlName="addressLine1" id="addressLine1" type="text"
                                                     class="form-control">
@@ -235,7 +248,8 @@
 
             <div class="row">
                 <div class="col-md-12 px-4">
-                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">{{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
+                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">
+                        {{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
                     <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                 </div>
             </div>
@@ -244,8 +258,10 @@
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        [disabled]="true"><i class="fa fa-caret-left"></i> {{ 'buttonsLabel.previous' | translate }}</button>
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext>{{ 'buttonsLabel.next' | translate }}
+                        [disabled]="true"><i class="fa fa-caret-left"></i>
+                        {{ 'buttonsLabel.previous' | translate }}</button>
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                        matStepperNext>{{ 'buttonsLabel.next' | translate }}
                         <i class="fa fa-caret-right"></i></button>
                     <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
@@ -253,7 +269,8 @@
                         {{ 'buttonsLabel.saveasDraft' | translate }}
                     </button>
                     <a routerLink="/landing/supplier-registration/dashboard">
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">{{ 'buttonsLabel.cancel' | translate }}</button>
+                        <button type="button"
+                            class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">{{ 'buttonsLabel.cancel' | translate }}</button>
                     </a>
                 </div>
             </div>
@@ -274,19 +291,27 @@
                             <thead>
                                 <tr class="purple-bg text-white">
                                     <th scope="col"></th>
-                                    <th scope="col" class="custom-width-60" (click)="sorting('personal','personName')">
-                                        {{'internationalRegistration.personalDetails.personname' | translate }}<i class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','nationality')">{{'internationalRegistration.personalDetails.nationality' | translate }} <i
+                                    <th scope="col" class="custom-width-60" [appSort]="personalData" data-order="desc"
+                                        data-name="personName">
+                                        {{'internationalRegistration.personalDetails.personname' | translate }}<i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','idType')">{{'internationalRegistration.personalDetails.i.DType' | translate }} <i
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="nationality">
+                                        {{'internationalRegistration.personalDetails.nationality' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','idNo')">{{'internationalRegistration.personalDetails.i.DNo.' | translate }} <i class="fa fa-sort"
-                                            aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','designation')">{{'internationalRegistration.personalDetails.designation' | translate }} <i
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="idType">
+                                        {{'internationalRegistration.personalDetails.i.DType' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','residentNo')">{{'internationalRegistration.personalDetails.residentCardNumber' | translate }} <i
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="idNo">
+                                        {{'internationalRegistration.personalDetails.i.DNo.' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','passport')">{{'internationalRegistration.personalDetails.passport' | translate }} <i
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="designation">
+                                        {{'internationalRegistration.personalDetails.designation' | translate }} <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="residentNo">
+                                        {{'internationalRegistration.personalDetails.residentCardNumber' | translate }}
+                                        <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="passport">
+                                        {{'internationalRegistration.personalDetails.passport' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th></th>
                                 </tr>
@@ -313,7 +338,8 @@
                                         {{data.personName}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'personal',data)"><input
-                                            [(ngModel)]="data.personName"><span class="text-red">*{{'buttonsLabel.required' | translate }}</span></td>
+                                            [(ngModel)]="data.personName"><span
+                                            class="text-red">*{{'buttonsLabel.required' | translate }}</span></td>
                                     <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.nationality}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
@@ -358,7 +384,8 @@
                     </div>
                 </div>
                 <div class="col-md-12 px-4">
-                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">{{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
+                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">
+                        {{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
                     <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                 </div>
             </div>
@@ -378,7 +405,8 @@
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
-                        matStepperPrevious><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate  }}</button>
+                        matStepperPrevious><i class="fa fa-caret-left"></i>
+                        {{'buttonsLabel.previous' | translate  }}</button>
                     <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                         [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate  }}
                         <i class="fa fa-caret-right"></i></button>
@@ -406,36 +434,43 @@
                             matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.communicationMethod.telephone' | translate }}</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                            {{ 'internationalRegistration.communicationMethod.telephone' | translate }}</h5>
                         <p class="fs-14">{{communicationData.telephone || '-' }}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.communicationMethod.p.O.Box' | translate }}</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                            {{ 'internationalRegistration.communicationMethod.p.O.Box' | translate }}</h5>
                         <p class="fs-14">{{communicationData.poBox || '-' }}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.communicationMethod.fax' | translate }}</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                            {{ 'internationalRegistration.communicationMethod.fax' | translate }}</h5>
                         <p class="fs-14">{{communicationData.fax || '-' }}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.communicationMethod.legalStatus' | translate }}</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                            {{ 'internationalRegistration.communicationMethod.legalStatus' | translate }}</h5>
                         <p class="fs-14">{{communicationData.legalStatus || '-'}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.communicationMethod.pC' | translate }}</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                            {{ 'internationalRegistration.communicationMethod.pC' | translate }}</h5>
                         <p class="fs-14">{{communicationData.pc || '-'}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.communicationMethod.email' | translate }}</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                            {{ 'internationalRegistration.communicationMethod.email' | translate }}</h5>
                         <p class="fs-14">{{communicationData.email || '-'}}</p>
                         <!-- <input type="email" class="fs-14" [(ngModel)]=comunicationData.email> -->
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12 px-4">
-                        <p class="dark-text-1 fs-14 font-weight-bold mb-0">{{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
+                        <p class="dark-text-1 fs-14 font-weight-bold mb-0">
+                            {{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
                         <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                     </div>
                 </div>
@@ -446,13 +481,16 @@
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" matStepperPrevious><i
                             class="fa fa-caret-left"></i> {{ 'buttonsLabel.previous' | translate }}</button>
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext>{{ 'buttonsLabel.next' | translate }}
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                        matStepperNext>{{ 'buttonsLabel.next' | translate }}
                         <i class="fa fa-caret-right"></i></button>
                     <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
-                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft(2)">{{ 'buttonsLabel.saveasDraft' | translate }}</button>
+                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2"
+                        (click)="saveDraft(2)">{{ 'buttonsLabel.saveasDraft' | translate }}</button>
                     <a routerLink="/landing/supplier-registration/dashboard">
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">{{ 'buttonsLabel.cancel' | translate }}</button>
+                        <button type="button"
+                            class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">{{ 'buttonsLabel.cancel' | translate }}</button>
                     </a>
                 </div>
             </div>
@@ -467,10 +505,10 @@
                         <div class="row">
                             <div class="col-md-12 px-4 mb-3 mt-3">
                                 <div class="table-responsive">
-    
+
                                     <input class="fs-16 custom-height-35" [(ngModel)]="searchText"
                                         placeholder="Search text">
-    
+
                                     <button class="btn btn-secondary ml-2 float-right mb-2" [disabled]='!showBtn'
                                         (click)="addNewRow('activity')"><i class="fa fa-plus"
                                             aria-hidden="true"></i></button>
@@ -478,11 +516,14 @@
                                         <thead>
                                             <tr class="purple-bg text-white">
                                                 <th scope="col"></th>
-                                                <th scope="col" class="custom-width-60"
-                                                    (click)="sorting('activity','activityName')"> {{ 'internationalRegistration.commercialInfo.activityName' | translate }}
+                                                <th scope="col" class="custom-width-60" [appSort]="activityData"
+                                                    data-order="desc" data-name="activityName">
+                                                    {{ 'internationalRegistration.commercialInfo.activityName' | translate }}
                                                     <i class="fa fa-sort" aria-hidden="true"></i>
                                                 </th>
-                                                <th scope="col" (click)="sorting('activity','subActivity')">{{ 'internationalRegistration.commercialInfo.subActivity' | translate }}
+                                                <th scope="col" [appSort]="activityData" data-order="desc"
+                                                    data-name="subActivity">
+                                                    {{ 'internationalRegistration.commercialInfo.subActivity' | translate }}
                                                     <i class="fa fa-sort" aria-hidden="true"></i>
                                                 </th>
                                                 <th></th>
@@ -514,20 +555,23 @@
                                                         aria-hidden="true"></i>
                                                 </td>
                                                 <td *ngIf="!data.isMoci">
-                                                    <i class="fa fa-pencil-square-o fs-14" *ngIf="!data.isEdit && showBtn"
-                                                        mat-raised-button matTooltip="Edit Data"
+                                                    <i class="fa fa-pencil-square-o fs-14"
+                                                        *ngIf="!data.isEdit && showBtn" mat-raised-button
+                                                        matTooltip="Edit Data"
                                                         (click)="data.isEdit = true; this.showBtn=false;"
                                                         aria-hidden="true"></i>
                                                     <i class="fa fa-save fs-20 background-purple text-white p-1"
                                                         *ngIf="data.isEdit" mat-raised-button matTooltip="Save Data"
-                                                        (click)="enteredDetails( 'activity',data)" aria-hidden="true"></i>
+                                                        (click)="enteredDetails( 'activity',data)"
+                                                        aria-hidden="true"></i>
                                                 </td>
                                                 <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                                     {{data.activityName}}
                                                 </td>
                                                 <td *ngIf="data.isEdit && !data.isMoci"
                                                     (keyup.enter)="enteredDetails( 'activity',data)">
-                                                    <input [(ngModel)]="data.activityName"><span class="text-red">*</span>
+                                                    <input [(ngModel)]="data.activityName"><span
+                                                        class="text-red">*</span>
                                                 </td>
                                                 <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                                     {{data.subActivity}}
@@ -555,32 +599,36 @@
                                             {{data.commodity}}</td>
                                         <td *ngIf="data.isEdit && !data.isMoci" (keyup.enter)="enteredDetails( 'activity',data)">
                                             <input [(ngModel)]="data.commodity"></td> -->
-    
+
                                             </tr>
                                         </tbody>
-    
+
                                     </table>
                                 </div>
                             </div>
                         </div>
                         <div class="row mt-3 mb-5">
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.commercialInfo.establishmentdate' | translate }}</h5>
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                    {{ 'internationalRegistration.commercialInfo.establishmentdate' | translate }}</h5>
                                 <p class="fs-14">{{activityDetail.establishmentDate}}</p>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.commercialInfo.registrationDate' | translate }}</h5>
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                    {{ 'internationalRegistration.commercialInfo.registrationDate' | translate }}</h5>
                                 <p class="fs-14">{{activityDetail.regDate}}</p>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.commercialInfo.expiryDate' | translate }} </h5>
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                    {{ 'internationalRegistration.commercialInfo.expiryDate' | translate }} </h5>
                                 <p class="fs-14">{{activityDetail.expDate}}</p>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.commercialInfo.companyGrade' | translate }}</h5>
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                    {{ 'internationalRegistration.commercialInfo.companyGrade' | translate }}</h5>
                                 <p class="fs-14">company grade</p>
                             </div>
-    
+
                         </div>
                         <!-- <div class="row">
                     <div class="col-md-12 px-4 ">
@@ -591,18 +639,19 @@
                 </div> -->
                         <div class="row">
                             <div class="col-md-12 px-4">
-                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">{{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
+                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">
+                                    {{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
                                 <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                             </div>
                         </div>
-    
+
                         <div class="row px-2 py-2" *ngIf="!showBtn">
                             <div class="col-md-12 px-4">
                                 <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move
                                     forward.</p>
                             </div>
                         </div>
-    
+
                     </ng-container>
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
@@ -627,8 +676,8 @@
                     <ng-container *ngIf="bankDetails">
                         <div class="row ">
                             <div class="col-md-12 px-4 ">
-                                <button class="btn btn-secondary ml-2 " (click)="openbank(bankModel)"  [disabled]='!showBtn'><i class="fa fa-plus"
-                                        aria-hidden="true"></i></button>
+                                <button class="btn btn-secondary ml-2 " (click)="openbank(bankModel)"
+                                    [disabled]='!showBtn'><i class="fa fa-plus" aria-hidden="true"></i></button>
                             </div>
                         </div>
                         <div class="shadow p-3 mb-5" *ngFor="let data of bankDetails; index as index">
@@ -642,27 +691,33 @@
                                         (click)="openbank(bankModel,data)" aria-hidden="true"></i>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'localRegistration.bankDetails.bankingId' | translate }}</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                        {{ 'localRegistration.bankDetails.bankingId' | translate }}</h5>
                                     <p class="fs-14">{{index + 1}}</p>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'localRegistration.bankDetails.bankingIdName' | translate }}</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                        {{ 'localRegistration.bankDetails.bankingIdName' | translate }}</h5>
                                     <p class="fs-14">{{data.bankingIdname}}</p>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'internationalRegistration.commercialInfo.bankAccount' | translate }}</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                        {{ 'internationalRegistration.commercialInfo.bankAccount' | translate }}</h5>
                                     <p class="fs-14">{{data.bankAcc}}</p>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'localRegistration.bankDetails.bankName' | translate }}</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                        {{ 'localRegistration.bankDetails.bankName' | translate }}</h5>
                                     <p class="fs-14">{{data.bankName}}</p>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'localRegistration.bankDetails.bankBranch' | translate }}</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                        {{ 'localRegistration.bankDetails.bankBranch' | translate }}</h5>
                                     <p class="fs-14">{{data.bankBranch}}</p>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{ 'localRegistration.bankDetails.accountholdername' | translate }}</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                        {{ 'localRegistration.bankDetails.accountholdername' | translate }}</h5>
                                     <p class="fs-14">{{data.holderName}}</p>
                                 </div>
                             </div>
@@ -670,7 +725,8 @@
                         <!-- banck form pop-up -->
                         <ng-template #bankModel let-modal>
                             <div class="modal-header">
-                                <h4 class="modal-title" id="modal-basic-title">{{ 'buttonsLabel.addBankDetail' | translate }}</h4>
+                                <h4 class="modal-title" id="modal-basic-title">
+                                    {{ 'buttonsLabel.addBankDetail' | translate }}</h4>
                                 <button type="button" class="close" aria-label="Close"
                                     (click)="modal.dismiss('Cross click')">
                                     <span aria-hidden="true">×</span>
@@ -687,8 +743,8 @@
                                                             {{ 'localRegistration.bankDetails.bankingId' | translate }}
                                                             <span class="text-red">*</span></label>
                                                         <div class="col-sm-7">
-                                                            <input formControlName="bankingID" id="bankingID" type="text"
-                                                                class="form-control" readonly>
+                                                            <input formControlName="bankingID" id="bankingID"
+                                                                type="text" class="form-control" readonly>
                                                         </div>
                                                         <div *ngIf="bf.bankingID.touched && bf.bankingID.invalid"
                                                             class="alert alert-danger">
@@ -707,14 +763,16 @@
                                                         </div>
                                                         <div *ngIf="bf.bankingIdname.touched && bf.bankingIdname.invalid"
                                                             class="alert alert-danger">
-                                                            <div *ngIf="bf.bankingIdname.errors.required" class="col-sm-7">
+                                                            <div *ngIf="bf.bankingIdname.errors.required"
+                                                                class="col-sm-7">
                                                                 *{{ 'buttonsLabel.required' | translate }}
                                                             </div>
                                                         </div>
                                                     </div>
                                                     <div class="form-group row mb-3">
                                                         <label for="bankAcc" class="col-sm-5 col-form-label">
-                                                            {{ 'internationalRegistration.commercialInfo.bankAccount' | translate }}<span class="text-red">*</span></label>
+                                                            {{ 'internationalRegistration.commercialInfo.bankAccount' | translate }}<span
+                                                                class="text-red">*</span></label>
                                                         <div class="col-sm-7">
                                                             <input formControlName="bankAcc" id="bankAcc" type="text"
                                                                 class="form-control">
@@ -731,7 +789,8 @@
                                                     </div>
                                                     <div class="form-group row mb-3">
                                                         <label for="bankName" class="col-sm-5 col-form-label">
-                                                            {{ 'localRegistration.bankDetails.bankName' | translate }}<span class="text-red">*</span></label>
+                                                            {{ 'localRegistration.bankDetails.bankName' | translate }}<span
+                                                                class="text-red">*</span></label>
                                                         <div class="col-sm-7">
                                                             <input formControlName="bankName" id="bankName" type="text"
                                                                 class="form-control">
@@ -744,11 +803,12 @@
                                                     </div>
                                                     <div class="form-group row mb-3">
                                                         <label for="bankBranch" class="col-sm-5 col-form-label">
-                                                            {{ 'localRegistration.bankDetails.bankBranch' | translate }}<span class="text-red">*</span>
+                                                            {{ 'localRegistration.bankDetails.bankBranch' | translate }}<span
+                                                                class="text-red">*</span>
                                                         </label>
                                                         <div class="col-sm-7">
-                                                            <input formControlName="bankBranch" id="bankBranch" type="text"
-                                                                class="form-control">
+                                                            <input formControlName="bankBranch" id="bankBranch"
+                                                                type="text" class="form-control">
                                                         </div>
                                                         <div *ngIf="bf.bankBranch.touched && bf.bankBranch.invalid"
                                                             class="alert alert-danger">
@@ -758,11 +818,12 @@
                                                     </div>
                                                     <div class="form-group row mb-3">
                                                         <label for="holderName" class="col-sm-5 col-form-label">
-                                                            {{ 'localRegistration.bankDetails.accountholdername' | translate }}<span class="text-red">*</span>
+                                                            {{ 'localRegistration.bankDetails.accountholdername' | translate }}<span
+                                                                class="text-red">*</span>
                                                         </label>
                                                         <div class="col-sm-7">
-                                                            <input formControlName="holderName" id="holderName" type="text"
-                                                                class="form-control">
+                                                            <input formControlName="holderName" id="holderName"
+                                                                type="text" class="form-control">
                                                         </div>
                                                         <div *ngIf="bf.holderName.touched && bf.holderName.invalid"
                                                             class="alert alert-danger">
@@ -770,7 +831,7 @@
                                                                 *{{ 'buttonsLabel.required' | translate }}</div>
                                                         </div>
                                                     </div>
-    
+
                                                     <div class="row mt-5">
                                                         <div class="col-md-12 mb-5 px-4"> </div>
                                                     </div>
@@ -784,18 +845,19 @@
                                         [disabled]='!bankform.valid'>{{ 'buttonsLabel.submit' | translate }}</button>
                                     <button class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2" type="cancel"
                                         (click)="form.reset(); modal.close('Save click')">{{ 'buttonsLabel.cancel' | translate }}</button>
-    
+
                                 </div>
                             </form>
                         </ng-template>
-    
+
                         <div class="row">
                             <div class="col-md-12 px-4">
-                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">{{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
+                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">
+                                    {{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
                                 <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                             </div>
                         </div>
-    
+
                         <div class="row px-2 py-2" *ngIf="!showBtn">
                             <div class="col-md-12 px-4">
                                 <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move
@@ -825,12 +887,13 @@
                 <mat-tab label="{{'registarationStepperNames.otherInfo' | translate }}">
                     <ng-container *ngIf="otherData">
                         <div class="row">
-    
+
                             <div class="col-md-12 px-4 mb-3 mt-3">
                                 <div class="table-responsive">
                                     <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
                                     <button class="btn btn-secondary ml-2 float-right mb-2" [disabled]='!showBtn'
-                                        (click)="addNewRow('other')"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                        (click)="addNewRow('other')"><i class="fa fa-plus"
+                                            aria-hidden="true"></i></button>
                                     <table class="table table-striped mb-0 ">
                                         <thead>
                                             <tr class="purple-bg text-white">
@@ -841,11 +904,17 @@
                                                                     class="fa fa-ellipsis-v "></i>
                                                             </a> </span> </div> -->
                                                 </th>
-                                                <th scope="col" (click)="sorting('other','no')">{{'internationalRegistration.commercialInfo.no.' | translate }}<i class="fa fa-sort"
-                                                        aria-hidden="true"></i></th>
-                                                <th scope="col" (click)="sorting('other','name')">{{'internationalRegistration.commercialInfo.label' | translate }}<i
+                                                <th scope="col">
+                                                    {{'internationalRegistration.commercialInfo.no.' | translate }}
+                                                </th>
+                                                <th scope="col" [appSort]="otherData" data-order="desc"
+                                                    data-name="name">
+                                                    {{'internationalRegistration.commercialInfo.label' | translate }} <i
                                                         class="fa fa-sort" aria-hidden="true"></i></th>
-                                                <th scope="col">{{'internationalRegistration.commercialInfo.value' | translate }} </th>
+                                                <th scope="col" [appSort]="otherData" data-order="desc"
+                                                    data-name="value">
+                                                    {{'internationalRegistration.commercialInfo.value' | translate }} <i
+                                                        class="fa fa-sort" aria-hidden="true"></i></th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -859,8 +928,9 @@
                                                         aria-hidden="true"></i>
                                                 </td>
                                                 <td *ngIf="!data.isMoci">
-                                                    <i class="fa fa-pencil-square-o fs-14" *ngIf="!data.isEdit && showBtn"
-                                                        mat-raised-button matTooltip="Edit Data"
+                                                    <i class="fa fa-pencil-square-o fs-14"
+                                                        *ngIf="!data.isEdit && showBtn" mat-raised-button
+                                                        matTooltip="Edit Data"
                                                         (click)="data.isEdit = true; this.showBtn=false;"
                                                         aria-hidden="true"></i>
                                                     <i class="fa fa-save fs-20 background-purple text-white p-1"
@@ -882,8 +952,8 @@
                                                 <td>{{index + 1}}</td>
                                                 <td *ngIf="!data.isEdit" (dblclick)="dblclick(data)">{{data.name}}
                                                 </td>
-                                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)"><input
-                                                        [(ngModel)]="data.name"><span class="text-red">*</span></td>
+                                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)">
+                                                    <input [(ngModel)]="data.name"><span class="text-red">*</span></td>
                                                 <td *ngIf="!data.isEdit" (dblclick)="dblclick(data)">{{data.value}}</td>
                                                 <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)">
                                                     <input type="text" id="input" name="input" [(ngModel)]="data.value">
@@ -900,7 +970,8 @@
                                 </div>
                             </div>
                             <div class="col-md-12 px-4">
-                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">{{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
+                                <p class="dark-text-1 fs-14 font-weight-bold mb-0">
+                                    {{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
                                 <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                             </div>
                         </div>
@@ -918,7 +989,8 @@
                                 [disabled]='!showBtn' (click)="previousTab()"><i class="fa fa-caret-left"></i>
                                 {{ 'buttonsLabel.previous' | translate }}</button>
                             <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                [disabled]='!showBtn' matStepperNext>{{ 'buttonsLabel.next' | translate }} <i class="fa fa-caret-right"></i></button>
+                                [disabled]='!showBtn' matStepperNext>{{ 'buttonsLabel.next' | translate }} <i
+                                    class="fa fa-caret-right"></i></button>
                             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                     (click)="move(6)">Finish</button> -->
                             <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
@@ -956,37 +1028,37 @@
                                             <span class="ml-2"> <a class=" text-blaack fs-14"><i
                                                         class="fa fa-ellipsis-v  "></i> </a></span> </div>
                                     </th> -->
-                                    <th scope="col" (click)="sorting('staff','name')">
-                                        {{ 'internationalRegistration.employeeDetails.employeeName' | translate }}
-                                        <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','qualification')">
-                                        {{ 'internationalRegistration.employeeDetails.employeeQualification' | translate }} <i
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="name">
+                                        {{ 'internationalRegistration.employeeDetails.employeeName' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','specialization')">
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="qualification">
+                                        {{ 'internationalRegistration.employeeDetails.employeeQualification' | translate }}
+                                        <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="specialization">
                                         {{ 'internationalRegistration.employeeDetails.employeeSpecialization' | translate }}
                                         <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','jobTitle')">
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="jobTitle">
                                         {{ 'internationalRegistration.employeeDetails.jobtitle' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','designation')">
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="designation">
                                         {{ 'internationalRegistration.employeeDetails.designationType' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','designationDate')">
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="designationDate">
                                         {{ 'internationalRegistration.employeeDetails.designationdate' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','expDate')">
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="expDate">
                                         {{ 'internationalRegistration.employeeDetails.expireddate' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','experiance')">
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="experience">
                                         {{ 'internationalRegistration.employeeDetails.experience' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','appointmentDate')">
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="appointmentDate">
                                         {{ 'internationalRegistration.employeeDetails.appointmentDate' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','status')">
-                                        {{ 'internationalRegistration.employeeDetails.status' | translate }} <i class="fa fa-sort"
-                                            aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('staff','statusDate')">
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="status">
+                                        {{ 'internationalRegistration.employeeDetails.status' | translate }} <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" [appSort]="staffData" data-order="desc" data-name="statusDate">
                                         {{ 'internationalRegistration.employeeDetails.statusdate' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th></th>
@@ -1020,7 +1092,8 @@
                                         {{data.name}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
                                         (keyup.enter)="enteredDetails( 'staff',data)">
-                                        <input [(ngModel)]="data.name"><span class="text-red">*{{ 'buttonsLabel.required' | translate }}</span></td>
+                                        <input [(ngModel)]="data.name"><span
+                                            class="text-red">*{{ 'buttonsLabel.required' | translate }}</span></td>
                                     <td *ngIf="data.isMoci || !data.isEdit" (dblclick)="dblclick(data)">
                                         {{data.qualification}}</td>
                                     <td *ngIf="data.isEdit && !data.isMoci"
@@ -1084,7 +1157,8 @@
                     </div>
                 </div>
                 <div class="col-md-12 px-4">
-                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">{{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
+                    <p class="dark-text-1 fs-14 font-weight-bold mb-0">
+                        {{ 'internationalRegistration.generalInfo.remarks/Notes' | translate }}</p>
                     <p class="dark-text-1 fs-14 ">Details Not Applicable</p>
                 </div>
             </div>
@@ -1097,11 +1171,14 @@
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
-                        matStepperPrevious><i class="fa fa-caret-left"></i> {{ 'buttonsLabel.previous' | translate }}</button>
+                        matStepperPrevious><i class="fa fa-caret-left"></i>
+                        {{ 'buttonsLabel.previous' | translate }}</button>
                     <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        [disabled]="true" [disabled]='!showBtn'>{{ 'buttonsLabel.next' | translate }} <i class="fa fa-caret-right"></i> </button>
+                        [disabled]="true" [disabled]='!showBtn'>{{ 'buttonsLabel.next' | translate }} <i
+                            class="fa fa-caret-right"></i> </button>
                     <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        (click)="submitRegistration()" [disabled]='!showBtn'>{{ 'buttonsLabel.finish' | translate }}</button>
+                        (click)="submitRegistration()"
+                        [disabled]='!showBtn'>{{ 'buttonsLabel.finish' | translate }}</button>
                     <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
              (click)="move(6)">Finish</button> -->
                     <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'

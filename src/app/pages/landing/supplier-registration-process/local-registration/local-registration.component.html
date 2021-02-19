@@ -144,12 +144,13 @@
                                     <thead>
                                         <tr class="purple-bg text-white">
                                             <th scope="col"></th>
-                                            <th scope="col" class="custom-width-60"
-                                                (click)="sorting('activity','activityName')">
+                                            <th scope="col" class="custom-width-60" [appSort]="activityData"
+                                                data-order="desc" data-name="activityName">
                                                 {{'localRegistration.generalInfo.activityName' | translate }}
                                                 <i class="fa fa-sort" aria-hidden="true"></i>
                                             </th>
-                                            <th scope="col" (click)="sorting('activity','subActivity')">
+                                            <th scope="col" [appSort]="activityData" data-order="desc"
+                                                data-name="subActivity">
                                                 {{'localRegistration.generalInfo.subActivity' | translate }}
                                                 <i class="fa fa-sort" aria-hidden="true"></i>
                                             </th>
@@ -281,16 +282,20 @@
                                     <thead>
                                         <tr class="purple-bg text-white">
                                             <th scope="col"></th>
-                                            <th scope="col">{{'localRegistration.generalInfo.addressID' | translate }}
-                                            </th>
-                                            <th scope="col">
-                                                {{'localRegistration.generalInfo.addressLine1' | translate }}</th>
-                                            <th scope="col">
-                                                {{'localRegistration.generalInfo.addressLine2' | translate }}</th>
-                                            <th scope="col">{{'localRegistration.generalInfo.language' | translate }}
-                                            </th>
-                                            <th scope="col">{{'localRegistration.generalInfo.country' | translate }}
-                                            </th>
+                                            <th scope="col" [appSort]="allAddresses" data-order="desc" data-name="">
+                                                {{ 'localRegistration.generalInfo.addressID' | translate }}</th>
+                                            <th scope="col" [appSort]="allAddresses" data-order="desc"
+                                                data-name="addressLine1">
+                                                {{ 'localRegistration.generalInfo.addressLine1' | translate }}</th>
+                                            <th scope="col" [appSort]="allAddresses" data-order="desc"
+                                                data-name="addressLine2">
+                                                {{ 'localRegistration.generalInfo.addressLine2' | translate }}</th>
+                                            <th scope="col" [appSort]="allAddresses" data-order="desc"
+                                                data-name="language">
+                                                {{ 'localRegistration.generalInfo.language' | translate }}</th>
+                                            <th scope="col" [appSort]="allAddresses" data-order="desc"
+                                                data-name="country">
+                                                {{ 'localRegistration.generalInfo.country' | translate }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -578,38 +583,44 @@
                                     <tr class="purple-bg text-white">
                                         <th scope="col" class="custom-width-60">
                                         </th>
-                                        <th scope="col" class="custom-width-60"
-                                            (click)="sorting('personal','personName')">
+                                        <th scope="col" class="custom-width-60" [appSort]="personalData"
+                                            data-order="desc" data-name="personName">
                                             {{'localRegistration.personalDetails.personname' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','nationality')">
+                                        <th scope="col" [appSort]="personalData" data-order="desc"
+                                            data-name="nationality">
                                             {{'localRegistration.personalDetails.nationality' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','idType')">
+                                        <th scope="col" [appSort]="personalData" data-order="desc" data-name="idType">
                                             {{'localRegistration.personalDetails.idType' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','idNo')">
+                                        <th scope="col" [appSort]="personalData" data-order="desc" data-name="idNo">
                                             {{'localRegistration.personalDetails.idNo' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','designation')">
+                                        <th scope="col" [appSort]="personalData" data-order="desc"
+                                            data-name="designation">
                                             {{'localRegistration.personalDetails.designation' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','noOfShares')">
+                                        <th scope="col" [appSort]="personalData" data-order="desc"
+                                            data-name="noOfShares">
                                             {{'localRegistration.personalDetails.noOfshares' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','perShares')">
+                                        <th scope="col" [appSort]="personalData" data-order="desc"
+                                            data-name="perShares">
                                             {{'localRegistration.personalDetails.percentageshares' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','authorizationType')">
+                                        <th scope="col" [appSort]="personalData" data-order="desc"
+                                            data-name="authorizationType">
                                             {{'localRegistration.personalDetails.authorizationType' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','authorizationLimit')">
+                                        <th scope="col" [appSort]="personalData" data-order="desc"
+                                            data-name="authorizationLimit">
                                             {{'localRegistration.personalDetails.authorizationLimit' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','note')">
+                                        <th scope="col" [appSort]="personalData" data-order="desc" data-name="note">
                                             {{'localRegistration.personalDetails.note' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('personal','regDate')">
+                                        <th scope="col" [appSort]="personalData" data-order="desc" data-name="regDate">
                                             {{'localRegistration.personalDetails.regDate' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th></th>
@@ -760,10 +771,12 @@
                                 <thead>
                                     <tr class="purple-bg text-white">
                                         <th scope="col"></th>
-                                        <th scope="col" (click)="sorting('communication','method')">
+                                        <th scope="col" [appSort]="communicationData" data-order="desc"
+                                            data-name="method">
                                             {{'localRegistration.communicationMethod.label' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i> </th>
-                                        <th scope="col" (click)="sorting('communication','value')">
+                                        <th scope="col" [appSort]="communicationData" data-order="desc"
+                                            data-name="value">
                                             {{'localRegistration.communicationMethod.value' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th></th>
@@ -866,31 +879,37 @@
                                     <thead>
                                         <tr class="purple-bg text-white">
                                             <th scope="col"></th>
-                                            <th scope="col" class="custom-width-90"
-                                                (click)="sorting('activityInfo','activityName')">
+                                            <th scope="col" class="custom-width-90" [appSort]="activityInfoData"
+                                                data-order="desc" data-name="activityName">
                                                 {{'localRegistration.bankDetails.activitiesName' | translate }} <i
                                                     class="fa fa-sort" aria-hidden="true"></i>
                                             </th>
-                                            <th scope="col" class="custom-width-250"
-                                                (click)="sorting('activityInfo','subActivity')">
+                                            <th scope="col" class="custom-width-250" [appSort]="activityInfoData"
+                                                data-order="desc" data-name="subActivity">
                                                 {{'localRegistration.bankDetails.subActivitiesNo' | translate }} <i
                                                     class="fa fa-sort" aria-hidden="true"></i></th>
-                                            <th scope="col" (click)="sorting('activityInfo','establishmentDate')">
+                                            <th scope="col" [appSort]="activityInfoData" data-order="desc"
+                                                data-name="establishmentDate">
                                                 {{'localRegistration.bankDetails.establishmentdate' | translate }} <i
                                                     class="fa fa-sort" aria-hidden="true"></i> </th>
-                                            <th scope="col" (click)="sorting('activityInfo','regDate')">
+                                            <th scope="col" [appSort]="activityInfoData" data-order="desc"
+                                                data-name="regDate">
                                                 {{'localRegistration.bankDetails.registrationdate' | translate }} <i
                                                     class="fa fa-sort" aria-hidden="true"></i></th>
-                                            <th scope="col" (click)="sorting('activityInfo','expDate')">
+                                            <th scope="col" [appSort]="activityInfoData" data-order="desc"
+                                                data-name="expDate">
                                                 {{'localRegistration.bankDetails.expirydate' | translate }} <i
                                                     class="fa fa-sort" aria-hidden="true"></i></th>
-                                            <th scope="col" (click)="sorting('activityInfo','duration')">
+                                            <th scope="col" [appSort]="activityInfoData" data-order="desc"
+                                                data-name="duration">
                                                 {{'localRegistration.bankDetails.duration' | translate }} <i
                                                     class="fa fa-sort" aria-hidden="true"></i></th>
-                                            <th scope="col" (click)="sorting('activityInfo','companyGrade')">
+                                            <th scope="col" [appSort]="activityInfoData" data-order="desc"
+                                                data-name="companyGrade">
                                                 {{'localRegistration.bankDetails.companygrade' | translate }} <i
                                                     class="fa fa-sort" aria-hidden="true"></i></th>
-                                            <th scope="col" (click)="sorting('activityInfo','location')">
+                                            <th scope="col" [appSort]="activityInfoData" data-order="desc"
+                                                data-name="location">
                                                 {{'localRegistration.bankDetails.location' | translate }} <i
                                                     class="fa fa-sort" aria-hidden="true"></i></th>
                                             <th scope="col">{{'localRegistration.bankDetails.attachment' | translate }}
@@ -1292,20 +1311,22 @@
                                     <thead>
                                         <tr class="purple-bg text-white">
 
-                                            <th scope="col" class="custom-width-90"
-                                                (click)="sorting('branchInfo','reqDate')">
+                                            <th scope="col" class="custom-width-90" [appSort]="compBranchInfoData"
+                                                data-order="desc" data-name="reqDate">
                                                 {{'localRegistration.bankDetails.branchreqdate' | translate }}
                                                 <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                            <th scope="col" class="custom-width-250"
-                                                (click)="sorting('branchInfo','branchId')">
+                                            <th scope="col" class="custom-width-250" [appSort]="compBranchInfoData"
+                                                data-order="desc" data-name="branchId">
                                                 {{'localRegistration.bankDetails.shareValue' | translate }}
                                                 {{'localRegistration.bankDetails.branchID' | translate }}
                                                 <i class="fa fa-sort" aria-hidden="true"></i>
                                             </th>
-                                            <th scope="col" (click)="sorting('branchInfo','branchActivity')">
+                                            <th scope="col" [appSort]="compBranchInfoData" data-order="desc"
+                                                data-name="branchActivity">
                                                 {{'localRegistration.bankDetails.branchActivitiesname' | translate }}
                                                 <i class="fa fa-sort" aria-hidden="true"></i> </th>
-                                            <th scope="col" (click)="sorting('branchInfo','branchActivityNo')">
+                                            <th scope="col" [appSort]="compBranchInfoData" data-order="desc"
+                                                data-name="branchActivityNo">
                                                 {{'localRegistration.bankDetails.branchActivitiesno' | translate }}
                                                 <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         </tr>
@@ -1385,10 +1406,10 @@
                                             <th scope="col">
                                                 {{'localRegistration.bankDetails.no' | translate }}
                                             </th>
-                                            <th scope="col" (click)="sorting('other','name')">
+                                            <th scope="col" [appSort]="otherData" data-order="desc" data-name="name">
                                                 {{'localRegistration.bankDetails.label' | translate }}
                                                 <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                            <th scope="col" (click)="sorting('other','value')">
+                                            <th scope="col" [appSort]="otherData" data-order="desc" data-name="value">
                                                 {{'localRegistration.bankDetails.value' | translate }}
                                                 <i class="fa fa-sort" aria-hidden="true"></i></th>
                                             <th scope="col">
@@ -1583,61 +1604,71 @@
                                                 <span class="ml-2"> <a class=" text-black fs-14"><i
                                                             class="fa fa-ellipsis-v  "></i> </a></span> </div>
                                         </th> -->
-                                        <th scope="col" (click)="sorting('employee','name')">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc" data-name="name">
                                             {{'localRegistration.employeeDetails.employeeName' | translate }} <i
                                                 class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('employee','qualification')">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc"
+                                            data-name="qualification">
                                             {{'localRegistration.employeeDetails.employeeQualification' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('employee','specialization')">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc"
+                                            data-name="specialization">
                                             {{'localRegistration.employeeDetails.employeeSpecialization' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('employee','jobTitle')">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc" data-name="jobTitle">
                                             {{'localRegistration.employeeDetails.jobtitle' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('employee','designation')">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc"
+                                            data-name="designation">
                                             {{'localRegistration.employeeDetails.designationType' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('employee','designationDate')">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc"
+                                            data-name="designationDate">
                                             {{'localRegistration.employeeDetails.designationdate' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('employee','expDate')">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc" data-name="expDate">
                                             {{'localRegistration.employeeDetails.expireddate' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('employee','experiance')">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc"
+                                            data-name="experiance">
                                             {{'localRegistration.employeeDetails.experience' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('employee','appointmentDate')">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc"
+                                            data-name="appointmentDate">
                                             {{'localRegistration.employeeDetails.appointmentDate' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('employee','status')">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc" data-name="status">
                                             {{'localRegistration.employeeDetails.status' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('employee','statusDate')">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc"
+                                            data-name="statusDate">
                                             {{'localRegistration.employeeDetails.statusdate' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('employee','staffCategory')">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc"
+                                            data-name="staffCategory">
                                             {{'localRegistration.employeeDetails.employeeCategory' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('employee','country')">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc" data-name="country">
                                             {{'localRegistration.employeeDetails.country' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('employee','passportNum')">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc"
+                                            data-name="passportNum">
                                             {{'localRegistration.employeeDetails.passportNumber' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('employee','recidentCard')">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc"
+                                            data-name="recidentCard">
                                             {{'localRegistration.employeeDetails.residentcardNumber' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('employee','civilNo')">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc" data-name="civilNo">
                                             {{'localRegistration.employeeDetails.civilNumber' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col" (click)="sorting('employee','crNo')">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc" data-name="crNo">
                                             {{'localRegistration.employeeDetails.cRNumber' | translate }}
                                             <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                        <th scope="col">
+                                        <th scope="col" [appSort]="employeeData" data-order="desc"
+                                            data-name="omaniratio">
                                             {{'localRegistration.employeeDetails.omanizationRatio' | translate }}
-                                            <i class="fa fa-sort" aria-hidden="true"
-                                                (click)="sorting('employee','omaniratio')"></i></th>
+                                            <i class="fa fa-sort" aria-hidden="true"></i></th>
                                         <th scope="col">
                                             {{'localRegistration.employeeDetails.cVDocument' | translate }}
                                         </th>
@@ -2814,25 +2845,26 @@
                                             class="fa fa-sort" aria-hidden="true"></i>-->
                                     <th scope="col" class="custom-width-60">
                                         {{'localRegistration.projectDetails.no' | translate }}</th>
-                                    <th scope="col" (click)="sorting('project','name')">
+                                    <th scope="col" [appSort]="projectData" data-order="desc" data-name="name">
                                         {{'localRegistration.projectDetails.nameofProject' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i> </th>
-                                    <th scope="col" (click)="sorting('project','client')">
+                                    <th scope="col" [appSort]="projectData" data-order="desc" data-name="client">
                                         {{'localRegistration.projectDetails.client' | translate }} <i class="fa fa-sort"
                                             aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('project','consultent')">
+                                    <th scope="col" [appSort]="projectData" data-order="desc" data-name="consultent">
                                         {{'localRegistration.projectDetails.consultant' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('project','costConsultent')">
+                                    <th scope="col" [appSort]="projectData" data-order="desc"
+                                        data-name="costConsultent">
                                         {{'localRegistration.projectDetails.costConsultant' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('project','value')">
+                                    <th scope="col" [appSort]="projectData" data-order="desc" data-name="value">
                                         {{'localRegistration.projectDetails.value' | translate }} <i class="fa fa-sort"
                                             aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('project','period')">
+                                    <th scope="col" [appSort]="projectData" data-order="desc" data-name="period">
                                         {{'localRegistration.projectDetails.period' | translate }} <i class="fa fa-sort"
                                             aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('project','completion')">
+                                    <th scope="col" [appSort]="projectData" data-order="desc" data-name="completion">
                                         {{'localRegistration.projectDetails.completion' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th scope="col">{{'localRegistration.projectDetails.document' | translate }}</th>
@@ -2970,20 +3002,22 @@
                                     <th scope="col" class="custom-width-90">
                                         {{'localRegistration.subcontractorDetails.commercialRegNumber' | translate }}
                                     </th>
-                                    <th scope="col" class="custom-width-250"
-                                        (click)="sorting('subcontractor','nameOfWork')">
+                                    <th scope="col" class="custom-width-250" [appSort]="subContractorData"
+                                        data-order="desc" data-name="nameOfWork">
                                         {{'localRegistration.subcontractorDetails.name' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('subcontractor','telephone')">
+                                    <th scope="col" [appSort]="subContractorData" data-order="desc"
+                                        data-name="telephone">
                                         {{'localRegistration.subcontractorDetails.telephone' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('subcontractor','fax')">
+                                    <th scope="col" [appSort]="subContractorData" data-order="desc" data-name="fax">
                                         {{'localRegistration.subcontractorDetails.fAX' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('subcontractor','email')">
+                                    <th scope="col" [appSort]="subContractorData" data-order="desc" data-name="email">
                                         {{'localRegistration.subcontractorDetails.eMailID' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('subcontractor','regWithRca')">
+                                    <th scope="col" [appSort]="subContractorData" data-order="desc"
+                                        data-name="regWithRca">
                                         {{'localRegistration.subcontractorDetails.regwithRCA' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th></th>
@@ -3119,22 +3153,22 @@
                                     <!--  (click)="sorting('equipment','no')" <i class="fa fa-sort"
                                             aria-hidden="true"></i> -->
                                     <th scope="col">{{'localRegistration.equipmentDetails.sLNo' | translate }} </th>
-                                    <th scope="col" (click)="sorting('equipment','type')">
+                                    <th scope="col" [appSort]="equipmentData" data-order="desc" data-name="type">
                                         {{'localRegistration.equipmentDetails.typeofEquipment' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('equipment','quantity')">
+                                    <th scope="col" [appSort]="equipmentData" data-order="desc" data-name="quantity">
                                         {{'localRegistration.equipmentDetails.quantity' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('equipment','capacity')">
+                                    <th scope="col" [appSort]="equipmentData" data-order="desc" data-name="capacity">
                                         {{'localRegistration.equipmentDetails.capacity' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('equipment','year')">
+                                    <th scope="col" [appSort]="equipmentData" data-order="desc" data-name="year">
                                         {{'localRegistration.equipmentDetails.yearofManufacture' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('equipment','regNo')">
+                                    <th scope="col" [appSort]="equipmentData" data-order="desc" data-name="regNo">
                                         {{'localRegistration.equipmentDetails.registrationNo' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('equipment','approxValue')">
+                                    <th scope="col" [appSort]="equipmentData" data-order="desc" data-name="approxValue">
                                         {{'localRegistration.equipmentDetails.approximateValue' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
                                     <th></th>

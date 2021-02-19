@@ -80,15 +80,18 @@
                             matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.generalInfo.cRNumber' | translate }}</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                            {{'individualRegistration.generalInfo.cRNumber' | translate }}</h5>
                         <p class="fs-14">{{ generalInfo.companyInfo }}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.generalInfo.arabicName' | translate }}</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                            {{'individualRegistration.generalInfo.arabicName' | translate }}</h5>
                         <p class="fs-14 px-4">آر بالا</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.generalInfo.englishName' | translate }}</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                            {{'individualRegistration.generalInfo.englishName' | translate }}</h5>
                         <p class="fs-14">{{ generalInfo.englishName }}</p>
                     </div>
                     <!-- <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
@@ -100,16 +103,18 @@
                     <div class="col-md-12 col-lg-12 col-xl-12">
                         <h4 class="dark-grey-bg px-4 py-2 fs-16 font-weight-bold mb-3 dark-text-1  ">
                             <i class="fa fa-ban text-red fs-14" mat-raised-button
-                                matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i> 
-                                {{'individualRegistration.generalInfo.companyInfo' | translate }}
+                                matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
+                            {{'individualRegistration.generalInfo.companyInfo' | translate }}
                         </h4>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1">{{'individualRegistration.generalInfo.companyName' | translate }}</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1">
+                            {{'individualRegistration.generalInfo.companyName' | translate }}</h5>
                         <p class="fs-14">{{ generalInfo.companyInfo }}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1">{{'individualRegistration.generalInfo.companyCRNumber' | translate }}</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1">
+                            {{'individualRegistration.generalInfo.companyCRNumber' | translate }}</h5>
                         <p class="fs-14">{{ generalInfo.companyInfo }}</p>
                     </div>
                 </div>
@@ -126,11 +131,16 @@
                                 <thead>
                                     <tr class="purple-bg text-white">
                                         <th scope="col"></th>
-                                        <th scope="col">{{'individualRegistration.generalInfo.addressID' | translate }}</th>
-                                        <th scope="col">{{'individualRegistration.generalInfo.addressLine1' | translate }}</th>
-                                        <th scope="col">{{'individualRegistration.generalInfo.addressLine2' | translate }}</th>
-                                        <th scope="col">{{'individualRegistration.generalInfo.language' | translate }}</th>
-                                        <th scope="col">{{'individualRegistration.generalInfo.country' | translate }}</th>
+                                        <th scope="col">{{'individualRegistration.generalInfo.addressID' | translate }}
+                                        </th>
+                                        <th scope="col">
+                                            {{'individualRegistration.generalInfo.addressLine1' | translate }}</th>
+                                        <th scope="col">
+                                            {{'individualRegistration.generalInfo.addressLine2' | translate }}</th>
+                                        <th scope="col">{{'individualRegistration.generalInfo.language' | translate }}
+                                        </th>
+                                        <th scope="col">{{'individualRegistration.generalInfo.country' | translate }}
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -222,8 +232,9 @@
                                     <div class="row ">
                                         <div class="col-md-12 ">
                                             <div class="form-group row mb-3">
-                                                <label for="addressID" class="col-sm-5 col-form-label"> 
-                                                    {{'individualRegistration.generalInfo.addressID' | translate }}<span class="text-red">*</span></label>
+                                                <label for="addressID" class="col-sm-5 col-form-label">
+                                                    {{'individualRegistration.generalInfo.addressID' | translate }}<span
+                                                        class="text-red">*</span></label>
                                                 <div class="col-sm-7">
                                                     <input formControlName="addressID" id="addressID" type="text"
                                                         class="form-control" readonly>
@@ -280,8 +291,7 @@
                                             <div class="form-group row mb-3">
                                                 <label for="country" class="col-sm-5 col-form-label">
                                                     {{'individualRegistration.generalInfo.country' | translate }}
-                                                    <span
-                                                        class="text-red">*</span>
+                                                    <span class="text-red">*</span>
                                                 </label>
                                                 <div class="col-sm-7">
                                                     <input formControlName="country" id="country" type="text"
@@ -323,18 +333,21 @@
                 <div class="row">
                     <div class="col-md-12 mb-5 px-4">
                         <button type="button"
-                            class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
-                            [disabled]="true"><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
-                        <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" [disabled]='!showBtn'
-                            matStepperNext>{{'buttonsLabel.next' | translate }}
+                            class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            [disabled]='!showBtn' [disabled]="true"><i class="fa fa-caret-left"></i>
+                            {{'buttonsLabel.previous' | translate }}</button>
+                        <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                            [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }}
                             <i class="fa fa-caret-right"></i></button>
                         <!-- <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                      (click)="move(6)">Finish</button> -->
-                        <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft(0)" [disabled]='!showBtn'>
-                            
+                        <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft(0)"
+                            [disabled]='!showBtn'>
+
                             {{'buttonsLabel.saveasDraft' | translate }}</button>
-                        <a  [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
-                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
+                        <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
                         </a>
                     </div>
                 </div>
@@ -359,23 +372,34 @@
                                 <tr class="purple-bg text-white">
                                     <th scope="col"></th>
                                     <th scope="col"># </th>
-                                    <th scope="col" (click)="sorting('personal','nationality')">{{'individualRegistration.personalDetails.nationality' | translate }} <i
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="nationality">
+                                        {{'individualRegistration.personalDetails.nationality' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','idtype')">{{'individualRegistration.personalDetails.iDType' | translate }} <i
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="idtype">
+                                        {{'individualRegistration.personalDetails.iDType' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','designation')">{{'individualRegistration.personalDetails.designation' | translate }} <i
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="designation">
+                                        {{'individualRegistration.personalDetails.designation' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','age')">{{'individualRegistration.personalDetails.age' | translate }} <i class="fa fa-sort"
-                                            aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','dob')">{{'individualRegistration.personalDetails.dob' | translate }} <i class="fa fa-sort"
-                                            aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','members')">{{'individualRegistration.personalDetails.numberOfFamilyMembers' | translate }} <i
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="age">
+                                        {{'individualRegistration.personalDetails.age' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','socialStatus')">{{'individualRegistration.personalDetails.socialStatus' | translate }} <i
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="dob">
+                                        {{'individualRegistration.personalDetails.dob' | translate }} <i
                                             class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col" (click)="sorting('personal','familySecurity')">{{'individualRegistration.personalDetails.familyOfSocialSecurity' | translate }}
-                                         <i class="fa fa-sort" aria-hidden="true"></i></th>
-                                    <th scope="col">{{'individualRegistration.personalDetails.documentAttachment' | translate }} </th>
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="members">
+                                        {{'individualRegistration.personalDetails.numberOfFamilyMembers' | translate }}
+                                        <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" [appSort]="personalData" data-order="desc" data-name="socialStatus">
+                                        {{'individualRegistration.personalDetails.socialStatus' | translate }} <i
+                                            class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col" [appSort]="personalData" data-order="desc"
+                                        data-name="familySecurity">
+                                        {{'individualRegistration.personalDetails.familyOfSocialSecurity' | translate }}
+                                        <i class="fa fa-sort" aria-hidden="true"></i></th>
+                                    <th scope="col">
+                                        {{'individualRegistration.personalDetails.documentAttachment' | translate }}
+                                    </th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -480,9 +504,11 @@
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
                     <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
-                        matStepperPrevious><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
+                        matStepperPrevious><i class="fa fa-caret-left"></i>
+                        {{'buttonsLabel.previous' | translate }}</button>
                     <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                        [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }} <i class="fa fa-caret-right"></i></button>
+                        [disabled]='!showBtn' matStepperNext>{{'buttonsLabel.next' | translate }} <i
+                            class="fa fa-caret-right"></i></button>
                     <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                  (click)="move(6)">Finish</button> -->
                     <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
@@ -507,29 +533,35 @@
                             matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.communicationMethod.telephone' | translate }}</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                            {{'individualRegistration.communicationMethod.telephone' | translate }}</h5>
                         <p class="fs-14">{{communicationData.telephone || '-'}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.communicationMethod.pOBox' | translate }}</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                            {{'individualRegistration.communicationMethod.pOBox' | translate }}</h5>
                         <p class="fs-14">{{communicationData.poBox || '-'}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.communicationMethod.fax' | translate }}</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                            {{'individualRegistration.communicationMethod.fax' | translate }}</h5>
                         <p class="fs-14">{{communicationData.fax || '-'}}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.communicationMethod.legalStatus' | translate }}</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                            {{'individualRegistration.communicationMethod.legalStatus' | translate }}</h5>
                         <p class="fs-14">{{communicationData.legalStatus || '-'}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.communicationMethod.pC' | translate }}</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                            {{'individualRegistration.communicationMethod.pC' | translate }}</h5>
                         <p class="fs-14">{{communicationData.pc || '-'}}</p>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2  px-4 ">
-                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.communicationMethod.email' | translate }}</h5>
+                        <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                            {{'individualRegistration.communicationMethod.email' | translate }}</h5>
                         <p class="fs-14">{{communicationData.email || '-'}}</p>
                         <!-- <input type="email" class="fs-14" [(ngModel)]=comunicationData.email> -->
                     </div>
@@ -550,16 +582,20 @@
             </div>
             <div class="row">
                 <div class="col-md-12 mb-5 px-4">
-                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" matStepperPrevious [disabled]='!showBtn'><i
-                            class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
-                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext [disabled]='!showBtn'>{{'buttonsLabel.next' | translate }}
+                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" matStepperPrevious
+                        [disabled]='!showBtn'><i class="fa fa-caret-left"></i>
+                        {{'buttonsLabel.previous' | translate }}</button>
+                    <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" matStepperNext
+                        [disabled]='!showBtn'>{{'buttonsLabel.next' | translate }}
                         <i class="fa fa-caret-right"></i></button>
                     <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                  (click)="move(6)">Finish</button> -->
-                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft(2)" [disabled]='!showBtn'>
+                    <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" (click)="saveDraft(2)"
+                        [disabled]='!showBtn'>
                         {{'buttonsLabel.saveasDraft' | translate }}</button>
-                    <a  [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
+                    <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
+                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
                     </a>
                 </div>
             </div>
@@ -577,19 +613,23 @@
                             <p class="fs-14">{{activityData.regDate}}</p>
                         </div> -->
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.commercialInfo.registrationDate' | translate }}</h5>
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                    {{'individualRegistration.commercialInfo.registrationDate' | translate }}</h5>
                                 <p class="fs-14">{{activityData.regDate}}</p>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.commercialInfo.expiryDate' | translate }} </h5>
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                    {{'individualRegistration.commercialInfo.expiryDate' | translate }} </h5>
                                 <p class="fs-14">{{activityData.expDate}}</p>
                             </div>
                             <div class="col-md-3 col-lg-3 col-xl-2 px-4">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.commercialInfo.workLocation' | translate }}</h5>
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                    {{'individualRegistration.commercialInfo.workLocation' | translate }}</h5>
                                 <p class="fs-14">{{ activityData.workLocation }}</p>
                             </div>
                             <div class="col-md-3 col-lg-3 px-4 ">
-                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.commercialInfo.activities' | translate }} </h5>
+                                <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                    {{'individualRegistration.commercialInfo.activities' | translate }} </h5>
                                 <div ngbDropdown class="d-inline-block">
                                     <button class="btn btn-outline-secondary" id="dropdownBasic1"
                                         ngbDropdownToggle>{{'individualRegistration.commercialInfo.activities' | translate }}</button>
@@ -621,23 +661,26 @@
 
                     <div class="row px-2 py-2" *ngIf="!showBtn">
                         <div class="col-md-12 px-4">
-                            <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move forward.
+                            <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move
+                                forward.
                             </p>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
-                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
-                                matStepperPrevious><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
-                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" [disabled]='!showBtn'
-                                (click)="changeTab()">{{'buttonsLabel.next' | translate }} <i class="fa fa-caret-right"></i></button>
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                [disabled]='!showBtn' matStepperPrevious><i class="fa fa-caret-left"></i>
+                                {{'buttonsLabel.previous' | translate }}</button>
+                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                [disabled]='!showBtn' (click)="changeTab()">{{'buttonsLabel.next' | translate }} <i
+                                    class="fa fa-caret-right"></i></button>
                             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         (click)="move(6)">Finish</button> -->
                             <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(3)">
                                 {{'buttonsLabel.saveasDraft' | translate }}</button>
-                            <a  [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
+                            <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                                 <button type="button" [disabled]='!showBtn'
                                     class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2">{{'buttonsLabel.cancel' | translate }}</button>
                             </a>
@@ -648,42 +691,48 @@
                     <ng-container *ngIf="BankDetails">
                         <div class="row ">
                             <div class="col-md-12 px-4 ">
-                                <button class="btn btn-secondary ml-2 " (click)="openbank(bankModel)"  [disabled]='!showBtn'><i
-                                        class="fa fa-plus" aria-hidden="true"></i></button>
+                                <button class="btn btn-secondary ml-2 " (click)="openbank(bankModel)"
+                                    [disabled]='!showBtn'><i class="fa fa-plus" aria-hidden="true"></i></button>
                             </div>
                         </div>
                         <div class="shadow p-3 mb-5" *ngFor="let data of BankDetails;index as index;">
                             <div class="row ">
                                 <div class="col-md-12 col-lg-12 col-xl-12 px-4 " *ngIf="data.isMoci">
-                                    <i class="fa fa-ban text-red fs-14" mat-raised-button 
+                                    <i class="fa fa-ban text-red fs-14" mat-raised-button
                                         matTooltip="Data fetched from interface - not editable" aria-hidden="true"></i>
                                 </div>
                                 <div class="col-md-12 col-lg-12 col-xl-12 px-4 " *ngIf="!data.isMoci">
                                     <i class="fa fa-pencil-square-o fs-14" mat-raised-button matTooltip="Edit Data"
-                                        (click)="openbank(bankModel,data)" aria-hidden="true"  *ngIf="showBtn"></i>
+                                        (click)="openbank(bankModel,data)" aria-hidden="true" *ngIf="showBtn"></i>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.commercialInfo.bankingId' | translate }}</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                        {{'individualRegistration.commercialInfo.bankingId' | translate }}</h5>
                                     <p class="fs-14">{{ index + 1}}</p>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.commercialInfo.bankingIdName' | translate }}</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                        {{'individualRegistration.commercialInfo.bankingIdName' | translate }}</h5>
                                     <p class="fs-14">{{data.bankingIdname}}</p>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.commercialInfo.bankAccount' | translate }}</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                        {{'individualRegistration.commercialInfo.bankAccount' | translate }}</h5>
                                     <p class="fs-14">{{data.bankAcc}}</p>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.commercialInfo.bankName' | translate }}</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                        {{'individualRegistration.commercialInfo.bankName' | translate }}</h5>
                                     <p class="fs-14">{{data.bankName}}</p>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.commercialInfo.bankBranch' | translate }}</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                        {{'individualRegistration.commercialInfo.bankBranch' | translate }}</h5>
                                     <p class="fs-14">{{data.bankBranch}}</p>
                                 </div>
                                 <div class="col-md-3 col-lg-3 col-xl-2 px-4 ">
-                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">{{'individualRegistration.commercialInfo.accountholdername' | translate }}</h5>
+                                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">
+                                        {{'individualRegistration.commercialInfo.accountholdername' | translate }}</h5>
                                     <p class="fs-14">{{data.holderName}}</p>
                                 </div>
                             </div>
@@ -824,25 +873,28 @@
 
                     <div class="row px-2 py-2" *ngIf="!showBtn">
                         <div class="col-md-12 px-4">
-                            <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move forward.
+                            <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move
+                                forward.
                             </p>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
-                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="previousTab()"><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
-                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" [disabled]='!showBtn'
-                                (click)="changeTab()">{{'buttonsLabel.next' | translate }} <i class="fa fa-caret-right"></i></button>
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                [disabled]='!showBtn' (click)="previousTab()"><i class="fa fa-caret-left"></i>
+                                {{'buttonsLabel.previous' | translate }}</button>
+                            <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                [disabled]='!showBtn' (click)="changeTab()">{{'buttonsLabel.next' | translate }} <i
+                                    class="fa fa-caret-right"></i></button>
                             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         (click)="move(6)">Finish</button> -->
                             <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(3)">
                                 {{'buttonsLabel.saveasDraft' | translate }}</button>
-                            <a  [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
-                                <button type="button"
-                                    class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
+                            <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
+                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                    [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
                             </a>
                         </div>
                     </div>
@@ -853,8 +905,9 @@
                             <div class="col-md-12 px-4 mb-3 mt-3">
                                 <div class="table-responsive">
                                     <input class="fs-16 mb-2" [(ngModel)]="searchText" placeholder="Search text">
-                                    <button class="btn btn-secondary ml-2 float-right mb-2" [disabled]='!showBtn' (click)="addNewRow('other')"><i
-                                        class="fa fa-plus" aria-hidden="true"></i></button>
+                                    <button class="btn btn-secondary ml-2 float-right mb-2" [disabled]='!showBtn'
+                                        (click)="addNewRow('other')"><i class="fa fa-plus"
+                                            aria-hidden="true"></i></button>
                                     <table class="table table-striped mb-0 ">
                                         <thead>
                                             <tr class="purple-bg text-white">
@@ -866,10 +919,14 @@
                                                                     class="fa fa-ellipsis-v "></i>
                                                             </a> </span> </div>
                                                 </th> -->
-                                                <th scope="col">{{'individualRegistration.commercialInfo.no' | translate }} </th>
-                                                <th scope="col" (click)="sorting('other','name')">{{'individualRegistration.commercialInfo.label' | translate }} <i
+                                                <th scope="col">
+                                                    {{'individualRegistration.commercialInfo.no' | translate }} </th>
+                                                <th scope="col" [appSort]="otherData" data-order="desc"
+                                                    data-name="name">
+                                                    {{'individualRegistration.commercialInfo.label' | translate }} <i
                                                         class="fa fa-sort" aria-hidden="true"></i></th>
-                                                <th scope="col">{{'individualRegistration.commercialInfo.value' | translate }} </th>
+                                                <th scope="col">
+                                                    {{'individualRegistration.commercialInfo.value' | translate }} </th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -882,8 +939,9 @@
                                                         aria-hidden="true"></i>
                                                 </td>
                                                 <td *ngIf="!data.isMoci">
-                                                    <i class="fa fa-pencil-square-o fs-14" *ngIf="!data.isEdit && showBtn"
-                                                        mat-raised-button matTooltip="Edit Data"
+                                                    <i class="fa fa-pencil-square-o fs-14"
+                                                        *ngIf="!data.isEdit && showBtn" mat-raised-button
+                                                        matTooltip="Edit Data"
                                                         (click)="data.isEdit = true; this.showBtn=false;"
                                                         aria-hidden="true"></i>
                                                     <i class="fa fa-save fs-20 background-purple text-white p-1"
@@ -907,10 +965,10 @@
                                                 </td>
                                                 <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)">
                                                     <input [(ngModel)]="data.name"></td>
-                                                    <td *ngIf="!data.isEdit" (dblclick)="dblclick(data)">{{data.value}}
-                                                    </td>
-                                                    <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)">
-                                                        <input [(ngModel)]="data.value"></td>
+                                                <td *ngIf="!data.isEdit" (dblclick)="dblclick(data)">{{data.value}}
+                                                </td>
+                                                <td *ngIf="data.isEdit" (keyup.enter)="enteredDetails( 'other',data)">
+                                                    <input [(ngModel)]="data.value"></td>
                                                 <!-- <td><a><input type="text" id="input" name="input"></a> </td> -->
                                                 <td *ngIf="!data.isEdit"></td>
                                                 <td *ngIf="data.isEdit"><i class="fa fa-trash text-red dlt-btn-size"
@@ -929,27 +987,31 @@
 
                     <div class="row px-2 py-2" *ngIf="!showBtn">
                         <div class="col-md-12 px-4">
-                            <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move forward.
+                            <p class="fs-14 font-weight-bold  text-red mb-0">Save or Delete your new data to move
+                                forward.
                             </p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12 mb-5 px-4">
-                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
-                                (click)="previousTab()"><i class="fa fa-caret-left"></i> {{'buttonsLabel.previous' | translate }}</button>
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                [disabled]='!showBtn' (click)="previousTab()"><i class="fa fa-caret-left"></i>
+                                {{'buttonsLabel.previous' | translate }}</button>
                             <button type="button"
                                 class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                                [disabled]="true"> {{'buttonsLabel.next' | translate }} <i class="fa fa-caret-right"></i></button>
-                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'
+                                [disabled]="true"> {{'buttonsLabel.next' | translate }} <i
+                                    class="fa fa-caret-right"></i></button>
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                [disabled]='!showBtn'
                                 (click)="submitRegistration()">{{'buttonsLabel.finish' | translate }}</button>
                             <!-- <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         (click)="move(6)">Finish</button> -->
                             <button type="button" class="btn  border px-3 mx-1 py-2  fs-14 mb-2" [disabled]='!showBtn'
                                 (click)="saveDraft(3)">
                                 {{'buttonsLabel.saveasDraft' | translate }}</button>
-                            <a  [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
-                                <button type="button"
-                                    class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
+                            <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
+                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                    [disabled]='!showBtn'>{{'buttonsLabel.cancel' | translate }}</button>
                             </a>
                         </div>
                     </div>
@@ -970,7 +1032,7 @@
                         Please use registration ID for tracking the status of registration through portal.<br />
                         You will receive confirmation Email shortly on your registered Email ID.<br />
                         <span class="font-weight-bold mt-3 d-block">Thank You</span> </p>
-                    <a  [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
+                    <a [routerLink]="showBtn ? '/landing/supplier-registration/dashboard' : null">
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2">Close</button>
                     </a>
                 </div>

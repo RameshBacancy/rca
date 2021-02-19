@@ -197,7 +197,7 @@ export class IndividualRegistrationComponent implements OnInit, OnDestroy, After
       }),
       this.individualService.getGeneralInfoStep().
         subscribe(res => {
-          console.log('res', res);
+          // console.log('res', res);
           this.allAddresses = [...this.formData.generalInfoStep.generalInfo.address, ...res.generalInfo.address];
           this.selectedAddress = this.allAddresses[0];
           this.generalInfo = res.generalInfo;
