@@ -5,7 +5,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <ol class="breadcrumb bg-white mb-0">
-                        <li class="breadcrumb-item"><a routerLink="/landing/supplier-registration/dashboard">Home</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/landing/supplier-registration/dashboard">Home</a>
+                        </li>
                         <li class="breadcrumb-item"><a routerLink="/landing/supplier-registration/dashboard">Supplier
                                 Collaboration </a></li>
                         <li class="breadcrumb-item active" aria-current="page">Renewal Upgrade Request</li>
@@ -23,10 +24,10 @@
             </div>
         </div>
     </section>
-    
-    
+
+
     <div class="container-fluid mt-3 px-4">
-    
+
         <ng-container *ngIf="renewalUpgradeStatus == 'approved'; else elseRenewalTemplate">
             <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
                 <mat-tab label="Renewal Upgrade Request">
@@ -38,7 +39,7 @@
                                 <p class="fs-14">
                                     {{ renewalFormControl.renewalRequest.value }}
                                 </p>
-    
+
                             </div>
                             <div class="col-md-4 mb-2   px-4 ">
                                 <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Current Activity
@@ -64,17 +65,18 @@
                                 <span class="status-highlighter">Approved</span>
                             </div>
                         </div>
-    
-    
+
+
                         <div class="row mt-5">
                             <div class="col-md-12 mb-5 px-4">
                                 <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"><i
                                         class="fa fa-caret-left"></i> Previous</button>
                                 <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                                     (click)="changeTab()">Next <i class="fa fa-caret-right"></i></button>
-    
+
                                 <a routerLink="/landing/supplier-registration/dashboard">
-                                    <button type="button" class="btn border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                    <button type="button"
+                                        class="btn border px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                                 </a>
                             </div>
                         </div>
@@ -145,25 +147,33 @@
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"><i
                                     class="fa fa-caret-left"></i> Previous</button>
-                            <ng-container *ngIf="supplierType == 'international'; else elseTemplate">
-                                <form #renewalPaymentForm *ngIf="supplierType == 'international'" class="d-inline"
+
+                                <form #renewalPaymentForm *ngIf="supplierType == supplierEnum.INTERNATIONAL" class="d-inline"
                                     action="http://ec2-3-16-154-54.us-east-2.compute.amazonaws.com/backend/public/payment-form"
                                     method="POST">
                                     <input type="hidden" name="amount" [value]="paymentData.amount">
                                     <input type="hidden" name="currency" [value]="paymentData.currency">
                                     <input type="hidden" name="Authorization" [value]="paymentData.token">
-    
+
                                     <input type="submit" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                                         (click)="renewalPaymentForm.submit()" value="Payment">
                                 </form>
-                            </ng-container>
-                            <ng-template #elseTemplate>
-                                <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                    (click)="callPayment('renewal')">Payment <i class="fa fa-caret-right"></i></button>
-                            </ng-template>
-    
+
+                                <!-- <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                    (click)="callPayment('renewal')">Payment <i class="fa fa-caret-right"></i></button> -->
+                                <form #omanRenewalPaymentForm *ngIf="supplierType !== supplierEnum.INTERNATIONAL" class="d-inline"
+                                    action="http:///ec2-3-141-179-51.us-east-2.compute.amazonaws.com/backend/public/omannet-payment-form"
+                                    method="POST">
+                                    <input type="hidden" name="amount" [value]="paymentData.amount">
+                                    <input type="hidden" name="Authorization" [value]="paymentData.token">
+
+                                    <input type="submit" class="btn btn-primary  px-3 mx-1 py-2 w-150 fs-14 mb-2 mb-2"
+                                        (click)="omanRenewalPaymentForm.submit()" value="OmanPayment">
+                                </form>
+
                             <a routerLink="/landing/supplier-registration/dashboard">
-                                <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
+                                <button type="button"
+                                    class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>
                             </a>
                         </div>
                     </div>
@@ -172,16 +182,16 @@
         </ng-container>
         <ng-template #elseRenewalTemplate>
             <section class="bg-white" *ngIf="renewalUpgradeRequestFrom">
-    
+
                 <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="!isRenewalUpdate && renewalUpgradeStatus !== 'pending'">
                     <button type="button" (click)="updateClick('renewal')" class="btn btn-primary">Update</button>
                 </div>
-    
+
                 <form [formGroup]="renewalUpgradeRequestFrom" (ngSubmit)="renewalUpdateSubmit()">
                     <div class="row mt-2 mb-2 ml-2 mb-2" *ngIf="isRenewalUpdate && renewalUpgradeStatus !== 'pending'">
                         <button type="submit" (click)="updateClick('activity')" class="btn btn-primary">Send</button>
                     </div>
-    
+
                     <div class="row mt-4 ml-2">
                         <div class="col-md-4 mb-2 px-4 ">
                             <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Renewal Request</h5>
@@ -216,8 +226,8 @@
             </section>
         </ng-template>
     </div>
-    
-    
+
+
     <ng-template #requestModal let-modal>
         <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">Pending</h4>
@@ -230,7 +240,8 @@
                 <div class="container-fluid ">
                     <div class="row">
                         <div class="px-3 mt-5  mx-auto text-center ">
-                            <div class="fs-22  text-black ">Your request has been send to ifs interface. <br> Please wait
+                            <div class="fs-22  text-black ">Your request has been send to ifs interface. <br> Please
+                                wait
                                 for approval.</div>
                             <br />
                             <!-- <span class="font-weight-bold mt-3 d-block">Thank You</span>  -->

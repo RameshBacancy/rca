@@ -61,9 +61,9 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
       }, 1000);
     }
 
-    if (!localStorage.getItem('documentFees')) {
-      this.router.navigateByUrl('/e-tendering/general-tender-details');
-    }
+    // if (!localStorage.getItem('documentFees')) {
+    //   this.router.navigateByUrl('/e-tendering/general-tender-details');
+    // }
     this.tenderService.getGeneralTenderDetails().subscribe(data => {
       this.generalTenderDetail = data;
     });

@@ -1,4 +1,4 @@
-import { LocalRegisterStep } from './../../../../register-step.enum';
+import { LocalRegisterStep } from '../../../../enum/register-step.enum';
 import {
   GeneralInfoStep,
   GeneralInfoTab,

@@ -1,4 +1,4 @@
-import { LocalRegisterWsdlData, LocalRegisterStep } from './../register-step.enum';
+import { LocalRegisterWsdlData, LocalRegisterStep } from '../enum/register-step.enum';
 import { AlertService } from './alert.service';
 import {
   BankDetailStep,

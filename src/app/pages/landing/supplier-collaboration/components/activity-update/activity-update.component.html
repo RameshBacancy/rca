@@ -158,9 +158,8 @@
                         <div class="col-md-12 mb-5 px-4">
                             <button type="button" class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2"><i
                                     class="fa fa-caret-left"></i> Previous</button>
-
-                            <ng-container *ngIf="supplierType == 'international'; else elseTemplate">
-                                <form #activityPaymentForm *ngIf="supplierType == 'international'" class="d-inline"
+                            
+                                <form #activityPaymentForm *ngIf="supplierType == supplierEnum.INTERNATIONAL" class="d-inline"
                                     action="http://ec2-3-16-154-54.us-east-2.compute.amazonaws.com/backend/public/payment-form"
                                     method="POST">
                                     <input type="hidden" name="amount" [value]="paymentData.amount">
@@ -170,13 +169,18 @@
                                     <input type="submit" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                                         (click)="activityPaymentForm.submit()" value="Payment">
                                 </form>
-                            </ng-container>
-                            <ng-template #elseTemplate>
-                                <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                                    (click)="callPayment('activity')">Payment <i class="fa fa-caret-right"></i></button>
-                            </ng-template>
+                           
+                                <!-- <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                    (click)="callPayment('activity')">Payment <i class="fa fa-caret-right"></i></button> -->
+                                <form #omanActivityPaymentForm *ngIf="supplierType !== supplierEnum.INTERNATIONAL" class="d-inline"
+                                    action="http:///ec2-3-141-179-51.us-east-2.compute.amazonaws.com/backend/public/omannet-payment-form"
+                                    method="POST">
+                                    <input type="hidden" name="amount" [value]="paymentData.amount">
+                                    <input type="hidden" name="Authorization" [value]="paymentData.token">
 
-
+                                    <input type="submit" class="btn btn-primary  px-3 mx-1 py-2 w-150 fs-14 mb-2 mb-2"
+                                        (click)="omanActivityPaymentForm.submit()" value="OmanPayment">
+                                </form>
                             <a routerLink="/landing/supplier-registration/dashboard">
                                 <button type="button"
                                     class="btn border   px-3 py-2 mx-1 w-120 fs-14 mb-2">Cancel</button>

@@ -125,16 +125,28 @@
                         <button type="button" class="btn btn-secondary px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             matStepperPrevious>Previous</button>
                         <!-- For local and citizen -->
-                        <button type="button" *ngIf="supplierType !== 'international'"
+                        <!-- <button type="button" *ngIf="supplierType !== 'international'"
                             class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
-                            (click)="payment()">Next</button>
+                            (click)="payment()">Next</button> -->
+                        <form #omanPaymentForm *ngIf="supplierType !== supplierEnum.INTERNATIONAL" class="d-inline"
+                            action="http:///ec2-3-141-179-51.us-east-2.compute.amazonaws.com/backend/public/omannet-payment-form"
+                            method="POST">
+                            <input type="hidden" name="amount" [value]="amount">
+                            <input type="hidden" name="Authorization" [value]="authToken">
+
+                            <input type="submit" class="btn btn-primary  px-3 mx-1 py-2 w-150 fs-14 mb-2 mb-2"
+                                (click)="omanPaymentForm.submit()" value="OmanPayment">
+                        </form>
                         <!-- For international -->
-                        <form #paymentForm *ngIf="supplierType == 'international'" class="d-inline" action="http://ec2-3-16-154-54.us-east-2.compute.amazonaws.com/backend/public/payment-form" method="POST">
+                        <form #paymentForm *ngIf="supplierType == supplierEnum.INTERNATIONAL" class="d-inline"
+                            action="http:///ec2-3-141-179-51.us-east-2.compute.amazonaws.com/backend/public/payment-form"
+                            method="POST">
                             <input type="hidden" name="amount" [value]="amount">
                             <input type="hidden" name="currency" [value]="currency">
                             <input type="hidden" name="Authorization" [value]="authToken">
 
-                            <input type="submit" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" (click)="paymentForm.submit()" value="Payment">
+                            <input type="submit" class="btn btn-primary  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
+                                (click)="paymentForm.submit()" value="Payment">
                         </form>
                         <a routerLink="/landing/supplier-registration/dashboard">
                             <button type="button"

@@ -1,4 +1,4 @@
-import { LocalRegisterStep } from './../../../../register-step.enum';
+import { LocalRegisterStep } from '../../../../enum/register-step.enum';
 import { SpinnerService } from './../../../../services/spinner.service';
 import { AlertService } from './../../../../services/alert.service';
 import { Router } from '@angular/router';
@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { TenderService } from 'src/app/services/tender.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { SupplierEnum } from '../../../../enum/supplier.enum';
 
 @Component({
   selector: 'app-tender-details',
@@ -22,6 +23,7 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
   currency = 'USD';
   supplierType: string;
   authToken: string;
+  supplierEnum = SupplierEnum;
 
   constructor(
     private tenderService: TenderService,

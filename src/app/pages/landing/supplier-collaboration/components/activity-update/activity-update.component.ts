@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@an
 import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SupplierEnum } from 'src/app/enum/supplier.enum';
 import { AlertService } from 'src/app/services/alert.service';
 import { CollaborationService } from 'src/app/services/collaboration.service';
 
@@ -36,6 +37,8 @@ export class ActivityUpdateComponent implements OnInit {
   supplierType: string;
   @ViewChild('requestModal') requestModal: ElementRef;
   selected = new FormControl(0);
+
+  supplierEnum = SupplierEnum;
 
   constructor(
     private formBuilder: FormBuilder,

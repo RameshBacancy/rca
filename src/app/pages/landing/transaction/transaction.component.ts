@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SupplierEnum } from '../../../enum/supplier.enum';
 
 @Component({
   selector: 'app-transaction',
@@ -18,6 +19,7 @@ export class TransactionComponent implements OnInit, AfterViewInit {
   currency = 'USD';
   supplierType: string;
   authToken: string;
+  supplierEnum = SupplierEnum;
 
   constructor(private router: Router, private modelService: NgbModal, private paymentService: PaymentService) { }
 
