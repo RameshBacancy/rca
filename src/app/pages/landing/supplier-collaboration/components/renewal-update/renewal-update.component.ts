@@ -1,3 +1,4 @@
+import { EndPoint } from './../../../../../app.constants';
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -38,7 +39,8 @@ export class RenewalUpdateComponent implements OnInit {
   @ViewChild('requestModal') requestModal: ElementRef;
 
   supplierEnum = SupplierEnum;
-
+  public endPoint = EndPoint;
+  
   constructor(
     private formBuilder: FormBuilder,
     private modalService: NgbModal,

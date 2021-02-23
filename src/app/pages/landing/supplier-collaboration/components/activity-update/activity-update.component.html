@@ -160,7 +160,7 @@
                                     class="fa fa-caret-left"></i> Previous</button>
                             
                                 <form #activityPaymentForm *ngIf="supplierType == supplierEnum.INTERNATIONAL" class="d-inline"
-                                    action="http://ec2-3-16-154-54.us-east-2.compute.amazonaws.com/backend/public/payment-form"
+                                    [action]="endPoint.cyberSourcePaymentGateway"
                                     method="POST">
                                     <input type="hidden" name="amount" [value]="paymentData.amount">
                                     <input type="hidden" name="currency" [value]="paymentData.currency">
@@ -173,7 +173,7 @@
                                 <!-- <button type="button" class="btn border    px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"
                                     (click)="callPayment('activity')">Payment <i class="fa fa-caret-right"></i></button> -->
                                 <form #omanActivityPaymentForm *ngIf="supplierType !== supplierEnum.INTERNATIONAL" class="d-inline"
-                                    action="http:///ec2-3-141-179-51.us-east-2.compute.amazonaws.com/backend/public/omannet-payment-form"
+                                    [action]="endPoint.omanNetPaymentGateway"
                                     method="POST">
                                     <input type="hidden" name="amount" [value]="paymentData.amount">
                                     <input type="hidden" name="Authorization" [value]="paymentData.token">

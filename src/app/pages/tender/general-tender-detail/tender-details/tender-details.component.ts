@@ -1,3 +1,4 @@
+import { EndPoint } from './../../../../app.constants';
 import { LocalRegisterStep } from '../../../../enum/register-step.enum';
 import { SpinnerService } from './../../../../services/spinner.service';
 import { AlertService } from './../../../../services/alert.service';
@@ -24,6 +25,7 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
   supplierType: string;
   authToken: string;
   supplierEnum = SupplierEnum;
+  public endPoint  = EndPoint;
 
   constructor(
     private tenderService: TenderService,

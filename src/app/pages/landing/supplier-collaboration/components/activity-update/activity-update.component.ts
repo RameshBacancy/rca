@@ -1,3 +1,4 @@
+import { EndPoint } from './../../../../../app.constants';
 import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -39,6 +40,7 @@ export class ActivityUpdateComponent implements OnInit {
   selected = new FormControl(0);
 
   supplierEnum = SupplierEnum;
+  public endPoint = EndPoint;
 
   constructor(
     private formBuilder: FormBuilder,

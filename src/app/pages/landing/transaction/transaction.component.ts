@@ -1,3 +1,4 @@
+import { EndPoint } from './../../../app.constants';
 import { PaymentService } from './../../../services/payment.service';
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
@@ -20,6 +21,7 @@ export class TransactionComponent implements OnInit, AfterViewInit {
   supplierType: string;
   authToken: string;
   supplierEnum = SupplierEnum;
+  public endPoint = EndPoint;
 
   constructor(private router: Router, private modelService: NgbModal, private paymentService: PaymentService) { }
 

@@ -320,12 +320,13 @@
 
                     <!-- <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         (click)="submitOrSaveDraft('next')">Next <i class="fa fa-caret-right"></i></button> -->
+                        <!-- <button type="button" *ngIf="supplierType !== 'international'"
+                            class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                            (click)="submitOrSaveDraft('next')">Next</button> -->
+                        
                     <!-- For local and citizen -->
-                    <!-- <button type="button" *ngIf="supplierType !== 'international'"
-                        class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                        (click)="submitOrSaveDraft('next')">Next</button> -->
                     <form #omanTenderPaymentForm *ngIf="supplierType !== supplierEnum.INTERNATIONAL" class="d-inline"
-                        action="http:///ec2-3-141-179-51.us-east-2.compute.amazonaws.com/backend/public/omannet-payment-form"
+                        [action]="endPoint.omanNetPaymentGateway"
                         method="POST">
                         <input type="hidden" name="amount" [value]="amount">
                         <input type="hidden" name="Authorization" [value]="authToken">
@@ -336,7 +337,7 @@
                     </form>
                     <!-- For international -->
                     <form #tenderPaymentForm *ngIf="supplierType == supplierEnum.INTERNATIONAL" class="d-inline"
-                        action="http:///ec2-3-141-179-51.us-east-2.compute.amazonaws.com/backend/public/payment-form"
+                        [action]="endPoint.cyberSourcePaymentGateway"
                         method="POST">
                         <input type="hidden" name="amount" [value]="amount">
                         <input type="hidden" name="currency" [value]="currency">
