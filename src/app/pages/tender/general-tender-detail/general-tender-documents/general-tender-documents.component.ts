@@ -1,3 +1,4 @@
+import { TenderStep } from './../../../../enum/tender.enum';
 import { SpinnerService } from './../../../../services/spinner.service';
 import { AlertService } from './../../../../services/alert.service';
 import { map } from 'rxjs/operators';
@@ -39,6 +40,7 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
   selectedContract: any;
   selectedContractIndex: number;
   tenderData: any;
+  tenderStep = TenderStep;
   private subscription: Subscription;
 
   constructor(
@@ -261,19 +263,19 @@ export class GeneralTenderDocumentsComponent implements OnInit, OnDestroy {
 
   public clear(step: string): void {
     switch (step) {
-      case 'supplyLine':
+      case this.tenderStep.SUPPLY_LINE:
         this.filterItemData.supplyLine.map(item => {
           item.unitPrice = '';
         });
         break;
-      case 'serviceLine':
+      case this.tenderStep.SERVICE_LINE:
         this.filterItemData.serviceLine.map(item => {
           item.unitPrice = '';
         });
         break;
-      case 'contractBoq':
+      case this.tenderStep.CONTRACT_BOQS:
         break;
-      case 'otherInfo':
+      case this.tenderStep.OTHER_INFO:
         break;
       default:
         break;

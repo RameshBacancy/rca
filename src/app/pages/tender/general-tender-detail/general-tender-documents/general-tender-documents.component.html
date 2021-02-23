@@ -421,7 +421,7 @@
                                 disabled>Submit
                             </button>  -->
                             <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                                (click)="clear('supplyLine')">Clear</button>
+                                (click)="clear(tenderStep.SUPPLY_LINE)">Clear</button>
                             <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                                 <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                                 </button>
@@ -545,7 +545,7 @@
                                 disabled>Submit
                             </button> -->
                             <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                                (click)="clear('serviceLine')">Clear</button>
+                                (click)="clear(tenderStep.SERVICE_LINE)">Clear</button>
                             <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                                 <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                                 </button>
@@ -721,7 +721,7 @@
                             </button> -->
 
                             <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                                (click)="clear('contractBoq')">Clear</button>
+                                (click)="clear(tenderStep.CONTRACT_BOQS)">Clear</button>
 
                             <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                                 <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -824,7 +824,7 @@
                         (click)="submitOrSaveDraft()">Submit
                     </button> -->
 
-                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="clear('otherInfo')">Clear</button>
+                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="clear(tenderStep.OTHER_INFO)">Clear</button>
                     <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                         </button>

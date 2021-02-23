@@ -576,7 +576,7 @@
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                         </button>
                     </a>
-                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="clear('tenderDocumentSubmission')">Clear</button>
+                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="clear(tenderStep.TENDER_DOCUMENT_SUBMISSION)">Clear</button>
                     <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2"
                         (click)="submitOrSaveDraft('saveAsDraft')">Save
                         as draft
@@ -762,7 +762,7 @@
 
                     <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2" disabled>Complete
                     </button> -->
-                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="clear('finalTenderSubmission')">Clear</button>
+                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="clear(tenderStep.FINAL_TENDER_SUBMISSION)">Clear</button>
                     <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                         </button>

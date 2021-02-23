@@ -1,3 +1,4 @@
+import { TenderStep } from './../../../enum/tender.enum';
 import { SpinnerService } from './../../../services/spinner.service';
 import { AlertService } from './../../../services/alert.service';
 import { Router } from '@angular/router';
@@ -24,6 +25,7 @@ export class TenderAddendumsComponent implements OnInit {
   selectedContract: any;
   selectedContractIndex: number;
   tenderAddendum: any;
+  tenderStep = TenderStep;
 
   constructor(
     private tenderService: TenderService,
@@ -99,17 +101,17 @@ export class TenderAddendumsComponent implements OnInit {
 
   public clear(step: string): void {
     switch (step) {
-      case 'siteVisit':
+      case this.tenderStep.SITE_VISIT:
         this.tenderAddendum.siteVisit.gatePass = true;
         break;
-      case 'extension':
+      case this.tenderStep.EXTENSION:
         this.tenderAddendum.extensions.extensionRemarks = '';
         break;
-      case 'supplyLines':
+      case this.tenderStep.SUPPLY_LINE:
         break;
-      case 'serviceLines':
+      case this.tenderStep.SERVICE_LINE:
         break;
-      case 'contractBOQ':
+      case this.tenderStep.CONTRACT_BOQS:
         break;
     }
   }

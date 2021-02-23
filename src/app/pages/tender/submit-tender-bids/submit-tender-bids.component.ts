@@ -1,3 +1,4 @@
+import { TenderStep } from './../../../enum/tender.enum';
 import { SpinnerService } from './../../../services/spinner.service';
 import { AlertService } from './../../../services/alert.service';
 import { Router } from '@angular/router';
@@ -32,6 +33,7 @@ export class SubmitTenderBidsComponent implements OnInit {
   uploadData: any;
   filesList: any = [];
   closeResult: string;
+  tenderStep = TenderStep;
 
   constructor(
     private tenderService: TenderService,
@@ -181,10 +183,10 @@ export class SubmitTenderBidsComponent implements OnInit {
 
   public clear(step: string): void {
     switch (step) {
-      case 'tenderDocumentSubmission':
-        this.filesList = []
+      case this.tenderStep.TENDER_DOCUMENT_SUBMISSION:
+        this.filesList = [];
         break;
-      case 'finalTenderSubmission':
+      case this.tenderStep.FINAL_TENDER_SUBMISSION:
         this.tenderBidsDetails.finalTenderSubmissions = this.tenderBidsDetails.finalTenderSubmissions.map(item => {
           item.checkBox = true;
           item.qualifications = '';
