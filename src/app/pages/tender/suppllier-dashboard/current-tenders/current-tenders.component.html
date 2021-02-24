@@ -31,8 +31,8 @@
       <div ngbDropdown class="d-inline-block ml-4">
         <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{ status | titlecase }}</button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem *ngFor="let status of tenderStatus"
-            (click)="filterTender(status.value)">{{ status.text }}</button>
+          <button ngbDropdownItem *ngFor="let status of tenderStatusEnum | keyvalue"
+            (click)="filterTender(status.value)">{{ status.value | titlecase }}</button>
         </div>
       </div>
       <!-- <i class="fa fa-undo ml-4 refresh-btn color-purple align-self-center" aria-hidden="true"></i> -->

@@ -1,3 +1,4 @@
+import { TenderStatus } from './../../../../enum/tender.enum';
 import { ActivatedRoute } from '@angular/router';
 import { TenderService } from './../../../../services/tender.service';
 import { TenderDetail } from './../../../../models/tender.model';
@@ -11,11 +12,12 @@ import { FilterPipe } from '../../../../shared/pipe/searchEmployee.pipe';
 })
 export class CurrentTendersComponent implements OnInit {
 
-  @Input('searchText') searchText: any;
-  tenders: TenderDetail[];
-  filterTenders: TenderDetail[];
-  tenderStatus: { text: string, value: string }[];
+  @Input('searchText') searchText: any;  // for tender search bix
+  tenders: TenderDetail[]; // for store list if ender
+  filterTenders: TenderDetail[]; // filter tender for selected tender status
+  // tenderStatus: { text: string, value: string }[];
   status: string;
+  public tenderStatusEnum = TenderStatus;
   constructor(
     private tenderService: TenderService,
     private searchPipe: FilterPipe,
@@ -24,14 +26,14 @@ export class CurrentTendersComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.tenderStatus = [
-      { text: 'Open', value: 'open' },
-      { text: 'Submitted', value: 'submitted' },
-      { text: 'Awarded', value: 'awarded' },
-      { text: 'Rejected', value: 'rejected' }
-    ];
+    // this.tenderStatus = [
+    //   { text: 'Open', value: 'open' },
+    //   { text: 'Submitted', value: 'submitted' },
+    //   { text: 'Awarded', value: 'awarded' },
+    //   { text: 'Rejected', value: 'rejected' }
+    // ];
 
-    this.status = this.aRoute.snapshot.queryParams.status || 'open';
+    this.status = this.aRoute.snapshot.queryParams.status || this.tenderStatusEnum.OPEN;
 
     this.tenderService.getTender().subscribe((data: any) => {
       if (data && data[0].tenders) {
@@ -59,27 +61,29 @@ export class CurrentTendersComponent implements OnInit {
     });
   }
 
+  // Filter tender according to current tender selected
   public filterTender(status: string): void {
     this.status = status;
     switch (status) {
-      case 'open':
-        this.filterTenders = this.tenders.filter(tender => tender.tenderStatus === 'open');
+      case this.tenderStatusEnum.OPEN:
+        this.filterTenders = this.tenders.filter(tender => tender.tenderStatus === this.tenderStatusEnum.OPEN);
         break;
-      case 'submitted':
-        this.filterTenders = this.tenders.filter(tender => tender.tenderStatus === 'submitted');
+      case this.tenderStatusEnum.SUBMITTED:
+        this.filterTenders = this.tenders.filter(tender => tender.tenderStatus === this.tenderStatusEnum.SUBMITTED);
         break;
-      case 'awarded':
-        this.filterTenders = this.tenders.filter(tender => tender.tenderStatus === 'awarded');
+      case this.tenderStatusEnum.AWARDED:
+        this.filterTenders = this.tenders.filter(tender => tender.tenderStatus === this.tenderStatusEnum.AWARDED);
         break;
-      case 'rejected':
-        this.filterTenders = this.tenders.filter(tender => tender.tenderStatus === 'rejected');
+      case this.tenderStatusEnum.REJECTED:
+        this.filterTenders = this.tenders.filter(tender => tender.tenderStatus === this.tenderStatusEnum.REJECTED);
         break;
       default:
-        this.filterTenders = this.tenders.filter(tender => tender.tenderStatus === 'open');
+        this.filterTenders = this.tenders.filter(tender => tender.tenderStatus === this.tenderStatusEnum.OPEN);
         break;
     }
   }
 
+  // Store selected tender number
   selectTender(tenderNo: string): void {
     localStorage.setItem('tenderNo', tenderNo);
   }
