@@ -1,12 +1,13 @@
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from './../../../services/language.service';
 import { TenderService } from 'src/app/services/tender.service';
-import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { AfterViewChecked, Component, ElementRef, OnInit, ViewChild, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AlertMessageService } from 'src/app/services/alert-message.service';
 import { SafeHtmlPipe } from '../../../shared/pipe/safeHtml.pipe';
 import { AlertService } from 'src/app/services/alert.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,6 +31,12 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
     rejected: 0
   };
 
+  regStatus;
+  paymentCompleteStatus;
+  paymentNotificationMessage: string;
+  paymentResult = '';
+  paymentMessage = '';
+
   constructor(
     private modalService: NgbModal,
     private router: Router,
@@ -39,7 +46,9 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
     private alerts: AlertService,
     private cdr: ChangeDetectorRef,
     private languageService: LanguageService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private activatedRoute: ActivatedRoute,
+    private location: Location
   ) {
     const language = this.languageService.getLanguage();
     this.translateService.use(language);
@@ -47,6 +56,13 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
 
   ngOnInit(): void {
     this.modalService.dismissAll();
+    
+    this.paymentCompleteStatus = localStorage.getItem('completePayment');
+    this.regStatus = localStorage.getItem('RegStatus');
+
+    this.getNotificationParams();
+
+    this.paymentNotificationMessage = this.paymentCompleteStatus != 'true' && this.regStatus == 'finish'?'For further procedure complete your payment.' : '';
     this.gotopath = '/landing/supplier-registration/dashboard';
     this.tenderService.getTender().subscribe((data: any) => {
       if (data[0]) {
@@ -71,25 +87,39 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
     });
   }
 
+
   ngAfterViewChecked(): void {
     if (localStorage.getItem('ModelShowed') != 'true') {
-      if (localStorage.getItem('completePayment') != 'true') {
-        if (localStorage.getItem('RegStatus') == 'finish') {
+      if (this.paymentCompleteStatus != 'true') {
+        if (this.regStatus == 'finish') {
           this.fileInput.nativeElement.click();
         }
       }
     }
   }
 
+  getNotificationParams(): void {
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.paymentResult = params['status'];
+      this.paymentMessage = params['message'];
+    });
+    this.location.replaceState('/landing/supplier-registration/dashboard');
+    if(this.paymentResult == 'success'){
+      this.alerts.pushSuccess(this.paymentMessage);
+    } else {
+      this.alerts.pushError(this.paymentMessage);
+    }
+  }
+
   openModel() {
-    if (localStorage.getItem('RegStatus') === 'finish') {
+    if (this.regStatus === 'finish') {
       this.fileInput.nativeElement.click();
     } else {
       this.router.navigateByUrl('/landing/supplier-registration/registration');
     }
   }
   onRegistrationClick() {
-    if (localStorage.getItem('RegStatus') === 'finish') {
+    if (this.regStatus === 'finish') {
       if (localStorage.getItem('arStatus') === 'pending') {
         this.alertMessage.getMessages().subscribe(d => {
           d.data.data.filter(a => {
@@ -107,7 +137,7 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
         });
         this.gotopath = '/landing/supplier-registration/dashboard';
       } else if (localStorage.getItem('arStatus') === 'approved') {
-        if (localStorage.getItem('completePayment') != 'true') {
+        if (this.paymentCompleteStatus != 'true') {
           this.alertMessage.getMessages().subscribe(d => {
             d.data.data.filter(a => {
               if (a.status == 'approved') {
@@ -161,7 +191,7 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
   }
 
   onTenderStatus(status?) {
-    if (localStorage.getItem('RegStatus') === 'finish') {
+    if (this.regStatus === 'finish') {
       if (localStorage.getItem('arStatus') === 'pending') {
         this.alertMessage.getMessages().subscribe(d => {
           d.data.data.filter(a => {
@@ -237,4 +267,9 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
       return `with: ${reason}`;
     }
   }
+
+  closeNotification(): void {
+    this.paymentNotificationMessage = ''
+  }
+
 }

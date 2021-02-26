@@ -4,3 +4,28 @@
 .custom-modal-main {
     max-width: 800px !important;
 }
+
+.toast {
+    max-width: 80%;
+    margin: auto;
+    text-align: center;
+    border-radius: 5px;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    font-size: 17px;
+    float: left;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    box-sizing: border-box;
+    background-color: #c857d3;
+    color: #fff;
+}
+
+.notification-btn {
+    float: right;
+    color: #fff !important;
+    font-size: 20px;
+}

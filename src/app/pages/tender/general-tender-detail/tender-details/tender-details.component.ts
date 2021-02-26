@@ -26,6 +26,8 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
   authToken: string;
   supplierEnum = SupplierEnum;
   public endPoint  = EndPoint;
+  endSubmissionTime: Date;
+  hoursLeft: string;
 
   constructor(
     private tenderService: TenderService,
@@ -45,7 +47,7 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
         this.spinnerService.closeSpinner();
       }, 1000);
     }
-
+    
     this.supplierType = localStorage.getItem('regType');
     this.authToken = 'Bearer ' + localStorage.getItem('authToken');
     localStorage.removeItem('documentFees');
@@ -54,11 +56,28 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
     this.loadTenderData();
   }
 
+  // hours left
+  calculateTime(): void {
+    let hourDiff = this.endSubmissionTime.getTime() - new Date().getTime(); //in ms
+    // let secDiff = hourDiff / 1000; //in s  
+    let minDiff = hourDiff / 60 / 1000; //in minutes
+    let hDiff = hourDiff / 3600 / 1000; //in hours  
+    this.hoursLeft = Math.floor(hDiff) + ':' + Math.floor(minDiff - 60 * Math.floor(hDiff));
+    setInterval(()=> {
+      hourDiff = this.endSubmissionTime.getTime() - new Date().getTime();
+      minDiff = hourDiff / 60 / 1000;
+      hDiff = hourDiff / 3600 / 1000;  
+      this.hoursLeft = Math.floor(hDiff) + ':' + Math.floor(minDiff - 60 * Math.floor(hDiff));
+    }, 60000);
+  }
+
   private loadTenderData(): void {
     this.subscription = this.tenderService.getTenderData().
       pipe(map(res => res.generalTenderDetails)).
       subscribe(res => {
         this.tenderData = res;
+        this.endSubmissionTime = new Date(this.tenderData.tenderProgram.tenderSubmissionDate);
+        this.calculateTime();
       });
   }
 

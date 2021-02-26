@@ -261,3 +261,20 @@
         </div>
     </ng-template>
 </section>
+
+<!-- *ngIf="paymentCompleteStatus != 'true' && regStatus == 'finish'" -->
+
+<!-- <button 
+    [ngClass]="{'btn-outline-warning': messageType=='warning', 'btn-outline-success': messageType=='success', 'btn-outline-danger': messageType=='danger'}"
+    class="btn p-2 m-2" (click)="okAlert()">Ok</button> -->
+<!-- <button 
+    [ngClass]="{'btn-outline-warning': messageType=='warning', 'btn-outline-success': messageType=='success', 'btn-outline-danger': messageType=='danger'}"
+    class="btn p-2 m-2" (click)="closeAlert()">Close</button> -->
+  
+    <!-- <a class="close" data-dismiss="alert" aria-label="close" (click)="closeAlert()">&times;</a> -->
+
+    <div class="toast show" *ngIf="paymentNotificationMessage">
+        {{ paymentNotificationMessage }}
+        <a class="text-white mx-5 notification-btn" (click)="closeNotification()">&times;</a>
+        <a class="notification-btn" [routerLink]="['/landing/supplier-registration/transaction']" routerLinkActive="router-link-active" >Ok</a>
+    </div>
