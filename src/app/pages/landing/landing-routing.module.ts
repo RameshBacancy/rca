@@ -82,12 +82,13 @@ const routes: Routes = [
     path: '',
     redirectTo: '/landing/supplier-registration/dashboard',
     pathMatch: 'full'
-  },
-  {
-    path: '**',
-    redirectTo: '/landing/supplier-registration/dashboard',
-    pathMatch: 'full'
   }
+  // ,
+  // {
+  //   path: '**',
+  //   redirectTo: '/landing/supplier-registration/dashboard',
+  //   pathMatch: 'full'
+  // }
 ];
 
 @NgModule({

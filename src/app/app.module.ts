@@ -10,10 +10,12 @@ import { LayoutModule } from './pages/layout/layout.module';
 import { ClickOutsideDirective } from './shared/directives/click-outside.directive';
 import { BasicAuthInterceptor } from 'src/app/interceptor/basic-auth';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NotFoundComponent,
     // ClickOutsideDirective,
   ],
   imports: [

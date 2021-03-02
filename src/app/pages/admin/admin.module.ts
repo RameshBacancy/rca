@@ -53,7 +53,7 @@ const routes: Routes = [
     path: 'changepassword',
     component: ChangePasswordComponent,
   },
-  { path: '**', redirectTo: '/admin/user/login', pathMatch: 'full' }
+  // { path: '**', redirectTo: '/admin/user/login', pathMatch: 'full' }
 ];
 
 @NgModule({

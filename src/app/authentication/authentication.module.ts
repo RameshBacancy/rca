@@ -41,11 +41,11 @@ const routes: Routes = [
     redirectTo: '/auth/supplier-registration',
     pathMatch: 'full'
   },
-  {
-    path: '**',
-    redirectTo: '/auth/supplier-registration',
-    pathMatch: 'full'
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: '/auth/supplier-registration',
+  //   pathMatch: 'full'
+  // }
 ];
 
 @NgModule({
