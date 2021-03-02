@@ -35,15 +35,19 @@ export class TenderAddendumsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.tenderService.getOrClearDraftTime('get').subscribe(res => {
+      if (!(res.data.tender_drafttime === null)) {
+        localStorage.setItem('tenderDraftTime', res.data.tender_drafttime);
+      }
+    });
     // for tender draft time
     if (this.tenderService.isTenderDraftTimeComplete()) {
       this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
       // call draft time eared api
-      this.spinnerService.openSpinner();
-      setTimeout(() => {
-        localStorage.setItem('tenderDraftTime', '');
-        this.spinnerService.closeSpinner();
-      }, 1000);
+
+      this.tenderService.getOrClearDraftTime('clear').subscribe(() => {
+        localStorage.removeItem('tenderDraftTime');
+      });
     }
 
     this.loadTenderAddendum();

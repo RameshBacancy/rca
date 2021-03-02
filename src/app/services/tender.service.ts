@@ -10,6 +10,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class TenderService {
+
+
   constructor(
     private http: HttpClient,
     private reqHttp: RequestServiceBase,
@@ -257,7 +259,11 @@ export class TenderService {
     } else {
       return 0;
     }
+  }
 
+  getOrClearDraftTime(type): Observable<any> {
+    const tenderNo = localStorage.getItem('tenderNo');
+    return this.reqHttp.httpGet('tender-drafttime?type=' + type + '&tender_id=' + tenderNo);
   }
 
 }

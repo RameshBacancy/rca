@@ -91,7 +91,8 @@
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Gate Pass</h5>
                     <!-- <p class="fs-14">Yes / No</p> -->
                     <mat-form-field appearance="fill" class="mt-0">
-                        <mat-select (selectionChange)="tenderAddendum.siteVisit.gatePass = $event.value" [(ngModel)]=" this.tenderAddendum.siteVisit.gatePass">
+                        <mat-select (selectionChange)="tenderAddendum.siteVisit.gatePass = $event.value"
+                            [(ngModel)]=" this.tenderAddendum.siteVisit.gatePass">
                             <mat-option [value]="'yes'">
                                 Yes
                             </mat-option>
@@ -127,13 +128,15 @@
                         matStepperNext>Next <i class="fa fa-caret-right"></i></button>
 
                     <!-- <a routerLink="/landing/supplier-registration/dashboard"> -->
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"  (click)="clear(tenderStep.SITE_VISIT)">Clear</button>
+                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        (click)="clear(tenderStep.SITE_VISIT)">Clear</button>
                     <!-- </a> -->
                     <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                         </button>
                     </a>
-                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft()">Save
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2"
+                        (click)="submitOrSaveDraft('saveAsDraft')">Save
                         as draft
                     </button>
                     <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -210,7 +213,8 @@
                     <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Extension Remarks</h5>
                 </div>
                 <div class="col-md-6  px-4 pb-2">
-                    <textarea name="" [(ngModel)]="tenderAddendum.extensions.extensionRemarks" class="form-control" id="" rows="5"></textarea>
+                    <textarea name="" [(ngModel)]="tenderAddendum.extensions.extensionRemarks" class="form-control"
+                        id="" rows="5"></textarea>
                 </div>
             </div>
 
@@ -223,13 +227,15 @@
                         matStepperNext>Next <i class="fa fa-caret-right"></i></button>
 
                     <!-- <a routerLink="/landing/supplier-registration/dashboard"> -->
-                        <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"  (click)="clear(tenderStep.EXTENSION)">Clear</button>
+                    <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        (click)="clear(tenderStep.EXTENSION)">Clear</button>
                     <!-- </a> -->
                     <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                         </button>
                     </a>
-                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft('saveAsDraft')">Save
+                    <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2"
+                        (click)="submitOrSaveDraft('saveAsDraft')">Save
                         as draft
                     </button>
                     <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -328,7 +334,7 @@
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody  *ngIf="filterItemData">
+                                    <tbody *ngIf="filterItemData">
                                         <tr *ngFor="let item of filterItemData.supplyLine; let i =  index;">
                                             <td>{{ i + 1 }}</td>
                                             <td>{{ item.partCode  }}</td>
@@ -360,13 +366,15 @@
                                     class="fa fa-caret-right"></i></button>
 
                             <!-- <a routerLink="/landing/supplier-registration/dashboard"> -->
-                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"  (click)="clear(tenderStep.SUPPLY_LINE)">Clear</button>
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                (click)="clear(tenderStep.SUPPLY_LINE)">Clear</button>
                             <!-- </a> -->
                             <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                                 <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                                 </button>
                             </a>
-                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft('saveAsDraft')">Save
+                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2"
+                                (click)="submitOrSaveDraft('saveAsDraft')">Save
                                 as draft
                             </button>
                             <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -446,7 +454,7 @@
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody  *ngIf="filterItemData">
+                                    <tbody *ngIf="filterItemData">
                                         <tr *ngFor="let item of filterItemData.serviceLine; let i =  index;">
                                             <td>{{ i + 1 }}</td>
                                             <td>{{ item.partCodeDescription  }}</td>
@@ -479,13 +487,15 @@
 
 
                             <!-- <a routerLink="/landing/supplier-registration/dashboard"> -->
-                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"  (click)="clear(tenderStep.SERVICE_LINE)">Clear</button>
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                (click)="clear(tenderStep.SERVICE_LINE)">Clear</button>
                             <!-- </a> -->
                             <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                                 <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                                 </button>
                             </a>
-                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2" (click)="submitOrSaveDraft('saveAsDraft')">Save
+                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2"
+                                (click)="submitOrSaveDraft('saveAsDraft')">Save
                                 as draft
                             </button>
                             <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
@@ -589,7 +599,7 @@
                                         </tr>
                                     </tbody>
                                 </table> -->
-                            
+
                                 <table class="table table-striped mb-0">
                                     <thead>
                                         <tr class="purple-bg text-white">
@@ -609,13 +619,16 @@
                                             <td>{{ line.lineDescription }}</td>
                                             <td> {{ line.contractCurrency }}</td>
                                             <td>{{ line.companyCurrency }}</td>
-                                            <td><i (click)="contractExpand(line, i)" class="fa" [ngClass]="{'fa-chevron-circle-up': selectedContractIndex !== i, 'fa-chevron-circle-down': selectedContractIndex === i }"></i></td>
+                                            <td><i (click)="contractExpand(line, i)" class="fa"
+                                                    [ngClass]="{'fa-chevron-circle-up': selectedContractIndex !== i, 'fa-chevron-circle-down': selectedContractIndex === i }"></i>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
-                    </div><div class="row mt-3" *ngIf="selectedContract">
+                    </div>
+                    <div class="row mt-3" *ngIf="selectedContract">
                         <div class="col-md-12 px-4 mb-3 mt-3">
                             <div class="table-responsive">
                                 <h3>Items</h3>
@@ -663,13 +676,15 @@
                                 </button>
                             </a> -->
                             <!-- <a routerLink="/landing/supplier-registration/dashboard"> -->
-                                <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2" (click)="clear(tenderStep.CONTRACT_BOQS)">Clear</button>
+                            <button type="button" class="btn  border px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                                (click)="clear(tenderStep.CONTRACT_BOQS)">Clear</button>
                             <!-- </a> -->
                             <a routerLink="/e-tendering/tender-dashboard/current-tenders">
                                 <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home
                                 </button>
                             </a>
-                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2"  (click)="submitOrSaveDraft('saveAsDraft')">Save
+                            <button type="button" class="btn border  px-3 mx-1 py-2  fs-14 mb-2 mb-2"
+                                (click)="submitOrSaveDraft('saveAsDraft')">Save
                                 as draft
                             </button>
                             <!-- <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2">Home

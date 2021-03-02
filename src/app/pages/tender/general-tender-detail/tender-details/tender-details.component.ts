@@ -25,7 +25,7 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
   supplierType: string;
   authToken: string;
   supplierEnum = SupplierEnum;
-  public endPoint  = EndPoint;
+  public endPoint = EndPoint;
   endSubmissionTime: Date;
   hoursLeft: string;
 
@@ -37,17 +37,22 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+
+    this.tenderService.getOrClearDraftTime('get').subscribe(res => {
+      if (!(res.data.tender_drafttime === null)) {
+        localStorage.setItem('tenderDraftTime', res.data.tender_drafttime);
+      }
+    });
+
     // for tender draft time
     if (this.tenderService.isTenderDraftTimeComplete()) {
       this.alertService.pushWarning('Your 72 hours save draft time over, your previous data erased.');
-      // call draft time eared api
-      this.spinnerService.openSpinner();
-      setTimeout(() => {
-        localStorage.setItem('tenderDraftTime', '');
-        this.spinnerService.closeSpinner();
-      }, 1000);
+
+      this.tenderService.getOrClearDraftTime('clear').subscribe(() => {
+        localStorage.removeItem('tenderDraftTime');
+      });
     }
-    
+
     this.supplierType = localStorage.getItem('regType');
     this.authToken = 'Bearer ' + localStorage.getItem('authToken');
     localStorage.removeItem('documentFees');
@@ -63,10 +68,10 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
     let minDiff = hourDiff / 60 / 1000; //in minutes
     let hDiff = hourDiff / 3600 / 1000; //in hours  
     this.hoursLeft = Math.floor(hDiff) + ':' + Math.floor(minDiff - 60 * Math.floor(hDiff));
-    setInterval(()=> {
+    setInterval(() => {
       hourDiff = this.endSubmissionTime.getTime() - new Date().getTime();
       minDiff = hourDiff / 60 / 1000;
-      hDiff = hourDiff / 3600 / 1000;  
+      hDiff = hourDiff / 3600 / 1000;
       this.hoursLeft = Math.floor(hDiff) + ':' + Math.floor(minDiff - 60 * Math.floor(hDiff));
     }, 60000);
   }
@@ -96,7 +101,6 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
       },
       tenderDraftTime: localStorage.getItem('tenderDraftTime') || new Date()
     };
-
     if (this.tenderData.tenderParticipate.participate === 'yes') {
       data.generalTenderDetail.siteVisit = this.tenderData.tenderParticipate.siteVisitRequired;
     } else {
@@ -113,6 +117,7 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
         this.router.navigateByUrl('/e-tendering/general-tender-details/tender-fees');
       }
     });
+
   }
 
   ngOnDestroy(): void {
