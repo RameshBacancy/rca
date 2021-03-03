@@ -1,3 +1,4 @@
+import { PaymentService } from './../../../services/payment.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from './../../../services/language.service';
 import { TenderService } from 'src/app/services/tender.service';
@@ -48,21 +49,22 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
     private languageService: LanguageService,
     private translateService: TranslateService,
     private activatedRoute: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private paymentService: PaymentService
   ) {
     const language = this.languageService.getLanguage();
     this.translateService.use(language);
-   }
+  }
 
   ngOnInit(): void {
     this.modalService.dismissAll();
-    
+
     this.paymentCompleteStatus = localStorage.getItem('completePayment');
     this.regStatus = localStorage.getItem('RegStatus');
 
     this.getNotificationParams();
 
-    this.paymentNotificationMessage = this.paymentCompleteStatus != 'true' && this.regStatus == 'finish'?'For further procedure complete your payment.' : '';
+    this.paymentNotificationMessage = this.paymentCompleteStatus != 'true' && this.regStatus == 'finish' ? 'For further procedure complete your payment.' : '';
     this.gotopath = '/landing/supplier-registration/dashboard';
     this.tenderService.getTender().subscribe((data: any) => {
       if (data[0]) {
@@ -102,13 +104,17 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.paymentResult = params['status'];
       this.paymentMessage = params['message'];
-      if(this.paymentResult || this.paymentMessage){
+      if (this.paymentResult || this.paymentMessage) {
         this.location.replaceState('/landing/supplier-registration/dashboard');
-        if(this.paymentResult == 'success'){
+        if (this.paymentResult == 'success') {
           this.alerts.pushSuccess(this.paymentMessage);
         } else {
           this.alerts.pushError(this.paymentMessage);
         }
+
+        this.paymentService.getPaymentData().subscribe(res => {
+          console.log(res);
+        });
       }
     });
   }
@@ -166,9 +172,9 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
           //     this.status = this.alertData.title;
           //     this.approveRejectStatus = this.safeHtml.transform(this.alertData.description, true);
           //   } else {
-              this.status = 'Approved';
-              this.approveRejectStatus = 'Your Registration request is Approved by the Admin. <br/> Your payment is already completed. <br/>';
-            // }
+          this.status = 'Approved';
+          this.approveRejectStatus = 'Your Registration request is Approved by the Admin. <br/> Your payment is already completed. <br/>';
+          // }
           // });
           this.gotopath = '/landing/supplier-registration/dashboard';
         }
