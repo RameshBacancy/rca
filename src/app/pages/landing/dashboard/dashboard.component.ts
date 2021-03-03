@@ -102,13 +102,15 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
     this.activatedRoute.queryParams.subscribe((params) => {
       this.paymentResult = params['status'];
       this.paymentMessage = params['message'];
+      if(this.paymentResult || this.paymentMessage){
+        this.location.replaceState('/landing/supplier-registration/dashboard');
+        if(this.paymentResult == 'success'){
+          this.alerts.pushSuccess(this.paymentMessage);
+        } else {
+          this.alerts.pushError(this.paymentMessage);
+        }
+      }
     });
-    this.location.replaceState('/landing/supplier-registration/dashboard');
-    if(this.paymentResult == 'success'){
-      this.alerts.pushSuccess(this.paymentMessage);
-    } else {
-      this.alerts.pushError(this.paymentMessage);
-    }
   }
 
   openModel() {
