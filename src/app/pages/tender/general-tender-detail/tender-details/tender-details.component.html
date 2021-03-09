@@ -295,10 +295,26 @@
                     <p class="fs-14">{{  tenderData.siteDescription }}</p>
                 </div>
             </div>
-            <div class="row mt-4 ml-2">
+            <!-- <div class="row mt-4 ml-2">
                 <div class="col">
                     <span class="fs-16 font-weight-bold text-black dark-text-1 mr-5">Tender Document Fee : </span>
                     <span class="fs-14 text-black">{{ tenderData.tenderFees.tenderDocumentFee }}</span>
+                </div>
+            </div>
+            <div class="row mt-4 ml-2">
+                <div class="col">
+                    <span class="fs-16 font-weight-bold text-black dark-text-1 mr-5">Payment Status</span>
+                    <span class="fs-14 text-black">{{ isTenderPaymentDone ? 'Paid' : 'Pending' }}</span>
+                </div>
+            </div> -->
+            <div class="row ml-2 mt-4">
+                <div class="col-md-3 col-lg-3 col-xl-2   px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Tender Document Fee</h5>
+                    <p class="fs-14">{{ tenderData.tenderFees.tenderDocumentFee }}</p>
+                </div>
+                <div class="col px-4 ">
+                    <h5 class="fs-16 font-weight-bold text-black dark-text-1 ">Payment Status</h5>
+                    <p class="fs-14">{{ isTenderPaymentDone ? 'Paid' : 'Pending' }}</p>
                 </div>
             </div>
             <!-- <div class="row  ml-2 mt-4" *ngIf="supplierType !== 'international'">
@@ -320,31 +336,31 @@
 
                     <!-- <button type="button" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
                         (click)="submitOrSaveDraft('next')">Next <i class="fa fa-caret-right"></i></button> -->
-                        <!-- <button type="button" *ngIf="supplierType !== 'international'"
+                    <!-- <button type="button" *ngIf="supplierType !== 'international'"
                             class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
                             (click)="submitOrSaveDraft('next')">Next</button> -->
-                        
+
+                    <button type="button" [disabled]="!isTenderPaymentDone" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
+                        (click)="submitOrSaveDraft('')">Next <i class="fa fa-caret-right"></i></button>
+
                     <!-- For local and citizen -->
                     <form #omanTenderPaymentForm *ngIf="supplierType !== supplierEnum.INTERNATIONAL" class="d-inline"
-                        [action]="endPoint.omanNetPaymentGateway"
-                        method="POST">
+                        [action]="endPoint.omanNetPaymentGateway" method="POST">
                         <input type="hidden" name="amount" [value]="amount">
                         <input type="hidden" name="Authorization" [value]="authToken">
 
-                        <input type="submit" class="btn btn-primary  px-3 mx-1 py-2 w-150 fs-14 mb-2 mb-2" 
-                            (click)="omanTenderPaymentForm.submit()"
-                            value="Payment">
+                        <input type="submit" class="btn btn-primary  px-3 mx-1 py-2 w-150 fs-14 mb-2 mb-2"
+                            (click)="omanTenderPaymentForm.submit()" value="Payment" [disabled]="isTenderPaymentDone">
                     </form>
                     <!-- For international -->
                     <form #tenderPaymentForm *ngIf="supplierType == supplierEnum.INTERNATIONAL" class="d-inline"
-                        [action]="endPoint.cyberSourcePaymentGateway"
-                        method="POST">
+                        [action]="endPoint.cyberSourcePaymentGateway" method="POST">
                         <input type="hidden" name="amount" [value]="amount">
                         <input type="hidden" name="currency" [value]="currency">
                         <input type="hidden" name="Authorization" [value]="authToken">
 
                         <input type="submit" class="btn border btn-disabled-color-gray  px-3 py-2 mx-1 w-120 fs-14 mb-2"
-                            (click)="tenderPaymentForm.submit()" value="Next">
+                            (click)="tenderPaymentForm.submit()" [disabled]='isTenderPaymentDone' value="Payment">
                     </form>
                     <!-- <a>
                         <button type="button" class="btn  border  px-3 mx-1 py-2 w-120 fs-14 mb-2 mb-2"

@@ -1,4 +1,6 @@
-import { EndPoint } from './../../../../app.constants';
+import { TenderParticipate } from './../../../../models/tender.model';
+import { SupplierEnum } from './../../../../enum/supplier.enum';
+import { EndPoint, SupplierIdList, SelectedIdEmailForTenderPayment } from './../../../../app.constants';
 import { LocalRegisterStep } from '../../../../enum/register-step.enum';
 import { SpinnerService } from './../../../../services/spinner.service';
 import { AlertService } from './../../../../services/alert.service';
@@ -7,7 +9,6 @@ import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { TenderService } from 'src/app/services/tender.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { SupplierEnum } from '../../../../enum/supplier.enum';
 
 @Component({
   selector: 'app-tender-details',
@@ -28,6 +29,8 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
   public endPoint = EndPoint;
   endSubmissionTime: Date;
   hoursLeft: string;
+  isTenderPaymentDone: boolean;
+
 
   constructor(
     private tenderService: TenderService,
@@ -59,14 +62,28 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
     this.participated = true;
     this.regretReasons = ['Lack Of Resources', 'Not Interested'];
     this.loadTenderData();
+
+    // for payment status payment done for selected supplier( civil id)
+    this.paymentStatus();
+  }
+
+  // set isPaymentStatus
+  paymentStatus() {
+    const supplierType: string = localStorage.getItem('regType') || '';
+    const supplierTypeValues: string[] = Object.values(SupplierEnum);
+    if (supplierTypeValues.includes(supplierType)) {
+      const supplierIdOrEmailList = SelectedIdEmailForTenderPayment;
+      const supplierIdOrEmail = +localStorage.getItem('civilReg') || localStorage.getItem('internationalEmail');
+      this.isTenderPaymentDone = supplierIdOrEmailList.includes(supplierIdOrEmail);
+    }
   }
 
   // hours left
   calculateTime(): void {
-    let hourDiff = this.endSubmissionTime.getTime() - new Date().getTime(); //in ms
-    // let secDiff = hourDiff / 1000; //in s  
-    let minDiff = hourDiff / 60 / 1000; //in minutes
-    let hDiff = hourDiff / 3600 / 1000; //in hours  
+    let hourDiff = this.endSubmissionTime.getTime() - new Date().getTime(); // in ms
+    // let secDiff = hourDiff / 1000; // in s
+    let minDiff = hourDiff / 60 / 1000; // in minutes
+    let hDiff = hourDiff / 3600 / 1000; // in hours
     this.hoursLeft = Math.floor(hDiff) + ':' + Math.floor(minDiff - 60 * Math.floor(hDiff));
     setInterval(() => {
       hourDiff = this.endSubmissionTime.getTime() - new Date().getTime();
@@ -115,6 +132,10 @@ export class TenderDetailsComponent implements OnInit, OnDestroy {
 
       if (type === 'next') {
         this.router.navigateByUrl('/e-tendering/general-tender-details/tender-fees');
+      }
+
+      if (type === '') {
+        this.router.navigateByUrl('/e-tendering/general-tender-details/tender-documents')
       }
     });
 

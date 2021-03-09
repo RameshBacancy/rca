@@ -1,3 +1,4 @@
+import { PaymentStep } from './../../../enum/payment-step.enum';
 import { PaymentService } from './../../../services/payment.service';
 import { TranslateService } from '@ngx-translate/core';
 import { LanguageService } from './../../../services/language.service';
@@ -37,6 +38,7 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
   paymentNotificationMessage: string;
   paymentResult = '';
   paymentMessage = '';
+  paymentStatusStep = PaymentStep;
 
   constructor(
     private modalService: NgbModal,
@@ -106,7 +108,9 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
       this.paymentMessage = params['message'];
       if (this.paymentResult || this.paymentMessage) {
         this.location.replaceState('/landing/supplier-registration/dashboard');
-        if (this.paymentResult == 'success') {
+        if (this.paymentResult === this.paymentStatusStep.SUCCESS
+          || this.paymentResult === this.paymentStatusStep.CAPTURED
+          || this.paymentResult === this.paymentStatusStep.Approved) {
           this.alerts.pushSuccess(this.paymentMessage);
         } else {
           this.alerts.pushError(this.paymentMessage);
