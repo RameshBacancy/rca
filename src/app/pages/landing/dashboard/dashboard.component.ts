@@ -35,6 +35,7 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
 
   regStatus;
   paymentCompleteStatus;
+  arStatus;
   paymentNotificationMessage: string;
   paymentResult = '';
   paymentMessage = '';
@@ -63,10 +64,11 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
 
     this.paymentCompleteStatus = localStorage.getItem('completePayment');
     this.regStatus = localStorage.getItem('RegStatus');
+    this.arStatus = localStorage.getItem('arStatus');
 
     this.getNotificationParams();
 
-    this.paymentNotificationMessage = this.paymentCompleteStatus != 'true' && this.regStatus == 'finish' ? 'For further procedure complete your payment.' : '';
+    this.paymentNotificationMessage = this.paymentCompleteStatus != 'true' && this.regStatus == 'finish' && this.arStatus === 'approved' ? 'For further procedure complete your payment.' : '';
     this.gotopath = '/landing/supplier-registration/dashboard';
     this.tenderService.getTender().subscribe((data: any) => {
       if (data[0]) {
