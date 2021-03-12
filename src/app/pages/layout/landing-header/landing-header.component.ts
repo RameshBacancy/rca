@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { SpinnerService } from 'src/app/services/spinner.service';
 import { TranslateService } from '@ngx-translate/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-landing-header',
@@ -23,7 +24,7 @@ export class LandingHeaderComponent implements OnInit {
   public sidebarItems;
   showtabs: boolean = true;
   public languageArray = ['English', 'Arabic'];
-  selectedLanguage =  'English';
+  selectedLanguage = 'English';
   arStatus: string;
 
   constructor(
@@ -31,8 +32,9 @@ export class LandingHeaderComponent implements OnInit {
     private userService: UserService,
     private spinner: SpinnerService,
     private translate: TranslateService,
-    private languageService: LanguageService
-    ) {
+    private languageService: LanguageService,
+    private modalService: NgbModal
+  ) {
     this.translate.use('English');
   }
 
@@ -88,9 +90,11 @@ export class LandingHeaderComponent implements OnInit {
       this.spinner.closeSpinner();
       localStorage.clear();
       this.router.navigate(['/admin/user/login']);
+      this.modalService.dismissAll();
     } else {
       localStorage.clear();
       this.router.navigate(['']);
+      this.modalService.dismissAll();
     }
   }
 
