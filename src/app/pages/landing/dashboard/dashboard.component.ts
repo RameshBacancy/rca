@@ -57,6 +57,13 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
   ) {
     const language = this.languageService.getLanguage();
     this.translateService.use(language);
+    if (localStorage.getItem('ModelShowed') != 'true') {
+      if (this.paymentCompleteStatus != 'true') {
+        if (this.regStatus == 'finish') {
+          this.fileInput.nativeElement.click();
+        }
+      }
+    }
   }
 
   ngOnInit(): void {
@@ -99,6 +106,7 @@ export class DashboardComponent implements OnInit, AfterViewChecked {
       if (this.paymentCompleteStatus != 'true') {
         if (this.regStatus == 'finish') {
           this.fileInput.nativeElement.click();
+          localStorage.setItem('ModelShowed', 'true');
         }
       }
     }
